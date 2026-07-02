@@ -1,16 +1,4 @@
-# Operating-system and editor files
-.DS_Store
-Thumbs.db
-desktop.ini
-~$*
-*.swp
-
-# Python
-__pycache__/
-*.py[cod]
-.venv/
-
-# Temporary outputs
-*.tmp
-*.temp
-*.bak
+.zig-cache/
+zig-out/
+*.o
+*.dta
