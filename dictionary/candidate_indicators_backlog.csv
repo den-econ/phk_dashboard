@@ -1,0 +1,16 @@
+candidate_indicator,source,granularitas,level,direction,r_squared,literature_review
+PDRB per sektor,CEIC,Triwulanan,,,,Output sektor ↑ → kebutuhan tenaga kerja ↑ → PHK ↓
+Tabel input output (IO),BPS,10 Tahunan,,,,Multiplier sektor ↑ → penyerapan tenaga kerja ↑ → PHK ↓
+Jumlah Tenaga Kerja/Nilai Tambah ,"Survei Industri, diolah",Tahunan,Provinsi,,,Tenaga Kerja per Value Added- Jumlah pekerja relatif terhadap nilai tambah yang dihasilkan. Mengukur intensitas penggunaan pekerja terhadap nilai ekonomi yang diciptakan
+Nilai Tambah/Nilai Output,"Survei Industri, diolah",Tahunan,Provinsi,,,Proporsi nilai tambah terhadap output - Menggambarkan ruang nilai tambah yang tersisa setelah memperhitungkan input
+Pertumbuhan Nilai Tambah,"Survei Industri, diolah perubahan tahunan",,,,,
+Pertumbuhan Produktivitas Tenaga Kerja (Nilai Tambah),"Survei Industri, diolah perubahan tahunan",,,,,
+Capital/labor,"Survei Industri, diolah perubahan tahunan",Tahunan,Provinsi,,,"Untuk melihat capital intensity -- semakin tinggi, semakin capital intensive --> kemungkinan PHK semakin tinggi"
+Pengeluaran konsumsi rumah tangga,Susenas,Triwulan,,,,Negatif
+Population density,Susenas,,,,,
+Urbanization rate,Susenas,,,,,
+Poverty rate,Susenas,,,,,
+Inequality rate,Susenas,,,,,
+Data twitter lihat job posting ,Public sentiment,,,,,Saat ini rada sulit dapat API twitternya 
+Penggunaan pegadaian,Pegadaian?,,,,,Bisa minta data sekundernya
+Penggunaan judol dan pinjol ,PPATK,,,,,Cek di Susenas

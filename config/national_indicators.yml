@@ -1,0 +1,20 @@
+# National indicators, identical across all provinces within a period.
+# These take a _national suffix in phk_master.csv and must not be read as provincial signal.
+# DRAFT, auto-detected from the data. Review the needs_review block before trusting.
+
+confirmed_national:
+  - "BI Rate"
+  - "BI Rate (Average)*"
+  - "Harga Minyak Brent (USD/barrel)"
+  - "IHPB"
+  - "Kurs"
+  - "PMI Manufaktur"
+  - "PMI Manufaktur S&P"
+  - "Perubahan Harga Produsen (CEIC)"
+  - "Perubahan Harga Produsen**"
+  - "Perubahan harga produsen (%)"
+
+needs_review:  # auto-detected as national, confirm manually
+  - "ICOR"
+  - "IHP (2016=100)"
+  - "Perubahan harga konsumen (%)"

@@ -1,0 +1,82 @@
+# Curated schema for clean_data/phk_master.csv
+# Grain: one row per province_std per year-month
+# Coverage: 38 provinces x 48 months (2022-01 to 2025-12) = 1824 rows
+# DRAFT curated set. Adjust the mappings below to change what enters the master.
+# The full annual sheet is kept separately in clean_data/annual_full.csv.
+
+primary_key: [province_std, year, month]
+grain: province-month
+
+# Identity and calendar columns, built by the pipeline
+identity:
+  - province_name_original
+  - province_std
+  - province_code
+  - year
+  - month
+  - date
+  - quarter
+
+# Monthly provincial indicators, from Database (Bulan). Source name to master name.
+monthly_provincial:
+  "PHK (Stock)": phk_stock
+  "PHK (Flow)": phk_flow
+  "IHK (2010=100)": ihk
+  "Inflasi Tahunan (Y-on-Y)": inflasi_yoy
+  "Inflasi Bulanan (M-to-M)": inflasi_mtm
+  "Nilai Ekspor": nilai_ekspor
+  "Nilai Impor": nilai_impor
+  "Neraca Perdagangan": neraca_perdagangan
+  "NPL (IDR miliar)": npl
+
+# Monthly national indicators, from Database (Bulan). These take a _national suffix.
+monthly_national:
+  "PMI Manufaktur S&P": pmi_manufaktur_national
+  "BI Rate": bi_rate_national
+  "Kurs": kurs_national
+  "Harga Minyak Brent (USD/barrel)": brent_oil_national
+  "IHPB": ihpb_national
+
+# Annual indicators, from Database (Tahun). Broadcast across the 12 months of the province-year.
+annual_repeated:
+  "PHK": annual_phk
+  "% Pekerja Formal": pct_pekerja_formal
+  "% TPT": tpt
+  "% TPAK": tpak
+  "Proporsi Lapangan Kerja Informal": proporsi_informal
+  "UMP (IDR)": ump_ribu_idr
+  "Growth UMP": growth_ump
+  "Kaitz Index": kaitz_index
+  "Manufacturing Share": manufacturing_share
+
+# Quarterly indicators, from Database (Triwulan). Broadcast across the 3 months of the quarter.
+quarterly_repeated:
+  "PDRB (IDR mn)": pdrb
+  "FDI (IDR mn)": fdi_idr
+  "Jumlah Penduduk Bekerja": jumlah_penduduk_bekerja
+
+# MAP province structural indicators, from MAP_composite_all (province rows only).
+# Annual (province-year), broadcast across months, carry 2024 into 2025.
+map_repeated:
+  threshold_skortotal: map_skortotal
+  threshold_status: map_threshold_status
+  nonpkwtt: map_nonpkwtt
+  wageump: map_wageump
+  laborinten: map_laborinten
+  formalgrowth: map_formalgrowth
+  pdrbgrowth: map_pdrbgrowth
+  informal: map_informal
+  manufacture: map_manufacture
+
+# Flag and provenance columns, built by the pipeline
+flags:
+  - annual_indicator_repeated_monthly
+  - quarterly_indicator_repeated_monthly
+  - map_year_used
+  - admin_mapping_status
+  - phk_reporting_status
+provenance:
+  - baseline_merge_source
+  - data_version
+  - last_updated
+  - source_file

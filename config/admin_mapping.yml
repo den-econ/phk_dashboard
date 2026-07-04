@@ -1,0 +1,94 @@
+# Province name crosswalk, PHK Early Warning Dashboard
+# Canonical set: 38 provinces from the PHK workbook (Outlook vintage, 2022 to 2025)
+# MAP_composite_all uses 34 provinces (older structure) in UPPERCASE, 2014 to 2024
+
+canonical_provinces:
+  - Aceh
+  - Bali
+  - Bangka Belitung
+  - Banten
+  - Bengkulu
+  - DI Yogyakarta
+  - DKI Jakarta
+  - Gorontalo
+  - Jambi
+  - Jawa Barat
+  - Jawa Tengah
+  - Jawa Timur
+  - Kalimantan Barat
+  - Kalimantan Selatan
+  - Kalimantan Tengah
+  - Kalimantan Timur
+  - Kalimantan Utara
+  - Kepulauan Riau
+  - Lampung
+  - Maluku
+  - Maluku Utara
+  - Nusa Tenggara Barat
+  - Nusa Tenggara Timur
+  - Papua
+  - Papua Barat
+  - Papua Barat Daya
+  - Papua Pegunungan
+  - Papua Selatan
+  - Papua Tengah
+  - Riau
+  - Sulawesi Barat
+  - Sulawesi Selatan
+  - Sulawesi Tengah
+  - Sulawesi Tenggara
+  - Sulawesi Utara
+  - Sumatera Barat
+  - Sumatera Selatan
+  - Sumatera Utara
+
+# Raw source name to canonical. Covers MAP uppercase, casing, and the Bangka Belitung alias.
+aliases:
+  "DAERAH ISTIMEWA YOGYAKARTA": DI Yogyakarta
+  "ACEH": Aceh
+  "BALI": Bali
+  "BANTEN": Banten
+  "BENGKULU": Bengkulu
+  "DI YOGYAKARTA": DI Yogyakarta
+  "DKI JAKARTA": DKI Jakarta
+  "GORONTALO": Gorontalo
+  "JAMBI": Jambi
+  "JAWA BARAT": Jawa Barat
+  "JAWA TENGAH": Jawa Tengah
+  "JAWA TIMUR": Jawa Timur
+  "KALIMANTAN BARAT": Kalimantan Barat
+  "KALIMANTAN SELATAN": Kalimantan Selatan
+  "KALIMANTAN TENGAH": Kalimantan Tengah
+  "KALIMANTAN TIMUR": Kalimantan Timur
+  "KALIMANTAN UTARA": Kalimantan Utara
+  "KEPULAUAN BANGKA BELITUNG": Bangka Belitung
+  "KEPULAUAN RIAU": Kepulauan Riau
+  "LAMPUNG": Lampung
+  "MALUKU": Maluku
+  "MALUKU UTARA": Maluku Utara
+  "NUSA TENGGARA BARAT": Nusa Tenggara Barat
+  "NUSA TENGGARA TIMUR": Nusa Tenggara Timur
+  "PAPUA": Papua
+  "PAPUA BARAT": Papua Barat
+  "RIAU": Riau
+  "SULAWESI BARAT": Sulawesi Barat
+  "SULAWESI SELATAN": Sulawesi Selatan
+  "SULAWESI TENGAH": Sulawesi Tengah
+  "SULAWESI TENGGARA": Sulawesi Tenggara
+  "SULAWESI UTARA": Sulawesi Utara
+  "SUMATERA BARAT": Sumatera Barat
+  "SUMATERA SELATAN": Sumatera Selatan
+  "SUMATERA UTARA": Sumatera Utara
+
+# In the PHK file (38) but absent from MAP (34). No structural MAP data available.
+new_provinces_no_map:
+  - Papua Selatan
+  - Papua Tengah
+  - Papua Pegunungan
+  - Papua Barat Daya
+
+# MAP coverage ends in 2024. For 2025, carry the latest MAP year forward and flag it.
+map_carry_forward:
+  latest_map_year: 2024
+  apply_to_years: [2025]
+  flag_column: map_year_used
