@@ -1,4 +1,10 @@
-.zig-cache/
-zig-out/
-*.o
+# OS cruft
+.DS_Store
+
+# Stata
 *.dta
+
+# Python (only used ad hoc for the build generator)
+__pycache__/
+*.pyc
+.venv/

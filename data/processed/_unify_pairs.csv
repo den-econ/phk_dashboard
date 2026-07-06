@@ -1,0 +1,7 @@
+phk_col,map_col,source_flag,phk_prescale
+lab_informal_share_pct_y,map_informal_y,lab_informal_source,1
+lab_tpt_pct_y,map_unemployment_y,lab_tpt_source,1
+wage_ump_idr_y,map_minimum_wage_y,wage_ump_source,1000
+emp_share_manuf_pct_y,map_manuf_y,emp_share_manuf_source,100
+emp_share_agri_pct_y,map_agri_y,emp_share_agri_source,100
+macro_pdrb_real_idr_billion_y,map_pdrb_y,macro_pdrb_real_source,1
