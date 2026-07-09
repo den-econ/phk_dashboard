@@ -1,12 +1,12 @@
 # PHK Early Warning Dashboard, Data Dictionary (rebuilt)
 
-Rebuilt directly from the actual columns of `Database (Tahun)`, `Database (Triwulan)`, and `Database (Bulan)` in **Data untuk PHK Outlook.xlsx**, the current canonical source. Metadata (R-squared, correlation direction, literature review, source institution) is carried over from `Kebutuhan Data` and `Kesimpulan Awal` wherever a real match exists. Standard economic indicators carry confirmed definitions. Everything uncertain is marked `manual_review_required` rather than guessed.
+Rebuilt directly from the actual columns of `Database (Tahun)`, `Database (Triwulan)`, and `Database (Bulan)` in **Data untuk PHK Outlook.xlsx**, the current canonical source. Metadata (R-squared, correlation direction, literature review, source institution) is carried over from `Kebutuhan Data` and `Kesimpulan Awal` wherever a real match exists. Standard economic indicators carry confirmed definitions.
 
 The machine-readable version is `config/indicator_dictionary.csv`. This file is the human-readable companion.
 
 ## Why this was rebuilt
 
-The three database sheets contain **206 unique indicators**. `Kebutuhan Data` only has metadata for **94** of them. **112** indicators live in the sheets with no metadata entry, and **15** `Kebutuhan Data` rows describe indicators that are not in the data at all. So `Kebutuhan Data` is no longer a reliable index of the dataset. This dictionary is anchored to the data itself.
+This dictionary is anchored to the data itself.
 
 ## Coverage summary
 
@@ -100,7 +100,7 @@ Preserved from `Kebutuhan Data` for the external-exposure and structural gap-fil
 | Penggunaan pegadaian | Pegadaian? |
 | Penggunaan judol dan pinjol  | PPATK |
 
-## Fields still needing your review
+## Fields still needs review
 
 - **27** non-standard base indicators need a one-line definition
 - `used_in_dashboard` for every row (requires checking against the v5 dashboard)

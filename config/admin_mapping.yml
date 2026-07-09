@@ -90,9 +90,3 @@ new_provinces_no_map:
   - Papua Tengah
   - Papua Pegunungan
   - Papua Barat Daya
-
-# MAP coverage ends in 2024. For 2025, carry the latest MAP year forward and flag it.
-map_carry_forward:
-  latest_map_year: 2024
-  apply_to_years: [2025]
-  flag_column: map_year_used
