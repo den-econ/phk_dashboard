@@ -15,7 +15,6 @@
 *
 * Requires Stata 14+.  Run from anywhere:  do code/01_build_phk_master.do
 *==============================================================
-version 14
 clear all
 set more off
 
