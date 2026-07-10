@@ -26,7 +26,7 @@ This dictionary is anchored to the data itself.
 
 **4. Empty columns.** `IKK` (consumer confidence) and two contract-worker derivatives are entirely empty and carry `no_data`.
 
-## Core indicators (confirmed definitions)
+## Core indicators (To be updated using the final indicators for LPI)
 
 These are the standard, LPI-relevant indicators. Full metadata for all 206 is in the CSV.
 

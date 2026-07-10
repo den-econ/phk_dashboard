@@ -1,11 +1,10 @@
 # ============================================================================
-# PHK master dataset schema  —  description of every variable
+# PHK master dataset schema  -  description of every variable
 # Master : data/clean/phk_master.csv   Grain: province x month (2022-01..2025-12)
-# Source : Data untuk PHK Dashboard.xlsx only.  
+# Source : Data untuk PHK Dashboard.xlsx only.  MAP is NOT merged (reference only).
 # Built by: code/01_build_phk_master.do
-#
-# Naming: frequency is in the suffix (_q quarterly, _y annual, none = monthly);
-#         geographic level is in the name (_nat = national, else province).
+# Naming: _q quarterly, _y annual, none = monthly; _nat = national, else province.
+# Variable list is identical to dictionary/indicator_dictionary.csv.
 # ============================================================================
 master_dataset: data/clean/phk_master.csv
 grain: province-month
@@ -13,1294 +12,1495 @@ coverage: "2022-2025"
 primary_key: [province_name_std, year, month]
 source_workbook: "Data untuk PHK Dashboard.xlsx"
 n_rows: 1824
-n_columns: 226
+n_columns: 257
 
-# variables grouped by domain; each carries a description + metadata
 variables:
   identity:
     - name: province_name_std
-      description: "Province name (standardized) — merge key"
-      frequency: key
-      level: key
+      description: "Provinsi (standardized)"
+      data_period: "key"
+      data_level: province
     - name: year
-      description: "Calendar year (2022-2025)"
-      frequency: key
-      level: key
+      description: "Tahun"
+      data_period: "key"
+      data_level: -
     - name: month
-      description: "Calendar month (1-12)"
-      frequency: key
-      level: key
+      description: "Bulan"
+      data_period: "key"
+      data_level: -
     - name: date
-      description: "First day of the month (YYYY-MM-01)"
-      frequency: key
-      level: key
+      description: "(derived) first day of month"
+      data_period: "key"
+      data_level: -
     - name: quarter
-      description: "Calendar quarter (1-4)"
-      frequency: key
-      level: key
+      description: "(derived) Triwulan"
+      data_period: "key"
+      data_level: -
   phk:
     - name: phk_stock
-      description: "Cumulative reported layoffs to date in the period"
-      original_name: "PHK (Stock)"
-      frequency: monthly
-      level: province
+      description: "PHK (Stock)"
+      source_variable_name: "PHK (Stock)"
+      data_period: "monthly, quarterly"
+      data_level: province
     - name: phk_flow
-      description: "New reported layoffs during the period"
-      original_name: "PHK (Flow)"
-      frequency: monthly
-      level: province
+      description: "PHK (Flow)"
+      source_variable_name: "PHK (Flow)"
+      data_period: "monthly, quarterly"
+      data_level: province
     - name: phk_stock_q
-      description: "Cumulative reported layoffs to date in the period"
-      original_name: "PHK (Stock)"
-      frequency: quarterly
-      level: province
+      description: "PHK (Stock)"
+      source_variable_name: "PHK (Stock)"
+      data_period: "monthly, quarterly"
+      data_level: province
     - name: phk_flow_q
-      description: "New reported layoffs during the period"
-      original_name: "PHK (Flow)"
-      frequency: quarterly
-      level: province
+      description: "PHK (Flow)"
+      source_variable_name: "PHK (Flow)"
+      data_period: "monthly, quarterly"
+      data_level: province
     - name: phk_y
-      description: "Number of reported layoffs (Pemutusan Hubungan Kerja) in the year"
-      original_name: "PHK"
-      frequency: annual
-      level: province
-  macro:
-    - name: macro_pmi_manuf_nat
-      description: "Purchasing Managers Index for manufacturing, national, above 50 signals expansion"
-      original_name: "PMI Manufaktur S&P"
-      frequency: monthly
-      level: national
-    - name: macro_bi_rate_pct_nat
-      description: "Bank Indonesia policy interest rate, national"
-      original_name: "BI Rate"
-      frequency: monthly
-      level: national
-      unit: "percent"
-    - name: macro_fx_idr_usd_nat
-      description: "IDR per USD, national"
-      original_name: "Kurs"
-      frequency: monthly
-      level: national
-      unit: "IDR per USD"
-    - name: macro_pdrb_idr_million_q
-      description: "Provincial GRDP"
-      original_name: "PDRB (IDR mn)"
-      frequency: quarterly
-      level: province
-      unit: "IDR million"
-    - name: macro_pdrb_manuf_idr_million_q
-      description: "PDRB Manufaktur (IDR mn)"
-      original_name: "PDRB Manufaktur (IDR mn)"
-      frequency: quarterly
-      level: province
-      unit: "IDR million"
-    - name: macro_pdrb_agri_idr_million_q
-      description: "PDRB Agrikultur (IDR mn)"
-      original_name: "PDRB Agrikultur (IDR mn)"
-      frequency: quarterly
-      level: province
-      unit: "IDR million"
-    - name: macro_pdrb_svc_idr_million_q
-      description: "PDRB Jasa"
-      original_name: "PDRB Jasa"
-      frequency: quarterly
-      level: province
-      unit: "IDR million"
-    - name: macro_pdrb_manuf_share_pct_q
-      description: "Manufacturing Share (% PDRB)"
-      original_name: "Manufacturing Share (% PDRB)"
-      frequency: quarterly
-      level: province
-      unit: "percent"
-    - name: macro_pdrb_agri_share_pct_q
-      description: "Agriculture Share (% PDRB)"
-      original_name: "Agriculture Share (% PDRB)"
-      frequency: quarterly
-      level: province
-      unit: "percent"
-    - name: macro_pdrb_svc_share_pct_q
-      description: "Services Share (% PDRB)"
-      original_name: "Services Share (% PDRB)"
-      frequency: quarterly
-      level: province
-      unit: "percent"
-    - name: macro_pmi_manuf_nat_q
-      description: "PMI Manufaktur"
-      original_name: "PMI Manufaktur"
-      frequency: quarterly
-      level: national
-    - name: macro_bi_rate_pct_nat_q
-      description: "Bank Indonesia policy interest rate, national"
-      original_name: "BI Rate"
-      frequency: quarterly
-      level: national
-      unit: "percent"
-    - name: macro_fx_idr_usd_nat_q
-      description: "IDR per USD, national"
-      original_name: "Kurs"
-      frequency: quarterly
-      level: national
-      unit: "IDR per USD"
-    - name: macro_consumer_conf_q
-      description: "Index of consumer confidence (empty in current data)"
-      original_name: "IKK"
-      frequency: quarterly
-      level: province
-      unit: "index"
-    - name: macro_pdrb_real_idr_billion_y
-      description: "PDRB Riil (IDR miliar)"
-      original_name: "PDRB Riil (IDR miliar)"
-      frequency: annual
-      level: province
-      unit: "IDR billion"
-    - name: macro_pdrb_real_idr_million_y
-      description: "PDRB Riil (IDR juta)"
-      original_name: "PDRB Riil (IDR juta)"
-      frequency: annual
-      level: province
-      unit: "IDR million"
-    - name: macro_pdrb_manuf_idr_million_y
-      description: "PDRB Manufaktur (IDR juta)"
-      original_name: "PDRB Manufaktur (IDR juta)"
-      frequency: annual
-      level: province
-      unit: "IDR million"
-    - name: macro_pdrb_manuf_share_pct_y
-      description: "Manufacturing value added as a share of GRDP"
-      original_name: "Manufacturing Share"
-      frequency: annual
-      level: province
-      unit: "percent"
-    - name: macro_pdrb_manuf_growth_pct_y
-      description: "YoY growth or change of base indicator"
-      original_name: "Laju Pertumbuhan PDB Industri Manufaktur"
-      frequency: annual
-      level: province
-      unit: "percent"
-    - name: macro_pmi_manuf_nat_y
-      description: "PMI Manufaktur"
-      original_name: "PMI Manufaktur"
-      frequency: annual
-      level: national
-    - name: macro_pdrb_per_wkr_y
-      description: "PDRB/Pekerja"
-      original_name: "PDRB/Pekerja"
-      frequency: annual
-      level: province
-    - name: macro_pdrb_per_wkr_growth_pct_y
-      description: "YoY growth or change of base indicator"
-      original_name: "Laju Pertumbuhan PDB Per Tenaga Kerja"
-      frequency: annual
-      level: province
-      unit: "percent"
-    - name: macro_icor_y
-      description: "ICOR"
-      original_name: "ICOR"
-      frequency: annual
-      level: province
-    - name: macro_bi_rate_avg_pct_nat_y
-      description: "BI Rate (Average)*"
-      original_name: "BI Rate (Average)*"
-      frequency: annual
-      level: national
-      unit: "percent"
-    - name: macro_fx_idr_usd_nat_y
-      description: "IDR per USD, national"
-      original_name: "Kurs"
-      frequency: annual
-      level: national
-      unit: "IDR per USD"
-    - name: macro_consumer_conf_y
-      description: "Index of consumer confidence (empty in current data)"
-      original_name: "IKK"
-      frequency: annual
-      level: province
-      unit: "index"
-  price:
-    - name: price_cpi_index
-      description: "Consumer price index, base 2010=100"
-      original_name: "IHK (2010=100)"
-      frequency: monthly
-      level: province
-      unit: "index"
-    - name: price_inflation_mom_pct
-      description: "Month-on-month change in the consumer price index"
-      original_name: "Inflasi Bulanan (M-to-M)"
-      frequency: monthly
-      level: province
-      unit: "percent"
-    - name: price_inflation_yoy_pct
-      description: "Year-on-year change in the consumer price index"
-      original_name: "Inflasi Tahunan (Y-on-Y)"
-      frequency: monthly
-      level: province
-      unit: "percent"
-    - name: price_consumer_change_pct
-      description: "Perubahan Harga Konsumen"
-      original_name: "Perubahan Harga Konsumen"
-      frequency: monthly
-      level: province
-      unit: "percent"
-    - name: price_brent_usd_bbl_nat
-      description: "Brent crude oil price, national reference"
-      original_name: "Harga Minyak Brent (USD/barrel)"
-      frequency: monthly
-      level: national
-      unit: "USD per barrel"
-    - name: price_ihpb_nat
-      description: "Wholesale price index (Indeks Harga Perdagangan Besar), national"
-      original_name: "IHPB"
-      frequency: monthly
-      level: national
-    - name: price_producer_index_q
-      description: "IHP (2016=100)"
-      original_name: "IHP (2016=100)"
-      frequency: quarterly
-      level: province
-      unit: "index"
-    - name: price_producer_change_pct_q
-      description: "Perubahan Harga Produsen**"
-      original_name: "Perubahan Harga Produsen**"
-      frequency: quarterly
-      level: province
-      unit: "percent"
-    - name: price_producer_ceic_pct_q
-      description: "Perubahan Harga Produsen (CEIC)"
-      original_name: "Perubahan Harga Produsen (CEIC)"
-      frequency: quarterly
-      level: province
-      unit: "percent"
-    - name: price_cpi_index_q
-      description: "Consumer price index, base 2010=100"
-      original_name: "IHK (2010=100)"
-      frequency: quarterly
-      level: province
-      unit: "index"
-    - name: price_consumer_change_pct_q
-      description: "Perubahan Harga Konsumen"
-      original_name: "Perubahan Harga Konsumen"
-      frequency: quarterly
-      level: province
-      unit: "percent"
-    - name: price_inflation_yoy_q4_pct_y
-      description: "Inflasi YoY (per IV)"
-      original_name: "Inflasi YoY (per IV)"
-      frequency: annual
-      level: province
-      unit: "percent"
-    - name: price_inflation_yoy_avg_pct_y
-      description: "Inflasi YoY (Average)"
-      original_name: "Inflasi YoY (Average)"
-      frequency: annual
-      level: province
-      unit: "percent"
-    - name: price_producer_index_y
-      description: "IHP (2016=100)"
-      original_name: "IHP (2016=100)"
-      frequency: annual
-      level: province
-      unit: "index"
-    - name: price_cpi_index_y
-      description: "Consumer price index, base 2010=100"
-      original_name: "IHK (2010=100)"
-      frequency: annual
-      level: province
-      unit: "index"
-    - name: price_producer_change_pct_y
-      description: "Perubahan harga produsen (%)"
-      original_name: "Perubahan harga produsen (%)"
-      frequency: annual
-      level: province
-      unit: "percent"
-    - name: price_consumer_change_pct_y
-      description: "Perubahan harga konsumen (%)"
-      original_name: "Perubahan harga konsumen (%)"
-      frequency: annual
-      level: province
-      unit: "percent"
-  trade:
-    - name: trade_export_value
-      description: "Value of provincial exports"
-      original_name: "Nilai Ekspor"
-      frequency: monthly
-      level: province
-    - name: trade_import_value
-      description: "Value of provincial imports"
-      original_name: "Nilai Impor"
-      frequency: monthly
-      level: province
-    - name: trade_balance
-      description: "Exports minus imports"
-      original_name: "Neraca Perdagangan"
-      frequency: monthly
-      level: province
-    - name: trade_export_value_usd_million_q
-      description: "Nilai Ekspor (USD juta)"
-      original_name: "Nilai Ekspor (USD juta)"
-      frequency: quarterly
-      level: province
-      unit: "USD million"
-    - name: trade_import_value_usd_million_q
-      description: "Nilai Impor (USD juta)"
-      original_name: "Nilai Impor (USD juta)"
-      frequency: quarterly
-      level: province
-      unit: "USD million"
-    - name: trade_balance_usd_million_q
-      description: "Neraca Perdagangan*"
-      original_name: "Neraca Perdagangan*"
-      frequency: quarterly
-      level: province
-      unit: "USD million"
-    - name: trade_export_value_bps_y
-      description: "Nilai Ekspor BPS"
-      original_name: "Nilai Ekspor BPS"
-      frequency: annual
-      level: province
-    - name: trade_export_value_y
-      description: "Value of provincial exports"
-      original_name: "Nilai Ekspor"
-      frequency: annual
-      level: province
-    - name: trade_import_value_y
-      description: "Value of provincial imports"
-      original_name: "Nilai Impor"
-      frequency: annual
-      level: province
-    - name: trade_balance_y
-      description: "Exports minus imports"
-      original_name: "Neraca Perdagangan"
-      frequency: annual
-      level: province
-  fin:
-    - name: fin_npl_idr_billion
-      description: "Value of non-performing loans"
-      original_name: "NPL (IDR miliar)"
-      frequency: monthly
-      level: province
-      unit: "IDR billion"
-    - name: fin_fdi_usd_million_q
-      description: "FDI (USD mn)"
-      original_name: "FDI (USD mn)"
-      frequency: quarterly
-      level: province
-      unit: "USD million"
-    - name: fin_fdi_idr_million_q
-      description: "FDI (IDR mn)"
-      original_name: "FDI (IDR mn)"
-      frequency: quarterly
-      level: province
-      unit: "IDR million"
-    - name: fin_npl_idr_billion_q
-      description: "NPL, End of Quarter (IDR miliar)"
-      original_name: "NPL, End of Quarter (IDR miliar)"
-      frequency: quarterly
-      level: province
-      unit: "IDR billion"
-    - name: fin_fdi_y
-      description: "Realized foreign direct investment"
-      original_name: "FDI"
-      frequency: annual
-      level: province
-    - name: fin_npl_y
-      description: "NPL"
-      original_name: "NPL"
-      frequency: annual
-      level: province
-  lab:
+      description: "PHK"
+      source_variable_name: "PHK"
+      data_period: "annual"
+      data_level: province
+  labor:
     - name: lab_working_pop_q
-      description: "Count of working population"
-      original_name: "Jumlah Penduduk Bekerja"
-      frequency: quarterly
-      level: province
+      description: "Jumlah Penduduk Bekerja"
+      source_variable_name: "Jumlah Penduduk Bekerja"
+      data_period: "quarterly, annual"
+      data_level: province
       unit: "count"
     - name: lab_formal_share_pct_y
-      description: "Share of workers in formal employment"
-      original_name: "% Pekerja Formal"
-      frequency: annual
-      level: province
+      description: "% Pekerja Formal"
+      source_variable_name: "% Pekerja Formal"
+      data_period: "annual"
+      data_level: province
       unit: "percent"
     - name: lab_formal_share_2019_pct_y
-      description: "2019 baseline value"
-      original_name: "% Pekerja Formal (2019)"
-      frequency: annual
-      level: province
+      description: "% Pekerja Formal (2019)"
+      source_variable_name: "% Pekerja Formal (2019)"
+      data_period: "annual"
+      data_level: province
       unit: "percent"
     - name: lab_formal_share_chg_vs2019_y
-      description: "YoY growth or change of base indicator"
-      original_name: "% Pekerja Formal (Growth from 2019, pp)"
-      frequency: annual
-      level: province
-      unit: "percentage points"
+      description: "% Pekerja Formal (Growth from 2019, pp)"
+      source_variable_name: "% Pekerja Formal (Growth from 2019, pp)"
+      data_period: "annual"
+      data_level: province
     - name: lab_contract_workers_y
       description: "Jumlah Pekerja Memiliki Kontrak Tertulis"
-      original_name: "Jumlah Pekerja Memiliki Kontrak Tertulis"
-      frequency: annual
-      level: province
+      source_variable_name: "Jumlah Pekerja Memiliki Kontrak Tertulis"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: lab_formal_workers_y
       description: "Jumlah Pekerja Formal"
-      original_name: "Jumlah Pekerja Formal"
-      frequency: annual
-      level: province
+      source_variable_name: "Jumlah Pekerja Formal"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: lab_contract_share_pct_y
       description: "% Pekerja Memiliki Kontrak Tertulis"
-      original_name: "% Pekerja Memiliki Kontrak Tertulis"
-      frequency: annual
-      level: province
+      source_variable_name: "% Pekerja Memiliki Kontrak Tertulis"
+      data_period: "annual"
+      data_level: province
       unit: "percent"
     - name: lab_contract_share_2019_pct_y
-      description: "2019 baseline value"
-      original_name: "% Pekerja Memiliki Kontrak Tertulis (2019)"
-      frequency: annual
-      level: province
+      description: "% Pekerja Memiliki Kontrak Tertulis (2019)"
+      source_variable_name: "% Pekerja Memiliki Kontrak Tertulis (2019)"
+      data_period: "annual"
+      data_level: province
       unit: "percent"
     - name: lab_contract_share_chg_vs2019_y
-      description: "YoY growth or change of base indicator"
-      original_name: "% Pekerja Memiliki Kontrak Tertulis (Growth from 2019, pp)"
-      frequency: annual
-      level: province
-      unit: "percentage points"
+      description: "% Pekerja Memiliki Kontrak Tertulis (Growth from 2019, pp)"
+      source_variable_name: "% Pekerja Memiliki Kontrak Tertulis (Growth from 2019, pp)"
+      data_period: "annual"
+      data_level: province
     - name: lab_working_pop_y
-      description: "Count of working population"
-      original_name: "Jumlah Penduduk Bekerja"
-      frequency: annual
-      level: province
+      description: "Jumlah Penduduk Bekerja"
+      source_variable_name: "Jumlah Penduduk Bekerja"
+      data_period: "quarterly, annual"
+      data_level: province
       unit: "count"
     - name: lab_tpt_pct_y
-      description: "Share of the labor force that is unemployed and seeking work"
-      original_name: "% TPT"
-      frequency: annual
-      level: province
+      description: "% TPT"
+      source_variable_name: "% TPT"
+      data_period: "annual"
+      data_level: province
       unit: "percent"
     - name: lab_tpt_male_pct_y
       description: "% TPT Laki-laki"
-      original_name: "% TPT Laki-laki"
-      frequency: annual
-      level: province
+      source_variable_name: "% TPT Laki-laki"
+      data_period: "annual"
+      data_level: province
       unit: "percent"
     - name: lab_tpt_female_pct_y
       description: "% TPT Perempuan"
-      original_name: "% TPT Perempuan"
-      frequency: annual
-      level: province
+      source_variable_name: "% TPT Perempuan"
+      data_period: "annual"
+      data_level: province
       unit: "percent"
     - name: lab_tpak_pct_y
-      description: "Labor force as a share of the working-age population"
-      original_name: "% TPAK"
-      frequency: annual
-      level: province
+      description: "% TPAK"
+      source_variable_name: "% TPAK"
+      data_period: "annual"
+      data_level: province
       unit: "percent"
     - name: lab_tpak_male_pct_y
       description: "% TPAK Laki-laki"
-      original_name: "% TPAK Laki-laki"
-      frequency: annual
-      level: province
+      source_variable_name: "% TPAK Laki-laki"
+      data_period: "annual"
+      data_level: province
       unit: "percent"
     - name: lab_tpak_female_pct_y
       description: "% TPAK Perempuan"
-      original_name: "% TPAK Perempuan"
-      frequency: annual
-      level: province
+      source_variable_name: "% TPAK Perempuan"
+      data_period: "annual"
+      data_level: province
       unit: "percent"
     - name: lab_self_employed_y
       description: "Berusaha Sendiri"
-      original_name: "Berusaha Sendiri"
-      frequency: annual
-      level: province
+      source_variable_name: "Berusaha Sendiri"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: lab_employee_count_y
       description: "Buruh/karyawan/pegawai"
-      original_name: "Buruh/karyawan/pegawai"
-      frequency: annual
-      level: province
+      source_variable_name: "Buruh/karyawan/pegawai"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: lab_unpaid_family_y
       description: "Pekerja Keluarga Tidak Dibayar"
-      original_name: "Pekerja Keluarga Tidak Dibayar"
-      frequency: annual
-      level: province
+      source_variable_name: "Pekerja Keluarga Tidak Dibayar"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: lab_underemployed_workers_y
       description: "Penduduk Bekerja Setengah Penganggur"
-      original_name: "Penduduk Bekerja Setengah Penganggur"
-      frequency: annual
-      level: province
+      source_variable_name: "Penduduk Bekerja Setengah Penganggur"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: lab_full_time_share_pct_y
       description: "% Pekerja Penuh Waktu"
-      original_name: "% Pekerja Penuh Waktu"
-      frequency: annual
-      level: province
+      source_variable_name: "% Pekerja Penuh Waktu"
+      data_period: "annual"
+      data_level: province
       unit: "percent"
     - name: lab_part_time_share_pct_y
       description: "% Pekerja Paruh Waktu"
-      original_name: "% Pekerja Paruh Waktu"
-      frequency: annual
-      level: province
+      source_variable_name: "% Pekerja Paruh Waktu"
+      data_period: "annual"
+      data_level: province
       unit: "percent"
     - name: lab_underemp_share_pct_y
       description: "% Setengah Pengangguran"
-      original_name: "% Setengah Pengangguran"
-      frequency: annual
-      level: province
+      source_variable_name: "% Setengah Pengangguran"
+      data_period: "annual"
+      data_level: province
       unit: "percent"
     - name: lab_working_hours_y
       description: "Jam Kerja"
-      original_name: "Jam Kerja"
-      frequency: annual
-      level: province
-      unit: "count"
+      source_variable_name: "Jam Kerja"
+      data_period: "annual"
+      data_level: province
+      unit: "hours"
     - name: lab_nonagri_informal_share_pct_y
       description: "Proporsi Lapangan Kerja Informal Sektor Non-Pertanian"
-      original_name: "Proporsi Lapangan Kerja Informal Sektor Non-Pertanian"
-      frequency: annual
-      level: province
+      source_variable_name: "Proporsi Lapangan Kerja Informal Sektor Non-Pertanian"
+      data_period: "annual"
+      data_level: province
       unit: "percent"
     - name: lab_informal_share_pct_y
-      description: "Share of employment that is informal"
-      original_name: "Proporsi Lapangan Kerja Informal"
-      frequency: annual
-      level: province
+      description: "Proporsi Lapangan Kerja Informal"
+      source_variable_name: "Proporsi Lapangan Kerja Informal"
+      data_period: "annual"
+      data_level: province
       unit: "percent"
     - name: lab_job_seekers_y
       description: "Pencari Kerja Terdaftar - Jumlah"
-      original_name: "Pencari Kerja Terdaftar - Jumlah"
-      frequency: annual
-      level: province
+      source_variable_name: "Pencari Kerja Terdaftar - Jumlah"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: lab_vacancies_registered_y
       description: "Lowongan Kerja Terdaftar - Jumlah"
-      original_name: "Lowongan Kerja Terdaftar - Jumlah"
-      frequency: annual
-      level: province
+      source_variable_name: "Lowongan Kerja Terdaftar - Jumlah"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: lab_placements_registered_y
       description: "Penempatan/Pemenuhan Tenaga Kerja - Jumlah"
-      original_name: "Penempatan/Pemenuhan Tenaga Kerja - Jumlah"
-      frequency: annual
-      level: province
+      source_variable_name: "Penempatan/Pemenuhan Tenaga Kerja - Jumlah"
+      data_period: "annual"
+      data_level: province
       unit: "count"
-  emp:
+  employment:
     - name: emp_agri_y
-      description: "employment count in the sector"
-      original_name: "Tenaga Kerja - Pertanian, Kehutanan dan Perikanan"
-      frequency: annual
-      level: province
+      description: "Tenaga Kerja - Pertanian, Kehutanan dan Perikanan"
+      source_variable_name: "Tenaga Kerja - Pertanian, Kehutanan dan Perikanan"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: emp_mining_y
-      description: "employment count in the sector"
-      original_name: "Tenaga Kerja - Pertambangan dan Penggalian"
-      frequency: annual
-      level: province
+      description: "Tenaga Kerja - Pertambangan dan Penggalian"
+      source_variable_name: "Tenaga Kerja - Pertambangan dan Penggalian"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: emp_manuf_y
-      description: "employment count in the sector"
-      original_name: "Tenaga Kerja - Industri Pengolahan"
-      frequency: annual
-      level: province
+      description: "Tenaga Kerja - Industri Pengolahan"
+      source_variable_name: "Tenaga Kerja - Industri Pengolahan"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: emp_electricity_y
-      description: "employment count in the sector"
-      original_name: "Tenaga Kerja - Pengadaan Listrik dan Gas"
-      frequency: annual
-      level: province
+      description: "Tenaga Kerja - Pengadaan Listrik dan Gas"
+      source_variable_name: "Tenaga Kerja - Pengadaan Listrik dan Gas"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: emp_water_waste_y
-      description: "employment count in the sector"
-      original_name: "Tenaga Kerja - Pengadaan Air, Pengelolaan Sampah, Limbah dan Daur Ulang"
-      frequency: annual
-      level: province
+      description: "Tenaga Kerja - Pengadaan Air, Pengelolaan Sampah, Limbah dan Daur Ulang"
+      source_variable_name: "Tenaga Kerja - Pengadaan Air, Pengelolaan Sampah, Limbah dan Daur Ulang"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: emp_construction_y
-      description: "employment count in the sector"
-      original_name: "Tenaga Kerja - Konstruksi"
-      frequency: annual
-      level: province
+      description: "Tenaga Kerja - Konstruksi"
+      source_variable_name: "Tenaga Kerja - Konstruksi"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: emp_trade_y
-      description: "employment count in the sector"
-      original_name: "Tenaga Kerja - Perdagangan Besar dan Eceran, Reparasi Mobil dan Sepeda Motor"
-      frequency: annual
-      level: province
+      description: "Tenaga Kerja - Perdagangan Besar dan Eceran, Reparasi Mobil dan Sepeda Motor"
+      source_variable_name: "Tenaga Kerja - Perdagangan Besar dan Eceran, Reparasi Mobil dan Sepeda Motor"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: emp_transport_y
-      description: "employment count in the sector"
-      original_name: "Tenaga Kerja - Transportasi dan Pergudangan"
-      frequency: annual
-      level: province
+      description: "Tenaga Kerja - Transportasi dan Pergudangan"
+      source_variable_name: "Tenaga Kerja - Transportasi dan Pergudangan"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: emp_accom_food_y
-      description: "employment count in the sector"
-      original_name: "Tenaga Kerja - Penyediaan Akomodasi dan Makan Minum"
-      frequency: annual
-      level: province
+      description: "Tenaga Kerja - Penyediaan Akomodasi dan Makan Minum"
+      source_variable_name: "Tenaga Kerja - Penyediaan Akomodasi dan Makan Minum"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: emp_info_comm_y
-      description: "employment count in the sector"
-      original_name: "Tenaga Kerja - Informasi dan Komunikasi"
-      frequency: annual
-      level: province
+      description: "Tenaga Kerja - Informasi dan Komunikasi"
+      source_variable_name: "Tenaga Kerja - Informasi dan Komunikasi"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: emp_finance_y
-      description: "employment count in the sector"
-      original_name: "Tenaga Kerja - Jasa Keuangan dan Asuransi"
-      frequency: annual
-      level: province
+      description: "Tenaga Kerja - Jasa Keuangan dan Asuransi"
+      source_variable_name: "Tenaga Kerja - Jasa Keuangan dan Asuransi"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: emp_real_estate_y
-      description: "employment count in the sector"
-      original_name: "Tenaga Kerja - Real Estate"
-      frequency: annual
-      level: province
+      description: "Tenaga Kerja - Real Estate"
+      source_variable_name: "Tenaga Kerja - Real Estate"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: emp_business_svc_y
-      description: "employment count in the sector"
-      original_name: "Tenaga Kerja - Jasa Perusahaan"
-      frequency: annual
-      level: province
+      description: "Tenaga Kerja - Jasa Perusahaan"
+      source_variable_name: "Tenaga Kerja - Jasa Perusahaan"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: emp_public_admin_y
-      description: "employment count in the sector"
-      original_name: "Tenaga Kerja - Administrasi Pemerintahan, Pertahanan dan Jaminan Sosial Wajib"
-      frequency: annual
-      level: province
+      description: "Tenaga Kerja - Administrasi Pemerintahan, Pertahanan dan Jaminan Sosial Wajib"
+      source_variable_name: "Tenaga Kerja - Administrasi Pemerintahan, Pertahanan dan Jaminan Sosial Wajib"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: emp_education_y
-      description: "employment count in the sector"
-      original_name: "Tenaga Kerja - Jasa Pendidikan"
-      frequency: annual
-      level: province
+      description: "Tenaga Kerja - Jasa Pendidikan"
+      source_variable_name: "Tenaga Kerja - Jasa Pendidikan"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: emp_health_y
-      description: "employment count in the sector"
-      original_name: "Tenaga Kerja - Jasa Kesehatan dan Kegiatan Sosial"
-      frequency: annual
-      level: province
+      description: "Tenaga Kerja - Jasa Kesehatan dan Kegiatan Sosial"
+      source_variable_name: "Tenaga Kerja - Jasa Kesehatan dan Kegiatan Sosial"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: emp_other_svc_y
-      description: "employment count in the sector"
-      original_name: "Tenaga Kerja - Jasa Lainnya"
-      frequency: annual
-      level: province
+      description: "Tenaga Kerja - Jasa Lainnya"
+      source_variable_name: "Tenaga Kerja - Jasa Lainnya"
+      data_period: "annual"
+      data_level: province
       unit: "count"
-  emp_share:
     - name: emp_share_agri_pct_y
-      description: "employment share of the sector (stored as fraction, verify)"
-      original_name: "% Share Tenaga Kerja - Pertanian, Kehutanan dan Perikanan"
-      frequency: annual
-      level: province
+      description: "% Share Tenaga Kerja - Pertanian, Kehutanan dan Perikanan"
+      source_variable_name: "% Share Tenaga Kerja - Pertanian, Kehutanan dan Perikanan"
+      data_period: "annual"
+      data_level: province
       unit: "percent"
     - name: emp_share_mining_pct_y
-      description: "employment share of the sector (stored as fraction, verify)"
-      original_name: "% Share Tenaga Kerja - Pertambangan dan Penggalian"
-      frequency: annual
-      level: province
+      description: "% Share Tenaga Kerja - Pertambangan dan Penggalian"
+      source_variable_name: "% Share Tenaga Kerja - Pertambangan dan Penggalian"
+      data_period: "annual"
+      data_level: province
       unit: "percent"
     - name: emp_share_manuf_pct_y
-      description: "employment share of the sector (stored as fraction, verify)"
-      original_name: "% Share Tenaga Kerja - Industri Pengolahan"
-      frequency: annual
-      level: province
+      description: "% Share Tenaga Kerja - Industri Pengolahan"
+      source_variable_name: "% Share Tenaga Kerja - Industri Pengolahan"
+      data_period: "annual"
+      data_level: province
       unit: "percent"
     - name: emp_share_electricity_pct_y
-      description: "employment share of the sector (stored as fraction, verify)"
-      original_name: "% Share Tenaga Kerja - Pengadaan Listrik dan Gas"
-      frequency: annual
-      level: province
+      description: "% Share Tenaga Kerja - Pengadaan Listrik dan Gas"
+      source_variable_name: "% Share Tenaga Kerja - Pengadaan Listrik dan Gas"
+      data_period: "annual"
+      data_level: province
       unit: "percent"
     - name: emp_share_water_waste_pct_y
-      description: "employment share of the sector (stored as fraction, verify)"
-      original_name: "% Share Tenaga Kerja - Pengadaan Air, Pengelolaan Sampah, Limbah dan Daur Ulang"
-      frequency: annual
-      level: province
+      description: "% Share Tenaga Kerja - Pengadaan Air, Pengelolaan Sampah, Limbah dan Daur Ulang"
+      source_variable_name: "% Share Tenaga Kerja - Pengadaan Air, Pengelolaan Sampah, Limbah dan Daur Ulang"
+      data_period: "annual"
+      data_level: province
       unit: "percent"
     - name: emp_share_construction_pct_y
-      description: "employment share of the sector (stored as fraction, verify)"
-      original_name: "% Share Tenaga Kerja - Konstruksi"
-      frequency: annual
-      level: province
+      description: "% Share Tenaga Kerja - Konstruksi"
+      source_variable_name: "% Share Tenaga Kerja - Konstruksi"
+      data_period: "annual"
+      data_level: province
       unit: "percent"
     - name: emp_share_trade_pct_y
-      description: "employment share of the sector (stored as fraction, verify)"
-      original_name: "% Share Tenaga Kerja - Perdagangan Besar dan Eceran, Reparasi Mobil dan Sepeda Motor"
-      frequency: annual
-      level: province
+      description: "% Share Tenaga Kerja - Perdagangan Besar dan Eceran, Reparasi Mobil dan Sepeda Motor"
+      source_variable_name: "% Share Tenaga Kerja - Perdagangan Besar dan Eceran, Reparasi Mobil dan Sepeda Motor"
+      data_period: "annual"
+      data_level: province
       unit: "percent"
     - name: emp_share_transport_pct_y
-      description: "employment share of the sector (stored as fraction, verify)"
-      original_name: "% Share Tenaga Kerja - Transportasi dan Pergudangan"
-      frequency: annual
-      level: province
+      description: "% Share Tenaga Kerja - Transportasi dan Pergudangan"
+      source_variable_name: "% Share Tenaga Kerja - Transportasi dan Pergudangan"
+      data_period: "annual"
+      data_level: province
       unit: "percent"
     - name: emp_share_accom_food_pct_y
-      description: "employment share of the sector (stored as fraction, verify)"
-      original_name: "% Share Tenaga Kerja - Penyediaan Akomodasi dan Makan Minum"
-      frequency: annual
-      level: province
+      description: "% Share Tenaga Kerja - Penyediaan Akomodasi dan Makan Minum"
+      source_variable_name: "% Share Tenaga Kerja - Penyediaan Akomodasi dan Makan Minum"
+      data_period: "annual"
+      data_level: province
       unit: "percent"
     - name: emp_share_info_comm_pct_y
-      description: "employment share of the sector (stored as fraction, verify)"
-      original_name: "% Share Tenaga Kerja - Informasi dan Komunikasi"
-      frequency: annual
-      level: province
+      description: "% Share Tenaga Kerja - Informasi dan Komunikasi"
+      source_variable_name: "% Share Tenaga Kerja - Informasi dan Komunikasi"
+      data_period: "annual"
+      data_level: province
       unit: "percent"
     - name: emp_share_finance_pct_y
-      description: "employment share of the sector (stored as fraction, verify)"
-      original_name: "% Share Tenaga Kerja - Jasa Keuangan dan Asuransi"
-      frequency: annual
-      level: province
+      description: "% Share Tenaga Kerja - Jasa Keuangan dan Asuransi"
+      source_variable_name: "% Share Tenaga Kerja - Jasa Keuangan dan Asuransi"
+      data_period: "annual"
+      data_level: province
       unit: "percent"
     - name: emp_share_real_estate_pct_y
-      description: "employment share of the sector (stored as fraction, verify)"
-      original_name: "% Share Tenaga Kerja - Real Estate"
-      frequency: annual
-      level: province
+      description: "% Share Tenaga Kerja - Real Estate"
+      source_variable_name: "% Share Tenaga Kerja - Real Estate"
+      data_period: "annual"
+      data_level: province
       unit: "percent"
     - name: emp_share_business_svc_pct_y
-      description: "employment share of the sector (stored as fraction, verify)"
-      original_name: "% Share Tenaga Kerja - Jasa Perusahaan"
-      frequency: annual
-      level: province
+      description: "% Share Tenaga Kerja - Jasa Perusahaan"
+      source_variable_name: "% Share Tenaga Kerja - Jasa Perusahaan"
+      data_period: "annual"
+      data_level: province
       unit: "percent"
     - name: emp_share_public_admin_pct_y
-      description: "employment share of the sector (stored as fraction, verify)"
-      original_name: "% Share Tenaga Kerja - Administrasi Pemerintahan, Pertahanan dan Jaminan Sosial Wajib"
-      frequency: annual
-      level: province
+      description: "% Share Tenaga Kerja - Administrasi Pemerintahan, Pertahanan dan Jaminan Sosial Wajib"
+      source_variable_name: "% Share Tenaga Kerja - Administrasi Pemerintahan, Pertahanan dan Jaminan Sosial Wajib"
+      data_period: "annual"
+      data_level: province
       unit: "percent"
     - name: emp_share_education_pct_y
-      description: "employment share of the sector (stored as fraction, verify)"
-      original_name: "% Share Tenaga Kerja - Jasa Pendidikan"
-      frequency: annual
-      level: province
+      description: "% Share Tenaga Kerja - Jasa Pendidikan"
+      source_variable_name: "% Share Tenaga Kerja - Jasa Pendidikan"
+      data_period: "annual"
+      data_level: province
       unit: "percent"
     - name: emp_share_health_pct_y
-      description: "employment share of the sector (stored as fraction, verify)"
-      original_name: "% Share Tenaga Kerja - Jasa Kesehatan dan Kegiatan Sosial"
-      frequency: annual
-      level: province
+      description: "% Share Tenaga Kerja - Jasa Kesehatan dan Kegiatan Sosial"
+      source_variable_name: "% Share Tenaga Kerja - Jasa Kesehatan dan Kegiatan Sosial"
+      data_period: "annual"
+      data_level: province
       unit: "percent"
     - name: emp_share_other_svc_pct_y
-      description: "employment share of the sector (stored as fraction, verify)"
-      original_name: "% Share Tenaga Kerja - Jasa Lainnya"
-      frequency: annual
-      level: province
+      description: "% Share Tenaga Kerja - Jasa Lainnya"
+      source_variable_name: "% Share Tenaga Kerja - Jasa Lainnya"
+      data_period: "annual"
+      data_level: province
       unit: "percent"
   wage:
     - name: wage_ump_idr_y
-      description: "Provincial minimum wage, stored in thousand IDR in this sheet"
-      original_name: "UMP (IDR)"
-      frequency: annual
-      level: province
+      description: "UMP (IDR)"
+      source_variable_name: "UMP (IDR)"
+      data_period: "annual"
+      data_level: province
       unit: "IDR"
     - name: wage_ump_growth_pct_y
-      description: "YoY growth or change of base indicator"
-      original_name: "Growth UMP"
-      frequency: annual
-      level: province
+      description: "Growth UMP"
+      source_variable_name: "Growth UMP"
+      data_period: "annual"
+      data_level: province
       unit: "percent"
     - name: wage_avg_employee_idr_y
       description: "Upah buruh/karyawan/pegawai (IDR)"
-      original_name: "Upah buruh/karyawan/pegawai (IDR)"
-      frequency: annual
-      level: province
+      source_variable_name: "Upah buruh/karyawan/pegawai (IDR)"
+      data_period: "annual"
+      data_level: province
       unit: "IDR"
     - name: wage_kaitz_index_y
-      description: "Ratio of minimum wage to average or median wage"
-      original_name: "Kaitz Index"
-      frequency: annual
-      level: province
+      description: "Kaitz Index"
+      source_variable_name: "Kaitz Index"
+      data_period: "annual"
+      data_level: province
       unit: "index"
   bpjstk:
     - name: bpjstk_active_pu_y
       description: "BPJSTK - Peserta Aktif PU"
-      original_name: "BPJSTK - Peserta Aktif PU"
-      frequency: annual
-      level: province
+      source_variable_name: "BPJSTK - Peserta Aktif PU"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: bpjstk_active_bpu_y
       description: "BPJSTK - Peserta Aktif BPU"
-      original_name: "BPJSTK - Peserta Aktif BPU"
-      frequency: annual
-      level: province
+      source_variable_name: "BPJSTK - Peserta Aktif BPU"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: bpjstk_phk_y
       description: "BPJSTK - PHK"
-      original_name: "BPJSTK - PHK"
-      frequency: annual
-      level: province
+      source_variable_name: "BPJSTK - PHK"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: bpjstk_jht_phk_y
       description: "BPJSTK - JHT PHK"
-      original_name: "BPJSTK - JHT PHK"
-      frequency: annual
-      level: province
+      source_variable_name: "BPJSTK - JHT PHK"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: bpjstk_jkp_phk_y
       description: "BPJSTK - JKP PHK"
-      original_name: "BPJSTK - JKP PHK"
-      frequency: annual
-      level: province
+      source_variable_name: "BPJSTK - JKP PHK"
+      data_period: "annual"
+      data_level: province
       unit: "count"
-  growth:
-    - name: growth_lab_working_pop_y
-      description: "YoY growth or change of base indicator"
-      original_name: "Pertumbuhan Bekerja"
-      frequency: annual
-      level: province
-    - name: growth_lab_employee_count_y
-      description: "YoY growth or change of base indicator"
-      original_name: "Pertumbuhan Buruh/Karyawan/Pegawai"
-      frequency: annual
-      level: province
-    - name: growth_lab_unpaid_family_y
-      description: "YoY growth or change of base indicator"
-      original_name: "Pertumbuhan Pekerja Keluarga Tidak Dibayar"
-      frequency: annual
-      level: province
-    - name: growth_lab_formal_share_pct_y
-      description: "YoY growth or change of base indicator"
-      original_name: "Pertumbuhan % Pekerja Formal"
-      frequency: annual
-      level: province
-      unit: "percent"
-    - name: growth_lab_contract_share_pct_y
-      description: "YoY growth or change of base indicator"
-      original_name: "Pertumbuhan % Pekerja Memiliki Kontrak Tertulis"
-      frequency: annual
-      level: province
-      unit: "percent"
-    - name: growth_lab_full_time_share_pct_y
-      description: "YoY growth or change of base indicator"
-      original_name: "Pertumbuhan % Pekerja Penuh Waktu"
-      frequency: annual
-      level: province
-      unit: "percent"
-    - name: growth_lab_part_time_share_pct_y
-      description: "YoY growth or change of base indicator"
-      original_name: "Pertumbuhan % Pekerja Paruh Waktu"
-      frequency: annual
-      level: province
-      unit: "percent"
-    - name: growth_lab_underemp_share_pct_y
-      description: "YoY growth or change of base indicator"
-      original_name: "Pertumbuhan % Setengah Pengangguran"
-      frequency: annual
-      level: province
-      unit: "percent"
-    - name: growth_lab_working_hours_y
-      description: "YoY growth or change of base indicator"
-      original_name: "Pertumbuhan Jam Kerja"
-      frequency: annual
-      level: province
-    - name: growth_lab_tpt_pct_y
-      description: "YoY growth or change of base indicator"
-      original_name: "Pertumbuhan TPT"
-      frequency: annual
-      level: province
-      unit: "percent"
-    - name: growth_lab_tpt_male_pct_y
-      description: "YoY growth or change of base indicator"
-      original_name: "Pertumbuhan TPT Laki-laki"
-      frequency: annual
-      level: province
-      unit: "percent"
-    - name: growth_lab_tpt_female_pct_y
-      description: "YoY growth or change of base indicator"
-      original_name: "Pertumbuhan TPT Perempuan"
-      frequency: annual
-      level: province
-      unit: "percent"
-    - name: growth_lab_tpak_pct_y
-      description: "YoY growth or change of base indicator"
-      original_name: "Pertumbuhan TPAK"
-      frequency: annual
-      level: province
-      unit: "percent"
-    - name: growth_lab_tpak_male_pct_y
-      description: "YoY growth or change of base indicator"
-      original_name: "Pertumbuhan TPAK Laki-laki"
-      frequency: annual
-      level: province
-      unit: "percent"
-    - name: growth_lab_tpak_female_pct_y
-      description: "YoY growth or change of base indicator"
-      original_name: "Pertumbuhan TPAK Perempuan"
-      frequency: annual
-      level: province
-      unit: "percent"
-    - name: growth_wage_avg_employee_y
-      description: "YoY growth or change of base indicator"
-      original_name: "Pertumbuhan Upah"
-      frequency: annual
-      level: province
-    - name: growth_bpjstk_active_pu_y
-      description: "YoY growth or change of base indicator"
-      original_name: "Pertumbuhan BPJSTK - Peserta Aktif PU"
-      frequency: annual
-      level: province
-    - name: growth_bpjstk_active_bpu_y
-      description: "YoY growth or change of base indicator"
-      original_name: "Pertumbuhan BPJSTK - Peserta Aktif BPU"
-      frequency: annual
-      level: province
-    - name: growth_bpjstk_phk_y
-      description: "YoY growth or change of base indicator"
-      original_name: "Pertumbuhan BPJSTK - PHK"
-      frequency: annual
-      level: province
-    - name: growth_bpjstk_jht_phk_y
-      description: "YoY growth or change of base indicator"
-      original_name: "Pertumbuhan BPJSTK - JHT PHK"
-      frequency: annual
-      level: province
-    - name: growth_bpjstk_jkp_phk_y
-      description: "YoY growth or change of base indicator"
-      original_name: "Pertumbuhan BPJSTK - JKP PHK"
-      frequency: annual
-      level: province
-    - name: growth_ind_output_y
-      description: "YoY growth or change of base indicator"
-      original_name: "Pertumbuhan Nilai Output"
-      frequency: annual
-      level: province
-    - name: growth_ind_input_y
-      description: "YoY growth or change of base indicator"
-      original_name: "Pertumbuhan Biaya Input"
-      frequency: annual
-      level: province
-    - name: growth_ind_va_mkt_y
-      description: "YoY growth or change of base indicator"
-      original_name: "Pertumbuhan Nilai Tambah Pasar"
-      frequency: annual
-      level: province
-    - name: growth_ind_va_fc_y
-      description: "YoY growth or change of base indicator"
-      original_name: "Pertumbuhan Nilai Tambah Produksi"
-      frequency: annual
-      level: province
-    - name: growth_ind_workers_total_y
-      description: "YoY growth or change of base indicator"
-      original_name: "Pertumbuhan Tenaga Kerja"
-      frequency: annual
-      level: province
-    - name: growth_ind_firms_total_y
-      description: "YoY growth or change of base indicator"
-      original_name: "Pertumbuhan Jumlah Perusahaan"
-      frequency: annual
-      level: province
-    - name: growth_ind_laborcost_total_y
-      description: "YoY growth or change of base indicator"
-      original_name: "Pertumbuhan Pengeluaran Tenaga Kerja"
-      frequency: annual
-      level: province
-    - name: growth_ind_labor_prod_market_y
-      description: "YoY growth or change of base indicator"
-      original_name: "Pertumbuhan Produktivitas (Nilai Tambah Pasar) Tenaga Kerja"
-      frequency: annual
-      level: province
-    - name: growth_ind_labor_prod_fc_y
-      description: "YoY growth or change of base indicator"
-      original_name: "Pertumbuhan Produktivitas (Nilai Tambah Produksi) Tenaga Kerja"
-      frequency: annual
-      level: province
-  lag:
-    - name: lag1_phk_y
-      description: "1-year lag of base indicator"
-      original_name: "Lag_1 PHK"
-      frequency: annual
-      level: province
-    - name: lag1_lab_formal_share_pct_y
-      description: "1-year lag of base indicator"
-      original_name: "Lag_1 % Pekerja Formal"
-      frequency: annual
-      level: province
-      unit: "percent"
-    - name: lag1_lab_contract_share_pct_y
-      description: "1-year lag of base indicator"
-      original_name: "Lag_1 % Pekerja Memiliki Kontrak Tertulis"
-      frequency: annual
-      level: province
-      unit: "percent"
-    - name: lag1_wage_ump_growth_pct_y
-      description: "1-year lag of base indicator"
-      original_name: "Lag_1 Growth UMP"
-      frequency: annual
-      level: province
-      unit: "percent"
-    - name: lag1_bpjstk_active_pu_y
-      description: "1-year lag of base indicator"
-      original_name: "Lag_1 BPJSTK - Peserta Aktif PU"
-      frequency: annual
-      level: province
-    - name: lag1_bpjstk_active_bpu_y
-      description: "1-year lag of base indicator"
-      original_name: "Lag_1 BPJSTK - Peserta Aktif BPU"
-      frequency: annual
-      level: province
-    - name: lag1_bpjstk_phk_y
-      description: "1-year lag of base indicator"
-      original_name: "Lag_1 BPJSTK - PHK"
-      frequency: annual
-      level: province
-    - name: lag1_bpjstk_jht_phk_y
-      description: "1-year lag of base indicator"
-      original_name: "Lag_1 BPJSTK - JHT PHK"
-      frequency: annual
-      level: province
-    - name: lag1_bpjstk_jkp_phk_y
-      description: "1-year lag of base indicator"
-      original_name: "Lag_1 BPJSTK - JKP PHK"
-      frequency: annual
-      level: province
-  ind:
+  industry:
     - name: ind_firms_medium_y
-      description: "BPS Industri Besar Sedang survey block"
-      original_name: "Perusahaan Industri Sedang"
-      frequency: annual
-      level: province
+      description: "Perusahaan Industri Sedang"
+      source_variable_name: "Perusahaan Industri Sedang"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: ind_firms_large_y
-      description: "BPS Industri Besar Sedang survey block"
-      original_name: "Perusahaan Industri Besar"
-      frequency: annual
-      level: province
+      description: "Perusahaan Industri Besar"
+      source_variable_name: "Perusahaan Industri Besar"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: ind_firms_total_y
       description: "Jumlah Perusahaan"
-      original_name: "Jumlah Perusahaan"
-      frequency: annual
-      level: province
+      source_variable_name: "Jumlah Perusahaan"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: ind_workers_medium_y
-      description: "BPS Industri Besar Sedang survey block"
-      original_name: "Tenaga Kerja Industri Sedang"
-      frequency: annual
-      level: province
+      description: "Tenaga Kerja Industri Sedang"
+      source_variable_name: "Tenaga Kerja Industri Sedang"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: ind_workers_large_y
-      description: "BPS Industri Besar Sedang survey block"
-      original_name: "Tenaga Kerja Industri Besar"
-      frequency: annual
-      level: province
+      description: "Tenaga Kerja Industri Besar"
+      source_variable_name: "Tenaga Kerja Industri Besar"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: ind_workers_prod_y
       description: "Jumlah Tenaga Kerja Produksi"
-      original_name: "Jumlah Tenaga Kerja Produksi"
-      frequency: annual
-      level: province
+      source_variable_name: "Jumlah Tenaga Kerja Produksi"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: ind_workers_nonprod_y
       description: "Jumlah Tenaga Kerja Lainnya"
-      original_name: "Jumlah Tenaga Kerja Lainnya"
-      frequency: annual
-      level: province
+      source_variable_name: "Jumlah Tenaga Kerja Lainnya"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: ind_workers_total_y
       description: "Jumlah Tenaga Kerja"
-      original_name: "Jumlah Tenaga Kerja"
-      frequency: annual
-      level: province
+      source_variable_name: "Jumlah Tenaga Kerja"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: ind_prod_workers_wage_cost_y
-      description: "BPS Industri Besar Sedang survey block"
-      original_name: "Pengeluaran untuk Pekerja Produksi Upah/Gaji, Upah Lembur, Tunjangan"
-      frequency: annual
-      level: province
+      description: "Pengeluaran untuk Pekerja Produksi Upah/Gaji, Upah Lembur, Tunjangan"
+      source_variable_name: "Pengeluaran untuk Pekerja Produksi Upah/Gaji, Upah Lembur, Tunjangan"
+      data_period: "annual"
+      data_level: province
     - name: ind_prod_workers_other_cost_y
-      description: "BPS Industri Besar Sedang survey block"
-      original_name: "Pengeluaran untuk Pekerja Produksi Lainnya"
-      frequency: annual
-      level: province
+      description: "Pengeluaran untuk Pekerja Produksi Lainnya"
+      source_variable_name: "Pengeluaran untuk Pekerja Produksi Lainnya"
+      data_period: "annual"
+      data_level: province
     - name: ind_prod_workers_total_cost_y
-      description: "BPS Industri Besar Sedang survey block"
-      original_name: "Jumlah Pengeluaran untuk Pekerja Produksi"
-      frequency: annual
-      level: province
+      description: "Jumlah Pengeluaran untuk Pekerja Produksi"
+      source_variable_name: "Jumlah Pengeluaran untuk Pekerja Produksi"
+      data_period: "annual"
+      data_level: province
     - name: ind_nonprod_workers_wage_cost_y
-      description: "BPS Industri Besar Sedang survey block"
-      original_name: "Pengeluaran untuk Pekerja Lainnya Upah/Gaji, Upah Lembur, Tunjangan"
-      frequency: annual
-      level: province
+      description: "Pengeluaran untuk Pekerja Lainnya Upah/Gaji, Upah Lembur, Tunjangan"
+      source_variable_name: "Pengeluaran untuk Pekerja Lainnya Upah/Gaji, Upah Lembur, Tunjangan"
+      data_period: "annual"
+      data_level: province
     - name: ind_nonprod_workers_other_cost_y
-      description: "BPS Industri Besar Sedang survey block"
-      original_name: "Pengeluaran untuk Pekerja Lainnya Lainnya"
-      frequency: annual
-      level: province
+      description: "Pengeluaran untuk Pekerja Lainnya Lainnya"
+      source_variable_name: "Pengeluaran untuk Pekerja Lainnya Lainnya"
+      data_period: "annual"
+      data_level: province
     - name: ind_nonprod_workers_total_cost_y
-      description: "BPS Industri Besar Sedang survey block"
-      original_name: "Jumlah Pengeluaran untuk Pekerja Lainnya"
-      frequency: annual
-      level: province
+      description: "Jumlah Pengeluaran untuk Pekerja Lainnya"
+      source_variable_name: "Jumlah Pengeluaran untuk Pekerja Lainnya"
+      data_period: "annual"
+      data_level: province
     - name: ind_laborcost_total_y
       description: "Jumlah Pengeluaran Seluruh Pekerja"
-      original_name: "Jumlah Pengeluaran Seluruh Pekerja"
-      frequency: annual
-      level: province
+      source_variable_name: "Jumlah Pengeluaran Seluruh Pekerja"
+      data_period: "annual"
+      data_level: province
     - name: ind_input_y
-      description: "BPS Industri Besar Sedang survey block"
-      original_name: "Biaya Input"
-      frequency: annual
-      level: province
+      description: "Biaya Input"
+      source_variable_name: "Biaya Input"
+      data_period: "annual"
+      data_level: province
     - name: ind_output_y
-      description: "BPS Industri Besar Sedang survey block"
-      original_name: "Nilai Output"
-      frequency: annual
-      level: province
+      description: "Nilai Output"
+      source_variable_name: "Nilai Output"
+      data_period: "annual"
+      data_level: province
     - name: ind_va_mkt_y
-      description: "BPS Industri Besar Sedang survey block"
-      original_name: "Nilai Tambah (harga pasar)"
-      frequency: annual
-      level: province
+      description: "Nilai Tambah (harga pasar)"
+      source_variable_name: "Nilai Tambah (harga pasar)"
+      data_period: "annual"
+      data_level: province
     - name: ind_va_fc_y
-      description: "BPS Industri Besar Sedang survey block"
-      original_name: "Nilai Tambah (biaya faktor produksi)"
-      frequency: annual
-      level: province
+      description: "Nilai Tambah (biaya faktor produksi)"
+      source_variable_name: "Nilai Tambah (biaya faktor produksi)"
+      data_period: "annual"
+      data_level: province
     - name: ind_firms_pmdn_y
-      description: "BPS Industri Besar Sedang survey block"
-      original_name: "Jumlah Perusahaan PMDN"
-      frequency: annual
-      level: province
+      description: "Jumlah Perusahaan PMDN"
+      source_variable_name: "Jumlah Perusahaan PMDN"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: ind_firms_pma_y
-      description: "BPS Industri Besar Sedang survey block"
-      original_name: "Jumlah Perusahaan PMA"
-      frequency: annual
-      level: province
+      description: "Jumlah Perusahaan PMA"
+      source_variable_name: "Jumlah Perusahaan PMA"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: ind_workers_per_firm_y
       description: "Jumlah Tenaga Kerja/Jumlah Perusahaan"
-      original_name: "Jumlah Tenaga Kerja/Jumlah Perusahaan"
-      frequency: annual
-      level: province
+      source_variable_name: "Jumlah Tenaga Kerja/Jumlah Perusahaan"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: ind_prod_worker_share_y
       description: "Jumlah Tenaga Kerja Produksi/Jumlah Tenaga Kerja"
-      original_name: "Jumlah Tenaga Kerja Produksi/Jumlah Tenaga Kerja"
-      frequency: annual
-      level: province
+      source_variable_name: "Jumlah Tenaga Kerja Produksi/Jumlah Tenaga Kerja"
+      data_period: "annual"
+      data_level: province
     - name: ind_workers_per_input_y
-      description: "BPS Industri Besar Sedang survey block"
-      original_name: "Jumlah Tenaga Kerja/Biaya Input"
-      frequency: annual
-      level: province
+      description: "Jumlah Tenaga Kerja/Biaya Input"
+      source_variable_name: "Jumlah Tenaga Kerja/Biaya Input"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: ind_workers_per_output_y
-      description: "BPS Industri Besar Sedang survey block"
-      original_name: "Jumlah Tenaga Kerja/Nilai Output"
-      frequency: annual
-      level: province
+      description: "Jumlah Tenaga Kerja/Nilai Output"
+      source_variable_name: "Jumlah Tenaga Kerja/Nilai Output"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: ind_workers_per_va_mkt_y
-      description: "BPS Industri Besar Sedang survey block"
-      original_name: "Jumlah Tenaga Kerja/Nilai Tambah (harga pasar)"
-      frequency: annual
-      level: province
+      description: "Jumlah Tenaga Kerja/Nilai Tambah (harga pasar)"
+      source_variable_name: "Jumlah Tenaga Kerja/Nilai Tambah (harga pasar)"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: ind_workers_per_va_fc_y
-      description: "BPS Industri Besar Sedang survey block"
-      original_name: "Jumlah Tenaga Kerja/Nilai Tambah (biaya faktor produksi)"
-      frequency: annual
-      level: province
+      description: "Jumlah Tenaga Kerja/Nilai Tambah (biaya faktor produksi)"
+      source_variable_name: "Jumlah Tenaga Kerja/Nilai Tambah (biaya faktor produksi)"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: ind_laborcost_share_input_y
-      description: "BPS Industri Besar Sedang survey block"
-      original_name: "Biaya Pekerja/Biaya Input"
-      frequency: annual
-      level: province
+      description: "Biaya Pekerja/Biaya Input"
+      source_variable_name: "Biaya Pekerja/Biaya Input"
+      data_period: "annual"
+      data_level: province
     - name: ind_laborcost_share_output_y
-      description: "BPS Industri Besar Sedang survey block"
-      original_name: "Biaya Pekerja/Nilai Output"
-      frequency: annual
-      level: province
+      description: "Biaya Pekerja/Nilai Output"
+      source_variable_name: "Biaya Pekerja/Nilai Output"
+      data_period: "annual"
+      data_level: province
     - name: ind_laborcost_share_va_mkt_y
-      description: "BPS Industri Besar Sedang survey block"
-      original_name: "Biaya Pekerja/Nilai Tambah Pasar"
-      frequency: annual
-      level: province
+      description: "Biaya Pekerja/Nilai Tambah Pasar"
+      source_variable_name: "Biaya Pekerja/Nilai Tambah Pasar"
+      data_period: "annual"
+      data_level: province
     - name: ind_laborcost_share_va_fc_y
-      description: "BPS Industri Besar Sedang survey block"
-      original_name: "Biaya Pekerja/Nilai Tambah Produksi"
-      frequency: annual
-      level: province
+      description: "Biaya Pekerja/Nilai Tambah Produksi"
+      source_variable_name: "Biaya Pekerja/Nilai Tambah Produksi"
+      data_period: "annual"
+      data_level: province
     - name: ind_laborcost_per_wkr_y
-      description: "BPS Industri Besar Sedang survey block"
-      original_name: "Biaya Pekerja/Tenaga Kerja"
-      frequency: annual
-      level: province
+      description: "Biaya Pekerja/Tenaga Kerja"
+      source_variable_name: "Biaya Pekerja/Tenaga Kerja"
+      data_period: "annual"
+      data_level: province
     - name: ind_output_per_wkr_y
-      description: "BPS Industri Besar Sedang survey block"
-      original_name: "Nilai Output/Tenaga Kerja"
-      frequency: annual
-      level: province
+      description: "Nilai Output/Tenaga Kerja"
+      source_variable_name: "Nilai Output/Tenaga Kerja"
+      data_period: "annual"
+      data_level: province
     - name: ind_va_mkt_per_wkr_y
-      description: "BPS Industri Besar Sedang survey block"
-      original_name: "Nilai Tambah Pasar/Tenaga Kerja"
-      frequency: annual
-      level: province
+      description: "Nilai Tambah Pasar/Tenaga Kerja"
+      source_variable_name: "Nilai Tambah Pasar/Tenaga Kerja"
+      data_period: "annual"
+      data_level: province
     - name: ind_va_fc_per_wkr_y
-      description: "BPS Industri Besar Sedang survey block"
-      original_name: "Nilai Tambah Produksi/Tenaga Kerja"
-      frequency: annual
-      level: province
+      description: "Nilai Tambah Produksi/Tenaga Kerja"
+      source_variable_name: "Nilai Tambah Produksi/Tenaga Kerja"
+      data_period: "annual"
+      data_level: province
     - name: ind_input_share_output_y
-      description: "BPS Industri Besar Sedang survey block"
-      original_name: "Biaya Input/Nilai Output"
-      frequency: annual
-      level: province
+      description: "Biaya Input/Nilai Output"
+      source_variable_name: "Biaya Input/Nilai Output"
+      data_period: "annual"
+      data_level: province
     - name: ind_va_mkt_share_output_y
-      description: "BPS Industri Besar Sedang survey block"
-      original_name: "Nilai Tambah Pasar/Nilai Output"
-      frequency: annual
-      level: province
+      description: "Nilai Tambah Pasar/Nilai Output"
+      source_variable_name: "Nilai Tambah Pasar/Nilai Output"
+      data_period: "annual"
+      data_level: province
     - name: ind_va_fc_share_output_y
-      description: "BPS Industri Besar Sedang survey block"
-      original_name: "Nilai Tambah Produksi/Nilai Output"
-      frequency: annual
-      level: province
+      description: "Nilai Tambah Produksi/Nilai Output"
+      source_variable_name: "Nilai Tambah Produksi/Nilai Output"
+      data_period: "annual"
+      data_level: province
     - name: ind_prod_laborcost_share_y
-      description: "BPS Industri Besar Sedang survey block"
-      original_name: "Biaya Pekerja Produksi/Total Biaya Pekerja"
-      frequency: annual
-      level: province
+      description: "Biaya Pekerja Produksi/Total Biaya Pekerja"
+      source_variable_name: "Biaya Pekerja Produksi/Total Biaya Pekerja"
+      data_period: "annual"
+      data_level: province
     - name: ind_nonprod_laborcost_share_y
-      description: "BPS Industri Besar Sedang survey block"
-      original_name: "Biaya Pekerja Lainnya/Total Biaya Pekerja"
-      frequency: annual
-      level: province
+      description: "Biaya Pekerja Lainnya/Total Biaya Pekerja"
+      source_variable_name: "Biaya Pekerja Lainnya/Total Biaya Pekerja"
+      data_period: "annual"
+      data_level: province
     - name: ind_prod_wage_per_wkr_y
       description: "Upah Pekerja Produksi/Jumlah Tenaga Kerja Produksi"
-      original_name: "Upah Pekerja Produksi/Jumlah Tenaga Kerja Produksi"
-      frequency: annual
-      level: province
+      source_variable_name: "Upah Pekerja Produksi/Jumlah Tenaga Kerja Produksi"
+      data_period: "annual"
+      data_level: province
     - name: ind_nonprod_wage_per_wkr_y
       description: "Upah Pekerja Lainnya/Jumlah Tenaga Kerja Lainnya"
-      original_name: "Upah Pekerja Lainnya/Jumlah Tenaga Kerja Lainnya"
-      frequency: annual
-      level: province
+      source_variable_name: "Upah Pekerja Lainnya/Jumlah Tenaga Kerja Lainnya"
+      data_period: "annual"
+      data_level: province
     - name: ind_firms_pmdn_share_y
-      description: "BPS Industri Besar Sedang survey block"
-      original_name: "Proporsi Perusahaan PMDN"
-      frequency: annual
-      level: province
+      description: "Proporsi Perusahaan PMDN"
+      source_variable_name: "Proporsi Perusahaan PMDN"
+      data_period: "annual"
+      data_level: province
       unit: "count"
     - name: ind_firms_pma_share_y
-      description: "BPS Industri Besar Sedang survey block"
-      original_name: "Proporsi Perusahaan PMA"
-      frequency: annual
-      level: province
+      description: "Proporsi Perusahaan PMA"
+      source_variable_name: "Proporsi Perusahaan PMA"
+      data_period: "annual"
+      data_level: province
       unit: "count"
+  macro:
+    - name: macro_pmi_manuf_nat
+      description: "PMI Manufaktur S&P"
+      source_variable_name: "PMI Manufaktur S&P"
+      data_period: "monthly, quarterly, annual"
+      data_level: national
+      unit: "index"
+    - name: macro_bi_rate_pct_nat
+      description: "BI Rate"
+      source_variable_name: "BI Rate"
+      data_period: "monthly, quarterly"
+      data_level: national
+    - name: macro_fx_idr_usd_nat
+      description: "Kurs"
+      source_variable_name: "Kurs"
+      data_period: "monthly, quarterly, annual"
+      data_level: national
+      unit: "IDR per USD"
+    - name: macro_pdrb_q
+      description: "PDRB (IDR milyar)"
+      source_variable_name: "PDRB (IDR milyar)"
+      data_period: "quarterly"
+      data_level: province
+      unit: "IDR million (workbook header says milyar - VERIFY)"
+    - name: macro_pdrb_agri_q
+      description: "PDRB Pertanian, Kehutanan dan Perikanan (IDR milyar)"
+      source_variable_name: "PDRB Pertanian, Kehutanan dan Perikanan (IDR milyar)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "IDR million (workbook header says milyar - VERIFY)"
+    - name: macro_pdrb_mining_q
+      description: "PDRB Pertambangan dan Penggalian (IDR milyar)"
+      source_variable_name: "PDRB Pertambangan dan Penggalian (IDR milyar)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "IDR million (workbook header says milyar - VERIFY)"
+    - name: macro_pdrb_manuf_q
+      description: "PDRB Industri Pengolahan (IDR milyar)"
+      source_variable_name: "PDRB Industri Pengolahan (IDR milyar)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "IDR million (workbook header says milyar - VERIFY)"
+    - name: macro_pdrb_electricity_q
+      description: "PDRB Pengadaan Listrik dan Gas (IDR milyar)"
+      source_variable_name: "PDRB Pengadaan Listrik dan Gas (IDR milyar)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "IDR million (workbook header says milyar - VERIFY)"
+    - name: macro_pdrb_water_waste_q
+      description: "PDRB Pengadaan Air, Pengelolaan Sampah, Limbah dan Daur Ulang (IDR milyar)"
+      source_variable_name: "PDRB Pengadaan Air, Pengelolaan Sampah, Limbah dan Daur Ulang (IDR milyar)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "IDR million (workbook header says milyar - VERIFY)"
+    - name: macro_pdrb_construction_q
+      description: "PDRB Konstruksi (IDR milyar)"
+      source_variable_name: "PDRB Konstruksi (IDR milyar)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "IDR million (workbook header says milyar - VERIFY)"
+    - name: macro_pdrb_trade_q
+      description: "PDRB Perdagangan Besar dan Eceran, Reparasi Mobil dan Sepeda Motor (IDR milyar)"
+      source_variable_name: "PDRB Perdagangan Besar dan Eceran, Reparasi Mobil dan Sepeda Motor (IDR milyar)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "IDR million (workbook header says milyar - VERIFY)"
+    - name: macro_pdrb_transport_q
+      description: "PDRB Transportasi dan Pergudangan (IDR milyar)"
+      source_variable_name: "PDRB Transportasi dan Pergudangan (IDR milyar)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "IDR million (workbook header says milyar - VERIFY)"
+    - name: macro_pdrb_accom_food_q
+      description: "PDRB Penyediaan Akomodasi dan Makan Minum (IDR milyar)"
+      source_variable_name: "PDRB Penyediaan Akomodasi dan Makan Minum (IDR milyar)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "IDR million (workbook header says milyar - VERIFY)"
+    - name: macro_pdrb_info_comm_q
+      description: "PDRB Informasi dan Komunikasi (IDR milyar)"
+      source_variable_name: "PDRB Informasi dan Komunikasi (IDR milyar)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "IDR million (workbook header says milyar - VERIFY)"
+    - name: macro_pdrb_finance_q
+      description: "PDRB Jasa Keuangan dan Asuransi (IDR milyar)"
+      source_variable_name: "PDRB Jasa Keuangan dan Asuransi (IDR milyar)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "IDR million (workbook header says milyar - VERIFY)"
+    - name: macro_pdrb_real_estate_q
+      description: "PDRB Real Estate (IDR milyar)"
+      source_variable_name: "PDRB Real Estate (IDR milyar)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "IDR million (workbook header says milyar - VERIFY)"
+    - name: macro_pdrb_business_svc_q
+      description: "PDRB Jasa Perusahaan (IDR milyar)"
+      source_variable_name: "PDRB Jasa Perusahaan (IDR milyar)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "IDR million (workbook header says milyar - VERIFY)"
+    - name: macro_pdrb_public_admin_q
+      description: "PDRB Administrasi Pemerintahan, Pertahanan dan Jaminan Sosial Wajib (IDR milyar)"
+      source_variable_name: "PDRB Administrasi Pemerintahan, Pertahanan dan Jaminan Sosial Wajib (IDR milyar)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "IDR million (workbook header says milyar - VERIFY)"
+    - name: macro_pdrb_education_q
+      description: "PDRB Jasa Pendidikan (IDR milyar)"
+      source_variable_name: "PDRB Jasa Pendidikan (IDR milyar)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "IDR million (workbook header says milyar - VERIFY)"
+    - name: macro_pdrb_health_q
+      description: "PDRB Jasa Kesehatan dan Kegiatan Sosial (IDR milyar)"
+      source_variable_name: "PDRB Jasa Kesehatan dan Kegiatan Sosial (IDR milyar)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "IDR million (workbook header says milyar - VERIFY)"
+    - name: macro_pdrb_other_svc_q
+      description: "PDRB Jasa Lainnya (IDR milyar)"
+      source_variable_name: "PDRB Jasa Lainnya (IDR milyar)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "IDR million (workbook header says milyar - VERIFY)"
+    - name: macro_pdrb_manuf_share_pct_q
+      description: "Manufacturing Share (% PDRB)"
+      source_variable_name: "Manufacturing Share (% PDRB)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_agri_share_pct_q
+      description: "Agriculture Share (% PDRB)"
+      source_variable_name: "Agriculture Share (% PDRB)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_svc_share_pct_q
+      description: "Service Share (% PDRB)"
+      source_variable_name: "Service Share (% PDRB)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pmi_manuf_nat_q
+      description: "PMI Manufaktur"
+      source_variable_name: "PMI Manufaktur"
+      data_period: "monthly, quarterly, annual"
+      data_level: national
+      unit: "index"
+    - name: macro_bi_rate_pct_nat_q
+      description: "BI Rate"
+      source_variable_name: "BI Rate"
+      data_period: "monthly, quarterly"
+      data_level: national
+    - name: macro_fx_idr_usd_nat_q
+      description: "Kurs"
+      source_variable_name: "Kurs"
+      data_period: "monthly, quarterly, annual"
+      data_level: national
+      unit: "IDR per USD"
+    - name: macro_pdrb_idr_billion_y
+      description: "PDRB (IDR milyar)"
+      source_variable_name: "PDRB (IDR milyar)"
+      data_period: "annual"
+      data_level: province
+      unit: "IDR billion"
+    - name: macro_pdrb_idr_million_y
+      description: "PDRB (IDR juta)"
+      source_variable_name: "PDRB (IDR juta)"
+      data_period: "annual"
+      data_level: province
+      unit: "IDR million"
+    - name: macro_pdrb_agri_y
+      description: "PDRB Pertanian, Kehutanan dan Perikanan (IDR milyar)"
+      source_variable_name: "PDRB Pertanian, Kehutanan dan Perikanan (IDR milyar)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "IDR billion"
+    - name: macro_pdrb_mining_y
+      description: "PDRB Pertambangan dan Penggalian (IDR milyar)"
+      source_variable_name: "PDRB Pertambangan dan Penggalian (IDR milyar)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "IDR billion"
+    - name: macro_pdrb_manuf_y
+      description: "PDRB Industri Pengolahan (IDR milyar)"
+      source_variable_name: "PDRB Industri Pengolahan (IDR milyar)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "IDR billion"
+    - name: macro_pdrb_electricity_y
+      description: "PDRB Pengadaan Listrik dan Gas (IDR milyar)"
+      source_variable_name: "PDRB Pengadaan Listrik dan Gas (IDR milyar)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "IDR billion"
+    - name: macro_pdrb_water_waste_y
+      description: "PDRB Pengadaan Air, Pengelolaan Sampah, Limbah dan Daur Ulang (IDR milyar)"
+      source_variable_name: "PDRB Pengadaan Air, Pengelolaan Sampah, Limbah dan Daur Ulang (IDR milyar)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "IDR billion"
+    - name: macro_pdrb_construction_y
+      description: "PDRB Konstruksi (IDR milyar)"
+      source_variable_name: "PDRB Konstruksi (IDR milyar)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "IDR billion"
+    - name: macro_pdrb_trade_y
+      description: "PDRB Perdagangan Besar dan Eceran, Reparasi Mobil dan Sepeda Motor (IDR milyar)"
+      source_variable_name: "PDRB Perdagangan Besar dan Eceran, Reparasi Mobil dan Sepeda Motor (IDR milyar)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "IDR billion"
+    - name: macro_pdrb_transport_y
+      description: "PDRB Transportasi dan Pergudangan (IDR milyar)"
+      source_variable_name: "PDRB Transportasi dan Pergudangan (IDR milyar)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "IDR billion"
+    - name: macro_pdrb_accom_food_y
+      description: "PDRB Penyediaan Akomodasi dan Makan Minum (IDR milyar)"
+      source_variable_name: "PDRB Penyediaan Akomodasi dan Makan Minum (IDR milyar)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "IDR billion"
+    - name: macro_pdrb_info_comm_y
+      description: "PDRB Informasi dan Komunikasi (IDR milyar)"
+      source_variable_name: "PDRB Informasi dan Komunikasi (IDR milyar)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "IDR billion"
+    - name: macro_pdrb_finance_y
+      description: "PDRB Jasa Keuangan dan Asuransi (IDR milyar)"
+      source_variable_name: "PDRB Jasa Keuangan dan Asuransi (IDR milyar)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "IDR billion"
+    - name: macro_pdrb_real_estate_y
+      description: "PDRB Real Estate (IDR milyar)"
+      source_variable_name: "PDRB Real Estate (IDR milyar)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "IDR billion"
+    - name: macro_pdrb_business_svc_y
+      description: "PDRB Jasa Perusahaan (IDR milyar)"
+      source_variable_name: "PDRB Jasa Perusahaan (IDR milyar)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "IDR billion"
+    - name: macro_pdrb_public_admin_y
+      description: "PDRB Administrasi Pemerintahan, Pertahanan dan Jaminan Sosial Wajib (IDR milyar)"
+      source_variable_name: "PDRB Administrasi Pemerintahan, Pertahanan dan Jaminan Sosial Wajib (IDR milyar)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "IDR billion"
+    - name: macro_pdrb_education_y
+      description: "PDRB Jasa Pendidikan (IDR milyar)"
+      source_variable_name: "PDRB Jasa Pendidikan (IDR milyar)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "IDR billion"
+    - name: macro_pdrb_health_y
+      description: "PDRB Jasa Kesehatan dan Kegiatan Sosial (IDR milyar)"
+      source_variable_name: "PDRB Jasa Kesehatan dan Kegiatan Sosial (IDR milyar)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "IDR billion"
+    - name: macro_pdrb_other_svc_y
+      description: "PDRB Jasa Lainnya (IDR milyar)"
+      source_variable_name: "PDRB Jasa Lainnya (IDR milyar)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "IDR billion"
+    - name: macro_pdrb_manuf_share_pct_y
+      description: "Manufacturing Share (% PDRB)"
+      source_variable_name: "Manufacturing Share (% PDRB)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_agri_share_pct_y
+      description: "Agriculture Share (% PDRB)"
+      source_variable_name: "Agriculture Share (% PDRB)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_svc_share_pct_y
+      description: "Service Share (% PDRB)"
+      source_variable_name: "Service Share (% PDRB)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_manuf_growth_pct_y
+      description: "Laju Pertumbuhan PDB Industri Manufaktur"
+      source_variable_name: "Laju Pertumbuhan PDB Industri Manufaktur"
+      data_period: "annual"
+      data_level: province
+      unit: "IDR billion"
+    - name: macro_pdrb_per_wkr_y
+      description: "PDRB/Pekerja"
+      source_variable_name: "PDRB/Pekerja"
+      data_period: "annual"
+      data_level: province
+      unit: "IDR billion"
+    - name: macro_pdrb_per_wkr_growth_pct_y
+      description: "Laju Pertumbuhan PDB Per Tenaga Kerja"
+      source_variable_name: "Laju Pertumbuhan PDB Per Tenaga Kerja"
+      data_period: "annual"
+      data_level: province
+      unit: "IDR billion"
+    - name: macro_pmi_manuf_nat_y
+      description: "PMI Manufaktur"
+      source_variable_name: "PMI Manufaktur"
+      data_period: "monthly, quarterly, annual"
+      data_level: national
+      unit: "index"
+    - name: macro_icor_nat_y
+      description: "ICOR"
+      source_variable_name: "ICOR"
+      data_period: "annual"
+      data_level: national
+      unit: "index"
+    - name: macro_bi_rate_avg_pct_nat_y
+      description: "BI Rate (Average)*"
+      source_variable_name: "BI Rate (Average)*"
+      data_period: "annual"
+      data_level: national
+    - name: macro_fx_idr_usd_nat_y
+      description: "Kurs"
+      source_variable_name: "Kurs"
+      data_period: "monthly, quarterly, annual"
+      data_level: national
+      unit: "IDR per USD"
+    - name: macro_consumer_conf_nat_y
+      description: "IKK"
+      source_variable_name: "IKK"
+      data_period: "annual"
+      data_level: national
+      unit: "index"
+  price:
+    - name: price_cpi_index
+      description: "IHK (2010=100)"
+      source_variable_name: "IHK (2010=100)"
+      data_period: "monthly, quarterly"
+      data_level: province
+      unit: "index"
+    - name: price_inflation_mom_pct
+      description: "Inflasi Bulanan (M-to-M)"
+      source_variable_name: "Inflasi Bulanan (M-to-M)"
+      data_period: "monthly"
+      data_level: province
+      unit: "percent"
+    - name: price_inflation_yoy_pct
+      description: "Inflasi Tahunan (Y-on-Y)"
+      source_variable_name: "Inflasi Tahunan (Y-on-Y)"
+      data_period: "monthly"
+      data_level: province
+      unit: "percent"
+    - name: price_consumer_change_pct
+      description: "Perubahan Harga Konsumen"
+      source_variable_name: "Perubahan Harga Konsumen"
+      data_period: "monthly, quarterly"
+      data_level: province
+      unit: "percent"
+    - name: price_brent_usd_bbl_nat
+      description: "Harga Minyak Brent (USD/barrel)"
+      source_variable_name: "Harga Minyak Brent (USD/barrel)"
+      data_period: "monthly"
+      data_level: national
+      unit: "USD per barrel"
+    - name: price_ihpb_nat
+      description: "IHPB"
+      source_variable_name: "IHPB"
+      data_period: "monthly"
+      data_level: national
+    - name: price_producer_index_nat_q
+      description: "IHP (2016=100)"
+      source_variable_name: "IHP (2016=100)"
+      data_period: "quarterly, annual"
+      data_level: national
+      unit: "index"
+    - name: price_producer_change_pct_nat_q
+      description: "Perubahan Harga Produsen**"
+      source_variable_name: "Perubahan Harga Produsen**"
+      data_period: "quarterly, annual"
+      data_level: national
+    - name: price_producer_ceic_pct_nat_q
+      description: "Perubahan Harga Produsen (CEIC)"
+      source_variable_name: "Perubahan Harga Produsen (CEIC)"
+      data_period: "quarterly"
+      data_level: national
+    - name: price_cpi_index_q
+      description: "IHK (2010=100)"
+      source_variable_name: "IHK (2010=100)"
+      data_period: "monthly, quarterly"
+      data_level: province
+      unit: "index"
+    - name: price_consumer_change_pct_q
+      description: "Perubahan Harga Konsumen"
+      source_variable_name: "Perubahan Harga Konsumen"
+      data_period: "monthly, quarterly"
+      data_level: province
+      unit: "percent"
+    - name: price_inflation_yoy_q4_pct_y
+      description: "Inflasi YoY (per IV)"
+      source_variable_name: "Inflasi YoY (per IV)"
+      data_period: "annual"
+      data_level: province
+      unit: "percent"
+    - name: price_inflation_yoy_avg_pct_y
+      description: "Inflasi YoY (Average)"
+      source_variable_name: "Inflasi YoY (Average)"
+      data_period: "annual"
+      data_level: province
+      unit: "percent"
+    - name: price_producer_index_nat_y
+      description: "IHP (2016=100)"
+      source_variable_name: "IHP (2016=100)"
+      data_period: "quarterly, annual"
+      data_level: national
+      unit: "index"
+    - name: price_cpi_index_nat_y
+      description: "IHK (2010=100)"
+      source_variable_name: "IHK (2010=100)"
+      data_period: "annual"
+      data_level: national
+      unit: "index"
+    - name: price_producer_change_pct_nat_y
+      description: "Perubahan harga produsen (%)"
+      source_variable_name: "Perubahan harga produsen (%)"
+      data_period: "quarterly, annual"
+      data_level: national
+    - name: price_consumer_change_pct_nat_y
+      description: "Perubahan harga konsumen (%)"
+      source_variable_name: "Perubahan harga konsumen (%)"
+      data_period: "annual"
+      data_level: national
+  trade:
+    - name: trade_export_value
+      description: "Nilai Ekspor"
+      source_variable_name: "Nilai Ekspor"
+      data_period: "monthly, annual"
+      data_level: province
+    - name: trade_import_value
+      description: "Nilai Impor"
+      source_variable_name: "Nilai Impor"
+      data_period: "monthly, annual"
+      data_level: province
+    - name: trade_balance
+      description: "Neraca Perdagangan"
+      source_variable_name: "Neraca Perdagangan"
+      data_period: "monthly, annual"
+      data_level: province
+    - name: trade_export_value_usd_million_q
+      description: "Nilai Ekspor (USD juta)"
+      source_variable_name: "Nilai Ekspor (USD juta)"
+      data_period: "quarterly"
+      data_level: province
+      unit: "USD million"
+    - name: trade_import_value_usd_million_q
+      description: "Nilai Impor (USD juta)"
+      source_variable_name: "Nilai Impor (USD juta)"
+      data_period: "quarterly"
+      data_level: province
+      unit: "USD million"
+    - name: trade_balance_usd_million_q
+      description: "Neraca Perdagangan*"
+      source_variable_name: "Neraca Perdagangan*"
+      data_period: "quarterly"
+      data_level: province
+      unit: "USD million"
+    - name: trade_export_value_bps_y
+      description: "Nilai Ekspor BPS"
+      source_variable_name: "Nilai Ekspor BPS"
+      data_period: "annual"
+      data_level: province
+    - name: trade_export_value_y
+      description: "Nilai Ekspor"
+      source_variable_name: "Nilai Ekspor"
+      data_period: "monthly, annual"
+      data_level: province
+    - name: trade_import_value_y
+      description: "Nilai Impor"
+      source_variable_name: "Nilai Impor"
+      data_period: "monthly, annual"
+      data_level: province
+    - name: trade_balance_y
+      description: "Neraca Perdagangan"
+      source_variable_name: "Neraca Perdagangan"
+      data_period: "monthly, annual"
+      data_level: province
+  finance:
+    - name: fin_npl_idr_billion
+      description: "NPL (IDR miliar)"
+      source_variable_name: "NPL (IDR miliar)"
+      data_period: "monthly, quarterly"
+      data_level: province
+      unit: "IDR billion"
+    - name: fin_fdi_usd_million_q
+      description: "FDI (USD mn)"
+      source_variable_name: "FDI (USD mn)"
+      data_period: "quarterly"
+      data_level: province
+      unit: "USD million"
+    - name: fin_fdi_idr_million_q
+      description: "FDI (IDR mn)"
+      source_variable_name: "FDI (IDR mn)"
+      data_period: "quarterly"
+      data_level: province
+      unit: "IDR million"
+    - name: fin_npl_idr_billion_q
+      description: "NPL, End of Quarter (IDR miliar)"
+      source_variable_name: "NPL, End of Quarter (IDR miliar)"
+      data_period: "monthly, quarterly"
+      data_level: province
+      unit: "IDR billion"
+    - name: fin_fdi_y
+      description: "FDI"
+      source_variable_name: "FDI"
+      data_period: "annual"
+      data_level: province
+    - name: fin_npl_y
+      description: "NPL"
+      source_variable_name: "NPL"
+      data_period: "annual"
+      data_level: province
+  growth:
+    - name: growth_lab_working_pop_y
+      description: "Pertumbuhan Bekerja"
+      source_variable_name: "Pertumbuhan Bekerja"
+      data_period: "annual"
+      data_level: province
+      unit: "percent (growth)"
+    - name: growth_lab_employee_count_y
+      description: "Pertumbuhan Buruh/Karyawan/Pegawai"
+      source_variable_name: "Pertumbuhan Buruh/Karyawan/Pegawai"
+      data_period: "annual"
+      data_level: province
+      unit: "percent (growth)"
+    - name: growth_lab_unpaid_family_y
+      description: "Pertumbuhan Pekerja Keluarga Tidak Dibayar"
+      source_variable_name: "Pertumbuhan Pekerja Keluarga Tidak Dibayar"
+      data_period: "annual"
+      data_level: province
+      unit: "percent (growth)"
+    - name: growth_lab_formal_share_pct_y
+      description: "Pertumbuhan % Pekerja Formal"
+      source_variable_name: "Pertumbuhan % Pekerja Formal"
+      data_period: "annual"
+      data_level: province
+      unit: "percent"
+    - name: growth_lab_contract_share_pct_y
+      description: "Pertumbuhan % Pekerja Memiliki Kontrak Tertulis"
+      source_variable_name: "Pertumbuhan % Pekerja Memiliki Kontrak Tertulis"
+      data_period: "annual"
+      data_level: province
+      unit: "percent"
+    - name: growth_lab_full_time_share_pct_y
+      description: "Pertumbuhan % Pekerja Penuh Waktu"
+      source_variable_name: "Pertumbuhan % Pekerja Penuh Waktu"
+      data_period: "annual"
+      data_level: province
+      unit: "percent"
+    - name: growth_lab_part_time_share_pct_y
+      description: "Pertumbuhan % Pekerja Paruh Waktu"
+      source_variable_name: "Pertumbuhan % Pekerja Paruh Waktu"
+      data_period: "annual"
+      data_level: province
+      unit: "percent"
+    - name: growth_lab_underemp_share_pct_y
+      description: "Pertumbuhan % Setengah Pengangguran"
+      source_variable_name: "Pertumbuhan % Setengah Pengangguran"
+      data_period: "annual"
+      data_level: province
+      unit: "percent"
+    - name: growth_lab_working_hours_y
+      description: "Pertumbuhan Jam Kerja"
+      source_variable_name: "Pertumbuhan Jam Kerja"
+      data_period: "annual"
+      data_level: province
+      unit: "percent (growth)"
+    - name: growth_lab_tpt_pct_y
+      description: "Pertumbuhan TPT"
+      source_variable_name: "Pertumbuhan TPT"
+      data_period: "annual"
+      data_level: province
+      unit: "percent"
+    - name: growth_lab_tpt_male_pct_y
+      description: "Pertumbuhan TPT Laki-laki"
+      source_variable_name: "Pertumbuhan TPT Laki-laki"
+      data_period: "annual"
+      data_level: province
+      unit: "percent"
+    - name: growth_lab_tpt_female_pct_y
+      description: "Pertumbuhan TPT Perempuan"
+      source_variable_name: "Pertumbuhan TPT Perempuan"
+      data_period: "annual"
+      data_level: province
+      unit: "percent"
+    - name: growth_lab_tpak_pct_y
+      description: "Pertumbuhan TPAK"
+      source_variable_name: "Pertumbuhan TPAK"
+      data_period: "annual"
+      data_level: province
+      unit: "percent"
+    - name: growth_lab_tpak_male_pct_y
+      description: "Pertumbuhan TPAK Laki-laki"
+      source_variable_name: "Pertumbuhan TPAK Laki-laki"
+      data_period: "annual"
+      data_level: province
+      unit: "percent"
+    - name: growth_lab_tpak_female_pct_y
+      description: "Pertumbuhan TPAK Perempuan"
+      source_variable_name: "Pertumbuhan TPAK Perempuan"
+      data_period: "annual"
+      data_level: province
+      unit: "percent"
+    - name: growth_wage_avg_employee_y
+      description: "Pertumbuhan Upah"
+      source_variable_name: "Pertumbuhan Upah"
+      data_period: "annual"
+      data_level: province
+      unit: "percent (growth)"
+    - name: growth_bpjstk_active_pu_y
+      description: "Pertumbuhan BPJSTK - Peserta Aktif PU"
+      source_variable_name: "Pertumbuhan BPJSTK - Peserta Aktif PU"
+      data_period: "annual"
+      data_level: province
+      unit: "percent (growth)"
+    - name: growth_bpjstk_active_bpu_y
+      description: "Pertumbuhan BPJSTK - Peserta Aktif BPU"
+      source_variable_name: "Pertumbuhan BPJSTK - Peserta Aktif BPU"
+      data_period: "annual"
+      data_level: province
+      unit: "percent (growth)"
+    - name: growth_bpjstk_phk_y
+      description: "Pertumbuhan BPJSTK - PHK"
+      source_variable_name: "Pertumbuhan BPJSTK - PHK"
+      data_period: "annual"
+      data_level: province
+      unit: "percent (growth)"
+    - name: growth_bpjstk_jht_phk_y
+      description: "Pertumbuhan BPJSTK - JHT PHK"
+      source_variable_name: "Pertumbuhan BPJSTK - JHT PHK"
+      data_period: "annual"
+      data_level: province
+      unit: "percent (growth)"
+    - name: growth_bpjstk_jkp_phk_y
+      description: "Pertumbuhan BPJSTK - JKP PHK"
+      source_variable_name: "Pertumbuhan BPJSTK - JKP PHK"
+      data_period: "annual"
+      data_level: province
+      unit: "percent (growth)"
+    - name: growth_ind_output_y
+      description: "Pertumbuhan Nilai Output"
+      source_variable_name: "Pertumbuhan Nilai Output"
+      data_period: "annual"
+      data_level: province
+      unit: "percent (growth)"
+    - name: growth_ind_input_y
+      description: "Pertumbuhan Biaya Input"
+      source_variable_name: "Pertumbuhan Biaya Input"
+      data_period: "annual"
+      data_level: province
+      unit: "percent (growth)"
+    - name: growth_ind_va_mkt_y
+      description: "Pertumbuhan Nilai Tambah Pasar"
+      source_variable_name: "Pertumbuhan Nilai Tambah Pasar"
+      data_period: "annual"
+      data_level: province
+      unit: "percent (growth)"
+    - name: growth_ind_va_fc_y
+      description: "Pertumbuhan Nilai Tambah Produksi"
+      source_variable_name: "Pertumbuhan Nilai Tambah Produksi"
+      data_period: "annual"
+      data_level: province
+      unit: "percent (growth)"
+    - name: growth_ind_workers_total_y
+      description: "Pertumbuhan Tenaga Kerja"
+      source_variable_name: "Pertumbuhan Tenaga Kerja"
+      data_period: "annual"
+      data_level: province
+      unit: "percent (growth)"
+    - name: growth_ind_firms_total_y
+      description: "Pertumbuhan Jumlah Perusahaan"
+      source_variable_name: "Pertumbuhan Jumlah Perusahaan"
+      data_period: "annual"
+      data_level: province
+      unit: "percent (growth)"
+    - name: growth_ind_laborcost_total_y
+      description: "Pertumbuhan Pengeluaran Tenaga Kerja"
+      source_variable_name: "Pertumbuhan Pengeluaran Tenaga Kerja"
+      data_period: "annual"
+      data_level: province
+      unit: "percent (growth)"
+    - name: growth_ind_labor_prod_market_y
+      description: "Pertumbuhan Produktivitas (Nilai Tambah Pasar) Tenaga Kerja"
+      source_variable_name: "Pertumbuhan Produktivitas (Nilai Tambah Pasar) Tenaga Kerja"
+      data_period: "annual"
+      data_level: province
+      unit: "percent (growth)"
+    - name: growth_ind_labor_prod_fc_y
+      description: "Pertumbuhan Produktivitas (Nilai Tambah Produksi) Tenaga Kerja"
+      source_variable_name: "Pertumbuhan Produktivitas (Nilai Tambah Produksi) Tenaga Kerja"
+      data_period: "annual"
+      data_level: province
+      unit: "percent (growth)"
+  lag:
+    - name: lag1_phk_y
+      description: "Lag_1 PHK"
+      source_variable_name: "Lag_1 PHK"
+      data_period: "annual"
+      data_level: province
+    - name: lag1_lab_formal_share_pct_y
+      description: "Lag_1 % Pekerja Formal"
+      source_variable_name: "Lag_1 % Pekerja Formal"
+      data_period: "annual"
+      data_level: province
+      unit: "percent"
+    - name: lag1_lab_contract_share_pct_y
+      description: "Lag_1 % Pekerja Memiliki Kontrak Tertulis"
+      source_variable_name: "Lag_1 % Pekerja Memiliki Kontrak Tertulis"
+      data_period: "annual"
+      data_level: province
+      unit: "percent"
+    - name: lag1_wage_ump_growth_pct_y
+      description: "Lag_1 Growth UMP"
+      source_variable_name: "Lag_1 Growth UMP"
+      data_period: "annual"
+      data_level: province
+      unit: "percent"
+    - name: lag1_bpjstk_active_pu_y
+      description: "Lag_1 BPJSTK - Peserta Aktif PU"
+      source_variable_name: "Lag_1 BPJSTK - Peserta Aktif PU"
+      data_period: "annual"
+      data_level: province
+    - name: lag1_bpjstk_active_bpu_y
+      description: "Lag_1 BPJSTK - Peserta Aktif BPU"
+      source_variable_name: "Lag_1 BPJSTK - Peserta Aktif BPU"
+      data_period: "annual"
+      data_level: province
+    - name: lag1_bpjstk_phk_y
+      description: "Lag_1 BPJSTK - PHK"
+      source_variable_name: "Lag_1 BPJSTK - PHK"
+      data_period: "annual"
+      data_level: province
+    - name: lag1_bpjstk_jht_phk_y
+      description: "Lag_1 BPJSTK - JHT PHK"
+      source_variable_name: "Lag_1 BPJSTK - JHT PHK"
+      data_period: "annual"
+      data_level: province
+    - name: lag1_bpjstk_jkp_phk_y
+      description: "Lag_1 BPJSTK - JKP PHK"
+      source_variable_name: "Lag_1 BPJSTK - JKP PHK"
+      data_period: "annual"
+      data_level: province
   diff:
     - name: diffgr_input_minus_output_y
-      description: "YoY growth or change of base indicator"
-      original_name: "Selisih Pertumbuhan Biaya Input dan Pertumbuhan Nilai Output"
-      frequency: annual
-      level: province
+      description: "Selisih Pertumbuhan Biaya Input dan Pertumbuhan Nilai Output"
+      source_variable_name: "Selisih Pertumbuhan Biaya Input dan Pertumbuhan Nilai Output"
+      data_period: "annual"
+      data_level: province
+      unit: "percent (growth)"
     - name: diffgr_laborcost_minus_output_y
-      description: "YoY growth or change of base indicator"
-      original_name: "Selisih Pertumbuhan Biaya Pekerja dan Nilai Output"
-      frequency: annual
-      level: province
+      description: "Selisih Pertumbuhan Biaya Pekerja dan Nilai Output"
+      source_variable_name: "Selisih Pertumbuhan Biaya Pekerja dan Nilai Output"
+      data_period: "annual"
+      data_level: province
+      unit: "percent (growth)"
