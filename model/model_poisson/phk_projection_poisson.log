@@ -1,0 +1,377 @@
+-----------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Users\berth\GitHub\phk_dashboard/model/model_poisson/phk_projection_poisson.log
+  log type:  text
+ opened on:  13 Jul 2026, 14:04:31
+
+. 
+. /********************************************************************
+>         1. LOAD DATA
+> ********************************************************************/
+.         import  delimited "$data/clean/phk_master.csv", clear
+(257 vars, 1,824 obs)
+
+.         save    "$model/phk_master.dta", replace
+file C:\Users\berth\GitHub\phk_dashboard/model/model_poisson/phk_master.dta saved
+
+.         tempfile master
+
+.         save    `master', replace
+(note: file C:\Users\berth\AppData\Local\Temp\ST_ca04_000001.tmp not found)
+file C:\Users\berth\AppData\Local\Temp\ST_ca04_000001.tmp saved
+
+. 
+.         import  delimited "$data/clean/phk_variable_flags.csv", clear
+(6 vars, 252 obs)
+
+.         save    "$model/phk_variable_flags.dta", replace
+file C:\Users\berth\GitHub\phk_dashboard/model/model_poisson/phk_variable_flags.dta saved
+
+.         tempfile flags
+
+.         save    `flags', replace
+(note: file C:\Users\berth\AppData\Local\Temp\ST_ca04_000002.tmp not found)
+file C:\Users\berth\AppData\Local\Temp\ST_ca04_000002.tmp saved
+
+. 
+.         use     `master', clear
+
+. 
+. 
+. /********************************************************************
+>         2. VARIABLE GROUPS
+> ********************************************************************/
+.         
+.         * Economic Structure
+.         global  STRUCTURE ///
+>                     macro_pdrb_manuf_share_pct_y ///
+>                     lab_formal_share_pct_y ///
+>                     lab_contract_share_pct_y ///
+>                     macro_pdrb_per_wkr_growth_pct_y ///
+>                     wage_ump_growth_pct_y
+
+. 
+.         * Macro Trigger
+.         global  MACRO_GLOBAL ///
+>                         price_brent_usd_bbl_nat 
+
+. 
+.         global  MACRO_NATIONAL ///
+>                         macro_bi_rate_pct_nat ///
+>                         macro_fx_idr_usd_nat ///
+>                     macro_pmi_manuf_nat ///
+>                     price_ihpb_nat 
+
+. 
+.         global  MACRO_PROVINCE ///
+>                     price_cpi_index ///
+>                     fin_npl_idr_billion ///
+>                     trade_export_value ///
+>                     trade_import_value 
+
+. 
+.         global  TRIGGER $MACRO_GLOBAL $MACRO_NATIONAL $MACRO_PROVINCE
+
+. 
+. 
+.         keeporder province_name_std year quarter month date phk_stock phk_flow ///
+>                          $STRUCTURE $TRIGGER 
+
+. 
+. 
+. /********************************************************************
+>         3. PANEL PREPARATION
+> ********************************************************************/
+.         
+.         * Keep based on availability of PHK data 
+.         keep    if year>=2022
+(0 observations deleted)
+
+. 
+.         * Set up panel data 
+.         ***
+.         egen    prov_id = group(province_name_std), label
+
+.         ***
+.         gen     ym = ym(year, month)
+
+.         format  ym %tm
+
+. 
+.         xtset   prov_id ym
+       panel variable:  prov_id (strongly balanced)
+        time variable:  ym, 2022m1 to 2025m12
+                delta:  1 month
+
+. 
+. 
+. /********************************************************************
+>         4. DATA QUALITY
+> ********************************************************************/
+.         
+.         * Summarize
+.         misstable summarize phk_flow $STRUCTURE $TRIGGER
+                                                               Obs<.
+                                                +------------------------------
+               |                                | Unique
+      Variable |     Obs=.     Obs>.     Obs<.  | values        Min         Max
+  -------------+--------------------------------+------------------------------
+      phk_flow |       556               1,268  |    375      -3483        9447
+  macr~e_pct_y |     1,824                   0  |      0          .           .
+  lab_formal~y |        96               1,728  |    143       4.24       68.45
+  lab_contra~y |        96               1,728  |    144   38.57288    84.06744
+  macr~h_pct_y |       588               1,236  |     99     -16.87       51.36
+  wage_ump_g~y |        96               1,728  |    129          0    11.09834
+  price_bren~t |        38               1,786  |     45       62.5       122.7
+  price_cpi_~x |        36               1,788  |   >500      96.15       115.4
+  fin_npl_id~n |       240               1,584  |   >500    149.991    81655.66
+  trade_expo~e |       290               1,534  |   >500        .09     9358.73
+  trade_impo~e |       290               1,534  |   >500          0    11879.08
+  -----------------------------------------------------------------------------
+
+. 
+.         summ phk_flow
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+    phk_flow |      1,268    193.7453    622.5046      -3483       9447
+
+. 
+.         foreach v of global STRUCTURE {
+  2.             capture noisily xtsum `v'
+  3.         }
+
+Variable         |      Mean   Std. Dev.       Min        Max |    Observations
+-----------------+--------------------------------------------+----------------
+m~manu~y overall |         .          .          .          . |     N =       0
+         between |                    .          .          . |     n =       0
+         within  |                    .          .          . |     T =       .
+
+Variable         |      Mean   Std. Dev.       Min        Max |    Observations
+-----------------+--------------------------------------------+----------------
+lab_fo~y overall |  40.55688   10.93774       4.24      68.45 |     N =    1728
+         between |             11.65138       4.47    66.0525 |     n =      38
+         within  |             2.797853   25.80187   57.35187 | T-bar = 45.4737
+
+Variable         |      Mean   Std. Dev.       Min        Max |    Observations
+-----------------+--------------------------------------------+----------------
+lab_co~y overall |  57.09198   9.411139   38.57288   84.06744 |     N =    1728
+         between |             9.145518   41.40909   73.66972 |     n =      38
+         within  |             3.168885   46.69426    67.4897 | T-bar = 45.4737
+
+Variable         |      Mean   Std. Dev.       Min        Max |    Observations
+-----------------+--------------------------------------------+----------------
+m~per_~y overall |  3.217379   7.994026     -16.87      51.36 |     N =    1236
+         between |             11.26786     -5.275      51.36 |     n =      36
+         within  |             3.876024  -8.377622   16.92071 |     T = 34.3333
+
+Variable         |      Mean   Std. Dev.       Min        Max |    Observations
+-----------------+--------------------------------------------+----------------
+wage_u~y overall |  4.755216   2.608893          0   11.09834 |     N =    1728
+         between |             .6431613    3.37142   6.431291 |     n =      38
+         within  |             2.528605   .0945236   10.47534 | T-bar = 45.4737
+
+. 
+.         foreach v of global TRIGGER {
+  2.             capture noisily xtsum `v'
+  3.         }
+
+Variable         |      Mean   Std. Dev.       Min        Max |    Observations
+-----------------+--------------------------------------------+----------------
+pr~l_nat overall |  82.98085   13.79099       62.5      122.7 |     N =    1786
+         between |                    0   82.98085   82.98085 |     n =      38
+         within  |             13.79099       62.5      122.7 |     T =      47
+
+Variable         |      Mean   Std. Dev.       Min        Max |    Observations
+-----------------+--------------------------------------------+----------------
+ma~t_nat overall |  5.296875   .9126307        3.5       6.25 |     N =    1824
+         between |                    0   5.296875   5.296875 |     n =      38
+         within  |             .9126307        3.5       6.25 |     T =      48
+
+Variable         |      Mean   Std. Dev.       Min        Max |    Observations
+-----------------+--------------------------------------------+----------------
+ma~d_nat overall |     15605   698.6204      14335      16820 |     N =    1824
+         between |                    0      15605      15605 |     n =      38
+         within  |             698.6204      14335      16820 |     T =      48
+
+Variable         |      Mean   Std. Dev.       Min        Max |    Observations
+-----------------+--------------------------------------------+----------------
+ma~f_nat overall |  51.29583   1.722264       46.7       54.2 |     N =    1824
+         between |                    0   51.29583   51.29583 |     n =      38
+         within  |             1.722264       46.7       54.2 |     T =      48
+
+Variable         |      Mean   Std. Dev.       Min        Max |    Observations
+-----------------+--------------------------------------------+----------------
+pr~b_nat overall |  101.2562   3.367481         94      106.3 |     N =    1824
+         between |                    0   101.2562   101.2562 |     n =      38
+         within  |             3.367481         94      106.3 |     T =      48
+
+Variable         |      Mean   Std. Dev.       Min        Max |    Observations
+-----------------+--------------------------------------------+----------------
+price_~x overall |  104.7395   3.484769      96.15      115.4 |     N =    1788
+         between |             .8876505   103.0252   107.1548 |     n =      38
+         within  |             3.378926   95.90987   114.0355 | T-bar = 47.0526
+
+Variable         |      Mean   Std. Dev.       Min        Max |    Observations
+-----------------+--------------------------------------------+----------------
+fin_np~n overall |  5181.793   12695.46    149.991   81655.66 |     N =    1584
+         between |             12847.56   271.6716    71109.6 |     n =      33
+         within  |             1007.709  -1427.076   15727.85 |     T =      48
+
+Variable         |      Mean   Std. Dev.       Min        Max |    Observations
+-----------------+--------------------------------------------+----------------
+t~expo~e overall |  691.9039   843.9066        .09    9358.73 |     N =    1534
+         between |             790.6103   5.354167   3105.172 |     n =      33
+         within  |             295.8433  -1896.808   8752.317 | T-bar = 46.4848
+
+Variable         |      Mean   Std. Dev.       Min        Max |    Observations
+-----------------+--------------------------------------------+----------------
+t~impo~e overall |  613.1725   1628.758          0   11879.08 |     N =    1534
+         between |              1516.08      .0075   8926.241 |     n =      37
+         within  |             333.6542  -7395.949   3716.513 | T-bar = 41.4595
+
+. 
+.         * Truncate PHK flow if data is negative 
+.         tab     province_name_std phk_flow if phk_flow < 0
+
+                    |                        phk_flow
+  province_name_std |     -3483       -418       -162        -10         -6 |     Total
+--------------------+-------------------------------------------------------+----------
+    Bangka Belitung |         0          0          0          1          0 |         1 
+        DKI Jakarta |         0          1          0          0          0 |         1 
+        Jawa Tengah |         1          0          0          0          0 |         1 
+        Papua Barat |         0          0          0          0          1 |         1 
+   Sumatera Selatan |         0          0          1          0          0 |         1 
+--------------------+-------------------------------------------------------+----------
+              Total |         1          1          1          1          1 |         5 
+
+. 
+.         replace phk_flow = 0 if phk_flow < 0
+(5 real changes made)
+
+.         capture noisily xtsum phk_flow
+
+Variable         |      Mean   Std. Dev.       Min        Max |    Observations
+-----------------+--------------------------------------------+----------------
+phk_flow overall |  196.9621   613.6127          0       9447 |     N =    1268
+         between |             323.2754   4.081081   1361.513 |     n =      34
+         within  |             521.1138  -1164.551   8588.065 | T-bar = 37.2941
+
+. 
+. 
+. /********************************************************************
+>         5. CONSTRUCT LAGS
+> ********************************************************************/
+.         
+.         * Construct lag for 1, 3, and 6 months 
+. 
+.         foreach L in 1 3 6 {
+  2. 
+.             foreach x of global TRIGGER {
+  3. 
+.                 capture confirm variable `x'
+  4.                 if !_rc {
+  5.                     gen L`L'_`x' = L`L'.`x'
+  6.                 }
+  7.             }
+  8.         }
+(76 missing values generated)
+(38 missing values generated)
+(38 missing values generated)
+(38 missing values generated)
+(38 missing values generated)
+(74 missing values generated)
+(273 missing values generated)
+(322 missing values generated)
+(322 missing values generated)
+(152 missing values generated)
+(114 missing values generated)
+(114 missing values generated)
+(114 missing values generated)
+(114 missing values generated)
+(150 missing values generated)
+(339 missing values generated)
+(386 missing values generated)
+(383 missing values generated)
+(266 missing values generated)
+(228 missing values generated)
+(228 missing values generated)
+(228 missing values generated)
+(228 missing values generated)
+(264 missing values generated)
+(438 missing values generated)
+(482 missing values generated)
+(475 missing values generated)
+
+.         
+. 
+. /********************************************************************
+>         6. TRAIN / TEST SPLIT
+> ********************************************************************/
+.         
+.         * Keep the data starting the year in which PHK information is complete 
+.         drop if year < 2023
+(456 observations deleted)
+
+.         replace phk_flow = 0 if month == 1 & phk_flow ==.
+(63 real changes made)
+
+. 
+.         * Identify train and test period 
+.         gen     train = year<=2024
+
+.         gen     test  = year==2025
+
+. 
+. 
+. /********************************************************************
+> 7. LAG SELECTION
+> ********************************************************************/
+.         
+.         tempname results
+
+.         postfile `results' str5 lag double rmse mae using ///
+>         "$output/lag_selection.dta", replace
+
+. 
+.         foreach lag in 1 3 6 {
+  2. 
+.             ppmlhdfe ///
+>                 phk_flow ///
+>                 $STRUCTURE ///
+>                 L`lag'_price_brent_usd_bbl_nat ///
+>                 L`lag'_macro_bi_rate_pct_nat ///
+>                 L`lag'_macro_fx_idr_usd_nat ///
+>                 L`lag'_macro_pmi_manuf_nat ///
+>                 L`lag'_price_ihpb_nat ///
+>                 L`lag'_price_cpi_index  ///
+>                 L`lag'_fin_npl_idr_billion ///
+>                 L`lag'_trade_export_value  ///
+>                 L`lag'_trade_import_value ///
+>                 if train, ///
+>                 absorb(prov_id year) ///
+>                 cluster(prov_id)
+  3. 
+.             predict phk_hat_`lag' if test, mu
+  4. 
+.             gen err = phk_flow-phk_hat_`lag' if test
+  5.             gen abs_err = abs(err)
+  6. 
+.             quietly summarize abs_err if test
+  7.             local mae = r(mean)
+  8. 
+.             gen sq = err^2 if test
+  9.             quietly summarize sq if test
+ 10.             local rmse = sqrt(r(mean))
+ 11. 
+.             post `results' ("L`lag'") (`rmse') (`mae')
+ 12. 
+.             drop err abs_err sq
+ 13.         }
+file not found: reghdfe.ado
+r(123);
+
+end of do-file
+
+r(123);
+
