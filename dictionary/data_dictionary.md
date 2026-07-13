@@ -1,6 +1,6 @@
 # PHK Early Warning Dashboard — Data Dictionary
 
-Human-readable companion to the machine-readable **`dictionary/indicator_dictionary.csv`** and **`config/master_schema.yml`** (same variable list). Built from the actual columns of `Database (Bulan / Triwulan / Tahun)` in **`data/raw/data_untuk_phk_dashboard.xlsx`**, the canonical source. MAP is not merged.
+Human-readable companion to the machine-readable **`dictionary/indicator_dictionary.csv`** and **`config/master_schema.yml`** (same variable list). Built from the actual columns of `Database (Bulan / Triwulan / Tahun)` in **`data/raw/data_untuk_phk_dashboard.xlsx`**, the canonical source.
 
 ## Dataset at a glance
 
