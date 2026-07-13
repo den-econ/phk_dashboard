@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  C:\Users\berth\GitHub\phk_dashboard/model/model_poisson/phk_projection_poisson.log
   log type:  text
- opened on:  13 Jul 2026, 21:53:23
+ opened on:  13 Jul 2026, 22:02:15
 
 . 
 . 
@@ -15,7 +15,7 @@
 
 . 
 .         * Dependent variable    
-.         global  OUTCOME                 phk_flow
+.         global  OUTCOME phk_flow
 
 .         
 .         * Control variables 
@@ -351,14 +351,12 @@ file C:\Users\berth\GitHub\phk_dashboard/model/model_poisson/output/phk_panel_da
 .             preserve
  25. 
 .             keep if valid == 1
- 26. 
-.             keep        prov_id year month phk_flow phk_hat 
- 27.             
+ 26.             keep        prov_id year month phk_flow phk_hat 
+ 27.                     
 .             save        "$output/projection_L`L'.dta", replace
- 28.             export      excel using "$output/projection_L`L'.dta", firstrow(variables) replace
- 29. 
+ 28. 
 .             restore
- 30.         }
+ 29.         }
 ===================================================================
 Estimating Lag 1
 ===================================================================
@@ -449,7 +447,6 @@ file model_lag1.ster saved
 (1,499 missing values generated)
 (1,499 missing values generated)
 (1,368 observations deleted)
-file C:\Users\berth\GitHub\phk_dashboard/model/model_poisson/output/projection_L1.dta saved
 file C:\Users\berth\GitHub\phk_dashboard/model/model_poisson/output/projection_L1.dta saved
 ===================================================================
 Estimating Lag 3
@@ -542,7 +539,6 @@ file model_lag3.ster saved
 (1,496 missing values generated)
 (1,368 observations deleted)
 file C:\Users\berth\GitHub\phk_dashboard/model/model_poisson/output/projection_L3.dta saved
-file C:\Users\berth\GitHub\phk_dashboard/model/model_poisson/output/projection_L3.dta saved
 ===================================================================
 Estimating Lag 6
 ===================================================================
@@ -634,13 +630,11 @@ file model_lag6.ster saved
 (1,491 missing values generated)
 (1,368 observations deleted)
 file C:\Users\berth\GitHub\phk_dashboard/model/model_poisson/output/projection_L6.dta saved
-file C:\Users\berth\GitHub\phk_dashboard/model/model_poisson/output/projection_L6.dta saved
 
 . 
 . 
 .         postclose `results'
 
-. 
 . 
 . 
 . /********************************************************************************
@@ -805,16 +799,19 @@ file C:\Users\berth\GitHub\phk_dashboard/model/model_poisson/output/phk_model_fi
 . 
 .         keep    prov_id year month phk_flow phk_projection phk_flow_y phk_projection_y
 
-.         save    "$output/province_projection.dta", replace
-file C:\Users\berth\GitHub\phk_dashboard/model/model_poisson/output/province_projection.dta saved
+.         save    "$output/final_projection_province.dta", replace
+file C:\Users\berth\GitHub\phk_dashboard/model/model_poisson/output/final_projection_province.dta saved
+
+.         export  excel using "$output/final_projection_province.xlsx", firstrow(variables) replace
+file C:\Users\berth\GitHub\phk_dashboard/model/model_poisson/output/final_projection_province.xlsx saved
 
 . 
 .         preserve
 
 .         collapse (first) phk_flow_y phk_projection_y, by(year prov_id)
 
-.         save    "$output/province_projection_annual.dta", replace
-file C:\Users\berth\GitHub\phk_dashboard/model/model_poisson/output/province_projection_annual.dta saved
+.         save    "$output/final_projection_province_annual.dta", replace
+file C:\Users\berth\GitHub\phk_dashboard/model/model_poisson/output/final_projection_province_annual.dta saved
 
 .         restore
 
@@ -838,8 +835,12 @@ file C:\Users\berth\GitHub\phk_dashboard/model/model_poisson/output/province_pro
 . 
 .         keep    year month phk_flow phk_projection phk_flow_y phk_projection_y
 
-.         save    "$output/national_projection.dta", replace
-file C:\Users\berth\GitHub\phk_dashboard/model/model_poisson/output/national_projection.dta saved
+.         save    "$output/final_projection_national.dta", replace
+file C:\Users\berth\GitHub\phk_dashboard/model/model_poisson/output/final_projection_national.dta saved
+
+. 
+.         export  excel using "$output/final_projection_national.xlsx", firstrow(variables) replace
+file C:\Users\berth\GitHub\phk_dashboard/model/model_poisson/output/final_projection_national.xlsx saved
 
 . 
 . 

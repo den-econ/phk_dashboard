@@ -19,16 +19,12 @@
 	* Install packages if needed
 	cap which ppmlhdfe
 	if _rc ssc install ppmlhdfe, replace
-
 	cap which reghdfe
 	if _rc ssc install reghdfe, replace
-
 	cap which ftools
 	if _rc ssc install ftools, replace
-
 	cap which estout
 	if _rc ssc install estout, replace
-
 	cap which winsor2
 	if _rc ssc install winsor2, replace
 
@@ -53,7 +49,7 @@
 	global 	LAGS 1 3 6
 
 	* Dependent variable	
-	global 	OUTCOME 		phk_flow
+	global 	OUTCOME phk_flow
 	
 	* Control variables 
 	
@@ -202,11 +198,9 @@
 	    preserve
 
 	    keep if valid == 1
-
 	    keep 	prov_id year month phk_flow phk_hat 
-	    
+	    	    
 	    save 	"$output/projection_L`L'.dta", replace
-	    export 	excel using "$output/projection_L`L'.dta", firstrow(variables) replace
 
 	    restore
 	}
@@ -265,11 +259,12 @@
 	bysort 	year prov_id: egen phk_projection_y = total(phk_projection)
 
 	keep 	prov_id year month phk_flow phk_projection phk_flow_y phk_projection_y
-	save 	"$output/province_projection.dta", replace
+	save 	"$output/final_projection_province.dta", replace
+	export 	excel using "$output/final_projection_province.xlsx", firstrow(variables) replace
 
 	preserve
 	collapse (first) phk_flow_y phk_projection_y, by(year prov_id)
-	save 	"$output/province_projection_annual.dta", replace
+	save 	"$output/final_projection_province_annual.dta", replace
 	restore
 
 
@@ -287,7 +282,9 @@
 	bysort year: egen phk_projection_y = total(phk_projection)
 
 	keep 	year month phk_flow phk_projection phk_flow_y phk_projection_y
-	save 	"$output/national_projection.dta", replace
+	save 	"$output/final_projection_national.dta", replace
+
+	export 	excel using "$output/final_projection_national.xlsx", firstrow(variables) replace
 
 
 
