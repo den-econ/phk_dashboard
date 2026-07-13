@@ -1,20 +1,78 @@
-# National indicators, identical across all provinces within a period.
-# These take a _national suffix in phk_master.csv and must not be read as provincial signal.
-# DRAFT, auto-detected from the data. Review the needs_review block before trusting.
+# ============================================================================
+# National indicators — (19 variables)
+#
+# These are national-level: identical across all provinces within a period. In
+# phk_master.csv they carry a `_nat` tag and are flagged data_nasional=1 in
+# data/clean/phk_variable_flags.csv. They are repeated across province rows for
+# panel convenience and MUST NOT be read as provincial variation.
+#
+# Confirmed empirically (value is constant across all 38 provinces every period)
+# and by the user. Kept in sync with config/master_schema.yml (data_level: national).
+# `source` = the original Bahasa column header in Data untuk PHK Dashboard.xlsx.
+# ============================================================================
+count: 19
 
-confirmed_national:
-  - "BI Rate"
-  - "BI Rate (Average)*"
-  - "Harga Minyak Brent (USD/barrel)"
-  - "IHPB"
-  - "Kurs"
-  - "PMI Manufaktur"
-  - "PMI Manufaktur S&P"
-  - "Perubahan Harga Produsen (CEIC)"
-  - "Perubahan Harga Produsen**"
-  - "Perubahan harga produsen (%)"
+national_indicators:
 
-needs_review:  # auto-detected as national, confirm manually
-  - "ICOR"
-  - "IHP (2016=100)"
-  - "Perubahan harga konsumen (%)"
+  monthly:
+    - variable: macro_pmi_manuf_nat
+      source: "PMI Manufaktur S&P"
+      unit: index
+    - variable: macro_bi_rate_pct_nat
+      source: "BI Rate"
+      unit: percent
+    - variable: macro_fx_idr_usd_nat
+      source: "Kurs"
+      unit: IDR per USD
+    - variable: price_brent_usd_bbl_nat
+      source: "Harga Minyak Brent (USD/barrel)"
+      unit: USD per barrel
+    - variable: price_ihpb_nat
+      source: "IHPB"
+      unit: index
+
+  quarterly:
+    - variable: macro_pmi_manuf_nat_q
+      source: "PMI Manufaktur"
+      unit: index
+    - variable: macro_bi_rate_pct_nat_q
+      source: "BI Rate"
+      unit: percent
+    - variable: macro_fx_idr_usd_nat_q
+      source: "Kurs"
+      unit: IDR per USD
+    - variable: price_producer_index_nat_q
+      source: "IHP (2016=100)"
+      unit: index
+    - variable: price_producer_change_pct_nat_q
+      source: "Perubahan Harga Produsen**"
+      unit: percent
+    - variable: price_producer_ceic_pct_nat_q
+      source: "Perubahan Harga Produsen (CEIC)"
+      unit: percent
+
+  annual:
+    - variable: macro_pmi_manuf_nat_y
+      source: "PMI Manufaktur"
+      unit: index
+    - variable: macro_bi_rate_avg_pct_nat_y
+      source: "BI Rate (Average)*"
+      unit: percent
+    - variable: macro_fx_idr_usd_nat_y
+      source: "Kurs"
+      unit: IDR per USD
+    - variable: macro_consumer_conf_nat_y
+      source: "IKK"
+      unit: index
+    - variable: price_producer_index_nat_y
+      source: "IHP (2016=100)"
+      unit: index
+    - variable: price_cpi_index_nat_y
+      source: "IHK (2010=100)"
+      unit: index
+    - variable: price_producer_change_pct_nat_y
+      source: "Perubahan harga produsen (%)"
+      unit: percent
+    - variable: price_consumer_change_pct_nat_y
+      source: "Perubahan harga konsumen (%)"
+      unit: percent
