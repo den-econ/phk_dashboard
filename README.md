@@ -53,6 +53,9 @@ data_bulanan, data_triwulan, data_tahunan, data_provinsi, data_nasional`. Note: 
 values are repeated across the 12 months of their year and quarterly across 3 months (same
 as the wide master); add `keep if month==1` (annual) or one month per quarter to de-duplicate.
 
+> **Using the data by frequency / level** (wide column-select vs. long row-filter, with
+> ready Stata recipes) is documented in **`dictionary/data_dictionary.md`**.
+
 ### Reading the column names
 
 Frequency and geographic level are encoded in the name (no separate flag columns needed):
