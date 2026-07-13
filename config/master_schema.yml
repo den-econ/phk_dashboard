@@ -9,7 +9,7 @@
 master_dataset: data/clean/phk_master.csv
 grain: province-month
 coverage: "2022-2025"
-primary_key: [province_name_std, year, month]
+primary_key: [province_name_std, province_code, year, month]
 source_workbook: "Data untuk PHK Dashboard.xlsx"
 n_rows: 1824
 n_columns: 257
