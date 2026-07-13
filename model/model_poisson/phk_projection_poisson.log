@@ -375,3 +375,6 @@ end of do-file
 
 r(123);
 
+. save c:\users\berth\appdata\local\temp\emergency_close_stata_st.dta, replace
+(note: file c:\users\berth\appdata\local\temp\emergency_close_stata_st.dta not found)
+file c:\users\berth\appdata\local\temp\emergency_close_stata_st.dta saved
