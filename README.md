@@ -2,7 +2,7 @@
 
 Clean, province-month panel for monitoring layoff (PHK) pressure across Indonesian
 provinces. The clean database is built from **one source only**:
-`Data untuk PHK Dashboard.xlsx`. MAP is **not** merged (see "MAP" below).
+`Data untuk PHK Dashboard.xlsx`. 
 
 ## Workflow
 
@@ -16,11 +16,9 @@ Everything is done in **Stata** (Stata 14+). Build the clean master:
 do code/01_build_phk_master.do        // -> data/clean/phk_master.csv
 ```
 
-The dictionary and dashboard-export steps are not built yet (kept minimal for now).
-
 ## Main output — `data/clean/phk_master.csv`
 
-- **Grain:** one row = province × month
+- **Grain:** one row = province × month (identity keys: `province_name_std`, `province_code` [BPS 2-digit text], `year`, `month`, `date`, `quarter`)
 - **Coverage:** 2022–2025 (38 provinces × 48 months = **1,824 rows**, 257 columns)
 - **Source:** only `Data untuk PHK Dashboard.xlsx`, sheets `Database (Bulan / Triwulan / Tahun)`
 
@@ -35,7 +33,7 @@ Every variable is documented in two places with **identical variable lists**:
   source_variable_name, data_level, data_period, source_data` (`source_data` is left blank
   for you to fill in). `data_period` lists every frequency an indicator appears at.
 
-**Variable flags — `data/clean/phk_variable_flags.csv`** (one row per indicator, 252 rows):
+**Variable flags — `data/clean/phk_variable_flags.csv`** (one row per indicator, 251 rows):
 1/0 flags for frequency (`data_bulanan`, `data_triwulan`, `data_tahunan`) and geographic
 level (`data_provinsi`, `data_nasional`). These are *variable-level* — one flag row per
 column — because the master is wide (one row = province × month), so a row mixes variables
@@ -54,23 +52,10 @@ Frequency and geographic level are encoded in the name (no separate flag columns
 | `_nat` in the name (e.g. `macro_bi_rate_pct_nat`) | **national** level (same across provinces) |
 | otherwise | **province** level |
 
-Columns are renamed by **Excel position** (the workbook headers are messy), using the
+Columns are renamed by **Excel position**, using the
 verified rename blocks inside `code/01_build_phk_master.do`. If the workbook's column
 order changes, re-derive those `rename` lines. **Units are taken as-is from the workbook —
 no conversion is applied.**
-
-### Unit caveat to verify
-
-Quarterly PDRB (`macro_pdrb_q` and `macro_pdrb_<sector>_q`) is actually in **IDR million**,
-even though the Triwulan header says "IDR milyar": the sum of the 4 quarterly values equals
-the annual value ×1000. These columns are named unit-neutrally and flagged
-`VERIFY` in the schema/dictionary. Annual PDRB is genuinely in IDR milyar (billion).
-
-## MAP
-
-`MAP_composite_all.xlsx` is kept in `data/raw/` as **reference only** and is not part of
-the clean database. Identifying which PHK variables overlap with MAP is a later,
-dictionary-only step.
 
 ## Folder structure
 

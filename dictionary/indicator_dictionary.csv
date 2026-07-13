@@ -1,5 +1,6 @@
 theme,variable,source_variable_name,data_level,data_period,source_data
 identity,province_name_std,Provinsi (standardized),province,key,
+identity,province_code,"Kode Provinsi (BPS 2-digit, text)",province,key,
 identity,year,Tahun,-,key,
 identity,month,Bulan,-,key,
 identity,date,(derived) first day of month,-,key,
@@ -178,7 +179,6 @@ macro,macro_pdrb_manuf_growth_pct_y,Laju Pertumbuhan PDB Industri Manufaktur,pro
 macro,macro_pdrb_per_wkr_y,PDRB/Pekerja,province,annual,
 macro,macro_pdrb_per_wkr_growth_pct_y,Laju Pertumbuhan PDB Per Tenaga Kerja,province,annual,
 macro,macro_pmi_manuf_nat_y,PMI Manufaktur,national,"monthly, quarterly, annual",
-macro,macro_icor_nat_y,ICOR,national,annual,
 macro,macro_bi_rate_avg_pct_nat_y,BI Rate (Average)*,national,annual,
 macro,macro_fx_idr_usd_nat_y,Kurs,national,"monthly, quarterly, annual",
 macro,macro_consumer_conf_nat_y,IKK,national,annual,
