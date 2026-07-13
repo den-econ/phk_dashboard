@@ -1,7 +1,7 @@
 # ============================================================================
 # PHK master dataset schema  -  description of every variable
 # Master : data/clean/phk_master.csv   Grain: province x month (2022-01..2025-12)
-# Source : Data untuk PHK Dashboard.xlsx only.  MAP is NOT merged (reference only).
+# Source : Data untuk PHK Dashboard.xlsx only. 
 # Built by: code/01_build_phk_master.do
 # Naming: _q quarterly, _y annual, none = monthly; _nat = national, else province.
 # Variable list is identical to dictionary/indicator_dictionary.csv.
@@ -9,7 +9,7 @@
 master_dataset: data/clean/phk_master.csv
 grain: province-month
 coverage: "2022-2025"
-primary_key: [province_name_std, year, month]
+primary_key: [province_name_std, province_code, year, month]
 source_workbook: "Data untuk PHK Dashboard.xlsx"
 n_rows: 1824
 n_columns: 257
@@ -18,6 +18,10 @@ variables:
   identity:
     - name: province_name_std
       description: "Provinsi (standardized)"
+      data_period: "key"
+      data_level: province
+    - name: province_code
+      description: "Kode Provinsi (BPS 2-digit, text)"
       data_period: "key"
       data_level: province
     - name: year
@@ -753,113 +757,113 @@ variables:
       data_level: national
       unit: "IDR per USD"
     - name: macro_pdrb_q
-      description: "PDRB (IDR milyar)"
+      description: "PDRB (IDR milyar) - PDRB Riil (constant price / ADHK)"
       source_variable_name: "PDRB (IDR milyar)"
       data_period: "quarterly"
       data_level: province
-      unit: "IDR million (workbook header says milyar - VERIFY)"
+      unit: "IDR billion"
     - name: macro_pdrb_agri_q
-      description: "PDRB Pertanian, Kehutanan dan Perikanan (IDR milyar)"
+      description: "PDRB Pertanian, Kehutanan dan Perikanan (IDR milyar) - PDRB Riil (constant price / ADHK)"
       source_variable_name: "PDRB Pertanian, Kehutanan dan Perikanan (IDR milyar)"
       data_period: "quarterly, annual"
       data_level: province
-      unit: "IDR million (workbook header says milyar - VERIFY)"
+      unit: "IDR billion"
     - name: macro_pdrb_mining_q
-      description: "PDRB Pertambangan dan Penggalian (IDR milyar)"
+      description: "PDRB Pertambangan dan Penggalian (IDR milyar) - PDRB Riil (constant price / ADHK)"
       source_variable_name: "PDRB Pertambangan dan Penggalian (IDR milyar)"
       data_period: "quarterly, annual"
       data_level: province
-      unit: "IDR million (workbook header says milyar - VERIFY)"
+      unit: "IDR billion"
     - name: macro_pdrb_manuf_q
-      description: "PDRB Industri Pengolahan (IDR milyar)"
+      description: "PDRB Industri Pengolahan (IDR milyar) - PDRB Riil (constant price / ADHK)"
       source_variable_name: "PDRB Industri Pengolahan (IDR milyar)"
       data_period: "quarterly, annual"
       data_level: province
-      unit: "IDR million (workbook header says milyar - VERIFY)"
+      unit: "IDR billion"
     - name: macro_pdrb_electricity_q
-      description: "PDRB Pengadaan Listrik dan Gas (IDR milyar)"
+      description: "PDRB Pengadaan Listrik dan Gas (IDR milyar) - PDRB Riil (constant price / ADHK)"
       source_variable_name: "PDRB Pengadaan Listrik dan Gas (IDR milyar)"
       data_period: "quarterly, annual"
       data_level: province
-      unit: "IDR million (workbook header says milyar - VERIFY)"
+      unit: "IDR billion"
     - name: macro_pdrb_water_waste_q
-      description: "PDRB Pengadaan Air, Pengelolaan Sampah, Limbah dan Daur Ulang (IDR milyar)"
+      description: "PDRB Pengadaan Air, Pengelolaan Sampah, Limbah dan Daur Ulang (IDR milyar) - PDRB Riil (constant price / ADHK)"
       source_variable_name: "PDRB Pengadaan Air, Pengelolaan Sampah, Limbah dan Daur Ulang (IDR milyar)"
       data_period: "quarterly, annual"
       data_level: province
-      unit: "IDR million (workbook header says milyar - VERIFY)"
+      unit: "IDR billion"
     - name: macro_pdrb_construction_q
-      description: "PDRB Konstruksi (IDR milyar)"
+      description: "PDRB Konstruksi (IDR milyar) - PDRB Riil (constant price / ADHK)"
       source_variable_name: "PDRB Konstruksi (IDR milyar)"
       data_period: "quarterly, annual"
       data_level: province
-      unit: "IDR million (workbook header says milyar - VERIFY)"
+      unit: "IDR billion"
     - name: macro_pdrb_trade_q
-      description: "PDRB Perdagangan Besar dan Eceran, Reparasi Mobil dan Sepeda Motor (IDR milyar)"
+      description: "PDRB Perdagangan Besar dan Eceran, Reparasi Mobil dan Sepeda Motor (IDR milyar) - PDRB Riil (constant price / ADHK)"
       source_variable_name: "PDRB Perdagangan Besar dan Eceran, Reparasi Mobil dan Sepeda Motor (IDR milyar)"
       data_period: "quarterly, annual"
       data_level: province
-      unit: "IDR million (workbook header says milyar - VERIFY)"
+      unit: "IDR billion"
     - name: macro_pdrb_transport_q
-      description: "PDRB Transportasi dan Pergudangan (IDR milyar)"
+      description: "PDRB Transportasi dan Pergudangan (IDR milyar) - PDRB Riil (constant price / ADHK)"
       source_variable_name: "PDRB Transportasi dan Pergudangan (IDR milyar)"
       data_period: "quarterly, annual"
       data_level: province
-      unit: "IDR million (workbook header says milyar - VERIFY)"
+      unit: "IDR billion"
     - name: macro_pdrb_accom_food_q
-      description: "PDRB Penyediaan Akomodasi dan Makan Minum (IDR milyar)"
+      description: "PDRB Penyediaan Akomodasi dan Makan Minum (IDR milyar) - PDRB Riil (constant price / ADHK)"
       source_variable_name: "PDRB Penyediaan Akomodasi dan Makan Minum (IDR milyar)"
       data_period: "quarterly, annual"
       data_level: province
-      unit: "IDR million (workbook header says milyar - VERIFY)"
+      unit: "IDR billion"
     - name: macro_pdrb_info_comm_q
-      description: "PDRB Informasi dan Komunikasi (IDR milyar)"
+      description: "PDRB Informasi dan Komunikasi (IDR milyar) - PDRB Riil (constant price / ADHK)"
       source_variable_name: "PDRB Informasi dan Komunikasi (IDR milyar)"
       data_period: "quarterly, annual"
       data_level: province
-      unit: "IDR million (workbook header says milyar - VERIFY)"
+      unit: "IDR billion"
     - name: macro_pdrb_finance_q
-      description: "PDRB Jasa Keuangan dan Asuransi (IDR milyar)"
+      description: "PDRB Jasa Keuangan dan Asuransi (IDR milyar) - PDRB Riil (constant price / ADHK)"
       source_variable_name: "PDRB Jasa Keuangan dan Asuransi (IDR milyar)"
       data_period: "quarterly, annual"
       data_level: province
-      unit: "IDR million (workbook header says milyar - VERIFY)"
+      unit: "IDR billion"
     - name: macro_pdrb_real_estate_q
-      description: "PDRB Real Estate (IDR milyar)"
+      description: "PDRB Real Estate (IDR milyar) - PDRB Riil (constant price / ADHK)"
       source_variable_name: "PDRB Real Estate (IDR milyar)"
       data_period: "quarterly, annual"
       data_level: province
-      unit: "IDR million (workbook header says milyar - VERIFY)"
+      unit: "IDR billion"
     - name: macro_pdrb_business_svc_q
-      description: "PDRB Jasa Perusahaan (IDR milyar)"
+      description: "PDRB Jasa Perusahaan (IDR milyar) - PDRB Riil (constant price / ADHK)"
       source_variable_name: "PDRB Jasa Perusahaan (IDR milyar)"
       data_period: "quarterly, annual"
       data_level: province
-      unit: "IDR million (workbook header says milyar - VERIFY)"
+      unit: "IDR billion"
     - name: macro_pdrb_public_admin_q
-      description: "PDRB Administrasi Pemerintahan, Pertahanan dan Jaminan Sosial Wajib (IDR milyar)"
+      description: "PDRB Administrasi Pemerintahan, Pertahanan dan Jaminan Sosial Wajib (IDR milyar) - PDRB Riil (constant price / ADHK)"
       source_variable_name: "PDRB Administrasi Pemerintahan, Pertahanan dan Jaminan Sosial Wajib (IDR milyar)"
       data_period: "quarterly, annual"
       data_level: province
-      unit: "IDR million (workbook header says milyar - VERIFY)"
+      unit: "IDR billion"
     - name: macro_pdrb_education_q
-      description: "PDRB Jasa Pendidikan (IDR milyar)"
+      description: "PDRB Jasa Pendidikan (IDR milyar) - PDRB Riil (constant price / ADHK)"
       source_variable_name: "PDRB Jasa Pendidikan (IDR milyar)"
       data_period: "quarterly, annual"
       data_level: province
-      unit: "IDR million (workbook header says milyar - VERIFY)"
+      unit: "IDR billion"
     - name: macro_pdrb_health_q
-      description: "PDRB Jasa Kesehatan dan Kegiatan Sosial (IDR milyar)"
+      description: "PDRB Jasa Kesehatan dan Kegiatan Sosial (IDR milyar) - PDRB Riil (constant price / ADHK)"
       source_variable_name: "PDRB Jasa Kesehatan dan Kegiatan Sosial (IDR milyar)"
       data_period: "quarterly, annual"
       data_level: province
-      unit: "IDR million (workbook header says milyar - VERIFY)"
+      unit: "IDR billion"
     - name: macro_pdrb_other_svc_q
-      description: "PDRB Jasa Lainnya (IDR milyar)"
+      description: "PDRB Jasa Lainnya (IDR milyar) - PDRB Riil (constant price / ADHK)"
       source_variable_name: "PDRB Jasa Lainnya (IDR milyar)"
       data_period: "quarterly, annual"
       data_level: province
-      unit: "IDR million (workbook header says milyar - VERIFY)"
+      unit: "IDR billion"
     - name: macro_pdrb_manuf_share_pct_q
       description: "Manufacturing Share (% PDRB)"
       source_variable_name: "Manufacturing Share (% PDRB)"
@@ -896,115 +900,115 @@ variables:
       data_level: national
       unit: "IDR per USD"
     - name: macro_pdrb_idr_billion_y
-      description: "PDRB (IDR milyar)"
+      description: "PDRB (IDR milyar) - PDRB Riil (constant price / ADHK)"
       source_variable_name: "PDRB (IDR milyar)"
       data_period: "annual"
       data_level: province
       unit: "IDR billion"
     - name: macro_pdrb_idr_million_y
-      description: "PDRB (IDR juta)"
+      description: "PDRB (IDR juta) - PDRB Riil (constant price / ADHK)"
       source_variable_name: "PDRB (IDR juta)"
       data_period: "annual"
       data_level: province
       unit: "IDR million"
     - name: macro_pdrb_agri_y
-      description: "PDRB Pertanian, Kehutanan dan Perikanan (IDR milyar)"
+      description: "PDRB Pertanian, Kehutanan dan Perikanan (IDR milyar) - PDRB Riil (constant price / ADHK)"
       source_variable_name: "PDRB Pertanian, Kehutanan dan Perikanan (IDR milyar)"
       data_period: "quarterly, annual"
       data_level: province
       unit: "IDR billion"
     - name: macro_pdrb_mining_y
-      description: "PDRB Pertambangan dan Penggalian (IDR milyar)"
+      description: "PDRB Pertambangan dan Penggalian (IDR milyar) - PDRB Riil (constant price / ADHK)"
       source_variable_name: "PDRB Pertambangan dan Penggalian (IDR milyar)"
       data_period: "quarterly, annual"
       data_level: province
       unit: "IDR billion"
     - name: macro_pdrb_manuf_y
-      description: "PDRB Industri Pengolahan (IDR milyar)"
+      description: "PDRB Industri Pengolahan (IDR milyar) - PDRB Riil (constant price / ADHK)"
       source_variable_name: "PDRB Industri Pengolahan (IDR milyar)"
       data_period: "quarterly, annual"
       data_level: province
       unit: "IDR billion"
     - name: macro_pdrb_electricity_y
-      description: "PDRB Pengadaan Listrik dan Gas (IDR milyar)"
+      description: "PDRB Pengadaan Listrik dan Gas (IDR milyar) - PDRB Riil (constant price / ADHK)"
       source_variable_name: "PDRB Pengadaan Listrik dan Gas (IDR milyar)"
       data_period: "quarterly, annual"
       data_level: province
       unit: "IDR billion"
     - name: macro_pdrb_water_waste_y
-      description: "PDRB Pengadaan Air, Pengelolaan Sampah, Limbah dan Daur Ulang (IDR milyar)"
+      description: "PDRB Pengadaan Air, Pengelolaan Sampah, Limbah dan Daur Ulang (IDR milyar) - PDRB Riil (constant price / ADHK)"
       source_variable_name: "PDRB Pengadaan Air, Pengelolaan Sampah, Limbah dan Daur Ulang (IDR milyar)"
       data_period: "quarterly, annual"
       data_level: province
       unit: "IDR billion"
     - name: macro_pdrb_construction_y
-      description: "PDRB Konstruksi (IDR milyar)"
+      description: "PDRB Konstruksi (IDR milyar) - PDRB Riil (constant price / ADHK)"
       source_variable_name: "PDRB Konstruksi (IDR milyar)"
       data_period: "quarterly, annual"
       data_level: province
       unit: "IDR billion"
     - name: macro_pdrb_trade_y
-      description: "PDRB Perdagangan Besar dan Eceran, Reparasi Mobil dan Sepeda Motor (IDR milyar)"
+      description: "PDRB Perdagangan Besar dan Eceran, Reparasi Mobil dan Sepeda Motor (IDR milyar) - PDRB Riil (constant price / ADHK)"
       source_variable_name: "PDRB Perdagangan Besar dan Eceran, Reparasi Mobil dan Sepeda Motor (IDR milyar)"
       data_period: "quarterly, annual"
       data_level: province
       unit: "IDR billion"
     - name: macro_pdrb_transport_y
-      description: "PDRB Transportasi dan Pergudangan (IDR milyar)"
+      description: "PDRB Transportasi dan Pergudangan (IDR milyar) - PDRB Riil (constant price / ADHK)"
       source_variable_name: "PDRB Transportasi dan Pergudangan (IDR milyar)"
       data_period: "quarterly, annual"
       data_level: province
       unit: "IDR billion"
     - name: macro_pdrb_accom_food_y
-      description: "PDRB Penyediaan Akomodasi dan Makan Minum (IDR milyar)"
+      description: "PDRB Penyediaan Akomodasi dan Makan Minum (IDR milyar) - PDRB Riil (constant price / ADHK)"
       source_variable_name: "PDRB Penyediaan Akomodasi dan Makan Minum (IDR milyar)"
       data_period: "quarterly, annual"
       data_level: province
       unit: "IDR billion"
     - name: macro_pdrb_info_comm_y
-      description: "PDRB Informasi dan Komunikasi (IDR milyar)"
+      description: "PDRB Informasi dan Komunikasi (IDR milyar) - PDRB Riil (constant price / ADHK)"
       source_variable_name: "PDRB Informasi dan Komunikasi (IDR milyar)"
       data_period: "quarterly, annual"
       data_level: province
       unit: "IDR billion"
     - name: macro_pdrb_finance_y
-      description: "PDRB Jasa Keuangan dan Asuransi (IDR milyar)"
+      description: "PDRB Jasa Keuangan dan Asuransi (IDR milyar) - PDRB Riil (constant price / ADHK)"
       source_variable_name: "PDRB Jasa Keuangan dan Asuransi (IDR milyar)"
       data_period: "quarterly, annual"
       data_level: province
       unit: "IDR billion"
     - name: macro_pdrb_real_estate_y
-      description: "PDRB Real Estate (IDR milyar)"
+      description: "PDRB Real Estate (IDR milyar) - PDRB Riil (constant price / ADHK)"
       source_variable_name: "PDRB Real Estate (IDR milyar)"
       data_period: "quarterly, annual"
       data_level: province
       unit: "IDR billion"
     - name: macro_pdrb_business_svc_y
-      description: "PDRB Jasa Perusahaan (IDR milyar)"
+      description: "PDRB Jasa Perusahaan (IDR milyar) - PDRB Riil (constant price / ADHK)"
       source_variable_name: "PDRB Jasa Perusahaan (IDR milyar)"
       data_period: "quarterly, annual"
       data_level: province
       unit: "IDR billion"
     - name: macro_pdrb_public_admin_y
-      description: "PDRB Administrasi Pemerintahan, Pertahanan dan Jaminan Sosial Wajib (IDR milyar)"
+      description: "PDRB Administrasi Pemerintahan, Pertahanan dan Jaminan Sosial Wajib (IDR milyar) - PDRB Riil (constant price / ADHK)"
       source_variable_name: "PDRB Administrasi Pemerintahan, Pertahanan dan Jaminan Sosial Wajib (IDR milyar)"
       data_period: "quarterly, annual"
       data_level: province
       unit: "IDR billion"
     - name: macro_pdrb_education_y
-      description: "PDRB Jasa Pendidikan (IDR milyar)"
+      description: "PDRB Jasa Pendidikan (IDR milyar) - PDRB Riil (constant price / ADHK)"
       source_variable_name: "PDRB Jasa Pendidikan (IDR milyar)"
       data_period: "quarterly, annual"
       data_level: province
       unit: "IDR billion"
     - name: macro_pdrb_health_y
-      description: "PDRB Jasa Kesehatan dan Kegiatan Sosial (IDR milyar)"
+      description: "PDRB Jasa Kesehatan dan Kegiatan Sosial (IDR milyar) - PDRB Riil (constant price / ADHK)"
       source_variable_name: "PDRB Jasa Kesehatan dan Kegiatan Sosial (IDR milyar)"
       data_period: "quarterly, annual"
       data_level: province
       unit: "IDR billion"
     - name: macro_pdrb_other_svc_y
-      description: "PDRB Jasa Lainnya (IDR milyar)"
+      description: "PDRB Jasa Lainnya (IDR milyar) - PDRB Riil (constant price / ADHK)"
       source_variable_name: "PDRB Jasa Lainnya (IDR milyar)"
       data_period: "quarterly, annual"
       data_level: province
@@ -1028,19 +1032,19 @@ variables:
       data_level: province
       unit: "percent"
     - name: macro_pdrb_manuf_growth_pct_y
-      description: "Laju Pertumbuhan PDB Industri Manufaktur"
+      description: "Laju Pertumbuhan PDB Industri Manufaktur - PDRB Riil (constant price / ADHK)"
       source_variable_name: "Laju Pertumbuhan PDB Industri Manufaktur"
       data_period: "annual"
       data_level: province
       unit: "IDR billion"
     - name: macro_pdrb_per_wkr_y
-      description: "PDRB/Pekerja"
+      description: "PDRB/Pekerja - PDRB Riil (constant price / ADHK)"
       source_variable_name: "PDRB/Pekerja"
       data_period: "annual"
       data_level: province
       unit: "IDR billion"
     - name: macro_pdrb_per_wkr_growth_pct_y
-      description: "Laju Pertumbuhan PDB Per Tenaga Kerja"
+      description: "Laju Pertumbuhan PDB Per Tenaga Kerja - PDRB Riil (constant price / ADHK)"
       source_variable_name: "Laju Pertumbuhan PDB Per Tenaga Kerja"
       data_period: "annual"
       data_level: province
@@ -1049,12 +1053,6 @@ variables:
       description: "PMI Manufaktur"
       source_variable_name: "PMI Manufaktur"
       data_period: "monthly, quarterly, annual"
-      data_level: national
-      unit: "index"
-    - name: macro_icor_nat_y
-      description: "ICOR"
-      source_variable_name: "ICOR"
-      data_period: "annual"
       data_level: national
       unit: "index"
     - name: macro_bi_rate_avg_pct_nat_y
