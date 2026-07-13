@@ -2,97 +2,94 @@
       name:  <unnamed>
        log:  C:\Users\berth\GitHub\phk_dashboard/model/model_poisson/phk_projection_poisson.log
   log type:  text
- opened on:  13 Jul 2026, 14:04:31
-
-. 
-. /********************************************************************
->         1. LOAD DATA
-> ********************************************************************/
-.         import  delimited "$data/clean/phk_master.csv", clear
-(257 vars, 1,824 obs)
-
-.         save    "$model/phk_master.dta", replace
-file C:\Users\berth\GitHub\phk_dashboard/model/model_poisson/phk_master.dta saved
-
-.         tempfile master
-
-.         save    `master', replace
-(note: file C:\Users\berth\AppData\Local\Temp\ST_ca04_000001.tmp not found)
-file C:\Users\berth\AppData\Local\Temp\ST_ca04_000001.tmp saved
-
-. 
-.         import  delimited "$data/clean/phk_variable_flags.csv", clear
-(6 vars, 252 obs)
-
-.         save    "$model/phk_variable_flags.dta", replace
-file C:\Users\berth\GitHub\phk_dashboard/model/model_poisson/phk_variable_flags.dta saved
-
-.         tempfile flags
-
-.         save    `flags', replace
-(note: file C:\Users\berth\AppData\Local\Temp\ST_ca04_000002.tmp not found)
-file C:\Users\berth\AppData\Local\Temp\ST_ca04_000002.tmp saved
-
-. 
-.         use     `master', clear
+ opened on:  13 Jul 2026, 21:53:23
 
 . 
 . 
 . /********************************************************************
->         2. VARIABLE GROUPS
+>         1. MODEL METADATA
 > ********************************************************************/
 .         
-.         * Economic Structure
-.         global  STRUCTURE ///
->                     macro_pdrb_manuf_share_pct_y ///
->                     lab_formal_share_pct_y ///
->                     lab_contract_share_pct_y ///
->                     macro_pdrb_per_wkr_growth_pct_y ///
->                     wage_ump_growth_pct_y
+.         * Define lags 
+.         global  LAGS 1 3 6
 
 . 
-.         * Macro Trigger
-.         global  MACRO_GLOBAL ///
->                         price_brent_usd_bbl_nat 
+.         * Dependent variable    
+.         global  OUTCOME                 phk_flow
+
+.         
+.         * Control variables 
+.         
+.                 // Economic Structure
+.                 global  STRUCTURE ///
+>                         macro_pdrb_manuf_share_pct_y ///
+>                                 lab_formal_share_pct_y ///
+>                         lab_contract_share_pct_y ///
+>                         macro_pdrb_per_wkr_growth_pct_y ///
+>                         wage_ump_growth_pct_y
 
 . 
-.         global  MACRO_NATIONAL ///
->                         macro_bi_rate_pct_nat ///
->                         macro_fx_idr_usd_nat ///
->                     macro_pmi_manuf_nat ///
->                     price_ihpb_nat 
+.                 // Macro Trigger
+.                 global  MACRO_GLOBAL ///
+>                                 price_brent_usd_bbl_nat 
 
 . 
-.         global  MACRO_PROVINCE ///
->                     price_cpi_index ///
->                     fin_npl_idr_billion ///
->                     trade_export_value ///
->                     trade_import_value 
+.                 global  MACRO_NATIONAL ///
+>                                 macro_bi_rate_pct_nat ///
+>                                 macro_fx_idr_usd_nat ///
+>                             macro_pmi_manuf_nat ///
+>                             price_ihpb_nat 
+
+. 
+.                 global  MACRO_PROVINCE ///
+>                             price_cpi_index ///
+>                             fin_npl_idr_billion ///
+>                             trade_export_value ///
+>                         trade_import_value 
 
 . 
 .         global  TRIGGER $MACRO_GLOBAL $MACRO_NATIONAL $MACRO_PROVINCE
 
 . 
 . 
-.         keeporder province_name_std year quarter month date phk_stock phk_flow ///
->                          $STRUCTURE $TRIGGER 
-
-. 
-. 
 . /********************************************************************
->         3. PANEL PREPARATION
+>         2. CREATE PANEL DATA
 > ********************************************************************/
 .         
-.         * Keep based on availability of PHK data 
-.         keep    if year>=2022
-(0 observations deleted)
+.         * Import data
+.         import  delimited "$data/clean/phk_master.csv", clear
+(257 vars, 1,824 obs)
+
+.         save    "$model/phk_master.dta", replace
+file C:\Users\berth\GitHub\phk_dashboard/model/model_poisson/phk_master.dta saved
+
+. 
+.         * Generate province id
+.         rename province_code prov_id
+
+. 
+.         capture label drop prov_lbl
+
+.         levelsof prov_id, local(provs)
+11 12 13 14 15 16 17 18 19 21 31 32 33 34 35 36 51 52 53 61 62 63 64 65 71 72 73 74 75 76 81 82 91 92 94 95 96 97
+
+. 
+.         foreach p of local provs {
+  2.             quietly levelsof province_name_std if prov_id==`p', local(name) clean
+  3.             label define prov_lbl `p' "`name'", add
+  4.         }
+
+. 
+.         label values prov_id prov_lbl
+
+. 
+.         keeporder prov_id year month date phk_stock phk_flow ///
+>                         $STRUCTURE $TRIGGER
 
 . 
 .         * Set up panel data 
-.         ***
-.         egen    prov_id = group(province_name_std), label
+.         sort    prov_id year month
 
-.         ***
 .         gen     ym = ym(year, month)
 
 .         format  ym %tm
@@ -104,11 +101,48 @@ file C:\Users\berth\AppData\Local\Temp\ST_ca04_000002.tmp saved
                 delta:  1 month
 
 . 
+.         * Define sample 
+.         gen     byte train = inrange(year,2023,2024)
+
+.         gen     byte valid = year==2025
+
 . 
-. /********************************************************************
->         4. DATA QUALITY
-> ********************************************************************/
-.         
+.         * Construct lag for 1, 3, and 6 months 
+.         foreach L of global LAGS {
+  2.             foreach v of global TRIGGER {
+  3.                 capture drop L`L'_`v'
+  4.                 gen L`L'_`v' = L`L'.`v'
+  5.             }
+  6.         }
+(38 missing values generated)
+(38 missing values generated)
+(38 missing values generated)
+(38 missing values generated)
+(38 missing values generated)
+(74 missing values generated)
+(273 missing values generated)
+(322 missing values generated)
+(322 missing values generated)
+(114 missing values generated)
+(114 missing values generated)
+(114 missing values generated)
+(114 missing values generated)
+(114 missing values generated)
+(150 missing values generated)
+(339 missing values generated)
+(386 missing values generated)
+(383 missing values generated)
+(228 missing values generated)
+(228 missing values generated)
+(228 missing values generated)
+(228 missing values generated)
+(228 missing values generated)
+(264 missing values generated)
+(438 missing values generated)
+(482 missing values generated)
+(475 missing values generated)
+
+. 
 .         * Summarize
 .         misstable summarize phk_flow $STRUCTURE $TRIGGER
                                                                Obs<.
@@ -117,20 +151,18 @@ file C:\Users\berth\AppData\Local\Temp\ST_ca04_000002.tmp saved
       Variable |     Obs=.     Obs>.     Obs<.  | values        Min         Max
   -------------+--------------------------------+------------------------------
       phk_flow |       556               1,268  |    375      -3483        9447
-  macr~e_pct_y |     1,824                   0  |      0          .           .
+  macr~e_pct_y |        96               1,728  |    144   .2395696    44.34525
   lab_formal~y |        96               1,728  |    143       4.24       68.45
   lab_contra~y |        96               1,728  |    144   38.57288    84.06744
-  macr~h_pct_y |       588               1,236  |     99     -16.87       51.36
+  macr~h_pct_y |       144               1,680  |    132     -22.96       51.36
   wage_ump_g~y |        96               1,728  |    129          0    11.09834
-  price_bren~t |        38               1,786  |     45       62.5       122.7
   price_cpi_~x |        36               1,788  |   >500      96.15       115.4
   fin_npl_id~n |       240               1,584  |   >500    149.991    81655.66
   trade_expo~e |       290               1,534  |   >500        .09     9358.73
   trade_impo~e |       290               1,534  |   >500          0    11879.08
   -----------------------------------------------------------------------------
 
-. 
-.         summ phk_flow
+.         summ    phk_flow
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
 -------------+---------------------------------------------------------
@@ -138,14 +170,14 @@ file C:\Users\berth\AppData\Local\Temp\ST_ca04_000002.tmp saved
 
 . 
 .         foreach v of global STRUCTURE {
-  2.             capture noisily xtsum `v'
+  2.                 capture noisily xtsum `v'
   3.         }
 
 Variable         |      Mean   Std. Dev.       Min        Max |    Observations
 -----------------+--------------------------------------------+----------------
-m~manu~y overall |         .          .          .          . |     N =       0
-         between |                    .          .          . |     n =       0
-         within  |                    .          .          . |     T =       .
+m~manu~y overall |  16.72462   12.25819   .2395696   44.34525 |     N =    1728
+         between |             12.34455   .2821243   42.36355 |     n =      38
+         within  |             1.530205   9.849286    24.7762 | T-bar = 45.4737
 
 Variable         |      Mean   Std. Dev.       Min        Max |    Observations
 -----------------+--------------------------------------------+----------------
@@ -161,9 +193,9 @@ lab_co~y overall |  57.09198   9.411139   38.57288   84.06744 |     N =    1728
 
 Variable         |      Mean   Std. Dev.       Min        Max |    Observations
 -----------------+--------------------------------------------+----------------
-m~per_~y overall |  3.217379   7.994026     -16.87      51.36 |     N =    1236
-         between |             11.26786     -5.275      51.36 |     n =      36
-         within  |             3.876024  -8.377622   16.92071 |     T = 34.3333
+m~per_~y overall |  3.442929   7.679372     -22.96      51.36 |     N =    1680
+         between |             5.719765     -22.96      17.87 |     n =      38
+         within  |              6.29217  -26.10457   42.12543 | T-bar = 44.2105
 
 Variable         |      Mean   Std. Dev.       Min        Max |    Observations
 -----------------+--------------------------------------------+----------------
@@ -173,14 +205,14 @@ wage_u~y overall |  4.755216   2.608893          0   11.09834 |     N =    1728
 
 . 
 .         foreach v of global TRIGGER {
-  2.             capture noisily xtsum `v'
+  2.                 capture noisily xtsum `v'
   3.         }
 
 Variable         |      Mean   Std. Dev.       Min        Max |    Observations
 -----------------+--------------------------------------------+----------------
-pr~l_nat overall |  82.98085   13.79099       62.5      122.7 |     N =    1786
-         between |                    0   82.98085   82.98085 |     n =      38
-         within  |             13.79099       62.5      122.7 |     T =      47
+pr~l_nat overall |  83.20417   13.73216       62.5      122.7 |     N =    1824
+         between |                    0   83.20417   83.20417 |     n =      38
+         within  |             13.73216       62.5      122.7 |     T =      48
 
 Variable         |      Mean   Std. Dev.       Min        Max |    Observations
 -----------------+--------------------------------------------+----------------
@@ -232,16 +264,16 @@ t~impo~e overall |  613.1725   1628.758          0   11879.08 |     N =    1534
 
 . 
 .         * Truncate PHK flow if data is negative 
-.         tab     province_name_std phk_flow if phk_flow < 0
+.         tab     prov_id phk_flow if phk_flow < 0
 
                     |                        phk_flow
-  province_name_std |     -3483       -418       -162        -10         -6 |     Total
+            prov_id |     -3483       -418       -162        -10         -6 |     Total
 --------------------+-------------------------------------------------------+----------
+   Sumatera Selatan |         0          0          1          0          0 |         1 
     Bangka Belitung |         0          0          0          1          0 |         1 
         DKI Jakarta |         0          1          0          0          0 |         1 
         Jawa Tengah |         1          0          0          0          0 |         1 
         Papua Barat |         0          0          0          0          1 |         1 
-   Sumatera Selatan |         0          0          1          0          0 |         1 
 --------------------+-------------------------------------------------------+----------
               Total |         1          1          1          1          1 |         5 
 
@@ -258,123 +290,564 @@ phk_flow overall |  196.9621   613.6127          0       9447 |     N =    1268
          within  |             521.1138  -1164.551   8588.065 | T-bar = 37.2941
 
 . 
+.         save    "$output/phk_panel_data.dta", replace
+file C:\Users\berth\GitHub\phk_dashboard/model/model_poisson/output/phk_panel_data.dta saved
+
 . 
-. /********************************************************************
->         5. CONSTRUCT LAGS
-> ********************************************************************/
 .         
-.         * Construct lag for 1, 3, and 6 months 
+. /********************************************************************************
+>         3. MODEL COMPARISON
+> ********************************************************************************/
 . 
-.         foreach L in 1 3 6 {
-  2. 
-.             foreach x of global TRIGGER {
-  3. 
-.                 capture confirm variable `x'
-  4.                 if !_rc {
-  5.                     gen L`L'_`x' = L`L'.`x'
-  6.                 }
-  7.             }
-  8.         }
-(76 missing values generated)
-(38 missing values generated)
-(38 missing values generated)
-(38 missing values generated)
-(38 missing values generated)
-(74 missing values generated)
-(273 missing values generated)
-(322 missing values generated)
-(322 missing values generated)
-(152 missing values generated)
-(114 missing values generated)
-(114 missing values generated)
-(114 missing values generated)
-(114 missing values generated)
-(150 missing values generated)
-(339 missing values generated)
-(386 missing values generated)
-(383 missing values generated)
-(266 missing values generated)
-(228 missing values generated)
-(228 missing values generated)
-(228 missing values generated)
-(228 missing values generated)
-(264 missing values generated)
-(438 missing values generated)
-(482 missing values generated)
-(475 missing values generated)
-
-.         
-. 
-. /********************************************************************
->         6. TRAIN / TEST SPLIT
-> ********************************************************************/
-.         
-.         * Keep the data starting the year in which PHK information is complete 
-.         drop if year < 2023
-(456 observations deleted)
-
-.         replace phk_flow = 0 if month == 1 & phk_flow ==.
-(63 real changes made)
-
-. 
-.         * Identify train and test period 
-.         gen     train = year<=2024
-
-.         gen     test  = year==2025
-
-. 
-. 
-. /********************************************************************
-> 7. LAG SELECTION
-> ********************************************************************/
-.         
 .         tempname results
 
-.         postfile `results' str5 lag double rmse mae using ///
->         "$output/lag_selection.dta", replace
+. 
+.         postfile `results' lag rmse mae using ///
+>                 "$output/lag_selection.dta", replace
 
 . 
-.         foreach lag in 1 3 6 {
+.         foreach L of global LAGS {
   2. 
-.             ppmlhdfe ///
->                 phk_flow ///
->                 $STRUCTURE ///
->                 L`lag'_price_brent_usd_bbl_nat ///
->                 L`lag'_macro_bi_rate_pct_nat ///
->                 L`lag'_macro_fx_idr_usd_nat ///
->                 L`lag'_macro_pmi_manuf_nat ///
->                 L`lag'_price_ihpb_nat ///
->                 L`lag'_price_cpi_index  ///
->                 L`lag'_fin_npl_idr_billion ///
->                 L`lag'_trade_export_value  ///
->                 L`lag'_trade_import_value ///
->                 if train, ///
->                 absorb(prov_id year) ///
->                 cluster(prov_id)
-  3. 
-.             predict phk_hat_`lag' if test, mu
-  4. 
-.             gen err = phk_flow-phk_hat_`lag' if test
-  5.             gen abs_err = abs(err)
+.             display "==================================================================="
+  3.             display "Estimating Lag `L'"
+  4.             display "==================================================================="
+  5. 
+.             local       trigger
   6. 
-.             quietly summarize abs_err if test
-  7.             local mae = r(mean)
-  8. 
-.             gen sq = err^2 if test
-  9.             quietly summarize sq if test
- 10.             local rmse = sqrt(r(mean))
- 11. 
-.             post `results' ("L`lag'") (`rmse') (`mae')
+.             foreach v of global TRIGGER {
+  7.                 local trigger `trigger' L`L'_`v'
+  8.             }
+  9. 
+.             // Poisson regression
+.             poisson  $OUTCOME $STRUCTURE `trigger' i.month i.prov_id if train == 1, ///
+>                         vce(cluster prov_id)
+ 10. 
+.             // Estimate prediction 
+.             est         save    model_lag`L', replace
+ 11.             est         clear
  12. 
-.             drop err abs_err sq
- 13.         }
-file not found: reghdfe.ado
-r(123);
+.             est         use     model_lag`L'
+ 13.             cap         drop    phk_hat
+ 14. 
+.             predict phk_hat
+ 15.             //predict xb, xb
+.             //gen       phk_hat = exp(xb)
+. 
+.             capture drop err sqerr abserr 
+ 16. 
+.             gen         err     = phk_flow-phk_hat if valid == 1
+ 17.             gen         sqerr   = err^2 if valid == 1
+ 18.             gen         abserr  = abs(err) if valid == 1
+ 19. 
+.             qui         summarize sqerr if valid == 1
+ 20.             scalar      RMSE    = sqrt(r(mean))
+ 21. 
+.             quietly summarize abserr if valid == 1
+ 22.             scalar      MAE     = r(mean)
+ 23. 
+.             post        `results'  (`L') (RMSE) (MAE)
+ 24. 
+.             // Save results
+.             preserve
+ 25. 
+.             keep if valid == 1
+ 26. 
+.             keep        prov_id year month phk_flow phk_hat 
+ 27.             
+.             save        "$output/projection_L`L'.dta", replace
+ 28.             export      excel using "$output/projection_L`L'.dta", firstrow(variables) replace
+ 29. 
+.             restore
+ 30.         }
+===================================================================
+Estimating Lag 1
+===================================================================
 
+Iteration 0:   log pseudolikelihood =  -186906.9  
+Iteration 1:   log pseudolikelihood = -125315.73  
+Iteration 2:   log pseudolikelihood = -109047.19  
+Iteration 3:   log pseudolikelihood = -107582.34  
+Iteration 4:   log pseudolikelihood = -107580.33  
+Iteration 5:   log pseudolikelihood = -107580.31  
+Iteration 6:   log pseudolikelihood = -107580.31  
+
+Poisson regression                              Number of obs     =        660
+                                                Wald chi2(24)     =          .
+                                                Prob > chi2       =          .
+Log pseudolikelihood = -107580.31               Pseudo R2         =     0.5847
+
+                                                  (Std. Err. adjusted for 30 clusters in prov_id)
+-------------------------------------------------------------------------------------------------
+                                |               Robust
+                       phk_flow |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+--------------------------------+----------------------------------------------------------------
+   macro_pdrb_manuf_share_pct_y |     .00543   .2782887     0.02   0.984    -.5400057    .5508658
+         lab_formal_share_pct_y |  -.6010813   .2571932    -2.34   0.019    -1.105171   -.0969918
+       lab_contract_share_pct_y |   .0348428   .0655334     0.53   0.595    -.0936003    .1632859
+macro_pdrb_per_wkr_growth_pct_y |   .0812878   .0315009     2.58   0.010     .0195472    .1430284
+          wage_ump_growth_pct_y |   .0604094   .0811302     0.74   0.457    -.0986028    .2194217
+     L1_price_brent_usd_bbl_nat |    .002945   .0504952     0.06   0.953    -.0960238    .1019137
+       L1_macro_bi_rate_pct_nat |   1.455383   .7633445     1.91   0.057    -.0407449    2.951511
+        L1_macro_fx_idr_usd_nat |   -.000477   .0007022    -0.68   0.497    -.0018534    .0008993
+         L1_macro_pmi_manuf_nat |  -.0909177    .126212    -0.72   0.471    -.3382887    .1564533
+              L1_price_ihpb_nat |    .474272   .2206969     2.15   0.032      .041714    .9068301
+             L1_price_cpi_index |  -.2103068   .3095266    -0.68   0.497    -.8169677    .3963542
+         L1_fin_npl_idr_billion |   -.000036   .0000726    -0.50   0.620    -.0001783    .0001064
+          L1_trade_export_value |  -.0002281   .0006552    -0.35   0.728    -.0015123    .0010561
+          L1_trade_import_value |   .0001136   .0001089     1.04   0.297    -.0000999    .0003271
+                                |
+                          month |
+                             2  |  -.8468342   .8116163    -1.04   0.297    -2.437573    .7439044
+                             3  |  -.1095042   .2532482    -0.43   0.665    -.6058617    .3868532
+                             4  |   -.593777   .8022493    -0.74   0.459    -2.166157    .9786028
+                             5  |  -.4783092    .543594    -0.88   0.379    -1.543734    .5871154
+                             6  |  -.4834494   .4960958    -0.97   0.330    -1.455779    .4888805
+                             7  |   -.159045    .384288    -0.41   0.679    -.9122356    .5941456
+                             8  |  -.8387075   .5318342    -1.58   0.115    -1.881083    .2036683
+                             9  |  -.4399344     .50999    -0.86   0.388    -1.439496    .5596276
+                            10  |  -.4821249   .5726837    -0.84   0.400    -1.604564    .6403146
+                            11  |  -.3309887    .435391    -0.76   0.447    -1.184339    .5223619
+                            12  |  -.2527058   .4350953    -0.58   0.561    -1.105477    .6000652
+                                |
+                        prov_id |
+                Sumatera Utara  |    2.81461   3.867272     0.73   0.467    -4.765103    10.39432
+                Sumatera Barat  |  -1.291312   1.562357    -0.83   0.409    -4.353476    1.770852
+                          Riau  |   7.266917   7.885596     0.92   0.357    -8.188568     22.7224
+                         Jambi  |   .3985725    1.50271     0.27   0.791    -2.546684     3.34383
+              Sumatera Selatan  |  -.9340426   4.228337    -0.22   0.825     -9.22143    7.353345
+                       Lampung  |  -6.657543   5.064501    -1.31   0.189    -16.58378    3.268698
+               Bangka Belitung  |   6.283835   4.947304     1.27   0.204    -3.412702    15.98037
+                Kepulauan Riau  |   15.45956    11.7303     1.32   0.188    -7.531394    38.45052
+                   DKI Jakarta  |   18.45077   10.15131     1.82   0.069    -1.445431    38.34698
+                    Jawa Barat  |   7.765525    11.2502     0.69   0.490    -14.28447    29.81552
+                   Jawa Tengah  |   4.384889   8.240576     0.53   0.595    -11.76634    20.53612
+                 DI Yogyakarta  |   4.960587   2.343529     2.12   0.034     .3673536     9.55382
+                    Jawa Timur  |     1.7184   7.716717     0.22   0.824    -13.40609    16.84289
+                        Banten  |   10.85892    8.57101     1.27   0.205    -5.939954    27.65779
+                          Bali  |   3.563457   2.475784     1.44   0.150     -1.28899    8.415903
+           Nusa Tenggara Barat  |  -7.619304   2.401826    -3.17   0.002     -12.3268   -2.911812
+           Nusa Tenggara Timur  |  -10.58674   3.021977    -3.50   0.000    -16.50971   -4.663775
+              Kalimantan Barat  |   2.224108   3.215647     0.69   0.489    -4.078444    8.526659
+             Kalimantan Tengah  |   5.947668   3.660352     1.62   0.104    -1.226491    13.12183
+            Kalimantan Selatan  |   4.891698   2.801811     1.75   0.081    -.5997503    10.38315
+              Kalimantan Timur  |   11.33662   6.728251     1.68   0.092    -1.850508    24.52375
+                Sulawesi Utara  |   .4268786   1.900279     0.22   0.822    -3.297601    4.151358
+               Sulawesi Tengah  |  -2.296598    9.64291    -0.24   0.812    -21.19635    16.60316
+              Sulawesi Selatan  |  -.3091949   2.610309    -0.12   0.906    -5.425306    4.806916
+             Sulawesi Tenggara  |  -.9957445   1.322083    -0.75   0.451    -3.586979     1.59549
+                     Gorontalo  |  -2.010006   .5844792    -3.44   0.001    -3.155564   -.8644474
+                Sulawesi Barat  |   -11.9314   3.516929    -3.39   0.001    -18.82446    -5.03835
+                        Maluku  |  -4.338469   1.097626    -3.95   0.000    -6.489776   -2.187162
+                  Maluku Utara  |  -5.885693   7.442373    -0.79   0.429    -20.47248     8.70109
+                                |
+                          _cons |   2.675101   15.07545     0.18   0.859    -26.87223    32.22243
+-------------------------------------------------------------------------------------------------
+file model_lag1.ster saved
+(option n assumed; predicted number of events)
+(512 missing values generated)
+(1,499 missing values generated)
+(1,499 missing values generated)
+(1,499 missing values generated)
+(1,368 observations deleted)
+file C:\Users\berth\GitHub\phk_dashboard/model/model_poisson/output/projection_L1.dta saved
+file C:\Users\berth\GitHub\phk_dashboard/model/model_poisson/output/projection_L1.dta saved
+===================================================================
+Estimating Lag 3
+===================================================================
+
+Iteration 0:   log pseudolikelihood = -162689.78  
+Iteration 1:   log pseudolikelihood =  -115331.2  
+Iteration 2:   log pseudolikelihood = -103281.42  
+Iteration 3:   log pseudolikelihood = -102207.58  
+Iteration 4:   log pseudolikelihood = -102203.71  
+Iteration 5:   log pseudolikelihood = -102203.56  
+Iteration 6:   log pseudolikelihood = -102203.56  
+
+Poisson regression                              Number of obs     =        655
+                                                Wald chi2(24)     =          .
+                                                Prob > chi2       =          .
+Log pseudolikelihood = -102203.56               Pseudo R2         =     0.6029
+
+                                                  (Std. Err. adjusted for 30 clusters in prov_id)
+-------------------------------------------------------------------------------------------------
+                                |               Robust
+                       phk_flow |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+--------------------------------+----------------------------------------------------------------
+   macro_pdrb_manuf_share_pct_y |   .1728603   .2282834     0.76   0.449    -.2745668    .6202875
+         lab_formal_share_pct_y |  -.5728335   .1603744    -3.57   0.000    -.8871615   -.2585056
+       lab_contract_share_pct_y |   .0523008   .0627078     0.83   0.404    -.0706042    .1752057
+macro_pdrb_per_wkr_growth_pct_y |   .0868601   .0258353     3.36   0.001     .0362238    .1374965
+          wage_ump_growth_pct_y |  -.0684076   .0772835    -0.89   0.376    -.2198805    .0830653
+     L3_price_brent_usd_bbl_nat |  -.0874892     .02012    -4.35   0.000    -.1269237   -.0480547
+       L3_macro_bi_rate_pct_nat |  -.0262007   .6252453    -0.04   0.967    -1.251659    1.199258
+        L3_macro_fx_idr_usd_nat |   .0017719   .0004862     3.64   0.000     .0008189    .0027249
+         L3_macro_pmi_manuf_nat |   .2482847   .0994028     2.50   0.012     .0534589    .4431105
+              L3_price_ihpb_nat |   .3993702   .2496434     1.60   0.110    -.0899219    .8886623
+             L3_price_cpi_index |  -.6279202    .296978    -2.11   0.034    -1.209986   -.0458539
+         L3_fin_npl_idr_billion |   -.000244   .0000628    -3.88   0.000    -.0003671   -.0001208
+          L3_trade_export_value |   .0001358   .0005283     0.26   0.797    -.0008997    .0011712
+          L3_trade_import_value |   .0003338   .0001406     2.37   0.018     .0000583    .0006094
+                                |
+                          month |
+                             2  |  -.8795674   .8444723    -1.04   0.298    -2.534703    .7755679
+                             3  |  -.7574733   .8010002    -0.95   0.344    -2.327405    .8124582
+                             4  |  -.8781185   1.193681    -0.74   0.462    -3.217691    1.461454
+                             5  |  -.2193737    .852821    -0.26   0.797    -1.890872    1.452125
+                             6  |  -.7305658   .9819843    -0.74   0.457     -2.65522    1.194088
+                             7  |   .4787722   .6714938     0.71   0.476    -.8373314    1.794876
+                             8  |  -.6850681   1.090774    -0.63   0.530    -2.822946     1.45281
+                             9  |  -.3896178   .9996693    -0.39   0.697    -2.348934    1.569698
+                            10  |  -.1237484   .8455225    -0.15   0.884    -1.780942    1.533445
+                            11  |   .2648273   .9843092     0.27   0.788    -1.664383    2.194038
+                            12  |   .8210261   .9826489     0.84   0.403     -1.10493    2.746983
+                                |
+                        prov_id |
+                Sumatera Utara  |   1.344919   3.273236     0.41   0.681    -5.070505    7.760344
+                Sumatera Barat  |  -1.548377   1.142444    -1.36   0.175    -3.787526    .6907719
+                          Riau  |   2.436515   6.707755     0.36   0.716    -10.71044    15.58347
+                         Jambi  |  -.1947301   1.256657    -0.15   0.877    -2.657733    2.268273
+              Sumatera Selatan  |  -2.857161   3.477381    -0.82   0.411    -9.672703    3.958381
+                       Lampung  |    -8.4329   3.763346    -2.24   0.025    -15.80892   -1.056877
+               Bangka Belitung  |   2.687835    4.13844     0.65   0.516    -5.423358    10.79903
+                Kepulauan Riau  |   7.579922   9.622771     0.79   0.431    -11.28036    26.44021
+                   DKI Jakarta  |   28.08365   6.604547     4.25   0.000     15.13898    41.02832
+                    Jawa Barat  |   3.798644   9.759258     0.39   0.697    -15.32915    22.92644
+                   Jawa Tengah  |   2.696076   6.884305     0.39   0.695    -10.79691    16.18907
+                 DI Yogyakarta  |   3.909428   1.863972     2.10   0.036     .2561102    7.562745
+                    Jawa Timur  |   .1154831   6.598697     0.02   0.986    -12.81773    13.04869
+                        Banten  |   5.060481   7.281808     0.69   0.487    -9.211601    19.33256
+                          Bali  |   3.304702   1.714788     1.93   0.054     -.056221    6.665624
+           Nusa Tenggara Barat  |  -7.373086   1.472339    -5.01   0.000    -10.25882   -4.487354
+           Nusa Tenggara Timur  |  -9.848386   1.985308    -4.96   0.000    -13.73952   -5.957255
+              Kalimantan Barat  |   .7669276   2.642756     0.29   0.772     -4.41278    5.946635
+             Kalimantan Tengah  |   3.878934   2.994029     1.30   0.195    -1.989256    9.747124
+            Kalimantan Selatan  |   3.362836   2.253197     1.49   0.136    -1.053349    7.779021
+              Kalimantan Timur  |   7.471701   5.155211     1.45   0.147    -2.632328    17.57573
+                Sulawesi Utara  |  -.8901687   1.714865    -0.52   0.604    -4.251242    2.470905
+               Sulawesi Tengah  |  -8.787956    8.13209    -1.08   0.280    -24.72656    7.150649
+              Sulawesi Selatan  |  -1.232344   2.197334    -0.56   0.575    -5.539039    3.074352
+             Sulawesi Tenggara  |   -2.09931   1.303702    -1.61   0.107    -4.654519    .4558993
+                     Gorontalo  |  -2.355441   .6189304    -3.81   0.000    -3.568523    -1.14236
+                Sulawesi Barat  |  -13.63966   2.254514    -6.05   0.000    -18.05843   -9.220895
+                        Maluku  |   -5.09391   .9556346    -5.33   0.000    -6.966919     -3.2209
+                  Maluku Utara  |  -10.63884   6.222054    -1.71   0.087    -22.83384    1.556158
+                                |
+                          _cons |    15.6817   12.75226     1.23   0.219    -9.312276    40.67567
+-------------------------------------------------------------------------------------------------
+file model_lag3.ster saved
+(option n assumed; predicted number of events)
+(566 missing values generated)
+(1,496 missing values generated)
+(1,496 missing values generated)
+(1,496 missing values generated)
+(1,368 observations deleted)
+file C:\Users\berth\GitHub\phk_dashboard/model/model_poisson/output/projection_L3.dta saved
+file C:\Users\berth\GitHub\phk_dashboard/model/model_poisson/output/projection_L3.dta saved
+===================================================================
+Estimating Lag 6
+===================================================================
+
+Iteration 0:   log pseudolikelihood = -163761.39  
+Iteration 1:   log pseudolikelihood = -115250.35  
+Iteration 2:   log pseudolikelihood = -103160.36  
+Iteration 3:   log pseudolikelihood = -102140.03  
+Iteration 4:   log pseudolikelihood =  -102135.8  
+Iteration 5:   log pseudolikelihood = -102135.58  
+Iteration 6:   log pseudolikelihood = -102135.58  
+
+Poisson regression                              Number of obs     =        645
+                                                Wald chi2(24)     =          .
+                                                Prob > chi2       =          .
+Log pseudolikelihood = -102135.58               Pseudo R2         =     0.6017
+
+                                                  (Std. Err. adjusted for 30 clusters in prov_id)
+-------------------------------------------------------------------------------------------------
+                                |               Robust
+                       phk_flow |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+--------------------------------+----------------------------------------------------------------
+   macro_pdrb_manuf_share_pct_y |   .2232679   .2699841     0.83   0.408    -.3058911    .7524269
+         lab_formal_share_pct_y |  -.4793335   .2034974    -2.36   0.018     -.878181   -.0804861
+       lab_contract_share_pct_y |   -.000971   .0501373    -0.02   0.985    -.0992382    .0972962
+macro_pdrb_per_wkr_growth_pct_y |   .0707265   .0215006     3.29   0.001      .028586    .1128669
+          wage_ump_growth_pct_y |  -.0119784    .095263    -0.13   0.900    -.1986905    .1747336
+     L6_price_brent_usd_bbl_nat |  -.0662583   .0468603    -1.41   0.157    -.1581029    .0255862
+       L6_macro_bi_rate_pct_nat |  -.9258363    .811094    -1.14   0.254    -2.515551    .6638786
+        L6_macro_fx_idr_usd_nat |   .0000606   .0003351     0.18   0.857    -.0005963    .0007174
+         L6_macro_pmi_manuf_nat |  -.1036208   .1324004    -0.78   0.434    -.3631208    .1558792
+              L6_price_ihpb_nat |    1.27331   .3399079     3.75   0.000     .6071026    1.939517
+             L6_price_cpi_index |  -.8888769   .3774212    -2.36   0.019    -1.628609   -.1491449
+         L6_fin_npl_idr_billion |  -.0001459   .0000539    -2.71   0.007    -.0002514   -.0000403
+          L6_trade_export_value |   .0000611   .0002692     0.23   0.821    -.0004666    .0005888
+          L6_trade_import_value |  -.0000172   .0002087    -0.08   0.934    -.0004262    .0003918
+                                |
+                          month |
+                             2  |  -.6290159   .8198557    -0.77   0.443    -2.235904    .9778718
+                             3  |   .3691985   .3259721     1.13   0.257    -.2696951    1.008092
+                             4  |  -.1735826   .9268789    -0.19   0.851    -1.990232    1.643067
+                             5  |  -.1843423   .7305796    -0.25   0.801    -1.616252    1.247567
+                             6  |  -.7605262   .9212438    -0.83   0.409    -2.566131    1.045078
+                             7  |  -.5007914   .5259957    -0.95   0.341    -1.531724    .5301413
+                             8  |  -1.473503   .7133301    -2.07   0.039    -2.871604   -.0754012
+                             9  |  -1.093674   .7178988    -1.52   0.128    -2.500729    .3133821
+                            10  |  -.3996929   .4359666    -0.92   0.359    -1.254172    .4547859
+                            11  |  -.9593281   .9023291    -1.06   0.288    -2.727861    .8092044
+                            12  |  -.9201924   .9698136    -0.95   0.343    -2.820992    .9806073
+                                |
+                        prov_id |
+                Sumatera Utara  |  -.3393873   3.462115    -0.10   0.922    -7.125009    6.446234
+                Sumatera Barat  |  -1.610742   1.305688    -1.23   0.217    -4.169843    .9483594
+                          Riau  |  -.0145435   7.374519    -0.00   0.998    -14.46834    14.43925
+                         Jambi  |  -.8532805   1.360791    -0.63   0.531    -3.520381     1.81382
+              Sumatera Selatan  |   -4.09522   3.869381    -1.06   0.290    -11.67907    3.488628
+                       Lampung  |  -9.145783   4.316399    -2.12   0.034    -17.60577   -.6857962
+               Bangka Belitung  |   .3669857   5.031594     0.07   0.942    -9.494758    10.22873
+                Kepulauan Riau  |   4.419371   11.22697     0.39   0.694    -17.58508    26.42382
+                   DKI Jakarta  |    22.1409   6.241998     3.55   0.000     9.906808    34.37499
+                    Jawa Barat  |   .1663464   9.976606     0.02   0.987    -19.38744    19.72014
+                   Jawa Tengah  |  -.3136859   7.519051    -0.04   0.967    -15.05076    14.42338
+                 DI Yogyakarta  |   2.995339   2.215475     1.35   0.176    -1.346913    7.337591
+                    Jawa Timur  |  -1.812546   6.679824    -0.27   0.786    -14.90476    11.27967
+                        Banten  |   3.184562    8.32808     0.38   0.702    -13.13817     19.5073
+                          Bali  |   2.426018   2.053242     1.18   0.237    -1.598263    6.450298
+           Nusa Tenggara Barat  |  -5.961497   2.049579    -2.91   0.004    -9.978599   -1.944396
+           Nusa Tenggara Timur  |  -7.659267   2.589334    -2.96   0.003    -12.73427   -2.584266
+              Kalimantan Barat  |  -.6080422   3.005174    -0.20   0.840    -6.498075    5.281991
+             Kalimantan Tengah  |    2.60505   3.427248     0.76   0.447    -4.112233    9.322333
+            Kalimantan Selatan  |   2.426625   2.269731     1.07   0.285    -2.021966    6.875216
+              Kalimantan Timur  |    6.35723    5.16121     1.23   0.218    -3.758555    16.47301
+                Sulawesi Utara  |   -1.35883   1.959918    -0.69   0.488    -5.200198    2.482539
+               Sulawesi Tengah  |  -8.834027   8.945933    -0.99   0.323    -26.36773    8.699678
+              Sulawesi Selatan  |  -1.789247   2.471586    -0.72   0.469    -6.633467    3.054973
+             Sulawesi Tenggara  |  -1.180612   1.199111    -0.98   0.325    -3.530827    1.169603
+                     Gorontalo  |  -2.088422   .4256942    -4.91   0.000    -2.922767   -1.254077
+                Sulawesi Barat  |  -12.48791   2.739926    -4.56   0.000    -17.85807   -7.117757
+                        Maluku  |  -4.400871    .855945    -5.14   0.000    -6.078492    -2.72325
+                  Maluku Utara  |  -10.08824   7.035923    -1.43   0.152    -23.87839     3.70192
+                                |
+                          _cons |   1.935843   12.94547     0.15   0.881    -23.43682     27.3085
+-------------------------------------------------------------------------------------------------
+file model_lag6.ster saved
+(option n assumed; predicted number of events)
+(648 missing values generated)
+(1,491 missing values generated)
+(1,491 missing values generated)
+(1,491 missing values generated)
+(1,368 observations deleted)
+file C:\Users\berth\GitHub\phk_dashboard/model/model_poisson/output/projection_L6.dta saved
+file C:\Users\berth\GitHub\phk_dashboard/model/model_poisson/output/projection_L6.dta saved
+
+. 
+. 
+.         postclose `results'
+
+. 
+. 
+. 
+. /********************************************************************************
+>         6. SELECT BEST MODEL
+> ********************************************************************************/
+. 
+.         use     "$output/lag_selection.dta", clear
+
+. 
+.         sort    rmse
+
+.         list
+
+     +---------------------------+
+     | lag       rmse        mae |
+     |---------------------------|
+  1. |   1   594.5619   214.2216 |
+  2. |   3   3773.864   1086.709 |
+  3. |   6   5410.309   2278.392 |
+     +---------------------------+
+
+. 
+.         local   BEST = lag[1]
+
+.         display "Best Lag = `BEST'"
+Best Lag = 1
+
+. 
+. 
+. /********************************************************************************
+>         7. FINAL MODEL
+> ********************************************************************************/
+. 
+.         use     "$output/phk_panel_data.dta", clear
+
+. 
+.         keep    if year>=2023
+(456 observations deleted)
+
+. 
+.         local   trigger
+
+.         foreach v of global TRIGGER {
+  2.             local trigger `trigger' L`BEST'_`v'
+  3.         }
+
+. 
+.         poisson  $OUTCOME $STRUCTURE `trigger' i.month i.prov_id, ///
+>                         vce(cluster prov_id)
+
+Iteration 0:   log pseudolikelihood = -286056.85  
+Iteration 1:   log pseudolikelihood = -272920.76  
+Iteration 2:   log pseudolikelihood = -146911.92  
+Iteration 3:   log pseudolikelihood = -144445.89  
+Iteration 4:   log pseudolikelihood =  -144424.2  
+Iteration 5:   log pseudolikelihood = -144424.19  
+
+Poisson regression                              Number of obs     =        985
+                                                Wald chi2(25)     =          .
+                                                Prob > chi2       =          .
+Log pseudolikelihood = -144424.19               Pseudo R2         =     0.5916
+
+                                                  (Std. Err. adjusted for 31 clusters in prov_id)
+-------------------------------------------------------------------------------------------------
+                                |               Robust
+                       phk_flow |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+--------------------------------+----------------------------------------------------------------
+   macro_pdrb_manuf_share_pct_y |   .1115919   .1620208     0.69   0.491     -.205963    .4291467
+         lab_formal_share_pct_y |   -.205178   .1112184    -1.84   0.065     -.423162     .012806
+       lab_contract_share_pct_y |    .022193   .0402221     0.55   0.581    -.0566408    .1010268
+macro_pdrb_per_wkr_growth_pct_y |   .0764694   .0238277     3.21   0.001     .0297681    .1231707
+          wage_ump_growth_pct_y |   .0700214   .0524035     1.34   0.181    -.0326876    .1727304
+     L1_price_brent_usd_bbl_nat |   .0296798   .0195789     1.52   0.130    -.0086941    .0680536
+       L1_macro_bi_rate_pct_nat |   .5706981   .3364465     1.70   0.090     -.088725    1.230121
+        L1_macro_fx_idr_usd_nat |  -.0006431   .0005088    -1.26   0.206    -.0016403    .0003541
+         L1_macro_pmi_manuf_nat |   -.090334   .0551882    -1.64   0.102    -.1985009     .017833
+              L1_price_ihpb_nat |   .4315349   .1311742     3.29   0.001     .1744382    .6886317
+             L1_price_cpi_index |  -.0468453   .1313963    -0.36   0.721    -.3043773    .2106867
+         L1_fin_npl_idr_billion |   .0000161   .0000421     0.38   0.702    -.0000663    .0000985
+          L1_trade_export_value |   -.000225   .0003993    -0.56   0.573    -.0010077    .0005576
+          L1_trade_import_value |  -9.62e-06   .0001249    -0.08   0.939    -.0002545    .0002353
+                                |
+                          month |
+                             2  |  -.0414801   .2596564    -0.16   0.873    -.5503974    .4674372
+                             3  |  -.2974623   .2322606    -1.28   0.200    -.7526846    .1577601
+                             4  |  -.7660676   .4224067    -1.81   0.070    -1.593969    .0618342
+                             5  |  -.6708341   .3310094    -2.03   0.043    -1.319601   -.0220675
+                             6  |  -.3790617   .3041832    -1.25   0.213    -.9752497    .2171264
+                             7  |   -.312483   .3489105    -0.90   0.370    -.9963351     .371369
+                             8  |   -.719036   .3067887    -2.34   0.019    -1.320331   -.1177412
+                             9  |  -.3066288   .2467217    -1.24   0.214    -.7901944    .1769368
+                            10  |  -.3553389    .323237    -1.10   0.272    -.9888718     .278194
+                            11  |  -.3315234   .2593101    -1.28   0.201    -.8397619    .1767151
+                            12  |  -.3391804   .3134979    -1.08   0.279    -.9536249    .2752641
+                                |
+                        prov_id |
+                Sumatera Utara  |    1.07544   2.012484     0.53   0.593    -2.868956    5.019835
+                Sumatera Barat  |  -.1856915   .8199775    -0.23   0.821    -1.792818    1.421435
+                          Riau  |   1.156537   4.237846     0.27   0.785    -7.149488    9.462562
+                         Jambi  |  -.1749432    .894748    -0.20   0.845    -1.928617    1.578731
+              Sumatera Selatan  |  -.8016417   2.329029    -0.34   0.731    -5.366454     3.76317
+                      Bengkulu  |  -1.493241   .4866402    -3.07   0.002    -2.447039   -.5394439
+                       Lampung  |  -2.641918   2.658849    -0.99   0.320    -7.853166     2.56933
+               Bangka Belitung  |   1.344529   2.530711     0.53   0.595    -3.615573     6.30463
+                Kepulauan Riau  |   2.567028   6.071127     0.42   0.672    -9.332163    14.46622
+                   DKI Jakarta  |   6.457008   4.704012     1.37   0.170    -2.762686     15.6767
+                    Jawa Barat  |   1.168679   6.204114     0.19   0.851    -10.99116    13.32852
+                   Jawa Tengah  |   1.057314   4.809266     0.22   0.826    -8.368674     10.4833
+                 DI Yogyakarta  |   2.025083   1.267524     1.60   0.110    -.4592185    4.509384
+                    Jawa Timur  |  -.2527228   4.585419    -0.06   0.956     -9.23998    8.734534
+                        Banten  |   3.010613    4.74174     0.63   0.525    -6.283027    12.30425
+                          Bali  |   1.353201   1.257507     1.08   0.282    -1.111466    3.817869
+           Nusa Tenggara Barat  |  -2.621409   .8949965    -2.93   0.003     -4.37557   -.8672483
+           Nusa Tenggara Timur  |  -3.513102   .8211879    -4.28   0.000    -5.122601   -1.903604
+              Kalimantan Barat  |   1.216771   1.684903     0.72   0.470    -2.085579    4.519121
+             Kalimantan Tengah  |   1.457074   1.908006     0.76   0.445    -2.282549    5.196698
+            Kalimantan Selatan  |   2.251987   1.404544     1.60   0.109    -.5008678    5.004842
+              Kalimantan Timur  |   4.003995   3.062847     1.31   0.191    -1.999075    10.00707
+                Sulawesi Utara  |  -.2696322   1.119438    -0.24   0.810     -2.46369    1.924426
+               Sulawesi Tengah  |  -3.179608   5.890381    -0.54   0.589    -14.72454    8.365327
+              Sulawesi Selatan  |   .7270145   1.537415     0.47   0.636    -2.286264    3.740293
+             Sulawesi Tenggara  |   .0043429   1.019195     0.00   0.997    -1.993243    2.001929
+                     Gorontalo  |  -.5467014   .2262988    -2.42   0.016     -.990239   -.1031638
+                Sulawesi Barat  |  -6.923057   1.743008    -3.97   0.000    -10.33929   -3.506825
+                        Maluku  |  -2.267477   .6084455    -3.73   0.000    -3.460008   -1.074946
+                  Maluku Utara  |  -7.632101    6.01035    -1.27   0.204    -19.41217    4.147968
+                                |
+                          _cons |   -20.7011   6.909429    -3.00   0.003    -34.24333    -7.15887
+-------------------------------------------------------------------------------------------------
+
+. 
+.         est     save "$output/phk_model_final.ster", replace
+file C:\Users\berth\GitHub\phk_dashboard/model/model_poisson/output/phk_model_final.ster saved
+
+. 
+. 
+. /********************************************************************************
+>         8. PROVINCIAL PROJECTION
+> ********************************************************************************/
+.         
+.         * PHK projection by province
+.         capture drop phk_projection
+
+.         predict phk_projection
+(option n assumed; predicted number of events)
+(339 missing values generated)
+
+. 
+.         replace phk_projection = round(phk_projection)
+(1,028 real changes made)
+
+.         format  phk_projection %12.0f
+
+. 
+.         * Annual total actual PHK
+.         bysort  year prov_id: egen phk_flow_y = total(phk_flow)
+
+. 
+.         * Annual total projected PHK
+.         bysort  year prov_id: egen phk_projection_y = total(phk_projection)
+
+. 
+.         keep    prov_id year month phk_flow phk_projection phk_flow_y phk_projection_y
+
+.         save    "$output/province_projection.dta", replace
+file C:\Users\berth\GitHub\phk_dashboard/model/model_poisson/output/province_projection.dta saved
+
+. 
+.         preserve
+
+.         collapse (first) phk_flow_y phk_projection_y, by(year prov_id)
+
+.         save    "$output/province_projection_annual.dta", replace
+file C:\Users\berth\GitHub\phk_dashboard/model/model_poisson/output/province_projection_annual.dta saved
+
+.         restore
+
+. 
+. 
+. /********************************************************************************
+>         9. NATIONAL PROJECTION
+> ********************************************************************************/
+.         
+.         * PHK projection at national level
+.         collapse (sum) phk_flow phk_projection, by(year month)
+
+.         
+.         * Annual total actual PHK
+.         bysort year: egen phk_flow_y = total(phk_flow)
+
+. 
+.         * Annual total projected PHK
+.         bysort year: egen phk_projection_y = total(phk_projection)
+
+. 
+.         keep    year month phk_flow phk_projection phk_flow_y phk_projection_y
+
+.         save    "$output/national_projection.dta", replace
+file C:\Users\berth\GitHub\phk_dashboard/model/model_poisson/output/national_projection.dta saved
+
+. 
+. 
+. 
+. /********************************************************************************
+>         10. ANALYSIS
+> ********************************************************************************/
+. 
+. 
 end of do-file
 
-r(123);
-
-. save c:\users\berth\appdata\local\temp\emergency_close_stata_st.dta, replace
-(note: file c:\users\berth\appdata\local\temp\emergency_close_stata_st.dta not found)
-file c:\users\berth\appdata\local\temp\emergency_close_stata_st.dta saved
