@@ -68,6 +68,38 @@ Frequency and geographic level are encoded in the name (no separate flag columns
 | `_nat` in the name (e.g. `macro_bi_rate_pct_nat`) | **national** level (same across provinces) |
 | otherwise | **province** level |
 
+### Filtering `phk_master.csv` by type (column-select)
+
+In the **wide** master a row is a province-month, so you pick a data type by **selecting
+columns** (not `keep if`). The type is in the column name:
+
+```stata
+import delimited "data/clean/phk_master.csv", clear varnames(1)
+
+* MONTHLY variables only (drop quarterly + annual):
+ds *_q *_y
+drop `r(varlist)'
+
+* QUARTERLY variables only:
+keep province_name_std province_code year month date quarter *_q
+
+* ANNUAL variables only:
+keep province_name_std province_code year *_y
+
+* NATIONAL variables only (any frequency):
+keep province_name_std province_code year month date quarter *nat*
+
+* PROVINCIAL variables only (drop national):
+ds *nat*
+drop `r(varlist)'
+```
+
+Annual/quarterly values are broadcast across months, so after `keep ... *_y` add
+`keep if month==1` (then `duplicates drop`) for one row per province-year; for `*_q`
+keep one month per quarter (`keep if inlist(month,1,4,7,10)`).
+
+For row-style filtering (`keep if data_triwulan==1`), use `phk_master_long.csv` instead (above).
+
 Columns are renamed by **Excel position**, using the
 verified rename blocks inside `code/01_build_phk_master.do`. If the workbook's column
 order changes, re-derive those `rename` lines. **Units are taken as-is from the workbook —
