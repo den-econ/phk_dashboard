@@ -1,7 +1,7 @@
 # ============================================================================
 # PHK master dataset schema  -  description of every variable
 # Master : data/clean/phk_master.csv   Grain: province x month (2022-01..2025-12)
-# Source : Data untuk PHK Dashboard.xlsx only.  MAP is NOT merged (reference only).
+# Source : Data untuk PHK Dashboard.xlsx only. 
 # Built by: code/01_build_phk_master.do
 # Naming: _q quarterly, _y annual, none = monthly; _nat = national, else province.
 # Variable list is identical to dictionary/indicator_dictionary.csv.
