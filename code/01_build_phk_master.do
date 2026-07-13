@@ -460,6 +460,8 @@ order province_name_std province_code year month date quarter, first
 sort province_name_std year month
 isid province_name_std year month
 export delimited using "$CLEAN/phk_master.csv", replace
+tempfile widemaster
+save `widemaster'
 qui count
 display as result "Done. phk_master rows: `r(N)' (expect 1824)."
 qui ds
@@ -491,3 +493,40 @@ foreach v of local vars {
 }
 export delimited using "$CLEAN/phk_variable_flags.csv", replace
 display as result "wrote phk_variable_flags.csv (`n' variables)."
+
+*==============================================================
+* 8. LONG-format master with row-level type flags (for FILTERING).
+*    One row per province-month-variable. Filter directly, e.g.:
+*      use data/clean/phk_master_long.csv (import), then:
+*      keep if data_triwulan==1     // quarterly variables only
+*      keep if data_tahunan==1      // annual variables only
+*      keep if data_nasional==1     // national variables only
+*    -> data/clean/phk_master_long.csv
+*==============================================================
+use `widemaster', clear
+qui ds province_name_std province_code year month date quarter, not
+local vars `r(varlist)'
+local j = 0
+foreach v of local vars {
+    local ++j
+    rename `v' _v`j'
+}
+reshape long _v, i(province_name_std province_code year month date quarter) j(_k)
+rename _v value
+gen str40 variable = ""
+local j = 0
+foreach v of local vars {
+    local ++j
+    qui replace variable = "`v'" if _k==`j'
+}
+drop _k
+gen byte data_bulanan  = !regexm(variable,"_q$") & !regexm(variable,"_y$")
+gen byte data_triwulan = regexm(variable,"_q$")
+gen byte data_tahunan  = regexm(variable,"_y$")
+gen byte data_nasional = strpos(variable,"_nat") > 0
+gen byte data_provinsi = !data_nasional
+order province_name_std province_code year month date quarter variable value ///
+      data_bulanan data_triwulan data_tahunan data_provinsi data_nasional
+sort province_name_std year month variable
+export delimited using "$CLEAN/phk_master_long.csv", replace
+display as result "wrote phk_master_long.csv (`=_N' rows)."

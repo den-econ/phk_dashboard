@@ -27,6 +27,39 @@ The column name says what the variable means; frequency and level are encoded in
 - **Missing vs zero:** invalid source cells (`-`, `#VALUE!`, blank) import as **missing**, never zero.
 - Units are taken as-is from the workbook; no conversion is applied in the build.
 
+## Using the data by frequency / level
+
+Frequency and geographic level are encoded in each variable's **name**: `_q` = quarterly,
+`_y` = annual, no suffix = monthly; `_nat` = national, otherwise provincial. Pick a subset in
+one of two ways.
+
+**Wide master (`phk_master.csv`)** — one row = province x month; select by **column**:
+
+```stata
+import delimited "data/clean/phk_master.csv", clear varnames(1)
+keep province_name_std province_code year month date quarter *_q     // quarterly only
+keep province_name_std province_code year *_y                        // annual only
+keep province_name_std province_code year month date quarter *nat*   // national only
+ds *nat*
+drop `r(varlist)'                                                    // provincial only (drop national)
+```
+
+**Long master (`phk_master_long.csv`)** — one row = province-month-variable; filter by **row**:
+
+```stata
+import delimited "data/clean/phk_master_long.csv", clear varnames(1)
+keep if data_triwulan==1     // quarterly variables
+keep if data_tahunan==1      // annual variables
+keep if data_bulanan==1      // monthly variables
+keep if data_nasional==1     // national variables
+keep if data_provinsi==1     // provincial variables
+```
+
+**Reminders.** National variables are repeated across all provinces - do not read them as
+provincial variation. Annual values are broadcast across the 12 months of their year and
+quarterly across 3 months (both files); for one value per period add e.g. `keep if month==1`
+(annual) or `keep if inlist(month,1,4,7,10)` (quarterly).
+
 ## Variables by theme
 
 ### Identity / keys (6)

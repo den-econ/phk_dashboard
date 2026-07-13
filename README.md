@@ -35,10 +35,23 @@ Every variable is documented in two places with **identical variable lists**:
 
 **Variable flags — `data/clean/phk_variable_flags.csv`** (one row per indicator, 251 rows):
 1/0 flags for frequency (`data_bulanan`, `data_triwulan`, `data_tahunan`) and geographic
-level (`data_provinsi`, `data_nasional`). These are *variable-level* — one flag row per
-column — because the master is wide (one row = province × month), so a row mixes variables
-of every frequency and both levels. Built by the same `.do`; merge it onto a reshaped/long
-version of the master, or use it to select columns by type.
+level (`data_provinsi`, `data_nasional`). Compact per-variable reference.
+
+**Long / filterable master — `data/clean/phk_master_long.csv`** (457,824 rows = 1,824 ×
+251 variables): the same data reshaped **long** (one row per province-month-**variable**),
+carrying the 1/0 flags as **row** columns so you can filter directly:
+
+```stata
+import delimited "data/clean/phk_master_long.csv", clear varnames(1)
+keep if data_triwulan==1     // quarterly variables only
+keep if data_tahunan==1      // annual variables only
+keep if data_nasional==1     // national variables only
+```
+
+Columns: `province_name_std, province_code, year, month, date, quarter, variable, value,
+data_bulanan, data_triwulan, data_tahunan, data_provinsi, data_nasional`. Note: annual
+values are repeated across the 12 months of their year and quarterly across 3 months (same
+as the wide master); add `keep if month==1` (annual) or one month per quarter to de-duplicate.
 
 ### Reading the column names
 
