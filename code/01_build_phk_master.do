@@ -454,6 +454,39 @@ merge m:1 province_name_std year quarter using `quarterly', keep(master match) n
 merge m:1 province_name_std year         using `annual',    keep(master match) nogen
 
 *==============================================================
+* 5b. Derived macro-trigger transforms (%yoy growth, ppt change, FX volatility)
+*     Computed on the assembled monthly panel. L12 = 12 months back
+*     (= same month last year for monthly series; same quarter for broadcast _q;
+*      same year for broadcast _y). yoy needs t-12 -> 2022 missing (starts 2023).
+*==============================================================
+egen _provid = group(province_name_std)
+gen  _tm     = ym(year, month)
+tsset _provid _tm
+
+* %yoy growth (monthly)
+gen growth_brent_yoy_pct_nat = (price_brent_usd_bbl_nat/L12.price_brent_usd_bbl_nat - 1)*100
+gen growth_ihpb_yoy_pct_nat  = (price_ihpb_nat/L12.price_ihpb_nat - 1)*100
+gen growth_npl_yoy_pct       = (fin_npl_idr_billion/L12.fin_npl_idr_billion - 1)*100
+gen growth_export_yoy_pct    = (trade_export_value/L12.trade_export_value - 1)*100
+gen growth_import_yoy_pct    = (trade_import_value/L12.trade_import_value - 1)*100
+
+* %yoy growth (quarterly, from broadcast _q columns; L12 = same quarter last year)
+gen growth_export_yoy_pct_q  = (trade_export_value_usd_million_q/L12.trade_export_value_usd_million_q - 1)*100
+gen growth_import_yoy_pct_q  = (trade_import_value_usd_million_q/L12.trade_import_value_usd_million_q - 1)*100
+
+* Employment-share year-on-year change in PERCENTAGE POINTS (annual, 17 sectors)
+foreach s in agri mining manuf electricity water_waste construction trade ///
+    transport accom_food info_comm finance real_estate business_svc      ///
+    public_admin education health other_svc {
+    gen emp_share_`s'_ppt_chg_y = emp_share_`s'_pct_y - L12.emp_share_`s'_pct_y
+}
+
+* FX volatility: SD of the 12 monthly FX values within each calendar year (annual, national)
+bysort _provid year: egen macro_fx_vol_sd_nat_y = sd(macro_fx_idr_usd_nat)
+
+drop _provid _tm
+
+*==============================================================
 * 6. Order, checks, export
 *==============================================================
 order province_name_std province_code year month date quarter, first
@@ -465,7 +498,7 @@ save `widemaster'
 qui count
 display as result "Done. phk_master rows: `r(N)' (expect 1824)."
 qui ds
-display as result "columns: `: word count `r(varlist)'' (expect 257)."
+display as result "columns: `: word count `r(varlist)'' (expect 282)."
 
 *==============================================================
 * 7. Variable-level flag table (1/0), one row per indicator.
