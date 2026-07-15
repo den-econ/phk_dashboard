@@ -1,6 +1,6 @@
 # PHK Early Warning Dashboard — Data Dictionary
 
-Human-readable companion to the machine-readable **`dictionary/indicator_dictionary.csv`** and **`config/master_schema.yml`** (same variable list). Built from the actual columns of `Database (Bulan / Triwulan / Tahun)` in **`data/raw/data_untuk_phk_dashboard.xlsx`**, the canonical source.
+Human-readable companion to the machine-readable **`dictionary/indicator_dictionary.csv`** and **`config/master_schema.yml`** (same variable list). Built from the actual columns of `Database (Bulan / Triwulan / Tahun)` in **`data/raw/data_untuk_phk_dashboard.xlsx`**, the canonical source. MAP is not merged.
 
 ## Dataset at a glance
 
@@ -9,7 +9,7 @@ Human-readable companion to the machine-readable **`dictionary/indicator_diction
 | Main output | `data/clean/phk_master.csv` |
 | Grain | one row = province × month |
 | Coverage | 2022–2025 (38 provinces × 48 months = 1,824 rows) |
-| Variables | 257 columns |
+| Variables | 282 columns |
 | Build | `code/01_build_phk_master.do` (Stata) |
 
 ## Naming convention
@@ -22,7 +22,7 @@ The column name says what the variable means; frequency and level are encoded in
 
 ## Notes
 
-- **National indicators (19):** repeated across province rows but are national-level — do not read as provincial variation. They carry `_nat`.
+- **National indicators (22):** repeated across province rows but are national-level — do not read as provincial variation. They carry `_nat`.
 - **PDRB:** elaborated into 17 sectors at quarterly (`macro_pdrb_<sector>_q`) and annual (`macro_pdrb_<sector>_y`) grain. Level values are **PDRB Riil (constant price / ADHK)** in **IDR milyar (billion)**. Verified: the 17 sectors sum to the total, and the 4 quarters sum to the annual.
 - **Missing vs zero:** invalid source cells (`-`, `#VALUE!`, blank) import as **missing**, never zero.
 - Units are taken as-is from the workbook; no conversion is applied in the build.
@@ -117,7 +117,7 @@ quarterly across 3 months (both files); for one value per period add e.g. `keep 
 | `lab_vacancies_registered_y` | Lowongan Kerja Terdaftar - Jumlah | province | annual | count | Lowongan Kerja Terdaftar - Jumlah |
 | `lab_placements_registered_y` | Penempatan/Pemenuhan Tenaga Kerja - Jumlah | province | annual | count | Penempatan/Pemenuhan Tenaga Kerja - Jumlah |
 
-### Employment by sector (34)
+### Employment by sector (51)
 
 | Variable | Source name | Level | Frequency | Unit | Description |
 | --- | --- | --- | --- | --- | --- |
@@ -155,6 +155,23 @@ quarterly across 3 months (both files); for one value per period add e.g. `keep 
 | `emp_share_education_pct_y` | % Share Tenaga Kerja - Jasa Pendidikan | province | annual | percent | % Share Tenaga Kerja - Jasa Pendidikan |
 | `emp_share_health_pct_y` | % Share Tenaga Kerja - Jasa Kesehatan dan Kegiatan Sosial | province | annual | percent | % Share Tenaga Kerja - Jasa Kesehatan dan Kegiatan Sosial |
 | `emp_share_other_svc_pct_y` | % Share Tenaga Kerja - Jasa Lainnya | province | annual | percent | % Share Tenaga Kerja - Jasa Lainnya |
+| `emp_share_agri_ppt_chg_y` | (derived: emp_share_agri_pct_y) | province | annual | percentage points | Perubahan tahunan (poin persen) pangsa tenaga kerja sektor Pertanian, Kehutanan & Perikanan: share_t - share_{t-1} |
+| `emp_share_mining_ppt_chg_y` | (derived: emp_share_mining_pct_y) | province | annual | percentage points | Perubahan tahunan (poin persen) pangsa tenaga kerja sektor Pertambangan & Penggalian: share_t - share_{t-1} |
+| `emp_share_manuf_ppt_chg_y` | (derived: emp_share_manuf_pct_y) | province | annual | percentage points | Perubahan tahunan (poin persen) pangsa tenaga kerja sektor Industri Pengolahan: share_t - share_{t-1} |
+| `emp_share_electricity_ppt_chg_y` | (derived: emp_share_electricity_pct_y) | province | annual | percentage points | Perubahan tahunan (poin persen) pangsa tenaga kerja sektor Pengadaan Listrik & Gas: share_t - share_{t-1} |
+| `emp_share_water_waste_ppt_chg_y` | (derived: emp_share_water_waste_pct_y) | province | annual | percentage points | Perubahan tahunan (poin persen) pangsa tenaga kerja sektor Pengadaan Air, Sampah, Limbah: share_t - share_{t-1} |
+| `emp_share_construction_ppt_chg_y` | (derived: emp_share_construction_pct_y) | province | annual | percentage points | Perubahan tahunan (poin persen) pangsa tenaga kerja sektor Konstruksi: share_t - share_{t-1} |
+| `emp_share_trade_ppt_chg_y` | (derived: emp_share_trade_pct_y) | province | annual | percentage points | Perubahan tahunan (poin persen) pangsa tenaga kerja sektor Perdagangan Besar & Eceran: share_t - share_{t-1} |
+| `emp_share_transport_ppt_chg_y` | (derived: emp_share_transport_pct_y) | province | annual | percentage points | Perubahan tahunan (poin persen) pangsa tenaga kerja sektor Transportasi & Pergudangan: share_t - share_{t-1} |
+| `emp_share_accom_food_ppt_chg_y` | (derived: emp_share_accom_food_pct_y) | province | annual | percentage points | Perubahan tahunan (poin persen) pangsa tenaga kerja sektor Akomodasi & Makan Minum: share_t - share_{t-1} |
+| `emp_share_info_comm_ppt_chg_y` | (derived: emp_share_info_comm_pct_y) | province | annual | percentage points | Perubahan tahunan (poin persen) pangsa tenaga kerja sektor Informasi & Komunikasi: share_t - share_{t-1} |
+| `emp_share_finance_ppt_chg_y` | (derived: emp_share_finance_pct_y) | province | annual | percentage points | Perubahan tahunan (poin persen) pangsa tenaga kerja sektor Jasa Keuangan & Asuransi: share_t - share_{t-1} |
+| `emp_share_real_estate_ppt_chg_y` | (derived: emp_share_real_estate_pct_y) | province | annual | percentage points | Perubahan tahunan (poin persen) pangsa tenaga kerja sektor Real Estate: share_t - share_{t-1} |
+| `emp_share_business_svc_ppt_chg_y` | (derived: emp_share_business_svc_pct_y) | province | annual | percentage points | Perubahan tahunan (poin persen) pangsa tenaga kerja sektor Jasa Perusahaan: share_t - share_{t-1} |
+| `emp_share_public_admin_ppt_chg_y` | (derived: emp_share_public_admin_pct_y) | province | annual | percentage points | Perubahan tahunan (poin persen) pangsa tenaga kerja sektor Administrasi Pemerintahan: share_t - share_{t-1} |
+| `emp_share_education_ppt_chg_y` | (derived: emp_share_education_pct_y) | province | annual | percentage points | Perubahan tahunan (poin persen) pangsa tenaga kerja sektor Jasa Pendidikan: share_t - share_{t-1} |
+| `emp_share_health_ppt_chg_y` | (derived: emp_share_health_pct_y) | province | annual | percentage points | Perubahan tahunan (poin persen) pangsa tenaga kerja sektor Jasa Kesehatan: share_t - share_{t-1} |
+| `emp_share_other_svc_ppt_chg_y` | (derived: emp_share_other_svc_pct_y) | province | annual | percentage points | Perubahan tahunan (poin persen) pangsa tenaga kerja sektor Jasa Lainnya: share_t - share_{t-1} |
 
 ### Wages (4)
 
@@ -224,7 +241,7 @@ quarterly across 3 months (both files); for one value per period add e.g. `keep 
 | `ind_firms_pmdn_share_y` | Proporsi Perusahaan PMDN | province | annual | count | Proporsi Perusahaan PMDN |
 | `ind_firms_pma_share_y` | Proporsi Perusahaan PMA | province | annual | count | Proporsi Perusahaan PMA |
 
-### Macro / PDRB (56)
+### Macro / PDRB (57)
 
 | Variable | Source name | Level | Frequency | Unit | Description |
 | --- | --- | --- | --- | --- | --- |
@@ -284,6 +301,7 @@ quarterly across 3 months (both files); for one value per period add e.g. `keep 
 | `macro_bi_rate_avg_pct_nat_y` | BI Rate (Average)* | national | annual | — | BI Rate (Average)* |
 | `macro_fx_idr_usd_nat_y` | Kurs | national | monthly, quarterly, annual | IDR per USD | Kurs |
 | `macro_consumer_conf_nat_y` | IKK | national | annual | index | IKK |
+| `macro_fx_vol_sd_nat_y` | (derived: macro_fx_idr_usd_nat) | national | annual | IDR per USD | Volatilitas nilai tukar IDR/USD: simpangan baku (SD) dari 12 kurs bulanan dalam satu tahun kalender |
 
 ### Prices (17)
 
@@ -333,7 +351,7 @@ quarterly across 3 months (both files); for one value per period add e.g. `keep 
 | `fin_fdi_y` | FDI | province | annual | — | FDI |
 | `fin_npl_y` | NPL | province | annual | — | NPL |
 
-### Growth (derived) (30)
+### Growth (derived) (37)
 
 | Variable | Source name | Level | Frequency | Unit | Description |
 | --- | --- | --- | --- | --- | --- |
@@ -367,6 +385,13 @@ quarterly across 3 months (both files); for one value per period add e.g. `keep 
 | `growth_ind_laborcost_total_y` | Pertumbuhan Pengeluaran Tenaga Kerja | province | annual | percent (growth) | Pertumbuhan Pengeluaran Tenaga Kerja |
 | `growth_ind_labor_prod_market_y` | Pertumbuhan Produktivitas (Nilai Tambah Pasar) Tenaga Kerja | province | annual | percent (growth) | Pertumbuhan Produktivitas (Nilai Tambah Pasar) Tenaga Kerja |
 | `growth_ind_labor_prod_fc_y` | Pertumbuhan Produktivitas (Nilai Tambah Produksi) Tenaga Kerja | province | annual | percent (growth) | Pertumbuhan Produktivitas (Nilai Tambah Produksi) Tenaga Kerja |
+| `growth_brent_yoy_pct_nat` | (derived: price_brent_usd_bbl_nat) | national | monthly | percent (growth) | Pertumbuhan tahunan (yoy) harga minyak Brent: (Brent_t/Brent_{t-12}-1)*100 |
+| `growth_ihpb_yoy_pct_nat` | (derived: price_ihpb_nat) | national | monthly | percent (growth) | Pertumbuhan tahunan (yoy) IHPB / Indeks Harga Perdagangan Besar (wholesale): (IHPB_t/IHPB_{t-12}-1)*100 |
+| `growth_npl_yoy_pct` | (derived: fin_npl_idr_billion) | province | monthly | percent (growth) | Pertumbuhan tahunan (yoy) NPL per provinsi: (NPL_t/NPL_{t-12}-1)*100 |
+| `growth_export_yoy_pct` | (derived: trade_export_value) | province | monthly | percent (growth) | Pertumbuhan tahunan (yoy) nilai ekspor bulanan: (Ekspor_t/Ekspor_{t-12}-1)*100 |
+| `growth_import_yoy_pct` | (derived: trade_import_value) | province | monthly | percent (growth) | Pertumbuhan tahunan (yoy) nilai impor bulanan: (Impor_t/Impor_{t-12}-1)*100 |
+| `growth_export_yoy_pct_q` | (derived: trade_export_value_usd_million_q) | province | quarterly | percent (growth) | Pertumbuhan tahunan (yoy) nilai ekspor triwulanan: (Ekspor_Q_t/Ekspor_Q_{t-4}-1)*100 |
+| `growth_import_yoy_pct_q` | (derived: trade_import_value_usd_million_q) | province | quarterly | percent (growth) | Pertumbuhan tahunan (yoy) nilai impor triwulanan: (Impor_Q_t/Impor_Q_{t-4}-1)*100 |
 
 ### Lagged (derived) (9)
 

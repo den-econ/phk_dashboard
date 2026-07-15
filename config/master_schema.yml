@@ -1,7 +1,7 @@
 # ============================================================================
 # PHK master dataset schema  -  description of every variable
 # Master : data/clean/phk_master.csv   Grain: province x month (2022-01..2025-12)
-# Source : Data untuk PHK Dashboard.xlsx only. 
+# Source : Data untuk PHK Dashboard.xlsx only.  MAP is NOT merged (reference only).
 # Built by: code/01_build_phk_master.do
 # Naming: _q quarterly, _y annual, none = monthly; _nat = national, else province.
 # Variable list is identical to dictionary/indicator_dictionary.csv.
@@ -9,10 +9,10 @@
 master_dataset: data/clean/phk_master.csv
 grain: province-month
 coverage: "2022-2025"
-primary_key: [province_name_std, province_code, year, month]
+primary_key: [province_name_std, year, month]
 source_workbook: "Data untuk PHK Dashboard.xlsx"
 n_rows: 1824
-n_columns: 257
+n_columns: 282
 
 variables:
   identity:
@@ -444,6 +444,108 @@ variables:
       data_period: "annual"
       data_level: province
       unit: "percent"
+    - name: emp_share_agri_ppt_chg_y
+      description: "Perubahan tahunan (poin persen) pangsa tenaga kerja sektor Pertanian, Kehutanan & Perikanan: share_t - share_{t-1}"
+      source_variable_name: "(derived: emp_share_agri_pct_y)"
+      data_period: "annual"
+      data_level: province
+      unit: "percentage points"
+    - name: emp_share_mining_ppt_chg_y
+      description: "Perubahan tahunan (poin persen) pangsa tenaga kerja sektor Pertambangan & Penggalian: share_t - share_{t-1}"
+      source_variable_name: "(derived: emp_share_mining_pct_y)"
+      data_period: "annual"
+      data_level: province
+      unit: "percentage points"
+    - name: emp_share_manuf_ppt_chg_y
+      description: "Perubahan tahunan (poin persen) pangsa tenaga kerja sektor Industri Pengolahan: share_t - share_{t-1}"
+      source_variable_name: "(derived: emp_share_manuf_pct_y)"
+      data_period: "annual"
+      data_level: province
+      unit: "percentage points"
+    - name: emp_share_electricity_ppt_chg_y
+      description: "Perubahan tahunan (poin persen) pangsa tenaga kerja sektor Pengadaan Listrik & Gas: share_t - share_{t-1}"
+      source_variable_name: "(derived: emp_share_electricity_pct_y)"
+      data_period: "annual"
+      data_level: province
+      unit: "percentage points"
+    - name: emp_share_water_waste_ppt_chg_y
+      description: "Perubahan tahunan (poin persen) pangsa tenaga kerja sektor Pengadaan Air, Sampah, Limbah: share_t - share_{t-1}"
+      source_variable_name: "(derived: emp_share_water_waste_pct_y)"
+      data_period: "annual"
+      data_level: province
+      unit: "percentage points"
+    - name: emp_share_construction_ppt_chg_y
+      description: "Perubahan tahunan (poin persen) pangsa tenaga kerja sektor Konstruksi: share_t - share_{t-1}"
+      source_variable_name: "(derived: emp_share_construction_pct_y)"
+      data_period: "annual"
+      data_level: province
+      unit: "percentage points"
+    - name: emp_share_trade_ppt_chg_y
+      description: "Perubahan tahunan (poin persen) pangsa tenaga kerja sektor Perdagangan Besar & Eceran: share_t - share_{t-1}"
+      source_variable_name: "(derived: emp_share_trade_pct_y)"
+      data_period: "annual"
+      data_level: province
+      unit: "percentage points"
+    - name: emp_share_transport_ppt_chg_y
+      description: "Perubahan tahunan (poin persen) pangsa tenaga kerja sektor Transportasi & Pergudangan: share_t - share_{t-1}"
+      source_variable_name: "(derived: emp_share_transport_pct_y)"
+      data_period: "annual"
+      data_level: province
+      unit: "percentage points"
+    - name: emp_share_accom_food_ppt_chg_y
+      description: "Perubahan tahunan (poin persen) pangsa tenaga kerja sektor Akomodasi & Makan Minum: share_t - share_{t-1}"
+      source_variable_name: "(derived: emp_share_accom_food_pct_y)"
+      data_period: "annual"
+      data_level: province
+      unit: "percentage points"
+    - name: emp_share_info_comm_ppt_chg_y
+      description: "Perubahan tahunan (poin persen) pangsa tenaga kerja sektor Informasi & Komunikasi: share_t - share_{t-1}"
+      source_variable_name: "(derived: emp_share_info_comm_pct_y)"
+      data_period: "annual"
+      data_level: province
+      unit: "percentage points"
+    - name: emp_share_finance_ppt_chg_y
+      description: "Perubahan tahunan (poin persen) pangsa tenaga kerja sektor Jasa Keuangan & Asuransi: share_t - share_{t-1}"
+      source_variable_name: "(derived: emp_share_finance_pct_y)"
+      data_period: "annual"
+      data_level: province
+      unit: "percentage points"
+    - name: emp_share_real_estate_ppt_chg_y
+      description: "Perubahan tahunan (poin persen) pangsa tenaga kerja sektor Real Estate: share_t - share_{t-1}"
+      source_variable_name: "(derived: emp_share_real_estate_pct_y)"
+      data_period: "annual"
+      data_level: province
+      unit: "percentage points"
+    - name: emp_share_business_svc_ppt_chg_y
+      description: "Perubahan tahunan (poin persen) pangsa tenaga kerja sektor Jasa Perusahaan: share_t - share_{t-1}"
+      source_variable_name: "(derived: emp_share_business_svc_pct_y)"
+      data_period: "annual"
+      data_level: province
+      unit: "percentage points"
+    - name: emp_share_public_admin_ppt_chg_y
+      description: "Perubahan tahunan (poin persen) pangsa tenaga kerja sektor Administrasi Pemerintahan: share_t - share_{t-1}"
+      source_variable_name: "(derived: emp_share_public_admin_pct_y)"
+      data_period: "annual"
+      data_level: province
+      unit: "percentage points"
+    - name: emp_share_education_ppt_chg_y
+      description: "Perubahan tahunan (poin persen) pangsa tenaga kerja sektor Jasa Pendidikan: share_t - share_{t-1}"
+      source_variable_name: "(derived: emp_share_education_pct_y)"
+      data_period: "annual"
+      data_level: province
+      unit: "percentage points"
+    - name: emp_share_health_ppt_chg_y
+      description: "Perubahan tahunan (poin persen) pangsa tenaga kerja sektor Jasa Kesehatan: share_t - share_{t-1}"
+      source_variable_name: "(derived: emp_share_health_pct_y)"
+      data_period: "annual"
+      data_level: province
+      unit: "percentage points"
+    - name: emp_share_other_svc_ppt_chg_y
+      description: "Perubahan tahunan (poin persen) pangsa tenaga kerja sektor Jasa Lainnya: share_t - share_{t-1}"
+      source_variable_name: "(derived: emp_share_other_svc_pct_y)"
+      data_period: "annual"
+      data_level: province
+      unit: "percentage points"
   wage:
     - name: wage_ump_idr_y
       description: "UMP (IDR)"
@@ -1072,6 +1174,12 @@ variables:
       data_period: "annual"
       data_level: national
       unit: "index"
+    - name: macro_fx_vol_sd_nat_y
+      description: "Volatilitas nilai tukar IDR/USD: simpangan baku (SD) dari 12 kurs bulanan dalam satu tahun kalender"
+      source_variable_name: "(derived: macro_fx_idr_usd_nat)"
+      data_period: "annual"
+      data_level: national
+      unit: "IDR per USD"
   price:
     - name: price_cpi_index
       description: "IHK (2010=100)"
@@ -1438,6 +1546,48 @@ variables:
       description: "Pertumbuhan Produktivitas (Nilai Tambah Produksi) Tenaga Kerja"
       source_variable_name: "Pertumbuhan Produktivitas (Nilai Tambah Produksi) Tenaga Kerja"
       data_period: "annual"
+      data_level: province
+      unit: "percent (growth)"
+    - name: growth_brent_yoy_pct_nat
+      description: "Pertumbuhan tahunan (yoy) harga minyak Brent: (Brent_t/Brent_{t-12}-1)*100"
+      source_variable_name: "(derived: price_brent_usd_bbl_nat)"
+      data_period: "monthly"
+      data_level: national
+      unit: "percent (growth)"
+    - name: growth_ihpb_yoy_pct_nat
+      description: "Pertumbuhan tahunan (yoy) IHPB / Indeks Harga Perdagangan Besar (wholesale): (IHPB_t/IHPB_{t-12}-1)*100"
+      source_variable_name: "(derived: price_ihpb_nat)"
+      data_period: "monthly"
+      data_level: national
+      unit: "percent (growth)"
+    - name: growth_npl_yoy_pct
+      description: "Pertumbuhan tahunan (yoy) NPL per provinsi: (NPL_t/NPL_{t-12}-1)*100"
+      source_variable_name: "(derived: fin_npl_idr_billion)"
+      data_period: "monthly"
+      data_level: province
+      unit: "percent (growth)"
+    - name: growth_export_yoy_pct
+      description: "Pertumbuhan tahunan (yoy) nilai ekspor bulanan: (Ekspor_t/Ekspor_{t-12}-1)*100"
+      source_variable_name: "(derived: trade_export_value)"
+      data_period: "monthly"
+      data_level: province
+      unit: "percent (growth)"
+    - name: growth_import_yoy_pct
+      description: "Pertumbuhan tahunan (yoy) nilai impor bulanan: (Impor_t/Impor_{t-12}-1)*100"
+      source_variable_name: "(derived: trade_import_value)"
+      data_period: "monthly"
+      data_level: province
+      unit: "percent (growth)"
+    - name: growth_export_yoy_pct_q
+      description: "Pertumbuhan tahunan (yoy) nilai ekspor triwulanan: (Ekspor_Q_t/Ekspor_Q_{t-4}-1)*100"
+      source_variable_name: "(derived: trade_export_value_usd_million_q)"
+      data_period: "quarterly"
+      data_level: province
+      unit: "percent (growth)"
+    - name: growth_import_yoy_pct_q
+      description: "Pertumbuhan tahunan (yoy) nilai impor triwulanan: (Impor_Q_t/Impor_Q_{t-4}-1)*100"
+      source_variable_name: "(derived: trade_import_value_usd_million_q)"
+      data_period: "quarterly"
       data_level: province
       unit: "percent (growth)"
   lag:

@@ -19,7 +19,7 @@ do code/01_build_phk_master.do        // -> data/clean/phk_master.csv
 ## Main output — `data/clean/phk_master.csv`
 
 - **Grain:** one row = province × month (identity keys: `province_name_std`, `province_code` [BPS 2-digit text], `year`, `month`, `date`, `quarter`)
-- **Coverage:** 2022–2025 (38 provinces × 48 months = **1,824 rows**, 257 columns)
+- **Coverage:** 2022–2025 (38 provinces × 48 months = **1,824 rows**, 282 columns)
 - **Source:** only `Data untuk PHK Dashboard.xlsx`, sheets `Database (Bulan / Triwulan / Tahun)`
 
 Monthly variables enter directly; **quarterly** variables repeat across the 3 months of
@@ -27,18 +27,27 @@ their quarter; **annual** variables repeat across the 12 months of their year. P
 elaborated into 17 sectors at both quarterly (`macro_pdrb_<sector>_q`) and annual
 (`macro_pdrb_<sector>_y`) grain.
 
+**Derived macro-trigger transforms** (computed by the build, not entered in raw): %yoy
+growth for Brent (`growth_brent_yoy_pct_nat`), wholesale IHPB (`growth_ihpb_yoy_pct_nat`),
+NPL (`growth_npl_yoy_pct`), and export/import at monthly (`growth_export_yoy_pct`,
+`growth_import_yoy_pct`) and quarterly (`growth_export_yoy_pct_q`, `growth_import_yoy_pct_q`)
+grain; IDR/USD annual volatility (`macro_fx_vol_sd_nat_y` = SD of the 12 monthly rates per
+year); and the year-on-year **percentage-point change** of each of the 17 employment shares
+(`emp_share_<sector>_ppt_chg_y`). yoy needs the prior year, so these are **missing in 2022**
+and start 2023 (FX volatility starts 2022). CPI %yoy already exists as `price_inflation_yoy_pct`.
+
 Every variable is documented in two places with **identical variable lists**:
 - **`config/master_schema.yml`** — name, description, source (Bahasa) name, data_period, data_level, unit.
 - **`dictionary/indicator_dictionary.csv`** — grouped by theme: `theme, variable,
   source_variable_name, data_level, data_period, source_data` (`source_data` is left blank
   for you to fill in). `data_period` lists every frequency an indicator appears at.
 
-**Variable flags — `data/clean/phk_variable_flags.csv`** (one row per indicator, 251 rows):
+**Variable flags — `data/clean/phk_variable_flags.csv`** (one row per indicator, 276 rows):
 1/0 flags for frequency (`data_bulanan`, `data_triwulan`, `data_tahunan`) and geographic
 level (`data_provinsi`, `data_nasional`). Compact per-variable reference.
 
-**Long / filterable master — `data/clean/phk_master_long.csv`** (457,824 rows = 1,824 ×
-251 variables): the same data reshaped **long** (one row per province-month-**variable**),
+**Long / filterable master — `data/clean/phk_master_long.csv`** (503,424 rows = 1,824 ×
+276 variables): the same data reshaped **long** (one row per province-month-**variable**),
 carrying the 1/0 flags as **row** columns so you can filter directly:
 
 ```stata
