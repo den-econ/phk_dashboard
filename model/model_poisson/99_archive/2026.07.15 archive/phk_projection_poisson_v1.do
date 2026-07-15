@@ -46,7 +46,7 @@
 ********************************************************************/
 	
 	* Define lags 
-	global 	LAGS 1 3 6
+	global 	LAGS 1 3 6 12
 
 	* Dependent variable	
 	global 	OUTCOME phk_flow
@@ -58,8 +58,8 @@
 		    	macro_pdrb_manuf_share_pct_y ///
 		   		lab_formal_share_pct_y ///
 		    	lab_contract_share_pct_y ///
-		    	macro_pdrb_per_wkr_growth_pct_y ///
 		    	wage_ump_growth_pct_y
+		    	//macro_pdrb_per_wkr_growth_pct_y 
 
 		// Macro Trigger
 		global 	MACRO_GLOBAL ///
@@ -89,7 +89,7 @@
 	save   	"$model/phk_master.dta", replace
 
 	* Generate province id
-	rename province_code prov_id
+	rename 	province_code prov_id
 
 	capture label drop prov_lbl
 	levelsof prov_id, local(provs)
@@ -113,6 +113,7 @@
 
 	* Define sample 
 	gen 	byte train = inrange(year,2023,2024)
+	//gen 	byte train = inrange(year,2023,2025)
 	gen 	byte valid = year==2025
 
 	* Construct lag for 1, 3, and 6 months 
@@ -153,6 +154,8 @@
 	postfile `results' lag rmse mae using ///
 	    	"$output/lag_selection.dta", replace
 
+	eststo 	clear 
+
 	foreach L of global LAGS {
 
 	    display "==================================================================="
@@ -166,19 +169,23 @@
 	    }
 
 	    // Poisson regression
-	    poisson  $OUTCOME $STRUCTURE `trigger' i.month i.prov_id if train == 1, ///
-	        	vce(cluster prov_id)
+	    eststo 	lag_`L' :  		poisson  $OUTCOME $STRUCTURE `trigger' i.month i.prov_id if train == 1, ///
+	        					vce(cluster prov_id)
+	    
+	    ereturn list
+
+	    estadd  local 	p_r2 	= string(round(e(r2_p),0.001),"%9.3f")	: lag_`L'
+		estadd 	local 	region 	"Province"								: lag_`L'
+		estadd 	local 	time  	"Month"									: lag_`L'
 
 	    // Estimate prediction 
 	    est 	save 	model_lag`L', replace
-	    est 	clear
+	    //est 	clear
 
-	    est 	use 	model_lag`L'
+	    //est 	use 	model_lag`L'
 	    cap 	drop 	phk_hat
 
 	    predict phk_hat
-	    //predict xb, xb
-	    //gen 	phk_hat = exp(xb)
 
 	    capture drop err sqerr abserr 
 
@@ -205,9 +212,23 @@
 	    restore
 	}
 
+	esttab 	lag_1 lag_3 lag_6 lag_12, keep($STRUCTURE L1_* L3_* L6_* L12_*) ///
+			mtitles b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) 
+
+	esttab 	lag_1 lag_3 lag_6 lag_12 using "$output/lag_selection_result.rtf", replace ///
+			keep($STRUCTURE L1_* L3_* L6_* L12_*) ///
+			mtitles b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) ///
+			stats(N p_r2 region time , label("Observations" "Pseudo R2" "Region FE" "Time FE") fmt(%15.0fc %4.3f 0 0))
+
+	esttab 	lag_1 lag_3 lag_6 lag_12 using "$output/lag_selection_result.csv", replace ///
+			keep($STRUCTURE L1_* L3_* L6_* L12_*) ///
+			mtitles b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) ///
+			stats(N p_r2 region time , label("Observations" "Pseudo R2" "Region FE" "Time FE") fmt(%15.0fc %4.3f 0 0))
+
 
 	postclose `results'
 
+	
 
 /********************************************************************************
 	6. SELECT BEST MODEL
@@ -220,11 +241,13 @@
 
 	local 	BEST = lag[1]
 	display "Best Lag = `BEST'"
-
-
+	
+0
 /********************************************************************************
 	7. FINAL MODEL
 ********************************************************************************/
+
+	eststo 	clear 
 
 	use    	"$output/phk_panel_data.dta", clear
 
@@ -235,12 +258,19 @@
 	    local trigger `trigger' L`BEST'_`v'
 	}
 
-	poisson  $OUTCOME $STRUCTURE `trigger' i.month i.prov_id, ///
-	        	vce(cluster prov_id)
+	eststo  final: 	poisson  $OUTCOME $STRUCTURE `trigger' i.month i.prov_id, ///
+	        		vce(cluster prov_id)
+
+	ereturn list
+	loc  	p_r2 = string(round(e(r2_p),0.01),"%9.2f")
+	di  	"`p_r2'"
 
 	est 	save "$output/phk_model_final.ster", replace
 
+	esttab 	final, keep($STRUCTURE L`BEST'_*) ///
+			mtitles b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) 
 
+	
 /********************************************************************************
 	8. PROVINCIAL PROJECTION
 ********************************************************************************/

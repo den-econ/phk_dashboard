@@ -1,0 +1,52 @@
+\begin{table}[H]\centering
+\caption{Poisson regression estimates for provincial layoff projections}
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{l*{4}{c}}
+\toprule
+& (1) & (2) & (3) & (4) \\ & Lag 1 & Lag 3 & Lag 6 & Lag 12 \\ \midrule
+\addlinespace\textbf{Structure Variables}&                     &                     &                     &                     \\
+log\_pdrb\_y  &      -9.925         &      -0.288         &     -16.355         &     -20.482\sym{*}  \\
+            &     (8.771)         &     (7.537)         &    (12.647)         &     (9.833)         \\
+manuf\_pdrb\_share\_y&       0.130         &       0.023         &       0.177         &       0.136         \\
+            &     (0.146)         &     (0.145)         &     (0.119)         &     (0.108)         \\
+manuf\_emp\_share\_y&      -0.182         &      -0.139         &      -0.160         &      -0.199         \\
+            &     (0.143)         &     (0.138)         &     (0.149)         &     (0.218)         \\
+formal\_lab\_share\_y&      -0.177         &      -0.163         &      -0.156         &      -0.147         \\
+            &     (0.100)         &     (0.097)         &     (0.105)         &     (0.115)         \\
+log\_wage\_ump\_y&      12.645\sym{*}  &      14.387         &      -1.464         &      15.909         \\
+            &     (6.379)         &     (8.163)         &     (9.691)         &    (12.935)         \\
+\addlinespace\textbf{Macroeconomic Trigger Variables}&                     &                     &                     &                     \\
+L\_log\_price\_brent&       3.049         &       0.225         &      -1.171         &       4.090\sym{***}\\
+            &     (1.881)         &     (0.991)         &     (1.156)         &     (0.955)         \\
+L\_bi\_rate\_nat&       0.241         &       0.844\sym{***}&       0.238         &       0.854\sym{*}  \\
+            &     (0.414)         &     (0.219)         &     (0.161)         &     (0.374)         \\
+L\_log\_fx\_idr\_usd&      -9.409         &      -0.810         &       0.650         &     -14.266\sym{*}  \\
+            &     (7.150)         &     (2.831)         &     (3.196)         &     (5.561)         \\
+L\_pmi\_manuf\_nat&      -0.105         &      -0.023         &      -0.047         &      -0.031         \\
+            &     (0.060)         &     (0.069)         &     (0.038)         &     (0.106)         \\
+L\_ihpb\_nat  &       0.455\sym{*}  &      -0.080         &       0.722\sym{***}&       0.338         \\
+            &     (0.193)         &     (0.249)         &     (0.173)         &     (0.212)         \\
+L\_cpi\_index &      -0.139         &      -0.070         &      -0.390\sym{*}  &      -0.176         \\
+            &     (0.142)         &     (0.141)         &     (0.178)         &     (0.152)         \\
+L\_log\_npl   &       0.086         &      -0.304         &      -0.049         &      -0.874         \\
+            &     (0.368)         &     (0.461)         &     (0.637)         &     (0.713)         \\
+L\_log\_export&      -0.316         &      -0.943\sym{*}  &       0.168         &       0.167         \\
+            &     (0.230)         &     (0.472)         &     (0.323)         &     (0.197)         \\
+L\_log\_import&      -0.200\sym{*}  &      -0.099         &      -0.012         &       0.173\sym{*}  \\
+            &     (0.084)         &     (0.102)         &     (0.078)         &     (0.079)         \\
+\midrule
+Observations&        1021         &        1018         &        1016         &        1009         \\
+DV Mean     &         224         &         224         &         224         &         226         \\
+Pseudo R$^2$&       0.585         &       0.585         &       0.587         &       0.595         \\
+Region FE   &    Province         &    Province         &    Province         &    Province         \\
+Time FE     &       Month         &       Month         &       Month         &       Month         \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\begin{tablenotes}
+\footnotesize
+\item \textit{Notes:} The dependent variable is the monthly number of layoffs (PHK) by province. Robust standard errors clustered at the province level are reported in parentheses. Columns (1)-(4) report Poisson regression estimates using macroeconomic trigger variables lagged by 1, 3, 6, and 12 months, respectively. Annual structural variables are included contemporaneously in all specifications. *, **, and *** denote statistical significance at the 10\%, 5\%, and 1\% levels.
+\end{tablenotes}
+\end{table}

@@ -1,0 +1,138 @@
+{
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{4}{D{.}{.}{-1}}}
+\toprule
+                &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
+                &\multicolumn{1}{c}{Lag 1}&\multicolumn{1}{c}{Lag 3}&\multicolumn{1}{c}{Lag 6}&\multicolumn{1}{c}{Lag 12}\\
+\midrule
+phk\_flow        &                  &                  &                  &                  \\
+log\_pdrb\_y      &   -9.925         &   -0.288         &  -16.355         &  -20.482\sym{**} \\
+                &  (8.771)         &  (7.537)         & (12.647)         &  (9.833)         \\
+\addlinespace
+manuf\_pdrb\_share\_y&    0.130         &    0.023         &    0.177         &    0.136         \\
+                &  (0.146)         &  (0.145)         &  (0.119)         &  (0.108)         \\
+\addlinespace
+manuf\_emp\_share\_y&   -0.182         &   -0.139         &   -0.160         &   -0.199         \\
+                &  (0.143)         &  (0.138)         &  (0.149)         &  (0.218)         \\
+\addlinespace
+formal\_lab\_share\_y&   -0.177\sym{*}  &   -0.163\sym{*}  &   -0.156         &   -0.147         \\
+                &  (0.100)         &  (0.097)         &  (0.105)         &  (0.115)         \\
+\addlinespace
+log\_wage\_ump\_y  &   12.645\sym{**} &   14.387\sym{*}  &   -1.464         &   15.909         \\
+                &  (6.379)         &  (8.163)         &  (9.691)         & (12.935)         \\
+\addlinespace
+L1\_log\_price\_brent&    3.049         &                  &                  &                  \\
+                &  (1.881)         &                  &                  &                  \\
+\addlinespace
+L1\_bi\_rate\_nat  &    0.241         &                  &                  &                  \\
+                &  (0.414)         &                  &                  &                  \\
+\addlinespace
+L1\_log\_fx\_idr\_usd&   -9.409         &                  &                  &                  \\
+                &  (7.150)         &                  &                  &                  \\
+\addlinespace
+L1\_pmi\_manuf\_nat&   -0.105\sym{*}  &                  &                  &                  \\
+                &  (0.060)         &                  &                  &                  \\
+\addlinespace
+L1\_ihpb\_nat     &    0.455\sym{**} &                  &                  &                  \\
+                &  (0.193)         &                  &                  &                  \\
+\addlinespace
+L1\_cpi\_index    &   -0.139         &                  &                  &                  \\
+                &  (0.142)         &                  &                  &                  \\
+\addlinespace
+L1\_log\_npl      &    0.086         &                  &                  &                  \\
+                &  (0.368)         &                  &                  &                  \\
+\addlinespace
+L1\_log\_export   &   -0.316         &                  &                  &                  \\
+                &  (0.230)         &                  &                  &                  \\
+\addlinespace
+L1\_log\_import   &   -0.200\sym{**} &                  &                  &                  \\
+                &  (0.084)         &                  &                  &                  \\
+\addlinespace
+L3\_log\_price\_brent&                  &    0.225         &                  &                  \\
+                &                  &  (0.991)         &                  &                  \\
+\addlinespace
+L3\_bi\_rate\_nat  &                  &    0.844\sym{***}&                  &                  \\
+                &                  &  (0.219)         &                  &                  \\
+\addlinespace
+L3\_log\_fx\_idr\_usd&                  &   -0.810         &                  &                  \\
+                &                  &  (2.831)         &                  &                  \\
+\addlinespace
+L3\_pmi\_manuf\_nat&                  &   -0.023         &                  &                  \\
+                &                  &  (0.069)         &                  &                  \\
+\addlinespace
+L3\_ihpb\_nat     &                  &   -0.080         &                  &                  \\
+                &                  &  (0.249)         &                  &                  \\
+\addlinespace
+L3\_cpi\_index    &                  &   -0.070         &                  &                  \\
+                &                  &  (0.141)         &                  &                  \\
+\addlinespace
+L3\_log\_npl      &                  &   -0.304         &                  &                  \\
+                &                  &  (0.461)         &                  &                  \\
+\addlinespace
+L3\_log\_export   &                  &   -0.943\sym{**} &                  &                  \\
+                &                  &  (0.472)         &                  &                  \\
+\addlinespace
+L3\_log\_import   &                  &   -0.099         &                  &                  \\
+                &                  &  (0.102)         &                  &                  \\
+\addlinespace
+L6\_log\_price\_brent&                  &                  &   -1.171         &                  \\
+                &                  &                  &  (1.156)         &                  \\
+\addlinespace
+L6\_bi\_rate\_nat  &                  &                  &    0.238         &                  \\
+                &                  &                  &  (0.161)         &                  \\
+\addlinespace
+L6\_log\_fx\_idr\_usd&                  &                  &    0.650         &                  \\
+                &                  &                  &  (3.196)         &                  \\
+\addlinespace
+L6\_pmi\_manuf\_nat&                  &                  &   -0.047         &                  \\
+                &                  &                  &  (0.038)         &                  \\
+\addlinespace
+L6\_ihpb\_nat     &                  &                  &    0.722\sym{***}&                  \\
+                &                  &                  &  (0.173)         &                  \\
+\addlinespace
+L6\_cpi\_index    &                  &                  &   -0.390\sym{**} &                  \\
+                &                  &                  &  (0.178)         &                  \\
+\addlinespace
+L6\_log\_npl      &                  &                  &   -0.049         &                  \\
+                &                  &                  &  (0.637)         &                  \\
+\addlinespace
+L6\_log\_export   &                  &                  &    0.168         &                  \\
+                &                  &                  &  (0.323)         &                  \\
+\addlinespace
+L6\_log\_import   &                  &                  &   -0.012         &                  \\
+                &                  &                  &  (0.078)         &                  \\
+\addlinespace
+L12\_log\_price\_brent&                  &                  &                  &    4.090\sym{***}\\
+                &                  &                  &                  &  (0.955)         \\
+\addlinespace
+L12\_bi\_rate\_nat &                  &                  &                  &    0.854\sym{**} \\
+                &                  &                  &                  &  (0.374)         \\
+\addlinespace
+L12\_log\_fx\_idr\_usd&                  &                  &                  &  -14.266\sym{**} \\
+                &                  &                  &                  &  (5.561)         \\
+\addlinespace
+L12\_pmi\_manuf\_nat&                  &                  &                  &   -0.031         \\
+                &                  &                  &                  &  (0.106)         \\
+\addlinespace
+L12\_ihpb\_nat    &                  &                  &                  &    0.338         \\
+                &                  &                  &                  &  (0.212)         \\
+\addlinespace
+L12\_cpi\_index   &                  &                  &                  &   -0.176         \\
+                &                  &                  &                  &  (0.152)         \\
+\addlinespace
+L12\_log\_npl     &                  &                  &                  &   -0.874         \\
+                &                  &                  &                  &  (0.713)         \\
+\addlinespace
+L12\_log\_export  &                  &                  &                  &    0.167         \\
+                &                  &                  &                  &  (0.197)         \\
+\addlinespace
+L12\_log\_import  &                  &                  &                  &    0.173\sym{**} \\
+                &                  &                  &                  &  (0.079)         \\
+\midrule
+Observations    &    1,021         &    1,018         &    1,016         &    1,009         \\
+Pseudo R-squared&                  &                  &                  &                  \\
+Province FE     & Province         & Province         & Province         & Province         \\
+Month FE        &    Month         &    Month         &    Month         &    Month         \\
+\bottomrule
+\end{tabular}
+}

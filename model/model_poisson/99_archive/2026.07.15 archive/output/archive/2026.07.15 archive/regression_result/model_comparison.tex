@@ -1,0 +1,65 @@
+\begin{table}[H]\centering
+\caption{Comparison of alternative lag specifications}
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{adjustbox}{max totalsize={\textwidth}{0.90\textheight}}
+\begin{tabular}{p{7cm}*{4}{>{\centering\arraybackslash}p{2.5cm}}}
+\toprule
+& (1) & (2) & (3) & (4) \\
+& Lag 1 & Lag 1+3 & Lag 1+3+6 & Lag 1+3+6+12 \\\\ \midrule
+\addlinespace\textbf{Structure Variables}&                     &                     &                     &                     \\
+log\_pdrb\_y          &      -9.925         &      -6.832         &      -5.206         &       2.178         \\
+manuf\_pdrb\_share\_y  &       0.130         &       0.107         &       0.092         &      -0.014         \\
+manuf\_emp\_share\_y   &      -0.182         &      -0.225         &      -0.239         &      -0.245         \\
+formal\_lab\_share\_y  &      -0.177         &      -0.161         &      -0.134         &      -0.151         \\
+log\_wage\_ump\_y      &      12.645\sym{*}  &       6.331         &      -3.811         &      13.459         \\
+\addlinespace\textbf{Macroeconomic Trigger Variables}&                     &                     &                     &                     \\
+L1\_log\_price\_brent  &       3.049         &       0.252         &       3.281         &       1.246         \\
+L1\_bi\_rate\_nat      &       0.241         &       0.464         &       1.415         &       0.835         \\
+L1\_log\_fx\_idr\_usd   &      -9.409         &       8.949         &      21.752         &      36.630\sym{**} \\
+L1\_pmi\_manuf\_nat    &      -0.105         &      -0.033         &      -0.150         &      -0.298\sym{*}  \\
+L1\_ihpb\_nat         &       0.455\sym{*}  &       1.061\sym{***}&      -0.379         &      -0.772         \\
+L1\_cpi\_index        &      -0.139         &       0.006         &       0.064         &       0.126         \\
+L1\_log\_npl          &       0.086         &       0.551         &       0.539         &       0.902         \\
+L1\_log\_export       &      -0.316         &      -0.095         &      -0.164         &      -0.298         \\
+L1\_log\_import       &      -0.200\sym{*}  &      -0.229\sym{*}  &      -0.161         &      -0.097         \\
+L3\_log\_price\_brent  &                     &      -0.698         &       4.813\sym{***}&       5.730\sym{**} \\
+L3\_bi\_rate\_nat      &                     &       0.790         &      -3.906\sym{**} &      -5.068\sym{**} \\
+L3\_log\_fx\_idr\_usd   &                     &      -1.429         &      14.520         &       5.900         \\
+L3\_pmi\_manuf\_nat    &                     &      -0.159\sym{**} &      -0.150         &      -0.214         \\
+L3\_ihpb\_nat         &                     &      -0.921\sym{**} &      -0.955\sym{**} &       0.134         \\
+L3\_cpi\_index        &                     &      -0.146         &      -0.147         &      -0.118         \\
+L3\_log\_npl          &                     &      -0.826         &      -0.974         &      -1.116         \\
+L3\_log\_export       &                     &      -0.790         &      -0.858\sym{*}  &      -0.990         \\
+L3\_log\_import       &                     &      -0.080         &      -0.113         &      -0.144         \\
+L6\_log\_price\_brent  &                     &                     &      -4.728\sym{***}&       2.000         \\
+L6\_bi\_rate\_nat      &                     &                     &       2.785\sym{***}&       4.865\sym{*}  \\
+L6\_log\_fx\_idr\_usd   &                     &                     &      25.379\sym{*}  &       7.379         \\
+L6\_pmi\_manuf\_nat    &                     &                     &       0.071         &      -0.016         \\
+L6\_ihpb\_nat         &                     &                     &       0.812         &      -0.335         \\
+L6\_cpi\_index        &                     &                     &      -0.327         &      -0.418         \\
+L6\_log\_npl          &                     &                     &       0.183         &       0.687         \\
+L6\_log\_export       &                     &                     &       0.148         &       0.026         \\
+L6\_log\_import       &                     &                     &      -0.023         &      -0.101         \\
+L12\_log\_price\_brent &                     &                     &                     &       5.652\sym{*}  \\
+L12\_bi\_rate\_nat     &                     &                     &                     &       0.989         \\
+L12\_log\_fx\_idr\_usd  &                     &                     &                     &     -35.229\sym{*}  \\
+L12\_pmi\_manuf\_nat   &                     &                     &                     &      -0.103         \\
+L12\_ihpb\_nat        &                     &                     &                     &       0.356         \\
+L12\_cpi\_index       &                     &                     &                     &      -0.309         \\
+L12\_log\_npl         &                     &                     &                     &      -0.887         \\
+L12\_log\_export      &                     &                     &                     &       0.068         \\
+L12\_log\_import      &                     &                     &                     &       0.147         \\
+\midrule
+Observations        &       1,021         &         994         &         971         &         941         \\
+Mean monthly PHK    &      223.91         &      228.49         &      232.46         &      238.16         \\
+Pseudo R$^2$        &       0.585         &       0.604         &       0.629         &       0.644         \\
+Province FE         &         Yes         &         Yes         &         Yes         &         Yes         \\
+Month FE            &         Yes         &         Yes         &         Yes         &         Yes         \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\begin{tablenotes}
+\footnotesize
+\end{tablenotes}
+\end{table}

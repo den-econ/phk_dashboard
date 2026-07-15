@@ -1,0 +1,57 @@
+{
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{1}{c}}
+\toprule
+                &\multicolumn{1}{c}{(1)}\\
+                &\multicolumn{1}{c}{phk\_flow}\\
+\midrule
+phk\_flow        &                  \\
+log\_pdrb\_y      &   -1.522         \\
+                & (11.080)         \\
+\addlinespace
+manuf\_pdrb\_share\_y&   -0.095         \\
+                &  (0.140)         \\
+\addlinespace
+manuf\_emp\_share\_y&   -0.112         \\
+                &  (0.134)         \\
+\addlinespace
+formal\_lab\_share\_y&   -0.163         \\
+                &  (0.113)         \\
+\addlinespace
+log\_wage\_ump\_y  &   -8.582         \\
+                & (10.069)         \\
+\addlinespace
+L6\_log\_price\_brent&   -1.383         \\
+                &  (3.000)         \\
+\addlinespace
+L6\_bi\_rate\_nat  &    1.419\sym{**} \\
+                &  (0.681)         \\
+\addlinespace
+L6\_log\_fx\_idr\_usd&   -5.134         \\
+                &  (4.048)         \\
+\addlinespace
+L6\_pmi\_manuf\_nat&   -0.091         \\
+                &  (0.067)         \\
+\addlinespace
+L6\_ihpb\_nat     &    0.652\sym{***}\\
+                &  (0.201)         \\
+\addlinespace
+L6\_cpi\_index    &   -0.464\sym{**} \\
+                &  (0.185)         \\
+\addlinespace
+L6\_log\_npl      &    0.775         \\
+                &  (0.677)         \\
+\addlinespace
+L6\_log\_export   &    0.146         \\
+                &  (0.381)         \\
+\addlinespace
+L6\_log\_import   &    0.017         \\
+                &  (0.065)         \\
+\midrule
+Observations    &      907         \\
+\bottomrule
+\multicolumn{2}{l}{\footnotesize Selected forecasting model: Lead 6.}\\
+\multicolumn{2}{l}{\footnotesize ,}\\
+\multicolumn{2}{l}{\footnotesize Robust standard errors clustered at the province level.}\\
+\end{tabular}
+}
