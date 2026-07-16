@@ -1,17 +1,20 @@
 # ============================================================================
 # PHK master dataset schema  -  description of every variable
-# Master : data/clean/phk_master.csv   Grain: province x month (2022-01..2025-12)
+# Master : data/clean/phk_master.csv   Grain: province x month (2022-01..2026-12)
 # Source : Data untuk PHK Dashboard.xlsx only.  MAP is NOT merged (reference only).
 # Built by: code/01_build_phk_master.do
 # Naming: _q quarterly, _y annual, none = monthly; _nat = national, else province.
+# Coverage note: MONTHLY vars run 2022-01..2026 (2026 real through ~Jul; Aug-Dec empty).
+#   QUARTERLY (_q) and ANNUAL (_y) vars run 2022..2025 only -- Triwulan/Tahun 2026 not
+#   yet in the workbook, so every _q/_y column is missing for 2026.
 # Variable list is identical to dictionary/indicator_dictionary.csv.
 # ============================================================================
 master_dataset: data/clean/phk_master.csv
 grain: province-month
-coverage: "2022-2025"
+coverage: "2022-2026"
 primary_key: [province_name_std, year, month]
 source_workbook: "Data untuk PHK Dashboard.xlsx"
-n_rows: 1824
+n_rows: 2280
 n_columns: 282
 
 variables:
@@ -1168,11 +1171,11 @@ variables:
       data_period: "monthly, quarterly, annual"
       data_level: national
       unit: "IDR per USD"
-    - name: macro_construction_cost_idx_y
-      description: "Indeks Kemahalan Konstruksi (Construction Cost Index) — provincial, annual. (Renamed from macro_consumer_conf_nat_y, which was mislabeled as national consumer confidence.)"
-      source_variable_name: "Indeks Kemahalan Konstruksi"
+    - name: macro_consumer_conf_nat_y
+      description: "IKK"
+      source_variable_name: "IKK"
       data_period: "annual"
-      data_level: province
+      data_level: national
       unit: "index"
     - name: macro_fx_vol_sd_nat_y
       description: "Volatilitas nilai tukar IDR/USD: simpangan baku (SD) dari 12 kurs bulanan dalam satu tahun kalender"

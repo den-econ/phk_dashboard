@@ -19,7 +19,9 @@ do code/01_build_phk_master.do        // -> data/clean/phk_master.csv
 ## Main output — `data/clean/phk_master.csv`
 
 - **Grain:** one row = province × month (identity keys: `province_name_std`, `province_code` [BPS 2-digit text], `year`, `month`, `date`, `quarter`)
-- **Coverage:** 2022–2025 (38 provinces × 48 months = **1,824 rows**, 282 columns)
+- **Coverage:** 2022–2026 (38 provinces × 60 months = **2,280 rows**, 282 columns). Monthly
+  2026 data currently runs through ~July (Aug–Dec present as empty rows); Triwulan/Tahun 2026
+  are not yet in the workbook, so **all `_q` and `_y` columns are missing for 2026**.
 - **Source:** only `Data untuk PHK Dashboard.xlsx`, sheets `Database (Bulan / Triwulan / Tahun)`
 
 Monthly variables enter directly; **quarterly** variables repeat across the 3 months of
@@ -46,7 +48,7 @@ Every variable is documented in two places with **identical variable lists**:
 1/0 flags for frequency (`data_bulanan`, `data_triwulan`, `data_tahunan`) and geographic
 level (`data_provinsi`, `data_nasional`). Compact per-variable reference.
 
-**Long / filterable master — `data/clean/phk_master_long.csv`** (503,424 rows = 1,824 ×
+**Long / filterable master — `data/clean/phk_master_long.csv`** (629,280 rows = 2,280 ×
 276 variables): the same data reshaped **long** (one row per province-month-**variable**),
 carrying the 1/0 flags as **row** columns so you can filter directly:
 

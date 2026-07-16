@@ -198,7 +198,7 @@ macro,macro_pdrb_per_wkr_growth_pct_y,Laju Pertumbuhan PDB Per Tenaga Kerja,prov
 macro,macro_pmi_manuf_nat_y,PMI Manufaktur,national,"monthly, quarterly, annual",
 macro,macro_bi_rate_avg_pct_nat_y,BI Rate (Average)*,national,annual,
 macro,macro_fx_idr_usd_nat_y,Kurs,national,"monthly, quarterly, annual",
-macro,macro_construction_cost_idx_y,Indeks Kemahalan Konstruksi,province,annual,
+macro,macro_consumer_conf_nat_y,IKK,national,annual,
 macro,macro_fx_vol_sd_nat_y,(derived: macro_fx_idr_usd_nat),national,annual,
 price,price_cpi_index,IHK (2010=100),province,"monthly, quarterly",
 price,price_inflation_mom_pct,Inflasi Bulanan (M-to-M),province,monthly,
