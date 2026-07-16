@@ -1168,11 +1168,11 @@ variables:
       data_period: "monthly, quarterly, annual"
       data_level: national
       unit: "IDR per USD"
-    - name: macro_consumer_conf_nat_y
-      description: "IKK"
-      source_variable_name: "IKK"
+    - name: macro_construction_cost_idx_y
+      description: "Indeks Kemahalan Konstruksi (Construction Cost Index) — provincial, annual. (Renamed from macro_consumer_conf_nat_y, which was mislabeled as national consumer confidence.)"
+      source_variable_name: "Indeks Kemahalan Konstruksi"
       data_period: "annual"
-      data_level: national
+      data_level: province
       unit: "index"
     - name: macro_fx_vol_sd_nat_y
       description: "Volatilitas nilai tukar IDR/USD: simpangan baku (SD) dari 12 kurs bulanan dalam satu tahun kalender"

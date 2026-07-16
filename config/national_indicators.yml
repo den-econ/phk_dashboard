@@ -61,9 +61,6 @@ national_indicators:
     - variable: macro_fx_idr_usd_nat_y
       source: "Kurs"
       unit: IDR per USD
-    - variable: macro_consumer_conf_nat_y
-      source: "IKK"
-      unit: index
     - variable: price_producer_index_nat_y
       source: "IHP (2016=100)"
       unit: index

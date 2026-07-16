@@ -2,29 +2,26 @@
 # LPI — Labor Market Structure (Struktur Tenaga Kerja)
 # =============================================================================
 # Layoff Pressure Index (LPI), Indonesia PHK Early-Warning Dashboard.
-# Merged indicator (former Component 1 "Exposure" + Component 2 "Signals").
 #
 # WHAT THIS COMPONENT IS
-#   A single structural index of each province's labor market: how formal /
-#   modern-sector its workforce is, together with its labor-market conditions
-#   (participation, unemployment, jobseekers) and informality/wage structure
-#   (unpaid family work, Kaitz index). Higher score = a labor-market structure
-#   more exposed and vulnerable to recorded layoffs (PHK). It is the structural
-#   pillar of the LPI; actual PHK is the TARGET it is VALIDATED against
+#   A structural index of how formal / modern-sector each province's labor market
+#   is. It is the EXPOSURE pillar of the LPI — it ranks provinces by how much of
+#   their workforce sits in the formal, recordable net (the pool that can be
+#   recorded as PHK). Actual PHK is the TARGET this index is VALIDATED against
 #   (section 5), never an input.
 #
 # METHOD
-#   Cross-sectional PCA on 9 standardized, pressure-oriented variables; PC1 =
-#   the Labor Market Structure score. The set was chosen from an extensive
-#   specification search (section 2): the 7-variable core ("V3") is the tightest
-#   single factor, and adding `unpaid family` + `Kaitz` raises both PCA adequacy
-#   (KMO) and the validation against actual PHK. Registry (vacancies/placements),
-#   statistik-industri, momentum, and claims variables all lowered KMO / validation.
+#   Cross-sectional PCA on 5 standardized variables; PC1 = the Labor Market
+#   Structure score. Variables enter in their NATURAL direction (no inversion),
+#   so loadings come out naturally + or - (formal/manufacturing/wage load
+#   positive; agriculture and participation load negative). The 5-variable set
+#   was chosen from a 4-way specification search (section 2): (TPAK vs TPT) x
+#   (minimum wage UMP vs average employee wage). TPAK + average wage ("Upah")
+#   is the only combination with KMO >= 0.6, the highest PC1, and the best PHK
+#   validation.
 #
 # GRAIN / ANCHOR
-#   province-year, anchor = 2023 (collapse master with month == 1). N = 33
-#   provinces (the 4 new Papua DOB provinces + Kepulauan Riau drop on missing
-#   inputs). Re-standardize / refit within the analysis year.
+#   province-year, anchor = 2023 (collapse master with month == 1). N = 34.
 #
 # INPUT : data/clean/phk_master.csv
 # OUTPUT: model/model_LPI/LPI_Labor_Market_Structure/outputs/lms_2023_scores.csv
@@ -41,120 +38,96 @@ ANCHOR  <- 2023
 if (!dir.exists(OUT_DIR)) dir.create(OUT_DIR, recursive = TRUE)
 
 # -----------------------------------------------------------------------------
-# 0. Helpers: per-working-pop rate, and PCA-suitability diagnostics.
+# 0. Diagnostics (PCA suitability).
 # -----------------------------------------------------------------------------
-rate     <- function(y, col) 100 * y[[col]] / y$lab_working_pop_y
-bartlett <- function(R, n) {                              # test of sphericity
+bartlett <- function(R, n) {
   p <- ncol(R); chi <- -((n - 1) - (2 * p + 5) / 6) * log(det(R))
   c(chisq = chi, df = p * (p - 1) / 2, p = pchisq(chi, p * (p - 1) / 2, lower.tail = FALSE))
 }
-kmo <- function(R) {                                      # overall KMO
-  iR <- solve(R); Q <- -cov2cor(iR)
-  r2 <- sum(R[upper.tri(R)]^2); q2 <- sum(Q[upper.tri(Q)]^2); r2 / (r2 + q2)
-}
-kmo_item <- function(R) {                                 # per-variable MSA
-  iR <- solve(R); Q <- -cov2cor(iR)
-  sapply(seq_len(ncol(R)), function(j) { r2 <- sum(R[-j, j]^2); q2 <- sum(Q[-j, j]^2); r2 / (r2 + q2) })
-}
+kmo <- function(R) { iR <- solve(R); Q <- -cov2cor(iR)
+  r2 <- sum(R[upper.tri(R)]^2); q2 <- sum(Q[upper.tri(Q)]^2); r2 / (r2 + q2) }
+kmo_item <- function(R) { iR <- solve(R); Q <- -cov2cor(iR)
+  sapply(seq_len(ncol(R)), function(j) { r2 <- sum(R[-j, j]^2); q2 <- sum(Q[-j, j]^2); r2 / (r2 + q2) }) }
 
 # -----------------------------------------------------------------------------
-# 1. Build the variable matrix for a given year, entered per each variable's RISK
-#    DIRECTION: variables where "more = more pressure" enter as-is (+); the two
-#    buffer variables (agri, tpak) where "more = less pressure" are inverted (x -1).
-#    NOTE: an individual variable's sign never changes the PCA scores/KMO/ranking/
-#    validation -- only its loading sign. PC1 is oriented so `formal` loads positive
-#    ("higher score = more formal / exposed structure"); on that axis the
-#    informality/cost markers (unpaid family, Kaitz) load NEGATIVE. Inputs are
-#    shares / rates (intensity) so province size does not dominate. `FINAL_VARS` =
-#    the chosen 9; vacancy/placement are used only by the section-2 search.
+# 1. Build the candidate matrix (NATURAL direction — no inversion).
+#    Fixed core: agriculture, formal, manufacturing employment shares.
+#    Swappable: labor-market var (TPAK | TPT) and wage var (UMP | Upah).
 # -----------------------------------------------------------------------------
-FINAL_VARS <- c("agri", "formal", "manuf", "bpjs_pu", "tpak", "tpt", "jobseek", "unpaid", "kaitz")
-
-build_matrix <- function(dat, yr) {
+build_matrix <- function(dat, yr, labor_col, wage_col) {
   y <- dat[dat$month == 1 & dat$year == yr, ]
   M <- data.frame(
-    agri      = -y$emp_share_agri_pct_y,       # REV: less agriculture = more formal exposure
-    formal    =  y$lab_formal_share_pct_y,     #      more formal employment = more recordable
-    manuf     =  y$emp_share_manuf_pct_y,      #      more manufacturing = more shock-exposed
-    bpjs_pu   =  rate(y, "bpjstk_active_pu_y"),#      more formal (PU) social-security coverage
-    tpak      = -y$lab_tpak_pct_y,             # REV: lower labor-force participation = weaker
-    tpt       =  y$lab_tpt_pct_y,              #      higher unemployment = more slack
-    jobseek   =  rate(y, "lab_job_seekers_y"), #      more registered jobseekers = more slack
-    unpaid    =  rate(y, "lab_unpaid_family_y"),# +   more unpaid family work = more informal/vulnerable
-    kaitz     =  y$wage_kaitz_index_y,          # +   higher Kaitz (min/median wage) = binds harder (cost)
-    # --- extras for the specification search only (not in the final index) ---
-    vacancy   = -rate(y, "lab_vacancies_registered_y"),  # REV: fewer vacancies = weaker demand
-    placement = -rate(y, "lab_placements_registered_y")  # REV: fewer placements = weaker demand
+    agri   = y$emp_share_agri_pct_y,      # agriculture employment share
+    formal = y$lab_formal_share_pct_y,    # formal employment share
+    manuf  = y$emp_share_manuf_pct_y,     # manufacturing employment share
+    labor  = y[[labor_col]],              # TPAK (participation) or TPT (unemployment)
+    wage   = y[[wage_col]]                # UMP (minimum) or Upah (avg employee wage)
   )
   rownames(M) <- y$province_name_std
-  M
+  M[complete.cases(M), ]
 }
 
 # -----------------------------------------------------------------------------
-# 2. Fit PCA -> oriented PC1 loadings + scores. PC1 oriented so `formal` loads
-#    positive (higher score = more pressure).
+# 2. Fit PCA -> PC1 loadings + scores. PC1 oriented so `formal` loads positive
+#    ("higher score = more formal / exposed"). No variable is inverted, so the
+#    other loadings fall out naturally (agri, TPAK negative; manuf, wage positive).
 # -----------------------------------------------------------------------------
 fit_pca <- function(M) {
-  M <- M[complete.cases(M), ]
   p <- prcomp(M, center = TRUE, scale. = TRUE)
   if (p$rotation["formal", "PC1"] < 0) { p$rotation <- -p$rotation; p$x <- -p$x }
-  ve <- p$sdev^2 / sum(p$sdev^2)
-  list(N = nrow(M), loadings = p$rotation[, 1], scores = setNames(p$x[, 1], rownames(M)),
-       var_expl = ve, eig = p$sdev^2, msa = setNames(kmo_item(cor(scale(M))), colnames(M)),
-       kmo = kmo(cor(scale(M))))
+  R <- cor(scale(M))
+  list(loadings = p$rotation[, 1], scores = setNames(p$x[, 1], rownames(M)),
+       var_expl = p$sdev^2 / sum(p$sdev^2), eig = p$sdev^2,
+       kmo = kmo(R), msa = setNames(kmo_item(R), colnames(M)), R = R, N = nrow(M))
 }
 
-d      <- read.csv(MASTER, stringsAsFactors = FALSE)
-Mall   <- build_matrix(d, ANCHOR)
-phk_y  <- setNames(d[d$month == 1 & d$year == ANCHOR, "phk_y"],
-                   d[d$month == 1 & d$year == ANCHOR, "province_name_std"])
-validate <- function(scores) {                            # Spearman vs actual PHK
-  cm <- intersect(names(scores), names(phk_y)); cm <- cm[!is.na(phk_y[cm])]
-  cor(scores[cm], phk_y[cm], method = "spearman")
+d     <- read.csv(MASTER, stringsAsFactors = FALSE)
+phk_r <- setNames(d[d$month == 1 & d$year == ANCHOR, "phk_y"] /
+                  d[d$month == 1 & d$year == ANCHOR, "lab_working_pop_y"],
+                  d[d$month == 1 & d$year == ANCHOR, "province_name_std"])
+validate <- function(scores) {
+  cm <- intersect(names(scores), names(phk_r)); cm <- cm[!is.na(phk_r[cm])]
+  cor(scores[cm], phk_r[cm], method = "spearman")
 }
 
 # =============================================================================
-# SECTION 2 — SPECIFICATION SEARCH (why these 9): compare candidate specs
+# SECTION 2 — SPECIFICATION SEARCH: 4 combinations (TPAK|TPT) x (UMP|Upah)
 # =============================================================================
-CORE7 <- c("agri", "formal", "manuf", "bpjs_pu", "tpak", "tpt", "jobseek")
-SPECS <- list(
-  "Core (7)"                    = CORE7,
-  "+ unpaid family (8)"         = c(CORE7, "unpaid"),
-  "+ Kaitz (8)"                 = c(CORE7, "kaitz"),
-  "FINAL: + unpaid + Kaitz (9)" = FINAL_VARS,
-  "+ vacancies/placements (11)" = c(FINAL_VARS, "vacancy", "placement")
+COMBOS <- list(
+  list(name = "TPAK + UMP",  labor = "lab_tpak_pct_y", wage = "wage_ump_idr_y"),
+  list(name = "TPAK + Upah", labor = "lab_tpak_pct_y", wage = "wage_avg_employee_idr_y"),
+  list(name = "TPT + UMP",   labor = "lab_tpt_pct_y",  wage = "wage_ump_idr_y"),
+  list(name = "TPT + Upah",  labor = "lab_tpt_pct_y",  wage = "wage_avg_employee_idr_y")
 )
-spec_tbl <- do.call(rbind, lapply(names(SPECS), function(nm) {
-  f <- fit_pca(Mall[, SPECS[[nm]]])
-  data.frame(spec = nm, n_vars = length(SPECS[[nm]]), N = f$N,
-             KMO = round(f$kmo, 3), PC1_pct = round(100 * f$var_expl[1], 1),
-             factors_gt1 = sum(f$eig > 1), validation_vs_PHK = round(validate(f$scores), 3))
+spec_tbl <- do.call(rbind, lapply(COMBOS, function(cb) {
+  f <- fit_pca(build_matrix(d, ANCHOR, cb$labor, cb$wage))
+  data.frame(spec = cb$name, N = f$N, KMO = round(f$kmo, 3),
+             PC1_pct = round(100 * f$var_expl[1], 1), factors_gt1 = sum(f$eig > 1),
+             validation_vs_PHK = round(validate(f$scores), 3))
 }))
-cat("================ SECTION 2: SPECIFICATION SEARCH ================\n")
+cat("================ SECTION 2: SPECIFICATION SEARCH (4 combinations) ================\n")
 print(spec_tbl, row.names = FALSE)
 write.csv(spec_tbl, file.path(OUT_DIR, "lms_specification_search.csv"), row.names = FALSE)
+cat("\nChosen: TPAK + Upah — only combo with KMO >= 0.6, highest PC1, best validation.\n")
+cat("  (UMP loads ~0 — minimum wage is administratively uniform; average wage discriminates.\n")
+cat("   TPT drags KMO below 0.5; TPAK is far cleaner.)\n")
 
 # =============================================================================
-# SECTION 3 — FINAL INDEX (9 variables)
+# SECTION 3 — FINAL INDEX: TPAK + Upah
 # =============================================================================
-M   <- Mall[, FINAL_VARS]
+M   <- build_matrix(d, ANCHOR, "lab_tpak_pct_y", "wage_avg_employee_idr_y")
 fit <- fit_pca(M)
-R   <- cor(scale(M[complete.cases(M), ]))
-cat(sprintf("\n================ SECTION 3: FINAL LABOR MARKET STRUCTURE ================\n"))
-cat(sprintf("N = %d provinces | %d variables | anchor %d\n", fit$N, length(FINAL_VARS), ANCHOR))
-cat(sprintf("KMO = %.3f (>=0.6 acceptable) | Bartlett p = %.2e\n", fit$kmo, bartlett(R, fit$N)["p"]))
-cat(sprintf("PC1 = %.1f%%  PC2 = %.1f%%  | Kaiser factors (eig>1) = %d\n\n",
-            100 * fit$var_expl[1], 100 * fit$var_expl[2], sum(fit$eig > 1)))
-cat("PC1 loadings (= structure weights) and per-variable MSA:\n")
+cat(sprintf("\n================ SECTION 3: FINAL LABOR MARKET STRUCTURE (TPAK + Upah) ================\n"))
+cat(sprintf("N = %d | KMO = %.3f | Bartlett p = %.2e | PC1 = %.1f%%  PC2 = %.1f%% | factors(eig>1) = %d\n\n",
+            fit$N, fit$kmo, bartlett(fit$R, fit$N)["p"], 100*fit$var_expl[1], 100*fit$var_expl[2], sum(fit$eig > 1)))
+cat("PC1 loadings (natural direction) + per-variable MSA:\n")
 print(round(data.frame(loading = fit$loadings, MSA = fit$msa[names(fit$loadings)]), 3))
 
-# scree
 png(file.path(OUT_DIR, "lms_scree.png"), width = 800, height = 500)
 plot(fit$eig, type = "b", pch = 19, xlab = "Component", ylab = "Eigenvalue",
-     main = "Scree plot — Labor Market Structure"); abline(h = 1, lty = 2, col = "red")
+     main = "Scree plot — Labor Market Structure (TPAK + Upah)"); abline(h = 1, lty = 2, col = "red")
 invisible(dev.off())
 
-# scores -> 0-100
 pc1 <- fit$scores; s100 <- 100 * (pc1 - min(pc1)) / (max(pc1) - min(pc1))
 scores <- data.frame(province = names(pc1), year = ANCHOR,
                      lms_pc1 = round(as.numeric(pc1), 4), lms_0_100 = round(as.numeric(s100), 1),
@@ -162,41 +135,33 @@ scores <- data.frame(province = names(pc1), year = ANCHOR,
 scores <- scores[order(-scores$lms_pc1), ]; scores$rank <- seq_len(nrow(scores))
 scores <- scores[, c("rank", "province", "year", "lms_pc1", "lms_0_100")]
 
-loadings <- data.frame(
-  variable    = names(fit$loadings),
-  pc1_loading = round(as.numeric(fit$loadings), 4),
-  orientation = c("- (inverted: low agri = high exposure)", "+", "+", "+",
-                  "- (inverted: low participation = weaker)", "+", "+",
-                  "+ (more unpaid family work = more informal)",
-                  "+ (higher Kaitz = binds harder)"),
-  stringsAsFactors = FALSE)
-
+loadings <- data.frame(variable = names(fit$loadings), pc1_loading = round(as.numeric(fit$loadings), 4),
+                       stringsAsFactors = FALSE)
 write.csv(scores,   file.path(OUT_DIR, "lms_2023_scores.csv"), row.names = FALSE)
 write.csv(loadings, file.path(OUT_DIR, "lms_loadings.csv"),    row.names = FALSE)
 cat("\nFull 2023 ranking:\n"); print(scores, row.names = FALSE)
 
 # =============================================================================
-# SECTION 4 — ROBUSTNESS
-#   (A) leave-one-out: is the index driven by any single province?
-#   (B) 2024 refit: are the loadings / ranking stable across years?
+# SECTION 4 — ROBUSTNESS (leave-one-out; 2024 refit)
 # =============================================================================
 cat("\n================ SECTION 4: ROBUSTNESS ================\n")
-loo <- sapply(rownames(M[complete.cases(M), ]), function(pv)
+loo <- sapply(rownames(M), function(pv)
   max(abs(fit_pca(M[setdiff(rownames(M), pv), ])$loadings - fit$loadings)))
 cat(sprintf("(A) Leave-one-out loading change: mean = %.3f  max = %.3f\n", mean(loo), max(loo)))
 top <- scores$province[1]
-fD  <- fit_pca(M[setdiff(rownames(M), top), ]); sh <- intersect(names(fit$scores), names(fD$scores))
+fD <- fit_pca(M[setdiff(rownames(M), top), ]); sh <- intersect(names(fit$scores), names(fD$scores))
 cat(sprintf("    Ranking Spearman, full vs top-province-dropped = %.4f\n",
             cor(fit$scores[sh], fD$scores[sh], method = "spearman")))
-f24 <- fit_pca(build_matrix(d, 2024)[, FINAL_VARS]); sh2 <- intersect(names(fit$scores), names(f24$scores))
+f24 <- fit_pca(build_matrix(d, 2024, "lab_tpak_pct_y", "wage_avg_employee_idr_y"))
+sh2 <- intersect(names(fit$scores), names(f24$scores))
 cat(sprintf("(B) 2024 refit: KMO = %.3f  PC1 = %.1f%%  loading congruence = %.3f  ranking Spearman(2023,2024) = %.3f\n",
-            f24$kmo, 100 * f24$var_expl[1], cor(fit$loadings, f24$loadings),
+            f24$kmo, 100*f24$var_expl[1], cor(fit$loadings, f24$loadings),
             cor(fit$scores[sh2], f24$scores[sh2], method = "spearman")))
 
 # =============================================================================
-# SECTION 5 — VALIDATION AGAINST ACTUAL PHK (the target; never an input)
+# SECTION 5 — VALIDATION vs ACTUAL PHK (target; never an input)
 # =============================================================================
 cat("\n================ SECTION 5: VALIDATION vs ACTUAL PHK ================\n")
-cat(sprintf("Spearman( LMS score , actual PHK_y ) = %.3f  (N = %d provinces with PHK)\n",
-            validate(fit$scores), sum(!is.na(phk_y[names(fit$scores)]))))
-cat("=> The structural index (no PHK inside) tracks real provincial layoffs.\n\nDone.\n")
+cat(sprintf("Spearman( LMS score , PHK per-worker rate ) = %.3f  (N = %d)\n",
+            validate(fit$scores), sum(!is.na(phk_r[names(fit$scores)]))))
+cat("=> Positive: the exposure index tracks where recorded layoffs concentrate. Done.\n")

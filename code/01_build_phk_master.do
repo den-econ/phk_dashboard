@@ -277,7 +277,7 @@ rename GO trade_balance_y
 rename GP fin_npl_y
 rename GQ macro_bi_rate_avg_pct_nat_y
 rename GR macro_fx_idr_usd_nat_y
-rename GS macro_consumer_conf_nat_y
+rename GS macro_construction_cost_idx_y
 keep province_name province_code year phk_y lab_formal_share_pct_y lab_formal_share_2019_pct_y ///
      lab_formal_share_chg_vs2019_y lab_contract_workers_y lab_formal_workers_y lab_contract_share_pct_y ///
      lab_contract_share_2019_pct_y lab_contract_share_chg_vs2019_y lab_working_pop_y lab_tpt_pct_y ///
@@ -327,7 +327,7 @@ keep province_name province_code year phk_y lab_formal_share_pct_y lab_formal_sh
      macro_pmi_manuf_nat_y fin_fdi_y price_inflation_yoy_q4_pct_y price_inflation_yoy_avg_pct_y ///
      price_producer_index_nat_y price_cpi_index_nat_y price_producer_change_pct_nat_y ///
      price_consumer_change_pct_nat_y trade_export_value_bps_y trade_export_value_y trade_import_value_y ///
-     trade_balance_y fin_npl_y macro_bi_rate_avg_pct_nat_y macro_fx_idr_usd_nat_y macro_consumer_conf_nat_y
+     trade_balance_y fin_npl_y macro_bi_rate_avg_pct_nat_y macro_fx_idr_usd_nat_y macro_construction_cost_idx_y
 drop in 1
 replace province_name = strtrim(province_name)
 ds province_name province_code, not
@@ -527,6 +527,7 @@ foreach v of local vars {
 export delimited using "$CLEAN/phk_variable_flags.csv", replace
 display as result "wrote phk_variable_flags.csv (`n' variables)."
 
+/* 
 *==============================================================
 * 8. LONG-format master with row-level type flags (for FILTERING).
 *    One row per province-month-variable. Filter directly, e.g.:

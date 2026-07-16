@@ -1,10 +1,6 @@
-"variable","pc1_loading","orientation"
-"agri",0.4329,"- (inverted: low agri = high exposure)"
-"formal",0.4049,"+"
-"manuf",0.2596,"+"
-"bpjs_pu",0.4046,"+"
-"tpak",0.2971,"- (inverted: low participation = weaker)"
-"tpt",0.205,"+"
-"jobseek",0.2426,"+"
-"unpaid",-0.4081,"+ (more unpaid family work = more informal)"
-"kaitz",-0.2486,"+ (higher Kaitz = binds harder)"
+"variable","pc1_loading"
+"agri",-0.5434
+"formal",0.5271
+"manuf",0.3493
+"labor",-0.3289
+"wage",0.4435

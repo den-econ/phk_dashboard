@@ -1,141 +1,106 @@
 # LPI — Labor Market Structure (Struktur Tenaga Kerja)
 
 **Layoff Pressure Index (LPI) · Indonesia PHK Early-Warning Dashboard**
-Build script: [`01_lpi_labor_market_structure.R`](01_lpi_labor_market_structure.R) · Anchor year: **2023** · Grain: **province-year** · N = **33 provinces**
-
-> This indicator **merges** the earlier Component 1 ("Labor Exposure") and Component 2 ("Labor Market
-> Signals") into one PCA index. The final **9-variable** set was selected from an extensive
-> specification search (§3): a 7-variable core plus `unpaid family workers` and the `Kaitz index`, which
-> together raise both statistical adequacy (KMO) and the validation against actual PHK.
+Build script: [`01_lpi_labor_market_structure.R`](01_lpi_labor_market_structure.R) · Anchor year: **2023** · Grain: **province-year** · N = **34 provinces**
 
 ---
 
 ## 1. What this component is
 
-**Labor Market Structure** measures how *formal, modern-sector, slack, and informal* each province's
-labor market is — combining structural composition (formality, sector mix), current labor-market
-conditions (participation, unemployment, jobseekers), and informality/wage structure (unpaid family
-work, Kaitz index). **Higher score = a labor-market structure more exposed and vulnerable to recorded
-layoffs.**
+**Labor Market Structure** measures how **formal / modern-sector** each province's labor market is —
+the size of the workforce that sits in the *formal, recordable net* and could be recorded as a
+layoff (PHK). It is the **exposure pillar** of the LPI: it ranks provinces by *how much is at stake*,
+not by whether a shock is happening.
 
-It is the **structural pillar** of the LPI. **Actual PHK is the *target* this index is validated
-against (§5) — never an input.** A high score (e.g. DKI Jakarta) means a large, formal, recordable
-workforce operating under measurable labor slack — the setting in which layoffs would register — not a
-forecast that layoffs are imminent.
+**Actual PHK is the *target* this index is validated against (§5) — never an input.** A high score
+(e.g. DKI Jakarta) means a large formal, recordable workforce — the setting in which layoffs register.
 
 ## 2. Method
 
-Cross-sectional **PCA** on 9 standardized, pressure-oriented variables → **PC1 = the Labor Market
-Structure score**.
+Cross-sectional **PCA** on **5 standardized variables** → **PC1 = the Labor Market Structure score**.
 
-- **Anchor 2023**; province-year grain (master collapsed with `month == 1`). **N = 33** (the 4 new
-  Papua DOB provinces and Kepulauan Riau drop on missing inputs).
-- Inputs are **shares / rates** (intensity), so province *size* does not dominate.
-- Each variable **standardized** (z-score) and entered per its **risk direction** (the two buffer
-  variables `agri`, `tpak` inverted). PC1 is oriented so `formal` loads positive ("higher score = more
-  formal / exposed structure"); on that axis the informality/cost markers (`unpaid`, `kaitz`) load
-  **negative**. An individual variable's sign never changes the PCA scores / KMO / ranking / validation —
-  only its loading sign.
-- Statistical adequacy: **KMO = 0.685** (≥ 0.6 acceptable), **Bartlett p = 2.5×10⁻²⁷**, **PC1 = 50.2%**,
-  **3 factors** (eigenvalue > 1). Scores reported as raw PC1 and a 0–100 rescale.
+- **Anchor 2023**, province-year grain (master collapsed with `month == 1`). **N = 34.**
+- Variables enter in their **natural direction — no inversion.** PC1 is oriented so `formal` loads
+  positive ("higher score = more formal / exposed"); the other loadings then fall out naturally
+  (agriculture and participation load **negative**; manufacturing and wage load **positive**).
+- Statistical adequacy: **KMO = 0.643** (≥ 0.6 acceptable), **Bartlett p = 4.1×10⁻¹⁴**, **PC1 = 58.2%**.
 
-## 3. Specification search — why these 9
+## 3. Specification search — why these 5 variables
 
-The variable set was chosen empirically, comparing candidate specifications on **PCA adequacy (KMO),
-single-factor strength (PC1%), dimensionality, and validation against actual PHK**:
+Three variables are fixed (agriculture, formal, manufacturing employment shares). Two were chosen from
+a **4-way search**: labor-market variable (**TPAK** participation vs **TPT** unemployment) × wage
+variable (**UMP** minimum wage vs **Upah** average employee wage):
 
-| Spec | # vars | KMO | PC1 % | Factors > 1 | Validation vs PHK |
-|---|---|---|---|---|---|
-| Core (7) | 7 | 0.660 | 50.7% | 2 | 0.567 |
-| + unpaid family | 8 | 0.655 | 53.6% | 3 | 0.583 |
-| + Kaitz | 8 | 0.680 | 47.8% | 3 | 0.563 |
-| **FINAL: + unpaid + Kaitz** | **9** | **0.685** ✅ | 50.2% | 3 | **0.592** |
-| + vacancies/placements | 11 | 0.573 | 42.8% | 4 | 0.607 |
+| Combination | KMO | PC1 % | Validation vs PHK |
+|---|---|---|---|
+| TPAK + UMP | 0.564 | 49.5% | 0.594 |
+| **TPAK + Upah** | **0.643** ✅ | **58.2%** | **0.618** |
+| TPT + UMP | 0.412 | 45.2% | 0.568 |
+| TPT + Upah | 0.500 | 54.1% | 0.566 |
 
 *(machine-readable: [`outputs/lms_specification_search.csv`](outputs/lms_specification_search.csv))*
 
-**Why the 9-variable set:** it has the **highest KMO (0.685)** and a strong PC1 (50.2%). Adding `unpaid
-family` and `Kaitz` improves adequacy, PHK validation (0.567 → 0.592), *and* year-to-year stability (§6).
-Going further (vacancies/placements) collapses KMO to 0.57 and adds a 4th factor. The 11-variable spec
-validates marginally higher (0.607) but that gain is within noise (SE ≈ 0.18 at N=33) and costs adequacy.
+**TPAK + Upah wins on every metric** — the only combination clearing **KMO ≥ 0.6**, with the highest
+PC1 and the best PHK validation. Two clear lessons from the search:
 
-**What was tested and excluded** (each lowered KMO and/or PHK validation):
-- **Labor-registry demand** (vacancies, placements) — Kemnaker administrative-data noise; drags KMO.
-- **Statistik-industri** (workers/firm, output & VA per worker, PMDN, industrial growth) — measures
-  *manufacturing-sector performance*, a different construct; fragments the index into 6–7 factors.
-- **Momentum / change** variables — a level and its own change are near-uncorrelated (~0.06); separate weak factors.
-- **BPJS layoff/claims (JKP, JHT) and PHK flow/stock** — these *are* the target (corr 0.92–0.94 with PHK);
-  including them is circular. → validation only.
+- **Average wage (Upah) ≫ minimum wage (UMP).** UMP loads ~0 (0.09–0.15) — it is administratively set
+  and fairly uniform across provinces, so it carries little cross-province information. **Average
+  employee wage genuinely discriminates** developed vs. less-developed provinces (loads 0.44).
+- **TPAK > TPT.** Participation gives far better sampling adequacy (KMO 0.56–0.64) than unemployment
+  (0.41–0.50); TPT has consistently weak MSA and drags the model down.
 
-## 4. Variables included — the final 9
+## 4. Variables included — the final 5
 
-Each variable entered per its **risk direction** (`+` = more of it → more pressure; the buffer
-variables `agri`, `tpak` are inverted). Loading sign is relative to the formal-exposure PC1.
+Natural direction (no inversion); loading sign is relative to the formal-exposure PC1.
 
-| Variable | Definition | Source column / formula | Risk dir. | PC1 loading | MSA |
-|---|---|---|:--:|---:|---:|
-| `agri` | Agriculture employment share, **inverted** | `emp_share_agri_pct_y` | − | 0.433 | 0.82 |
-| `unpaid` | Unpaid family workers (share of working pop) | `100 × lab_unpaid_family_y ÷ lab_working_pop_y` | + | **−0.408** | 0.70 |
-| `formal` | Formal employment share | `lab_formal_share_pct_y` | + | 0.405 | 0.72 |
-| `bpjs_pu` | BPJS-TK wage-earner (PU) coverage | `100 × bpjstk_active_pu_y ÷ lab_working_pop_y` | + | 0.405 | 0.82 |
-| `tpak` | Labor-force participation rate, **inverted** | `lab_tpak_pct_y` | − | 0.297 | 0.54 |
-| `manuf` | Manufacturing employment share | `emp_share_manuf_pct_y` | + | 0.260 | 0.53 |
-| `kaitz` | Kaitz index (min/median wage) | `wage_kaitz_index_y` | + | **−0.249** | 0.82 |
-| `jobseek` | Registered jobseekers | `100 × lab_job_seekers_y ÷ lab_working_pop_y` | + | 0.243 | 0.59 |
-| `tpt` | Unemployment rate (TPT) | `lab_tpt_pct_y` | + | 0.205 | 0.46 |
+| Variable | Definition | Source column | PC1 loading | MSA |
+|---|---|---|---:|---:|
+| `agri` | Agriculture employment share | `emp_share_agri_pct_y` | **−0.543** | 0.60 |
+| `formal` | Formal employment share | `lab_formal_share_pct_y` | +0.527 | 0.64 |
+| `wage` | Average employee wage (Upah buruh/karyawan/pegawai) | `wage_avg_employee_idr_y` | +0.443 | 0.87 |
+| `manuf` | Manufacturing employment share | `emp_share_manuf_pct_y` | +0.349 | 0.47 |
+| `labor` | Labor-force participation rate (TPAK) | `lab_tpak_pct_y` | −0.329 | 0.88 |
 
-*(PC1 = weight on the index; MSA = per-variable sampling adequacy. Weights CSV:
-[`outputs/lms_loadings.csv`](outputs/lms_loadings.csv).)*
+*(Weights CSV: [`outputs/lms_loadings.csv`](outputs/lms_loadings.csv).)*
 
-The structural / informality variables (`agri`, `unpaid`, `formal`, `bpjs_pu`, `kaitz`) carry the top
-loadings (by magnitude); the conditions variables (`tpak`, `manuf`, `jobseek`, `tpt`) attach as a
-secondary overlay. `unpaid` and `kaitz` are entered in their natural **`+` risk direction** (more of
-either = more informal / more cost pressure), so they load **negative** on the formal-exposure PC1 —
-high-unpaid-family and high-Kaitz provinces sit at the low-formal (rural / informal) end of the gradient.
-(Reminder: this sign choice only flips those two loadings; it does not change the scores, ranking, KMO,
-or validation — the index is identical to the earlier all-positive convention.)
+**Reading the signs (formal-exposure gradient):**
+- **Positive** — `formal`, `wage`, `manuf` → the **formal / developed** end.
+- **Negative** — `agri`, `TPAK` → the **rural / informal** end (high agriculture and high
+  participation-in-informal-work mark less-formal provinces).
+
+So PC1 is a clean "how formal / developed is the labor market" axis.
 
 ## 5. Validation against actual PHK
 
 Because PHK is the *target*, it is used to **validate** the index (not as an input):
 
-- **Spearman(LMS score, actual PHK 2023) = 0.592** (N = 33). The structural index — which contains **no
-  PHK data** — tracks real provincial layoffs at ~0.59. This is the core proof the approach works.
-- Across specs, validation ranges 0.57–0.61 with differences **within noise** (SE ≈ 0.18) — the
-  structural core does the real work; the 9-variable set is the best all-round.
+- **Spearman(LMS score, PHK per-worker rate) = 0.618** (N = 34). The exposure index tracks where
+  recorded layoffs concentrate — the positive sign is the correct behavior for an *exposure* pillar
+  (developed provinces have more recordable formal workers, hence more recorded PHK).
 
 ## 6. Robustness
 
-- **(A) Leave-one-out:** refit dropping each province — mean loading change **0.017**, max **0.133**
-  (dropping DKI Jakarta). The ranking is essentially unchanged (**Spearman = 0.997**), so the index is
-  **not driven by any single province**.
-- **(B) 2024 refit:** KMO **0.726**, PC1 **46.9%**, **ranking Spearman 2023 vs 2024 = 0.856**, loading
-  **congruence = 0.599** — all *improved* versus the 7-variable core (0.61 / 0.51 / 0.83). Adding `unpaid`
-  + `Kaitz` made the index more year-stable. Still, re-standardize/refit per year rather than freezing the
-  exact weights.
+- **(A) Leave-one-out:** refit dropping each province — mean loading change **0.016**, max **0.089**.
+  Ranking essentially unchanged (**Spearman = 0.997**); not driven by any single province (incl. DKI).
+- **(B) 2024 refit:** KMO **0.612**, PC1 **57.1%**, loading **congruence 0.977**, ranking
+  **Spearman 2023 vs 2024 = 0.907** — very stable across years.
 
 ## 7. Interpretation of results (2023)
 
 Full ranking: [`outputs/lms_2023_scores.csv`](outputs/lms_2023_scores.csv).
 
-- **Highest structure score:** DKI Jakarta (100), Banten (98), Jawa Barat (86), Kalimantan Timur (80),
-  Sulawesi Utara (75).
-- **Lowest:** Papua (0), NTT (21), Sulawesi Barat (32), NTB (36), Bengkulu (37).
-- **Reading:** the index is anchored on the **formal / urban / developed structural gradient** (which is
-  why DKI and Banten top it), with labor-conditions riding along. It is best read as *"how exposed and
-  slack this province's labor-market structure is"* — a **structural/exposure** measure, **not** a
-  standalone layoff warning. In the full LPI it is the **conditioning axis**, combined with the
-  economic-pressure and external pillars via `Risk = Exposure × Pressure` (kept separate, not averaged).
+- **Highest:** DKI Jakarta (100), Kepulauan Riau (97), Banten (87), Jawa Barat (70), Kalimantan Timur (69).
+- **Lowest:** Papua (0), NTT (11), Sulawesi Barat (16), Bengkulu (23), Lampung (24).
+- **Reading:** an exposure/structural gradient — formal, higher-wage, manufacturing-oriented provinces
+  score high; agrarian provinces low. In the full LPI this is the **exposure axis**, combined with the
+  economic-pressure pillar(s) toward the PHK warning (weights calibrated against actual PHK).
 
-## 8. Caveats to carry forward
+## 8. Caveats
 
-- **Single 2023 cross-section**, N = 33; weights re-fit per year (not frozen — see §6B).
-- **KMO 0.685 is "acceptable," not strong**, and the index has **3 factors** — a merged index spanning
-  structure + conditions + informality is inherently multi-dimensional; PC1 (50%) is the dominant axis.
-- **Exposure-flavored:** high scores reflect formal/urban structure; interpret as exposure/context, not a
-  direct forecast.
-- 4 new Papua provinces + Kepulauan Riau are out of the 2023 sample (missing inputs).
-- `tpt` (MSA 0.46) and `manuf` (0.53) are the weakest-fitting retained variables — monitor.
+- **Single 2023 cross-section**, N = 34; weights re-fit per year (they are very stable — §6B).
+- **KMO 0.643 is "acceptable," not strong** — expected for a 5-variable structural index.
+- **Exposure-flavored:** high scores = formal/developed structure; interpret as exposure/context, not
+  a standalone layoff forecast.
 
 ## 9. Reproducing
 
@@ -143,14 +108,13 @@ Full ranking: [`outputs/lms_2023_scores.csv`](outputs/lms_2023_scores.csv).
 Rscript model/model_LPI/LPI_Labor_Market_Structure/01_lpi_labor_market_structure.R
 ```
 
-Reads `data/clean/phk_master.csv`; runs the specification search, the final 9-variable index (with
-KMO/Bartlett/scree diagnostics), robustness, and PHK validation; writes the outputs below. No other files
-are touched.
+Reads `data/clean/phk_master.csv`; runs the 4-combination search, the final PCA (TPAK + Upah), robustness,
+and PHK validation; writes the outputs below.
 
 ### Outputs
 | File | Contents |
 |---|---|
-| `outputs/lms_2023_scores.csv` | 33-province Labor Market Structure index (raw PC1 + 0–100), ranked |
-| `outputs/lms_loadings.csv` | Final 9-variable PC1 weights + orientation |
-| `outputs/lms_specification_search.csv` | Candidate-spec comparison (KMO, PC1%, factors, PHK validation) |
+| `outputs/lms_2023_scores.csv` | 34-province index (raw PC1 + 0–100), ranked |
+| `outputs/lms_loadings.csv` | Final 5-variable PC1 loadings |
+| `outputs/lms_specification_search.csv` | The 4 combinations (KMO, PC1%, validation) |
 | `outputs/lms_scree.png` | Scree plot |

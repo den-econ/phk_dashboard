@@ -300,7 +300,7 @@ quarterly across 3 months (both files); for one value per period add e.g. `keep 
 | `macro_pmi_manuf_nat_y` | PMI Manufaktur | national | monthly, quarterly, annual | index | PMI Manufaktur |
 | `macro_bi_rate_avg_pct_nat_y` | BI Rate (Average)* | national | annual | — | BI Rate (Average)* |
 | `macro_fx_idr_usd_nat_y` | Kurs | national | monthly, quarterly, annual | IDR per USD | Kurs |
-| `macro_consumer_conf_nat_y` | IKK | national | annual | index | IKK |
+| `macro_construction_cost_idx_y` | Indeks Kemahalan Konstruksi | province | annual | index | Indeks Kemahalan Konstruksi (Construction Cost Index) — provincial. Renamed from `macro_consumer_conf_nat_y` (was mislabeled as national consumer confidence). |
 | `macro_fx_vol_sd_nat_y` | (derived: macro_fx_idr_usd_nat) | national | annual | IDR per USD | Volatilitas nilai tukar IDR/USD: simpangan baku (SD) dari 12 kurs bulanan dalam satu tahun kalender |
 
 ### Prices (17)
