@@ -31,8 +31,11 @@ Structure score**.
 - **Anchor 2023**; province-year grain (master collapsed with `month == 1`). **N = 33** (the 4 new
   Papua DOB provinces and Kepulauan Riau drop on missing inputs).
 - Inputs are **shares / rates** (intensity), so province *size* does not dominate.
-- All variables **standardized** (z-score) and oriented so higher = more pressure and loads positive
-  (reversals documented — the sign of an individual variable does not change the PCA scores).
+- Each variable **standardized** (z-score) and entered per its **risk direction** (the two buffer
+  variables `agri`, `tpak` inverted). PC1 is oriented so `formal` loads positive ("higher score = more
+  formal / exposed structure"); on that axis the informality/cost markers (`unpaid`, `kaitz`) load
+  **negative**. An individual variable's sign never changes the PCA scores / KMO / ranking / validation —
+  only its loading sign.
 - Statistical adequacy: **KMO = 0.685** (≥ 0.6 acceptable), **Bartlett p = 2.5×10⁻²⁷**, **PC1 = 50.2%**,
   **3 factors** (eigenvalue > 1). Scores reported as raw PC1 and a 0–100 rescale.
 
@@ -66,17 +69,18 @@ validates marginally higher (0.607) but that gain is within noise (SE ≈ 0.18 a
 
 ## 4. Variables included — the final 9
 
-All oriented so **higher = more pressure** (and, by convention, loading positive).
+Each variable entered per its **risk direction** (`+` = more of it → more pressure; the buffer
+variables `agri`, `tpak` are inverted). Loading sign is relative to the formal-exposure PC1.
 
-| Variable | Definition | Source column / formula | Orientation | PC1 loading | MSA |
+| Variable | Definition | Source column / formula | Risk dir. | PC1 loading | MSA |
 |---|---|---|:--:|---:|---:|
 | `agri` | Agriculture employment share, **inverted** | `emp_share_agri_pct_y` | − | 0.433 | 0.82 |
-| `unpaid` | Unpaid family workers (share of working pop), **inverted** | `100 × lab_unpaid_family_y ÷ lab_working_pop_y` | − | 0.408 | 0.70 |
+| `unpaid` | Unpaid family workers (share of working pop) | `100 × lab_unpaid_family_y ÷ lab_working_pop_y` | + | **−0.408** | 0.70 |
 | `formal` | Formal employment share | `lab_formal_share_pct_y` | + | 0.405 | 0.72 |
 | `bpjs_pu` | BPJS-TK wage-earner (PU) coverage | `100 × bpjstk_active_pu_y ÷ lab_working_pop_y` | + | 0.405 | 0.82 |
 | `tpak` | Labor-force participation rate, **inverted** | `lab_tpak_pct_y` | − | 0.297 | 0.54 |
 | `manuf` | Manufacturing employment share | `emp_share_manuf_pct_y` | + | 0.260 | 0.53 |
-| `kaitz` | Kaitz index (min/median wage), **inverted** | `wage_kaitz_index_y` | − | 0.249 | 0.82 |
+| `kaitz` | Kaitz index (min/median wage) | `wage_kaitz_index_y` | + | **−0.249** | 0.82 |
 | `jobseek` | Registered jobseekers | `100 × lab_job_seekers_y ÷ lab_working_pop_y` | + | 0.243 | 0.59 |
 | `tpt` | Unemployment rate (TPT) | `lab_tpt_pct_y` | + | 0.205 | 0.46 |
 
@@ -84,10 +88,12 @@ All oriented so **higher = more pressure** (and, by convention, loading positive
 [`outputs/lms_loadings.csv`](outputs/lms_loadings.csv).)*
 
 The structural / informality variables (`agri`, `unpaid`, `formal`, `bpjs_pu`, `kaitz`) carry the top
-loadings; the conditions variables (`tpak`, `manuf`, `jobseek`, `tpt`) attach as a secondary overlay.
-Note `unpaid` and `kaitz` enter **inverted** — fewer unpaid family workers and a lower Kaitz ratio mark
-the more formal / developed end of the gradient. (Reminder: inverting a single variable only flips its
-loading sign; it does not change the scores, ranking, KMO, or validation.)
+loadings (by magnitude); the conditions variables (`tpak`, `manuf`, `jobseek`, `tpt`) attach as a
+secondary overlay. `unpaid` and `kaitz` are entered in their natural **`+` risk direction** (more of
+either = more informal / more cost pressure), so they load **negative** on the formal-exposure PC1 —
+high-unpaid-family and high-Kaitz provinces sit at the low-formal (rural / informal) end of the gradient.
+(Reminder: this sign choice only flips those two loadings; it does not change the scores, ranking, KMO,
+or validation — the index is identical to the earlier all-positive convention.)
 
 ## 5. Validation against actual PHK
 

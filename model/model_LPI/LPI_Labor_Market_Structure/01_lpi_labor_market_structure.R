@@ -58,11 +58,15 @@ kmo_item <- function(R) {                                 # per-variable MSA
 }
 
 # -----------------------------------------------------------------------------
-# 1. Build the pressure-oriented variable matrix for a given year.
-#    All variables oriented so HIGHER = more layoff pressure and loads POSITIVE
-#    (reversals `x -1` marked). Inputs are shares / rates (intensity) so province
-#    size does not dominate. `FINAL_VARS` = the chosen 9; the extra columns
-#    (vacancy, placement) are used only by the specification search in section 2.
+# 1. Build the variable matrix for a given year, entered per each variable's RISK
+#    DIRECTION: variables where "more = more pressure" enter as-is (+); the two
+#    buffer variables (agri, tpak) where "more = less pressure" are inverted (x -1).
+#    NOTE: an individual variable's sign never changes the PCA scores/KMO/ranking/
+#    validation -- only its loading sign. PC1 is oriented so `formal` loads positive
+#    ("higher score = more formal / exposed structure"); on that axis the
+#    informality/cost markers (unpaid family, Kaitz) load NEGATIVE. Inputs are
+#    shares / rates (intensity) so province size does not dominate. `FINAL_VARS` =
+#    the chosen 9; vacancy/placement are used only by the section-2 search.
 # -----------------------------------------------------------------------------
 FINAL_VARS <- c("agri", "formal", "manuf", "bpjs_pu", "tpak", "tpt", "jobseek", "unpaid", "kaitz")
 
@@ -76,8 +80,8 @@ build_matrix <- function(dat, yr) {
     tpak      = -y$lab_tpak_pct_y,             # REV: lower labor-force participation = weaker
     tpt       =  y$lab_tpt_pct_y,              #      higher unemployment = more slack
     jobseek   =  rate(y, "lab_job_seekers_y"), #      more registered jobseekers = more slack
-    unpaid    = -rate(y, "lab_unpaid_family_y"),# REV: fewer unpaid family workers = more formal
-    kaitz     = -y$wage_kaitz_index_y,         # REV: lower Kaitz (min/median wage) = more developed/formal
+    unpaid    =  rate(y, "lab_unpaid_family_y"),# +   more unpaid family work = more informal/vulnerable
+    kaitz     =  y$wage_kaitz_index_y,          # +   higher Kaitz (min/median wage) = binds harder (cost)
     # --- extras for the specification search only (not in the final index) ---
     vacancy   = -rate(y, "lab_vacancies_registered_y"),  # REV: fewer vacancies = weaker demand
     placement = -rate(y, "lab_placements_registered_y")  # REV: fewer placements = weaker demand
@@ -163,8 +167,8 @@ loadings <- data.frame(
   pc1_loading = round(as.numeric(fit$loadings), 4),
   orientation = c("- (inverted: low agri = high exposure)", "+", "+", "+",
                   "- (inverted: low participation = weaker)", "+", "+",
-                  "- (inverted: fewer unpaid family = more formal)",
-                  "- (inverted: lower Kaitz = more developed/formal)"),
+                  "+ (more unpaid family work = more informal)",
+                  "+ (higher Kaitz = binds harder)"),
   stringsAsFactors = FALSE)
 
 write.csv(scores,   file.path(OUT_DIR, "lms_2023_scores.csv"), row.names = FALSE)

@@ -6,5 +6,5 @@
 "tpak",0.2971,"- (inverted: low participation = weaker)"
 "tpt",0.205,"+"
 "jobseek",0.2426,"+"
-"unpaid",0.4081,"- (inverted: fewer unpaid family = more formal)"
-"kaitz",0.2486,"- (inverted: lower Kaitz = more developed/formal)"
+"unpaid",-0.4081,"+ (more unpaid family work = more informal)"
+"kaitz",-0.2486,"+ (higher Kaitz = binds harder)"
