@@ -1,7 +1,0 @@
-"name","facet","pressure_dir","source"
-"lvl_tpt","open_unemployment","+","lab_tpt_pct_y"
-"lvl_jobseekers","open_unemployment","+","1000 * lab_job_seekers_y / lab_working_pop_y"
-"lvl_underemp","underutilisation","+","lab_underemp_share_pct_y"
-"lvl_parttime","underutilisation","+","lab_part_time_share_pct_y"
-"lvl_vacancies","labor_demand","-","1000 * lab_vacancies_registered_y / lab_working_pop_y"
-"lvl_placements","labor_demand","-","1000 * lab_placements_registered_y / lab_working_pop_y"

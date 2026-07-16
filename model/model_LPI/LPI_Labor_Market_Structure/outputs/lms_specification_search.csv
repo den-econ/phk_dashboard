@@ -1,0 +1,6 @@
+"spec","n_vars","N","KMO","PC1_pct","factors_gt1","validation_vs_PHK"
+"Core (7)",7,33,0.66,50.7,2,0.567
+"+ unpaid family (8)",8,33,0.655,53.6,3,0.583
+"+ Kaitz (8)",8,33,0.68,47.8,3,0.563
+"FINAL: + unpaid + Kaitz (9)",9,33,0.685,50.2,3,0.592
+"+ vacancies/placements (11)",11,33,0.573,42.8,4,0.607
