@@ -9,7 +9,7 @@ Human-readable companion to the machine-readable **`dictionary/indicator_diction
 | Main output | `data/clean/phk_master.csv` |
 | Grain | one row = province × month |
 | Coverage | 2022–2026 (38 provinces × 60 months = 2,280 rows) |
-| Variables | 282 columns |
+| Variables | 290 columns |
 | Build | `code/01_build_phk_master.do` (Stata) |
 
 ## Naming convention
@@ -23,7 +23,7 @@ The column name says what the variable means; frequency and level are encoded in
 ## Notes
 
 - **Coverage by frequency:** **monthly** variables run 2022–2026 (2026 real data through ~July; Aug–Dec present as empty rows). **Quarterly (`_q`) and annual (`_y`)** variables run **2022–2025 only** — Triwulan/Tahun 2026 are not yet in the workbook, so every `_q`/`_y` column is missing for 2026.
-- **National indicators (22):** repeated across province rows but are national-level — do not read as provincial variation. They carry `_nat`.
+- **National indicators (21):** repeated across province rows but are national-level — do not read as provincial variation. They carry `_nat`.
 - **PDRB:** elaborated into 17 sectors at quarterly (`macro_pdrb_<sector>_q`) and annual (`macro_pdrb_<sector>_y`) grain. Level values are **PDRB Riil (constant price / ADHK)** in **IDR milyar (billion)**. Verified: the 17 sectors sum to the total, and the 4 quarters sum to the annual.
 - **Missing vs zero:** invalid source cells (`-`, `#VALUE!`, blank) import as **missing**, never zero.
 - Units are taken as-is from the workbook; no conversion is applied in the build.
@@ -31,10 +31,8 @@ The column name says what the variable means; frequency and level are encoded in
 ## Using the data by frequency / level
 
 Frequency and geographic level are encoded in each variable's **name**: `_q` = quarterly,
-`_y` = annual, no suffix = monthly; `_nat` = national, otherwise provincial. Pick a subset in
-one of two ways.
-
-**Wide master (`phk_master.csv`)** — one row = province x month; select by **column**:
+`_y` = annual, no suffix = monthly; `_nat` = national, otherwise provincial. The master
+(`phk_master.csv`) is one row = province x month; select a subset by **column**:
 
 ```stata
 import delimited "data/clean/phk_master.csv", clear varnames(1)
@@ -45,20 +43,9 @@ ds *nat*
 drop `r(varlist)'                                                    // provincial only (drop national)
 ```
 
-**Long master (`phk_master_long.csv`)** — one row = province-month-variable; filter by **row**:
-
-```stata
-import delimited "data/clean/phk_master_long.csv", clear varnames(1)
-keep if data_triwulan==1     // quarterly variables
-keep if data_tahunan==1      // annual variables
-keep if data_bulanan==1      // monthly variables
-keep if data_nasional==1     // national variables
-keep if data_provinsi==1     // provincial variables
-```
-
 **Reminders.** National variables are repeated across all provinces - do not read them as
 provincial variation. Annual values are broadcast across the 12 months of their year and
-quarterly across 3 months (both files); for one value per period add e.g. `keep if month==1`
+quarterly across 3 months; for one value per period add e.g. `keep if month==1`
 (annual) or `keep if inlist(month,1,4,7,10)` (quarterly).
 
 ## Variables by theme
@@ -246,9 +233,9 @@ quarterly across 3 months (both files); for one value per period add e.g. `keep 
 
 | Variable | Source name | Level | Frequency | Unit | Description |
 | --- | --- | --- | --- | --- | --- |
-| `macro_pmi_manuf_nat` | PMI Manufaktur S&P | national | monthly, quarterly, annual | index | PMI Manufaktur S&P |
-| `macro_bi_rate_pct_nat` | BI Rate | national | monthly, quarterly | — | BI Rate |
-| `macro_fx_idr_usd_nat` | Kurs | national | monthly, quarterly, annual | IDR per USD | Kurs |
+| `macro_pmi_manuf_nat` | PMI Manufaktur S&P (indeks) | national | monthly, quarterly, annual | index | PMI Manufaktur S&P (indeks) |
+| `macro_bi_rate_pct_nat` | BI Rate (persen) | national | monthly, quarterly | — | BI Rate (persen) |
+| `macro_fx_idr_usd_nat` | Kurs (IDR/USD) | national | monthly, quarterly, annual | IDR per USD | Kurs (IDR/USD) |
 | `macro_pdrb_q` | PDRB (IDR milyar) | province | quarterly | IDR billion | PDRB (IDR milyar) - PDRB Riil (constant price / ADHK) |
 | `macro_pdrb_agri_q` | PDRB Pertanian, Kehutanan dan Perikanan (IDR milyar) | province | quarterly, annual | IDR billion | PDRB Pertanian, Kehutanan dan Perikanan (IDR milyar) - PDRB Riil (constant price / ADHK) |
 | `macro_pdrb_mining_q` | PDRB Pertambangan dan Penggalian (IDR milyar) | province | quarterly, annual | IDR billion | PDRB Pertambangan dan Penggalian (IDR milyar) - PDRB Riil (constant price / ADHK) |
@@ -301,7 +288,7 @@ quarterly across 3 months (both files); for one value per period add e.g. `keep 
 | `macro_pmi_manuf_nat_y` | PMI Manufaktur | national | monthly, quarterly, annual | index | PMI Manufaktur |
 | `macro_bi_rate_avg_pct_nat_y` | BI Rate (Average)* | national | annual | — | BI Rate (Average)* |
 | `macro_fx_idr_usd_nat_y` | Kurs | national | monthly, quarterly, annual | IDR per USD | Kurs |
-| `macro_consumer_conf_nat_y` | IKK | national | annual | index | IKK |
+| `macro_construction_cost_index_y` | Indeks Kemahalan Konstruksi | province | annual | index | Indeks Kemahalan Konstruksi |
 | `macro_fx_vol_sd_nat_y` | (derived: macro_fx_idr_usd_nat) | national | annual | IDR per USD | Volatilitas nilai tukar IDR/USD: simpangan baku (SD) dari 12 kurs bulanan dalam satu tahun kalender |
 
 ### Prices (17)
@@ -311,9 +298,9 @@ quarterly across 3 months (both files); for one value per period add e.g. `keep 
 | `price_cpi_index` | IHK (2010=100) | province | monthly, quarterly | index | IHK (2010=100) |
 | `price_inflation_mom_pct` | Inflasi Bulanan (M-to-M) | province | monthly | percent | Inflasi Bulanan (M-to-M) |
 | `price_inflation_yoy_pct` | Inflasi Tahunan (Y-on-Y) | province | monthly | percent | Inflasi Tahunan (Y-on-Y) |
-| `price_consumer_change_pct` | Perubahan Harga Konsumen | province | monthly, quarterly | percent | Perubahan Harga Konsumen |
+| `price_consumer_change_pct` | Perubahan Harga Konsumen (persen, YoY) | province | monthly, quarterly | percent | Perubahan Harga Konsumen (persen, YoY) |
 | `price_brent_usd_bbl_nat` | Harga Minyak Brent (USD/barrel) | national | monthly | USD per barrel | Harga Minyak Brent (USD/barrel) |
-| `price_ihpb_nat` | IHPB | national | monthly | — | IHPB |
+| `price_ihpb_nat` | IHPB (indeks) | national | monthly | — | IHPB (indeks) |
 | `price_producer_index_nat_q` | IHP (2016=100) | national | quarterly, annual | index | IHP (2016=100) |
 | `price_producer_change_pct_nat_q` | Perubahan Harga Produsen** | national | quarterly, annual | — | Perubahan Harga Produsen** |
 | `price_producer_ceic_pct_nat_q` | Perubahan Harga Produsen (CEIC) | national | quarterly | — | Perubahan Harga Produsen (CEIC) |
@@ -330,27 +317,35 @@ quarterly across 3 months (both files); for one value per period add e.g. `keep 
 
 | Variable | Source name | Level | Frequency | Unit | Description |
 | --- | --- | --- | --- | --- | --- |
-| `trade_export_value` | Nilai Ekspor | province | monthly, annual | — | Nilai Ekspor |
-| `trade_import_value` | Nilai Impor | province | monthly, annual | — | Nilai Impor |
-| `trade_balance` | Neraca Perdagangan | province | monthly, annual | — | Neraca Perdagangan |
+| `trade_export_value` | Nilai Ekspor (USD juta) | province | monthly, annual | — | Nilai Ekspor (USD juta) |
+| `trade_import_value` | Nilai Impor (USD juta) | province | monthly, annual | — | Nilai Impor (USD juta) |
+| `trade_balance` | Neraca Perdagangan (USD juta) | province | monthly, annual | — | Neraca Perdagangan (USD juta) |
 | `trade_export_value_usd_million_q` | Nilai Ekspor (USD juta) | province | quarterly | USD million | Nilai Ekspor (USD juta) |
 | `trade_import_value_usd_million_q` | Nilai Impor (USD juta) | province | quarterly | USD million | Nilai Impor (USD juta) |
 | `trade_balance_usd_million_q` | Neraca Perdagangan* | province | quarterly | USD million | Neraca Perdagangan* |
-| `trade_export_value_bps_y` | Nilai Ekspor BPS | province | annual | — | Nilai Ekspor BPS |
-| `trade_export_value_y` | Nilai Ekspor | province | monthly, annual | — | Nilai Ekspor |
-| `trade_import_value_y` | Nilai Impor | province | monthly, annual | — | Nilai Impor |
+| `trade_export_value_bps_y` | Nilai Ekspor BPS (USD juta) | province | annual | — | Nilai Ekspor BPS (USD juta) |
+| `trade_export_value_y` | Nilai Ekspor (USD juta) | province | monthly, annual | — | Nilai Ekspor (USD juta) |
+| `trade_import_value_y` | Nilai Impor (USD juta) | province | monthly, annual | — | Nilai Impor (USD juta) |
 | `trade_balance_y` | Neraca Perdagangan | province | monthly, annual | — | Neraca Perdagangan |
 
-### Finance (6)
+### Finance (14)
 
 | Variable | Source name | Level | Frequency | Unit | Description |
 | --- | --- | --- | --- | --- | --- |
+| `fin_total_credit_idr_billion` | Total Kredit (IDR miliar) | province | monthly, quarterly, annual | IDR billion | Total Kredit (IDR miliar) |
 | `fin_npl_idr_billion` | NPL (IDR miliar) | province | monthly, quarterly | IDR billion | NPL (IDR miliar) |
+| `fin_npl_ratio_pct` | NPL Ratio | province | monthly, quarterly, annual | percent | NPL Ratio |
 | `fin_fdi_usd_million_q` | FDI (USD mn) | province | quarterly | USD million | FDI (USD mn) |
 | `fin_fdi_idr_million_q` | FDI (IDR mn) | province | quarterly | IDR million | FDI (IDR mn) |
+| `fin_total_credit_idr_billion_q` | Total Credits, End of Quarter (IDR miliar) | province | monthly, quarterly, annual | IDR billion | Total Credits, End of Quarter (IDR miliar) |
 | `fin_npl_idr_billion_q` | NPL, End of Quarter (IDR miliar) | province | monthly, quarterly | IDR billion | NPL, End of Quarter (IDR miliar) |
+| `fin_npl_ratio_pct_q` | NPL Ratio | province | monthly, quarterly, annual | percent | NPL Ratio |
 | `fin_fdi_y` | FDI | province | annual | — | FDI |
-| `fin_npl_y` | NPL | province | annual | — | NPL |
+| `fin_total_credit_idr_billion_y` | Total Credits, End of Year (IDR miliar) | province | monthly, quarterly, annual | IDR billion | Total Credits, End of Year (IDR miliar) |
+| `fin_npl_y` | NPL, End of Year (IDR miliar) | province | annual | — | NPL, End of Year (IDR miliar) |
+| `fin_npl_ratio_pct_y` | NPL Ratio, End of Year | province | monthly, quarterly, annual | percent | NPL Ratio, End of Year |
+| `fin_npl_ratio_2020_pct_y` | NPL Ratio, End of Year (2020) | province | annual | percent | NPL Ratio, End of Year (2020) |
+| `fin_npl_ratio_2021_pct_y` | NPL Ratio, End of Year (2021) | province | annual | percent | NPL Ratio, End of Year (2021) |
 
 ### Growth (derived) (37)
 

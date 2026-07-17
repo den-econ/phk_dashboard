@@ -15,7 +15,7 @@ coverage: "2022-2026"
 primary_key: [province_name_std, year, month]
 source_workbook: "Data untuk PHK Dashboard.xlsx"
 n_rows: 2280
-n_columns: 282
+n_columns: 290
 
 variables:
   identity:
@@ -845,19 +845,19 @@ variables:
       unit: "count"
   macro:
     - name: macro_pmi_manuf_nat
-      description: "PMI Manufaktur S&P"
-      source_variable_name: "PMI Manufaktur S&P"
+      description: "PMI Manufaktur S&P (indeks)"
+      source_variable_name: "PMI Manufaktur S&P (indeks)"
       data_period: "monthly, quarterly, annual"
       data_level: national
       unit: "index"
     - name: macro_bi_rate_pct_nat
-      description: "BI Rate"
-      source_variable_name: "BI Rate"
+      description: "BI Rate (persen)"
+      source_variable_name: "BI Rate (persen)"
       data_period: "monthly, quarterly"
       data_level: national
     - name: macro_fx_idr_usd_nat
-      description: "Kurs"
-      source_variable_name: "Kurs"
+      description: "Kurs (IDR/USD)"
+      source_variable_name: "Kurs (IDR/USD)"
       data_period: "monthly, quarterly, annual"
       data_level: national
       unit: "IDR per USD"
@@ -1171,11 +1171,11 @@ variables:
       data_period: "monthly, quarterly, annual"
       data_level: national
       unit: "IDR per USD"
-    - name: macro_consumer_conf_nat_y
-      description: "IKK"
-      source_variable_name: "IKK"
+    - name: macro_construction_cost_index_y
+      description: "Indeks Kemahalan Konstruksi"
+      source_variable_name: "Indeks Kemahalan Konstruksi"
       data_period: "annual"
-      data_level: national
+      data_level: province
       unit: "index"
     - name: macro_fx_vol_sd_nat_y
       description: "Volatilitas nilai tukar IDR/USD: simpangan baku (SD) dari 12 kurs bulanan dalam satu tahun kalender"
@@ -1203,8 +1203,8 @@ variables:
       data_level: province
       unit: "percent"
     - name: price_consumer_change_pct
-      description: "Perubahan Harga Konsumen"
-      source_variable_name: "Perubahan Harga Konsumen"
+      description: "Perubahan Harga Konsumen (persen, YoY)"
+      source_variable_name: "Perubahan Harga Konsumen (persen, YoY)"
       data_period: "monthly, quarterly"
       data_level: province
       unit: "percent"
@@ -1215,8 +1215,8 @@ variables:
       data_level: national
       unit: "USD per barrel"
     - name: price_ihpb_nat
-      description: "IHPB"
-      source_variable_name: "IHPB"
+      description: "IHPB (indeks)"
+      source_variable_name: "IHPB (indeks)"
       data_period: "monthly"
       data_level: national
     - name: price_producer_index_nat_q
@@ -1283,18 +1283,18 @@ variables:
       data_level: national
   trade:
     - name: trade_export_value
-      description: "Nilai Ekspor"
-      source_variable_name: "Nilai Ekspor"
+      description: "Nilai Ekspor (USD juta)"
+      source_variable_name: "Nilai Ekspor (USD juta)"
       data_period: "monthly, annual"
       data_level: province
     - name: trade_import_value
-      description: "Nilai Impor"
-      source_variable_name: "Nilai Impor"
+      description: "Nilai Impor (USD juta)"
+      source_variable_name: "Nilai Impor (USD juta)"
       data_period: "monthly, annual"
       data_level: province
     - name: trade_balance
-      description: "Neraca Perdagangan"
-      source_variable_name: "Neraca Perdagangan"
+      description: "Neraca Perdagangan (USD juta)"
+      source_variable_name: "Neraca Perdagangan (USD juta)"
       data_period: "monthly, annual"
       data_level: province
     - name: trade_export_value_usd_million_q
@@ -1316,18 +1316,18 @@ variables:
       data_level: province
       unit: "USD million"
     - name: trade_export_value_bps_y
-      description: "Nilai Ekspor BPS"
-      source_variable_name: "Nilai Ekspor BPS"
+      description: "Nilai Ekspor BPS (USD juta)"
+      source_variable_name: "Nilai Ekspor BPS (USD juta)"
       data_period: "annual"
       data_level: province
     - name: trade_export_value_y
-      description: "Nilai Ekspor"
-      source_variable_name: "Nilai Ekspor"
+      description: "Nilai Ekspor (USD juta)"
+      source_variable_name: "Nilai Ekspor (USD juta)"
       data_period: "monthly, annual"
       data_level: province
     - name: trade_import_value_y
-      description: "Nilai Impor"
-      source_variable_name: "Nilai Impor"
+      description: "Nilai Impor (USD juta)"
+      source_variable_name: "Nilai Impor (USD juta)"
       data_period: "monthly, annual"
       data_level: province
     - name: trade_balance_y
@@ -1336,12 +1336,24 @@ variables:
       data_period: "monthly, annual"
       data_level: province
   finance:
+    - name: fin_total_credit_idr_billion
+      description: "Total Kredit (IDR miliar)"
+      source_variable_name: "Total Kredit (IDR miliar)"
+      data_period: "monthly, quarterly, annual"
+      data_level: province
+      unit: "IDR billion"
     - name: fin_npl_idr_billion
       description: "NPL (IDR miliar)"
       source_variable_name: "NPL (IDR miliar)"
       data_period: "monthly, quarterly"
       data_level: province
       unit: "IDR billion"
+    - name: fin_npl_ratio_pct
+      description: "NPL Ratio"
+      source_variable_name: "NPL Ratio"
+      data_period: "monthly, quarterly, annual"
+      data_level: province
+      unit: "percent"
     - name: fin_fdi_usd_million_q
       description: "FDI (USD mn)"
       source_variable_name: "FDI (USD mn)"
@@ -1354,22 +1366,58 @@ variables:
       data_period: "quarterly"
       data_level: province
       unit: "IDR million"
+    - name: fin_total_credit_idr_billion_q
+      description: "Total Credits, End of Quarter (IDR miliar)"
+      source_variable_name: "Total Credits, End of Quarter (IDR miliar)"
+      data_period: "monthly, quarterly, annual"
+      data_level: province
+      unit: "IDR billion"
     - name: fin_npl_idr_billion_q
       description: "NPL, End of Quarter (IDR miliar)"
       source_variable_name: "NPL, End of Quarter (IDR miliar)"
       data_period: "monthly, quarterly"
       data_level: province
       unit: "IDR billion"
+    - name: fin_npl_ratio_pct_q
+      description: "NPL Ratio"
+      source_variable_name: "NPL Ratio"
+      data_period: "monthly, quarterly, annual"
+      data_level: province
+      unit: "percent"
     - name: fin_fdi_y
       description: "FDI"
       source_variable_name: "FDI"
       data_period: "annual"
       data_level: province
+    - name: fin_total_credit_idr_billion_y
+      description: "Total Credits, End of Year (IDR miliar)"
+      source_variable_name: "Total Credits, End of Year (IDR miliar)"
+      data_period: "monthly, quarterly, annual"
+      data_level: province
+      unit: "IDR billion"
     - name: fin_npl_y
-      description: "NPL"
-      source_variable_name: "NPL"
+      description: "NPL, End of Year (IDR miliar)"
+      source_variable_name: "NPL, End of Year (IDR miliar)"
       data_period: "annual"
       data_level: province
+    - name: fin_npl_ratio_pct_y
+      description: "NPL Ratio, End of Year"
+      source_variable_name: "NPL Ratio, End of Year"
+      data_period: "monthly, quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: fin_npl_ratio_2020_pct_y
+      description: "NPL Ratio, End of Year (2020)"
+      source_variable_name: "NPL Ratio, End of Year (2020)"
+      data_period: "annual"
+      data_level: province
+      unit: "percent"
+    - name: fin_npl_ratio_2021_pct_y
+      description: "NPL Ratio, End of Year (2021)"
+      source_variable_name: "NPL Ratio, End of Year (2021)"
+      data_period: "annual"
+      data_level: province
+      unit: "percent"
   growth:
     - name: growth_lab_working_pop_y
       description: "Pertumbuhan Bekerja"

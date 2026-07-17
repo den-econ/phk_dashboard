@@ -19,7 +19,7 @@ do code/01_build_phk_master.do        // -> data/clean/phk_master.csv
 ## Main output — `data/clean/phk_master.csv`
 
 - **Grain:** one row = province × month (identity keys: `province_name_std`, `province_code` [BPS 2-digit text], `year`, `month`, `date`, `quarter`)
-- **Coverage:** 2022–2026 (38 provinces × 60 months = **2,280 rows**, 282 columns). Monthly
+- **Coverage:** 2022–2026 (38 provinces × 60 months = **2,280 rows**, 290 columns). Monthly
   2026 data currently runs through ~July (Aug–Dec present as empty rows); Triwulan/Tahun 2026
   are not yet in the workbook, so **all `_q` and `_y` columns are missing for 2026**.
 - **Source:** only `Data untuk PHK Dashboard.xlsx`, sheets `Database (Bulan / Triwulan / Tahun)`
@@ -44,28 +44,12 @@ Every variable is documented in two places with **identical variable lists**:
   source_variable_name, data_level, data_period, source_data` (`source_data` is left blank
   for you to fill in). `data_period` lists every frequency an indicator appears at.
 
-**Variable flags — `data/clean/phk_variable_flags.csv`** (one row per indicator, 276 rows):
+**Variable flags — `data/clean/phk_variable_flags.csv`** (one row per indicator, 284 rows):
 1/0 flags for frequency (`data_bulanan`, `data_triwulan`, `data_tahunan`) and geographic
 level (`data_provinsi`, `data_nasional`). Compact per-variable reference.
 
-**Long / filterable master — `data/clean/phk_master_long.csv`** (629,280 rows = 2,280 ×
-276 variables): the same data reshaped **long** (one row per province-month-**variable**),
-carrying the 1/0 flags as **row** columns so you can filter directly:
-
-```stata
-import delimited "data/clean/phk_master_long.csv", clear varnames(1)
-keep if data_triwulan==1     // quarterly variables only
-keep if data_tahunan==1      // annual variables only
-keep if data_nasional==1     // national variables only
-```
-
-Columns: `province_name_std, province_code, year, month, date, quarter, variable, value,
-data_bulanan, data_triwulan, data_tahunan, data_provinsi, data_nasional`. Note: annual
-values are repeated across the 12 months of their year and quarterly across 3 months (same
-as the wide master); add `keep if month==1` (annual) or one month per quarter to de-duplicate.
-
-> **Using the data by frequency / level** (wide column-select vs. long row-filter, with
-> ready Stata recipes) is documented in **`dictionary/data_dictionary.md`**.
+> **Using the data by frequency / level** (column-select recipes) is documented in
+> **`dictionary/data_dictionary.md`** and below.
 
 ### Reading the column names
 
@@ -108,8 +92,6 @@ drop `r(varlist)'
 Annual/quarterly values are broadcast across months, so after `keep ... *_y` add
 `keep if month==1` (then `duplicates drop`) for one row per province-year; for `*_q`
 keep one month per quarter (`keep if inlist(month,1,4,7,10)`).
-
-For row-style filtering (`keep if data_triwulan==1`), use `phk_master_long.csv` instead (above).
 
 Columns are renamed by **Excel position**, using the
 verified rename blocks inside `code/01_build_phk_master.do`. If the workbook's column

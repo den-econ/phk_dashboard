@@ -50,15 +50,17 @@ rename L price_consumer_change_pct
 rename M trade_export_value
 rename N trade_import_value
 rename O trade_balance
-rename P fin_npl_idr_billion
-rename Q macro_bi_rate_pct_nat
-rename R macro_fx_idr_usd_nat
-rename S price_brent_usd_bbl_nat
-rename T price_ihpb_nat
+rename P fin_total_credit_idr_billion
+rename Q fin_npl_idr_billion
+rename R fin_npl_ratio_pct
+rename S macro_bi_rate_pct_nat
+rename T macro_fx_idr_usd_nat
+rename U price_brent_usd_bbl_nat
+rename V price_ihpb_nat
 keep province_name province_code year month phk_stock phk_flow macro_pmi_manuf_nat price_cpi_index ///
      price_inflation_mom_pct price_inflation_yoy_pct price_consumer_change_pct trade_export_value ///
-     trade_import_value trade_balance fin_npl_idr_billion macro_bi_rate_pct_nat macro_fx_idr_usd_nat ///
-     price_brent_usd_bbl_nat price_ihpb_nat
+     trade_import_value trade_balance fin_total_credit_idr_billion fin_npl_idr_billion fin_npl_ratio_pct ///
+     macro_bi_rate_pct_nat macro_fx_idr_usd_nat price_brent_usd_bbl_nat price_ihpb_nat
 drop in 1
 replace province_name = strtrim(province_name)
 ds province_name province_code, not
@@ -274,10 +276,14 @@ rename GL trade_export_value_bps_y
 rename GM trade_export_value_y
 rename GN trade_import_value_y
 rename GO trade_balance_y
-rename GP fin_npl_y
-rename GQ macro_bi_rate_avg_pct_nat_y
-rename GR macro_fx_idr_usd_nat_y
-rename GS macro_consumer_conf_nat_y
+rename GP fin_total_credit_idr_billion_y
+rename GQ fin_npl_y
+rename GR fin_npl_ratio_pct_y
+rename GS fin_npl_ratio_2020_pct_y
+rename GT fin_npl_ratio_2021_pct_y
+rename GU macro_bi_rate_avg_pct_nat_y
+rename GV macro_fx_idr_usd_nat_y
+rename GW macro_construction_cost_index_y
 keep province_name province_code year phk_y lab_formal_share_pct_y lab_formal_share_2019_pct_y ///
      lab_formal_share_chg_vs2019_y lab_contract_workers_y lab_formal_workers_y lab_contract_share_pct_y ///
      lab_contract_share_2019_pct_y lab_contract_share_chg_vs2019_y lab_working_pop_y lab_tpt_pct_y ///
@@ -327,7 +333,9 @@ keep province_name province_code year phk_y lab_formal_share_pct_y lab_formal_sh
      macro_pmi_manuf_nat_y fin_fdi_y price_inflation_yoy_q4_pct_y price_inflation_yoy_avg_pct_y ///
      price_producer_index_nat_y price_cpi_index_nat_y price_producer_change_pct_nat_y ///
      price_consumer_change_pct_nat_y trade_export_value_bps_y trade_export_value_y trade_import_value_y ///
-     trade_balance_y fin_npl_y macro_bi_rate_avg_pct_nat_y macro_fx_idr_usd_nat_y macro_consumer_conf_nat_y
+     trade_balance_y fin_total_credit_idr_billion_y fin_npl_y fin_npl_ratio_pct_y fin_npl_ratio_2020_pct_y ///
+     fin_npl_ratio_2021_pct_y macro_bi_rate_avg_pct_nat_y macro_fx_idr_usd_nat_y ///
+     macro_construction_cost_index_y
 drop in 1
 replace province_name = strtrim(province_name)
 ds province_name province_code, not
@@ -395,9 +403,11 @@ rename AK price_consumer_change_pct_q
 rename AL trade_export_value_usd_million_q
 rename AM trade_import_value_usd_million_q
 rename AN trade_balance_usd_million_q
-rename AO fin_npl_idr_billion_q
-rename AP macro_bi_rate_pct_nat_q
-rename AQ macro_fx_idr_usd_nat_q
+rename AO fin_total_credit_idr_billion_q
+rename AP fin_npl_idr_billion_q
+rename AQ fin_npl_ratio_pct_q
+rename AR macro_bi_rate_pct_nat_q
+rename AS macro_fx_idr_usd_nat_q
 keep province_name province_code year quarter quarter_end_month_label phk_stock_q phk_flow_q macro_pdrb_q ///
      macro_pdrb_agri_q macro_pdrb_mining_q macro_pdrb_manuf_q macro_pdrb_electricity_q ///
      macro_pdrb_water_waste_q macro_pdrb_construction_q macro_pdrb_trade_q macro_pdrb_transport_q ///
@@ -408,7 +418,8 @@ keep province_name province_code year quarter quarter_end_month_label phk_stock_
      lab_working_pop_q price_producer_index_nat_q price_producer_change_pct_nat_q ///
      price_producer_ceic_pct_nat_q price_cpi_index_q price_consumer_change_pct_q ///
      trade_export_value_usd_million_q trade_import_value_usd_million_q trade_balance_usd_million_q ///
-     fin_npl_idr_billion_q macro_bi_rate_pct_nat_q macro_fx_idr_usd_nat_q
+     fin_total_credit_idr_billion_q fin_npl_idr_billion_q fin_npl_ratio_pct_q macro_bi_rate_pct_nat_q ///
+     macro_fx_idr_usd_nat_q
 drop in 1
 replace province_name = strtrim(province_name)
 gen _q = .
@@ -454,6 +465,17 @@ merge m:1 province_name_std year quarter using `quarterly', keep(master match) n
 merge m:1 province_name_std year         using `annual',    keep(master match) nogen
 
 *==============================================================
+* 5a. Broadcast pre-panel NPL-ratio references (2020/2021) to all province rows.
+*     Yearly reference values (no 2020/2021 rows exist) -> store each as a
+*     province-constant so they are available for building lagged variables.
+*==============================================================
+foreach c in fin_npl_ratio_2020_pct_y fin_npl_ratio_2021_pct_y {
+    bysort province_name_std: egen double _bc = max(`c')
+    replace `c' = _bc
+    drop _bc
+}
+
+*==============================================================
 * 5b. Derived macro-trigger transforms (%yoy growth, ppt change, FX volatility)
 *     Computed on the assembled monthly panel. L12 = 12 months back
 *     (= same month last year for monthly series; same quarter for broadcast _q;
@@ -493,12 +515,10 @@ order province_name_std province_code year month date quarter, first
 sort province_name_std year month
 isid province_name_std year month
 export delimited using "$CLEAN/phk_master.csv", replace
-tempfile widemaster
-save `widemaster'
 qui count
 display as result "Done. phk_master rows: `r(N)' (expect 2280)."
 qui ds
-display as result "columns: `: word count `r(varlist)'' (expect 282)."
+display as result "columns: `: word count `r(varlist)'' (expect 290)."
 
 *==============================================================
 * 7. Variable-level flag table (1/0), one row per indicator.
@@ -526,40 +546,3 @@ foreach v of local vars {
 }
 export delimited using "$CLEAN/phk_variable_flags.csv", replace
 display as result "wrote phk_variable_flags.csv (`n' variables)."
-
-*==============================================================
-* 8. LONG-format master with row-level type flags (for FILTERING).
-*    One row per province-month-variable. Filter directly, e.g.:
-*      use data/clean/phk_master_long.csv (import), then:
-*      keep if data_triwulan==1     // quarterly variables only
-*      keep if data_tahunan==1      // annual variables only
-*      keep if data_nasional==1     // national variables only
-*    -> data/clean/phk_master_long.csv
-*==============================================================
-use `widemaster', clear
-qui ds province_name_std province_code year month date quarter, not
-local vars `r(varlist)'
-local j = 0
-foreach v of local vars {
-    local ++j
-    rename `v' _v`j'
-}
-reshape long _v, i(province_name_std province_code year month date quarter) j(_k)
-rename _v value
-gen str40 variable = ""
-local j = 0
-foreach v of local vars {
-    local ++j
-    qui replace variable = "`v'" if _k==`j'
-}
-drop _k
-gen byte data_bulanan  = !regexm(variable,"_q$") & !regexm(variable,"_y$")
-gen byte data_triwulan = regexm(variable,"_q$")
-gen byte data_tahunan  = regexm(variable,"_y$")
-gen byte data_nasional = strpos(variable,"_nat") > 0
-gen byte data_provinsi = !data_nasional
-order province_name_std province_code year month date quarter variable value ///
-      data_bulanan data_triwulan data_tahunan data_provinsi data_nasional
-sort province_name_std year month variable
-export delimited using "$CLEAN/phk_master_long.csv", replace
-display as result "wrote phk_master_long.csv (`=_N' rows)."

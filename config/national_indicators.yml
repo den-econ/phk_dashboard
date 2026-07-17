@@ -1,5 +1,5 @@
 # ============================================================================
-# National indicators — (19 variables)
+# National indicators — (18 variables)
 #
 # These are national-level: identical across all provinces within a period. In
 # phk_master.csv they carry a `_nat` tag and are flagged data_nasional=1 in
@@ -10,7 +10,7 @@
 # and by the user. Kept in sync with config/master_schema.yml (data_level: national).
 # `source` = the original Bahasa column header in Data untuk PHK Dashboard.xlsx.
 # ============================================================================
-count: 19
+count: 18
 
 national_indicators:
 
