@@ -454,12 +454,162 @@ set more off
     postclose `results'
 
 
+
+/*******************************************************************************
+    LOAD RESULTS
+*******************************************************************************/
+
+    use "$data/macro_sensitivity_results.dta", clear
+
+    /*******************************************************************************
+        DISPLAY VARIABLES
+    *******************************************************************************/
+
+    * IRR with significance stars
+    gen irr_disp = string(irr,"%4.2f") + stars
+
+    * Direction of coefficient (+/-) with significance stars
+    gen sign_disp = ""
+
+    replace sign_disp = "+" if beta > 0 & stars != ""
+    replace sign_disp = "-" if beta < 0 & stars != ""
+    replace sign_disp = ""  if stars == ""
+
+
+    /*******************************************************************************
+        EXPORT DASHBOARD CSV (IRR)
+    *******************************************************************************/
+
+    preserve
+
+    keep indicator lag irr_disp
+
+    reshape wide irr_disp, i(indicator) j(lag)
+
+    rename irr_disp1  lag1
+    rename irr_disp3  lag3
+    rename irr_disp6  lag6
+    rename irr_disp12 lag12
+
+    *------------------------------------------------------------*
+    * Add variable order here later
+    *------------------------------------------------------------*
+
+    sort indicator
+
+    export delimited ///
+        using "$table/macro_sensitivity_dashboard.csv", ///
+        replace
+
+    restore
+
+
+/*******************************************************************************
+    EXPORT LATEX TABLE : IRR ONLY
+*******************************************************************************/
+    ***
+    replace indicator = subinstr(indicator, "_", "\_", .)
+    ***
+    preserve
+
+    keep indicator lag irr_disp
+
+    reshape wide irr_disp, i(indicator) j(lag)
+
+    rename irr_disp1  lag1
+    rename irr_disp3  lag3
+    rename irr_disp6  lag6
+    rename irr_disp12 lag12
+
+*------------------------------------------------------------*
+* Add variable order here later
+*------------------------------------------------------------*
+
+    //sort indicator
+
+    keep indicator lag1 lag3 lag6 lag12
+
+    listtex ///
+    indicator lag1 lag3 lag6 lag12 ///
+    using "$latex/macro_sensitivity_IRR.tex", ///
+    replace ///
+    rstyle(tabular) ///
+    head("\begin{table}[htbp]" ///
+     "\centering" ///
+     "\caption{Incidence Rate Ratios (IRRs) from Poisson regressions}" ///
+     "\small" ///
+     "\begin{tabular}{lcccc}" ///
+     "\toprule" ///
+     "Variable & Lag 1 & Lag 3 & Lag 6 & Lag 12 \\ \midrule") ///
+    foot("\bottomrule" ///
+     "\end{tabular}" ///
+     "\vspace{0.2cm}" ///
+     "\begin{minipage}{0.95\linewidth}" ///
+     "\footnotesize" ///
+     "\textit{Notes:} Entries are incidence rate ratios (IRRs). Each row reports a separate Poisson regression including one macroeconomic indicator (with respective lag), structural provincial controls, province fixed effects, and month fixed effects. Standard errors are clustered at the province level. *, ** and *** denote significance at the 10\%, 5\% and 1\% levels." ///
+     "\end{minipage}" ///
+     "\end{table}")
+
+    restore
+
+
+/*******************************************************************************
+    EXPORT LATEX TABLE : SIGN OF EFFECT
+*******************************************************************************/
+
+    preserve
+
+    keep indicator lag sign_disp
+
+    reshape wide sign_disp, i(indicator) j(lag)
+
+    rename sign_disp1  lag1
+    rename sign_disp3  lag3
+    rename sign_disp6  lag6
+    rename sign_disp12 lag12
+
+    *------------------------------------------------------------*
+    * Add variable order here later
+    *------------------------------------------------------------*
+
+    //sort indicator
+
+    keep indicator lag1 lag3 lag6 lag12
+
+    listtex ///
+        indicator lag1 lag3 lag6 lag12 ///
+        using "$latex/macro_sensitivity_sign.tex", ///
+        replace ///
+        rstyle(tabular) ///
+        head("\begin{table}[htbp]" ///
+             "\centering" ///
+             "\caption{Direction of Significant Effects from Poisson Regressions}" ///
+             "\small" ///
+             "\begin{tabular}{lcccc}" ///
+             "\toprule" ///
+             "Variable & Lag 1 & Lag 3 & Lag 6 & Lag 12 \\ \midrule") ///
+        foot("\bottomrule" ///
+             "\end{tabular}" ///
+             "\vspace{0.2cm}" ///
+             "\begin{minipage}{0.95\linewidth}" ///
+             "\footnotesize" ///
+             "\textit{Notes:} '+' ('-') denotes a positive (negative) statistically significant coefficient. Blank cells indicate that the estimated coefficient is not statistically significant." ///
+             "\end{minipage}" ///
+             "\end{table}")
+
+    restore
+
+
+* ######################################################################################################################################
+
+0
+
+
 /*******************************************************************************
     PREPARE RESULTS FOR REPORTING
 *******************************************************************************/
 
     use "$data/macro_sensitivity_results.dta", clear
-    //drop if lag == 12
 
     *------------------------------------------------------------*
     * Indicator labels

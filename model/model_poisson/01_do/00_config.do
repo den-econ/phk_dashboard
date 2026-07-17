@@ -83,27 +83,18 @@ set seed    123456
             manuf_emp_share ///
             agri_emp_share ///
             min_wage_yoy ///
-            pdrb_yoy ///
             manuf_pdrb_share
-            
+
+            //pdrb_yoy ///
             //agri_pdrb_share 
-            
-
-            
-
             //avg_wage_yoy ///
             
-            
-
-
-            
-
 
     * Monthly macroeconomic variables
     global  MACRO_GLOBAL ///
             log_price_brent
-            //price_brent_yoy
-            
+
+            //log_price_brent
              
 
     global  MACRO_NATIONAL ///
@@ -112,13 +103,8 @@ set seed    123456
             pmi_manuf ///
             ihpb_yoy 
             
-            //ihpb_index 
-            
-            
-            
-
-            //fx_idr_usd_yoy ///
-
+            // ihpb_index 
+            // fx_idr_usd_yoy ///
             // log_fx_idr_usd ///
 
     global  MACRO_PROVINCE ///
@@ -126,6 +112,8 @@ set seed    123456
             npl_yoy  ///
             log_export ///
             log_import 
+            
+
             
             //export_yoy ///
             //import_yoy 

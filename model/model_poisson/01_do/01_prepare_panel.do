@@ -139,7 +139,7 @@ set scheme plotplain
     capture noisily xtsum phk_flow
 
     * Treat missing data as zero 
-    //replace phk_flow = 0 if phk_flow == .
+    replace phk_flow = 0 if phk_flow == .
     
 
     * Drop new provinces due to missing data

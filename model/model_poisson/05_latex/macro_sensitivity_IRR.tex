@@ -1,0 +1,24 @@
+\begin{table}[htbp]
+\centering
+\caption{Incidence Rate Ratios (IRRs) from Poisson regressions}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Variable & Lag 1 & Lag 3 & Lag 6 & Lag 12 \\ \midrule
+bi\_rate&1.75***&2.70***&1.91***&1.32***\\
+cpi\_yoy&0.86**&0.86***&0.90***&0.72***\\
+ihpb\_yoy&0.86**&0.83***&0.95&0.77\\
+log\_export&0.79&0.50&1.15&1.01\\
+log\_fx\_idr\_usd&32.38&4.65&84.43***&123.69**\\
+log\_import&0.83**&0.93&0.94&1.13*\\
+log\_price\_brent&1.61&0.45&0.27*&0.75\\
+npl\_yoy&1.00&1.00&1.00&0.99\\
+pmi\_manuf&0.93**&0.96&0.97&1.01\\
+\bottomrule
+\end{tabular}
+\vspace{0.2cm}
+\begin{minipage}{0.95\linewidth}
+\footnotesize
+\textit{Notes:} Entries are incidence rate ratios (IRRs). Each row reports a separate Poisson regression including one macroeconomic indicator (with respective lag), structural provincial controls, province fixed effects, and month fixed effects. Standard errors are clustered at the province level. *, ** and *** denote significance at the 10\%, 5\% and 1\% levels.
+\end{minipage}
+\end{table}
