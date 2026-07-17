@@ -8,7 +8,7 @@ Human-readable companion to the machine-readable **`dictionary/indicator_diction
 | --- | --- |
 | Main output | `data/clean/phk_master.csv` |
 | Grain | one row = province × month |
-| Coverage | 2022–2025 (38 provinces × 48 months = 1,824 rows) |
+| Coverage | 2022–2026 (38 provinces × 60 months = 2,280 rows) |
 | Variables | 282 columns |
 | Build | `code/01_build_phk_master.do` (Stata) |
 
@@ -22,6 +22,7 @@ The column name says what the variable means; frequency and level are encoded in
 
 ## Notes
 
+- **Coverage by frequency:** **monthly** variables run 2022–2026 (2026 real data through ~July; Aug–Dec present as empty rows). **Quarterly (`_q`) and annual (`_y`)** variables run **2022–2025 only** — Triwulan/Tahun 2026 are not yet in the workbook, so every `_q`/`_y` column is missing for 2026.
 - **National indicators (22):** repeated across province rows but are national-level — do not read as provincial variation. They carry `_nat`.
 - **PDRB:** elaborated into 17 sectors at quarterly (`macro_pdrb_<sector>_q`) and annual (`macro_pdrb_<sector>_y`) grain. Level values are **PDRB Riil (constant price / ADHK)** in **IDR milyar (billion)**. Verified: the 17 sectors sum to the total, and the 4 quarters sum to the annual.
 - **Missing vs zero:** invalid source cells (`-`, `#VALUE!`, blank) import as **missing**, never zero.
@@ -300,7 +301,7 @@ quarterly across 3 months (both files); for one value per period add e.g. `keep 
 | `macro_pmi_manuf_nat_y` | PMI Manufaktur | national | monthly, quarterly, annual | index | PMI Manufaktur |
 | `macro_bi_rate_avg_pct_nat_y` | BI Rate (Average)* | national | annual | — | BI Rate (Average)* |
 | `macro_fx_idr_usd_nat_y` | Kurs | national | monthly, quarterly, annual | IDR per USD | Kurs |
-| `macro_construction_cost_idx_y` | Indeks Kemahalan Konstruksi | province | annual | index | Indeks Kemahalan Konstruksi (Construction Cost Index) — provincial. Renamed from `macro_consumer_conf_nat_y` (was mislabeled as national consumer confidence). |
+| `macro_consumer_conf_nat_y` | IKK | national | annual | index | IKK |
 | `macro_fx_vol_sd_nat_y` | (derived: macro_fx_idr_usd_nat) | national | annual | IDR per USD | Volatilitas nilai tukar IDR/USD: simpangan baku (SD) dari 12 kurs bulanan dalam satu tahun kalender |
 
 ### Prices (17)

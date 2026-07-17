@@ -1,7 +1,7 @@
 *==============================================================
 * 01_build_phk_master.do   -  clean PHK master panel (Stata build)
 *   data/raw/data_untuk_phk_dashboard.xlsx  ->  data/clean/phk_master.csv
-* Grain    : one row = province x month.  Coverage: 2022-2025 (38 x 48 = 1,824).
+* Grain    : one row = province x month.  Coverage: 2022-2026 (38 x 60 = 2,280).
 * Source   : ONLY "Data untuk PHK Dashboard.xlsx" (3 sheets). MAP is NOT merged.
 * Columns renamed by Excel POSITION. Names carry meaning: _q quarterly, _y annual,
 * none = monthly; _nat = national, else province. Monthly enters directly;
@@ -20,10 +20,10 @@ global PHK   "$RAW/data_untuk_phk_dashboard.xlsx"
 capture mkdir "$CLEAN"
 
 *==============================================================
-* 0. Province x month skeleton: 2022-01 .. 2025-12 (48 months)
+* 0. Province x month skeleton: 2022-01 .. 2026-12 (60 months)
 *==============================================================
 clear
-set obs 48
+set obs 60
 gen long i   = _n
 gen year     = 2022 + floor((i-1)/12)
 gen month    = mod(i-1,12) + 1
@@ -66,7 +66,7 @@ destring `r(varlist)', replace force
 drop if missing(year)
 gen province_name_std = strtrim(province_name)
 drop if province_name_std == ""
-keep if inrange(year,2022,2025)
+keep if inrange(year,2022,2026)
 drop province_name province_code
 duplicates drop province_name_std year month, force
 order province_name_std year month
@@ -277,7 +277,7 @@ rename GO trade_balance_y
 rename GP fin_npl_y
 rename GQ macro_bi_rate_avg_pct_nat_y
 rename GR macro_fx_idr_usd_nat_y
-rename GS macro_construction_cost_idx_y
+rename GS macro_consumer_conf_nat_y
 keep province_name province_code year phk_y lab_formal_share_pct_y lab_formal_share_2019_pct_y ///
      lab_formal_share_chg_vs2019_y lab_contract_workers_y lab_formal_workers_y lab_contract_share_pct_y ///
      lab_contract_share_2019_pct_y lab_contract_share_chg_vs2019_y lab_working_pop_y lab_tpt_pct_y ///
@@ -327,7 +327,7 @@ keep province_name province_code year phk_y lab_formal_share_pct_y lab_formal_sh
      macro_pmi_manuf_nat_y fin_fdi_y price_inflation_yoy_q4_pct_y price_inflation_yoy_avg_pct_y ///
      price_producer_index_nat_y price_cpi_index_nat_y price_producer_change_pct_nat_y ///
      price_consumer_change_pct_nat_y trade_export_value_bps_y trade_export_value_y trade_import_value_y ///
-     trade_balance_y fin_npl_y macro_bi_rate_avg_pct_nat_y macro_fx_idr_usd_nat_y macro_construction_cost_idx_y
+     trade_balance_y fin_npl_y macro_bi_rate_avg_pct_nat_y macro_fx_idr_usd_nat_y macro_consumer_conf_nat_y
 drop in 1
 replace province_name = strtrim(province_name)
 ds province_name province_code, not
@@ -335,7 +335,7 @@ destring `r(varlist)', replace force
 drop if missing(year)
 gen province_name_std = strtrim(province_name)
 drop if province_name_std == ""
-keep if inrange(year,2022,2025)
+keep if inrange(year,2022,2026)
 * province_code lookup (kept as TEXT, one row per province) -> merged onto the master
 tempfile provcode
 preserve
@@ -423,7 +423,7 @@ destring `r(varlist)', replace force
 drop if missing(year)
 gen province_name_std = strtrim(province_name)
 drop if province_name_std == ""
-keep if inrange(year,2022,2025)
+keep if inrange(year,2022,2026)
 drop province_name province_code quarter_end_month_label
 duplicates drop province_name_std year quarter, force
 order province_name_std year quarter
@@ -496,7 +496,7 @@ export delimited using "$CLEAN/phk_master.csv", replace
 tempfile widemaster
 save `widemaster'
 qui count
-display as result "Done. phk_master rows: `r(N)' (expect 1824)."
+display as result "Done. phk_master rows: `r(N)' (expect 2280)."
 qui ds
 display as result "columns: `: word count `r(varlist)'' (expect 282)."
 
@@ -527,7 +527,6 @@ foreach v of local vars {
 export delimited using "$CLEAN/phk_variable_flags.csv", replace
 display as result "wrote phk_variable_flags.csv (`n' variables)."
 
-/* 
 *==============================================================
 * 8. LONG-format master with row-level type flags (for FILTERING).
 *    One row per province-month-variable. Filter directly, e.g.:
