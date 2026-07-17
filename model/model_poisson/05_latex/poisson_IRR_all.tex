@@ -1,0 +1,55 @@
+\begin{table}[H]\centering
+\caption{Incidence Rate Ratios (IRR) from Poisson regressions for provincial layoff projections}
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{l*{4}{c}}
+\toprule
+& (1) & (2) & (3) & (4) \\
+& Lag 1 & Lag 3 & Lag 6 & Lag 12 \\ \midrule
+\addlinespace\textbf{Structure Variables}&                     &                     &                     &                     \\
+formal\_lab\_share&        0.97         &        0.92         &        0.86         &        0.84         \\
+            &      (0.10)         &      (0.07)         &      (0.11)         &      (0.13)         \\
+manuf\_emp\_share&        0.77         &        0.81         &        0.96         &        0.96         \\
+            &      (0.15)         &      (0.17)         &      (0.21)         &      (0.42)         \\
+agri\_emp\_share&        1.04         &        1.07         &        1.08         &        0.90         \\
+            &      (0.09)         &      (0.10)         &      (0.15)         &      (0.13)         \\
+min\_wage\_yoy&        1.09\sym{*}  &        1.09         &        0.99         &        1.13         \\
+            &      (0.04)         &      (0.06)         &      (0.09)         &      (0.13)         \\
+pdrb\_yoy    &        1.11         &        1.14         &        1.08         &        1.06         \\
+            &      (0.21)         &      (0.14)         &      (0.17)         &      (0.05)         \\
+manuf\_pdrb\_share&        0.98         &        0.94         &        0.95         &        1.14         \\
+            &      (0.12)         &      (0.09)         &      (0.11)         &      (0.28)         \\
+\addlinespace\textbf{Macroeconomic Trigger Variables}&                     &                     &                     &                     \\
+L\_log\_price\_brent&        2.03         &        8.31         &        0.35         &      363.36         \\
+            &      (3.67)         &      (9.59)         &      (0.77)         &   (1398.39)         \\
+L\_bi\_rate   &        1.83         &        1.94\sym{*}  &        4.45\sym{**} &       22.16\sym{***}\\
+            &      (0.92)         &      (0.57)         &      (2.52)         &     (13.99)         \\
+L\_log\_fx\_idr\_usd&       48.75         &        0.12         &        0.00         &        0.00\sym{***}\\
+            &    (254.29)         &      (0.35)         &      (0.01)         &      (0.00)         \\
+L\_pmi\_manuf &        0.95         &        0.97         &        0.93         &        1.00         \\
+            &      (0.05)         &      (0.06)         &      (0.06)         &      (0.18)         \\
+L\_ihpb\_yoy  &        0.93         &        0.63\sym{**} &        1.42\sym{**} &        1.08         \\
+            &      (0.18)         &      (0.11)         &      (0.18)         &      (0.50)         \\
+L\_cpi\_yoy   &        1.00         &        1.17         &        0.63\sym{***}&        0.72         \\
+            &      (0.13)         &      (0.13)         &      (0.08)         &      (0.19)         \\
+L\_npl\_yoy   &        1.00         &        1.00         &        1.00         &        0.99         \\
+            &      (0.00)         &      (0.00)         &      (0.01)         &      (0.01)         \\
+L\_log\_export&        0.78         &        0.41\sym{*}  &        1.01         &        1.28         \\
+            &      (0.20)         &      (0.18)         &      (0.39)         &      (0.51)         \\
+L\_log\_import&        0.80\sym{*}  &        0.89         &        0.98         &        1.16         \\
+            &      (0.08)         &      (0.09)         &      (0.10)         &      (0.10)         \\
+\midrule
+Observations&         981         &         924         &         843         &         672         \\
+DV Mean     &         229         &         231         &         238         &         244         \\
+Pseudo R$^2$&       0.584         &       0.601         &       0.616         &       0.656         \\
+Region FE   &    Province         &    Province         &    Province         &    Province         \\
+Time FE     &       Month         &       Month         &       Month         &       Month         \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\begin{tablenotes}
+\footnotesize
+\item \textit{Notes:} Reported coefficients are Incidence Rate Ratios (IRRs), obtained by exponentiating the estimated Poisson coefficients. An IRR greater than one indicates that an increase in the explanatory variable is associated with a higher expected number of layoffs, while an IRR below one indicates a lower expected number of layoffs, holding other variables constant. Robust standard errors clustered at the province level are reported in parentheses. Columns (1)--(4) report specifications using macroeconomic trigger variables lagged by 1, 3, 6, and 12 months, respectively. Annual structural variables are included contemporaneously in all specifications. *, **, and *** denote statistical significance at the 10\%, 5\%, and 1\% levels.
+\end{tablenotes}
+\end{table}

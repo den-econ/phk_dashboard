@@ -1,0 +1,60 @@
+\begin{table}[htbp]
+\centering
+\caption{Incidence Rate Ratios (IRRs) from Poisson regressions for macro sensitivity analysis}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Indicator & Lag 1 & Lag 3 & Lag 6 \\ \midrule
+BI Rate&1.76***
+(1.19, 2.59)&2.64***
+(1.87, 3.72)&1.82***
+(1.42, 2.33)&1.30***
+(1.11, 1.52)\\
+Manufacturing PMI&0.93**
+(0.88, 0.99)&0.97
+(0.88, 1.05)&0.98
+(0.93, 1.04)&1.01
+(0.86, 1.18)\\
+Wholesale Price Index&0.87**
+(0.77, 0.99)&0.85***
+(0.78, 0.92)&0.96
+(0.87, 1.05)&0.84
+(0.54, 1.30)\\
+Consumer Price Index&0.87**
+(0.78, 0.97)&0.86***
+(0.77, 0.97)&0.90***
+(0.84, 0.97)&0.74**
+(0.59, 0.93)\\
+Non-Performing Loans&1.00
+(1.00, 1.01)&1.00
+(0.99, 1.01)&1.00
+(0.99, 1.01)&0.99
+(0.98, 1.00)\\
+log_price_brent&1.76
+(0.34, 9.08)&0.58
+(0.16, 2.13)&0.27*
+(0.06, 1.25)&0.79
+(0.23, 2.68)\\
+log_export&0.78
+(0.51, 1.19)&0.48
+(0.19, 1.22)&0.95
+(0.70, 1.30)&1.01
+(0.76, 1.34)\\
+log_fx_idr_usd&24.36
+(0.28, 2100.70)&4.69
+(0.32, 68.40)&36.83**
+(1.52, 893.68)&87.45**
+(1.60, 4769.59)\\
+log_import&0.82**
+(0.69, 0.98)&0.91
+(0.78, 1.07)&0.97
+(0.85, 1.12)&1.11*
+(0.98, 1.25)\\
+\bottomrule
+\end{tabular}
+\vspace{0.2cm}
+\begin{minipage}{0.95\linewidth}
+\footnotesize
+\textit{Notes:} Each row reports the result from a separate Poisson regression including one macroeconomic indicator, structural variables, province fixed effects, and month fixed effects. Entries are Incidence Rate Ratios (IRRs), with 95\% confidence intervals shown beneath. Standard errors are clustered at the province level. *, **, and *** denote significance at the 10\%, 5\%, and 1\% levels.
+\end{minipage}
+\end{table}
