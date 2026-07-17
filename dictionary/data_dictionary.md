@@ -9,7 +9,7 @@ Human-readable companion to the machine-readable **`dictionary/indicator_diction
 | Main output | `data/clean/phk_master.csv` |
 | Grain | one row = province × month |
 | Coverage | 2022–2026 (38 provinces × 60 months = 2,280 rows) |
-| Variables | 290 columns |
+| Variables | 291 columns |
 | Build | `code/01_build_phk_master.do` (Stata) |
 
 ## Naming convention
@@ -339,7 +339,7 @@ quarterly across 3 months; for one value per period add e.g. `keep if month==1`
 | `fin_fdi_idr_million_q` | FDI (IDR mn) | province | quarterly | IDR million | FDI (IDR mn) |
 | `fin_total_credit_idr_billion_q` | Total Credits, End of Quarter (IDR miliar) | province | monthly, quarterly, annual | IDR billion | Total Credits, End of Quarter (IDR miliar) |
 | `fin_npl_idr_billion_q` | NPL, End of Quarter (IDR miliar) | province | monthly, quarterly | IDR billion | NPL, End of Quarter (IDR miliar) |
-| `fin_npl_ratio_pct_q` | NPL Ratio | province | monthly, quarterly, annual | percent | NPL Ratio |
+| `fin_npl_ratio_pct_q` | NPL Ratio, End of Quarter | province | monthly, quarterly, annual | percent | NPL Ratio, End of Quarter |
 | `fin_fdi_y` | FDI | province | annual | — | FDI |
 | `fin_total_credit_idr_billion_y` | Total Credits, End of Year (IDR miliar) | province | monthly, quarterly, annual | IDR billion | Total Credits, End of Year (IDR miliar) |
 | `fin_npl_y` | NPL, End of Year (IDR miliar) | province | annual | — | NPL, End of Year (IDR miliar) |
@@ -347,7 +347,7 @@ quarterly across 3 months; for one value per period add e.g. `keep if month==1`
 | `fin_npl_ratio_2020_pct_y` | NPL Ratio, End of Year (2020) | province | annual | percent | NPL Ratio, End of Year (2020) |
 | `fin_npl_ratio_2021_pct_y` | NPL Ratio, End of Year (2021) | province | annual | percent | NPL Ratio, End of Year (2021) |
 
-### Growth (derived) (37)
+### Growth (derived) (38)
 
 | Variable | Source name | Level | Frequency | Unit | Description |
 | --- | --- | --- | --- | --- | --- |
@@ -381,6 +381,7 @@ quarterly across 3 months; for one value per period add e.g. `keep if month==1`
 | `growth_ind_laborcost_total_y` | Pertumbuhan Pengeluaran Tenaga Kerja | province | annual | percent (growth) | Pertumbuhan Pengeluaran Tenaga Kerja |
 | `growth_ind_labor_prod_market_y` | Pertumbuhan Produktivitas (Nilai Tambah Pasar) Tenaga Kerja | province | annual | percent (growth) | Pertumbuhan Produktivitas (Nilai Tambah Pasar) Tenaga Kerja |
 | `growth_ind_labor_prod_fc_y` | Pertumbuhan Produktivitas (Nilai Tambah Produksi) Tenaga Kerja | province | annual | percent (growth) | Pertumbuhan Produktivitas (Nilai Tambah Produksi) Tenaga Kerja |
+| `growth_pdrb_pct_y` | Laju Pertumbuhan PDRB | province | annual | percent | Laju Pertumbuhan PDRB |
 | `growth_brent_yoy_pct_nat` | (derived: price_brent_usd_bbl_nat) | national | monthly | percent (growth) | Pertumbuhan tahunan (yoy) harga minyak Brent: (Brent_t/Brent_{t-12}-1)*100 |
 | `growth_ihpb_yoy_pct_nat` | (derived: price_ihpb_nat) | national | monthly | percent (growth) | Pertumbuhan tahunan (yoy) IHPB / Indeks Harga Perdagangan Besar (wholesale): (IHPB_t/IHPB_{t-12}-1)*100 |
 | `growth_npl_yoy_pct` | (derived: fin_npl_idr_billion) | province | monthly | percent (growth) | Pertumbuhan tahunan (yoy) NPL per provinsi: (NPL_t/NPL_{t-12}-1)*100 |

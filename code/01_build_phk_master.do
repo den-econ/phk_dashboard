@@ -241,49 +241,50 @@ rename FC diffgr_input_minus_output_y
 rename FD diffgr_laborcost_minus_output_y
 rename FE macro_pdrb_idr_billion_y
 rename FF macro_pdrb_idr_million_y
-rename FG macro_pdrb_agri_y
-rename FH macro_pdrb_mining_y
-rename FI macro_pdrb_manuf_y
-rename FJ macro_pdrb_electricity_y
-rename FK macro_pdrb_water_waste_y
-rename FL macro_pdrb_construction_y
-rename FM macro_pdrb_trade_y
-rename FN macro_pdrb_transport_y
-rename FO macro_pdrb_accom_food_y
-rename FP macro_pdrb_info_comm_y
-rename FQ macro_pdrb_finance_y
-rename FR macro_pdrb_real_estate_y
-rename FS macro_pdrb_business_svc_y
-rename FT macro_pdrb_public_admin_y
-rename FU macro_pdrb_education_y
-rename FV macro_pdrb_health_y
-rename FW macro_pdrb_other_svc_y
-rename FX macro_pdrb_manuf_share_pct_y
-rename FY macro_pdrb_agri_share_pct_y
-rename FZ macro_pdrb_svc_share_pct_y
-rename GA macro_pdrb_manuf_growth_pct_y
-rename GB macro_pdrb_per_wkr_y
-rename GC macro_pdrb_per_wkr_growth_pct_y
-rename GD macro_pmi_manuf_nat_y
-rename GE fin_fdi_y
-rename GF price_inflation_yoy_q4_pct_y
-rename GG price_inflation_yoy_avg_pct_y
-rename GH price_producer_index_nat_y
-rename GI price_cpi_index_nat_y
-rename GJ price_producer_change_pct_nat_y
-rename GK price_consumer_change_pct_nat_y
-rename GL trade_export_value_bps_y
-rename GM trade_export_value_y
-rename GN trade_import_value_y
-rename GO trade_balance_y
-rename GP fin_total_credit_idr_billion_y
-rename GQ fin_npl_y
-rename GR fin_npl_ratio_pct_y
-rename GS fin_npl_ratio_2020_pct_y
-rename GT fin_npl_ratio_2021_pct_y
-rename GU macro_bi_rate_avg_pct_nat_y
-rename GV macro_fx_idr_usd_nat_y
-rename GW macro_construction_cost_index_y
+rename FG growth_pdrb_pct_y
+rename FH macro_pdrb_agri_y
+rename FI macro_pdrb_mining_y
+rename FJ macro_pdrb_manuf_y
+rename FK macro_pdrb_electricity_y
+rename FL macro_pdrb_water_waste_y
+rename FM macro_pdrb_construction_y
+rename FN macro_pdrb_trade_y
+rename FO macro_pdrb_transport_y
+rename FP macro_pdrb_accom_food_y
+rename FQ macro_pdrb_info_comm_y
+rename FR macro_pdrb_finance_y
+rename FS macro_pdrb_real_estate_y
+rename FT macro_pdrb_business_svc_y
+rename FU macro_pdrb_public_admin_y
+rename FV macro_pdrb_education_y
+rename FW macro_pdrb_health_y
+rename FX macro_pdrb_other_svc_y
+rename FY macro_pdrb_manuf_share_pct_y
+rename FZ macro_pdrb_agri_share_pct_y
+rename GA macro_pdrb_svc_share_pct_y
+rename GB macro_pdrb_manuf_growth_pct_y
+rename GC macro_pdrb_per_wkr_y
+rename GD macro_pdrb_per_wkr_growth_pct_y
+rename GE macro_pmi_manuf_nat_y
+rename GF fin_fdi_y
+rename GG price_inflation_yoy_q4_pct_y
+rename GH price_inflation_yoy_avg_pct_y
+rename GI price_producer_index_nat_y
+rename GJ price_cpi_index_nat_y
+rename GK price_producer_change_pct_nat_y
+rename GL price_consumer_change_pct_nat_y
+rename GM trade_export_value_bps_y
+rename GN trade_export_value_y
+rename GO trade_import_value_y
+rename GP trade_balance_y
+rename GQ fin_total_credit_idr_billion_y
+rename GR fin_npl_y
+rename GS fin_npl_ratio_pct_y
+rename GT fin_npl_ratio_2020_pct_y
+rename GU fin_npl_ratio_2021_pct_y
+rename GV macro_bi_rate_avg_pct_nat_y
+rename GW macro_fx_idr_usd_nat_y
+rename GX macro_construction_cost_index_y
 keep province_name province_code year phk_y lab_formal_share_pct_y lab_formal_share_2019_pct_y ///
      lab_formal_share_chg_vs2019_y lab_contract_workers_y lab_formal_workers_y lab_contract_share_pct_y ///
      lab_contract_share_2019_pct_y lab_contract_share_chg_vs2019_y lab_working_pop_y lab_tpt_pct_y ///
@@ -323,19 +324,19 @@ keep province_name province_code year phk_y lab_formal_share_pct_y lab_formal_sh
      ind_firms_pma_share_y growth_ind_output_y growth_ind_input_y growth_ind_va_mkt_y growth_ind_va_fc_y ///
      growth_ind_workers_total_y growth_ind_firms_total_y growth_ind_laborcost_total_y ///
      growth_ind_labor_prod_market_y growth_ind_labor_prod_fc_y diffgr_input_minus_output_y ///
-     diffgr_laborcost_minus_output_y macro_pdrb_idr_billion_y macro_pdrb_idr_million_y macro_pdrb_agri_y ///
-     macro_pdrb_mining_y macro_pdrb_manuf_y macro_pdrb_electricity_y macro_pdrb_water_waste_y ///
-     macro_pdrb_construction_y macro_pdrb_trade_y macro_pdrb_transport_y macro_pdrb_accom_food_y ///
-     macro_pdrb_info_comm_y macro_pdrb_finance_y macro_pdrb_real_estate_y macro_pdrb_business_svc_y ///
-     macro_pdrb_public_admin_y macro_pdrb_education_y macro_pdrb_health_y macro_pdrb_other_svc_y ///
-     macro_pdrb_manuf_share_pct_y macro_pdrb_agri_share_pct_y macro_pdrb_svc_share_pct_y ///
-     macro_pdrb_manuf_growth_pct_y macro_pdrb_per_wkr_y macro_pdrb_per_wkr_growth_pct_y ///
-     macro_pmi_manuf_nat_y fin_fdi_y price_inflation_yoy_q4_pct_y price_inflation_yoy_avg_pct_y ///
-     price_producer_index_nat_y price_cpi_index_nat_y price_producer_change_pct_nat_y ///
-     price_consumer_change_pct_nat_y trade_export_value_bps_y trade_export_value_y trade_import_value_y ///
-     trade_balance_y fin_total_credit_idr_billion_y fin_npl_y fin_npl_ratio_pct_y fin_npl_ratio_2020_pct_y ///
-     fin_npl_ratio_2021_pct_y macro_bi_rate_avg_pct_nat_y macro_fx_idr_usd_nat_y ///
-     macro_construction_cost_index_y
+     diffgr_laborcost_minus_output_y macro_pdrb_idr_billion_y macro_pdrb_idr_million_y growth_pdrb_pct_y ///
+     macro_pdrb_agri_y macro_pdrb_mining_y macro_pdrb_manuf_y macro_pdrb_electricity_y ///
+     macro_pdrb_water_waste_y macro_pdrb_construction_y macro_pdrb_trade_y macro_pdrb_transport_y ///
+     macro_pdrb_accom_food_y macro_pdrb_info_comm_y macro_pdrb_finance_y macro_pdrb_real_estate_y ///
+     macro_pdrb_business_svc_y macro_pdrb_public_admin_y macro_pdrb_education_y macro_pdrb_health_y ///
+     macro_pdrb_other_svc_y macro_pdrb_manuf_share_pct_y macro_pdrb_agri_share_pct_y ///
+     macro_pdrb_svc_share_pct_y macro_pdrb_manuf_growth_pct_y macro_pdrb_per_wkr_y ///
+     macro_pdrb_per_wkr_growth_pct_y macro_pmi_manuf_nat_y fin_fdi_y price_inflation_yoy_q4_pct_y ///
+     price_inflation_yoy_avg_pct_y price_producer_index_nat_y price_cpi_index_nat_y ///
+     price_producer_change_pct_nat_y price_consumer_change_pct_nat_y trade_export_value_bps_y ///
+     trade_export_value_y trade_import_value_y trade_balance_y fin_total_credit_idr_billion_y fin_npl_y ///
+     fin_npl_ratio_pct_y fin_npl_ratio_2020_pct_y fin_npl_ratio_2021_pct_y macro_bi_rate_avg_pct_nat_y ///
+     macro_fx_idr_usd_nat_y macro_construction_cost_index_y
 drop in 1
 replace province_name = strtrim(province_name)
 ds province_name province_code, not
@@ -518,7 +519,7 @@ export delimited using "$CLEAN/phk_master.csv", replace
 qui count
 display as result "Done. phk_master rows: `r(N)' (expect 2280)."
 qui ds
-display as result "columns: `: word count `r(varlist)'' (expect 290)."
+display as result "columns: `: word count `r(varlist)'' (expect 291)."
 
 *==============================================================
 * 7. Variable-level flag table (1/0), one row per indicator.

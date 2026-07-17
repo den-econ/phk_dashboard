@@ -15,7 +15,7 @@ coverage: "2022-2026"
 primary_key: [province_name_std, year, month]
 source_workbook: "Data untuk PHK Dashboard.xlsx"
 n_rows: 2280
-n_columns: 290
+n_columns: 291
 
 variables:
   identity:
@@ -1379,8 +1379,8 @@ variables:
       data_level: province
       unit: "IDR billion"
     - name: fin_npl_ratio_pct_q
-      description: "NPL Ratio"
-      source_variable_name: "NPL Ratio"
+      description: "NPL Ratio, End of Quarter"
+      source_variable_name: "NPL Ratio, End of Quarter"
       data_period: "monthly, quarterly, annual"
       data_level: province
       unit: "percent"
@@ -1599,6 +1599,12 @@ variables:
       data_period: "annual"
       data_level: province
       unit: "percent (growth)"
+    - name: growth_pdrb_pct_y
+      description: "Laju Pertumbuhan PDRB"
+      source_variable_name: "Laju Pertumbuhan PDRB"
+      data_period: "annual"
+      data_level: province
+      unit: "percent"
     - name: growth_brent_yoy_pct_nat
       description: "Pertumbuhan tahunan (yoy) harga minyak Brent: (Brent_t/Brent_{t-12}-1)*100"
       source_variable_name: "(derived: price_brent_usd_bbl_nat)"
