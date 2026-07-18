@@ -266,6 +266,9 @@ fin_npl_ratio_2021_pct_y,0,0,1,1,0
 macro_bi_rate_avg_pct_nat_y,0,0,1,0,1
 macro_fx_idr_usd_nat_y,0,0,1,0,1
 macro_construction_cost_index_y,0,0,1,1,0
+macro_pdrb_hh_cons_share_pct_y,0,0,1,1,0
+macro_pdrb_gov_cons_share_pct_y,0,0,1,1,0
+macro_pdrb_invest_share_pct_y,0,0,1,1,0
 pov_line_idr_y,0,0,1,1,0
 pov_headcount_thousand_y,0,0,1,1,0
 pov_rate_pct_y,0,0,1,1,0

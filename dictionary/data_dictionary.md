@@ -9,7 +9,7 @@ Human-readable companion to the machine-readable **`dictionary/indicator_diction
 | Main output | `data/clean/phk_master.csv` |
 | Grain | one row = province × month |
 | Coverage | 2022–2026 (38 provinces × 60 months = 2,280 rows) |
-| Variables | 301 columns |
+| Variables | 304 columns |
 | Build | `code/01_build_phk_master.do` (Stata) |
 
 ## Naming convention
@@ -234,7 +234,7 @@ quarterly across 3 months; for one value per period add e.g. `keep if month==1`
 | `ind_firms_pmdn_share_y` | Proporsi Perusahaan PMDN | province | annual | count | Proporsi Perusahaan PMDN |
 | `ind_firms_pma_share_y` | Proporsi Perusahaan PMA | province | annual | count | Proporsi Perusahaan PMA |
 
-### Macro / PDRB (58)
+### Macro / PDRB (61)
 
 | Variable | Source name | Level | Frequency | Unit | Description |
 | --- | --- | --- | --- | --- | --- |
@@ -295,6 +295,9 @@ quarterly across 3 months; for one value per period add e.g. `keep if month==1`
 | `macro_bi_rate_avg_pct_nat_y` | BI Rate (Average)* | national | annual | — | BI Rate (Average)* |
 | `macro_fx_idr_usd_nat_y` | Kurs | national | monthly, quarterly, annual | IDR per USD | Kurs |
 | `macro_construction_cost_index_y` | Indeks Kemahalan Konstruksi | province | annual | index | Indeks Kemahalan Konstruksi |
+| `macro_pdrb_hh_cons_share_pct_y` | Persentase Pengeluaran Konsumsi Rumah Tangga Atas Dasar Harga Berlaku (persen) | province | annual | percent | Persentase Pengeluaran Konsumsi Rumah Tangga Atas Dasar Harga Berlaku (persen) |
+| `macro_pdrb_gov_cons_share_pct_y` | Persentase Pengeluaran Konsumsi Pemerintah Atas Dasar Harga Berlaku (persen) | province | annual | percent | Persentase Pengeluaran Konsumsi Pemerintah Atas Dasar Harga Berlaku (persen) |
+| `macro_pdrb_invest_share_pct_y` | Persentase Pembentukan Modal Tetap Bruto Atas Dasar Harga Berlaku (persen) | province | annual | percent | Persentase Pembentukan Modal Tetap Bruto Atas Dasar Harga Berlaku (persen) |
 | `macro_fx_vol_sd_nat_y` | (derived: macro_fx_idr_usd_nat) | national | annual | IDR per USD | Volatilitas nilai tukar IDR/USD: simpangan baku (SD) dari 12 kurs bulanan dalam satu tahun kalender |
 
 ### Prices (17)

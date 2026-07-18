@@ -15,7 +15,7 @@ coverage: "2022-2026"
 primary_key: [province_name_std, year, month]
 source_workbook: "Data untuk PHK Dashboard.xlsx"
 n_rows: 2280
-n_columns: 301
+n_columns: 304
 
 variables:
   identity:
@@ -1213,6 +1213,24 @@ variables:
       data_period: "annual"
       data_level: province
       unit: "index"
+    - name: macro_pdrb_hh_cons_share_pct_y
+      description: "Persentase Pengeluaran Konsumsi Rumah Tangga Atas Dasar Harga Berlaku (persen)"
+      source_variable_name: "Persentase Pengeluaran Konsumsi Rumah Tangga Atas Dasar Harga Berlaku (persen)"
+      data_period: "annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_gov_cons_share_pct_y
+      description: "Persentase Pengeluaran Konsumsi Pemerintah Atas Dasar Harga Berlaku (persen)"
+      source_variable_name: "Persentase Pengeluaran Konsumsi Pemerintah Atas Dasar Harga Berlaku (persen)"
+      data_period: "annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_invest_share_pct_y
+      description: "Persentase Pembentukan Modal Tetap Bruto Atas Dasar Harga Berlaku (persen)"
+      source_variable_name: "Persentase Pembentukan Modal Tetap Bruto Atas Dasar Harga Berlaku (persen)"
+      data_period: "annual"
+      data_level: province
+      unit: "percent"
     - name: macro_fx_vol_sd_nat_y
       description: "Volatilitas nilai tukar IDR/USD: simpangan baku (SD) dari 12 kurs bulanan dalam satu tahun kalender"
       source_variable_name: "(derived: macro_fx_idr_usd_nat)"

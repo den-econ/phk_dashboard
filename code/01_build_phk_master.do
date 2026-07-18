@@ -292,9 +292,12 @@ rename HB fin_npl_ratio_2021_pct_y
 rename HC macro_bi_rate_avg_pct_nat_y
 rename HD macro_fx_idr_usd_nat_y
 rename HE macro_construction_cost_index_y
-rename HF pov_line_idr_y
-rename HG pov_headcount_thousand_y
-rename HH pov_rate_pct_y
+rename HF macro_pdrb_hh_cons_share_pct_y
+rename HG macro_pdrb_gov_cons_share_pct_y
+rename HH macro_pdrb_invest_share_pct_y
+rename HI pov_line_idr_y
+rename HJ pov_headcount_thousand_y
+rename HK pov_rate_pct_y
 keep province_name province_code year phk_y lab_formal_share_pct_y lab_formal_share_2019_pct_y ///
      lab_formal_share_chg_vs2019_y lab_contract_workers_y lab_formal_workers_y lab_contract_share_pct_y ///
      lab_contract_share_2019_pct_y lab_contract_share_chg_vs2019_y lab_working_pop_y lab_tpt_pct_y ///
@@ -349,7 +352,8 @@ keep province_name province_code year phk_y lab_formal_share_pct_y lab_formal_sh
      trade_export_value_bps_y trade_export_value_y trade_import_value_y trade_balance_y ///
      fin_total_credit_idr_billion_y fin_npl_y fin_npl_ratio_pct_y fin_npl_ratio_2020_pct_y ///
      fin_npl_ratio_2021_pct_y macro_bi_rate_avg_pct_nat_y macro_fx_idr_usd_nat_y ///
-     macro_construction_cost_index_y pov_line_idr_y pov_headcount_thousand_y pov_rate_pct_y
+     macro_construction_cost_index_y macro_pdrb_hh_cons_share_pct_y macro_pdrb_gov_cons_share_pct_y ///
+     macro_pdrb_invest_share_pct_y pov_line_idr_y pov_headcount_thousand_y pov_rate_pct_y
 drop in 1
 replace province_name = strtrim(province_name)
 ds province_name province_code, not
@@ -532,7 +536,7 @@ export delimited using "$CLEAN/phk_master.csv", replace
 qui count
 display as result "Done. phk_master rows: `r(N)' (expect 2280)."
 qui ds
-display as result "columns: `: word count `r(varlist)'' (expect 301)."
+display as result "columns: `: word count `r(varlist)'' (expect 304)."
 
 *==============================================================
 * 7. Variable-level flag table (1/0), one row per indicator.
