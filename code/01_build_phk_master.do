@@ -184,107 +184,117 @@ rename CX lag1_bpjstk_active_bpu_y
 rename CY lag1_bpjstk_phk_y
 rename CZ lag1_bpjstk_jht_phk_y
 rename DA lag1_bpjstk_jkp_phk_y
-rename DB ind_firms_medium_y
-rename DC ind_firms_large_y
-rename DD ind_firms_total_y
-rename DE ind_workers_medium_y
-rename DF ind_workers_large_y
-rename DG ind_workers_prod_y
-rename DH ind_workers_nonprod_y
-rename DI ind_workers_total_y
-rename DJ ind_prod_workers_wage_cost_y
-rename DK ind_prod_workers_other_cost_y
-rename DL ind_prod_workers_total_cost_y
-rename DM ind_nonprod_workers_wage_cost_y
-rename DN ind_nonprod_workers_other_cost_y
-rename DO ind_nonprod_workers_total_cost_y
-rename DP ind_laborcost_total_y
-rename DQ ind_input_y
-rename DR ind_output_y
-rename DS ind_va_mkt_y
-rename DT ind_va_fc_y
-rename DU ind_firms_pmdn_y
-rename DV ind_firms_pma_y
-rename DW ind_workers_per_firm_y
-rename DX ind_prod_worker_share_y
-rename DY ind_workers_per_input_y
-rename DZ ind_workers_per_output_y
-rename EA ind_workers_per_va_mkt_y
-rename EB ind_workers_per_va_fc_y
-rename EC ind_laborcost_share_input_y
-rename ED ind_laborcost_share_output_y
-rename EE ind_laborcost_share_va_mkt_y
-rename EF ind_laborcost_share_va_fc_y
-rename EG ind_laborcost_per_wkr_y
-rename EH ind_output_per_wkr_y
-rename EI ind_va_mkt_per_wkr_y
-rename EJ ind_va_fc_per_wkr_y
-rename EK ind_input_share_output_y
-rename EL ind_va_mkt_share_output_y
-rename EM ind_va_fc_share_output_y
-rename EN ind_prod_laborcost_share_y
-rename EO ind_nonprod_laborcost_share_y
-rename EP ind_prod_wage_per_wkr_y
-rename EQ ind_nonprod_wage_per_wkr_y
-rename ER ind_firms_pmdn_share_y
-rename ES ind_firms_pma_share_y
-rename ET growth_ind_output_y
-rename EU growth_ind_input_y
-rename EV growth_ind_va_mkt_y
-rename EW growth_ind_va_fc_y
-rename EX growth_ind_workers_total_y
-rename EY growth_ind_firms_total_y
-rename EZ growth_ind_laborcost_total_y
-rename FA growth_ind_labor_prod_market_y
-rename FB growth_ind_labor_prod_fc_y
-rename FC diffgr_input_minus_output_y
-rename FD diffgr_laborcost_minus_output_y
-rename FE macro_pdrb_idr_billion_y
-rename FF macro_pdrb_idr_million_y
-rename FG growth_pdrb_pct_y
-rename FH macro_pdrb_agri_y
-rename FI macro_pdrb_mining_y
-rename FJ macro_pdrb_manuf_y
-rename FK macro_pdrb_electricity_y
-rename FL macro_pdrb_water_waste_y
-rename FM macro_pdrb_construction_y
-rename FN macro_pdrb_trade_y
-rename FO macro_pdrb_transport_y
-rename FP macro_pdrb_accom_food_y
-rename FQ macro_pdrb_info_comm_y
-rename FR macro_pdrb_finance_y
-rename FS macro_pdrb_real_estate_y
-rename FT macro_pdrb_business_svc_y
-rename FU macro_pdrb_public_admin_y
-rename FV macro_pdrb_education_y
-rename FW macro_pdrb_health_y
-rename FX macro_pdrb_other_svc_y
-rename FY macro_pdrb_manuf_share_pct_y
-rename FZ macro_pdrb_agri_share_pct_y
-rename GA macro_pdrb_svc_share_pct_y
-rename GB macro_pdrb_manuf_growth_pct_y
-rename GC macro_pdrb_per_wkr_y
-rename GD macro_pdrb_per_wkr_growth_pct_y
-rename GE macro_pmi_manuf_nat_y
-rename GF fin_fdi_y
-rename GG price_inflation_yoy_q4_pct_y
-rename GH price_inflation_yoy_avg_pct_y
-rename GI price_producer_index_nat_y
-rename GJ price_cpi_index_nat_y
-rename GK price_producer_change_pct_nat_y
-rename GL price_consumer_change_pct_nat_y
-rename GM trade_export_value_bps_y
-rename GN trade_export_value_y
-rename GO trade_import_value_y
-rename GP trade_balance_y
-rename GQ fin_total_credit_idr_billion_y
-rename GR fin_npl_y
-rename GS fin_npl_ratio_pct_y
-rename GT fin_npl_ratio_2020_pct_y
-rename GU fin_npl_ratio_2021_pct_y
-rename GV macro_bi_rate_avg_pct_nat_y
-rename GW macro_fx_idr_usd_nat_y
-rename GX macro_construction_cost_index_y
+rename DB lab_unemployed_y
+rename DC lab_unemployed_youth_y
+rename DD lab_unemployed_edu_y
+rename DE lab_unemployed_youth_share_pct_y
+rename DF lab_unemployed_edu_share_pct_y
+rename DG ind_firms_medium_y
+rename DH ind_firms_large_y
+rename DI ind_firms_total_y
+rename DJ ind_workers_medium_y
+rename DK ind_workers_large_y
+rename DL ind_workers_prod_y
+rename DM ind_workers_nonprod_y
+rename DN ind_workers_total_y
+rename DO ind_prod_workers_wage_cost_y
+rename DP ind_prod_workers_other_cost_y
+rename DQ ind_prod_workers_total_cost_y
+rename DR ind_nonprod_workers_wage_cost_y
+rename DS ind_nonprod_workers_other_cost_y
+rename DT ind_nonprod_workers_total_cost_y
+rename DU ind_laborcost_total_y
+rename DV ind_input_y
+rename DW ind_output_y
+rename DX ind_va_mkt_y
+rename DY ind_va_fc_y
+rename DZ ind_firms_pmdn_y
+rename EA ind_firms_pma_y
+rename EB ind_workers_per_firm_y
+rename EC ind_prod_worker_share_y
+rename ED ind_workers_per_input_y
+rename EE ind_workers_per_output_y
+rename EF ind_workers_per_va_mkt_y
+rename EG ind_workers_per_va_fc_y
+rename EH ind_laborcost_share_input_y
+rename EI ind_laborcost_share_output_y
+rename EJ ind_laborcost_share_va_mkt_y
+rename EK ind_laborcost_share_va_fc_y
+rename EL ind_laborcost_per_wkr_y
+rename EM ind_output_per_wkr_y
+rename EN ind_va_mkt_per_wkr_y
+rename EO ind_va_fc_per_wkr_y
+rename EP ind_input_share_output_y
+rename EQ ind_va_mkt_share_output_y
+rename ER ind_va_fc_share_output_y
+rename ES ind_prod_laborcost_share_y
+rename ET ind_nonprod_laborcost_share_y
+rename EU ind_prod_wage_per_wkr_y
+rename EV ind_nonprod_wage_per_wkr_y
+rename EW ind_firms_pmdn_share_y
+rename EX ind_firms_pma_share_y
+rename EY growth_ind_output_y
+rename EZ growth_ind_input_y
+rename FA growth_ind_va_mkt_y
+rename FB growth_ind_va_fc_y
+rename FC growth_ind_workers_total_y
+rename FD growth_ind_firms_total_y
+rename FE growth_ind_laborcost_total_y
+rename FF growth_ind_labor_prod_market_y
+rename FG growth_ind_labor_prod_fc_y
+rename FH diffgr_input_minus_output_y
+rename FI diffgr_laborcost_minus_output_y
+rename FJ macro_pdrb_idr_billion_y
+rename FK macro_pdrb_idr_million_y
+rename FL growth_pdrb_pct_y
+rename FM macro_pdrb_agri_y
+rename FN macro_pdrb_mining_y
+rename FO macro_pdrb_manuf_y
+rename FP macro_pdrb_electricity_y
+rename FQ macro_pdrb_water_waste_y
+rename FR macro_pdrb_construction_y
+rename FS macro_pdrb_trade_y
+rename FT macro_pdrb_transport_y
+rename FU macro_pdrb_accom_food_y
+rename FV macro_pdrb_info_comm_y
+rename FW macro_pdrb_finance_y
+rename FX macro_pdrb_real_estate_y
+rename FY macro_pdrb_business_svc_y
+rename FZ macro_pdrb_public_admin_y
+rename GA macro_pdrb_education_y
+rename GB macro_pdrb_health_y
+rename GC macro_pdrb_other_svc_y
+rename GD macro_pdrb_manuf_share_pct_y
+rename GE macro_pdrb_agri_share_pct_y
+rename GF macro_pdrb_svc_share_pct_y
+rename GG macro_pdrb_manuf_growth_pct_y
+rename GH macro_pdrb_per_wkr_y
+rename GI macro_pdrb_per_wkr_growth_pct_y
+rename GJ macro_pdrb_pcap_idr_thousand_y
+rename GK growth_pdrb_pcap_pct_y
+rename GL macro_pmi_manuf_nat_y
+rename GM fin_fdi_y
+rename GN price_inflation_yoy_q4_pct_y
+rename GO price_inflation_yoy_avg_pct_y
+rename GP price_producer_index_nat_y
+rename GQ price_cpi_index_nat_y
+rename GR price_producer_change_pct_nat_y
+rename GS price_consumer_change_pct_nat_y
+rename GT trade_export_value_bps_y
+rename GU trade_export_value_y
+rename GV trade_import_value_y
+rename GW trade_balance_y
+rename GX fin_total_credit_idr_billion_y
+rename GY fin_npl_y
+rename GZ fin_npl_ratio_pct_y
+rename HA fin_npl_ratio_2020_pct_y
+rename HB fin_npl_ratio_2021_pct_y
+rename HC macro_bi_rate_avg_pct_nat_y
+rename HD macro_fx_idr_usd_nat_y
+rename HE macro_construction_cost_index_y
+rename HF pov_line_idr_y
+rename HG pov_headcount_thousand_y
+rename HH pov_rate_pct_y
 keep province_name province_code year phk_y lab_formal_share_pct_y lab_formal_share_2019_pct_y ///
      lab_formal_share_chg_vs2019_y lab_contract_workers_y lab_formal_workers_y lab_contract_share_pct_y ///
      lab_contract_share_2019_pct_y lab_contract_share_chg_vs2019_y lab_working_pop_y lab_tpt_pct_y ///
@@ -310,33 +320,36 @@ keep province_name province_code year phk_y lab_formal_share_pct_y lab_formal_sh
      growth_bpjstk_active_pu_y growth_bpjstk_active_bpu_y growth_bpjstk_phk_y growth_bpjstk_jht_phk_y ///
      growth_bpjstk_jkp_phk_y lag1_phk_y lag1_lab_formal_share_pct_y lag1_lab_contract_share_pct_y ///
      lag1_wage_ump_growth_pct_y lag1_bpjstk_active_pu_y lag1_bpjstk_active_bpu_y lag1_bpjstk_phk_y ///
-     lag1_bpjstk_jht_phk_y lag1_bpjstk_jkp_phk_y ind_firms_medium_y ind_firms_large_y ind_firms_total_y ///
-     ind_workers_medium_y ind_workers_large_y ind_workers_prod_y ind_workers_nonprod_y ind_workers_total_y ///
-     ind_prod_workers_wage_cost_y ind_prod_workers_other_cost_y ind_prod_workers_total_cost_y ///
-     ind_nonprod_workers_wage_cost_y ind_nonprod_workers_other_cost_y ind_nonprod_workers_total_cost_y ///
-     ind_laborcost_total_y ind_input_y ind_output_y ind_va_mkt_y ind_va_fc_y ind_firms_pmdn_y ///
-     ind_firms_pma_y ind_workers_per_firm_y ind_prod_worker_share_y ind_workers_per_input_y ///
-     ind_workers_per_output_y ind_workers_per_va_mkt_y ind_workers_per_va_fc_y ind_laborcost_share_input_y ///
-     ind_laborcost_share_output_y ind_laborcost_share_va_mkt_y ind_laborcost_share_va_fc_y ///
-     ind_laborcost_per_wkr_y ind_output_per_wkr_y ind_va_mkt_per_wkr_y ind_va_fc_per_wkr_y ///
-     ind_input_share_output_y ind_va_mkt_share_output_y ind_va_fc_share_output_y ind_prod_laborcost_share_y ///
-     ind_nonprod_laborcost_share_y ind_prod_wage_per_wkr_y ind_nonprod_wage_per_wkr_y ind_firms_pmdn_share_y ///
-     ind_firms_pma_share_y growth_ind_output_y growth_ind_input_y growth_ind_va_mkt_y growth_ind_va_fc_y ///
-     growth_ind_workers_total_y growth_ind_firms_total_y growth_ind_laborcost_total_y ///
-     growth_ind_labor_prod_market_y growth_ind_labor_prod_fc_y diffgr_input_minus_output_y ///
-     diffgr_laborcost_minus_output_y macro_pdrb_idr_billion_y macro_pdrb_idr_million_y growth_pdrb_pct_y ///
-     macro_pdrb_agri_y macro_pdrb_mining_y macro_pdrb_manuf_y macro_pdrb_electricity_y ///
-     macro_pdrb_water_waste_y macro_pdrb_construction_y macro_pdrb_trade_y macro_pdrb_transport_y ///
-     macro_pdrb_accom_food_y macro_pdrb_info_comm_y macro_pdrb_finance_y macro_pdrb_real_estate_y ///
-     macro_pdrb_business_svc_y macro_pdrb_public_admin_y macro_pdrb_education_y macro_pdrb_health_y ///
-     macro_pdrb_other_svc_y macro_pdrb_manuf_share_pct_y macro_pdrb_agri_share_pct_y ///
-     macro_pdrb_svc_share_pct_y macro_pdrb_manuf_growth_pct_y macro_pdrb_per_wkr_y ///
-     macro_pdrb_per_wkr_growth_pct_y macro_pmi_manuf_nat_y fin_fdi_y price_inflation_yoy_q4_pct_y ///
-     price_inflation_yoy_avg_pct_y price_producer_index_nat_y price_cpi_index_nat_y ///
-     price_producer_change_pct_nat_y price_consumer_change_pct_nat_y trade_export_value_bps_y ///
-     trade_export_value_y trade_import_value_y trade_balance_y fin_total_credit_idr_billion_y fin_npl_y ///
-     fin_npl_ratio_pct_y fin_npl_ratio_2020_pct_y fin_npl_ratio_2021_pct_y macro_bi_rate_avg_pct_nat_y ///
-     macro_fx_idr_usd_nat_y macro_construction_cost_index_y
+     lag1_bpjstk_jht_phk_y lag1_bpjstk_jkp_phk_y lab_unemployed_y lab_unemployed_youth_y ///
+     lab_unemployed_edu_y lab_unemployed_youth_share_pct_y lab_unemployed_edu_share_pct_y ind_firms_medium_y ///
+     ind_firms_large_y ind_firms_total_y ind_workers_medium_y ind_workers_large_y ind_workers_prod_y ///
+     ind_workers_nonprod_y ind_workers_total_y ind_prod_workers_wage_cost_y ind_prod_workers_other_cost_y ///
+     ind_prod_workers_total_cost_y ind_nonprod_workers_wage_cost_y ind_nonprod_workers_other_cost_y ///
+     ind_nonprod_workers_total_cost_y ind_laborcost_total_y ind_input_y ind_output_y ind_va_mkt_y ///
+     ind_va_fc_y ind_firms_pmdn_y ind_firms_pma_y ind_workers_per_firm_y ind_prod_worker_share_y ///
+     ind_workers_per_input_y ind_workers_per_output_y ind_workers_per_va_mkt_y ind_workers_per_va_fc_y ///
+     ind_laborcost_share_input_y ind_laborcost_share_output_y ind_laborcost_share_va_mkt_y ///
+     ind_laborcost_share_va_fc_y ind_laborcost_per_wkr_y ind_output_per_wkr_y ind_va_mkt_per_wkr_y ///
+     ind_va_fc_per_wkr_y ind_input_share_output_y ind_va_mkt_share_output_y ind_va_fc_share_output_y ///
+     ind_prod_laborcost_share_y ind_nonprod_laborcost_share_y ind_prod_wage_per_wkr_y ///
+     ind_nonprod_wage_per_wkr_y ind_firms_pmdn_share_y ind_firms_pma_share_y growth_ind_output_y ///
+     growth_ind_input_y growth_ind_va_mkt_y growth_ind_va_fc_y growth_ind_workers_total_y ///
+     growth_ind_firms_total_y growth_ind_laborcost_total_y growth_ind_labor_prod_market_y ///
+     growth_ind_labor_prod_fc_y diffgr_input_minus_output_y diffgr_laborcost_minus_output_y ///
+     macro_pdrb_idr_billion_y macro_pdrb_idr_million_y growth_pdrb_pct_y macro_pdrb_agri_y ///
+     macro_pdrb_mining_y macro_pdrb_manuf_y macro_pdrb_electricity_y macro_pdrb_water_waste_y ///
+     macro_pdrb_construction_y macro_pdrb_trade_y macro_pdrb_transport_y macro_pdrb_accom_food_y ///
+     macro_pdrb_info_comm_y macro_pdrb_finance_y macro_pdrb_real_estate_y macro_pdrb_business_svc_y ///
+     macro_pdrb_public_admin_y macro_pdrb_education_y macro_pdrb_health_y macro_pdrb_other_svc_y ///
+     macro_pdrb_manuf_share_pct_y macro_pdrb_agri_share_pct_y macro_pdrb_svc_share_pct_y ///
+     macro_pdrb_manuf_growth_pct_y macro_pdrb_per_wkr_y macro_pdrb_per_wkr_growth_pct_y ///
+     macro_pdrb_pcap_idr_thousand_y growth_pdrb_pcap_pct_y macro_pmi_manuf_nat_y fin_fdi_y ///
+     price_inflation_yoy_q4_pct_y price_inflation_yoy_avg_pct_y price_producer_index_nat_y ///
+     price_cpi_index_nat_y price_producer_change_pct_nat_y price_consumer_change_pct_nat_y ///
+     trade_export_value_bps_y trade_export_value_y trade_import_value_y trade_balance_y ///
+     fin_total_credit_idr_billion_y fin_npl_y fin_npl_ratio_pct_y fin_npl_ratio_2020_pct_y ///
+     fin_npl_ratio_2021_pct_y macro_bi_rate_avg_pct_nat_y macro_fx_idr_usd_nat_y ///
+     macro_construction_cost_index_y pov_line_idr_y pov_headcount_thousand_y pov_rate_pct_y
 drop in 1
 replace province_name = strtrim(province_name)
 ds province_name province_code, not
@@ -519,7 +532,7 @@ export delimited using "$CLEAN/phk_master.csv", replace
 qui count
 display as result "Done. phk_master rows: `r(N)' (expect 2280)."
 qui ds
-display as result "columns: `: word count `r(varlist)'' (expect 291)."
+display as result "columns: `: word count `r(varlist)'' (expect 301)."
 
 *==============================================================
 * 7. Variable-level flag table (1/0), one row per indicator.

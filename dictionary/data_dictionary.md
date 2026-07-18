@@ -9,7 +9,7 @@ Human-readable companion to the machine-readable **`dictionary/indicator_diction
 | Main output | `data/clean/phk_master.csv` |
 | Grain | one row = province × month |
 | Coverage | 2022–2026 (38 provinces × 60 months = 2,280 rows) |
-| Variables | 291 columns |
+| Variables | 301 columns |
 | Build | `code/01_build_phk_master.do` (Stata) |
 
 ## Naming convention
@@ -71,7 +71,7 @@ quarterly across 3 months; for one value per period add e.g. `keep if month==1`
 | `phk_flow_q` | PHK (Flow) | province | monthly, quarterly | — | PHK (Flow) |
 | `phk_y` | PHK | province | annual | — | PHK |
 
-### Labor market (29)
+### Labor market (34)
 
 | Variable | Source name | Level | Frequency | Unit | Description |
 | --- | --- | --- | --- | --- | --- |
@@ -104,6 +104,11 @@ quarterly across 3 months; for one value per period add e.g. `keep if month==1`
 | `lab_job_seekers_y` | Pencari Kerja Terdaftar - Jumlah | province | annual | count | Pencari Kerja Terdaftar - Jumlah |
 | `lab_vacancies_registered_y` | Lowongan Kerja Terdaftar - Jumlah | province | annual | count | Lowongan Kerja Terdaftar - Jumlah |
 | `lab_placements_registered_y` | Penempatan/Pemenuhan Tenaga Kerja - Jumlah | province | annual | count | Penempatan/Pemenuhan Tenaga Kerja - Jumlah |
+| `lab_unemployed_y` | Jumlah Pengangguran | province | annual | count | Jumlah Pengangguran |
+| `lab_unemployed_youth_y` | Jumlah Penganggur Usia Muda (15-24 tahun) | province | annual | count | Jumlah Penganggur Usia Muda (15-24 tahun) |
+| `lab_unemployed_edu_y` | Jumlah Penganggur Terdidik (S1/Diploma ke atas) | province | annual | count | Jumlah Penganggur Terdidik (S1/Diploma ke atas) |
+| `lab_unemployed_youth_share_pct_y` | % Share Penganggur Usia Muda (15-24 tahun) | province | annual | percent | % Share Penganggur Usia Muda (15-24 tahun) |
+| `lab_unemployed_edu_share_pct_y` | % Share Penganggur Terdidik (S1/Diploma ke atas) | province | annual | percent | % Share Penganggur Terdidik (S1/Diploma ke atas) |
 
 ### Employment by sector (51)
 
@@ -229,7 +234,7 @@ quarterly across 3 months; for one value per period add e.g. `keep if month==1`
 | `ind_firms_pmdn_share_y` | Proporsi Perusahaan PMDN | province | annual | count | Proporsi Perusahaan PMDN |
 | `ind_firms_pma_share_y` | Proporsi Perusahaan PMA | province | annual | count | Proporsi Perusahaan PMA |
 
-### Macro / PDRB (57)
+### Macro / PDRB (58)
 
 | Variable | Source name | Level | Frequency | Unit | Description |
 | --- | --- | --- | --- | --- | --- |
@@ -285,6 +290,7 @@ quarterly across 3 months; for one value per period add e.g. `keep if month==1`
 | `macro_pdrb_manuf_growth_pct_y` | Laju Pertumbuhan PDB Industri Manufaktur | province | annual | IDR billion | Laju Pertumbuhan PDB Industri Manufaktur - PDRB Riil (constant price / ADHK) |
 | `macro_pdrb_per_wkr_y` | PDRB/Pekerja | province | annual | IDR billion | PDRB/Pekerja - PDRB Riil (constant price / ADHK) |
 | `macro_pdrb_per_wkr_growth_pct_y` | Laju Pertumbuhan PDB Per Tenaga Kerja | province | annual | IDR billion | Laju Pertumbuhan PDB Per Tenaga Kerja - PDRB Riil (constant price / ADHK) |
+| `macro_pdrb_pcap_idr_thousand_y` | PDRB Per Kapita (Ribu Rupiah) | province | annual | IDR thousand | PDRB Per Kapita (Ribu Rupiah) |
 | `macro_pmi_manuf_nat_y` | PMI Manufaktur | national | monthly, quarterly, annual | index | PMI Manufaktur |
 | `macro_bi_rate_avg_pct_nat_y` | BI Rate (Average)* | national | annual | — | BI Rate (Average)* |
 | `macro_fx_idr_usd_nat_y` | Kurs | national | monthly, quarterly, annual | IDR per USD | Kurs |
@@ -347,7 +353,15 @@ quarterly across 3 months; for one value per period add e.g. `keep if month==1`
 | `fin_npl_ratio_2020_pct_y` | NPL Ratio, End of Year (2020) | province | annual | percent | NPL Ratio, End of Year (2020) |
 | `fin_npl_ratio_2021_pct_y` | NPL Ratio, End of Year (2021) | province | annual | percent | NPL Ratio, End of Year (2021) |
 
-### Growth (derived) (38)
+### Poverty (3)
+
+| Variable | Source name | Level | Frequency | Unit | Description |
+| --- | --- | --- | --- | --- | --- |
+| `pov_line_idr_y` | Garis Kemiskinan - Maret (Rp) | province | annual | IDR | Garis Kemiskinan - Maret (Rp) |
+| `pov_headcount_thousand_y` | Jumlah Penduduk Miskin - Maret (ribu) (Ribu) | province | annual | thousand persons | Jumlah Penduduk Miskin - Maret (ribu) (Ribu) |
+| `pov_rate_pct_y` | Persentase Penduduk Miskin - Maret | province | annual | percent | Persentase Penduduk Miskin - Maret |
+
+### Growth (derived) (39)
 
 | Variable | Source name | Level | Frequency | Unit | Description |
 | --- | --- | --- | --- | --- | --- |
@@ -382,6 +396,7 @@ quarterly across 3 months; for one value per period add e.g. `keep if month==1`
 | `growth_ind_labor_prod_market_y` | Pertumbuhan Produktivitas (Nilai Tambah Pasar) Tenaga Kerja | province | annual | percent (growth) | Pertumbuhan Produktivitas (Nilai Tambah Pasar) Tenaga Kerja |
 | `growth_ind_labor_prod_fc_y` | Pertumbuhan Produktivitas (Nilai Tambah Produksi) Tenaga Kerja | province | annual | percent (growth) | Pertumbuhan Produktivitas (Nilai Tambah Produksi) Tenaga Kerja |
 | `growth_pdrb_pct_y` | Laju Pertumbuhan PDRB | province | annual | percent | Laju Pertumbuhan PDRB |
+| `growth_pdrb_pcap_pct_y` | Laju Pertumbuhan PDRB Per Kapita (Persen) | province | annual | percent | Laju Pertumbuhan PDRB Per Kapita (Persen) |
 | `growth_brent_yoy_pct_nat` | (derived: price_brent_usd_bbl_nat) | national | monthly | percent (growth) | Pertumbuhan tahunan (yoy) harga minyak Brent: (Brent_t/Brent_{t-12}-1)*100 |
 | `growth_ihpb_yoy_pct_nat` | (derived: price_ihpb_nat) | national | monthly | percent (growth) | Pertumbuhan tahunan (yoy) IHPB / Indeks Harga Perdagangan Besar (wholesale): (IHPB_t/IHPB_{t-12}-1)*100 |
 | `growth_npl_yoy_pct` | (derived: fin_npl_idr_billion) | province | monthly | percent (growth) | Pertumbuhan tahunan (yoy) NPL per provinsi: (NPL_t/NPL_{t-12}-1)*100 |

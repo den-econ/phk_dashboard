@@ -15,7 +15,7 @@ coverage: "2022-2026"
 primary_key: [province_name_std, year, month]
 source_workbook: "Data untuk PHK Dashboard.xlsx"
 n_rows: 2280
-n_columns: 291
+n_columns: 301
 
 variables:
   identity:
@@ -242,6 +242,36 @@ variables:
       data_period: "annual"
       data_level: province
       unit: "count"
+    - name: lab_unemployed_y
+      description: "Jumlah Pengangguran"
+      source_variable_name: "Jumlah Pengangguran"
+      data_period: "annual"
+      data_level: province
+      unit: "count"
+    - name: lab_unemployed_youth_y
+      description: "Jumlah Penganggur Usia Muda (15-24 tahun)"
+      source_variable_name: "Jumlah Penganggur Usia Muda (15-24 tahun)"
+      data_period: "annual"
+      data_level: province
+      unit: "count"
+    - name: lab_unemployed_edu_y
+      description: "Jumlah Penganggur Terdidik (S1/Diploma ke atas)"
+      source_variable_name: "Jumlah Penganggur Terdidik (S1/Diploma ke atas)"
+      data_period: "annual"
+      data_level: province
+      unit: "count"
+    - name: lab_unemployed_youth_share_pct_y
+      description: "% Share Penganggur Usia Muda (15-24 tahun)"
+      source_variable_name: "% Share Penganggur Usia Muda (15-24 tahun)"
+      data_period: "annual"
+      data_level: province
+      unit: "percent"
+    - name: lab_unemployed_edu_share_pct_y
+      description: "% Share Penganggur Terdidik (S1/Diploma ke atas)"
+      source_variable_name: "% Share Penganggur Terdidik (S1/Diploma ke atas)"
+      data_period: "annual"
+      data_level: province
+      unit: "percent"
   employment:
     - name: emp_agri_y
       description: "Tenaga Kerja - Pertanian, Kehutanan dan Perikanan"
@@ -1154,6 +1184,12 @@ variables:
       data_period: "annual"
       data_level: province
       unit: "IDR billion"
+    - name: macro_pdrb_pcap_idr_thousand_y
+      description: "PDRB Per Kapita (Ribu Rupiah)"
+      source_variable_name: "PDRB Per Kapita (Ribu Rupiah)"
+      data_period: "annual"
+      data_level: province
+      unit: "IDR thousand"
     - name: macro_pmi_manuf_nat_y
       description: "PMI Manufaktur"
       source_variable_name: "PMI Manufaktur"
@@ -1418,6 +1454,25 @@ variables:
       data_period: "annual"
       data_level: province
       unit: "percent"
+  poverty:
+    - name: pov_line_idr_y
+      description: "Garis Kemiskinan - Maret (Rp)"
+      source_variable_name: "Garis Kemiskinan - Maret (Rp)"
+      data_period: "annual"
+      data_level: province
+      unit: "IDR"
+    - name: pov_headcount_thousand_y
+      description: "Jumlah Penduduk Miskin - Maret (ribu) (Ribu)"
+      source_variable_name: "Jumlah Penduduk Miskin - Maret (ribu) (Ribu)"
+      data_period: "annual"
+      data_level: province
+      unit: "thousand persons"
+    - name: pov_rate_pct_y
+      description: "Persentase Penduduk Miskin - Maret"
+      source_variable_name: "Persentase Penduduk Miskin - Maret"
+      data_period: "annual"
+      data_level: province
+      unit: "percent"
   growth:
     - name: growth_lab_working_pop_y
       description: "Pertumbuhan Bekerja"
@@ -1602,6 +1657,12 @@ variables:
     - name: growth_pdrb_pct_y
       description: "Laju Pertumbuhan PDRB"
       source_variable_name: "Laju Pertumbuhan PDRB"
+      data_period: "annual"
+      data_level: province
+      unit: "percent"
+    - name: growth_pdrb_pcap_pct_y
+      description: "Laju Pertumbuhan PDRB Per Kapita (Persen)"
+      source_variable_name: "Laju Pertumbuhan PDRB Per Kapita (Persen)"
       data_period: "annual"
       data_level: province
       unit: "percent"
