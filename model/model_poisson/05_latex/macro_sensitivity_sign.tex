@@ -1,24 +1,24 @@
 \begin{table}[htbp]
 \centering
-\caption{Direction of Significant Effects from Poisson Regressions}
+\caption{Direction of Significant Associations between Lagged Macroeconomic Indicators and PHK}
 \small
 \begin{tabular}{lcccc}
 \toprule
 Variable & Lag 1 & Lag 3 & Lag 6 & Lag 12 \\ \midrule
+log\_price\_brent&+&&&\\
 bi\_rate&+&+&+&+\\
+log\_fx\_idr\_usd&&-&&\\
+pmi\_manuf&&&&\\
+ihpb\_yoy&&-&&-\\
 cpi\_yoy&-&-&-&-\\
-ihpb\_yoy&-&-&&\\
-log\_export&&&&\\
-log\_fx\_idr\_usd&&&+&+\\
-log\_import&-&&&+\\
-log\_price\_brent&&&-&\\
-npl\_yoy&&&&\\
-pmi\_manuf&-&&&\\
+npl\_ratio&&&&\\
+log\_export&-&-&&\\
+log\_import&-&&&\\
 \bottomrule
 \end{tabular}
 \vspace{0.2cm}
 \begin{minipage}{0.95\linewidth}
 \footnotesize
-\textit{Notes:} '+' ('-') denotes a positive (negative) statistically significant coefficient. Blank cells indicate that the estimated coefficient is not statistically significant.
+\textit{Notes:} Each cell summarizes the estimated association from a separate Poisson regression of monthly provincial PHK on the indicated lagged macroeconomic pressure variable, controlling for provincial economic and labor-market structure, province fixed effects, and calendar-month fixed effects. '+' ('-') denotes a positive (negative) association statistically significant at the 10\% level or better. Blank cells denote estimates that are not statistically significant at the 10\% level.
 \end{minipage}
 \end{table}

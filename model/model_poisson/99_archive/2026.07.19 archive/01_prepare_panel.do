@@ -27,6 +27,38 @@ set scheme plotplain
     import  delimited "$input/phk_master.csv", clear
     save    "$data/phk_master.dta", replace
 
+    * Rename variables 
+    rename  macro_pdrb_manuf_share_pct_y    manuf_pdrb_share
+    rename  macro_pdrb_agri_share_pct_y     agri_pdrb_share
+    rename  emp_share_manuf_pct_y           manuf_emp_share
+    rename  emp_share_agri_pct_y            agri_emp_share
+    rename  lab_formal_share_pct_y          formal_lab_share
+    rename  wage_ump_growth_pct_y           min_wage_yoy
+    rename  growth_wage_avg_employee_y      avg_wage_yoy
+    
+
+    rename  growth_brent_yoy_pct_nat        price_brent_yoy
+    rename  macro_bi_rate_pct_nat           bi_rate
+    rename  macro_pmi_manuf_nat             pmi_manuf
+    rename  growth_ihpb_yoy_pct_nat         ihpb_yoy
+
+    rename  price_inflation_yoy_pct         cpi_yoy
+    rename  growth_npl_yoy_pct              npl_yoy
+    rename  growth_export_yoy_pct           export_yoy
+    rename  growth_import_yoy_pct           import_yoy
+
+    rename  price_cpi_index                 cpi_index
+    rename  price_ihpb_nat                  ihpb_index
+
+    gen     log_price_brent                 = ln(price_brent_usd_bbl_nat)
+    gen     log_fx_idr_usd                  = ln(macro_fx_idr_usd_nat)
+    gen     log_export                      = ln(trade_export_value)
+    gen     log_import                      = ln(trade_import_value)
+    gen     log_min_wage                    = ln(wage_ump_idr_y) 
+    gen     log_npl                         = ln(fin_npl_idr_billion)
+    gen     log_cpi                         = ln(cpi_index)
+    gen     log_ihpb                        = ln(ihpb_index)
+
 
     * Generate province id
     rename  province_code prov_id
@@ -40,92 +72,7 @@ set scheme plotplain
     }
 
     label values prov_id prov_lbl
-
-    * Provincial Economic Structure
-    rename  macro_pdrb_gov_cons_share_pct_y gov_pdrb_share
-    rename  macro_pdrb_invest_share_pct_y   invest_pdrb_share
-    gen     export_pdrb_share               = trade_export_value_bps_y / macro_pdrb_idr_billion_y * 100
-    gen     import_pdrb_share               = trade_import_value_y / macro_pdrb_idr_billion_y *100
-
-    sum     gov_pdrb_share invest_pdrb_share export_pdrb_share import_pdrb_share
     
-    preserve
-    collapse (first) gov_pdrb_share invest_pdrb_share export_pdrb_share import_pdrb_share, by(year prov_id)
-    keep if year == 2025
-    gsort  -export_pdrb_share
-    restore
-
-    rename  macro_pdrb_manuf_share_pct_y    manuf_pdrb_share
-    rename  macro_pdrb_agri_share_pct_y     agri_pdrb_share
-    gen     mining_pdrb_share               = macro_pdrb_mining_y / macro_pdrb_idr_billion_y * 100
-    
-    sum     manuf_pdrb_share agri_pdrb_share mining_pdrb_share
-    preserve
-    collapse (first) manuf_pdrb_share agri_pdrb_share mining_pdrb_share, by(year prov_id)
-    keep if year == 2025
-    gsort  -mining_pdrb_share
-    restore
-
-    gen     log_pdrb_cap                    = ln(macro_pdrb_pcap_idr_thousand_y)
-    rename  pov_rate_pct_y                  pov_rate
-
-
-    * Provincial Labor Structure
-    rename  lab_tpt_pct_y                   unemployment_rate
-    rename  lab_underemp_share_pct_y        underemployment_share
-    rename  lab_formal_share_pct_y          formal_lab_share
-    rename  emp_share_manuf_pct_y           manuf_emp_share
-    rename  emp_share_agri_pct_y            agri_emp_share
-    rename  wage_ump_growth_pct_y           min_wage_yoy
-    gen     log_avg_wage                    = ln(wage_avg_employee_idr_y) 
-    rename  lab_full_time_share_pct_y       full_time_share
-    rename  lab_tpak_pct_y                  labor_force_rate
-
-    sum     unemployment_rate underemployment_share formal_lab_share manuf_emp_share agri_emp_share min_wage_yoy log_avg_wage full_time_share labor_force_rate
-
-
-    * Macroeconomic Pressure
-
-    // Global
-    gen     log_price_brent                 = ln(price_brent_usd_bbl_nat)
-
-    rename  growth_brent_yoy_pct_nat        price_brent_yoy
-
-    // National
-    rename  macro_bi_rate_pct_nat           bi_rate
-    gen     log_fx_idr_usd                  = ln(macro_fx_idr_usd_nat)
-    rename  macro_pmi_manuf_nat             pmi_manuf
-    rename  growth_ihpb_yoy_pct_nat         ihpb_yoy
-
-    // Province    
-    rename  price_inflation_yoy_pct         cpi_yoy
-    rename  fin_npl_ratio_pct_y             npl_ratio 
-    gen     log_export                      = ln(trade_export_value)
-    gen     log_import                      = ln(trade_import_value)
-
-
-    rename  growth_npl_yoy_pct              npl_yoy
-    rename  growth_export_yoy_pct           export_yoy
-    rename  growth_import_yoy_pct           import_yoy
-
-    rename  price_cpi_index                 cpi_index
-    rename  price_ihpb_nat                  ihpb_index
-
-   
-   
-    gen     log_min_wage                    = ln(wage_ump_idr_y) 
-    gen     log_npl                         = ln(fin_npl_idr_billion)
-    gen     log_cpi                         = ln(cpi_index)
-    gen     log_ihpb                        = ln(ihpb_index)
-
-    
-    sum     log_price_brent bi_rate log_fx_idr_usd pmi_manuf ihpb_yoy cpi_yoy npl_ratio log_export log_import
-
-    
-/*******************************************************************************
-    PANEL DATA
-*******************************************************************************/
-
     * Set up panel data 
     sort    prov_id year month
     gen     ym = ym(year, month)
@@ -134,7 +81,7 @@ set scheme plotplain
     xtset   prov_id ym
     sort    prov_id ym
 
-    /*
+
     * Generate growth variables 
     gen     pdrb_yoy            = 100*(macro_pdrb_idr_billion_y/L12.macro_pdrb_idr_billion_y - 1)
     gen     fx_idr_usd_yoy      = 100*(macro_fx_idr_usd_nat/L12.macro_fx_idr_usd_nat - 1)
@@ -155,18 +102,17 @@ set scheme plotplain
     egen    import_ma3 = rowmean(import0 import1 import2)
     drop    import0 import1 import2
     gen     import_ma3_yoy = 100*(import_ma3 - L12.import_ma3)/L12.import_ma3 if L12.import_ma3 > 0
-    */
 
 /*******************************************************************************
     LAGS AND DATA PERIOD
 *******************************************************************************/
 
     keeporder   prov_id year month ym date phk_stock phk_flow ///
-                $ECON_STRUCTURE $LABOR_STRUCTURE $MACRO_GLOBAL $MACRO_NATIONAL $MACRO_PROVINCE
+                $STRUCTURE $TRIGGER
 
     * Construct lag for 1, 3, 6, and 12 months 
     foreach L of global LAGS {
-        foreach v of global PRESSURE {
+        foreach v of global TRIGGER {
             capture drop L`L'_`v'
             gen L`L'_`v' = L`L'.`v'
         }
@@ -183,7 +129,7 @@ set scheme plotplain
 
     * Summarize
     sum     prov_id year month ym date phk_stock phk_flow ///
-            $ECON_STRUCTURE $LABOR_STRUCTURE $MACRO_GLOBAL $MACRO_NATIONAL $MACRO_PROVINCE 
+            $STRUCTURE $TRIGGER 
 
 
     * Truncate PHK flow if data is negative 
@@ -201,8 +147,7 @@ set scheme plotplain
 
 
     sum     prov_id year month ym date phk_stock phk_flow ///
-            $ECON_STRUCTURE $LABOR_STRUCTURE $MACRO_GLOBAL $MACRO_NATIONAL $MACRO_PROVINCE ///
-            L1_* L3_* L6_* L12_*
+            $STRUCTURE $TRIGGER L1_* L3_* L6_* L12_*
    
     save    "$panel", replace
     

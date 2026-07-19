@@ -56,9 +56,17 @@ set seed    123456
     SETTINGS
 *******************************************************************************/
 
-    * Estimation period
-    global EST_START        2023
-    global EST_END          2025
+    * Training period
+    global TRAIN_START      2023
+    global TRAIN_END        2024
+
+    * Validation period
+    global VALID_START      2025
+    global VALID_END        2025
+
+    * Forecast horizon
+    global FORECAST_YEAR    2026
+    global FORECAST_MONTH   12
 
 
 /*******************************************************************************
@@ -69,55 +77,63 @@ set seed    123456
     global  OUTCOME ///
             phk_flow
 
-    * Economic Structure (Province)
-    global  ECON_STRUCTURE ///
-            gov_pdrb_share ///
-            invest_pdrb_share ///
-            export_pdrb_share ///
-            import_pdrb_share ///
-            manuf_pdrb_share ///
-            agri_pdrb_share ///
-            mining_pdrb_share ///
-            log_pdrb_cap ///
-            pov_rate
-
-    * Labor Structure (Province)
-    global  LABOR_STRUCTURE ///
-            unemployment_rate ///
-            underemployment_share ///
-            labor_force_rate ///
+    * Annual structural variables
+    global  STRUCTURE ///
             formal_lab_share ///
             manuf_emp_share ///
             agri_emp_share ///
-            full_time_share ///
             min_wage_yoy ///
-            log_avg_wage 
+            manuf_pdrb_share
+
+            //pdrb_yoy ///
+            //agri_pdrb_share 
+            //avg_wage_yoy ///
             
-            
-            
+
     * Monthly macroeconomic variables
     global  MACRO_GLOBAL ///
-            log_price_brent             
+            log_price_brent
+
+            //log_price_brent
+             
 
     global  MACRO_NATIONAL ///
             bi_rate ///
             log_fx_idr_usd ///
             pmi_manuf ///
             ihpb_yoy 
+            
+            // ihpb_index 
+            // fx_idr_usd_yoy ///
+            // log_fx_idr_usd ///
 
     global  MACRO_PROVINCE ///
             cpi_yoy ///
-            npl_ratio ///
+            npl_yoy  ///
             log_export ///
-            log_import
+            log_import 
+            
 
-    
-    global  STRUCTURE $ECON_STRUCTURE $LABOR_STRUCTURE 
-    global  PRESSURE $MACRO_GLOBAL $MACRO_NATIONAL $MACRO_PROVINCE
+            
+            //export_yoy ///
+            //import_yoy 
+
+            //cpi_index ///
+
+            
+            //log_export ///
+            //log_import 
+
+            //export_ma3_yoy ///
+            //import_ma3_yoy
+
+
+
+    global  TRIGGER $MACRO_GLOBAL $MACRO_NATIONAL $MACRO_PROVINCE
 
     * Candidate lag specifications
     global  LAGS ///
-            1 3 6 12
+        1 3 6 12
 
 
 /*******************************************************************************

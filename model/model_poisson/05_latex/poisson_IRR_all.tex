@@ -1,46 +1,73 @@
 \begin{table}[H]\centering
-\caption{Incidence Rate Ratios (IRR) from Poisson regressions for provincial layoff projections}
+\caption{Incidence Rate Ratios (IRR) from Poisson Regressions of PHK on Macroeconomic Pressures}
 \small
 \renewcommand{\arraystretch}{1.15}
-\begin{adjustbox}{max width=\textwidth}
-\begin{tabular}{l*{4}{c}}
+\begin{adjustbox}{max totalsize={\textwidth}{0.80\textheight}}
+\begin{tabular}{p{7cm}*{4}{>{\centering\arraybackslash}p{2.5cm}}}
 \toprule
 & (1) & (2) & (3) & (4) \\
 & Lag 1 & Lag 3 & Lag 6 & Lag 12 \\ \midrule
-\addlinespace\textbf{Structure Variables}&                     &                     &                     &                     \\
-formal\_lab\_share&        0.96         &        0.92         &        0.85         &        0.85         \\
-            &      (0.10)         &      (0.08)         &      (0.11)         &      (0.13)         \\
-manuf\_emp\_share&        0.77         &        0.81         &        0.96         &        0.90         \\
-            &      (0.15)         &      (0.16)         &      (0.21)         &      (0.38)         \\
-agri\_emp\_share&        1.04         &        1.07         &        1.09         &        0.88         \\
-            &      (0.09)         &      (0.10)         &      (0.15)         &      (0.13)         \\
-min\_wage\_yoy&        1.10\sym{**} &        1.09         &        0.99         &        1.10         \\
-            &      (0.04)         &      (0.06)         &      (0.09)         &      (0.13)         \\
-manuf\_pdrb\_share&        0.94         &        0.90         &        0.93         &        1.13         \\
-            &      (0.12)         &      (0.11)         &      (0.11)         &      (0.26)         \\
-\addlinespace\textbf{Macroeconomic Trigger Variables}&                     &                     &                     &                     \\
-L\_log\_price\_brent&        2.04         &        7.17         &        0.62         &      571.87         \\
-            &      (3.69)         &      (8.35)         &      (1.30)         &   (2161.78)         \\
-L\_bi\_rate   &        1.89         &        2.00\sym{*}  &        4.58\sym{**} &       29.99\sym{***}\\
-            &      (0.99)         &      (0.62)         &      (2.56)         &     (19.07)         \\
-L\_log\_fx\_idr\_usd&       61.99         &        0.05         &        0.00         &        0.00\sym{***}\\
-            &    (329.67)         &      (0.15)         &      (0.01)         &      (0.00)         \\
-L\_pmi\_manuf &        0.95         &        0.97         &        0.91         &        1.00         \\
-            &      (0.05)         &      (0.06)         &      (0.06)         &      (0.17)         \\
-L\_ihpb\_yoy  &        0.91         &        0.60\sym{**} &        1.41\sym{*}  &        0.95         \\
-            &      (0.18)         &      (0.10)         &      (0.19)         &      (0.40)         \\
-L\_cpi\_yoy   &        1.02         &        1.19         &        0.63\sym{***}&        0.75         \\
-            &      (0.13)         &      (0.13)         &      (0.08)         &      (0.18)         \\
-L\_npl\_yoy   &        1.00         &        1.00         &        1.00         &        0.99         \\
-            &      (0.00)         &      (0.00)         &      (0.01)         &      (0.01)         \\
-L\_log\_export&        0.81         &        0.44         &        1.06         &        1.12         \\
-            &      (0.20)         &      (0.18)         &      (0.40)         &      (0.41)         \\
-L\_log\_import&        0.81\sym{*}  &        0.90         &        0.98         &        1.14         \\
-            &      (0.09)         &      (0.09)         &      (0.10)         &      (0.10)         \\
+\addlinespace\textbf{Macroeconomic Pressure (with lag)}&                     &                     &                     &                     \\
+L\_log\_price\_brent&        3.70         &        6.64         &        1.00         &       11.44         \\
+            &      (6.84)         &      (7.71)         &      (1.76)         &     (36.27)         \\
+L\_bi\_rate   &        2.81         &        2.41\sym{*}  &        5.06\sym{**} &       54.70\sym{***}\\
+            &      (1.61)         &      (0.85)         &      (2.81)         &     (43.65)         \\
+L\_log\_fx\_idr\_usd&        0.09         &        0.18         &        0.01         &        0.00\sym{**} \\
+            &      (0.57)         &      (0.53)         &      (0.03)         &      (0.00)         \\
+L\_pmi\_manuf &        0.95         &        0.98         &        0.89         &        0.90         \\
+            &      (0.05)         &      (0.07)         &      (0.08)         &      (0.18)         \\
+L\_ihpb\_yoy  &        1.14         &        0.53\sym{***}&        1.16         &        0.32\sym{*}  \\
+            &      (0.29)         &      (0.09)         &      (0.32)         &      (0.18)         \\
+L\_cpi\_yoy   &        1.01         &        1.32\sym{*}  &        0.65\sym{**} &        0.85         \\
+            &      (0.15)         &      (0.18)         &      (0.10)         &      (0.15)         \\
+L\_npl\_ratio &        1.07         &        1.56         &        1.51         &        0.61         \\
+            &      (0.37)         &      (0.51)         &      (0.55)         &      (0.24)         \\
+L\_log\_export&        0.78         &        0.51         &        1.46         &        1.64         \\
+            &      (0.19)         &      (0.25)         &      (0.92)         &      (0.77)         \\
+L\_log\_import&        0.80         &        0.90         &        0.99         &        1.17         \\
+            &      (0.09)         &      (0.10)         &      (0.14)         &      (0.10)         \\
+\addlinespace\textbf{Provincial Economic Structure}&                     &                     &                     &                     \\
+gov\_pdrb\_share&        1.05         &        0.85         &        0.95         &        1.13         \\
+            &      (0.30)         &      (0.24)         &      (0.22)         &      (0.51)         \\
+invest\_pdrb\_share&        0.87         &        1.06         &        1.07         &        1.43\sym{*}  \\
+            &      (0.14)         &      (0.18)         &      (0.20)         &      (0.22)         \\
+export\_pdrb\_share&        0.90         &        1.27         &        1.11         &        0.68         \\
+            &      (0.28)         &      (0.20)         &      (0.18)         &      (0.39)         \\
+import\_pdrb\_share&        1.58         &        2.16\sym{*}  &        2.03         &        2.87\sym{*}  \\
+            &      (0.75)         &      (0.78)         &      (0.84)         &      (1.20)         \\
+manuf\_pdrb\_share&        0.90         &        0.90         &        1.18         &        2.16\sym{*}  \\
+            &      (0.24)         &      (0.20)         &      (0.23)         &      (0.70)         \\
+agri\_pdrb\_share&        1.70         &        1.12         &        2.03         &       19.33\sym{*}  \\
+            &      (1.46)         &      (0.81)         &      (1.78)         &     (24.77)         \\
+mining\_pdrb\_share&        1.08         &        0.98         &        1.10         &        3.16         \\
+            &      (0.50)         &      (0.24)         &      (0.29)         &      (2.09)         \\
+log\_pdrb\_cap&    17311.68         &        0.04         &        0.00         &        0.00\sym{*}  \\
+            & (182559.68)         &      (0.30)         &      (0.01)         &      (0.00)         \\
+pov\_rate    &        0.53         &        0.74         &        0.68         &        0.74         \\
+            &      (0.23)         &      (0.30)         &      (0.28)         &      (0.22)         \\
+\addlinespace\textbf{Provincial Labor Market Structure}&                     &                     &                     &                     \\
+unemployment\_rate&        1.89         &        2.15         &        1.46         &        5.27         \\
+            &      (1.49)         &      (1.67)         &      (0.88)         &      (5.68)         \\
+underemployment\_share&        1.26         &        1.04         &        1.12         &        2.17\sym{**} \\
+            &      (0.25)         &      (0.16)         &      (0.16)         &      (0.62)         \\
+labor\_force\_rate&        0.97         &        0.93         &        0.87         &        1.26         \\
+            &      (0.19)         &      (0.19)         &      (0.19)         &      (0.23)         \\
+formal\_lab\_share&        1.02         &        0.94         &        0.95         &        1.46\sym{***}\\
+            &      (0.14)         &      (0.12)         &      (0.12)         &      (0.17)         \\
+manuf\_emp\_share&        1.31         &        0.98         &        0.87         &        0.31\sym{***}\\
+            &      (0.51)         &      (0.31)         &      (0.38)         &      (0.11)         \\
+agri\_emp\_share&        1.13         &        1.14         &        1.11         &        0.58\sym{***}\\
+            &      (0.20)         &      (0.18)         &      (0.22)         &      (0.09)         \\
+full\_time\_share&        0.94         &        0.93         &        0.96         &        0.99         \\
+            &      (0.12)         &      (0.11)         &      (0.11)         &      (0.11)         \\
+min\_wage\_yoy&        1.11         &        1.04         &        0.94         &        0.81         \\
+            &      (0.10)         &      (0.09)         &      (0.10)         &      (0.10)         \\
+log\_avg\_wage&      117.43         &        9.71         &        0.57         &        0.06         \\
+            &    (586.73)         &     (42.20)         &      (2.72)         &      (0.24)         \\
 \midrule
-Observations&        1004         &         949         &         866         &         697         \\
-DV Mean     &         224         &         225         &         232         &         235         \\
-Pseudo R$^2$&       0.583         &       0.602         &       0.617         &       0.657         \\
+Observations&        1003         &         948         &         865         &         696         \\
+Monthly PHK Mean&         223         &         224         &         232         &         235         \\
+Pseudo R$^2$&       0.600         &       0.616         &       0.631         &       0.695         \\
 Region FE   &    Province         &    Province         &    Province         &    Province         \\
 Time FE     &       Month         &       Month         &       Month         &       Month         \\
 \bottomrule
@@ -48,6 +75,6 @@ Time FE     &       Month         &       Month         &       Month         & 
 \end{adjustbox}
 \begin{tablenotes}
 \footnotesize
-\item \textit{Notes:} Reported coefficients are Incidence Rate Ratios (IRRs), obtained by exponentiating the estimated Poisson coefficients. An IRR greater than one indicates that an increase in the explanatory variable is associated with a higher expected number of layoffs, while an IRR below one indicates a lower expected number of layoffs, holding other variables constant. Robust standard errors clustered at the province level are reported in parentheses. Columns (1)--(4) report specifications using macroeconomic trigger variables lagged by 1, 3, 6, and 12 months, respectively. Annual structural variables are included contemporaneously in all specifications. *, **, and *** denote statistical significance at the 10\%, 5\%, and 1\% levels.
+\item \textit{Notes:} Entries report incidence rate ratios (IRRs), obtained by exponentiating the corresponding Poisson coefficients. Columns (1)--(4) jointly include all macroeconomic pressure indicators at lags of 1, 3, 6, and 12 months, respectively, together with contemporaneous provincial economic and labor-market structural controls, province fixed effects, and calendar-month fixed effects. An IRR above (below) one indicates a positive (negative) conditional association with expected PHK. The magnitude of each IRR should be interpreted according to the unit and transformation of the corresponding explanatory variable. Standard errors clustered at the province level are reported in parentheses. *, **, and *** denote statistical significance at the 10\%, 5\%, and 1\% levels.
 \end{tablenotes}
 \end{table}

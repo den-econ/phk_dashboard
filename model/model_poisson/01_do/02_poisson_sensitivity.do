@@ -26,7 +26,7 @@ set more off
 
     use "$panel", clear
 
-    keep if inrange(year, $TRAIN_START, $VALID_END)
+    keep if inrange(year, $EST_START, $EST_END)
 
     xtset prov_id ym
 
@@ -59,13 +59,14 @@ set more off
 
         local trigger
 
-        foreach v of global TRIGGER {
+        foreach v of global PRESSURE {
             rename  L`L'_`v' L_`v'
             local   trigger `trigger' L_`v'
         }
 
-        eststo  lag_`L' : poisson $OUTCOME $STRUCTURE `trigger' i.month i.prov_id, ///
-                vce(cluster prov_id)
+        eststo  lag_`L':    poisson $OUTCOME $ECON_STRUCTURE $LABOR_STRUCTURE `trigger' ///
+                                    i.prov_id i.month, ///
+                                    vce(cluster prov_id)
 
         est     save "$model/model_lag`L'.ster", replace
 
@@ -133,8 +134,8 @@ set more off
     * Preview in Stata
     esttab ///
         lag_1 lag_3 lag_6 lag_12, ///
-        keep($STRUCTURE L_*) ///
-        order($STRUCTURE L_*) ///
+        keep($ECON_STRUCTURE $LABOR_STRUCTURE L_*) ///
+        order(L_* $ECON_STRUCTURE $LABOR_STRUCTURE) ///
         mtitles("Lag 1" "Lag 3" "Lag 6" "Lag 12") ///
         b(3) se(3) ///
         star(* 0.10 ** 0.05 *** 0.01)
@@ -145,7 +146,7 @@ set more off
         using "$table/poisson_coefficients.csv", ///
         replace ///
         keep($STRUCTURE L_*) ///
-        order($STRUCTURE L_*) ///
+        order(L_* $ECON_STRUCTURE $LABOR_STRUCTURE) ///
         b(3) se(3) ///
         star(* 0.10 ** 0.05 *** 0.01) ///
         stats( ///
@@ -163,44 +164,31 @@ set more off
 
 
     * Export LaTeX
-    local   note "The dependent variable is the monthly number of layoffs (PHK) by province. Robust standard errors clustered at the province level are reported in parentheses. Columns (1)-(4) report Poisson regression estimates using macroeconomic trigger variables lagged by 1, 3, 6, and 12 months, respectively. Annual structural variables are included contemporaneously in all specifications. *, **, and *** denote statistical significance at the 10\%, 5\%, and 1\% levels."  
+    local   note "The dependent variable is the monthly number of PHK by province. Columns (1)--(4) report separate Poisson specifications in which all macroeconomic pressure indicators enter at lags of 1, 3, 6, and 12 months, respectively. Provincial economic and labor-market structural controls enter contemporaneously. All specifications include province and calendar-month fixed effects. Standard errors clustered at the province level are reported in parentheses. *, **, and *** denote statistical significance at the 10\%, 5\%, and 1\% levels."
     
-    
-    local   numbers "& (1) & (2) & (3) \\ & Lag 1 & Lag 3 & Lag 6 \\ \midrule"
-
-    esttab  lag_1 lag_3 lag_6 using "$latex/poisson_coefficients.tex", ///
-            replace style(tex) booktabs cells(b(fmt(3) star) se(par fmt(3))) ///
-            keep($STRUCTURE L_*) collabels(none) mlabels(none) nonum nomtitles nodepvars eqlabels(none) ///
-            title("Poisson regression estimates for provincial layoff projections") ///
-            prehead(`"\begin{table}[H]\centering"' `"\caption{@title}"' `"\small"' `"\renewcommand{\arraystretch}{1.15}"' ///
-            `"\begin{adjustbox}{max width=\textwidth}"' `"\begin{tabular}{l*{@E}{c}}"' `"\toprule"') posthead("`numbers'") ///
-            refcat( ///
-                formal_lab_share "\addlinespace\textbf{Structure Variables}" ///
-                L_log_price_brent   "\addlinespace\textbf{Macroeconomic Trigger Variables}", ///
-                nolabel) ///
-            stats(N dv_mean p_r2 region time, labels("Observations" "DV Mean" "Pseudo R$^2$" "Region FE" "Time FE") fmt(0 3 0 0)) ///
-            postfoot(`"\bottomrule"' `"\end{tabular}"' `"\end{adjustbox}"' `"\begin{tablenotes}"' `"\footnotesize"' `"\item \textit{Notes:} `note'"' `"\end{tablenotes}"' `"\end{table}"')
-    
-    
-
-
     local   numbers "& (1) & (2) & (3) & (4) \\ & Lag 1 & Lag 3 & Lag 6 & Lag 12 \\ \midrule"
-
     esttab  lag_1 lag_3 lag_6 lag_12 using "$latex/poisson_coefficients_all.tex", ///
             replace style(tex) booktabs cells(b(fmt(3) star) se(par fmt(3))) ///
-            keep($STRUCTURE L_*) collabels(none) mlabels(none) nonum nomtitles nodepvars eqlabels(none) ///
-            title("Poisson regression estimates for provincial layoff projections") ///
-            prehead(`"\begin{table}[H]\centering"' `"\caption{@title}"' `"\small"' `"\renewcommand{\arraystretch}{1.15}"' ///
-            `"\begin{adjustbox}{max width=\textwidth}"' `"\begin{tabular}{l*{@E}{c}}"' `"\toprule"') posthead("`numbers'") ///
+            keep(L_* $ECON_STRUCTURE $LABOR_STRUCTURE) ///
+            order(L_* $ECON_STRUCTURE $LABOR_STRUCTURE) ///
+            collabels(none) mlabels(none) nonum nomtitles nodepvars eqlabels(none) ///
+            title("Poisson Regression Estimates of PHK on Macroeconomic Pressures") ///
+            prehead(`"\begin{table}[H]\centering"' ///
+                `"\caption{@title}"' ///
+                `"\small"' ///
+                `"\renewcommand{\arraystretch}{1.15}"' ///
+                `"\begin{adjustbox}{max totalsize={\textwidth}{0.80\textheight}}"' ///
+                `"\begin{tabular}{p{7cm}*{4}{>{\centering\arraybackslash}p{2.5cm}}}"' ///
+                `"\toprule"') ///
+            posthead("`numbers'") ///
             refcat( ///
-                formal_lab_share "\addlinespace\textbf{Structure Variables}" ///
-                L_log_price_brent  "\addlinespace\textbf{Macroeconomic Trigger Variables}", ///
+                L_log_price_brent   "\addlinespace\textbf{Macroeconomic Pressure (with lag)}" ///
+                gov_pdrb_share      "\addlinespace\textbf{Provincial Economic Structure}" ///
+                unemployment_rate   "\addlinespace\textbf{Provincial Labor Market Structure}", ///
                 nolabel) ///
-            stats(N dv_mean p_r2 region time, labels("Observations" "DV Mean" "Pseudo R$^2$" "Region FE" "Time FE") fmt(0 3 0 0)) ///
+            stats(N dv_mean p_r2 region time, labels("Observations" "Monthly PHK Mean" "Pseudo R$^2$" "Region FE" "Time FE") fmt(0 3 0 0)) ///
             postfoot(`"\bottomrule"' `"\end{tabular}"' `"\end{adjustbox}"' `"\begin{tablenotes}"' `"\footnotesize"' `"\item \textit{Notes:} `note'"' `"\end{tablenotes}"' `"\end{table}"')
     
-    
-
 
 /*******************************************************************************
     INCIDENCE RATE RATIOS (IRR)
@@ -210,8 +198,8 @@ set more off
     esttab ///
         lag_1 lag_3 lag_6 lag_12, ///
         eform ///
-        keep($STRUCTURE L_*) ///
-        order($STRUCTURE L_*) ///
+        keep($ECON_STRUCTURE $LABOR_STRUCTURE L_*) ///
+        order(L_* $ECON_STRUCTURE $LABOR_STRUCTURE) ///
         mtitles("Lag 1" "Lag 3" "Lag 6" "Lag 12") ///
         cells(b(star fmt(2)) se(par fmt(2))) ///
         star(* 0.10 ** 0.05 *** 0.01)
@@ -225,8 +213,8 @@ set more off
         using "$table/poisson_IRR.csv", ///
         replace ///
         eform ///
-        keep($STRUCTURE L_*) ///
-        order($STRUCTURE L_*) ///
+        keep($ECON_STRUCTURE $LABOR_STRUCTURE L_*) ///
+        order(L_* $ECON_STRUCTURE $LABOR_STRUCTURE) ///
         cells(b(star fmt(2)) se(par fmt(2))) ///
         stats( ///
             N ///
@@ -241,68 +229,13 @@ set more off
                    "Time FE") ///
             fmt(%15.0fc %9.0f %9.3f 0 0))
 
+
 *-------------------------------*
 * Export LaTeX
 *-------------------------------*
 
     local note ///
-    "Reported coefficients are Incidence Rate Ratios (IRRs), obtained by exponentiating the estimated Poisson coefficients. An IRR greater than one indicates that an increase in the explanatory variable is associated with a higher expected number of layoffs, while an IRR below one indicates a lower expected number of layoffs, holding other variables constant. Robust standard errors clustered at the province level are reported in parentheses. Columns (1)--(4) report specifications using macroeconomic trigger variables lagged by 1, 3, 6, and 12 months, respectively. Annual structural variables are included contemporaneously in all specifications. *, **, and *** denote statistical significance at the 10\%, 5\%, and 1\% levels."
-
-      local numbers ///
-    "& (1) & (2) & (3) \\" ///
-    "& Lag 1 & Lag 3 & Lag 6 \\ \midrule"
-
-    esttab ///
-        lag_1 lag_3 lag_6 ///
-        using "$latex/poisson_IRR.tex", ///
-        replace ///
-        eform ///
-        style(tex) ///
-        booktabs ///
-        cells(b(fmt(2) star) se(par fmt(2))) ///
-        keep($STRUCTURE L_*) ///
-        order($STRUCTURE L_*) ///
-        collabels(none) ///
-        mlabels(none) ///
-        nonum ///
-        nomtitles ///
-        nodepvars ///
-        eqlabels(none) ///
-        title("Incidence Rate Ratios (IRR) from Poisson regressions for provincial layoff projections") ///
-        prehead(`"\begin{table}[H]\centering"' ///
-                `"\caption{@title}"' ///
-                `"\small"' ///
-                `"\renewcommand{\arraystretch}{1.15}"' ///
-                `"\begin{adjustbox}{max width=\textwidth}"' ///
-                `"\begin{tabular}{l*{@E}{c}}"' ///
-                `"\toprule"') ///
-        posthead("`numbers'") ///
-        refcat( ///
-            formal_lab_share "\addlinespace\textbf{Structure Variables}" ///
-            L_log_price_brent  "\addlinespace\textbf{Macroeconomic Trigger Variables}", ///
-            nolabel) ///
-        stats( ///
-            N ///
-            dv_mean ///
-            p_r2 ///
-            region ///
-            time, ///
-            labels("Observations" ///
-                   "DV Mean" ///
-                   "Pseudo R$^2$" ///
-                   "Region FE" ///
-                   "Time FE") ///
-            fmt(0 0 3 0 0)) ///
-        postfoot(`"\bottomrule"' ///
-                 `"\end{tabular}"' ///
-                 `"\end{adjustbox}"' ///
-                 `"\begin{tablenotes}"' ///
-                 `"\footnotesize"' ///
-                 `"\item \textit{Notes:} `note'"' ///
-                 `"\end{tablenotes}"' ///
-                 `"\end{table}"')
-
-
+    "Entries report incidence rate ratios (IRRs), obtained by exponentiating the corresponding Poisson coefficients. Columns (1)--(4) jointly include all macroeconomic pressure indicators at lags of 1, 3, 6, and 12 months, respectively, together with contemporaneous provincial economic and labor-market structural controls, province fixed effects, and calendar-month fixed effects. An IRR above (below) one indicates a positive (negative) conditional association with expected PHK. The magnitude of each IRR should be interpreted according to the unit and transformation of the corresponding explanatory variable. Standard errors clustered at the province level are reported in parentheses. *, **, and *** denote statistical significance at the 10\%, 5\%, and 1\% levels."
     
     local numbers ///
     "& (1) & (2) & (3) & (4) \\" ///
@@ -316,26 +249,27 @@ set more off
         style(tex) ///
         booktabs ///
         cells(b(fmt(2) star) se(par fmt(2))) ///
-        keep($STRUCTURE L_*) ///
-        order($STRUCTURE L_*) ///
+        keep($ECON_STRUCTURE $LABOR_STRUCTURE L_*) ///
+        order(L_* $ECON_STRUCTURE $LABOR_STRUCTURE) ///
         collabels(none) ///
         mlabels(none) ///
         nonum ///
         nomtitles ///
         nodepvars ///
         eqlabels(none) ///
-        title("Incidence Rate Ratios (IRR) from Poisson regressions for provincial layoff projections") ///
+        title("Incidence Rate Ratios (IRR) from Poisson Regressions of PHK on Macroeconomic Pressures") ///
         prehead(`"\begin{table}[H]\centering"' ///
                 `"\caption{@title}"' ///
                 `"\small"' ///
                 `"\renewcommand{\arraystretch}{1.15}"' ///
-                `"\begin{adjustbox}{max width=\textwidth}"' ///
-                `"\begin{tabular}{l*{@E}{c}}"' ///
+                `"\begin{adjustbox}{max totalsize={\textwidth}{0.80\textheight}}"' ///
+                `"\begin{tabular}{p{7cm}*{4}{>{\centering\arraybackslash}p{2.5cm}}}"' ///
                 `"\toprule"') ///
         posthead("`numbers'") ///
         refcat( ///
-            formal_lab_share "\addlinespace\textbf{Structure Variables}" ///
-            L_log_price_brent  "\addlinespace\textbf{Macroeconomic Trigger Variables}", ///
+            L_log_price_brent   "\addlinespace\textbf{Macroeconomic Pressure (with lag)}" ///
+            gov_pdrb_share      "\addlinespace\textbf{Provincial Economic Structure}" ///
+            unemployment_rate   "\addlinespace\textbf{Provincial Labor Market Structure}", ///
             nolabel) ///
         stats( ///
             N ///
@@ -344,7 +278,7 @@ set more off
             region ///
             time, ///
             labels("Observations" ///
-                   "DV Mean" ///
+                   "Monthly PHK Mean" ///
                    "Pseudo R$^2$" ///
                    "Region FE" ///
                    "Time FE") ///
@@ -367,7 +301,7 @@ set more off
 
     use "$panel", clear
 
-    keep if inrange(year, $TRAIN_START, $VALID_END)
+    keep if inrange(year, $EST_START, $EST_END)
 
     eststo clear
 
@@ -389,7 +323,7 @@ set more off
         using "$data/macro_sensitivity_results.dta", replace
 
 
-    foreach macro of global TRIGGER {
+    foreach macro of global PRESSURE {
 
         di
         di "========================================================="
@@ -454,286 +388,171 @@ set more off
     postclose `results'
 
 
-
 /*******************************************************************************
-    LOAD RESULTS
+    EXPORT RESULTS
 *******************************************************************************/
 
     use "$data/macro_sensitivity_results.dta", clear
 
-    /*******************************************************************************
-        DISPLAY VARIABLES
-    *******************************************************************************/
+    *------------------------------------------------------------*
+    * Display Variables
+    *------------------------------------------------------------*
 
     * IRR with significance stars
-    gen irr_disp = string(irr,"%4.2f") + stars
+    gen str20 irr_disp = string(irr, "%4.2f") + stars
 
-    * Direction of coefficient (+/-) with significance stars
-    gen sign_disp = ""
+    * Direction of statistically significant coefficient
+    gen str1 sign_disp = ""
 
     replace sign_disp = "+" if beta > 0 & stars != ""
     replace sign_disp = "-" if beta < 0 & stars != ""
-    replace sign_disp = ""  if stars == ""
+
+    gen variable_order = .
+
+    local i = 1
+
+    foreach var of global PRESSURE {
+
+        replace variable_order = `i' if indicator == "`var'"
+
+        local ++i
+    }
 
 
-    /*******************************************************************************
-        EXPORT DASHBOARD CSV (IRR)
-    *******************************************************************************/
+    list indicator if missing(variable_order), noobs
+
+    *------------------------------------------------------------*
+    *  EXPORT DASHBOARD CSV : IRR
+    *------------------------------------------------------------*
 
     preserve
 
-    keep indicator lag irr_disp
+        keep indicator lag irr_disp variable_order
 
-    reshape wide irr_disp, i(indicator) j(lag)
+        reshape wide irr_disp, ///
+            i(indicator variable_order) ///
+            j(lag)
 
-    rename irr_disp1  lag1
-    rename irr_disp3  lag3
-    rename irr_disp6  lag6
-    rename irr_disp12 lag12
+        rename irr_disp1  lag1
+        rename irr_disp3  lag3
+        rename irr_disp6  lag6
+        rename irr_disp12 lag12
 
-    *------------------------------------------------------------*
-    * Add variable order here later
-    *------------------------------------------------------------*
+        * Sort automatically according to $PRESSURE
+        sort variable_order
 
-    sort indicator
+        drop variable_order
 
-    export delimited ///
-        using "$table/macro_sensitivity_dashboard.csv", ///
-        replace
+        order indicator lag1 lag3 lag6 lag12
+
+        export delimited ///
+            using "$table/macro_sensitivity_dashboard.csv", ///
+            replace
 
     restore
 
 
-/*******************************************************************************
-    EXPORT LATEX TABLE : IRR ONLY
-*******************************************************************************/
-    ***
-    replace indicator = subinstr(indicator, "_", "\_", .)
-    ***
+    *------------------------------------------------------------*
+    *   EXPORT LATEX TABLE : IRR
+    *------------------------------------------------------------*
+
     preserve
 
-    keep indicator lag irr_disp
+        keep indicator lag irr_disp variable_order
 
-    reshape wide irr_disp, i(indicator) j(lag)
+        reshape wide irr_disp, ///
+            i(indicator variable_order) ///
+            j(lag)
 
-    rename irr_disp1  lag1
-    rename irr_disp3  lag3
-    rename irr_disp6  lag6
-    rename irr_disp12 lag12
+        rename irr_disp1  lag1
+        rename irr_disp3  lag3
+        rename irr_disp6  lag6
+        rename irr_disp12 lag12
 
-*------------------------------------------------------------*
-* Add variable order here later
-*------------------------------------------------------------*
+        sort variable_order
 
-    //sort indicator
+     
+        gen str100 indicator_tex = ///
+            subinstr(indicator, "_", "\_", .)
 
-    keep indicator lag1 lag3 lag6 lag12
+        keep indicator_tex lag1 lag3 lag6 lag12
 
-    listtex ///
-    indicator lag1 lag3 lag6 lag12 ///
-    using "$latex/macro_sensitivity_IRR.tex", ///
-    replace ///
-    rstyle(tabular) ///
-    head("\begin{table}[htbp]" ///
-     "\centering" ///
-     "\caption{Incidence Rate Ratios (IRRs) from Poisson regressions}" ///
-     "\small" ///
-     "\begin{tabular}{lcccc}" ///
-     "\toprule" ///
-     "Variable & Lag 1 & Lag 3 & Lag 6 & Lag 12 \\ \midrule") ///
-    foot("\bottomrule" ///
-     "\end{tabular}" ///
-     "\vspace{0.2cm}" ///
-     "\begin{minipage}{0.95\linewidth}" ///
-     "\footnotesize" ///
-     "\textit{Notes:} Entries are incidence rate ratios (IRRs). Each row reports a separate Poisson regression including one macroeconomic indicator (with respective lag), structural provincial controls, province fixed effects, and month fixed effects. Standard errors are clustered at the province level. *, ** and *** denote significance at the 10\%, 5\% and 1\% levels." ///
-     "\end{minipage}" ///
-     "\end{table}")
+        listtex ///
+            indicator_tex lag1 lag3 lag6 lag12 ///
+            using "$latex/macro_sensitivity_IRR.tex", ///
+            replace ///
+            rstyle(tabular) ///
+            head("\begin{table}[htbp]" ///
+                 "\centering" ///
+                 "\caption{Incidence Rate Ratios (IRRs) from Poisson Regressions}" ///
+                 "\small" ///
+                 "\begin{tabular}{lcccc}" ///
+                 "\toprule" ///
+                 "Variable & Lag 1 & Lag 3 & Lag 6 & Lag 12 \\ \midrule") ///
+            foot("\bottomrule" ///
+                 "\end{tabular}" ///
+                 "\vspace{0.2cm}" ///
+                 "\begin{minipage}{0.95\linewidth}" ///
+                 "\footnotesize" ///
+                 "\textit{Notes:} Each cell reports the incidence rate ratio (IRR) from a separate Poisson regression of monthly provincial PHK on the indicated lagged macroeconomic pressure variable, controlling for provincial economic and labor-market structure, province fixed effects, and calendar-month fixed effects. IRRs are obtained by exponentiating the estimated Poisson coefficients. An IRR above (below) one indicates a positive (negative) association with expected PHK. The magnitude of the IRR should be interpreted according to the unit and transformation of each explanatory variable. Standard errors are clustered at the province level. *, **, and *** denote statistical significance at the 10\%, 5\%, and 1\% levels." ///
+                 "\end{minipage}" ///
+                 "\end{table}")
 
     restore
 
 
-/*******************************************************************************
-    EXPORT LATEX TABLE : SIGN OF EFFECT
-*******************************************************************************/
+    *------------------------------------------------------------*
+    *   EXPORT LATEX TABLE : SIGN OF EFFECT
+    *------------------------------------------------------------*
 
     preserve
 
-    keep indicator lag sign_disp
+        keep indicator lag sign_disp variable_order
 
-    reshape wide sign_disp, i(indicator) j(lag)
+        reshape wide sign_disp, ///
+            i(indicator variable_order) ///
+            j(lag)
 
-    rename sign_disp1  lag1
-    rename sign_disp3  lag3
-    rename sign_disp6  lag6
-    rename sign_disp12 lag12
+        rename sign_disp1  lag1
+        rename sign_disp3  lag3
+        rename sign_disp6  lag6
+        rename sign_disp12 lag12
 
-    *------------------------------------------------------------*
-    * Add variable order here later
-    *------------------------------------------------------------*
+        *------------------------------------------------------------*
+        * Sort automatically according to $PRESSURE
+        *------------------------------------------------------------*
 
-    //sort indicator
+        sort variable_order
 
-    keep indicator lag1 lag3 lag6 lag12
+        *------------------------------------------------------------*
+        * Create separate LaTeX-safe variable name
+        *------------------------------------------------------------*
 
-    listtex ///
-        indicator lag1 lag3 lag6 lag12 ///
-        using "$latex/macro_sensitivity_sign.tex", ///
-        replace ///
-        rstyle(tabular) ///
-        head("\begin{table}[htbp]" ///
-             "\centering" ///
-             "\caption{Direction of Significant Effects from Poisson Regressions}" ///
-             "\small" ///
-             "\begin{tabular}{lcccc}" ///
-             "\toprule" ///
-             "Variable & Lag 1 & Lag 3 & Lag 6 & Lag 12 \\ \midrule") ///
-        foot("\bottomrule" ///
-             "\end{tabular}" ///
-             "\vspace{0.2cm}" ///
-             "\begin{minipage}{0.95\linewidth}" ///
-             "\footnotesize" ///
-             "\textit{Notes:} '+' ('-') denotes a positive (negative) statistically significant coefficient. Blank cells indicate that the estimated coefficient is not statistically significant." ///
-             "\end{minipage}" ///
-             "\end{table}")
+        gen str100 indicator_tex = ///
+            subinstr(indicator, "_", "\_", .)
 
-    restore
+        keep indicator_tex lag1 lag3 lag6 lag12
 
-
-* ######################################################################################################################################
-
-0
-
-
-/*******************************************************************************
-    PREPARE RESULTS FOR REPORTING
-*******************************************************************************/
-
-    use "$data/macro_sensitivity_results.dta", clear
-
-    *------------------------------------------------------------*
-    * Indicator labels
-    *------------------------------------------------------------*
-
-    replace indicator = "Brent Oil Price"          if indicator=="price_brent_yoy"
-    replace indicator = "BI Rate"                  if indicator=="bi_rate"
-    replace indicator = "Exchange Rate (IDR/USD)"  if indicator=="fx_idr_usd_yoy"
-    replace indicator = "Manufacturing PMI"        if indicator=="pmi_manuf"
-    replace indicator = "Wholesale Price Index"    if indicator=="ihpb_yoy"
-    replace indicator = "Consumer Price Index"     if indicator=="cpi_yoy"
-    replace indicator = "Non-Performing Loans"     if indicator=="npl_yoy"
-    replace indicator = "Exports"                  if indicator=="export_yoy"
-    replace indicator = "Imports"                  if indicator=="import_yoy"
-
-    *------------------------------------------------------------*
-    * Dashboard display
-    *------------------------------------------------------------*
-
-    gen irr_disp = string(irr,"%4.2f") + stars
-
-    *------------------------------------------------------------*
-    * Confidence interval
-    *------------------------------------------------------------*
-
-    gen ci = "(" + ///
-             string(ll95,"%4.2f") + ///
-             ", " + ///
-             string(ul95,"%4.2f") + ///
-             ")"
-
-
-    /*******************************************************************************
-        EXPORT DASHBOARD CSV
-    *******************************************************************************/
-
-    preserve
-
-    keep indicator lag irr_disp
-
-    reshape wide irr_disp, i(indicator) j(lag)
-
-    rename irr_disp1  lag1
-    rename irr_disp3  lag3
-    rename irr_disp6  lag6
-    rename irr_disp12 lag12
-
-    gen order = .
-
-    replace order = 1 if indicator=="Brent Oil Price"
-    replace order = 2 if indicator=="BI Rate"
-    replace order = 3 if indicator=="Exchange Rate (IDR/USD)"
-    replace order = 4 if indicator=="Manufacturing PMI"
-    replace order = 5 if indicator=="Wholesale Price Index"
-    replace order = 6 if indicator=="Consumer Price Index"
-    replace order = 7 if indicator=="Non-Performing Loans"
-    replace order = 8 if indicator=="Exports"
-    replace order = 9 if indicator=="Imports"
-
-    sort order
-    drop order
-
-    export delimited ///
-        using "$table/macro_sensitivity_dashboard.csv", ///
-        replace
+        listtex ///
+            indicator_tex lag1 lag3 lag6 lag12 ///
+            using "$latex/macro_sensitivity_sign.tex", ///
+            replace ///
+            rstyle(tabular) ///
+            head("\begin{table}[htbp]" ///
+                 "\centering" ///
+                 "\caption{Direction of Significant Associations between Lagged Macroeconomic Indicators and PHK}" ///
+                 "\small" ///
+                 "\begin{tabular}{lcccc}" ///
+                 "\toprule" ///
+                 "Variable & Lag 1 & Lag 3 & Lag 6 & Lag 12 \\ \midrule") ///
+            foot("\bottomrule" ///
+                 "\end{tabular}" ///
+                 "\vspace{0.2cm}" ///
+                 "\begin{minipage}{0.95\linewidth}" ///
+                 "\footnotesize" ///
+                 "\textit{Notes:} Each cell summarizes the estimated association from a separate Poisson regression of monthly provincial PHK on the indicated lagged macroeconomic pressure variable, controlling for provincial economic and labor-market structure, province fixed effects, and calendar-month fixed effects. '+' ('-') denotes a positive (negative) association statistically significant at the 10\% level or better. Blank cells denote estimates that are not statistically significant at the 10\% level." ///
+                 "\end{minipage}" ///
+                 "\end{table}")
 
     restore
 
-
-    /*******************************************************************************
-        EXPORT LATEX TABLE
-    *******************************************************************************/
-
-    preserve
-
-    keep indicator lag irr_disp ci
-
-    reshape wide ///
-        irr_disp ///
-        ci, ///
-        i(indicator) ///
-        j(lag)
-
-    gen lag1  = irr_disp1  + char(10) + ci1
-    gen lag3  = irr_disp3  + char(10) + ci3
-    gen lag6  = irr_disp6  + char(10) + ci6
-    gen lag12 = irr_disp12 + char(10) + ci12
-
-    gen order = .
-
-    replace order = 1 if indicator=="Brent Oil Price"
-    replace order = 2 if indicator=="BI Rate"
-    replace order = 3 if indicator=="Exchange Rate (IDR/USD)"
-    replace order = 4 if indicator=="Manufacturing PMI"
-    replace order = 5 if indicator=="Wholesale Price Index"
-    replace order = 6 if indicator=="Consumer Price Index"
-    replace order = 7 if indicator=="Non-Performing Loans"
-    replace order = 8 if indicator=="Exports"
-    replace order = 9 if indicator=="Imports"
-
-    sort order
-    drop order
-
-    keep indicator lag1 lag3 lag6 lag12
-
-    listtex ///
-        indicator lag1 lag3 lag6 lag12  ///
-        using "$latex/macro_sensitivity_dashboard.tex", ///
-        replace ///
-        rstyle(tabular) ///
-        head("\begin{table}[htbp]" ///
-             "\centering" ///
-             "\caption{Incidence Rate Ratios (IRRs) from Poisson regressions for macro sensitivity analysis}" ///
-             "\small" ///
-             "\begin{tabular}{lcccc}" ///
-             "\toprule" ///
-             "Indicator & Lag 1 & Lag 3 & Lag 6 \\ \midrule") ///
-        foot("\bottomrule" ///
-             "\end{tabular}" ///
-             "\vspace{0.2cm}" ///
-             "\begin{minipage}{0.95\linewidth}" ///
-             "\footnotesize" ///
-             "\textit{Notes:} Each row reports the result from a separate Poisson regression including one macroeconomic indicator, structural variables, province fixed effects, and month fixed effects. Entries are Incidence Rate Ratios (IRRs), with 95\% confidence intervals shown beneath. Standard errors are clustered at the province level. *, **, and *** denote significance at the 10\%, 5\%, and 1\% levels." ///
-             "\end{minipage}" ///
-             "\end{table}")
-
-    restore
