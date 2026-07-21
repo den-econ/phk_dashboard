@@ -238,9 +238,9 @@ quarterly across 3 months; for one value per period add e.g. `keep if month==1`
 
 | Variable | Source name | Level | Frequency | Unit | Description |
 | --- | --- | --- | --- | --- | --- |
-| `macro_pmi_manuf_nat` | PMI Manufaktur S&P (indeks) | national | monthly, quarterly, annual | index | PMI Manufaktur S&P (indeks) |
-| `macro_bi_rate_pct_nat` | BI Rate (persen) | national | monthly, quarterly | — | BI Rate (persen) |
-| `macro_fx_idr_usd_nat` | Kurs (IDR/USD) | national | monthly, quarterly, annual | IDR per USD | Kurs (IDR/USD) |
+| `macro_pmi_manuf_nat` | PMI Manufaktur | national | monthly, quarterly, annual | index | PMI Manufaktur |
+| `macro_bi_rate_pct_nat` | BI Rate | national | monthly, quarterly | — | BI Rate |
+| `macro_fx_idr_usd_nat` | Kurs | national | monthly, quarterly, annual | IDR per USD | Kurs |
 | `macro_pdrb_q` | PDRB (IDR milyar) | province | quarterly | IDR billion | PDRB (IDR milyar) - PDRB Riil (constant price / ADHK) |
 | `macro_pdrb_agri_q` | PDRB Pertanian, Kehutanan dan Perikanan (IDR milyar) | province | quarterly, annual | IDR billion | PDRB Pertanian, Kehutanan dan Perikanan (IDR milyar) - PDRB Riil (constant price / ADHK) |
 | `macro_pdrb_mining_q` | PDRB Pertambangan dan Penggalian (IDR milyar) | province | quarterly, annual | IDR billion | PDRB Pertambangan dan Penggalian (IDR milyar) - PDRB Riil (constant price / ADHK) |
@@ -322,8 +322,15 @@ quarterly across 3 months; for one value per period add e.g. `keep if month==1`
 | `macro_pdrb_per_wkr_growth_pct_y` | Laju Pertumbuhan PDB Per Tenaga Kerja | province | annual | IDR billion | Laju Pertumbuhan PDB Per Tenaga Kerja - PDRB Riil (constant price / ADHK) |
 | `macro_pdrb_pcap_idr_thousand_y` | PDRB Per Kapita (Ribu Rupiah) | province | annual | IDR thousand | PDRB Per Kapita (Ribu Rupiah) |
 | `macro_pmi_manuf_nat_y` | PMI Manufaktur | national | monthly, quarterly, annual | index | PMI Manufaktur |
-| `macro_bi_rate_avg_pct_nat_y` | BI Rate (Average)* | national | annual | — | BI Rate (Average)* |
 | `macro_fx_idr_usd_nat_y` | Kurs | national | monthly, quarterly, annual | IDR per USD | Kurs |
+| `macro_fed_funds_rate_nat` | Federal Funds Effective Rate (Daily, 7-Day) | national | monthly | percent | Federal Funds Effective Rate (Daily, 7-Day) |
+| `macro_bi_rate_pct_nat_y` | BI Rate | national | annual | percent | BI Rate |
+| `macro_pdb_idr_billion_nat_y` | PDB (IDR milyar) | national | quarterly, annual | IDR billion | PDB (IDR milyar) |
+| `macro_world_gdp_nat_y` | World GDP | national | quarterly, annual | — | World GDP |
+| `macro_fed_funds_rate_nat_y` | Federal Funds Effective Rate (End of Period) | national | quarterly, annual | percent | Federal Funds Effective Rate (End of Period) |
+| `macro_pdb_idr_billion_nat_q` | PDB (IDR milyar) | national | quarterly, annual | IDR billion | PDB (IDR milyar) |
+| `macro_world_gdp_nat_q` | World GDP | national | quarterly, annual | — | World GDP |
+| `macro_fed_funds_rate_nat_q` | Federal Funds Effective Rate (End of Period) | national | quarterly, annual | percent | Federal Funds Effective Rate (End of Period) |
 | `macro_construction_cost_index_y` | Indeks Kemahalan Konstruksi | province | annual | index | Indeks Kemahalan Konstruksi |
 | `macro_pdrb_hh_cons_share_pct_y` | Persentase Pengeluaran Konsumsi Rumah Tangga Atas Dasar Harga Berlaku (persen) | province | annual | percent | Persentase Pengeluaran Konsumsi Rumah Tangga Atas Dasar Harga Berlaku (persen) |
 | `macro_pdrb_gov_cons_share_pct_y` | Persentase Pengeluaran Konsumsi Pemerintah Atas Dasar Harga Berlaku (persen) | province | annual | percent | Persentase Pengeluaran Konsumsi Pemerintah Atas Dasar Harga Berlaku (persen) |
@@ -339,18 +346,17 @@ quarterly across 3 months; for one value per period add e.g. `keep if month==1`
 | `price_inflation_yoy_pct` | Inflasi Tahunan (Y-on-Y) | province | monthly | percent | Inflasi Tahunan (Y-on-Y) |
 | `price_consumer_change_pct` | Perubahan Harga Konsumen (persen, YoY) | province | monthly, quarterly | percent | Perubahan Harga Konsumen (persen, YoY) |
 | `price_brent_usd_bbl_nat` | Harga Minyak Brent (USD/barrel) | national | monthly | USD per barrel | Harga Minyak Brent (USD/barrel) |
-| `price_ihpb_nat` | IHPB (indeks) | national | monthly | — | IHPB (indeks) |
+| `price_ihpb_nat` | IHPB | national | monthly | — | IHPB |
 | `price_producer_index_nat_q` | IHP (2016=100) | national | quarterly, annual | index | IHP (2016=100) |
-| `price_producer_change_pct_nat_q` | Perubahan Harga Produsen** | national | quarterly, annual | — | Perubahan Harga Produsen** |
-| `price_producer_ceic_pct_nat_q` | Perubahan Harga Produsen (CEIC) | national | quarterly | — | Perubahan Harga Produsen (CEIC) |
+| `price_producer_change_pct_nat_q` | Perubahan Harga Produsen (%) | national | quarterly, annual | — | Perubahan Harga Produsen (%) |
 | `price_cpi_index_q` | IHK (2010=100) | province | monthly, quarterly | index | IHK (2010=100) |
 | `price_consumer_change_pct_q` | Perubahan Harga Konsumen | province | monthly, quarterly | percent | Perubahan Harga Konsumen |
 | `price_inflation_yoy_q4_pct_y` | Inflasi YoY (per IV) | province | annual | percent | Inflasi YoY (per IV) |
 | `price_inflation_yoy_avg_pct_y` | Inflasi YoY (Average) | province | annual | percent | Inflasi YoY (Average) |
 | `price_producer_index_nat_y` | IHP (2016=100) | national | quarterly, annual | index | IHP (2016=100) |
 | `price_cpi_index_nat_y` | IHK (2010=100) | national | annual | index | IHK (2010=100) |
-| `price_producer_change_pct_nat_y` | Perubahan harga produsen (%) | national | quarterly, annual | — | Perubahan harga produsen (%) |
-| `price_consumer_change_pct_nat_y` | Perubahan harga konsumen (%) | national | annual | — | Perubahan harga konsumen (%) |
+| `price_producer_change_pct_nat_y` | Perubahan Harga Produsen (%) | national | quarterly, annual | — | Perubahan Harga Produsen (%) |
+| `price_consumer_change_pct_nat_y` | Perubahan Harga Konsumen (%) | national | annual | — | Perubahan Harga Konsumen (%) |
 
 ### Trade (10)
 

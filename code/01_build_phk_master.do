@@ -6,6 +6,10 @@
 * TEXT, not position -> adding/reordering columns in the workbook no longer breaks
 * the build. Per-sector % PDRB shares (17 sectors) are read directly; the services
 * aggregate macro_pdrb_svc_share_pct_y is derived as the sum of the 11 service sectors.
+* Workbook is split province vs national: national indicators (PMI, BI Rate, Kurs,
+* Brent, IHPB, national GDP/PDB, World GDP, Federal Funds Rate) come from the three
+* "(..., Nasional)" sheets and are merged by period (section 3b/5). Annual & quarterly
+* raw cover 2022-2025; monthly covers 2022-2026.
 * Requires Stata 14+.  Run:  do code/01_build_phk_master.do
 *==============================================================
 version 14
@@ -59,7 +63,8 @@ hrn year, header("Tahun")
 hrn month, header("Bulan")
 hrn phk_stock, header("PHK (Stock)")
 hrn phk_flow, header("PHK (Flow)")
-hrn macro_pmi_manuf_nat, header("PMI Manufaktur S&P (indeks)")
+* NOTE: national indicators (PMI, BI Rate, Kurs, Brent, IHPB, Fed Funds) now live
+* in the "Database (Bulan, Nasional)" sheet and are merged in at section 3b/5.
 hrn price_cpi_index, header("IHK (2010=100)")
 hrn price_inflation_mom_pct, header("Inflasi Bulanan (M-to-M)")
 hrn price_inflation_yoy_pct, header("Inflasi Tahunan (Y-on-Y)")
@@ -70,16 +75,11 @@ hrn trade_balance, header("Neraca Perdagangan (USD juta)")
 hrn fin_total_credit_idr_billion, header("Total Kredit (IDR miliar)")
 hrn fin_npl_idr_billion, header("NPL (IDR miliar)")
 hrn fin_npl_ratio_pct, header("NPL Ratio")
-hrn macro_bi_rate_pct_nat, header("BI Rate (persen)")
-hrn macro_fx_idr_usd_nat, header("Kurs (IDR/USD)")
-hrn price_brent_usd_bbl_nat, header("Harga Minyak Brent (USD/barrel)")
-hrn price_ihpb_nat, header("IHPB (indeks)")
 keep province_name ///
-     province_code year month phk_stock phk_flow macro_pmi_manuf_nat price_cpi_index ///
+     province_code year month phk_stock phk_flow price_cpi_index ///
      price_inflation_mom_pct price_inflation_yoy_pct price_consumer_change_pct ///
      trade_export_value trade_import_value trade_balance fin_total_credit_idr_billion ///
-     fin_npl_idr_billion fin_npl_ratio_pct macro_bi_rate_pct_nat macro_fx_idr_usd_nat ///
-     price_brent_usd_bbl_nat price_ihpb_nat
+     fin_npl_idr_billion fin_npl_ratio_pct
 drop in 1
 replace province_name = strtrim(province_name)
 ds province_name province_code, not
@@ -288,14 +288,11 @@ hrn macro_pdrb_per_wkr_y, header("PDRB/Pekerja")
 hrn macro_pdrb_per_wkr_growth_pct_y, header("Laju Pertumbuhan PDB Per Tenaga Kerja")
 hrn macro_pdrb_pcap_idr_thousand_y, header("PDRB Per Kapita (Ribu Rupiah)")
 hrn growth_pdrb_pcap_pct_y, header("Laju Pertumbuhan PDRB Per Kapita (Persen)")
-hrn macro_pmi_manuf_nat_y, header("PMI Manufaktur")
+* NOTE: national annual indicators (PMI, IHP, IHK, price changes, BI Rate, Kurs)
+* now live in "Database (Tahun, Nasional)" -> merged in at section 3b/5.
 hrn fin_fdi_y, header("FDI")
 hrn price_inflation_yoy_q4_pct_y, header("Inflasi YoY (per IV)")
 hrn price_inflation_yoy_avg_pct_y, header("Inflasi YoY (Average)")
-hrn price_producer_index_nat_y, header("IHP (2016=100)")
-hrn price_cpi_index_nat_y, header("IHK (2010=100)")
-hrn price_producer_change_pct_nat_y, header("Perubahan harga produsen (%)")
-hrn price_consumer_change_pct_nat_y, header("Perubahan harga konsumen (%)")
 hrn trade_export_value_bps_y, header("Nilai Ekspor BPS (USD juta)")
 hrn trade_export_value_y, header("Nilai Ekspor (USD juta)")
 hrn trade_import_value_y, header("Nilai Impor (USD juta)")
@@ -305,8 +302,6 @@ hrn fin_npl_y, header("NPL, End of Year (IDR miliar)")
 hrn fin_npl_ratio_pct_y, header("NPL Ratio, End of Year")
 hrn fin_npl_ratio_2020_pct_y, header("NPL Ratio, End of Year (2020)")
 hrn fin_npl_ratio_2021_pct_y, header("NPL Ratio, End of Year (2021)")
-hrn macro_bi_rate_avg_pct_nat_y, header("BI Rate (Average)*")
-hrn macro_fx_idr_usd_nat_y, header("Kurs")
 hrn macro_construction_cost_index_y, header("Indeks Kemahalan Konstruksi")
 hrn macro_pdrb_hh_cons_share_pct_y, header("Persentase Pengeluaran Konsumsi Rumah Tangga Atas Dasar Harga Berlaku (persen)")
 hrn macro_pdrb_gov_cons_share_pct_y, header("Persentase Pengeluaran Konsumsi Pemerintah Atas Dasar Harga Berlaku (persen)")
@@ -388,12 +383,11 @@ keep province_name ///
      macro_pdrb_public_admin_y macro_pdrb_education_y macro_pdrb_health_y ///
      macro_pdrb_other_svc_y macro_pdrb_manuf_growth_pct_y macro_pdrb_per_wkr_y ///
      macro_pdrb_per_wkr_growth_pct_y macro_pdrb_pcap_idr_thousand_y growth_pdrb_pcap_pct_y ///
-     macro_pmi_manuf_nat_y fin_fdi_y price_inflation_yoy_q4_pct_y price_inflation_yoy_avg_pct_y ///
-     price_producer_index_nat_y price_cpi_index_nat_y price_producer_change_pct_nat_y ///
-     price_consumer_change_pct_nat_y trade_export_value_bps_y trade_export_value_y ///
+     fin_fdi_y price_inflation_yoy_q4_pct_y price_inflation_yoy_avg_pct_y ///
+     trade_export_value_bps_y trade_export_value_y ///
      trade_import_value_y trade_balance_y fin_total_credit_idr_billion_y fin_npl_y ///
      fin_npl_ratio_pct_y fin_npl_ratio_2020_pct_y fin_npl_ratio_2021_pct_y ///
-     macro_bi_rate_avg_pct_nat_y macro_fx_idr_usd_nat_y macro_construction_cost_index_y ///
+     macro_construction_cost_index_y ///
      macro_pdrb_hh_cons_share_pct_y macro_pdrb_gov_cons_share_pct_y ///
      macro_pdrb_invest_share_pct_y pov_line_idr_y pov_headcount_thousand_y pov_rate_pct_y ///
      macro_pdrb_agri_share_pct_y macro_pdrb_mining_shr_y macro_pdrb_manuf_share_pct_y ///
@@ -458,13 +452,11 @@ hrn macro_pdrb_public_admin_q, header("PDRB Administrasi Pemerintahan, Pertahana
 hrn macro_pdrb_education_q, header("PDRB Jasa Pendidikan (IDR milyar)")
 hrn macro_pdrb_health_q, header("PDRB Jasa Kesehatan dan Kegiatan Sosial (IDR milyar)")
 hrn macro_pdrb_other_svc_q, header("PDRB Jasa Lainnya (IDR milyar)")
-hrn macro_pmi_manuf_nat_q, header("PMI Manufaktur")
+* NOTE: national quarterly indicators (PMI, IHP, producer change, BI Rate, Kurs)
+* now live in "Database (Triwulan, Nasional)" -> merged in at section 3b/5.
 hrn fin_fdi_usd_million_q, header("FDI (USD mn)")
 hrn fin_fdi_idr_million_q, header("FDI (IDR mn)")
 hrn lab_working_pop_q, header("Jumlah Penduduk Bekerja")
-hrn price_producer_index_nat_q, header("IHP (2016=100)")
-hrn price_producer_change_pct_nat_q, header("Perubahan Harga Produsen**")
-hrn price_producer_ceic_pct_nat_q, header("Perubahan Harga Produsen (CEIC)")
 hrn price_cpi_index_q, header("IHK (2010=100)")
 hrn price_consumer_change_pct_q, header("Perubahan Harga Konsumen")
 hrn trade_export_value_usd_million_q, header("Nilai Ekspor (USD juta)")
@@ -473,8 +465,6 @@ hrn trade_balance_usd_million_q, header("Neraca Perdagangan*")
 hrn fin_total_credit_idr_billion_q, header("Total Credits, End of Quarter (IDR miliar)")
 hrn fin_npl_idr_billion_q, header("NPL, End of Quarter (IDR miliar)")
 hrn fin_npl_ratio_pct_q, header("NPL Ratio, End of Quarter")
-hrn macro_bi_rate_pct_nat_q, header("BI Rate")
-hrn macro_fx_idr_usd_nat_q, header("Kurs")
 * --- 17 per-sector PDRB shares (new, quarterly) ---
 hrn macro_pdrb_agri_share_pct_q, header("% PDRB Pertanian, Kehutanan dan Perikanan")
 hrn macro_pdrb_mining_shr_q, header("% PDRB Pertambangan dan Penggalian")
@@ -499,13 +489,12 @@ keep province_name ///
      macro_pdrb_water_waste_q macro_pdrb_construction_q macro_pdrb_trade_q ///
      macro_pdrb_transport_q macro_pdrb_accom_food_q macro_pdrb_info_comm_q macro_pdrb_finance_q ///
      macro_pdrb_real_estate_q macro_pdrb_business_svc_q macro_pdrb_public_admin_q ///
-     macro_pdrb_education_q macro_pdrb_health_q macro_pdrb_other_svc_q macro_pmi_manuf_nat_q ///
-     fin_fdi_usd_million_q fin_fdi_idr_million_q lab_working_pop_q price_producer_index_nat_q ///
-     price_producer_change_pct_nat_q price_producer_ceic_pct_nat_q price_cpi_index_q ///
+     macro_pdrb_education_q macro_pdrb_health_q macro_pdrb_other_svc_q ///
+     fin_fdi_usd_million_q fin_fdi_idr_million_q lab_working_pop_q price_cpi_index_q ///
      price_consumer_change_pct_q trade_export_value_usd_million_q ///
      trade_import_value_usd_million_q trade_balance_usd_million_q ///
      fin_total_credit_idr_billion_q fin_npl_idr_billion_q fin_npl_ratio_pct_q ///
-     macro_bi_rate_pct_nat_q macro_fx_idr_usd_nat_q macro_pdrb_agri_share_pct_q ///
+     macro_pdrb_agri_share_pct_q ///
      macro_pdrb_mining_shr_q macro_pdrb_manuf_share_pct_q ///
      macro_pdrb_electricity_shr_q macro_pdrb_water_waste_shr_q ///
      macro_pdrb_construction_shr_q macro_pdrb_trade_shr_q ///
@@ -538,6 +527,88 @@ tempfile quarterly
 save `quarterly'
 
 *==============================================================
+* 3b. National indicator sheets (denormalized to province grain in the
+*     workbook). Collapse each to one row per period (values are identical
+*     across provinces) and merge by period only at section 5.
+*==============================================================
+* --- Monthly national (Database Bulan, Nasional) ---
+import excel using "$PHK", sheet("Database (Bulan, Nasional)") clear
+hrn year, header("Tahun")
+hrn month, header("Bulan")
+hrn macro_pmi_manuf_nat, header("PMI Manufaktur")
+hrn macro_bi_rate_pct_nat, header("BI Rate")
+hrn macro_fx_idr_usd_nat, header("Kurs")
+hrn price_brent_usd_bbl_nat, header("Harga Minyak Brent (USD/barrel)")
+hrn price_ihpb_nat, header("IHPB")
+hrn macro_fed_funds_rate_nat, header("Federal Funds Effective Rate (Daily, 7-Day)")
+keep year month macro_pmi_manuf_nat macro_bi_rate_pct_nat macro_fx_idr_usd_nat ///
+     price_brent_usd_bbl_nat price_ihpb_nat macro_fed_funds_rate_nat
+drop in 1
+destring, replace force
+collapse (mean) macro_pmi_manuf_nat macro_bi_rate_pct_nat macro_fx_idr_usd_nat ///
+     price_brent_usd_bbl_nat price_ihpb_nat macro_fed_funds_rate_nat, by(year month)
+tempfile monthly_nat
+save `monthly_nat'
+
+* --- Annual national (Database Tahun, Nasional) ---
+import excel using "$PHK", sheet("Database (Tahun, Nasional)") clear
+hrn year, header("Tahun")
+hrn macro_pmi_manuf_nat_y, header("PMI Manufaktur")
+hrn price_producer_index_nat_y, header("IHP (2016=100)")
+hrn price_cpi_index_nat_y, header("IHK (2010=100)")
+hrn price_producer_change_pct_nat_y, header("Perubahan Harga Produsen (%)")
+hrn price_consumer_change_pct_nat_y, header("Perubahan Harga Konsumen (%)")
+hrn macro_bi_rate_pct_nat_y, header("BI Rate")
+hrn macro_fx_idr_usd_nat_y, header("Kurs")
+hrn macro_pdb_idr_billion_nat_y, header("PDB (IDR milyar)")
+hrn macro_world_gdp_nat_y, header("World GDP")
+hrn macro_fed_funds_rate_nat_y, header("Federal Funds Effective Rate (End of Period)")
+keep year macro_pmi_manuf_nat_y price_producer_index_nat_y price_cpi_index_nat_y ///
+     price_producer_change_pct_nat_y price_consumer_change_pct_nat_y macro_bi_rate_pct_nat_y ///
+     macro_fx_idr_usd_nat_y macro_pdb_idr_billion_nat_y macro_world_gdp_nat_y ///
+     macro_fed_funds_rate_nat_y
+drop in 1
+destring, replace force
+collapse (mean) macro_pmi_manuf_nat_y price_producer_index_nat_y price_cpi_index_nat_y ///
+     price_producer_change_pct_nat_y price_consumer_change_pct_nat_y macro_bi_rate_pct_nat_y ///
+     macro_fx_idr_usd_nat_y macro_pdb_idr_billion_nat_y macro_world_gdp_nat_y ///
+     macro_fed_funds_rate_nat_y, by(year)
+tempfile annual_nat
+save `annual_nat'
+
+* --- Quarterly national (Database Triwulan, Nasional) ---
+import excel using "$PHK", sheet("Database (Triwulan, Nasional)") clear
+hrn year, header("Tahun")
+hrn quarter, header("Triwulan")
+hrn macro_pmi_manuf_nat_q, header("PMI Manufaktur")
+hrn price_producer_index_nat_q, header("IHP (2016=100)")
+hrn price_producer_change_pct_nat_q, header("Perubahan Harga Produsen (%)")
+hrn macro_bi_rate_pct_nat_q, header("BI Rate")
+hrn macro_fx_idr_usd_nat_q, header("Kurs")
+hrn macro_pdb_idr_billion_nat_q, header("PDB (IDR milyar)")
+hrn macro_world_gdp_nat_q, header("World GDP")
+hrn macro_fed_funds_rate_nat_q, header("Federal Funds Effective Rate (End of Period)")
+keep year quarter macro_pmi_manuf_nat_q price_producer_index_nat_q ///
+     price_producer_change_pct_nat_q macro_bi_rate_pct_nat_q macro_fx_idr_usd_nat_q ///
+     macro_pdb_idr_billion_nat_q macro_world_gdp_nat_q macro_fed_funds_rate_nat_q
+drop in 1
+* normalize quarter (roman/arabic) -> 1..4
+replace quarter = strtrim(quarter)
+gen _q = .
+replace _q = 1 if inlist(quarter,"I","1")
+replace _q = 2 if inlist(quarter,"II","2")
+replace _q = 3 if inlist(quarter,"III","3")
+replace _q = 4 if inlist(quarter,"IV","4")
+drop quarter
+rename _q quarter
+destring, replace force
+collapse (mean) macro_pmi_manuf_nat_q price_producer_index_nat_q ///
+     price_producer_change_pct_nat_q macro_bi_rate_pct_nat_q macro_fx_idr_usd_nat_q ///
+     macro_pdb_idr_billion_nat_q macro_world_gdp_nat_q macro_fed_funds_rate_nat_q, by(year quarter)
+tempfile quarterly_nat
+save `quarterly_nat'
+
+*==============================================================
 * 4. Province list = union across the three sheets
 *==============================================================
 use `monthly', clear
@@ -559,6 +630,10 @@ merge m:1 province_name_std           using `provcode',  keep(master match) noge
 merge 1:1 province_name_std year month   using `monthly',   keep(master match) nogen
 merge m:1 province_name_std year quarter using `quarterly', keep(master match) nogen
 merge m:1 province_name_std year         using `annual',    keep(master match) nogen
+* national indicators: keyed by period only (values common to all provinces)
+merge m:1 year month   using `monthly_nat',   keep(master match) nogen
+merge m:1 year quarter using `quarterly_nat', keep(master match) nogen
+merge m:1 year         using `annual_nat',    keep(master match) nogen
 
 *==============================================================
 * 5a. Broadcast pre-panel NPL-ratio references (2020/2021) to all province rows.
@@ -614,7 +689,7 @@ export delimited using "$CLEAN/phk_master.csv", replace
 qui count
 display as result "Done. phk_master rows: `r(N)' (expect 2280)."
 qui ds
-display as result "columns: `: word count `r(varlist)'' (expect ~334; +30 sector-share cols)."
+display as result "columns: `: word count `r(varlist)'' (expect ~340; +6 net national cols after restructure)."
 
 *==============================================================
 * 7. Variable-level flag table (1/0), one row per indicator.

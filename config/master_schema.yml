@@ -15,7 +15,7 @@ coverage: "2022-2026"
 primary_key: [province_name_std, year, month]
 source_workbook: "Data untuk PHK Dashboard.xlsx"
 n_rows: 2280
-n_columns: 334
+n_columns: 340
 
 variables:
   identity:
@@ -875,22 +875,28 @@ variables:
       unit: "count"
   macro:
     - name: macro_pmi_manuf_nat
-      description: "PMI Manufaktur S&P (indeks)"
-      source_variable_name: "PMI Manufaktur S&P (indeks)"
+      description: "PMI Manufaktur"
+      source_variable_name: "PMI Manufaktur"
       data_period: "monthly, quarterly, annual"
       data_level: national
       unit: "index"
     - name: macro_bi_rate_pct_nat
-      description: "BI Rate (persen)"
-      source_variable_name: "BI Rate (persen)"
+      description: "BI Rate"
+      source_variable_name: "BI Rate"
       data_period: "monthly, quarterly"
       data_level: national
     - name: macro_fx_idr_usd_nat
-      description: "Kurs (IDR/USD)"
-      source_variable_name: "Kurs (IDR/USD)"
+      description: "Kurs"
+      source_variable_name: "Kurs"
       data_period: "monthly, quarterly, annual"
       data_level: national
       unit: "IDR per USD"
+    - name: macro_fed_funds_rate_nat
+      description: "Federal Funds Effective Rate (Daily, 7-Day)"
+      source_variable_name: "Federal Funds Effective Rate (Daily, 7-Day)"
+      data_period: "monthly"
+      data_level: national
+      unit: "percent"
     - name: macro_pdrb_q
       description: "PDRB (IDR milyar) - PDRB Riil (constant price / ADHK)"
       source_variable_name: "PDRB (IDR milyar)"
@@ -1124,6 +1130,23 @@ variables:
       data_period: "monthly, quarterly, annual"
       data_level: national
       unit: "IDR per USD"
+    - name: macro_pdb_idr_billion_nat_q
+      description: "PDB (IDR milyar)"
+      source_variable_name: "PDB (IDR milyar)"
+      data_period: "quarterly, annual"
+      data_level: national
+      unit: "IDR billion"
+    - name: macro_world_gdp_nat_q
+      description: "World GDP"
+      source_variable_name: "World GDP"
+      data_period: "quarterly, annual"
+      data_level: national
+    - name: macro_fed_funds_rate_nat_q
+      description: "Federal Funds Effective Rate (End of Period)"
+      source_variable_name: "Federal Funds Effective Rate (End of Period)"
+      data_period: "quarterly, annual"
+      data_level: national
+      unit: "percent"
     - name: macro_pdrb_idr_billion_y
       description: "PDRB (IDR milyar) - PDRB Riil (constant price / ADHK)"
       source_variable_name: "PDRB (IDR milyar)"
@@ -1376,17 +1399,35 @@ variables:
       data_period: "monthly, quarterly, annual"
       data_level: national
       unit: "index"
-    - name: macro_bi_rate_avg_pct_nat_y
-      description: "BI Rate (Average)*"
-      source_variable_name: "BI Rate (Average)*"
-      data_period: "annual"
-      data_level: national
     - name: macro_fx_idr_usd_nat_y
       description: "Kurs"
       source_variable_name: "Kurs"
       data_period: "monthly, quarterly, annual"
       data_level: national
       unit: "IDR per USD"
+    - name: macro_bi_rate_pct_nat_y
+      description: "BI Rate"
+      source_variable_name: "BI Rate"
+      data_period: "annual"
+      data_level: national
+      unit: "percent"
+    - name: macro_pdb_idr_billion_nat_y
+      description: "PDB (IDR milyar)"
+      source_variable_name: "PDB (IDR milyar)"
+      data_period: "quarterly, annual"
+      data_level: national
+      unit: "IDR billion"
+    - name: macro_world_gdp_nat_y
+      description: "World GDP"
+      source_variable_name: "World GDP"
+      data_period: "quarterly, annual"
+      data_level: national
+    - name: macro_fed_funds_rate_nat_y
+      description: "Federal Funds Effective Rate (End of Period)"
+      source_variable_name: "Federal Funds Effective Rate (End of Period)"
+      data_period: "quarterly, annual"
+      data_level: national
+      unit: "percent"
     - name: macro_construction_cost_index_y
       description: "Indeks Kemahalan Konstruksi"
       source_variable_name: "Indeks Kemahalan Konstruksi"
@@ -1449,8 +1490,8 @@ variables:
       data_level: national
       unit: "USD per barrel"
     - name: price_ihpb_nat
-      description: "IHPB (indeks)"
-      source_variable_name: "IHPB (indeks)"
+      description: "IHPB"
+      source_variable_name: "IHPB"
       data_period: "monthly"
       data_level: national
     - name: price_producer_index_nat_q
@@ -1460,14 +1501,9 @@ variables:
       data_level: national
       unit: "index"
     - name: price_producer_change_pct_nat_q
-      description: "Perubahan Harga Produsen**"
-      source_variable_name: "Perubahan Harga Produsen**"
+      description: "Perubahan Harga Produsen (%)"
+      source_variable_name: "Perubahan Harga Produsen (%)"
       data_period: "quarterly, annual"
-      data_level: national
-    - name: price_producer_ceic_pct_nat_q
-      description: "Perubahan Harga Produsen (CEIC)"
-      source_variable_name: "Perubahan Harga Produsen (CEIC)"
-      data_period: "quarterly"
       data_level: national
     - name: price_cpi_index_q
       description: "IHK (2010=100)"
@@ -1506,13 +1542,13 @@ variables:
       data_level: national
       unit: "index"
     - name: price_producer_change_pct_nat_y
-      description: "Perubahan harga produsen (%)"
-      source_variable_name: "Perubahan harga produsen (%)"
+      description: "Perubahan Harga Produsen (%)"
+      source_variable_name: "Perubahan Harga Produsen (%)"
       data_period: "quarterly, annual"
       data_level: national
     - name: price_consumer_change_pct_nat_y
-      description: "Perubahan harga konsumen (%)"
-      source_variable_name: "Perubahan harga konsumen (%)"
+      description: "Perubahan Harga Konsumen (%)"
+      source_variable_name: "Perubahan Harga Konsumen (%)"
       data_period: "annual"
       data_level: national
   trade:
