@@ -167,6 +167,7 @@ lab_unemployed_youth_y,0,0,1,1,0
 lab_unemployed_edu_y,0,0,1,1,0
 lab_unemployed_youth_share_pct_y,0,0,1,1,0
 lab_unemployed_edu_share_pct_y,0,0,1,1,0
+lab_above_minwage_share_pct_y,0,0,1,1,0
 ind_firms_medium_y,0,0,1,1,0
 ind_firms_large_y,0,0,1,1,0
 ind_firms_total_y,0,0,1,1,0

@@ -15,7 +15,7 @@ coverage: "2022-2026"
 primary_key: [province_name_std, year, month]
 source_workbook: "Data untuk PHK Dashboard.xlsx"
 n_rows: 2280
-n_columns: 340
+n_columns: 341
 
 variables:
   identity:
@@ -269,6 +269,12 @@ variables:
     - name: lab_unemployed_edu_share_pct_y
       description: "% Share Penganggur Terdidik (S1/Diploma ke atas)"
       source_variable_name: "% Share Penganggur Terdidik (S1/Diploma ke atas)"
+      data_period: "annual"
+      data_level: province
+      unit: "percent"
+    - name: lab_above_minwage_share_pct_y
+      description: "% Pekerja di atas UM"
+      source_variable_name: "% Pekerja di atas UM"
       data_period: "annual"
       data_level: province
       unit: "percent"

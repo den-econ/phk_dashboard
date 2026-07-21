@@ -109,6 +109,7 @@ quarterly across 3 months; for one value per period add e.g. `keep if month==1`
 | `lab_unemployed_edu_y` | Jumlah Penganggur Terdidik (S1/Diploma ke atas) | province | annual | count | Jumlah Penganggur Terdidik (S1/Diploma ke atas) |
 | `lab_unemployed_youth_share_pct_y` | % Share Penganggur Usia Muda (15-24 tahun) | province | annual | percent | % Share Penganggur Usia Muda (15-24 tahun) |
 | `lab_unemployed_edu_share_pct_y` | % Share Penganggur Terdidik (S1/Diploma ke atas) | province | annual | percent | % Share Penganggur Terdidik (S1/Diploma ke atas) |
+| `lab_above_minwage_share_pct_y` | % Pekerja di atas UM | province | annual | percent | % Pekerja di atas UM |
 
 ### Employment by sector (51)
 

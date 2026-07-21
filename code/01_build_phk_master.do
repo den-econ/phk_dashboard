@@ -208,6 +208,7 @@ hrn lab_unemployed_youth_y, header("Jumlah Penganggur Usia Muda (15-24 tahun)")
 hrn lab_unemployed_edu_y, header("Jumlah Penganggur Terdidik (S1/Diploma ke atas)")
 hrn lab_unemployed_youth_share_pct_y, header("% Share Penganggur Usia Muda (15-24 tahun)")
 hrn lab_unemployed_edu_share_pct_y, header("% Share Penganggur Terdidik (S1/Diploma ke atas)")
+hrn lab_above_minwage_share_pct_y, header("% Pekerja di atas UM")
 hrn ind_firms_medium_y, header("Perusahaan Industri Sedang")
 hrn ind_firms_large_y, header("Perusahaan Industri Besar")
 hrn ind_firms_total_y, header("Jumlah Perusahaan")
@@ -358,7 +359,8 @@ keep province_name ///
      lag1_lab_contract_share_pct_y lag1_wage_ump_growth_pct_y lag1_bpjstk_active_pu_y ///
      lag1_bpjstk_active_bpu_y lag1_bpjstk_phk_y lag1_bpjstk_jht_phk_y lag1_bpjstk_jkp_phk_y ///
      lab_unemployed_y lab_unemployed_youth_y lab_unemployed_edu_y ///
-     lab_unemployed_youth_share_pct_y lab_unemployed_edu_share_pct_y ind_firms_medium_y ///
+     lab_unemployed_youth_share_pct_y lab_unemployed_edu_share_pct_y ///
+     lab_above_minwage_share_pct_y ind_firms_medium_y ///
      ind_firms_large_y ind_firms_total_y ind_workers_medium_y ind_workers_large_y ///
      ind_workers_prod_y ind_workers_nonprod_y ind_workers_total_y ind_prod_workers_wage_cost_y ///
      ind_prod_workers_other_cost_y ind_prod_workers_total_cost_y ///
@@ -689,7 +691,7 @@ export delimited using "$CLEAN/phk_master.csv", replace
 qui count
 display as result "Done. phk_master rows: `r(N)' (expect 2280)."
 qui ds
-display as result "columns: `: word count `r(varlist)'' (expect ~340; +6 net national cols after restructure)."
+display as result "columns: `: word count `r(varlist)'' (expect ~341; +1 new lab var (% Pekerja di atas UM))."
 
 *==============================================================
 * 7. Variable-level flag table (1/0), one row per indicator.
