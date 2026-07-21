@@ -1,0 +1,39 @@
+province,n_negative,min_value,n_outliers_3sd,max_abs_zscore,longest_zero_run_months,mean_phk_flow
+Papua Barat,1,-6.0,2,4.4,11,10.2
+DKI Jakarta,1,-418.0,2,3.2,4,641.9
+Jawa Tengah,1,-3483.0,2,4.3,3,886.7
+Sumatera Selatan,1,-162.0,1,3.2,7,84.0
+Bangka Belitung,1,-10.0,1,6.3,4,57.8
+Bengkulu,0,0.0,2,4.1,7,20.2
+Kalimantan Tengah,0,0.0,2,4.0,7,50.9
+Sulawesi Tengah,0,0.0,2,4.2,6,162.8
+Sumatera Barat,0,0.0,2,4.4,6,50.0
+Jawa Timur,0,0.0,2,3.6,5,430.7
+Kalimantan Barat,0,0.0,2,3.9,5,124.9
+Maluku,0,0.0,2,4.5,5,15.4
+Kalimantan Selatan,0,0.0,2,3.9,4,182.7
+Papua,0,0.0,1,5.6,11,5.1
+Nusa Tenggara Timur,0,0.0,1,5.3,10,9.0
+Nusa Tenggara Barat,0,0.0,1,5.7,7,23.5
+Sulawesi Barat,0,0.0,1,4.2,7,4.8
+Gorontalo,0,0.0,1,5.1,6,20.5
+Kalimantan Utara,0,0.0,1,5.4,6,85.4
+Maluku Utara,0,0.0,1,5.4,6,7.1
+Aceh,0,0.0,1,3.2,4,31.3
+Bali,0,0.0,1,6.0,4,37.2
+Jambi,0,0.0,1,4.4,4,32.8
+Kalimantan Timur,0,0.0,1,5.8,4,276.7
+Sumatera Utara,0,0.0,1,4.4,4,130.9
+Banten,0,0.0,1,3.2,3,852.0
+DI Yogyakarta,0,0.0,1,4.8,3,125.2
+Sulawesi Selatan,0,0.0,1,4.5,3,161.2
+Jawa Barat,0,0.0,1,3.5,2,1329.5
+Kepulauan Riau,0,0.0,1,3.5,2,114.2
+Riau,0,0.0,1,6.1,1,207.4
+Sulawesi Tenggara,0,0.0,1,4.9,1,71.4
+Lampung,0,0.0,0,2.3,4,31.7
+Sulawesi Utara,0,0.0,0,2.3,4,15.8
+Papua Barat Daya,0,,0,,0,
+Papua Pegunungan,0,,0,,0,
+Papua Selatan,0,,0,,0,
+Papua Tengah,0,,0,,0,
