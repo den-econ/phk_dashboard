@@ -15,7 +15,7 @@ coverage: "2022-2026"
 primary_key: [province_name_std, year, month]
 source_workbook: "Data untuk PHK Dashboard.xlsx"
 n_rows: 2280
-n_columns: 304
+n_columns: 334
 
 variables:
   identity:
@@ -1000,20 +1000,110 @@ variables:
       data_level: province
       unit: "IDR billion"
     - name: macro_pdrb_manuf_share_pct_q
-      description: "Manufacturing Share (% PDRB)"
-      source_variable_name: "Manufacturing Share (% PDRB)"
+      description: "% PDRB Industri Pengolahan"
+      source_variable_name: "% PDRB Industri Pengolahan"
       data_period: "quarterly, annual"
       data_level: province
       unit: "percent"
     - name: macro_pdrb_agri_share_pct_q
-      description: "Agriculture Share (% PDRB)"
-      source_variable_name: "Agriculture Share (% PDRB)"
+      description: "% PDRB Pertanian, Kehutanan dan Perikanan"
+      source_variable_name: "% PDRB Pertanian, Kehutanan dan Perikanan"
       data_period: "quarterly, annual"
       data_level: province
       unit: "percent"
     - name: macro_pdrb_svc_share_pct_q
-      description: "Service Share (% PDRB)"
-      source_variable_name: "Service Share (% PDRB)"
+      description: "(derived: sum of 11 service-sector % PDRB)"
+      source_variable_name: "(derived: sum of 11 service-sector % PDRB)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_mining_shr_q
+      description: "% PDRB Pertambangan dan Penggalian"
+      source_variable_name: "% PDRB Pertambangan dan Penggalian"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_electricity_shr_q
+      description: "% PDRB Pengadaan Listrik dan Gas"
+      source_variable_name: "% PDRB Pengadaan Listrik dan Gas"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_water_waste_shr_q
+      description: "% PDRB Pengadaan Air, Pengelolaan Sampah, Limbah dan Daur Ulang"
+      source_variable_name: "% PDRB Pengadaan Air, Pengelolaan Sampah, Limbah dan Daur Ulang"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_construction_shr_q
+      description: "% PDRB Konstruksi"
+      source_variable_name: "% PDRB Konstruksi"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_trade_shr_q
+      description: "% PDRB Perdagangan Besar dan Eceran, Reparasi Mobil dan Sepeda Motor"
+      source_variable_name: "% PDRB Perdagangan Besar dan Eceran, Reparasi Mobil dan Sepeda Motor"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_transport_shr_q
+      description: "% PDRB Transportasi dan Pergudangan"
+      source_variable_name: "% PDRB Transportasi dan Pergudangan"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_accom_food_shr_q
+      description: "% PDRB Penyediaan Akomodasi dan Makan Minum"
+      source_variable_name: "% PDRB Penyediaan Akomodasi dan Makan Minum"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_info_comm_shr_q
+      description: "% PDRB Informasi dan Komunikasi"
+      source_variable_name: "% PDRB Informasi dan Komunikasi"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_finance_shr_q
+      description: "% PDRB Jasa Keuangan dan Asuransi"
+      source_variable_name: "% PDRB Jasa Keuangan dan Asuransi"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_real_estate_shr_q
+      description: "% PDRB Real Estate"
+      source_variable_name: "% PDRB Real Estate"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_business_svc_shr_q
+      description: "% PDRB Jasa Perusahaan"
+      source_variable_name: "% PDRB Jasa Perusahaan"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_public_admin_shr_q
+      description: "% PDRB Administrasi Pemerintahan, Pertahanan dan Jaminan Sosial Wajib"
+      source_variable_name: "% PDRB Administrasi Pemerintahan, Pertahanan dan Jaminan Sosial Wajib"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_education_shr_q
+      description: "% PDRB Jasa Pendidikan"
+      source_variable_name: "% PDRB Jasa Pendidikan"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_health_shr_q
+      description: "% PDRB Jasa Kesehatan dan Kegiatan Sosial"
+      source_variable_name: "% PDRB Jasa Kesehatan dan Kegiatan Sosial"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_other_svc_shr_q
+      description: "% PDRB Jasa Lainnya"
+      source_variable_name: "% PDRB Jasa Lainnya"
       data_period: "quarterly, annual"
       data_level: province
       unit: "percent"
@@ -1149,20 +1239,110 @@ variables:
       data_level: province
       unit: "IDR billion"
     - name: macro_pdrb_manuf_share_pct_y
-      description: "Manufacturing Share (% PDRB)"
-      source_variable_name: "Manufacturing Share (% PDRB)"
+      description: "% PDRB Industri Pengolahan"
+      source_variable_name: "% PDRB Industri Pengolahan"
       data_period: "quarterly, annual"
       data_level: province
       unit: "percent"
     - name: macro_pdrb_agri_share_pct_y
-      description: "Agriculture Share (% PDRB)"
-      source_variable_name: "Agriculture Share (% PDRB)"
+      description: "% PDRB Pertanian, Kehutanan dan Perikanan"
+      source_variable_name: "% PDRB Pertanian, Kehutanan dan Perikanan"
       data_period: "quarterly, annual"
       data_level: province
       unit: "percent"
     - name: macro_pdrb_svc_share_pct_y
-      description: "Service Share (% PDRB)"
-      source_variable_name: "Service Share (% PDRB)"
+      description: "(derived: sum of 11 service-sector % PDRB)"
+      source_variable_name: "(derived: sum of 11 service-sector % PDRB)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_mining_shr_y
+      description: "% PDRB Pertambangan dan Penggalian"
+      source_variable_name: "% PDRB Pertambangan dan Penggalian"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_electricity_shr_y
+      description: "% PDRB Pengadaan Listrik dan Gas"
+      source_variable_name: "% PDRB Pengadaan Listrik dan Gas"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_water_waste_shr_y
+      description: "% PDRB Pengadaan Air, Pengelolaan Sampah, Limbah dan Daur Ulang"
+      source_variable_name: "% PDRB Pengadaan Air, Pengelolaan Sampah, Limbah dan Daur Ulang"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_construction_shr_y
+      description: "% PDRB Konstruksi"
+      source_variable_name: "% PDRB Konstruksi"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_trade_shr_y
+      description: "% PDRB Perdagangan Besar dan Eceran, Reparasi Mobil dan Sepeda Motor"
+      source_variable_name: "% PDRB Perdagangan Besar dan Eceran, Reparasi Mobil dan Sepeda Motor"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_transport_shr_y
+      description: "% PDRB Transportasi dan Pergudangan"
+      source_variable_name: "% PDRB Transportasi dan Pergudangan"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_accom_food_shr_y
+      description: "% PDRB Penyediaan Akomodasi dan Makan Minum"
+      source_variable_name: "% PDRB Penyediaan Akomodasi dan Makan Minum"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_info_comm_shr_y
+      description: "% PDRB Informasi dan Komunikasi"
+      source_variable_name: "% PDRB Informasi dan Komunikasi"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_finance_shr_y
+      description: "% PDRB Jasa Keuangan dan Asuransi"
+      source_variable_name: "% PDRB Jasa Keuangan dan Asuransi"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_real_estate_shr_y
+      description: "% PDRB Real Estate"
+      source_variable_name: "% PDRB Real Estate"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_business_svc_shr_y
+      description: "% PDRB Jasa Perusahaan"
+      source_variable_name: "% PDRB Jasa Perusahaan"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_public_admin_shr_y
+      description: "% PDRB Administrasi Pemerintahan, Pertahanan dan Jaminan Sosial Wajib"
+      source_variable_name: "% PDRB Administrasi Pemerintahan, Pertahanan dan Jaminan Sosial Wajib"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_education_shr_y
+      description: "% PDRB Jasa Pendidikan"
+      source_variable_name: "% PDRB Jasa Pendidikan"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_health_shr_y
+      description: "% PDRB Jasa Kesehatan dan Kegiatan Sosial"
+      source_variable_name: "% PDRB Jasa Kesehatan dan Kegiatan Sosial"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_other_svc_shr_y
+      description: "% PDRB Jasa Lainnya"
+      source_variable_name: "% PDRB Jasa Lainnya"
       data_period: "quarterly, annual"
       data_level: province
       unit: "percent"
