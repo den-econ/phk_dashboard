@@ -1,27 +1,27 @@
 "province","y2022","y2023","y2024","y2025"
 "DKI Jakarta",100,100,100,100
 "Kepulauan Riau",84.7,86.2,96,89.5
-"Banten",77.6,73.8,76.1,73.9
+"Banten",77.6,73.8,76.1,73.8
 "Kalimantan Timur",70.8,72.5,77.8,75.3
 "Bali",55.6,62.8,71.3,72.2
 "Jawa Barat",63,57.7,62.9,61.8
 "Kalimantan Utara",54.3,53.2,58.4,65.8
-"Bangka Belitung",63.2,53.4,57.3,57.7
+"Bangka Belitung",63.2,53.4,57.3,57.6
 "Sulawesi Utara",52.8,49.1,57.9,57
-"Kalimantan Tengah",51.6,46.6,58.8,58.5
+"Kalimantan Tengah",51.6,46.6,58.8,58.4
 "DI Yogyakarta",51.9,46,57.7,59
 "Papua Barat Daya",NA,NA,42.8,59.2
 "Jawa Tengah",46.6,39.3,48.9,51.5
-"Kalimantan Selatan",38.5,39.8,49.7,52.3
+"Kalimantan Selatan",38.5,39.8,49.7,52.2
 "Gorontalo",41.6,32.2,45.7,52
-"Papua Selatan",NA,NA,37.5,47.3
+"Papua Selatan",NA,NA,37.5,47.6
 "Jawa Timur",40.4,36.2,44.3,48.6
-"Riau",39.1,35.5,44.9,48.6
+"Riau",39.1,35.5,44.9,48.5
 "Sumatera Utara",41.6,35.3,43.4,46.7
 "Maluku Utara",32.1,37.7,42.3,41.1
-"Sulawesi Selatan",37,30.3,40.8,43.5
+"Sulawesi Selatan",37,30.3,40.8,43.4
 "Sulawesi Tenggara",35.6,26.8,39.6,45.2
-"Kalimantan Barat",32.8,29.7,38.3,41.3
+"Kalimantan Barat",32.8,29.7,38.3,41.2
 "Papua",14.8,16.1,53.7,57
 "Papua Barat",26.4,38.9,34.8,37
 "Sulawesi Tengah",29.9,26.5,38.4,40.8
@@ -30,10 +30,10 @@
 "Sumatera Selatan",31.6,25.5,32.4,37
 "Maluku",23.8,25.4,33.7,36.1
 "Bengkulu",26.7,19.2,30,33.2
-"Lampung",25.7,17.8,27.8,29.5
-"Aceh",24.5,20.3,25.7,28.3
+"Lampung",25.7,17.8,27.8,29.4
+"Aceh",24.5,20.3,25.7,28.2
 "Nusa Tenggara Barat",13.7,10.7,18.7,26.3
 "Papua Tengah",NA,NA,22.1,0
-"Sulawesi Barat",0,1.4,14.4,21.7
+"Sulawesi Barat",0,1.4,14.4,21.6
 "Nusa Tenggara Timur",2,0,4.9,22.9
 "Papua Pegunungan",NA,NA,0,6.1
