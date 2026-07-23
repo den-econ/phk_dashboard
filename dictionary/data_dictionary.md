@@ -109,6 +109,7 @@ quarterly across 3 months; for one value per period add e.g. `keep if month==1`
 | `lab_unemployed_edu_y` | Jumlah Penganggur Terdidik (S1/Diploma ke atas) | province | annual | count | Jumlah Penganggur Terdidik (S1/Diploma ke atas) |
 | `lab_unemployed_youth_share_pct_y` | % Share Penganggur Usia Muda (15-24 tahun) | province | annual | percent | % Share Penganggur Usia Muda (15-24 tahun) |
 | `lab_unemployed_edu_share_pct_y` | % Share Penganggur Terdidik (S1/Diploma ke atas) | province | annual | percent | % Share Penganggur Terdidik (S1/Diploma ke atas) |
+| `lab_above_minwage_share_pct_y` | % Pekerja di atas UM | province | annual | percent | % Pekerja di atas UM |
 
 ### Employment by sector (51)
 
@@ -238,9 +239,9 @@ quarterly across 3 months; for one value per period add e.g. `keep if month==1`
 
 | Variable | Source name | Level | Frequency | Unit | Description |
 | --- | --- | --- | --- | --- | --- |
-| `macro_pmi_manuf_nat` | PMI Manufaktur S&P (indeks) | national | monthly, quarterly, annual | index | PMI Manufaktur S&P (indeks) |
-| `macro_bi_rate_pct_nat` | BI Rate (persen) | national | monthly, quarterly | — | BI Rate (persen) |
-| `macro_fx_idr_usd_nat` | Kurs (IDR/USD) | national | monthly, quarterly, annual | IDR per USD | Kurs (IDR/USD) |
+| `macro_pmi_manuf_nat` | PMI Manufaktur | national | monthly, quarterly, annual | index | PMI Manufaktur |
+| `macro_bi_rate_pct_nat` | BI Rate | national | monthly, quarterly | — | BI Rate |
+| `macro_fx_idr_usd_nat` | Kurs | national | monthly, quarterly, annual | IDR per USD | Kurs |
 | `macro_pdrb_q` | PDRB (IDR milyar) | province | quarterly | IDR billion | PDRB (IDR milyar) - PDRB Riil (constant price / ADHK) |
 | `macro_pdrb_agri_q` | PDRB Pertanian, Kehutanan dan Perikanan (IDR milyar) | province | quarterly, annual | IDR billion | PDRB Pertanian, Kehutanan dan Perikanan (IDR milyar) - PDRB Riil (constant price / ADHK) |
 | `macro_pdrb_mining_q` | PDRB Pertambangan dan Penggalian (IDR milyar) | province | quarterly, annual | IDR billion | PDRB Pertambangan dan Penggalian (IDR milyar) - PDRB Riil (constant price / ADHK) |
@@ -259,9 +260,24 @@ quarterly across 3 months; for one value per period add e.g. `keep if month==1`
 | `macro_pdrb_education_q` | PDRB Jasa Pendidikan (IDR milyar) | province | quarterly, annual | IDR billion | PDRB Jasa Pendidikan (IDR milyar) - PDRB Riil (constant price / ADHK) |
 | `macro_pdrb_health_q` | PDRB Jasa Kesehatan dan Kegiatan Sosial (IDR milyar) | province | quarterly, annual | IDR billion | PDRB Jasa Kesehatan dan Kegiatan Sosial (IDR milyar) - PDRB Riil (constant price / ADHK) |
 | `macro_pdrb_other_svc_q` | PDRB Jasa Lainnya (IDR milyar) | province | quarterly, annual | IDR billion | PDRB Jasa Lainnya (IDR milyar) - PDRB Riil (constant price / ADHK) |
-| `macro_pdrb_manuf_share_pct_q` | Manufacturing Share (% PDRB) | province | quarterly, annual | percent | Manufacturing Share (% PDRB) |
-| `macro_pdrb_agri_share_pct_q` | Agriculture Share (% PDRB) | province | quarterly, annual | percent | Agriculture Share (% PDRB) |
-| `macro_pdrb_svc_share_pct_q` | Service Share (% PDRB) | province | quarterly, annual | percent | Service Share (% PDRB) |
+| `macro_pdrb_manuf_share_pct_q` | % PDRB Industri Pengolahan | province | quarterly, annual | percent | % PDRB Industri Pengolahan |
+| `macro_pdrb_agri_share_pct_q` | % PDRB Pertanian, Kehutanan dan Perikanan | province | quarterly, annual | percent | % PDRB Pertanian, Kehutanan dan Perikanan |
+| `macro_pdrb_svc_share_pct_q` | (derived: sum of 11 service-sector % PDRB) | province | quarterly, annual | percent | (derived: sum of 11 service-sector % PDRB) |
+| `macro_pdrb_mining_shr_q` | % PDRB Pertambangan dan Penggalian | province | quarterly, annual | percent | % PDRB Pertambangan dan Penggalian |
+| `macro_pdrb_electricity_shr_q` | % PDRB Pengadaan Listrik dan Gas | province | quarterly, annual | percent | % PDRB Pengadaan Listrik dan Gas |
+| `macro_pdrb_water_waste_shr_q` | % PDRB Pengadaan Air, Pengelolaan Sampah, Limbah dan Daur Ulang | province | quarterly, annual | percent | % PDRB Pengadaan Air, Pengelolaan Sampah, Limbah dan Daur Ulang |
+| `macro_pdrb_construction_shr_q` | % PDRB Konstruksi | province | quarterly, annual | percent | % PDRB Konstruksi |
+| `macro_pdrb_trade_shr_q` | % PDRB Perdagangan Besar dan Eceran, Reparasi Mobil dan Sepeda Motor | province | quarterly, annual | percent | % PDRB Perdagangan Besar dan Eceran, Reparasi Mobil dan Sepeda Motor |
+| `macro_pdrb_transport_shr_q` | % PDRB Transportasi dan Pergudangan | province | quarterly, annual | percent | % PDRB Transportasi dan Pergudangan |
+| `macro_pdrb_accom_food_shr_q` | % PDRB Penyediaan Akomodasi dan Makan Minum | province | quarterly, annual | percent | % PDRB Penyediaan Akomodasi dan Makan Minum |
+| `macro_pdrb_info_comm_shr_q` | % PDRB Informasi dan Komunikasi | province | quarterly, annual | percent | % PDRB Informasi dan Komunikasi |
+| `macro_pdrb_finance_shr_q` | % PDRB Jasa Keuangan dan Asuransi | province | quarterly, annual | percent | % PDRB Jasa Keuangan dan Asuransi |
+| `macro_pdrb_real_estate_shr_q` | % PDRB Real Estate | province | quarterly, annual | percent | % PDRB Real Estate |
+| `macro_pdrb_business_svc_shr_q` | % PDRB Jasa Perusahaan | province | quarterly, annual | percent | % PDRB Jasa Perusahaan |
+| `macro_pdrb_public_admin_shr_q` | % PDRB Administrasi Pemerintahan, Pertahanan dan Jaminan Sosial Wajib | province | quarterly, annual | percent | % PDRB Administrasi Pemerintahan, Pertahanan dan Jaminan Sosial Wajib |
+| `macro_pdrb_education_shr_q` | % PDRB Jasa Pendidikan | province | quarterly, annual | percent | % PDRB Jasa Pendidikan |
+| `macro_pdrb_health_shr_q` | % PDRB Jasa Kesehatan dan Kegiatan Sosial | province | quarterly, annual | percent | % PDRB Jasa Kesehatan dan Kegiatan Sosial |
+| `macro_pdrb_other_svc_shr_q` | % PDRB Jasa Lainnya | province | quarterly, annual | percent | % PDRB Jasa Lainnya |
 | `macro_pmi_manuf_nat_q` | PMI Manufaktur | national | monthly, quarterly, annual | index | PMI Manufaktur |
 | `macro_bi_rate_pct_nat_q` | BI Rate | national | monthly, quarterly | — | BI Rate |
 | `macro_fx_idr_usd_nat_q` | Kurs | national | monthly, quarterly, annual | IDR per USD | Kurs |
@@ -284,16 +300,38 @@ quarterly across 3 months; for one value per period add e.g. `keep if month==1`
 | `macro_pdrb_education_y` | PDRB Jasa Pendidikan (IDR milyar) | province | quarterly, annual | IDR billion | PDRB Jasa Pendidikan (IDR milyar) - PDRB Riil (constant price / ADHK) |
 | `macro_pdrb_health_y` | PDRB Jasa Kesehatan dan Kegiatan Sosial (IDR milyar) | province | quarterly, annual | IDR billion | PDRB Jasa Kesehatan dan Kegiatan Sosial (IDR milyar) - PDRB Riil (constant price / ADHK) |
 | `macro_pdrb_other_svc_y` | PDRB Jasa Lainnya (IDR milyar) | province | quarterly, annual | IDR billion | PDRB Jasa Lainnya (IDR milyar) - PDRB Riil (constant price / ADHK) |
-| `macro_pdrb_manuf_share_pct_y` | Manufacturing Share (% PDRB) | province | quarterly, annual | percent | Manufacturing Share (% PDRB) |
-| `macro_pdrb_agri_share_pct_y` | Agriculture Share (% PDRB) | province | quarterly, annual | percent | Agriculture Share (% PDRB) |
-| `macro_pdrb_svc_share_pct_y` | Service Share (% PDRB) | province | quarterly, annual | percent | Service Share (% PDRB) |
+| `macro_pdrb_manuf_share_pct_y` | % PDRB Industri Pengolahan | province | quarterly, annual | percent | % PDRB Industri Pengolahan |
+| `macro_pdrb_agri_share_pct_y` | % PDRB Pertanian, Kehutanan dan Perikanan | province | quarterly, annual | percent | % PDRB Pertanian, Kehutanan dan Perikanan |
+| `macro_pdrb_svc_share_pct_y` | (derived: sum of 11 service-sector % PDRB) | province | quarterly, annual | percent | (derived: sum of 11 service-sector % PDRB) |
+| `macro_pdrb_mining_shr_y` | % PDRB Pertambangan dan Penggalian | province | quarterly, annual | percent | % PDRB Pertambangan dan Penggalian |
+| `macro_pdrb_electricity_shr_y` | % PDRB Pengadaan Listrik dan Gas | province | quarterly, annual | percent | % PDRB Pengadaan Listrik dan Gas |
+| `macro_pdrb_water_waste_shr_y` | % PDRB Pengadaan Air, Pengelolaan Sampah, Limbah dan Daur Ulang | province | quarterly, annual | percent | % PDRB Pengadaan Air, Pengelolaan Sampah, Limbah dan Daur Ulang |
+| `macro_pdrb_construction_shr_y` | % PDRB Konstruksi | province | quarterly, annual | percent | % PDRB Konstruksi |
+| `macro_pdrb_trade_shr_y` | % PDRB Perdagangan Besar dan Eceran, Reparasi Mobil dan Sepeda Motor | province | quarterly, annual | percent | % PDRB Perdagangan Besar dan Eceran, Reparasi Mobil dan Sepeda Motor |
+| `macro_pdrb_transport_shr_y` | % PDRB Transportasi dan Pergudangan | province | quarterly, annual | percent | % PDRB Transportasi dan Pergudangan |
+| `macro_pdrb_accom_food_shr_y` | % PDRB Penyediaan Akomodasi dan Makan Minum | province | quarterly, annual | percent | % PDRB Penyediaan Akomodasi dan Makan Minum |
+| `macro_pdrb_info_comm_shr_y` | % PDRB Informasi dan Komunikasi | province | quarterly, annual | percent | % PDRB Informasi dan Komunikasi |
+| `macro_pdrb_finance_shr_y` | % PDRB Jasa Keuangan dan Asuransi | province | quarterly, annual | percent | % PDRB Jasa Keuangan dan Asuransi |
+| `macro_pdrb_real_estate_shr_y` | % PDRB Real Estate | province | quarterly, annual | percent | % PDRB Real Estate |
+| `macro_pdrb_business_svc_shr_y` | % PDRB Jasa Perusahaan | province | quarterly, annual | percent | % PDRB Jasa Perusahaan |
+| `macro_pdrb_public_admin_shr_y` | % PDRB Administrasi Pemerintahan, Pertahanan dan Jaminan Sosial Wajib | province | quarterly, annual | percent | % PDRB Administrasi Pemerintahan, Pertahanan dan Jaminan Sosial Wajib |
+| `macro_pdrb_education_shr_y` | % PDRB Jasa Pendidikan | province | quarterly, annual | percent | % PDRB Jasa Pendidikan |
+| `macro_pdrb_health_shr_y` | % PDRB Jasa Kesehatan dan Kegiatan Sosial | province | quarterly, annual | percent | % PDRB Jasa Kesehatan dan Kegiatan Sosial |
+| `macro_pdrb_other_svc_shr_y` | % PDRB Jasa Lainnya | province | quarterly, annual | percent | % PDRB Jasa Lainnya |
 | `macro_pdrb_manuf_growth_pct_y` | Laju Pertumbuhan PDB Industri Manufaktur | province | annual | IDR billion | Laju Pertumbuhan PDB Industri Manufaktur - PDRB Riil (constant price / ADHK) |
 | `macro_pdrb_per_wkr_y` | PDRB/Pekerja | province | annual | IDR billion | PDRB/Pekerja - PDRB Riil (constant price / ADHK) |
 | `macro_pdrb_per_wkr_growth_pct_y` | Laju Pertumbuhan PDB Per Tenaga Kerja | province | annual | IDR billion | Laju Pertumbuhan PDB Per Tenaga Kerja - PDRB Riil (constant price / ADHK) |
 | `macro_pdrb_pcap_idr_thousand_y` | PDRB Per Kapita (Ribu Rupiah) | province | annual | IDR thousand | PDRB Per Kapita (Ribu Rupiah) |
 | `macro_pmi_manuf_nat_y` | PMI Manufaktur | national | monthly, quarterly, annual | index | PMI Manufaktur |
-| `macro_bi_rate_avg_pct_nat_y` | BI Rate (Average)* | national | annual | — | BI Rate (Average)* |
 | `macro_fx_idr_usd_nat_y` | Kurs | national | monthly, quarterly, annual | IDR per USD | Kurs |
+| `macro_fed_funds_rate_nat` | Federal Funds Effective Rate (Daily, 7-Day) | national | monthly | percent | Federal Funds Effective Rate (Daily, 7-Day) |
+| `macro_bi_rate_pct_nat_y` | BI Rate | national | annual | percent | BI Rate |
+| `macro_pdb_idr_billion_nat_y` | PDB (IDR milyar) | national | quarterly, annual | IDR billion | PDB (IDR milyar) |
+| `macro_world_gdp_nat_y` | World GDP | national | quarterly, annual | — | World GDP |
+| `macro_fed_funds_rate_nat_y` | Federal Funds Effective Rate (End of Period) | national | quarterly, annual | percent | Federal Funds Effective Rate (End of Period) |
+| `macro_pdb_idr_billion_nat_q` | PDB (IDR milyar) | national | quarterly, annual | IDR billion | PDB (IDR milyar) |
+| `macro_world_gdp_nat_q` | World GDP | national | quarterly, annual | — | World GDP |
+| `macro_fed_funds_rate_nat_q` | Federal Funds Effective Rate (End of Period) | national | quarterly, annual | percent | Federal Funds Effective Rate (End of Period) |
 | `macro_construction_cost_index_y` | Indeks Kemahalan Konstruksi | province | annual | index | Indeks Kemahalan Konstruksi |
 | `macro_pdrb_hh_cons_share_pct_y` | Persentase Pengeluaran Konsumsi Rumah Tangga Atas Dasar Harga Berlaku (persen) | province | annual | percent | Persentase Pengeluaran Konsumsi Rumah Tangga Atas Dasar Harga Berlaku (persen) |
 | `macro_pdrb_gov_cons_share_pct_y` | Persentase Pengeluaran Konsumsi Pemerintah Atas Dasar Harga Berlaku (persen) | province | annual | percent | Persentase Pengeluaran Konsumsi Pemerintah Atas Dasar Harga Berlaku (persen) |
@@ -309,18 +347,17 @@ quarterly across 3 months; for one value per period add e.g. `keep if month==1`
 | `price_inflation_yoy_pct` | Inflasi Tahunan (Y-on-Y) | province | monthly | percent | Inflasi Tahunan (Y-on-Y) |
 | `price_consumer_change_pct` | Perubahan Harga Konsumen (persen, YoY) | province | monthly, quarterly | percent | Perubahan Harga Konsumen (persen, YoY) |
 | `price_brent_usd_bbl_nat` | Harga Minyak Brent (USD/barrel) | national | monthly | USD per barrel | Harga Minyak Brent (USD/barrel) |
-| `price_ihpb_nat` | IHPB (indeks) | national | monthly | — | IHPB (indeks) |
+| `price_ihpb_nat` | IHPB | national | monthly | — | IHPB |
 | `price_producer_index_nat_q` | IHP (2016=100) | national | quarterly, annual | index | IHP (2016=100) |
-| `price_producer_change_pct_nat_q` | Perubahan Harga Produsen** | national | quarterly, annual | — | Perubahan Harga Produsen** |
-| `price_producer_ceic_pct_nat_q` | Perubahan Harga Produsen (CEIC) | national | quarterly | — | Perubahan Harga Produsen (CEIC) |
+| `price_producer_change_pct_nat_q` | Perubahan Harga Produsen (%) | national | quarterly, annual | — | Perubahan Harga Produsen (%) |
 | `price_cpi_index_q` | IHK (2010=100) | province | monthly, quarterly | index | IHK (2010=100) |
 | `price_consumer_change_pct_q` | Perubahan Harga Konsumen | province | monthly, quarterly | percent | Perubahan Harga Konsumen |
 | `price_inflation_yoy_q4_pct_y` | Inflasi YoY (per IV) | province | annual | percent | Inflasi YoY (per IV) |
 | `price_inflation_yoy_avg_pct_y` | Inflasi YoY (Average) | province | annual | percent | Inflasi YoY (Average) |
 | `price_producer_index_nat_y` | IHP (2016=100) | national | quarterly, annual | index | IHP (2016=100) |
 | `price_cpi_index_nat_y` | IHK (2010=100) | national | annual | index | IHK (2010=100) |
-| `price_producer_change_pct_nat_y` | Perubahan harga produsen (%) | national | quarterly, annual | — | Perubahan harga produsen (%) |
-| `price_consumer_change_pct_nat_y` | Perubahan harga konsumen (%) | national | annual | — | Perubahan harga konsumen (%) |
+| `price_producer_change_pct_nat_y` | Perubahan Harga Produsen (%) | national | quarterly, annual | — | Perubahan Harga Produsen (%) |
+| `price_consumer_change_pct_nat_y` | Perubahan Harga Konsumen (%) | national | annual | — | Perubahan Harga Konsumen (%) |
 
 ### Trade (10)
 

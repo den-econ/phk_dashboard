@@ -15,7 +15,7 @@ coverage: "2022-2026"
 primary_key: [province_name_std, year, month]
 source_workbook: "Data untuk PHK Dashboard.xlsx"
 n_rows: 2280
-n_columns: 304
+n_columns: 341
 
 variables:
   identity:
@@ -269,6 +269,12 @@ variables:
     - name: lab_unemployed_edu_share_pct_y
       description: "% Share Penganggur Terdidik (S1/Diploma ke atas)"
       source_variable_name: "% Share Penganggur Terdidik (S1/Diploma ke atas)"
+      data_period: "annual"
+      data_level: province
+      unit: "percent"
+    - name: lab_above_minwage_share_pct_y
+      description: "% Pekerja di atas UM"
+      source_variable_name: "% Pekerja di atas UM"
       data_period: "annual"
       data_level: province
       unit: "percent"
@@ -875,22 +881,28 @@ variables:
       unit: "count"
   macro:
     - name: macro_pmi_manuf_nat
-      description: "PMI Manufaktur S&P (indeks)"
-      source_variable_name: "PMI Manufaktur S&P (indeks)"
+      description: "PMI Manufaktur"
+      source_variable_name: "PMI Manufaktur"
       data_period: "monthly, quarterly, annual"
       data_level: national
       unit: "index"
     - name: macro_bi_rate_pct_nat
-      description: "BI Rate (persen)"
-      source_variable_name: "BI Rate (persen)"
+      description: "BI Rate"
+      source_variable_name: "BI Rate"
       data_period: "monthly, quarterly"
       data_level: national
     - name: macro_fx_idr_usd_nat
-      description: "Kurs (IDR/USD)"
-      source_variable_name: "Kurs (IDR/USD)"
+      description: "Kurs"
+      source_variable_name: "Kurs"
       data_period: "monthly, quarterly, annual"
       data_level: national
       unit: "IDR per USD"
+    - name: macro_fed_funds_rate_nat
+      description: "Federal Funds Effective Rate (Daily, 7-Day)"
+      source_variable_name: "Federal Funds Effective Rate (Daily, 7-Day)"
+      data_period: "monthly"
+      data_level: national
+      unit: "percent"
     - name: macro_pdrb_q
       description: "PDRB (IDR milyar) - PDRB Riil (constant price / ADHK)"
       source_variable_name: "PDRB (IDR milyar)"
@@ -1000,20 +1012,110 @@ variables:
       data_level: province
       unit: "IDR billion"
     - name: macro_pdrb_manuf_share_pct_q
-      description: "Manufacturing Share (% PDRB)"
-      source_variable_name: "Manufacturing Share (% PDRB)"
+      description: "% PDRB Industri Pengolahan"
+      source_variable_name: "% PDRB Industri Pengolahan"
       data_period: "quarterly, annual"
       data_level: province
       unit: "percent"
     - name: macro_pdrb_agri_share_pct_q
-      description: "Agriculture Share (% PDRB)"
-      source_variable_name: "Agriculture Share (% PDRB)"
+      description: "% PDRB Pertanian, Kehutanan dan Perikanan"
+      source_variable_name: "% PDRB Pertanian, Kehutanan dan Perikanan"
       data_period: "quarterly, annual"
       data_level: province
       unit: "percent"
     - name: macro_pdrb_svc_share_pct_q
-      description: "Service Share (% PDRB)"
-      source_variable_name: "Service Share (% PDRB)"
+      description: "(derived: sum of 11 service-sector % PDRB)"
+      source_variable_name: "(derived: sum of 11 service-sector % PDRB)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_mining_shr_q
+      description: "% PDRB Pertambangan dan Penggalian"
+      source_variable_name: "% PDRB Pertambangan dan Penggalian"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_electricity_shr_q
+      description: "% PDRB Pengadaan Listrik dan Gas"
+      source_variable_name: "% PDRB Pengadaan Listrik dan Gas"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_water_waste_shr_q
+      description: "% PDRB Pengadaan Air, Pengelolaan Sampah, Limbah dan Daur Ulang"
+      source_variable_name: "% PDRB Pengadaan Air, Pengelolaan Sampah, Limbah dan Daur Ulang"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_construction_shr_q
+      description: "% PDRB Konstruksi"
+      source_variable_name: "% PDRB Konstruksi"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_trade_shr_q
+      description: "% PDRB Perdagangan Besar dan Eceran, Reparasi Mobil dan Sepeda Motor"
+      source_variable_name: "% PDRB Perdagangan Besar dan Eceran, Reparasi Mobil dan Sepeda Motor"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_transport_shr_q
+      description: "% PDRB Transportasi dan Pergudangan"
+      source_variable_name: "% PDRB Transportasi dan Pergudangan"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_accom_food_shr_q
+      description: "% PDRB Penyediaan Akomodasi dan Makan Minum"
+      source_variable_name: "% PDRB Penyediaan Akomodasi dan Makan Minum"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_info_comm_shr_q
+      description: "% PDRB Informasi dan Komunikasi"
+      source_variable_name: "% PDRB Informasi dan Komunikasi"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_finance_shr_q
+      description: "% PDRB Jasa Keuangan dan Asuransi"
+      source_variable_name: "% PDRB Jasa Keuangan dan Asuransi"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_real_estate_shr_q
+      description: "% PDRB Real Estate"
+      source_variable_name: "% PDRB Real Estate"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_business_svc_shr_q
+      description: "% PDRB Jasa Perusahaan"
+      source_variable_name: "% PDRB Jasa Perusahaan"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_public_admin_shr_q
+      description: "% PDRB Administrasi Pemerintahan, Pertahanan dan Jaminan Sosial Wajib"
+      source_variable_name: "% PDRB Administrasi Pemerintahan, Pertahanan dan Jaminan Sosial Wajib"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_education_shr_q
+      description: "% PDRB Jasa Pendidikan"
+      source_variable_name: "% PDRB Jasa Pendidikan"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_health_shr_q
+      description: "% PDRB Jasa Kesehatan dan Kegiatan Sosial"
+      source_variable_name: "% PDRB Jasa Kesehatan dan Kegiatan Sosial"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_other_svc_shr_q
+      description: "% PDRB Jasa Lainnya"
+      source_variable_name: "% PDRB Jasa Lainnya"
       data_period: "quarterly, annual"
       data_level: province
       unit: "percent"
@@ -1034,6 +1136,23 @@ variables:
       data_period: "monthly, quarterly, annual"
       data_level: national
       unit: "IDR per USD"
+    - name: macro_pdb_idr_billion_nat_q
+      description: "PDB (IDR milyar)"
+      source_variable_name: "PDB (IDR milyar)"
+      data_period: "quarterly, annual"
+      data_level: national
+      unit: "IDR billion"
+    - name: macro_world_gdp_nat_q
+      description: "World GDP"
+      source_variable_name: "World GDP"
+      data_period: "quarterly, annual"
+      data_level: national
+    - name: macro_fed_funds_rate_nat_q
+      description: "Federal Funds Effective Rate (End of Period)"
+      source_variable_name: "Federal Funds Effective Rate (End of Period)"
+      data_period: "quarterly, annual"
+      data_level: national
+      unit: "percent"
     - name: macro_pdrb_idr_billion_y
       description: "PDRB (IDR milyar) - PDRB Riil (constant price / ADHK)"
       source_variable_name: "PDRB (IDR milyar)"
@@ -1149,20 +1268,110 @@ variables:
       data_level: province
       unit: "IDR billion"
     - name: macro_pdrb_manuf_share_pct_y
-      description: "Manufacturing Share (% PDRB)"
-      source_variable_name: "Manufacturing Share (% PDRB)"
+      description: "% PDRB Industri Pengolahan"
+      source_variable_name: "% PDRB Industri Pengolahan"
       data_period: "quarterly, annual"
       data_level: province
       unit: "percent"
     - name: macro_pdrb_agri_share_pct_y
-      description: "Agriculture Share (% PDRB)"
-      source_variable_name: "Agriculture Share (% PDRB)"
+      description: "% PDRB Pertanian, Kehutanan dan Perikanan"
+      source_variable_name: "% PDRB Pertanian, Kehutanan dan Perikanan"
       data_period: "quarterly, annual"
       data_level: province
       unit: "percent"
     - name: macro_pdrb_svc_share_pct_y
-      description: "Service Share (% PDRB)"
-      source_variable_name: "Service Share (% PDRB)"
+      description: "(derived: sum of 11 service-sector % PDRB)"
+      source_variable_name: "(derived: sum of 11 service-sector % PDRB)"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_mining_shr_y
+      description: "% PDRB Pertambangan dan Penggalian"
+      source_variable_name: "% PDRB Pertambangan dan Penggalian"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_electricity_shr_y
+      description: "% PDRB Pengadaan Listrik dan Gas"
+      source_variable_name: "% PDRB Pengadaan Listrik dan Gas"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_water_waste_shr_y
+      description: "% PDRB Pengadaan Air, Pengelolaan Sampah, Limbah dan Daur Ulang"
+      source_variable_name: "% PDRB Pengadaan Air, Pengelolaan Sampah, Limbah dan Daur Ulang"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_construction_shr_y
+      description: "% PDRB Konstruksi"
+      source_variable_name: "% PDRB Konstruksi"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_trade_shr_y
+      description: "% PDRB Perdagangan Besar dan Eceran, Reparasi Mobil dan Sepeda Motor"
+      source_variable_name: "% PDRB Perdagangan Besar dan Eceran, Reparasi Mobil dan Sepeda Motor"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_transport_shr_y
+      description: "% PDRB Transportasi dan Pergudangan"
+      source_variable_name: "% PDRB Transportasi dan Pergudangan"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_accom_food_shr_y
+      description: "% PDRB Penyediaan Akomodasi dan Makan Minum"
+      source_variable_name: "% PDRB Penyediaan Akomodasi dan Makan Minum"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_info_comm_shr_y
+      description: "% PDRB Informasi dan Komunikasi"
+      source_variable_name: "% PDRB Informasi dan Komunikasi"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_finance_shr_y
+      description: "% PDRB Jasa Keuangan dan Asuransi"
+      source_variable_name: "% PDRB Jasa Keuangan dan Asuransi"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_real_estate_shr_y
+      description: "% PDRB Real Estate"
+      source_variable_name: "% PDRB Real Estate"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_business_svc_shr_y
+      description: "% PDRB Jasa Perusahaan"
+      source_variable_name: "% PDRB Jasa Perusahaan"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_public_admin_shr_y
+      description: "% PDRB Administrasi Pemerintahan, Pertahanan dan Jaminan Sosial Wajib"
+      source_variable_name: "% PDRB Administrasi Pemerintahan, Pertahanan dan Jaminan Sosial Wajib"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_education_shr_y
+      description: "% PDRB Jasa Pendidikan"
+      source_variable_name: "% PDRB Jasa Pendidikan"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_health_shr_y
+      description: "% PDRB Jasa Kesehatan dan Kegiatan Sosial"
+      source_variable_name: "% PDRB Jasa Kesehatan dan Kegiatan Sosial"
+      data_period: "quarterly, annual"
+      data_level: province
+      unit: "percent"
+    - name: macro_pdrb_other_svc_shr_y
+      description: "% PDRB Jasa Lainnya"
+      source_variable_name: "% PDRB Jasa Lainnya"
       data_period: "quarterly, annual"
       data_level: province
       unit: "percent"
@@ -1196,17 +1405,35 @@ variables:
       data_period: "monthly, quarterly, annual"
       data_level: national
       unit: "index"
-    - name: macro_bi_rate_avg_pct_nat_y
-      description: "BI Rate (Average)*"
-      source_variable_name: "BI Rate (Average)*"
-      data_period: "annual"
-      data_level: national
     - name: macro_fx_idr_usd_nat_y
       description: "Kurs"
       source_variable_name: "Kurs"
       data_period: "monthly, quarterly, annual"
       data_level: national
       unit: "IDR per USD"
+    - name: macro_bi_rate_pct_nat_y
+      description: "BI Rate"
+      source_variable_name: "BI Rate"
+      data_period: "annual"
+      data_level: national
+      unit: "percent"
+    - name: macro_pdb_idr_billion_nat_y
+      description: "PDB (IDR milyar)"
+      source_variable_name: "PDB (IDR milyar)"
+      data_period: "quarterly, annual"
+      data_level: national
+      unit: "IDR billion"
+    - name: macro_world_gdp_nat_y
+      description: "World GDP"
+      source_variable_name: "World GDP"
+      data_period: "quarterly, annual"
+      data_level: national
+    - name: macro_fed_funds_rate_nat_y
+      description: "Federal Funds Effective Rate (End of Period)"
+      source_variable_name: "Federal Funds Effective Rate (End of Period)"
+      data_period: "quarterly, annual"
+      data_level: national
+      unit: "percent"
     - name: macro_construction_cost_index_y
       description: "Indeks Kemahalan Konstruksi"
       source_variable_name: "Indeks Kemahalan Konstruksi"
@@ -1269,8 +1496,8 @@ variables:
       data_level: national
       unit: "USD per barrel"
     - name: price_ihpb_nat
-      description: "IHPB (indeks)"
-      source_variable_name: "IHPB (indeks)"
+      description: "IHPB"
+      source_variable_name: "IHPB"
       data_period: "monthly"
       data_level: national
     - name: price_producer_index_nat_q
@@ -1280,14 +1507,9 @@ variables:
       data_level: national
       unit: "index"
     - name: price_producer_change_pct_nat_q
-      description: "Perubahan Harga Produsen**"
-      source_variable_name: "Perubahan Harga Produsen**"
+      description: "Perubahan Harga Produsen (%)"
+      source_variable_name: "Perubahan Harga Produsen (%)"
       data_period: "quarterly, annual"
-      data_level: national
-    - name: price_producer_ceic_pct_nat_q
-      description: "Perubahan Harga Produsen (CEIC)"
-      source_variable_name: "Perubahan Harga Produsen (CEIC)"
-      data_period: "quarterly"
       data_level: national
     - name: price_cpi_index_q
       description: "IHK (2010=100)"
@@ -1326,13 +1548,13 @@ variables:
       data_level: national
       unit: "index"
     - name: price_producer_change_pct_nat_y
-      description: "Perubahan harga produsen (%)"
-      source_variable_name: "Perubahan harga produsen (%)"
+      description: "Perubahan Harga Produsen (%)"
+      source_variable_name: "Perubahan Harga Produsen (%)"
       data_period: "quarterly, annual"
       data_level: national
     - name: price_consumer_change_pct_nat_y
-      description: "Perubahan harga konsumen (%)"
-      source_variable_name: "Perubahan harga konsumen (%)"
+      description: "Perubahan Harga Konsumen (%)"
+      source_variable_name: "Perubahan Harga Konsumen (%)"
       data_period: "annual"
       data_level: national
   trade:
