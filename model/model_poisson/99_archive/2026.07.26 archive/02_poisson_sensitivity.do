@@ -3,7 +3,7 @@
 * Description       : Develop Model to Project PHK  
 * Stata version     : 16
 * Date created      : 13 July 2026 by Bertha
-* Last modified     : 26 July 2026 by Bertha
+* Last modified     : 13 July 2026 by Bertha
 * =============================================================================
 
 
@@ -65,7 +65,7 @@ set more off
         }
 
         eststo  lag_`L':    poisson $OUTCOME $ECON_STRUCTURE $LABOR_STRUCTURE `trigger' ///
-                                    i.prov_id i.quarter, ///
+                                    i.prov_id i.month, ///
                                     vce(cluster prov_id)
 
         est     save "$model/model_lag`L'.ster", replace
@@ -164,7 +164,7 @@ set more off
 
 
     * Export LaTeX
-    local   note "The dependent variable is the monthly number of PHK by province. Columns (1)--(4) report separate Poisson specifications in which all macroeconomic pressure indicators enter at lags of 1, 3, 6, and 12 months, respectively. Provincial economic and labor-market structural controls enter contemporaneously. All specifications include province and calendar-quarter fixed effects. Standard errors clustered at the province level are reported in parentheses. *, **, and *** denote statistical significance at the 10\%, 5\%, and 1\% levels."
+    local   note "The dependent variable is the monthly number of PHK by province. Columns (1)--(4) report separate Poisson specifications in which all macroeconomic pressure indicators enter at lags of 1, 3, 6, and 12 months, respectively. Provincial economic and labor-market structural controls enter contemporaneously. All specifications include province and calendar-month fixed effects. Standard errors clustered at the province level are reported in parentheses. *, **, and *** denote statistical significance at the 10\%, 5\%, and 1\% levels."
     
     local   numbers "& (1) & (2) & (3) & (4) \\ & Lag 1 & Lag 3 & Lag 6 & Lag 12 \\ \midrule"
     esttab  lag_1 lag_3 lag_6 lag_12 using "$latex/poisson_coefficients_all.tex", ///
@@ -182,9 +182,9 @@ set more off
                 `"\toprule"') ///
             posthead("`numbers'") ///
             refcat( ///
-                L_price_brent_yoy   "\addlinespace\textbf{Macroeconomic Pressure (with lag)}" ///
+                L_log_price_brent   "\addlinespace\textbf{Macroeconomic Pressure (with lag)}" ///
                 gov_pdrb_share      "\addlinespace\textbf{Provincial Economic Structure}" ///
-                formal_lab_share    "\addlinespace\textbf{Provincial Labor Market Structure}", ///
+                unemployment_rate   "\addlinespace\textbf{Provincial Labor Market Structure}", ///
                 nolabel) ///
             stats(N dv_mean p_r2 region time, labels("Observations" "Monthly PHK Mean" "Pseudo R$^2$" "Region FE" "Time FE") fmt(0 3 0 0)) ///
             postfoot(`"\bottomrule"' `"\end{tabular}"' `"\end{adjustbox}"' `"\begin{tablenotes}"' `"\footnotesize"' `"\item \textit{Notes:} `note'"' `"\end{tablenotes}"' `"\end{table}"')
@@ -235,7 +235,7 @@ set more off
 *-------------------------------*
 
     local note ///
-    "Entries report incidence rate ratios (IRRs), obtained by exponentiating the corresponding Poisson coefficients. Columns (1)--(4) jointly include all macroeconomic pressure indicators at lags of 1, 3, 6, and 12 months, respectively, together with contemporaneous provincial economic and labor-market structural controls, province fixed effects, and calendar-quarter fixed effects. An IRR above (below) one indicates a positive (negative) conditional association with expected PHK. The magnitude of each IRR should be interpreted according to the unit and transformation of the corresponding explanatory variable. Standard errors clustered at the province level are reported in parentheses. *, **, and *** denote statistical significance at the 10\%, 5\%, and 1\% levels."
+    "Entries report incidence rate ratios (IRRs), obtained by exponentiating the corresponding Poisson coefficients. Columns (1)--(4) jointly include all macroeconomic pressure indicators at lags of 1, 3, 6, and 12 months, respectively, together with contemporaneous provincial economic and labor-market structural controls, province fixed effects, and calendar-month fixed effects. An IRR above (below) one indicates a positive (negative) conditional association with expected PHK. The magnitude of each IRR should be interpreted according to the unit and transformation of the corresponding explanatory variable. Standard errors clustered at the province level are reported in parentheses. *, **, and *** denote statistical significance at the 10\%, 5\%, and 1\% levels."
     
     local numbers ///
     "& (1) & (2) & (3) & (4) \\" ///
@@ -267,9 +267,9 @@ set more off
                 `"\toprule"') ///
         posthead("`numbers'") ///
         refcat( ///
-            L_price_brent_yoy   "\addlinespace\textbf{Macroeconomic Pressure (with lag)}" ///
+            L_log_price_brent   "\addlinespace\textbf{Macroeconomic Pressure (with lag)}" ///
             gov_pdrb_share      "\addlinespace\textbf{Provincial Economic Structure}" ///
-            formal_lab_share    "\addlinespace\textbf{Provincial Labor Market Structure}", ///
+            unemployment_rate   "\addlinespace\textbf{Provincial Labor Market Structure}", ///
             nolabel) ///
         stats( ///
             N ///
@@ -340,7 +340,7 @@ set more off
                 $OUTCOME ///
                 $STRUCTURE ///
                 L_macro ///
-                i.quarter ///
+                i.month ///
                 i.prov_id, ///
                 vce(cluster prov_id)
 
@@ -494,7 +494,7 @@ set more off
                  "\vspace{0.2cm}" ///
                  "\begin{minipage}{0.95\linewidth}" ///
                  "\footnotesize" ///
-                 "\textit{Notes:} Each cell reports the incidence rate ratio (IRR) from a separate Poisson regression of monthly provincial PHK on the indicated lagged macroeconomic pressure variable, controlling for provincial economic and labor-market structure, province fixed effects, and calendar-quarter fixed effects. IRRs are obtained by exponentiating the estimated Poisson coefficients. An IRR above (below) one indicates a positive (negative) association with expected PHK. The magnitude of the IRR should be interpreted according to the unit and transformation of each explanatory variable. Standard errors are clustered at the province level. *, **, and *** denote statistical significance at the 10\%, 5\%, and 1\% levels." ///
+                 "\textit{Notes:} Each cell reports the incidence rate ratio (IRR) from a separate Poisson regression of monthly provincial PHK on the indicated lagged macroeconomic pressure variable, controlling for provincial economic and labor-market structure, province fixed effects, and calendar-month fixed effects. IRRs are obtained by exponentiating the estimated Poisson coefficients. An IRR above (below) one indicates a positive (negative) association with expected PHK. The magnitude of the IRR should be interpreted according to the unit and transformation of each explanatory variable. Standard errors are clustered at the province level. *, **, and *** denote statistical significance at the 10\%, 5\%, and 1\% levels." ///
                  "\end{minipage}" ///
                  "\end{table}")
 
@@ -550,7 +550,7 @@ set more off
                  "\vspace{0.2cm}" ///
                  "\begin{minipage}{0.95\linewidth}" ///
                  "\footnotesize" ///
-                 "\textit{Notes:} Each cell summarizes the estimated association from a separate Poisson regression of monthly provincial PHK on the indicated lagged macroeconomic pressure variable, controlling for provincial economic and labor-market structure, province fixed effects, and calendar-quarter fixed effects. '+' ('-') denotes a positive (negative) association statistically significant at the 10\% level or better. Blank cells denote estimates that are not statistically significant at the 10\% level." ///
+                 "\textit{Notes:} Each cell summarizes the estimated association from a separate Poisson regression of monthly provincial PHK on the indicated lagged macroeconomic pressure variable, controlling for provincial economic and labor-market structure, province fixed effects, and calendar-month fixed effects. '+' ('-') denotes a positive (negative) association statistically significant at the 10\% level or better. Blank cells denote estimates that are not statistically significant at the 10\% level." ///
                  "\end{minipage}" ///
                  "\end{table}")
 

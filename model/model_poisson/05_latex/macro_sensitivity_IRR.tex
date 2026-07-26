@@ -5,20 +5,18 @@
 \begin{tabular}{lcccc}
 \toprule
 Variable & Lag 1 & Lag 3 & Lag 6 & Lag 12 \\ \midrule
-log\_price\_brent&21.08***&2.16&0.59&3.21\\
-bi\_rate&2.83***&2.89***&1.89***&1.61***\\
-log\_fx\_idr\_usd&0.71&0.01***&7.49&27.83\\
-pmi\_manuf&0.95&0.99&1.01&1.03\\
-ihpb\_yoy&0.85&0.66***&1.09&0.51**\\
-cpi\_yoy&0.88**&0.85**&0.81***&0.59***\\
-npl\_ratio&0.84&0.85&0.73&0.61\\
-log\_export&0.67*&0.36**&1.16&1.02\\
-log\_import&0.83*&0.93&0.93&1.12\\
+price\_brent\_yoy&1.01&1.00&1.01**&1.01\\
+pmi\_manuf&0.94***&0.99&1.01&0.99\\
+bi\_rate&1.75**&2.22***&1.87***&1.35***\\
+fx\_volatility&1.00&1.00***&1.00***&1.00**\\
+ihpb\_index&1.07&1.06&1.15**&1.09**\\
+car\_sales\_yoy&1.00&1.00&1.01**&0.99\\
+log\_export&0.64*&0.40**&1.12&0.98\\
 \bottomrule
 \end{tabular}
 \vspace{0.2cm}
 \begin{minipage}{0.95\linewidth}
 \footnotesize
-\textit{Notes:} Each cell reports the incidence rate ratio (IRR) from a separate Poisson regression of monthly provincial PHK on the indicated lagged macroeconomic pressure variable, controlling for provincial economic and labor-market structure, province fixed effects, and calendar-month fixed effects. IRRs are obtained by exponentiating the estimated Poisson coefficients. An IRR above (below) one indicates a positive (negative) association with expected PHK. The magnitude of the IRR should be interpreted according to the unit and transformation of each explanatory variable. Standard errors are clustered at the province level. *, **, and *** denote statistical significance at the 10\%, 5\%, and 1\% levels.
+\textit{Notes:} Each cell reports the incidence rate ratio (IRR) from a separate Poisson regression of monthly provincial PHK on the indicated lagged macroeconomic pressure variable, controlling for provincial economic and labor-market structure, province fixed effects, and calendar-quarter fixed effects. IRRs are obtained by exponentiating the estimated Poisson coefficients. An IRR above (below) one indicates a positive (negative) association with expected PHK. The magnitude of the IRR should be interpreted according to the unit and transformation of each explanatory variable. Standard errors are clustered at the province level. *, **, and *** denote statistical significance at the 10\%, 5\%, and 1\% levels.
 \end{minipage}
 \end{table}

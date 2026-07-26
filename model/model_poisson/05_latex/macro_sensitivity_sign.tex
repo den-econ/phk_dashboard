@@ -5,20 +5,18 @@
 \begin{tabular}{lcccc}
 \toprule
 Variable & Lag 1 & Lag 3 & Lag 6 & Lag 12 \\ \midrule
-log\_price\_brent&+&&&\\
+price\_brent\_yoy&&&+&\\
+pmi\_manuf&-&&&\\
 bi\_rate&+&+&+&+\\
-log\_fx\_idr\_usd&&-&&\\
-pmi\_manuf&&&&\\
-ihpb\_yoy&&-&&-\\
-cpi\_yoy&-&-&-&-\\
-npl\_ratio&&&&\\
+fx\_volatility&&-&+&-\\
+ihpb\_index&&&+&+\\
+car\_sales\_yoy&&&+&\\
 log\_export&-&-&&\\
-log\_import&-&&&\\
 \bottomrule
 \end{tabular}
 \vspace{0.2cm}
 \begin{minipage}{0.95\linewidth}
 \footnotesize
-\textit{Notes:} Each cell summarizes the estimated association from a separate Poisson regression of monthly provincial PHK on the indicated lagged macroeconomic pressure variable, controlling for provincial economic and labor-market structure, province fixed effects, and calendar-month fixed effects. '+' ('-') denotes a positive (negative) association statistically significant at the 10\% level or better. Blank cells denote estimates that are not statistically significant at the 10\% level.
+\textit{Notes:} Each cell summarizes the estimated association from a separate Poisson regression of monthly provincial PHK on the indicated lagged macroeconomic pressure variable, controlling for provincial economic and labor-market structure, province fixed effects, and calendar-quarter fixed effects. '+' ('-') denotes a positive (negative) association statistically significant at the 10\% level or better. Blank cells denote estimates that are not statistically significant at the 10\% level.
 \end{minipage}
 \end{table}

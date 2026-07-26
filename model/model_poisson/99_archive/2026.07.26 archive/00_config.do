@@ -3,7 +3,7 @@
 * Description       : Develop Model to Project PHK  
 * Stata version     : 16
 * Date created      : 13 July 2026 by Bertha
-* Last modified     : 26 July 2026 by Bertha
+* Last modified     : 13 July 2026 by Bertha
 * =============================================================================
 
 
@@ -72,41 +72,44 @@ set seed    123456
     * Economic Structure (Province)
     global  ECON_STRUCTURE ///
             gov_pdrb_share ///
+            invest_pdrb_share ///
             export_pdrb_share ///
             import_pdrb_share ///
             manuf_pdrb_share ///
-            agri_pdrb_share 
+            agri_pdrb_share ///
+            mining_pdrb_share ///
+            log_pdrb_cap ///
+            pov_rate
 
     * Labor Structure (Province)
     global  LABOR_STRUCTURE ///
+            unemployment_rate ///
+            underemployment_share ///
+            labor_force_rate ///
             formal_lab_share ///
             manuf_emp_share ///
+            agri_emp_share ///
             full_time_share ///
-            underemployment_share ///
-            log_avg_wage       
-   
+            min_wage_yoy ///
+            log_avg_wage 
+            
+            
+            
     * Monthly macroeconomic variables
     global  MACRO_GLOBAL ///
-            price_brent_yoy
-            
-            //log_price_brent             
+            log_price_brent             
 
     global  MACRO_NATIONAL ///
-            pmi_manuf ///
             bi_rate ///
-            fx_volatility ///
-            ihpb_index ///
-            car_sales_yoy
-
-            //log_fx_idr_usd ///
-            //ihpb_yoy 
+            log_fx_idr_usd ///
+            pmi_manuf ///
+            ihpb_yoy 
 
     global  MACRO_PROVINCE ///
-            log_export 
-
-            // cpi_yoy ///            
-            // npl_ratio ///
-            // log_import
+            cpi_yoy ///
+            npl_ratio ///
+            log_export ///
+            log_import
 
     
     global  STRUCTURE $ECON_STRUCTURE $LABOR_STRUCTURE 

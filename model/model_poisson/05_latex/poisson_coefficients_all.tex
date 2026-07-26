@@ -7,66 +7,46 @@
 \toprule
 & (1) & (2) & (3) & (4) \\ & Lag 1 & Lag 3 & Lag 6 & Lag 12 \\ \midrule
 \addlinespace\textbf{Macroeconomic Pressure (with lag)}&                     &                     &                     &                     \\
-L\_log\_price\_brent&       1.310         &       1.893         &      -0.001         &       2.437         \\
-            &     (1.846)         &     (1.161)         &     (1.759)         &     (3.170)         \\
-L\_bi\_rate   &       1.033         &       0.880\sym{*}  &       1.621\sym{**} &       4.002\sym{***}\\
-            &     (0.571)         &     (0.354)         &     (0.555)         &     (0.798)         \\
-L\_log\_fx\_idr\_usd&      -2.430         &      -1.692         &      -5.278         &     -16.039\sym{**} \\
-            &     (6.533)         &     (2.903)         &     (6.020)         &     (5.625)         \\
-L\_pmi\_manuf &      -0.047         &      -0.024         &      -0.114         &      -0.105         \\
-            &     (0.056)         &     (0.073)         &     (0.089)         &     (0.204)         \\
-L\_ihpb\_yoy  &       0.133         &      -0.633\sym{***}&       0.151         &      -1.151\sym{*}  \\
-            &     (0.257)         &     (0.166)         &     (0.279)         &     (0.569)         \\
-L\_cpi\_yoy   &       0.014         &       0.280\sym{*}  &      -0.434\sym{**} &      -0.168         \\
-            &     (0.146)         &     (0.135)         &     (0.151)         &     (0.176)         \\
-L\_npl\_ratio &       0.066         &       0.447         &       0.412         &      -0.491         \\
-            &     (0.345)         &     (0.326)         &     (0.364)         &     (0.392)         \\
-L\_log\_export&      -0.247         &      -0.667         &       0.377         &       0.497         \\
-            &     (0.246)         &     (0.479)         &     (0.630)         &     (0.470)         \\
-L\_log\_import&      -0.225         &      -0.101         &      -0.011         &       0.159         \\
-            &     (0.117)         &     (0.107)         &     (0.138)         &     (0.085)         \\
+L\_price\_brent\_yoy&       0.000         &      -0.012\sym{*}  &      -0.005         &       0.000         \\
+            &     (0.011)         &     (0.006)         &     (0.014)         &     (0.010)         \\
+L\_pmi\_manuf &      -0.038         &      -0.056         &       0.052         &      -0.067         \\
+            &     (0.031)         &     (0.069)         &     (0.060)         &     (0.126)         \\
+L\_bi\_rate   &       0.713\sym{**} &       1.404\sym{***}&       1.540\sym{*}  &       0.224         \\
+            &     (0.246)         &     (0.322)         &     (0.708)         &     (1.123)         \\
+L\_fx\_volatility&       0.001         &      -0.004\sym{*}  &       0.002\sym{*}  &      -0.004\sym{***}\\
+            &     (0.002)         &     (0.002)         &     (0.001)         &     (0.001)         \\
+L\_ihpb\_index&       0.209\sym{***}&       0.135         &       0.072         &       0.093         \\
+            &     (0.045)         &     (0.085)         &     (0.082)         &     (0.083)         \\
+L\_car\_sales\_yoy&       0.003         &      -0.004         &       0.012\sym{*}  &      -0.004         \\
+            &     (0.009)         &     (0.005)         &     (0.006)         &     (0.010)         \\
+L\_log\_export&      -0.398         &      -0.666         &       0.158         &       0.033         \\
+            &     (0.221)         &     (0.501)         &     (0.325)         &     (0.253)         \\
 \addlinespace\textbf{Provincial Economic Structure}&                     &                     &                     &                     \\
-gov\_pdrb\_share&       0.050         &      -0.157         &      -0.050         &       0.122         \\
-            &     (0.285)         &     (0.285)         &     (0.230)         &     (0.450)         \\
-invest\_pdrb\_share&      -0.137         &       0.060         &       0.066         &       0.360\sym{*}  \\
-            &     (0.162)         &     (0.167)         &     (0.186)         &     (0.153)         \\
-export\_pdrb\_share&      -0.105         &       0.237         &       0.108         &      -0.379         \\
-            &     (0.308)         &     (0.159)         &     (0.164)         &     (0.564)         \\
-import\_pdrb\_share&       0.456         &       0.771\sym{*}  &       0.707         &       1.055\sym{*}  \\
-            &     (0.477)         &     (0.360)         &     (0.414)         &     (0.417)         \\
-manuf\_pdrb\_share&      -0.109         &      -0.104         &       0.167         &       0.769\sym{*}  \\
-            &     (0.265)         &     (0.220)         &     (0.193)         &     (0.327)         \\
-agri\_pdrb\_share&       0.529         &       0.114         &       0.707         &       2.962\sym{*}  \\
-            &     (0.858)         &     (0.726)         &     (0.880)         &     (1.281)         \\
-mining\_pdrb\_share&       0.075         &      -0.025         &       0.095         &       1.151         \\
-            &     (0.465)         &     (0.243)         &     (0.268)         &     (0.659)         \\
-log\_pdrb\_cap&       9.759         &      -3.317         &      -7.238         &     -34.843\sym{*}  \\
-            &    (10.545)         &     (8.257)         &     (7.027)         &    (13.705)         \\
-pov\_rate    &      -0.636         &      -0.302         &      -0.379         &      -0.295         \\
-            &     (0.427)         &     (0.400)         &     (0.409)         &     (0.293)         \\
+gov\_pdrb\_share&      -0.199         &      -0.284         &      -0.271         &       0.062         \\
+            &     (0.189)         &     (0.228)         &     (0.188)         &     (0.424)         \\
+export\_pdrb\_share&       0.280         &       0.343\sym{*}  &       0.132         &      -0.412         \\
+            &     (0.169)         &     (0.169)         &     (0.139)         &     (0.436)         \\
+import\_pdrb\_share&       0.542\sym{**} &       0.352         &       0.349         &       0.256         \\
+            &     (0.193)         &     (0.201)         &     (0.245)         &     (0.528)         \\
+manuf\_pdrb\_share&       0.154         &       0.029         &      -0.000         &       0.329         \\
+            &     (0.176)         &     (0.177)         &     (0.158)         &     (0.198)         \\
+agri\_pdrb\_share&       1.141         &       0.906         &       0.820         &       0.116         \\
+            &     (0.590)         &     (0.546)         &     (0.688)         &     (0.691)         \\
 \addlinespace\textbf{Provincial Labor Market Structure}&                     &                     &                     &                     \\
-unemployment\_rate&       0.635         &       0.767         &       0.382         &       1.663         \\
-            &     (0.791)         &     (0.775)         &     (0.601)         &     (1.078)         \\
-underemployment\_share&       0.231         &       0.039         &       0.112         &       0.773\sym{**} \\
-            &     (0.200)         &     (0.155)         &     (0.140)         &     (0.286)         \\
-labor\_force\_rate&      -0.031         &      -0.072         &      -0.138         &       0.229         \\
-            &     (0.192)         &     (0.203)         &     (0.216)         &     (0.183)         \\
-formal\_lab\_share&       0.020         &      -0.065         &      -0.050         &       0.381\sym{***}\\
-            &     (0.133)         &     (0.127)         &     (0.127)         &     (0.113)         \\
-manuf\_emp\_share&       0.269         &      -0.021         &      -0.136         &      -1.178\sym{***}\\
-            &     (0.390)         &     (0.313)         &     (0.430)         &     (0.345)         \\
-agri\_emp\_share&       0.120         &       0.127         &       0.101         &      -0.551\sym{***}\\
-            &     (0.179)         &     (0.156)         &     (0.203)         &     (0.151)         \\
-full\_time\_share&      -0.061         &      -0.070         &      -0.041         &      -0.012         \\
-            &     (0.128)         &     (0.119)         &     (0.115)         &     (0.106)         \\
-min\_wage\_yoy&       0.106         &       0.037         &      -0.065         &      -0.216         \\
-            &     (0.086)         &     (0.091)         &     (0.106)         &     (0.129)         \\
-log\_avg\_wage&       4.766         &       2.273         &      -0.555         &      -2.836         \\
-            &     (4.996)         &     (4.346)         &     (4.733)         &     (4.130)         \\
+formal\_lab\_share&      -0.092         &      -0.120         &      -0.063         &       0.074         \\
+            &     (0.090)         &     (0.084)         &     (0.082)         &     (0.156)         \\
+manuf\_emp\_share&       0.027         &       0.006         &      -0.065         &      -0.625\sym{*}  \\
+            &     (0.123)         &     (0.117)         &     (0.141)         &     (0.286)         \\
+full\_time\_share&      -0.113         &      -0.121         &      -0.076         &      -0.042         \\
+            &     (0.092)         &     (0.078)         &     (0.103)         &     (0.108)         \\
+underemployment\_share&      -0.139         &      -0.101         &       0.164         &       1.093\sym{***}\\
+            &     (0.114)         &     (0.134)         &     (0.194)         &     (0.305)         \\
+log\_avg\_wage&       3.051         &       3.250         &       2.316         &       0.949         \\
+            &     (2.535)         &     (2.096)         &     (2.126)         &     (2.480)         \\
 \midrule
-Observations&        1003         &         948         &         865         &         696         \\
-Monthly PHK Mean&         223         &         224         &         232         &         235         \\
-Pseudo R$^2$&       0.600         &       0.616         &       0.631         &       0.695         \\
+Observations&        1211         &        1141         &        1036         &         827         \\
+Monthly PHK Mean&         192         &         194         &         201         &         205         \\
+Pseudo R$^2$&       0.599         &       0.612         &       0.630         &       0.643         \\
 Region FE   &    Province         &    Province         &    Province         &    Province         \\
 Time FE     &       Month         &       Month         &       Month         &       Month         \\
 \bottomrule
@@ -74,6 +54,6 @@ Time FE     &       Month         &       Month         &       Month         & 
 \end{adjustbox}
 \begin{tablenotes}
 \footnotesize
-\item \textit{Notes:} The dependent variable is the monthly number of PHK by province. Columns (1)--(4) report separate Poisson specifications in which all macroeconomic pressure indicators enter at lags of 1, 3, 6, and 12 months, respectively. Provincial economic and labor-market structural controls enter contemporaneously. All specifications include province and calendar-month fixed effects. Standard errors clustered at the province level are reported in parentheses. *, **, and *** denote statistical significance at the 10\%, 5\%, and 1\% levels.
+\item \textit{Notes:} The dependent variable is the monthly number of PHK by province. Columns (1)--(4) report separate Poisson specifications in which all macroeconomic pressure indicators enter at lags of 1, 3, 6, and 12 months, respectively. Provincial economic and labor-market structural controls enter contemporaneously. All specifications include province and calendar-quarter fixed effects. Standard errors clustered at the province level are reported in parentheses. *, **, and *** denote statistical significance at the 10\%, 5\%, and 1\% levels.
 \end{tablenotes}
 \end{table}

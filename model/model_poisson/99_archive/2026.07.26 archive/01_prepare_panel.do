@@ -3,7 +3,7 @@
 * Description       : Develop Model to Project PHK  
 * Stata version     : 16
 * Date created      : 13 July 2026 by Bertha
-* Last modified     : 26 July 2026 by Bertha
+* Last modified     : 13 July 2026 by Bertha
 * =============================================================================
 
 
@@ -27,19 +27,8 @@ set scheme plotplain
     import  delimited "$input/phk_master.csv", clear
     save    "$data/phk_master.dta", replace
 
-    import  excel "$root/model/model_LEI/data/data_layoff.xlsx", ///
-            clear firstrow sheet("Bulanan")
 
-    rename  Provinsi province_name_std 
-    rename  Tahun year 
-    rename  Bulan month
-    drop if missing(province_name_std) & missing(year) & missing(month)
-    isid    province_name_std year month
-    
-    save    "$data/phk_makro.dta", replace
-    
     * Generate province id
-    use     "$data/phk_master.dta", clear
     rename  province_code prov_id
 
     capture label drop prov_lbl
@@ -96,8 +85,7 @@ set scheme plotplain
 
 
     * Macroeconomic Pressure
-    merge   m:1  province_name_std year month using "$data/phk_makro.dta"
-    
+
     // Global
     gen     log_price_brent                 = ln(price_brent_usd_bbl_nat)
 
@@ -108,8 +96,6 @@ set scheme plotplain
     gen     log_fx_idr_usd                  = ln(macro_fx_idr_usd_nat)
     rename  macro_pmi_manuf_nat             pmi_manuf
     rename  growth_ihpb_yoy_pct_nat         ihpb_yoy
-    rename  VolatilitasKurs                 fx_volatility
-    rename  PenjualanMobil                  car_sales
 
     // Province    
     rename  price_inflation_yoy_pct         cpi_yoy
@@ -148,13 +134,12 @@ set scheme plotplain
     xtset   prov_id ym
     sort    prov_id ym
 
-    
+    /*
     * Generate growth variables 
     gen     pdrb_yoy            = 100*(macro_pdrb_idr_billion_y/L12.macro_pdrb_idr_billion_y - 1)
     gen     fx_idr_usd_yoy      = 100*(macro_fx_idr_usd_nat/L12.macro_fx_idr_usd_nat - 1)
-    gen     car_sales_yoy       = 100*(car_sales/L12.car_sales - 1)
-    
-    /*
+
+
     * Generate Three-month moving average (current month + previous 2 months) for export and import with missing values
     gen     export0 = trade_export_value
     gen     export1 = L1.trade_export_value
@@ -176,7 +161,7 @@ set scheme plotplain
     LAGS AND DATA PERIOD
 *******************************************************************************/
 
-    keeporder   prov_id year month quarter ym date phk_stock phk_flow ///
+    keeporder   prov_id year month ym date phk_stock phk_flow ///
                 $ECON_STRUCTURE $LABOR_STRUCTURE $MACRO_GLOBAL $MACRO_NATIONAL $MACRO_PROVINCE
 
     * Construct lag for 1, 3, 6, and 12 months 
@@ -197,7 +182,7 @@ set scheme plotplain
 *******************************************************************************/
 
     * Summarize
-    sum     prov_id year month quarter ym date phk_stock phk_flow ///
+    sum     prov_id year month ym date phk_stock phk_flow ///
             $ECON_STRUCTURE $LABOR_STRUCTURE $MACRO_GLOBAL $MACRO_NATIONAL $MACRO_PROVINCE 
 
 
@@ -215,7 +200,7 @@ set scheme plotplain
     //drop if inlist( prov_id, 92, 95, 96, 97)
 
 
-    sum     prov_id year month quarter ym date phk_stock phk_flow ///
+    sum     prov_id year month ym date phk_stock phk_flow ///
             $ECON_STRUCTURE $LABOR_STRUCTURE $MACRO_GLOBAL $MACRO_NATIONAL $MACRO_PROVINCE ///
             L1_* L3_* L6_* L12_*
    
