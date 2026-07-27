@@ -291,6 +291,7 @@ macro_fx_idr_usd_nat,1,0,0,0,1
 price_brent_usd_bbl_nat,1,0,0,0,1
 price_ihpb_nat,1,0,0,0,1
 macro_fed_funds_rate_nat,1,0,0,0,1
+macro_car_sales_nat,1,0,0,0,1
 macro_pmi_manuf_nat_q,0,1,0,0,1
 price_producer_index_nat_q,0,1,0,0,1
 price_producer_change_pct_nat_q,0,1,0,0,1
