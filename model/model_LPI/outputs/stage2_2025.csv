@@ -1,4 +1,4 @@
 "index","load_dim1","load_dim2","assigned_dim","within_share","dim_share","weight_pct"
-"Kerentanan Pasar Kerja",0.785,0.302,"Kerentanan",0.44,0.571,26.3
-"Kerentanan Struktural Ekonomi",0.882,-0.084,"Kerentanan",0.556,0.571,33.2
-"Tekanan Makroekonomi",0.076,0.975,"Tekanan",0.906,0.429,40.6
+"Kerentanan Pasar Kerja",-0.785,0.302,"Kerentanan",0.44,0.571,26.3
+"Kerentanan Struktural Ekonomi",-0.882,-0.084,"Kerentanan",0.556,0.571,33.2
+"Tekanan Makroekonomi",-0.076,0.975,"Tekanan",0.906,0.429,40.6

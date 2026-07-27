@@ -17,3 +17,7 @@ __pycache__/
 
 # LPI xlsx build temp
 model/model_LPI/outputs/_xlsx_parts/
+
+# LPI internal/regenerable intermediates
+model/model_LPI/outputs/_*
+model/model_LPI/outputs/models_refit.rds
