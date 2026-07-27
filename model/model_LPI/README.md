@@ -18,15 +18,17 @@ early-warning score (0–100) per province, combining three indices with the
 | **Indeks Kerentanan Struktural Ekonomi** | economic-structure vulnerability (trade-integrated & industrial vs domestic & agrarian) | annual | `phk_master.csv` |
 | **Indeks Tekanan Makroekonomi** | building macro pressure over time (the LEI) | monthly | `model_LEI` LEI workbook |
 
-**How the score is built (per year):** each pillar is standardised → a 2-factor
-PCA over the three pillars derives **data-driven weights** (varimax-rotated; a
-pillar's weight = its squared-loading share within its factor × that factor's
-variance share) → the LPI is the weighted sum, rescaled **0–100 within the
-year** (higher = more layoff pressure). Recent weights ≈ **30 / 32 / 38**
+**How the score is built (per year):** each pillar is scored **0–100 within its
+own index** (PCA → min-max). A 2-factor PCA over the three pillars derives
+**data-driven weights** (varimax-rotated; a pillar's weight = its squared-loading
+share within its factor × that factor's variance share). The LPI is then the
+**plain weighted sum of the three 0–100 pillar scores** — since the inputs are
+0–100 and the weights sum to 100%, the LPI is itself 0–100, with no further
+standardisation (higher = more layoff pressure). Recent weights ≈ **30 / 32 / 38**
 (Pasar Kerja / Struktural / Tekanan). Full method: [docs/LPI_methodology.md](docs/LPI_methodology.md).
 
 **Two things to remember:**
-- The 0–100 score is a **within-year ranking**, not a cross-year level.
+- The 0–100 score is a **within-year measure**, not a cross-year level.
 - Provinces are grouped into **4 equal-count risk tiers** (Risiko Sangat Tinggi → Rendah).
 
 ---

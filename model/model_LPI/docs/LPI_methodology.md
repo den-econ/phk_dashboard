@@ -47,11 +47,18 @@ the vulnerability story and near-ignore macro pressure.
 
 ## Composite score
 
-Per province: **LPI = weighted sum of its three standardised pillar scores**
-(that year's weights), then **min-max rescaled to 0–100 within the year**.
-Higher = more layoff pressure. Because pillars are standardised and re-fit each
-year, the 0–100 LPI is a **within-year ranking**, not a cross-year level (the raw
-weighted sum is also exported in `lpi_scores_long.csv` as `lpi_raw`).
+Each pillar is scored **0–100 within its own index** (PCA → min-max). The LPI is
+the **plain weighted sum of the three 0–100 pillar scores** using that year's
+weights:
+
+`LPI = w_PK·PasarKerja + w_ST·Struktural + w_TM·Tekanan`
+
+Because the three inputs are already 0–100 and the weights sum to 100%, the LPI
+is itself on a 0–100 scale — **no composite-level re-standardisation**. Higher =
+more layoff pressure. The three pillar scores are exported alongside the LPI in
+`lpi_scores_long.csv` for full transparency. Because each index is normalised
+within the year and weights are re-fit each year, the LPI is a **within-year
+measure**, not a cross-year level.
 
 ## Resulting weights (Pasar Kerja / Struktural / Tekanan)
 

@@ -2,7 +2,7 @@
 window.LPI_MONTHLY = {
   "meta": {
     "base_year": 2025,
-    "note": "frozen base-year weights & structure; only pressure moves; 0-100 may exceed range",
+    "note": "LPI = weighted sum of 0-100 pillars; frozen base-year weights & structure; monthly pressure = LEI rescaled 0-100 vs base range (may exceed)",
     "weights": {
       "pasar_kerja": 26.3,
       "struktural": 33.2,
@@ -14,5479 +14,5479 @@ window.LPI_MONTHLY = {
       "year": 2022,
       "month": 1,
       "province": "Papua Barat",
-      "lpi": 25.2
+      "lpi": 31.8
     },
     {
       "year": 2022,
       "month": 1,
       "province": "Papua Barat Daya",
-      "lpi": 20.2
+      "lpi": 27.5
     },
     {
       "year": 2022,
       "month": 1,
       "province": "Papua",
-      "lpi": 10.7
+      "lpi": 20.6
     },
     {
       "year": 2022,
       "month": 1,
       "province": "Papua Tengah",
-      "lpi": 3.4
+      "lpi": 16.6
     },
     {
       "year": 2022,
       "month": 1,
       "province": "Kepulauan Riau",
-      "lpi": -6.9
+      "lpi": -2.4
     },
     {
       "year": 2022,
       "month": 1,
       "province": "Sulawesi Tengah",
-      "lpi": -19
+      "lpi": -7.3
     },
     {
       "year": 2022,
       "month": 1,
       "province": "Kalimantan Timur",
-      "lpi": -21.5
+      "lpi": -10.3
     },
     {
       "year": 2022,
       "month": 1,
       "province": "Banten",
-      "lpi": -21.8
-    },
-    {
-      "year": 2022,
-      "month": 1,
-      "province": "Maluku Utara",
-      "lpi": -23.6
-    },
-    {
-      "year": 2022,
-      "month": 1,
-      "province": "Bali",
-      "lpi": -35
-    },
-    {
-      "year": 2022,
-      "month": 1,
-      "province": "Jawa Timur",
-      "lpi": -38.3
-    },
-    {
-      "year": 2022,
-      "month": 1,
-      "province": "DKI Jakarta",
-      "lpi": -40.6
-    },
-    {
-      "year": 2022,
-      "month": 1,
-      "province": "Sulawesi Tenggara",
-      "lpi": -41
-    },
-    {
-      "year": 2022,
-      "month": 1,
-      "province": "Jambi",
-      "lpi": -46
-    },
-    {
-      "year": 2022,
-      "month": 1,
-      "province": "Riau",
-      "lpi": -47.4
-    },
-    {
-      "year": 2022,
-      "month": 1,
-      "province": "Jawa Barat",
-      "lpi": -50
-    },
-    {
-      "year": 2022,
-      "month": 1,
-      "province": "Bangka Belitung",
-      "lpi": -50.9
-    },
-    {
-      "year": 2022,
-      "month": 1,
-      "province": "Kalimantan Utara",
-      "lpi": -53.3
-    },
-    {
-      "year": 2022,
-      "month": 1,
-      "province": "Sulawesi Selatan",
-      "lpi": -53.7
-    },
-    {
-      "year": 2022,
-      "month": 1,
-      "province": "DI Yogyakarta",
-      "lpi": -53.9
-    },
-    {
-      "year": 2022,
-      "month": 1,
-      "province": "Sumatera Selatan",
-      "lpi": -55.2
-    },
-    {
-      "year": 2022,
-      "month": 1,
-      "province": "Sumatera Utara",
-      "lpi": -55.8
-    },
-    {
-      "year": 2022,
-      "month": 1,
-      "province": "Kalimantan Tengah",
-      "lpi": -57.6
-    },
-    {
-      "year": 2022,
-      "month": 1,
-      "province": "Sumatera Barat",
-      "lpi": -58.2
-    },
-    {
-      "year": 2022,
-      "month": 1,
-      "province": "Aceh",
-      "lpi": -59.8
-    },
-    {
-      "year": 2022,
-      "month": 1,
-      "province": "Jawa Tengah",
-      "lpi": -61
-    },
-    {
-      "year": 2022,
-      "month": 1,
-      "province": "Lampung",
-      "lpi": -63.9
-    },
-    {
-      "year": 2022,
-      "month": 1,
-      "province": "Kalimantan Selatan",
-      "lpi": -64.7
-    },
-    {
-      "year": 2022,
-      "month": 1,
-      "province": "Gorontalo",
-      "lpi": -65.5
-    },
-    {
-      "year": 2022,
-      "month": 1,
-      "province": "Kalimantan Barat",
-      "lpi": -65.9
-    },
-    {
-      "year": 2022,
-      "month": 1,
-      "province": "Sulawesi Utara",
-      "lpi": -71.1
-    },
-    {
-      "year": 2022,
-      "month": 1,
-      "province": "Maluku",
-      "lpi": -73.1
-    },
-    {
-      "year": 2022,
-      "month": 1,
-      "province": "Nusa Tenggara Barat",
-      "lpi": -81.9
-    },
-    {
-      "year": 2022,
-      "month": 1,
-      "province": "Sulawesi Barat",
-      "lpi": -86.1
-    },
-    {
-      "year": 2022,
-      "month": 1,
-      "province": "Nusa Tenggara Timur",
-      "lpi": -95.2
-    },
-    {
-      "year": 2022,
-      "month": 2,
-      "province": "Papua Barat",
-      "lpi": 25.2
-    },
-    {
-      "year": 2022,
-      "month": 2,
-      "province": "Papua Barat Daya",
-      "lpi": 20.2
-    },
-    {
-      "year": 2022,
-      "month": 2,
-      "province": "Papua",
-      "lpi": 10.7
-    },
-    {
-      "year": 2022,
-      "month": 2,
-      "province": "Papua Tengah",
-      "lpi": 3.4
-    },
-    {
-      "year": 2022,
-      "month": 2,
-      "province": "Kepulauan Riau",
-      "lpi": -3.4
-    },
-    {
-      "year": 2022,
-      "month": 2,
-      "province": "Sulawesi Tengah",
-      "lpi": -15.2
-    },
-    {
-      "year": 2022,
-      "month": 2,
-      "province": "Kalimantan Timur",
-      "lpi": -17.9
-    },
-    {
-      "year": 2022,
-      "month": 2,
-      "province": "Banten",
-      "lpi": -18.2
-    },
-    {
-      "year": 2022,
-      "month": 2,
-      "province": "Maluku Utara",
-      "lpi": -19.8
-    },
-    {
-      "year": 2022,
-      "month": 2,
-      "province": "Bali",
-      "lpi": -31.5
-    },
-    {
-      "year": 2022,
-      "month": 2,
-      "province": "Jawa Timur",
-      "lpi": -34.6
-    },
-    {
-      "year": 2022,
-      "month": 2,
-      "province": "DKI Jakarta",
-      "lpi": -37.1
-    },
-    {
-      "year": 2022,
-      "month": 2,
-      "province": "Sulawesi Tenggara",
-      "lpi": -37.5
-    },
-    {
-      "year": 2022,
-      "month": 2,
-      "province": "Jambi",
-      "lpi": -42.5
-    },
-    {
-      "year": 2022,
-      "month": 2,
-      "province": "Riau",
-      "lpi": -43.8
-    },
-    {
-      "year": 2022,
-      "month": 2,
-      "province": "Jawa Barat",
-      "lpi": -46.5
-    },
-    {
-      "year": 2022,
-      "month": 2,
-      "province": "Bangka Belitung",
-      "lpi": -47.1
-    },
-    {
-      "year": 2022,
-      "month": 2,
-      "province": "Kalimantan Utara",
-      "lpi": -49.7
-    },
-    {
-      "year": 2022,
-      "month": 2,
-      "province": "Sulawesi Selatan",
-      "lpi": -50.2
-    },
-    {
-      "year": 2022,
-      "month": 2,
-      "province": "DI Yogyakarta",
-      "lpi": -50.4
-    },
-    {
-      "year": 2022,
-      "month": 2,
-      "province": "Sumatera Selatan",
-      "lpi": -51.4
-    },
-    {
-      "year": 2022,
-      "month": 2,
-      "province": "Sumatera Utara",
-      "lpi": -52.3
-    },
-    {
-      "year": 2022,
-      "month": 2,
-      "province": "Kalimantan Tengah",
-      "lpi": -54.1
-    },
-    {
-      "year": 2022,
-      "month": 2,
-      "province": "Sumatera Barat",
-      "lpi": -54.6
-    },
-    {
-      "year": 2022,
-      "month": 2,
-      "province": "Aceh",
-      "lpi": -56.3
-    },
-    {
-      "year": 2022,
-      "month": 2,
-      "province": "Jawa Tengah",
-      "lpi": -57.5
-    },
-    {
-      "year": 2022,
-      "month": 2,
-      "province": "Lampung",
-      "lpi": -60.4
-    },
-    {
-      "year": 2022,
-      "month": 2,
-      "province": "Kalimantan Selatan",
-      "lpi": -61.1
-    },
-    {
-      "year": 2022,
-      "month": 2,
-      "province": "Gorontalo",
-      "lpi": -62
-    },
-    {
-      "year": 2022,
-      "month": 2,
-      "province": "Kalimantan Barat",
-      "lpi": -62.3
-    },
-    {
-      "year": 2022,
-      "month": 2,
-      "province": "Sulawesi Utara",
-      "lpi": -67.6
-    },
-    {
-      "year": 2022,
-      "month": 2,
-      "province": "Maluku",
-      "lpi": -69.5
-    },
-    {
-      "year": 2022,
-      "month": 2,
-      "province": "Nusa Tenggara Barat",
-      "lpi": -78.4
-    },
-    {
-      "year": 2022,
-      "month": 2,
-      "province": "Sulawesi Barat",
-      "lpi": -82.4
-    },
-    {
-      "year": 2022,
-      "month": 2,
-      "province": "Nusa Tenggara Timur",
-      "lpi": -91.6
-    },
-    {
-      "year": 2022,
-      "month": 3,
-      "province": "Papua Barat",
-      "lpi": 25.2
-    },
-    {
-      "year": 2022,
-      "month": 3,
-      "province": "Papua Barat Daya",
-      "lpi": 20.2
-    },
-    {
-      "year": 2022,
-      "month": 3,
-      "province": "Papua",
-      "lpi": 10.7
-    },
-    {
-      "year": 2022,
-      "month": 3,
-      "province": "Papua Tengah",
-      "lpi": 3.4
-    },
-    {
-      "year": 2022,
-      "month": 3,
-      "province": "Kepulauan Riau",
-      "lpi": 1
-    },
-    {
-      "year": 2022,
-      "month": 3,
-      "province": "Sulawesi Tengah",
-      "lpi": -11.3
-    },
-    {
-      "year": 2022,
-      "month": 3,
-      "province": "Kalimantan Timur",
-      "lpi": -13.6
-    },
-    {
-      "year": 2022,
-      "month": 3,
-      "province": "Banten",
-      "lpi": -14.5
-    },
-    {
-      "year": 2022,
-      "month": 3,
-      "province": "Maluku Utara",
-      "lpi": -16.5
-    },
-    {
-      "year": 2022,
-      "month": 3,
-      "province": "Bali",
-      "lpi": -27.1
-    },
-    {
-      "year": 2022,
-      "month": 3,
-      "province": "Jawa Timur",
-      "lpi": -30.4
-    },
-    {
-      "year": 2022,
-      "month": 3,
-      "province": "DKI Jakarta",
-      "lpi": -32.7
-    },
-    {
-      "year": 2022,
-      "month": 3,
-      "province": "Sulawesi Tenggara",
-      "lpi": -36.7
-    },
-    {
-      "year": 2022,
-      "month": 3,
-      "province": "Jambi",
-      "lpi": -38.3
-    },
-    {
-      "year": 2022,
-      "month": 3,
-      "province": "Riau",
-      "lpi": -39.9
-    },
-    {
-      "year": 2022,
-      "month": 3,
-      "province": "Jawa Barat",
-      "lpi": -42.1
-    },
-    {
-      "year": 2022,
-      "month": 3,
-      "province": "Bangka Belitung",
-      "lpi": -43
-    },
-    {
-      "year": 2022,
-      "month": 3,
-      "province": "Kalimantan Utara",
-      "lpi": -45.5
-    },
-    {
-      "year": 2022,
-      "month": 3,
-      "province": "Sulawesi Selatan",
-      "lpi": -45.8
-    },
-    {
-      "year": 2022,
-      "month": 3,
-      "province": "DI Yogyakarta",
-      "lpi": -46.2
-    },
-    {
-      "year": 2022,
-      "month": 3,
-      "province": "Sumatera Selatan",
-      "lpi": -47.2
-    },
-    {
-      "year": 2022,
-      "month": 3,
-      "province": "Sumatera Utara",
-      "lpi": -48.1
-    },
-    {
-      "year": 2022,
-      "month": 3,
-      "province": "Kalimantan Tengah",
-      "lpi": -49.7
-    },
-    {
-      "year": 2022,
-      "month": 3,
-      "province": "Sumatera Barat",
-      "lpi": -50.2
-    },
-    {
-      "year": 2022,
-      "month": 3,
-      "province": "Aceh",
-      "lpi": -51.9
-    },
-    {
-      "year": 2022,
-      "month": 3,
-      "province": "Jawa Tengah",
-      "lpi": -53.9
-    },
-    {
-      "year": 2022,
-      "month": 3,
-      "province": "Lampung",
-      "lpi": -56
-    },
-    {
-      "year": 2022,
-      "month": 3,
-      "province": "Kalimantan Selatan",
-      "lpi": -56.8
-    },
-    {
-      "year": 2022,
-      "month": 3,
-      "province": "Gorontalo",
-      "lpi": -57.8
-    },
-    {
-      "year": 2022,
-      "month": 3,
-      "province": "Kalimantan Barat",
-      "lpi": -58
-    },
-    {
-      "year": 2022,
-      "month": 3,
-      "province": "Sulawesi Utara",
-      "lpi": -63.4
-    },
-    {
-      "year": 2022,
-      "month": 3,
-      "province": "Maluku",
-      "lpi": -64.7
-    },
-    {
-      "year": 2022,
-      "month": 3,
-      "province": "Nusa Tenggara Barat",
-      "lpi": -74
-    },
-    {
-      "year": 2022,
-      "month": 3,
-      "province": "Sulawesi Barat",
-      "lpi": -77.2
-    },
-    {
-      "year": 2022,
-      "month": 3,
-      "province": "Nusa Tenggara Timur",
-      "lpi": -87.3
-    },
-    {
-      "year": 2022,
-      "month": 4,
-      "province": "Papua Barat",
-      "lpi": 25.2
-    },
-    {
-      "year": 2022,
-      "month": 4,
-      "province": "Papua Barat Daya",
-      "lpi": 20.2
-    },
-    {
-      "year": 2022,
-      "month": 4,
-      "province": "Papua",
-      "lpi": 10.7
-    },
-    {
-      "year": 2022,
-      "month": 4,
-      "province": "Kepulauan Riau",
-      "lpi": 6.5
-    },
-    {
-      "year": 2022,
-      "month": 4,
-      "province": "Papua Tengah",
-      "lpi": 3.4
-    },
-    {
-      "year": 2022,
-      "month": 4,
-      "province": "Sulawesi Tengah",
-      "lpi": -5.6
-    },
-    {
-      "year": 2022,
-      "month": 4,
-      "province": "Kalimantan Timur",
-      "lpi": -8.1
-    },
-    {
-      "year": 2022,
-      "month": 4,
-      "province": "Banten",
-      "lpi": -8.8
-    },
-    {
-      "year": 2022,
-      "month": 4,
-      "province": "Maluku Utara",
-      "lpi": -9.6
-    },
-    {
-      "year": 2022,
-      "month": 4,
-      "province": "Bali",
-      "lpi": -21.7
-    },
-    {
-      "year": 2022,
-      "month": 4,
-      "province": "DKI Jakarta",
-      "lpi": -26.9
-    },
-    {
-      "year": 2022,
-      "month": 4,
-      "province": "Sulawesi Tenggara",
-      "lpi": -31.2
-    },
-    {
-      "year": 2022,
-      "month": 4,
-      "province": "Jambi",
-      "lpi": -32.7
-    },
-    {
-      "year": 2022,
-      "month": 4,
-      "province": "Riau",
-      "lpi": -34.2
-    },
-    {
-      "year": 2022,
-      "month": 4,
-      "province": "Jawa Barat",
-      "lpi": -36.6
-    },
-    {
-      "year": 2022,
-      "month": 4,
-      "province": "Bangka Belitung",
-      "lpi": -37.5
-    },
-    {
-      "year": 2022,
-      "month": 4,
-      "province": "Jawa Timur",
-      "lpi": -37.7
-    },
-    {
-      "year": 2022,
-      "month": 4,
-      "province": "Kalimantan Utara",
-      "lpi": -39.9
-    },
-    {
-      "year": 2022,
-      "month": 4,
-      "province": "Sulawesi Selatan",
-      "lpi": -40.6
-    },
-    {
-      "year": 2022,
-      "month": 4,
-      "province": "DI Yogyakarta",
-      "lpi": -40.6
-    },
-    {
-      "year": 2022,
-      "month": 4,
-      "province": "Sumatera Selatan",
-      "lpi": -41.6
-    },
-    {
-      "year": 2022,
-      "month": 4,
-      "province": "Sumatera Utara",
-      "lpi": -42.7
-    },
-    {
-      "year": 2022,
-      "month": 4,
-      "province": "Sulawesi Utara",
-      "lpi": -43.1
-    },
-    {
-      "year": 2022,
-      "month": 4,
-      "province": "Kalimantan Tengah",
-      "lpi": -44.2
-    },
-    {
-      "year": 2022,
-      "month": 4,
-      "province": "Sumatera Barat",
-      "lpi": -44.8
-    },
-    {
-      "year": 2022,
-      "month": 4,
-      "province": "Aceh",
-      "lpi": -46.3
-    },
-    {
-      "year": 2022,
-      "month": 4,
-      "province": "Jawa Tengah",
-      "lpi": -48.1
-    },
-    {
-      "year": 2022,
-      "month": 4,
-      "province": "Lampung",
-      "lpi": -50.1
-    },
-    {
-      "year": 2022,
-      "month": 4,
-      "province": "Kalimantan Selatan",
-      "lpi": -51.3
-    },
-    {
-      "year": 2022,
-      "month": 4,
-      "province": "Gorontalo",
-      "lpi": -51.5
-    },
-    {
-      "year": 2022,
-      "month": 4,
-      "province": "Kalimantan Barat",
-      "lpi": -52.5
-    },
-    {
-      "year": 2022,
-      "month": 4,
-      "province": "Maluku",
-      "lpi": -59.3
-    },
-    {
-      "year": 2022,
-      "month": 4,
-      "province": "Nusa Tenggara Barat",
-      "lpi": -68.3
-    },
-    {
-      "year": 2022,
-      "month": 4,
-      "province": "Sulawesi Barat",
-      "lpi": -71.7
-    },
-    {
-      "year": 2022,
-      "month": 4,
-      "province": "Nusa Tenggara Timur",
-      "lpi": -81.8
-    },
-    {
-      "year": 2022,
-      "month": 5,
-      "province": "Papua Barat",
-      "lpi": 25.2
-    },
-    {
-      "year": 2022,
-      "month": 5,
-      "province": "Papua Barat Daya",
-      "lpi": 20.2
-    },
-    {
-      "year": 2022,
-      "month": 5,
-      "province": "Papua",
-      "lpi": 10.7
-    },
-    {
-      "year": 2022,
-      "month": 5,
-      "province": "Kepulauan Riau",
-      "lpi": 9.4
-    },
-    {
-      "year": 2022,
-      "month": 5,
-      "province": "Papua Tengah",
-      "lpi": 3.4
-    },
-    {
-      "year": 2022,
-      "month": 5,
-      "province": "Sulawesi Tengah",
-      "lpi": -0.6
-    },
-    {
-      "year": 2022,
-      "month": 5,
-      "province": "Kalimantan Timur",
-      "lpi": -4.2
-    },
-    {
-      "year": 2022,
-      "month": 5,
-      "province": "Maluku Utara",
-      "lpi": -4.4
-    },
-    {
-      "year": 2022,
-      "month": 5,
-      "province": "Banten",
-      "lpi": -4.9
-    },
-    {
-      "year": 2022,
-      "month": 5,
-      "province": "Bali",
-      "lpi": -17.7
-    },
-    {
-      "year": 2022,
-      "month": 5,
-      "province": "DKI Jakarta",
-      "lpi": -22.7
-    },
-    {
-      "year": 2022,
-      "month": 5,
-      "province": "Sulawesi Tenggara",
-      "lpi": -27
-    },
-    {
-      "year": 2022,
-      "month": 5,
-      "province": "Jambi",
-      "lpi": -28.3
-    },
-    {
-      "year": 2022,
-      "month": 5,
-      "province": "Riau",
-      "lpi": -30.5
-    },
-    {
-      "year": 2022,
-      "month": 5,
-      "province": "Jawa Barat",
-      "lpi": -32.5
-    },
-    {
-      "year": 2022,
-      "month": 5,
-      "province": "Bangka Belitung",
-      "lpi": -33.3
-    },
-    {
-      "year": 2022,
-      "month": 5,
-      "province": "Jawa Timur",
-      "lpi": -33.5
-    },
-    {
-      "year": 2022,
-      "month": 5,
-      "province": "Kalimantan Utara",
-      "lpi": -35.3
-    },
-    {
-      "year": 2022,
-      "month": 5,
-      "province": "Sulawesi Selatan",
-      "lpi": -36
-    },
-    {
-      "year": 2022,
-      "month": 5,
-      "province": "DI Yogyakarta",
-      "lpi": -36.6
-    },
-    {
-      "year": 2022,
-      "month": 5,
-      "province": "Sumatera Selatan",
-      "lpi": -38
-    },
-    {
-      "year": 2022,
-      "month": 5,
-      "province": "Sumatera Utara",
-      "lpi": -38.5
-    },
-    {
-      "year": 2022,
-      "month": 5,
-      "province": "Sulawesi Utara",
-      "lpi": -39
-    },
-    {
-      "year": 2022,
-      "month": 5,
-      "province": "Kalimantan Tengah",
-      "lpi": -39.9
-    },
-    {
-      "year": 2022,
-      "month": 5,
-      "province": "Sumatera Barat",
-      "lpi": -40.8
-    },
-    {
-      "year": 2022,
-      "month": 5,
-      "province": "Aceh",
-      "lpi": -42.3
-    },
-    {
-      "year": 2022,
-      "month": 5,
-      "province": "Jawa Tengah",
-      "lpi": -44.1
-    },
-    {
-      "year": 2022,
-      "month": 5,
-      "province": "Lampung",
-      "lpi": -45.9
-    },
-    {
-      "year": 2022,
-      "month": 5,
-      "province": "Kalimantan Selatan",
-      "lpi": -46.1
-    },
-    {
-      "year": 2022,
-      "month": 5,
-      "province": "Gorontalo",
-      "lpi": -47
-    },
-    {
-      "year": 2022,
-      "month": 5,
-      "province": "Kalimantan Barat",
-      "lpi": -48.6
-    },
-    {
-      "year": 2022,
-      "month": 5,
-      "province": "Maluku",
-      "lpi": -54.9
-    },
-    {
-      "year": 2022,
-      "month": 5,
-      "province": "Nusa Tenggara Barat",
-      "lpi": -62.7
-    },
-    {
-      "year": 2022,
-      "month": 5,
-      "province": "Sulawesi Barat",
-      "lpi": -68
-    },
-    {
-      "year": 2022,
-      "month": 5,
-      "province": "Nusa Tenggara Timur",
-      "lpi": -77.7
-    },
-    {
-      "year": 2022,
-      "month": 6,
-      "province": "Papua Barat",
-      "lpi": 25.4
-    },
-    {
-      "year": 2022,
-      "month": 6,
-      "province": "Papua Barat Daya",
-      "lpi": 20.4
-    },
-    {
-      "year": 2022,
-      "month": 6,
-      "province": "Kepulauan Riau",
-      "lpi": 17.7
-    },
-    {
-      "year": 2022,
-      "month": 6,
-      "province": "Papua",
-      "lpi": 10.9
-    },
-    {
-      "year": 2022,
-      "month": 6,
-      "province": "Sulawesi Tengah",
-      "lpi": 7.3
-    },
-    {
-      "year": 2022,
-      "month": 6,
-      "province": "Maluku Utara",
-      "lpi": 4.4
-    },
-    {
-      "year": 2022,
-      "month": 6,
-      "province": "Kalimantan Timur",
-      "lpi": 4
-    },
-    {
-      "year": 2022,
-      "month": 6,
-      "province": "Banten",
-      "lpi": 3.9
-    },
-    {
-      "year": 2022,
-      "month": 6,
-      "province": "Papua Tengah",
-      "lpi": 3.6
-    },
-    {
-      "year": 2022,
-      "month": 6,
-      "province": "Bali",
-      "lpi": -9.3
-    },
-    {
-      "year": 2022,
-      "month": 6,
-      "province": "Riau",
-      "lpi": -14
-    },
-    {
-      "year": 2022,
-      "month": 6,
-      "province": "DKI Jakarta",
-      "lpi": -15.4
-    },
-    {
-      "year": 2022,
-      "month": 6,
-      "province": "Sulawesi Tenggara",
-      "lpi": -19.3
-    },
-    {
-      "year": 2022,
-      "month": 6,
-      "province": "Jambi",
-      "lpi": -20.1
-    },
-    {
-      "year": 2022,
-      "month": 6,
-      "province": "Jawa Tengah",
-      "lpi": -23.8
-    },
-    {
-      "year": 2022,
-      "month": 6,
-      "province": "Jawa Timur",
-      "lpi": -25
-    },
-    {
-      "year": 2022,
-      "month": 6,
-      "province": "Bangka Belitung",
-      "lpi": -25
-    },
-    {
-      "year": 2022,
-      "month": 6,
-      "province": "Jawa Barat",
-      "lpi": -25.2
-    },
-    {
-      "year": 2022,
-      "month": 6,
-      "province": "DI Yogyakarta",
-      "lpi": -25.3
-    },
-    {
-      "year": 2022,
-      "month": 6,
-      "province": "Kalimantan Utara",
-      "lpi": -27.4
-    },
-    {
-      "year": 2022,
-      "month": 6,
-      "province": "Sulawesi Selatan",
-      "lpi": -27.6
-    },
-    {
-      "year": 2022,
-      "month": 6,
-      "province": "Sumatera Utara",
-      "lpi": -28.1
-    },
-    {
-      "year": 2022,
-      "month": 6,
-      "province": "Sumatera Selatan",
-      "lpi": -29.7
-    },
-    {
-      "year": 2022,
-      "month": 6,
-      "province": "Sumatera Barat",
-      "lpi": -29.8
-    },
-    {
-      "year": 2022,
-      "month": 6,
-      "province": "Sulawesi Utara",
-      "lpi": -30.8
-    },
-    {
-      "year": 2022,
-      "month": 6,
-      "province": "Kalimantan Tengah",
-      "lpi": -31.7
-    },
-    {
-      "year": 2022,
-      "month": 6,
-      "province": "Aceh",
-      "lpi": -33.5
-    },
-    {
-      "year": 2022,
-      "month": 6,
-      "province": "Lampung",
-      "lpi": -37.8
-    },
-    {
-      "year": 2022,
-      "month": 6,
-      "province": "Kalimantan Selatan",
-      "lpi": -38.4
-    },
-    {
-      "year": 2022,
-      "month": 6,
-      "province": "Gorontalo",
-      "lpi": -39.2
-    },
-    {
-      "year": 2022,
-      "month": 6,
-      "province": "Kalimantan Barat",
-      "lpi": -39.8
-    },
-    {
-      "year": 2022,
-      "month": 6,
-      "province": "Maluku",
-      "lpi": -47
-    },
-    {
-      "year": 2022,
-      "month": 6,
-      "province": "Nusa Tenggara Barat",
-      "lpi": -54.1
-    },
-    {
-      "year": 2022,
-      "month": 6,
-      "province": "Sulawesi Barat",
-      "lpi": -55.9
-    },
-    {
-      "year": 2022,
-      "month": 6,
-      "province": "Nusa Tenggara Timur",
-      "lpi": -69.5
-    },
-    {
-      "year": 2022,
-      "month": 7,
-      "province": "Papua Barat",
-      "lpi": 25.4
-    },
-    {
-      "year": 2022,
-      "month": 7,
-      "province": "Papua Barat Daya",
-      "lpi": 20.4
-    },
-    {
-      "year": 2022,
-      "month": 7,
-      "province": "Kepulauan Riau",
-      "lpi": 15
-    },
-    {
-      "year": 2022,
-      "month": 7,
-      "province": "Papua",
-      "lpi": 10.9
-    },
-    {
-      "year": 2022,
-      "month": 7,
-      "province": "Sulawesi Tengah",
-      "lpi": 4.4
-    },
-    {
-      "year": 2022,
-      "month": 7,
-      "province": "Papua Tengah",
-      "lpi": 3.6
-    },
-    {
-      "year": 2022,
-      "month": 7,
-      "province": "Maluku Utara",
-      "lpi": 1.2
-    },
-    {
-      "year": 2022,
-      "month": 7,
-      "province": "Banten",
-      "lpi": 1.2
-    },
-    {
-      "year": 2022,
-      "month": 7,
-      "province": "Kalimantan Timur",
-      "lpi": 1.1
-    },
-    {
-      "year": 2022,
-      "month": 7,
-      "province": "Bali",
-      "lpi": -12.1
-    },
-    {
-      "year": 2022,
-      "month": 7,
-      "province": "Riau",
-      "lpi": -17.1
-    },
-    {
-      "year": 2022,
-      "month": 7,
-      "province": "DKI Jakarta",
-      "lpi": -17.9
-    },
-    {
-      "year": 2022,
-      "month": 7,
-      "province": "Sulawesi Tenggara",
-      "lpi": -22.2
-    },
-    {
-      "year": 2022,
-      "month": 7,
-      "province": "Jambi",
-      "lpi": -22.9
-    },
-    {
-      "year": 2022,
-      "month": 7,
-      "province": "Jawa Tengah",
-      "lpi": -26.3
-    },
-    {
-      "year": 2022,
-      "month": 7,
-      "province": "Jawa Timur",
-      "lpi": -27.7
-    },
-    {
-      "year": 2022,
-      "month": 7,
-      "province": "Bangka Belitung",
-      "lpi": -27.7
-    },
-    {
-      "year": 2022,
-      "month": 7,
-      "province": "DI Yogyakarta",
-      "lpi": -27.8
-    },
-    {
-      "year": 2022,
-      "month": 7,
-      "province": "Jawa Barat",
-      "lpi": -27.9
-    },
-    {
-      "year": 2022,
-      "month": 7,
-      "province": "Kalimantan Utara",
-      "lpi": -30.1
-    },
-    {
-      "year": 2022,
-      "month": 7,
-      "province": "Sulawesi Selatan",
-      "lpi": -30.5
-    },
-    {
-      "year": 2022,
-      "month": 7,
-      "province": "Sumatera Utara",
-      "lpi": -31.2
-    },
-    {
-      "year": 2022,
-      "month": 7,
-      "province": "Sumatera Selatan",
-      "lpi": -32.4
-    },
-    {
-      "year": 2022,
-      "month": 7,
-      "province": "Sulawesi Utara",
-      "lpi": -33.3
-    },
-    {
-      "year": 2022,
-      "month": 7,
-      "province": "Kalimantan Tengah",
-      "lpi": -34.9
-    },
-    {
-      "year": 2022,
-      "month": 7,
-      "province": "Aceh",
-      "lpi": -36.4
-    },
-    {
-      "year": 2022,
-      "month": 7,
-      "province": "Sumatera Barat",
-      "lpi": -37.1
-    },
-    {
-      "year": 2022,
-      "month": 7,
-      "province": "Lampung",
-      "lpi": -40.9
-    },
-    {
-      "year": 2022,
-      "month": 7,
-      "province": "Kalimantan Selatan",
-      "lpi": -41.1
-    },
-    {
-      "year": 2022,
-      "month": 7,
-      "province": "Gorontalo",
-      "lpi": -41.9
-    },
-    {
-      "year": 2022,
-      "month": 7,
-      "province": "Kalimantan Barat",
-      "lpi": -42.7
-    },
-    {
-      "year": 2022,
-      "month": 7,
-      "province": "Maluku",
-      "lpi": -49.9
-    },
-    {
-      "year": 2022,
-      "month": 7,
-      "province": "Nusa Tenggara Barat",
-      "lpi": -56.9
-    },
-    {
-      "year": 2022,
-      "month": 7,
-      "province": "Sulawesi Barat",
-      "lpi": -58.4
-    },
-    {
-      "year": 2022,
-      "month": 7,
-      "province": "Nusa Tenggara Timur",
-      "lpi": -72
-    },
-    {
-      "year": 2022,
-      "month": 8,
-      "province": "Papua Barat",
-      "lpi": 25.4
-    },
-    {
-      "year": 2022,
-      "month": 8,
-      "province": "Papua Barat Daya",
-      "lpi": 20.4
-    },
-    {
-      "year": 2022,
-      "month": 8,
-      "province": "Kepulauan Riau",
-      "lpi": 17.3
-    },
-    {
-      "year": 2022,
-      "month": 8,
-      "province": "Papua",
-      "lpi": 10.9
-    },
-    {
-      "year": 2022,
-      "month": 8,
-      "province": "Maluku Utara",
-      "lpi": 7.1
-    },
-    {
-      "year": 2022,
-      "month": 8,
-      "province": "Papua Tengah",
-      "lpi": 3.6
-    },
-    {
-      "year": 2022,
-      "month": 8,
-      "province": "Banten",
-      "lpi": 1.4
-    },
-    {
-      "year": 2022,
-      "month": 8,
-      "province": "DKI Jakarta",
-      "lpi": -0.6
-    },
-    {
-      "year": 2022,
-      "month": 8,
-      "province": "Sulawesi Tengah",
-      "lpi": -4.2
-    },
-    {
-      "year": 2022,
-      "month": 8,
-      "province": "Kalimantan Timur",
       "lpi": -11.5
     },
     {
       "year": 2022,
-      "month": 8,
-      "province": "Jawa Barat",
-      "lpi": -12.6
+      "month": 1,
+      "province": "Maluku Utara",
+      "lpi": -13.1
     },
     {
       "year": 2022,
-      "month": 8,
-      "province": "Kalimantan Utara",
-      "lpi": -19.4
-    },
-    {
-      "year": 2022,
-      "month": 8,
-      "province": "Riau",
-      "lpi": -20.4
-    },
-    {
-      "year": 2022,
-      "month": 8,
+      "month": 1,
       "province": "Bali",
       "lpi": -20.8
     },
     {
       "year": 2022,
-      "month": 8,
+      "month": 1,
       "province": "Jawa Timur",
-      "lpi": -23.1
+      "lpi": -23.2
     },
     {
       "year": 2022,
-      "month": 8,
-      "province": "Bangka Belitung",
-      "lpi": -24.2
-    },
-    {
-      "year": 2022,
-      "month": 8,
-      "province": "Kalimantan Selatan",
-      "lpi": -24.8
-    },
-    {
-      "year": 2022,
-      "month": 8,
-      "province": "DI Yogyakarta",
-      "lpi": -25.3
-    },
-    {
-      "year": 2022,
-      "month": 8,
-      "province": "Jawa Tengah",
-      "lpi": -26.6
-    },
-    {
-      "year": 2022,
-      "month": 8,
-      "province": "Sumatera Utara",
-      "lpi": -29.7
-    },
-    {
-      "year": 2022,
-      "month": 8,
-      "province": "Sulawesi Utara",
-      "lpi": -31
-    },
-    {
-      "year": 2022,
-      "month": 8,
-      "province": "Kalimantan Tengah",
-      "lpi": -31.5
-    },
-    {
-      "year": 2022,
-      "month": 8,
+      "month": 1,
       "province": "Sulawesi Tenggara",
-      "lpi": -31.6
+      "lpi": -23.8
     },
     {
       "year": 2022,
-      "month": 8,
-      "province": "Sumatera Selatan",
-      "lpi": -31.8
-    },
-    {
-      "year": 2022,
-      "month": 8,
-      "province": "Sulawesi Selatan",
-      "lpi": -32.6
-    },
-    {
-      "year": 2022,
-      "month": 8,
-      "province": "Kalimantan Barat",
-      "lpi": -34.6
-    },
-    {
-      "year": 2022,
-      "month": 8,
+      "month": 1,
       "province": "Jambi",
-      "lpi": -35.6
+      "lpi": -27.6
     },
     {
       "year": 2022,
-      "month": 8,
-      "province": "Sumatera Barat",
-      "lpi": -37.1
-    },
-    {
-      "year": 2022,
-      "month": 8,
-      "province": "Lampung",
-      "lpi": -38.6
-    },
-    {
-      "year": 2022,
-      "month": 8,
-      "province": "Gorontalo",
-      "lpi": -39.4
-    },
-    {
-      "year": 2022,
-      "month": 8,
-      "province": "Maluku",
-      "lpi": -46.8
-    },
-    {
-      "year": 2022,
-      "month": 8,
-      "province": "Aceh",
-      "lpi": -47.3
-    },
-    {
-      "year": 2022,
-      "month": 8,
-      "province": "Nusa Tenggara Barat",
-      "lpi": -53.5
-    },
-    {
-      "year": 2022,
-      "month": 8,
-      "province": "Nusa Tenggara Timur",
-      "lpi": -54.9
-    },
-    {
-      "year": 2022,
-      "month": 8,
-      "province": "Sulawesi Barat",
-      "lpi": -56.1
-    },
-    {
-      "year": 2022,
-      "month": 9,
-      "province": "Kepulauan Riau",
-      "lpi": 34.6
-    },
-    {
-      "year": 2022,
-      "month": 9,
-      "province": "Papua Barat",
-      "lpi": 25.4
-    },
-    {
-      "year": 2022,
-      "month": 9,
-      "province": "Papua Barat Daya",
-      "lpi": 20.4
-    },
-    {
-      "year": 2022,
-      "month": 9,
-      "province": "Maluku Utara",
-      "lpi": 18.4
-    },
-    {
-      "year": 2022,
-      "month": 9,
-      "province": "Banten",
-      "lpi": 12.7
-    },
-    {
-      "year": 2022,
-      "month": 9,
-      "province": "Papua",
-      "lpi": 10.9
-    },
-    {
-      "year": 2022,
-      "month": 9,
+      "month": 1,
       "province": "DKI Jakarta",
-      "lpi": 10.5
+      "lpi": -28.5
     },
     {
       "year": 2022,
-      "month": 9,
-      "province": "Sulawesi Tengah",
-      "lpi": 7.1
-    },
-    {
-      "year": 2022,
-      "month": 9,
-      "province": "Papua Tengah",
-      "lpi": 3.6
-    },
-    {
-      "year": 2022,
-      "month": 9,
-      "province": "Kalimantan Timur",
-      "lpi": -0.6
-    },
-    {
-      "year": 2022,
-      "month": 9,
-      "province": "Jawa Barat",
-      "lpi": -1.8
-    },
-    {
-      "year": 2022,
-      "month": 9,
-      "province": "Kalimantan Utara",
-      "lpi": -8.4
-    },
-    {
-      "year": 2022,
-      "month": 9,
+      "month": 1,
       "province": "Riau",
-      "lpi": -9.2
+      "lpi": -30.2
     },
     {
       "year": 2022,
-      "month": 9,
-      "province": "Bali",
-      "lpi": -10
-    },
-    {
-      "year": 2022,
-      "month": 9,
-      "province": "Jawa Timur",
-      "lpi": -12.2
-    },
-    {
-      "year": 2022,
-      "month": 9,
+      "month": 1,
       "province": "Bangka Belitung",
-      "lpi": -13.1
+      "lpi": -33.4
     },
     {
       "year": 2022,
-      "month": 9,
-      "province": "Kalimantan Selatan",
-      "lpi": -13.7
+      "month": 1,
+      "province": "Jawa Barat",
+      "lpi": -34.2
     },
     {
       "year": 2022,
-      "month": 9,
+      "month": 1,
+      "province": "Sulawesi Selatan",
+      "lpi": -34.4
+    },
+    {
+      "year": 2022,
+      "month": 1,
+      "province": "Sumatera Selatan",
+      "lpi": -35.7
+    },
+    {
+      "year": 2022,
+      "month": 1,
       "province": "DI Yogyakarta",
-      "lpi": -14.5
+      "lpi": -36
     },
     {
       "year": 2022,
-      "month": 9,
-      "province": "Jawa Tengah",
-      "lpi": -15.7
+      "month": 1,
+      "province": "Kalimantan Utara",
+      "lpi": -36.2
     },
     {
       "year": 2022,
-      "month": 9,
+      "month": 1,
       "province": "Sumatera Utara",
-      "lpi": -18.7
+      "lpi": -36.7
     },
     {
       "year": 2022,
-      "month": 9,
+      "month": 1,
+      "province": "Sumatera Barat",
+      "lpi": -37.5
+    },
+    {
+      "year": 2022,
+      "month": 1,
+      "province": "Aceh",
+      "lpi": -37.5
+    },
+    {
+      "year": 2022,
+      "month": 1,
+      "province": "Kalimantan Tengah",
+      "lpi": -39
+    },
+    {
+      "year": 2022,
+      "month": 1,
+      "province": "Lampung",
+      "lpi": -42.2
+    },
+    {
+      "year": 2022,
+      "month": 1,
+      "province": "Jawa Tengah",
+      "lpi": -42.7
+    },
+    {
+      "year": 2022,
+      "month": 1,
+      "province": "Gorontalo",
+      "lpi": -44
+    },
+    {
+      "year": 2022,
+      "month": 1,
+      "province": "Kalimantan Barat",
+      "lpi": -44.7
+    },
+    {
+      "year": 2022,
+      "month": 1,
+      "province": "Kalimantan Selatan",
+      "lpi": -45.1
+    },
+    {
+      "year": 2022,
+      "month": 1,
+      "province": "Maluku",
+      "lpi": -49.6
+    },
+    {
+      "year": 2022,
+      "month": 1,
       "province": "Sulawesi Utara",
+      "lpi": -50.1
+    },
+    {
+      "year": 2022,
+      "month": 1,
+      "province": "Nusa Tenggara Barat",
+      "lpi": -56.7
+    },
+    {
+      "year": 2022,
+      "month": 1,
+      "province": "Sulawesi Barat",
+      "lpi": -59.7
+    },
+    {
+      "year": 2022,
+      "month": 1,
+      "province": "Nusa Tenggara Timur",
+      "lpi": -67.2
+    },
+    {
+      "year": 2022,
+      "month": 2,
+      "province": "Papua Barat",
+      "lpi": 31.8
+    },
+    {
+      "year": 2022,
+      "month": 2,
+      "province": "Papua Barat Daya",
+      "lpi": 27.5
+    },
+    {
+      "year": 2022,
+      "month": 2,
+      "province": "Papua",
+      "lpi": 20.6
+    },
+    {
+      "year": 2022,
+      "month": 2,
+      "province": "Papua Tengah",
+      "lpi": 16.6
+    },
+    {
+      "year": 2022,
+      "month": 2,
+      "province": "Kepulauan Riau",
+      "lpi": 0.6
+    },
+    {
+      "year": 2022,
+      "month": 2,
+      "province": "Sulawesi Tengah",
+      "lpi": -4.1
+    },
+    {
+      "year": 2022,
+      "month": 2,
+      "province": "Kalimantan Timur",
+      "lpi": -7.3
+    },
+    {
+      "year": 2022,
+      "month": 2,
+      "province": "Banten",
+      "lpi": -8.5
+    },
+    {
+      "year": 2022,
+      "month": 2,
+      "province": "Maluku Utara",
+      "lpi": -9.9
+    },
+    {
+      "year": 2022,
+      "month": 2,
+      "province": "Bali",
+      "lpi": -17.8
+    },
+    {
+      "year": 2022,
+      "month": 2,
+      "province": "Jawa Timur",
       "lpi": -20
     },
     {
       "year": 2022,
-      "month": 9,
+      "month": 2,
       "province": "Sulawesi Tenggara",
-      "lpi": -20.6
+      "lpi": -20.8
     },
     {
       "year": 2022,
-      "month": 9,
-      "province": "Kalimantan Tengah",
-      "lpi": -20.7
-    },
-    {
-      "year": 2022,
-      "month": 9,
-      "province": "Sumatera Selatan",
-      "lpi": -20.7
-    },
-    {
-      "year": 2022,
-      "month": 9,
-      "province": "Sulawesi Selatan",
-      "lpi": -21.6
-    },
-    {
-      "year": 2022,
-      "month": 9,
-      "province": "Kalimantan Barat",
-      "lpi": -23.7
-    },
-    {
-      "year": 2022,
-      "month": 9,
+      "month": 2,
       "province": "Jambi",
       "lpi": -24.5
     },
     {
       "year": 2022,
-      "month": 9,
+      "month": 2,
+      "province": "DKI Jakarta",
+      "lpi": -25.5
+    },
+    {
+      "year": 2022,
+      "month": 2,
+      "province": "Riau",
+      "lpi": -27.2
+    },
+    {
+      "year": 2022,
+      "month": 2,
+      "province": "Bangka Belitung",
+      "lpi": -30.2
+    },
+    {
+      "year": 2022,
+      "month": 2,
+      "province": "Jawa Barat",
+      "lpi": -31.2
+    },
+    {
+      "year": 2022,
+      "month": 2,
+      "province": "Sulawesi Selatan",
+      "lpi": -31.4
+    },
+    {
+      "year": 2022,
+      "month": 2,
+      "province": "Sumatera Selatan",
+      "lpi": -32.5
+    },
+    {
+      "year": 2022,
+      "month": 2,
+      "province": "DI Yogyakarta",
+      "lpi": -33
+    },
+    {
+      "year": 2022,
+      "month": 2,
+      "province": "Kalimantan Utara",
+      "lpi": -33.1
+    },
+    {
+      "year": 2022,
+      "month": 2,
+      "province": "Sumatera Utara",
+      "lpi": -33.7
+    },
+    {
+      "year": 2022,
+      "month": 2,
       "province": "Sumatera Barat",
-      "lpi": -25.8
+      "lpi": -34.5
     },
     {
       "year": 2022,
-      "month": 9,
+      "month": 2,
+      "province": "Aceh",
+      "lpi": -34.5
+    },
+    {
+      "year": 2022,
+      "month": 2,
+      "province": "Kalimantan Tengah",
+      "lpi": -35.9
+    },
+    {
+      "year": 2022,
+      "month": 2,
       "province": "Lampung",
-      "lpi": -27.8
+      "lpi": -39.2
     },
     {
       "year": 2022,
-      "month": 9,
+      "month": 2,
+      "province": "Jawa Tengah",
+      "lpi": -39.7
+    },
+    {
+      "year": 2022,
+      "month": 2,
+      "province": "Gorontalo",
+      "lpi": -41
+    },
+    {
+      "year": 2022,
+      "month": 2,
+      "province": "Kalimantan Barat",
+      "lpi": -41.6
+    },
+    {
+      "year": 2022,
+      "month": 2,
+      "province": "Kalimantan Selatan",
+      "lpi": -42
+    },
+    {
+      "year": 2022,
+      "month": 2,
+      "province": "Maluku",
+      "lpi": -46.6
+    },
+    {
+      "year": 2022,
+      "month": 2,
+      "province": "Sulawesi Utara",
+      "lpi": -47.1
+    },
+    {
+      "year": 2022,
+      "month": 2,
+      "province": "Nusa Tenggara Barat",
+      "lpi": -53.7
+    },
+    {
+      "year": 2022,
+      "month": 2,
+      "province": "Sulawesi Barat",
+      "lpi": -56.5
+    },
+    {
+      "year": 2022,
+      "month": 2,
+      "province": "Nusa Tenggara Timur",
+      "lpi": -64.2
+    },
+    {
+      "year": 2022,
+      "month": 3,
+      "province": "Papua Barat",
+      "lpi": 31.8
+    },
+    {
+      "year": 2022,
+      "month": 3,
+      "province": "Papua Barat Daya",
+      "lpi": 27.5
+    },
+    {
+      "year": 2022,
+      "month": 3,
+      "province": "Papua",
+      "lpi": 20.6
+    },
+    {
+      "year": 2022,
+      "month": 3,
+      "province": "Papua Tengah",
+      "lpi": 16.6
+    },
+    {
+      "year": 2022,
+      "month": 3,
+      "province": "Kepulauan Riau",
+      "lpi": 4.4
+    },
+    {
+      "year": 2022,
+      "month": 3,
+      "province": "Sulawesi Tengah",
+      "lpi": -0.8
+    },
+    {
+      "year": 2022,
+      "month": 3,
+      "province": "Kalimantan Timur",
+      "lpi": -3.5
+    },
+    {
+      "year": 2022,
+      "month": 3,
+      "province": "Banten",
+      "lpi": -5.3
+    },
+    {
+      "year": 2022,
+      "month": 3,
+      "province": "Maluku Utara",
+      "lpi": -7
+    },
+    {
+      "year": 2022,
+      "month": 3,
+      "province": "Bali",
+      "lpi": -14
+    },
+    {
+      "year": 2022,
+      "month": 3,
+      "province": "Jawa Timur",
+      "lpi": -16.5
+    },
+    {
+      "year": 2022,
+      "month": 3,
+      "province": "Sulawesi Tenggara",
+      "lpi": -20.1
+    },
+    {
+      "year": 2022,
+      "month": 3,
+      "province": "Jambi",
+      "lpi": -21
+    },
+    {
+      "year": 2022,
+      "month": 3,
+      "province": "DKI Jakarta",
+      "lpi": -21.8
+    },
+    {
+      "year": 2022,
+      "month": 3,
+      "province": "Riau",
+      "lpi": -23.8
+    },
+    {
+      "year": 2022,
+      "month": 3,
+      "province": "Bangka Belitung",
+      "lpi": -26.7
+    },
+    {
+      "year": 2022,
+      "month": 3,
+      "province": "Jawa Barat",
+      "lpi": -27.5
+    },
+    {
+      "year": 2022,
+      "month": 3,
+      "province": "Sulawesi Selatan",
+      "lpi": -27.7
+    },
+    {
+      "year": 2022,
+      "month": 3,
+      "province": "Sumatera Selatan",
+      "lpi": -28.9
+    },
+    {
+      "year": 2022,
+      "month": 3,
+      "province": "DI Yogyakarta",
+      "lpi": -29.4
+    },
+    {
+      "year": 2022,
+      "month": 3,
+      "province": "Kalimantan Utara",
+      "lpi": -29.6
+    },
+    {
+      "year": 2022,
+      "month": 3,
+      "province": "Sumatera Utara",
+      "lpi": -30.2
+    },
+    {
+      "year": 2022,
+      "month": 3,
+      "province": "Sumatera Barat",
+      "lpi": -30.8
+    },
+    {
+      "year": 2022,
+      "month": 3,
+      "province": "Aceh",
+      "lpi": -30.8
+    },
+    {
+      "year": 2022,
+      "month": 3,
+      "province": "Kalimantan Tengah",
+      "lpi": -32.2
+    },
+    {
+      "year": 2022,
+      "month": 3,
+      "province": "Lampung",
+      "lpi": -35.4
+    },
+    {
+      "year": 2022,
+      "month": 3,
+      "province": "Jawa Tengah",
+      "lpi": -36.7
+    },
+    {
+      "year": 2022,
+      "month": 3,
+      "province": "Gorontalo",
+      "lpi": -37.5
+    },
+    {
+      "year": 2022,
+      "month": 3,
+      "province": "Kalimantan Barat",
+      "lpi": -37.9
+    },
+    {
+      "year": 2022,
+      "month": 3,
+      "province": "Kalimantan Selatan",
+      "lpi": -38.3
+    },
+    {
+      "year": 2022,
+      "month": 3,
+      "province": "Maluku",
+      "lpi": -42.5
+    },
+    {
+      "year": 2022,
+      "month": 3,
+      "province": "Sulawesi Utara",
+      "lpi": -43.6
+    },
+    {
+      "year": 2022,
+      "month": 3,
+      "province": "Nusa Tenggara Barat",
+      "lpi": -50
+    },
+    {
+      "year": 2022,
+      "month": 3,
+      "province": "Sulawesi Barat",
+      "lpi": -52.1
+    },
+    {
+      "year": 2022,
+      "month": 3,
+      "province": "Nusa Tenggara Timur",
+      "lpi": -60.4
+    },
+    {
+      "year": 2022,
+      "month": 4,
+      "province": "Papua Barat",
+      "lpi": 31.8
+    },
+    {
+      "year": 2022,
+      "month": 4,
+      "province": "Papua Barat Daya",
+      "lpi": 27.5
+    },
+    {
+      "year": 2022,
+      "month": 4,
+      "province": "Papua",
+      "lpi": 20.6
+    },
+    {
+      "year": 2022,
+      "month": 4,
+      "province": "Papua Tengah",
+      "lpi": 16.6
+    },
+    {
+      "year": 2022,
+      "month": 4,
+      "province": "Kepulauan Riau",
+      "lpi": 9
+    },
+    {
+      "year": 2022,
+      "month": 4,
+      "province": "Sulawesi Tengah",
+      "lpi": 4
+    },
+    {
+      "year": 2022,
+      "month": 4,
+      "province": "Kalimantan Timur",
+      "lpi": 1.1
+    },
+    {
+      "year": 2022,
+      "month": 4,
+      "province": "Banten",
+      "lpi": -0.5
+    },
+    {
+      "year": 2022,
+      "month": 4,
+      "province": "Maluku Utara",
+      "lpi": -1.2
+    },
+    {
+      "year": 2022,
+      "month": 4,
+      "province": "Bali",
+      "lpi": -9.4
+    },
+    {
+      "year": 2022,
+      "month": 4,
+      "province": "Sulawesi Tenggara",
+      "lpi": -15.5
+    },
+    {
+      "year": 2022,
+      "month": 4,
+      "province": "Jambi",
+      "lpi": -16.2
+    },
+    {
+      "year": 2022,
+      "month": 4,
+      "province": "DKI Jakarta",
+      "lpi": -16.8
+    },
+    {
+      "year": 2022,
+      "month": 4,
+      "province": "Riau",
+      "lpi": -19
+    },
+    {
+      "year": 2022,
+      "month": 4,
+      "province": "Bangka Belitung",
+      "lpi": -22
+    },
+    {
+      "year": 2022,
+      "month": 4,
+      "province": "Jawa Timur",
+      "lpi": -22.7
+    },
+    {
+      "year": 2022,
+      "month": 4,
+      "province": "Jawa Barat",
+      "lpi": -22.8
+    },
+    {
+      "year": 2022,
+      "month": 4,
+      "province": "Sulawesi Selatan",
+      "lpi": -23.2
+    },
+    {
+      "year": 2022,
+      "month": 4,
+      "province": "Sumatera Selatan",
+      "lpi": -24.1
+    },
+    {
+      "year": 2022,
+      "month": 4,
+      "province": "DI Yogyakarta",
+      "lpi": -24.6
+    },
+    {
+      "year": 2022,
+      "month": 4,
+      "province": "Kalimantan Utara",
+      "lpi": -24.8
+    },
+    {
+      "year": 2022,
+      "month": 4,
+      "province": "Sumatera Utara",
+      "lpi": -25.5
+    },
+    {
+      "year": 2022,
+      "month": 4,
+      "province": "Aceh",
+      "lpi": -26
+    },
+    {
+      "year": 2022,
+      "month": 4,
+      "province": "Sumatera Barat",
+      "lpi": -26.1
+    },
+    {
+      "year": 2022,
+      "month": 4,
+      "province": "Sulawesi Utara",
+      "lpi": -26.3
+    },
+    {
+      "year": 2022,
+      "month": 4,
+      "province": "Kalimantan Tengah",
+      "lpi": -27.6
+    },
+    {
+      "year": 2022,
+      "month": 4,
+      "province": "Lampung",
+      "lpi": -30.4
+    },
+    {
+      "year": 2022,
+      "month": 4,
+      "province": "Jawa Tengah",
+      "lpi": -31.7
+    },
+    {
+      "year": 2022,
+      "month": 4,
+      "province": "Gorontalo",
+      "lpi": -32.1
+    },
+    {
+      "year": 2022,
+      "month": 4,
+      "province": "Kalimantan Barat",
+      "lpi": -33.3
+    },
+    {
+      "year": 2022,
+      "month": 4,
+      "province": "Kalimantan Selatan",
+      "lpi": -33.7
+    },
+    {
+      "year": 2022,
+      "month": 4,
+      "province": "Maluku",
+      "lpi": -37.9
+    },
+    {
+      "year": 2022,
+      "month": 4,
+      "province": "Nusa Tenggara Barat",
+      "lpi": -45.2
+    },
+    {
+      "year": 2022,
+      "month": 4,
+      "province": "Sulawesi Barat",
+      "lpi": -47.4
+    },
+    {
+      "year": 2022,
+      "month": 4,
+      "province": "Nusa Tenggara Timur",
+      "lpi": -55.8
+    },
+    {
+      "year": 2022,
+      "month": 5,
+      "province": "Papua Barat",
+      "lpi": 31.8
+    },
+    {
+      "year": 2022,
+      "month": 5,
+      "province": "Papua Barat Daya",
+      "lpi": 27.5
+    },
+    {
+      "year": 2022,
+      "month": 5,
+      "province": "Papua",
+      "lpi": 20.6
+    },
+    {
+      "year": 2022,
+      "month": 5,
+      "province": "Papua Tengah",
+      "lpi": 16.6
+    },
+    {
+      "year": 2022,
+      "month": 5,
+      "province": "Kepulauan Riau",
+      "lpi": 11.5
+    },
+    {
+      "year": 2022,
+      "month": 5,
+      "province": "Sulawesi Tengah",
+      "lpi": 8.3
+    },
+    {
+      "year": 2022,
+      "month": 5,
+      "province": "Kalimantan Timur",
+      "lpi": 4.5
+    },
+    {
+      "year": 2022,
+      "month": 5,
+      "province": "Maluku Utara",
+      "lpi": 3.3
+    },
+    {
+      "year": 2022,
+      "month": 5,
+      "province": "Banten",
+      "lpi": 2.9
+    },
+    {
+      "year": 2022,
+      "month": 5,
+      "province": "Bali",
+      "lpi": -6
+    },
+    {
+      "year": 2022,
+      "month": 5,
+      "province": "Sulawesi Tenggara",
+      "lpi": -11.9
+    },
+    {
+      "year": 2022,
+      "month": 5,
+      "province": "Jambi",
+      "lpi": -12.5
+    },
+    {
+      "year": 2022,
+      "month": 5,
+      "province": "DKI Jakarta",
+      "lpi": -13.3
+    },
+    {
+      "year": 2022,
+      "month": 5,
+      "province": "Riau",
+      "lpi": -15.8
+    },
+    {
+      "year": 2022,
+      "month": 5,
+      "province": "Bangka Belitung",
+      "lpi": -18.5
+    },
+    {
+      "year": 2022,
+      "month": 5,
+      "province": "Jawa Timur",
+      "lpi": -19.1
+    },
+    {
+      "year": 2022,
+      "month": 5,
+      "province": "Jawa Barat",
+      "lpi": -19.3
+    },
+    {
+      "year": 2022,
+      "month": 5,
+      "province": "Sulawesi Selatan",
+      "lpi": -19.3
+    },
+    {
+      "year": 2022,
+      "month": 5,
+      "province": "Kalimantan Utara",
+      "lpi": -20.9
+    },
+    {
+      "year": 2022,
+      "month": 5,
+      "province": "Sumatera Selatan",
+      "lpi": -21.1
+    },
+    {
+      "year": 2022,
+      "month": 5,
+      "province": "DI Yogyakarta",
+      "lpi": -21.3
+    },
+    {
+      "year": 2022,
+      "month": 5,
+      "province": "Sumatera Utara",
+      "lpi": -22
+    },
+    {
+      "year": 2022,
+      "month": 5,
+      "province": "Aceh",
+      "lpi": -22.6
+    },
+    {
+      "year": 2022,
+      "month": 5,
+      "province": "Sulawesi Utara",
+      "lpi": -22.8
+    },
+    {
+      "year": 2022,
+      "month": 5,
+      "province": "Sumatera Barat",
+      "lpi": -22.8
+    },
+    {
+      "year": 2022,
+      "month": 5,
+      "province": "Kalimantan Tengah",
+      "lpi": -23.9
+    },
+    {
+      "year": 2022,
+      "month": 5,
+      "province": "Lampung",
+      "lpi": -26.9
+    },
+    {
+      "year": 2022,
+      "month": 5,
       "province": "Gorontalo",
       "lpi": -28.2
     },
     {
       "year": 2022,
-      "month": 9,
-      "province": "Maluku",
-      "lpi": -35.9
-    },
-    {
-      "year": 2022,
-      "month": 9,
-      "province": "Aceh",
-      "lpi": -36
-    },
-    {
-      "year": 2022,
-      "month": 9,
-      "province": "Nusa Tenggara Barat",
-      "lpi": -42.7
-    },
-    {
-      "year": 2022,
-      "month": 9,
-      "province": "Nusa Tenggara Timur",
-      "lpi": -44
-    },
-    {
-      "year": 2022,
-      "month": 9,
-      "province": "Sulawesi Barat",
-      "lpi": -45
-    },
-    {
-      "year": 2022,
-      "month": 10,
-      "province": "Kepulauan Riau",
-      "lpi": 44.7
-    },
-    {
-      "year": 2022,
-      "month": 10,
-      "province": "Papua Barat",
-      "lpi": 25.6
-    },
-    {
-      "year": 2022,
-      "month": 10,
-      "province": "Maluku Utara",
-      "lpi": 24.8
-    },
-    {
-      "year": 2022,
-      "month": 10,
-      "province": "Banten",
-      "lpi": 22.1
-    },
-    {
-      "year": 2022,
-      "month": 10,
-      "province": "Papua Barat Daya",
-      "lpi": 20.6
-    },
-    {
-      "year": 2022,
-      "month": 10,
-      "province": "DKI Jakarta",
-      "lpi": 19.9
-    },
-    {
-      "year": 2022,
-      "month": 10,
-      "province": "Sulawesi Tengah",
-      "lpi": 18.2
-    },
-    {
-      "year": 2022,
-      "month": 10,
-      "province": "Papua",
-      "lpi": 11.1
-    },
-    {
-      "year": 2022,
-      "month": 10,
-      "province": "Kalimantan Timur",
-      "lpi": 9.2
-    },
-    {
-      "year": 2022,
-      "month": 10,
-      "province": "Jawa Barat",
-      "lpi": 7.8
-    },
-    {
-      "year": 2022,
-      "month": 10,
-      "province": "Papua Tengah",
-      "lpi": 3.8
-    },
-    {
-      "year": 2022,
-      "month": 10,
-      "province": "Kalimantan Utara",
-      "lpi": 1.2
-    },
-    {
-      "year": 2022,
-      "month": 10,
-      "province": "Riau",
-      "lpi": 0.9
-    },
-    {
-      "year": 2022,
-      "month": 10,
-      "province": "Bali",
-      "lpi": -0.2
-    },
-    {
-      "year": 2022,
-      "month": 10,
-      "province": "Jawa Timur",
-      "lpi": -2.6
-    },
-    {
-      "year": 2022,
-      "month": 10,
-      "province": "Bangka Belitung",
-      "lpi": -3.5
-    },
-    {
-      "year": 2022,
-      "month": 10,
-      "province": "Kalimantan Selatan",
-      "lpi": -3.5
-    },
-    {
-      "year": 2022,
-      "month": 10,
-      "province": "Kalimantan Tengah",
-      "lpi": -3.9
-    },
-    {
-      "year": 2022,
-      "month": 10,
-      "province": "DI Yogyakarta",
-      "lpi": -4.9
-    },
-    {
-      "year": 2022,
-      "month": 10,
+      "month": 5,
       "province": "Jawa Tengah",
-      "lpi": -5.9
+      "lpi": -28.3
     },
     {
       "year": 2022,
-      "month": 10,
-      "province": "Sumatera Utara",
-      "lpi": -9.1
-    },
-    {
-      "year": 2022,
-      "month": 10,
-      "province": "Sulawesi Utara",
-      "lpi": -10.6
-    },
-    {
-      "year": 2022,
-      "month": 10,
-      "province": "Sulawesi Tenggara",
-      "lpi": -10.8
-    },
-    {
-      "year": 2022,
-      "month": 10,
-      "province": "Sumatera Selatan",
-      "lpi": -10.9
-    },
-    {
-      "year": 2022,
-      "month": 10,
-      "province": "Sulawesi Selatan",
-      "lpi": -12.4
-    },
-    {
-      "year": 2022,
-      "month": 10,
-      "province": "Kalimantan Barat",
-      "lpi": -13.9
-    },
-    {
-      "year": 2022,
-      "month": 10,
-      "province": "Jambi",
-      "lpi": -14.9
-    },
-    {
-      "year": 2022,
-      "month": 10,
-      "province": "Sumatera Barat",
-      "lpi": -15.8
-    },
-    {
-      "year": 2022,
-      "month": 10,
-      "province": "Lampung",
-      "lpi": -17.8
-    },
-    {
-      "year": 2022,
-      "month": 10,
-      "province": "Gorontalo",
-      "lpi": -19
-    },
-    {
-      "year": 2022,
-      "month": 10,
-      "province": "Maluku",
-      "lpi": -26.1
-    },
-    {
-      "year": 2022,
-      "month": 10,
-      "province": "Aceh",
-      "lpi": -26.4
-    },
-    {
-      "year": 2022,
-      "month": 10,
-      "province": "Nusa Tenggara Barat",
-      "lpi": -33.3
-    },
-    {
-      "year": 2022,
-      "month": 10,
-      "province": "Nusa Tenggara Timur",
-      "lpi": -34.4
-    },
-    {
-      "year": 2022,
-      "month": 10,
-      "province": "Sulawesi Barat",
-      "lpi": -38.7
-    },
-    {
-      "year": 2022,
-      "month": 11,
-      "province": "Kepulauan Riau",
-      "lpi": 50.9
-    },
-    {
-      "year": 2022,
-      "month": 11,
-      "province": "Maluku Utara",
-      "lpi": 32.8
-    },
-    {
-      "year": 2022,
-      "month": 11,
-      "province": "Banten",
-      "lpi": 29.8
-    },
-    {
-      "year": 2022,
-      "month": 11,
-      "province": "DKI Jakarta",
-      "lpi": 28.3
-    },
-    {
-      "year": 2022,
-      "month": 11,
-      "province": "Sulawesi Tengah",
-      "lpi": 28.2
-    },
-    {
-      "year": 2022,
-      "month": 11,
-      "province": "Papua Barat",
-      "lpi": 25.6
-    },
-    {
-      "year": 2022,
-      "month": 11,
-      "province": "Papua Barat Daya",
-      "lpi": 20.6
-    },
-    {
-      "year": 2022,
-      "month": 11,
-      "province": "Kalimantan Timur",
-      "lpi": 17.4
-    },
-    {
-      "year": 2022,
-      "month": 11,
-      "province": "Jawa Barat",
-      "lpi": 16
-    },
-    {
-      "year": 2022,
-      "month": 11,
-      "province": "Papua",
-      "lpi": 11.1
-    },
-    {
-      "year": 2022,
-      "month": 11,
-      "province": "Kalimantan Utara",
-      "lpi": 9
-    },
-    {
-      "year": 2022,
-      "month": 11,
-      "province": "Bali",
-      "lpi": 8
-    },
-    {
-      "year": 2022,
-      "month": 11,
-      "province": "Jawa Tengah",
-      "lpi": 7.5
-    },
-    {
-      "year": 2022,
-      "month": 11,
-      "province": "Jawa Timur",
-      "lpi": 5.1
-    },
-    {
-      "year": 2022,
-      "month": 11,
+      "month": 5,
       "province": "Kalimantan Selatan",
-      "lpi": 4.8
+      "lpi": -29.2
     },
     {
       "year": 2022,
-      "month": 11,
-      "province": "Riau",
-      "lpi": 4.8
-    },
-    {
-      "year": 2022,
-      "month": 11,
-      "province": "Bangka Belitung",
-      "lpi": 4.7
-    },
-    {
-      "year": 2022,
-      "month": 11,
-      "province": "Kalimantan Tengah",
-      "lpi": 4.2
-    },
-    {
-      "year": 2022,
-      "month": 11,
-      "province": "DI Yogyakarta",
-      "lpi": 3.9
-    },
-    {
-      "year": 2022,
-      "month": 11,
-      "province": "Papua Tengah",
-      "lpi": 3.8
-    },
-    {
-      "year": 2022,
-      "month": 11,
-      "province": "Sumatera Utara",
-      "lpi": -0.7
-    },
-    {
-      "year": 2022,
-      "month": 11,
-      "province": "Sulawesi Utara",
-      "lpi": -2.2
-    },
-    {
-      "year": 2022,
-      "month": 11,
-      "province": "Sumatera Selatan",
-      "lpi": -3
-    },
-    {
-      "year": 2022,
-      "month": 11,
-      "province": "Sulawesi Tenggara",
-      "lpi": -3
-    },
-    {
-      "year": 2022,
-      "month": 11,
-      "province": "Sulawesi Selatan",
-      "lpi": -4.2
-    },
-    {
-      "year": 2022,
-      "month": 11,
+      "month": 5,
       "province": "Kalimantan Barat",
-      "lpi": -6
+      "lpi": -29.9
     },
     {
       "year": 2022,
-      "month": 11,
-      "province": "Jambi",
-      "lpi": -6.8
-    },
-    {
-      "year": 2022,
-      "month": 11,
-      "province": "Sumatera Barat",
-      "lpi": -8.7
-    },
-    {
-      "year": 2022,
-      "month": 11,
-      "province": "Lampung",
-      "lpi": -9.6
-    },
-    {
-      "year": 2022,
-      "month": 11,
-      "province": "Gorontalo",
-      "lpi": -10.6
-    },
-    {
-      "year": 2022,
-      "month": 11,
+      "month": 5,
       "province": "Maluku",
-      "lpi": -16.9
+      "lpi": -34.1
     },
     {
       "year": 2022,
-      "month": 11,
-      "province": "Aceh",
-      "lpi": -18.7
-    },
-    {
-      "year": 2022,
-      "month": 11,
-      "province": "Nusa Tenggara Timur",
-      "lpi": -22.1
-    },
-    {
-      "year": 2022,
-      "month": 11,
+      "month": 5,
       "province": "Nusa Tenggara Barat",
-      "lpi": -25.1
+      "lpi": -40.4
     },
     {
       "year": 2022,
-      "month": 11,
+      "month": 5,
       "province": "Sulawesi Barat",
-      "lpi": -30.8
+      "lpi": -44.2
     },
     {
       "year": 2022,
-      "month": 12,
-      "province": "Kepulauan Riau",
-      "lpi": 58.2
+      "month": 5,
+      "province": "Nusa Tenggara Timur",
+      "lpi": -52.3
     },
     {
       "year": 2022,
-      "month": 12,
-      "province": "Maluku Utara",
-      "lpi": 40.7
-    },
-    {
-      "year": 2022,
-      "month": 12,
-      "province": "DKI Jakarta",
-      "lpi": 34.9
-    },
-    {
-      "year": 2022,
-      "month": 12,
-      "province": "Sulawesi Tengah",
-      "lpi": 33.8
-    },
-    {
-      "year": 2022,
-      "month": 12,
-      "province": "Banten",
-      "lpi": 31.5
-    },
-    {
-      "year": 2022,
-      "month": 12,
+      "month": 6,
       "province": "Papua Barat",
-      "lpi": 25.6
+      "lpi": 32
     },
     {
       "year": 2022,
-      "month": 12,
-      "province": "Kalimantan Timur",
-      "lpi": 24
-    },
-    {
-      "year": 2022,
-      "month": 12,
-      "province": "Jawa Barat",
-      "lpi": 22.9
-    },
-    {
-      "year": 2022,
-      "month": 12,
+      "month": 6,
       "province": "Papua Barat Daya",
-      "lpi": 20.6
+      "lpi": 27.7
     },
     {
       "year": 2022,
-      "month": 12,
-      "province": "Jawa Tengah",
-      "lpi": 17.1
-    },
-    {
-      "year": 2022,
-      "month": 12,
-      "province": "Jawa Timur",
-      "lpi": 16.2
-    },
-    {
-      "year": 2022,
-      "month": 12,
-      "province": "Kalimantan Utara",
-      "lpi": 15.7
-    },
-    {
-      "year": 2022,
-      "month": 12,
-      "province": "Bali",
-      "lpi": 14.7
-    },
-    {
-      "year": 2022,
-      "month": 12,
-      "province": "Riau",
-      "lpi": 11.7
-    },
-    {
-      "year": 2022,
-      "month": 12,
-      "province": "Kalimantan Selatan",
-      "lpi": 11.5
-    },
-    {
-      "year": 2022,
-      "month": 12,
-      "province": "Bangka Belitung",
-      "lpi": 11.3
-    },
-    {
-      "year": 2022,
-      "month": 12,
+      "month": 6,
       "province": "Papua",
-      "lpi": 11.1
+      "lpi": 20.8
     },
     {
       "year": 2022,
-      "month": 12,
-      "province": "DI Yogyakarta",
-      "lpi": 10.6
+      "month": 6,
+      "province": "Kepulauan Riau",
+      "lpi": 18.6
     },
     {
       "year": 2022,
-      "month": 12,
-      "province": "Kalimantan Tengah",
-      "lpi": 9.2
-    },
-    {
-      "year": 2022,
-      "month": 12,
-      "province": "Sulawesi Utara",
-      "lpi": 7
-    },
-    {
-      "year": 2022,
-      "month": 12,
-      "province": "Sumatera Utara",
-      "lpi": 5.8
-    },
-    {
-      "year": 2022,
-      "month": 12,
-      "province": "Sulawesi Tenggara",
-      "lpi": 4.1
-    },
-    {
-      "year": 2022,
-      "month": 12,
-      "province": "Sumatera Selatan",
-      "lpi": 3.9
-    },
-    {
-      "year": 2022,
-      "month": 12,
+      "month": 6,
       "province": "Papua Tengah",
-      "lpi": 3.8
+      "lpi": 16.8
     },
     {
       "year": 2022,
-      "month": 12,
-      "province": "Sulawesi Selatan",
-      "lpi": 2
+      "month": 6,
+      "province": "Sulawesi Tengah",
+      "lpi": 15.1
     },
     {
       "year": 2022,
-      "month": 12,
-      "province": "Kalimantan Barat",
-      "lpi": 1.8
+      "month": 6,
+      "province": "Kalimantan Timur",
+      "lpi": 11.4
     },
     {
       "year": 2022,
-      "month": 12,
-      "province": "Jambi",
-      "lpi": -0.1
+      "month": 6,
+      "province": "Maluku Utara",
+      "lpi": 10.7
     },
     {
       "year": 2022,
-      "month": 12,
-      "province": "Sumatera Barat",
+      "month": 6,
+      "province": "Banten",
+      "lpi": 10.3
+    },
+    {
+      "year": 2022,
+      "month": 6,
+      "province": "Bali",
+      "lpi": 1.1
+    },
+    {
+      "year": 2022,
+      "month": 6,
+      "province": "Riau",
       "lpi": -1.8
     },
     {
       "year": 2022,
-      "month": 12,
+      "month": 6,
+      "province": "Sulawesi Tenggara",
+      "lpi": -5.4
+    },
+    {
+      "year": 2022,
+      "month": 6,
+      "province": "Jambi",
+      "lpi": -5.5
+    },
+    {
+      "year": 2022,
+      "month": 6,
+      "province": "DKI Jakarta",
+      "lpi": -7
+    },
+    {
+      "year": 2022,
+      "month": 6,
+      "province": "Jawa Tengah",
+      "lpi": -11.1
+    },
+    {
+      "year": 2022,
+      "month": 6,
+      "province": "Bangka Belitung",
+      "lpi": -11.4
+    },
+    {
+      "year": 2022,
+      "month": 6,
+      "province": "DI Yogyakarta",
+      "lpi": -11.6
+    },
+    {
+      "year": 2022,
+      "month": 6,
+      "province": "Jawa Timur",
+      "lpi": -11.8
+    },
+    {
+      "year": 2022,
+      "month": 6,
+      "province": "Sulawesi Selatan",
+      "lpi": -12.2
+    },
+    {
+      "year": 2022,
+      "month": 6,
+      "province": "Jawa Barat",
+      "lpi": -13.1
+    },
+    {
+      "year": 2022,
+      "month": 6,
+      "province": "Sumatera Utara",
+      "lpi": -13.1
+    },
+    {
+      "year": 2022,
+      "month": 6,
+      "province": "Sumatera Barat",
+      "lpi": -13.3
+    },
+    {
+      "year": 2022,
+      "month": 6,
+      "province": "Sumatera Selatan",
+      "lpi": -14
+    },
+    {
+      "year": 2022,
+      "month": 6,
+      "province": "Kalimantan Utara",
+      "lpi": -14.1
+    },
+    {
+      "year": 2022,
+      "month": 6,
+      "province": "Aceh",
+      "lpi": -15.1
+    },
+    {
+      "year": 2022,
+      "month": 6,
+      "province": "Sulawesi Utara",
+      "lpi": -15.8
+    },
+    {
+      "year": 2022,
+      "month": 6,
+      "province": "Kalimantan Tengah",
+      "lpi": -16.9
+    },
+    {
+      "year": 2022,
+      "month": 6,
+      "province": "Lampung",
+      "lpi": -19.9
+    },
+    {
+      "year": 2022,
+      "month": 6,
+      "province": "Gorontalo",
+      "lpi": -21.6
+    },
+    {
+      "year": 2022,
+      "month": 6,
+      "province": "Kalimantan Barat",
+      "lpi": -22.4
+    },
+    {
+      "year": 2022,
+      "month": 6,
+      "province": "Kalimantan Selatan",
+      "lpi": -22.6
+    },
+    {
+      "year": 2022,
+      "month": 6,
+      "province": "Maluku",
+      "lpi": -27.4
+    },
+    {
+      "year": 2022,
+      "month": 6,
+      "province": "Nusa Tenggara Barat",
+      "lpi": -33.1
+    },
+    {
+      "year": 2022,
+      "month": 6,
+      "province": "Sulawesi Barat",
+      "lpi": -33.9
+    },
+    {
+      "year": 2022,
+      "month": 6,
+      "province": "Nusa Tenggara Timur",
+      "lpi": -45.3
+    },
+    {
+      "year": 2022,
+      "month": 7,
+      "province": "Papua Barat",
+      "lpi": 32
+    },
+    {
+      "year": 2022,
+      "month": 7,
+      "province": "Papua Barat Daya",
+      "lpi": 27.7
+    },
+    {
+      "year": 2022,
+      "month": 7,
+      "province": "Papua",
+      "lpi": 20.8
+    },
+    {
+      "year": 2022,
+      "month": 7,
+      "province": "Papua Tengah",
+      "lpi": 16.8
+    },
+    {
+      "year": 2022,
+      "month": 7,
+      "province": "Kepulauan Riau",
+      "lpi": 16.3
+    },
+    {
+      "year": 2022,
+      "month": 7,
+      "province": "Sulawesi Tengah",
+      "lpi": 12.6
+    },
+    {
+      "year": 2022,
+      "month": 7,
+      "province": "Kalimantan Timur",
+      "lpi": 8.9
+    },
+    {
+      "year": 2022,
+      "month": 7,
+      "province": "Maluku Utara",
+      "lpi": 8.1
+    },
+    {
+      "year": 2022,
+      "month": 7,
+      "province": "Banten",
+      "lpi": 8
+    },
+    {
+      "year": 2022,
+      "month": 7,
+      "province": "Bali",
+      "lpi": -1.2
+    },
+    {
+      "year": 2022,
+      "month": 7,
+      "province": "Riau",
+      "lpi": -4.4
+    },
+    {
+      "year": 2022,
+      "month": 7,
+      "province": "Jambi",
+      "lpi": -7.8
+    },
+    {
+      "year": 2022,
+      "month": 7,
+      "province": "Sulawesi Tenggara",
+      "lpi": -7.8
+    },
+    {
+      "year": 2022,
+      "month": 7,
+      "province": "DKI Jakarta",
+      "lpi": -9.2
+    },
+    {
+      "year": 2022,
+      "month": 7,
+      "province": "Jawa Tengah",
+      "lpi": -13.2
+    },
+    {
+      "year": 2022,
+      "month": 7,
+      "province": "Bangka Belitung",
+      "lpi": -13.7
+    },
+    {
+      "year": 2022,
+      "month": 7,
+      "province": "DI Yogyakarta",
+      "lpi": -13.8
+    },
+    {
+      "year": 2022,
+      "month": 7,
+      "province": "Jawa Timur",
+      "lpi": -14.1
+    },
+    {
+      "year": 2022,
+      "month": 7,
+      "province": "Sulawesi Selatan",
+      "lpi": -14.7
+    },
+    {
+      "year": 2022,
+      "month": 7,
+      "province": "Jawa Barat",
+      "lpi": -15.4
+    },
+    {
+      "year": 2022,
+      "month": 7,
+      "province": "Sumatera Utara",
+      "lpi": -15.8
+    },
+    {
+      "year": 2022,
+      "month": 7,
+      "province": "Sumatera Selatan",
+      "lpi": -16.3
+    },
+    {
+      "year": 2022,
+      "month": 7,
+      "province": "Kalimantan Utara",
+      "lpi": -16.4
+    },
+    {
+      "year": 2022,
+      "month": 7,
+      "province": "Aceh",
+      "lpi": -17.6
+    },
+    {
+      "year": 2022,
+      "month": 7,
+      "province": "Sulawesi Utara",
+      "lpi": -18
+    },
+    {
+      "year": 2022,
+      "month": 7,
+      "province": "Sumatera Barat",
+      "lpi": -19.6
+    },
+    {
+      "year": 2022,
+      "month": 7,
+      "province": "Kalimantan Tengah",
+      "lpi": -19.6
+    },
+    {
+      "year": 2022,
+      "month": 7,
+      "province": "Lampung",
+      "lpi": -22.6
+    },
+    {
+      "year": 2022,
+      "month": 7,
+      "province": "Gorontalo",
+      "lpi": -23.9
+    },
+    {
+      "year": 2022,
+      "month": 7,
+      "province": "Kalimantan Barat",
+      "lpi": -24.9
+    },
+    {
+      "year": 2022,
+      "month": 7,
+      "province": "Kalimantan Selatan",
+      "lpi": -25
+    },
+    {
+      "year": 2022,
+      "month": 7,
+      "province": "Maluku",
+      "lpi": -29.9
+    },
+    {
+      "year": 2022,
+      "month": 7,
+      "province": "Nusa Tenggara Barat",
+      "lpi": -35.4
+    },
+    {
+      "year": 2022,
+      "month": 7,
+      "province": "Sulawesi Barat",
+      "lpi": -36.1
+    },
+    {
+      "year": 2022,
+      "month": 7,
+      "province": "Nusa Tenggara Timur",
+      "lpi": -47.5
+    },
+    {
+      "year": 2022,
+      "month": 8,
+      "province": "Papua Barat",
+      "lpi": 32
+    },
+    {
+      "year": 2022,
+      "month": 8,
+      "province": "Papua Barat Daya",
+      "lpi": 27.7
+    },
+    {
+      "year": 2022,
+      "month": 8,
+      "province": "Papua",
+      "lpi": 20.8
+    },
+    {
+      "year": 2022,
+      "month": 8,
+      "province": "Kepulauan Riau",
+      "lpi": 18.2
+    },
+    {
+      "year": 2022,
+      "month": 8,
+      "province": "Papua Tengah",
+      "lpi": 16.8
+    },
+    {
+      "year": 2022,
+      "month": 8,
+      "province": "Maluku Utara",
+      "lpi": 13.1
+    },
+    {
+      "year": 2022,
+      "month": 8,
+      "province": "Banten",
+      "lpi": 8.2
+    },
+    {
+      "year": 2022,
+      "month": 8,
+      "province": "DKI Jakarta",
+      "lpi": 5.6
+    },
+    {
+      "year": 2022,
+      "month": 8,
+      "province": "Sulawesi Tengah",
+      "lpi": 5.3
+    },
+    {
+      "year": 2022,
+      "month": 8,
+      "province": "Kalimantan Timur",
+      "lpi": -1.8
+    },
+    {
+      "year": 2022,
+      "month": 8,
+      "province": "Jawa Barat",
+      "lpi": -2.4
+    },
+    {
+      "year": 2022,
+      "month": 8,
+      "province": "Riau",
+      "lpi": -7.3
+    },
+    {
+      "year": 2022,
+      "month": 8,
+      "province": "Kalimantan Utara",
+      "lpi": -7.4
+    },
+    {
+      "year": 2022,
+      "month": 8,
+      "province": "Bali",
+      "lpi": -8.7
+    },
+    {
+      "year": 2022,
+      "month": 8,
+      "province": "Jawa Timur",
+      "lpi": -10.2
+    },
+    {
+      "year": 2022,
+      "month": 8,
+      "province": "Bangka Belitung",
+      "lpi": -10.7
+    },
+    {
+      "year": 2022,
+      "month": 8,
+      "province": "Kalimantan Selatan",
+      "lpi": -11.1
+    },
+    {
+      "year": 2022,
+      "month": 8,
+      "province": "DI Yogyakarta",
+      "lpi": -11.6
+    },
+    {
+      "year": 2022,
+      "month": 8,
+      "province": "Jawa Tengah",
+      "lpi": -13.4
+    },
+    {
+      "year": 2022,
+      "month": 8,
+      "province": "Sumatera Utara",
+      "lpi": -14.5
+    },
+    {
+      "year": 2022,
+      "month": 8,
+      "province": "Sumatera Selatan",
+      "lpi": -15.8
+    },
+    {
+      "year": 2022,
+      "month": 8,
+      "province": "Sulawesi Tenggara",
+      "lpi": -15.8
+    },
+    {
+      "year": 2022,
+      "month": 8,
+      "province": "Sulawesi Utara",
+      "lpi": -16
+    },
+    {
+      "year": 2022,
+      "month": 8,
+      "province": "Sulawesi Selatan",
+      "lpi": -16.5
+    },
+    {
+      "year": 2022,
+      "month": 8,
+      "province": "Kalimantan Tengah",
+      "lpi": -16.7
+    },
+    {
+      "year": 2022,
+      "month": 8,
+      "province": "Kalimantan Barat",
+      "lpi": -18
+    },
+    {
+      "year": 2022,
+      "month": 8,
+      "province": "Jambi",
+      "lpi": -18.7
+    },
+    {
+      "year": 2022,
+      "month": 8,
+      "province": "Sumatera Barat",
+      "lpi": -19.6
+    },
+    {
+      "year": 2022,
+      "month": 8,
+      "province": "Lampung",
+      "lpi": -20.7
+    },
+    {
+      "year": 2022,
+      "month": 8,
+      "province": "Gorontalo",
+      "lpi": -21.8
+    },
+    {
+      "year": 2022,
+      "month": 8,
+      "province": "Aceh",
+      "lpi": -26.9
+    },
+    {
+      "year": 2022,
+      "month": 8,
+      "province": "Maluku",
+      "lpi": -27.2
+    },
+    {
+      "year": 2022,
+      "month": 8,
+      "province": "Nusa Tenggara Barat",
+      "lpi": -32.5
+    },
+    {
+      "year": 2022,
+      "month": 8,
+      "province": "Nusa Tenggara Timur",
+      "lpi": -32.9
+    },
+    {
+      "year": 2022,
+      "month": 8,
+      "province": "Sulawesi Barat",
+      "lpi": -34.1
+    },
+    {
+      "year": 2022,
+      "month": 9,
+      "province": "Kepulauan Riau",
+      "lpi": 33
+    },
+    {
+      "year": 2022,
+      "month": 9,
+      "province": "Papua Barat",
+      "lpi": 32
+    },
+    {
+      "year": 2022,
+      "month": 9,
+      "province": "Papua Barat Daya",
+      "lpi": 27.7
+    },
+    {
+      "year": 2022,
+      "month": 9,
+      "province": "Maluku Utara",
+      "lpi": 22.7
+    },
+    {
+      "year": 2022,
+      "month": 9,
+      "province": "Papua",
+      "lpi": 20.8
+    },
+    {
+      "year": 2022,
+      "month": 9,
+      "province": "Banten",
+      "lpi": 17.8
+    },
+    {
+      "year": 2022,
+      "month": 9,
+      "province": "Papua Tengah",
+      "lpi": 16.8
+    },
+    {
+      "year": 2022,
+      "month": 9,
+      "province": "DKI Jakarta",
+      "lpi": 15
+    },
+    {
+      "year": 2022,
+      "month": 9,
+      "province": "Sulawesi Tengah",
+      "lpi": 14.9
+    },
+    {
+      "year": 2022,
+      "month": 9,
+      "province": "Kalimantan Timur",
+      "lpi": 7.5
+    },
+    {
+      "year": 2022,
+      "month": 9,
+      "province": "Jawa Barat",
+      "lpi": 6.8
+    },
+    {
+      "year": 2022,
+      "month": 9,
+      "province": "Riau",
+      "lpi": 2.3
+    },
+    {
+      "year": 2022,
+      "month": 9,
+      "province": "Kalimantan Utara",
+      "lpi": 2.1
+    },
+    {
+      "year": 2022,
+      "month": 9,
+      "province": "Bali",
+      "lpi": 0.5
+    },
+    {
+      "year": 2022,
+      "month": 9,
+      "province": "Jawa Timur",
+      "lpi": -1
+    },
+    {
+      "year": 2022,
+      "month": 9,
+      "province": "Bangka Belitung",
+      "lpi": -1.2
+    },
+    {
+      "year": 2022,
+      "month": 9,
+      "province": "Kalimantan Selatan",
+      "lpi": -1.7
+    },
+    {
+      "year": 2022,
+      "month": 9,
+      "province": "DI Yogyakarta",
+      "lpi": -2.4
+    },
+    {
+      "year": 2022,
+      "month": 9,
+      "province": "Jawa Tengah",
+      "lpi": -4.1
+    },
+    {
+      "year": 2022,
+      "month": 9,
+      "province": "Sumatera Utara",
+      "lpi": -5.1
+    },
+    {
+      "year": 2022,
+      "month": 9,
+      "province": "Sumatera Selatan",
+      "lpi": -6.4
+    },
+    {
+      "year": 2022,
+      "month": 9,
+      "province": "Sulawesi Tenggara",
+      "lpi": -6.4
+    },
+    {
+      "year": 2022,
+      "month": 9,
+      "province": "Sulawesi Utara",
+      "lpi": -6.6
+    },
+    {
+      "year": 2022,
+      "month": 9,
+      "province": "Sulawesi Selatan",
+      "lpi": -7.1
+    },
+    {
+      "year": 2022,
+      "month": 9,
+      "province": "Kalimantan Tengah",
+      "lpi": -7.5
+    },
+    {
+      "year": 2022,
+      "month": 9,
+      "province": "Kalimantan Barat",
+      "lpi": -8.7
+    },
+    {
+      "year": 2022,
+      "month": 9,
+      "province": "Jambi",
+      "lpi": -9.3
+    },
+    {
+      "year": 2022,
+      "month": 9,
+      "province": "Sumatera Barat",
+      "lpi": -10
+    },
+    {
+      "year": 2022,
+      "month": 9,
+      "province": "Lampung",
+      "lpi": -11.4
+    },
+    {
+      "year": 2022,
+      "month": 9,
+      "province": "Gorontalo",
+      "lpi": -12.2
+    },
+    {
+      "year": 2022,
+      "month": 9,
+      "province": "Aceh",
+      "lpi": -17.3
+    },
+    {
+      "year": 2022,
+      "month": 9,
+      "province": "Maluku",
+      "lpi": -17.9
+    },
+    {
+      "year": 2022,
+      "month": 9,
+      "province": "Nusa Tenggara Barat",
+      "lpi": -23.3
+    },
+    {
+      "year": 2022,
+      "month": 9,
+      "province": "Nusa Tenggara Timur",
+      "lpi": -23.6
+    },
+    {
+      "year": 2022,
+      "month": 9,
+      "province": "Sulawesi Barat",
+      "lpi": -24.7
+    },
+    {
+      "year": 2022,
+      "month": 10,
+      "province": "Kepulauan Riau",
+      "lpi": 41.5
+    },
+    {
+      "year": 2022,
+      "month": 10,
+      "province": "Papua Barat",
+      "lpi": 32.2
+    },
+    {
+      "year": 2022,
+      "month": 10,
+      "province": "Maluku Utara",
+      "lpi": 28.2
+    },
+    {
+      "year": 2022,
+      "month": 10,
+      "province": "Papua Barat Daya",
+      "lpi": 27.8
+    },
+    {
+      "year": 2022,
+      "month": 10,
+      "province": "Banten",
+      "lpi": 25.8
+    },
+    {
+      "year": 2022,
+      "month": 10,
+      "province": "Sulawesi Tengah",
+      "lpi": 24.3
+    },
+    {
+      "year": 2022,
+      "month": 10,
+      "province": "DKI Jakarta",
+      "lpi": 23
+    },
+    {
+      "year": 2022,
+      "month": 10,
+      "province": "Papua",
+      "lpi": 20.9
+    },
+    {
+      "year": 2022,
+      "month": 10,
+      "province": "Papua Tengah",
+      "lpi": 17
+    },
+    {
+      "year": 2022,
+      "month": 10,
+      "province": "Kalimantan Timur",
+      "lpi": 15.9
+    },
+    {
+      "year": 2022,
+      "month": 10,
+      "province": "Jawa Barat",
+      "lpi": 15
+    },
+    {
+      "year": 2022,
+      "month": 10,
+      "province": "Riau",
+      "lpi": 10.9
+    },
+    {
+      "year": 2022,
+      "month": 10,
+      "province": "Kalimantan Utara",
+      "lpi": 10.2
+    },
+    {
+      "year": 2022,
+      "month": 10,
+      "province": "Bali",
+      "lpi": 8.9
+    },
+    {
+      "year": 2022,
+      "month": 10,
+      "province": "Jawa Timur",
+      "lpi": 7.2
+    },
+    {
+      "year": 2022,
+      "month": 10,
+      "province": "Kalimantan Selatan",
+      "lpi": 7
+    },
+    {
+      "year": 2022,
+      "month": 10,
+      "province": "Bangka Belitung",
+      "lpi": 6.9
+    },
+    {
+      "year": 2022,
+      "month": 10,
+      "province": "Kalimantan Tengah",
+      "lpi": 6.7
+    },
+    {
+      "year": 2022,
+      "month": 10,
+      "province": "DI Yogyakarta",
+      "lpi": 5.8
+    },
+    {
+      "year": 2022,
+      "month": 10,
+      "province": "Jawa Tengah",
+      "lpi": 4.2
+    },
+    {
+      "year": 2022,
+      "month": 10,
+      "province": "Sumatera Utara",
+      "lpi": 3.1
+    },
+    {
+      "year": 2022,
+      "month": 10,
+      "province": "Sumatera Selatan",
+      "lpi": 2
+    },
+    {
+      "year": 2022,
+      "month": 10,
+      "province": "Sulawesi Tenggara",
+      "lpi": 1.9
+    },
+    {
+      "year": 2022,
+      "month": 10,
+      "province": "Sulawesi Utara",
+      "lpi": 1.4
+    },
+    {
+      "year": 2022,
+      "month": 10,
+      "province": "Sulawesi Selatan",
+      "lpi": 0.8
+    },
+    {
+      "year": 2022,
+      "month": 10,
+      "province": "Kalimantan Barat",
+      "lpi": -0.4
+    },
+    {
+      "year": 2022,
+      "month": 10,
+      "province": "Jambi",
+      "lpi": -1.1
+    },
+    {
+      "year": 2022,
+      "month": 10,
+      "province": "Sumatera Barat",
+      "lpi": -1.4
+    },
+    {
+      "year": 2022,
+      "month": 10,
       "province": "Lampung",
       "lpi": -2.9
     },
     {
       "year": 2022,
-      "month": 12,
+      "month": 10,
       "province": "Gorontalo",
-      "lpi": -3.5
+      "lpi": -4.4
     },
     {
       "year": 2022,
-      "month": 12,
+      "month": 10,
+      "province": "Aceh",
+      "lpi": -9.1
+    },
+    {
+      "year": 2022,
+      "month": 10,
+      "province": "Maluku",
+      "lpi": -9.6
+    },
+    {
+      "year": 2022,
+      "month": 10,
+      "province": "Nusa Tenggara Barat",
+      "lpi": -15.3
+    },
+    {
+      "year": 2022,
+      "month": 10,
+      "province": "Nusa Tenggara Timur",
+      "lpi": -15.4
+    },
+    {
+      "year": 2022,
+      "month": 10,
+      "province": "Sulawesi Barat",
+      "lpi": -19.3
+    },
+    {
+      "year": 2022,
+      "month": 11,
+      "province": "Kepulauan Riau",
+      "lpi": 46.9
+    },
+    {
+      "year": 2022,
+      "month": 11,
+      "province": "Maluku Utara",
+      "lpi": 34.9
+    },
+    {
+      "year": 2022,
+      "month": 11,
+      "province": "Sulawesi Tengah",
+      "lpi": 32.9
+    },
+    {
+      "year": 2022,
+      "month": 11,
+      "province": "Banten",
+      "lpi": 32.4
+    },
+    {
+      "year": 2022,
+      "month": 11,
+      "province": "Papua Barat",
+      "lpi": 32.2
+    },
+    {
+      "year": 2022,
+      "month": 11,
+      "province": "DKI Jakarta",
+      "lpi": 30.1
+    },
+    {
+      "year": 2022,
+      "month": 11,
+      "province": "Papua Barat Daya",
+      "lpi": 27.8
+    },
+    {
+      "year": 2022,
+      "month": 11,
+      "province": "Kalimantan Timur",
+      "lpi": 22.8
+    },
+    {
+      "year": 2022,
+      "month": 11,
+      "province": "Jawa Barat",
+      "lpi": 22
+    },
+    {
+      "year": 2022,
+      "month": 11,
+      "province": "Papua",
+      "lpi": 20.9
+    },
+    {
+      "year": 2022,
+      "month": 11,
+      "province": "Papua Tengah",
+      "lpi": 17
+    },
+    {
+      "year": 2022,
+      "month": 11,
+      "province": "Kalimantan Utara",
+      "lpi": 16.8
+    },
+    {
+      "year": 2022,
+      "month": 11,
+      "province": "Bali",
+      "lpi": 15.8
+    },
+    {
+      "year": 2022,
+      "month": 11,
+      "province": "Jawa Tengah",
+      "lpi": 15.6
+    },
+    {
+      "year": 2022,
+      "month": 11,
+      "province": "Riau",
+      "lpi": 14.2
+    },
+    {
+      "year": 2022,
+      "month": 11,
+      "province": "Kalimantan Selatan",
+      "lpi": 14.2
+    },
+    {
+      "year": 2022,
+      "month": 11,
+      "province": "Bangka Belitung",
+      "lpi": 13.9
+    },
+    {
+      "year": 2022,
+      "month": 11,
+      "province": "Jawa Timur",
+      "lpi": 13.8
+    },
+    {
+      "year": 2022,
+      "month": 11,
+      "province": "Kalimantan Tengah",
+      "lpi": 13.7
+    },
+    {
+      "year": 2022,
+      "month": 11,
+      "province": "DI Yogyakarta",
+      "lpi": 13.2
+    },
+    {
+      "year": 2022,
+      "month": 11,
+      "province": "Sumatera Utara",
+      "lpi": 10.2
+    },
+    {
+      "year": 2022,
+      "month": 11,
+      "province": "Sumatera Selatan",
+      "lpi": 8.8
+    },
+    {
+      "year": 2022,
+      "month": 11,
+      "province": "Sulawesi Utara",
+      "lpi": 8.5
+    },
+    {
+      "year": 2022,
+      "month": 11,
+      "province": "Sulawesi Tenggara",
+      "lpi": 8.5
+    },
+    {
+      "year": 2022,
+      "month": 11,
+      "province": "Sulawesi Selatan",
+      "lpi": 7.7
+    },
+    {
+      "year": 2022,
+      "month": 11,
+      "province": "Kalimantan Barat",
+      "lpi": 6.4
+    },
+    {
+      "year": 2022,
+      "month": 11,
+      "province": "Jambi",
+      "lpi": 5.9
+    },
+    {
+      "year": 2022,
+      "month": 11,
+      "province": "Sumatera Barat",
+      "lpi": 4.6
+    },
+    {
+      "year": 2022,
+      "month": 11,
+      "province": "Lampung",
+      "lpi": 4.1
+    },
+    {
+      "year": 2022,
+      "month": 11,
+      "province": "Gorontalo",
+      "lpi": 2.7
+    },
+    {
+      "year": 2022,
+      "month": 11,
+      "province": "Maluku",
+      "lpi": -1.8
+    },
+    {
+      "year": 2022,
+      "month": 11,
+      "province": "Aceh",
+      "lpi": -2.5
+    },
+    {
+      "year": 2022,
+      "month": 11,
+      "province": "Nusa Tenggara Timur",
+      "lpi": -5
+    },
+    {
+      "year": 2022,
+      "month": 11,
       "province": "Nusa Tenggara Barat",
       "lpi": -8.4
     },
     {
       "year": 2022,
-      "month": 12,
-      "province": "Maluku",
-      "lpi": -10.6
-    },
-    {
-      "year": 2022,
-      "month": 12,
-      "province": "Aceh",
-      "lpi": -12.4
-    },
-    {
-      "year": 2022,
-      "month": 12,
+      "month": 11,
       "province": "Sulawesi Barat",
       "lpi": -12.6
     },
     {
       "year": 2022,
       "month": 12,
+      "province": "Kepulauan Riau",
+      "lpi": 53.1
+    },
+    {
+      "year": 2022,
+      "month": 12,
+      "province": "Maluku Utara",
+      "lpi": 41.7
+    },
+    {
+      "year": 2022,
+      "month": 12,
+      "province": "Sulawesi Tengah",
+      "lpi": 37.7
+    },
+    {
+      "year": 2022,
+      "month": 12,
+      "province": "DKI Jakarta",
+      "lpi": 35.8
+    },
+    {
+      "year": 2022,
+      "month": 12,
+      "province": "Banten",
+      "lpi": 33.8
+    },
+    {
+      "year": 2022,
+      "month": 12,
+      "province": "Papua Barat",
+      "lpi": 32.2
+    },
+    {
+      "year": 2022,
+      "month": 12,
+      "province": "Kalimantan Timur",
+      "lpi": 28.5
+    },
+    {
+      "year": 2022,
+      "month": 12,
+      "province": "Papua Barat Daya",
+      "lpi": 27.8
+    },
+    {
+      "year": 2022,
+      "month": 12,
+      "province": "Jawa Barat",
+      "lpi": 27.8
+    },
+    {
+      "year": 2022,
+      "month": 12,
+      "province": "Jawa Tengah",
+      "lpi": 23.8
+    },
+    {
+      "year": 2022,
+      "month": 12,
+      "province": "Jawa Timur",
+      "lpi": 23.2
+    },
+    {
+      "year": 2022,
+      "month": 12,
+      "province": "Kalimantan Utara",
+      "lpi": 22.5
+    },
+    {
+      "year": 2022,
+      "month": 12,
+      "province": "Bali",
+      "lpi": 21.5
+    },
+    {
+      "year": 2022,
+      "month": 12,
+      "province": "Papua",
+      "lpi": 20.9
+    },
+    {
+      "year": 2022,
+      "month": 12,
+      "province": "Riau",
+      "lpi": 20.1
+    },
+    {
+      "year": 2022,
+      "month": 12,
+      "province": "Kalimantan Selatan",
+      "lpi": 19.8
+    },
+    {
+      "year": 2022,
+      "month": 12,
+      "province": "Bangka Belitung",
+      "lpi": 19.6
+    },
+    {
+      "year": 2022,
+      "month": 12,
+      "province": "DI Yogyakarta",
+      "lpi": 18.9
+    },
+    {
+      "year": 2022,
+      "month": 12,
+      "province": "Kalimantan Tengah",
+      "lpi": 17.9
+    },
+    {
+      "year": 2022,
+      "month": 12,
+      "province": "Papua Tengah",
+      "lpi": 17
+    },
+    {
+      "year": 2022,
+      "month": 12,
+      "province": "Sulawesi Utara",
+      "lpi": 16.4
+    },
+    {
+      "year": 2022,
+      "month": 12,
+      "province": "Sumatera Utara",
+      "lpi": 15.7
+    },
+    {
+      "year": 2022,
+      "month": 12,
+      "province": "Sumatera Selatan",
+      "lpi": 14.6
+    },
+    {
+      "year": 2022,
+      "month": 12,
+      "province": "Sulawesi Tenggara",
+      "lpi": 14.6
+    },
+    {
+      "year": 2022,
+      "month": 12,
+      "province": "Sulawesi Selatan",
+      "lpi": 13
+    },
+    {
+      "year": 2022,
+      "month": 12,
+      "province": "Kalimantan Barat",
+      "lpi": 13
+    },
+    {
+      "year": 2022,
+      "month": 12,
+      "province": "Jambi",
+      "lpi": 11.6
+    },
+    {
+      "year": 2022,
+      "month": 12,
+      "province": "Sumatera Barat",
+      "lpi": 10.5
+    },
+    {
+      "year": 2022,
+      "month": 12,
+      "province": "Lampung",
+      "lpi": 9.7
+    },
+    {
+      "year": 2022,
+      "month": 12,
+      "province": "Gorontalo",
+      "lpi": 8.8
+    },
+    {
+      "year": 2022,
+      "month": 12,
+      "province": "Nusa Tenggara Barat",
+      "lpi": 5.9
+    },
+    {
+      "year": 2022,
+      "month": 12,
+      "province": "Maluku",
+      "lpi": 3.6
+    },
+    {
+      "year": 2022,
+      "month": 12,
+      "province": "Sulawesi Barat",
+      "lpi": 2.9
+    },
+    {
+      "year": 2022,
+      "month": 12,
+      "province": "Aceh",
+      "lpi": 2.8
+    },
+    {
+      "year": 2022,
+      "month": 12,
       "province": "Nusa Tenggara Timur",
-      "lpi": -15.4
+      "lpi": 0.7
     },
     {
       "year": 2023,
       "month": 1,
       "province": "Kepulauan Riau",
-      "lpi": 71.2
+      "lpi": 64.1
     },
     {
       "year": 2023,
       "month": 1,
       "province": "Maluku Utara",
-      "lpi": 52.4
+      "lpi": 51.6
     },
     {
       "year": 2023,
       "month": 1,
       "province": "DKI Jakarta",
-      "lpi": 48.1
+      "lpi": 47
     },
     {
       "year": 2023,
       "month": 1,
       "province": "Banten",
-      "lpi": 44.6
+      "lpi": 45
     },
     {
       "year": 2023,
       "month": 1,
       "province": "Sulawesi Tengah",
-      "lpi": 37.6
+      "lpi": 40.9
     },
     {
       "year": 2023,
       "month": 1,
       "province": "Kalimantan Timur",
-      "lpi": 37.2
+      "lpi": 39.7
     },
     {
       "year": 2023,
       "month": 1,
       "province": "Jawa Barat",
-      "lpi": 36.4
+      "lpi": 39.4
     },
     {
       "year": 2023,
       "month": 1,
       "province": "Jawa Tengah",
-      "lpi": 30.2
+      "lpi": 35
     },
     {
       "year": 2023,
       "month": 1,
       "province": "Jawa Timur",
-      "lpi": 30
+      "lpi": 34.9
     },
     {
       "year": 2023,
       "month": 1,
       "province": "Kalimantan Utara",
-      "lpi": 28.2
+      "lpi": 33.2
     },
     {
       "year": 2023,
       "month": 1,
       "province": "Bali",
-      "lpi": 27.8
+      "lpi": 32.7
     },
     {
       "year": 2023,
       "month": 1,
       "province": "Papua Barat",
-      "lpi": 25.8
+      "lpi": 32.4
     },
     {
       "year": 2023,
       "month": 1,
       "province": "Kalimantan Selatan",
-      "lpi": 24.9
+      "lpi": 31.2
     },
     {
       "year": 2023,
       "month": 1,
       "province": "Riau",
-      "lpi": 24.7
+      "lpi": 31.1
     },
     {
       "year": 2023,
       "month": 1,
       "province": "Bangka Belitung",
-      "lpi": 24.5
+      "lpi": 30.8
     },
     {
       "year": 2023,
       "month": 1,
       "province": "DI Yogyakarta",
-      "lpi": 23.3
+      "lpi": 29.8
     },
     {
       "year": 2023,
       "month": 1,
       "province": "Kalimantan Tengah",
-      "lpi": 22.6
+      "lpi": 29.3
     },
     {
       "year": 2023,
       "month": 1,
       "province": "Papua Barat Daya",
-      "lpi": 20.8
+      "lpi": 28
     },
     {
       "year": 2023,
       "month": 1,
       "province": "Sulawesi Utara",
-      "lpi": 20.1
+      "lpi": 27.6
     },
     {
       "year": 2023,
       "month": 1,
       "province": "Sumatera Utara",
-      "lpi": 19.1
+      "lpi": 27.1
     },
     {
       "year": 2023,
       "month": 1,
       "province": "Sumatera Selatan",
+      "lpi": 25.8
+    },
+    {
+      "year": 2023,
+      "month": 1,
+      "province": "Sulawesi Tenggara",
+      "lpi": 25.6
+    },
+    {
+      "year": 2023,
+      "month": 1,
+      "province": "Sulawesi Selatan",
+      "lpi": 24.6
+    },
+    {
+      "year": 2023,
+      "month": 1,
+      "province": "Kalimantan Barat",
+      "lpi": 24
+    },
+    {
+      "year": 2023,
+      "month": 1,
+      "province": "Jambi",
+      "lpi": 22.8
+    },
+    {
+      "year": 2023,
+      "month": 1,
+      "province": "Sumatera Barat",
+      "lpi": 21.5
+    },
+    {
+      "year": 2023,
+      "month": 1,
+      "province": "Lampung",
+      "lpi": 21.3
+    },
+    {
+      "year": 2023,
+      "month": 1,
+      "province": "Papua",
+      "lpi": 21.1
+    },
+    {
+      "year": 2023,
+      "month": 1,
+      "province": "Gorontalo",
+      "lpi": 19.8
+    },
+    {
+      "year": 2023,
+      "month": 1,
+      "province": "Maluku",
+      "lpi": 17.4
+    },
+    {
+      "year": 2023,
+      "month": 1,
+      "province": "Nusa Tenggara Barat",
+      "lpi": 17.2
+    },
+    {
+      "year": 2023,
+      "month": 1,
+      "province": "Papua Tengah",
       "lpi": 17.1
     },
     {
       "year": 2023,
       "month": 1,
-      "province": "Sulawesi Tenggara",
-      "lpi": 17
-    },
-    {
-      "year": 2023,
-      "month": 1,
-      "province": "Sulawesi Selatan",
-      "lpi": 15.6
-    },
-    {
-      "year": 2023,
-      "month": 1,
-      "province": "Kalimantan Barat",
-      "lpi": 14.7
-    },
-    {
-      "year": 2023,
-      "month": 1,
-      "province": "Jambi",
-      "lpi": 13.1
-    },
-    {
-      "year": 2023,
-      "month": 1,
-      "province": "Papua",
-      "lpi": 11.3
-    },
-    {
-      "year": 2023,
-      "month": 1,
-      "province": "Sumatera Barat",
-      "lpi": 11.2
-    },
-    {
-      "year": 2023,
-      "month": 1,
-      "province": "Lampung",
-      "lpi": 10.6
-    },
-    {
-      "year": 2023,
-      "month": 1,
-      "province": "Gorontalo",
-      "lpi": 9.4
-    },
-    {
-      "year": 2023,
-      "month": 1,
-      "province": "Maluku",
-      "lpi": 5.7
-    },
-    {
-      "year": 2023,
-      "month": 1,
-      "province": "Nusa Tenggara Barat",
-      "lpi": 4.9
-    },
-    {
-      "year": 2023,
-      "month": 1,
-      "province": "Papua Tengah",
-      "lpi": 4
-    },
-    {
-      "year": 2023,
-      "month": 1,
       "province": "Aceh",
-      "lpi": 1.4
+      "lpi": 14.6
     },
     {
       "year": 2023,
       "month": 1,
       "province": "Sulawesi Barat",
-      "lpi": 0.1
+      "lpi": 13.7
     },
     {
       "year": 2023,
       "month": 1,
       "province": "Nusa Tenggara Timur",
-      "lpi": -2.3
-    },
-    {
-      "year": 2023,
-      "month": 2,
-      "province": "Kepulauan Riau",
-      "lpi": 69.3
-    },
-    {
-      "year": 2023,
-      "month": 2,
-      "province": "Maluku Utara",
-      "lpi": 50.7
-    },
-    {
-      "year": 2023,
-      "month": 2,
-      "province": "DKI Jakarta",
-      "lpi": 46
-    },
-    {
-      "year": 2023,
-      "month": 2,
-      "province": "Banten",
-      "lpi": 42.5
-    },
-    {
-      "year": 2023,
-      "month": 2,
-      "province": "Sulawesi Tengah",
-      "lpi": 35.7
-    },
-    {
-      "year": 2023,
-      "month": 2,
-      "province": "Kalimantan Timur",
-      "lpi": 35.1
-    },
-    {
-      "year": 2023,
-      "month": 2,
-      "province": "Jawa Barat",
-      "lpi": 34.1
-    },
-    {
-      "year": 2023,
-      "month": 2,
-      "province": "Jawa Tengah",
-      "lpi": 27.9
-    },
-    {
-      "year": 2023,
-      "month": 2,
-      "province": "Jawa Timur",
-      "lpi": 27.3
-    },
-    {
-      "year": 2023,
-      "month": 2,
-      "province": "Papua Barat",
-      "lpi": 25.8
-    },
-    {
-      "year": 2023,
-      "month": 2,
-      "province": "Bali",
-      "lpi": 25.7
-    },
-    {
-      "year": 2023,
-      "month": 2,
-      "province": "Kalimantan Utara",
-      "lpi": 25.5
-    },
-    {
-      "year": 2023,
-      "month": 2,
-      "province": "Kalimantan Selatan",
-      "lpi": 22.6
-    },
-    {
-      "year": 2023,
-      "month": 2,
-      "province": "Riau",
-      "lpi": 22.6
-    },
-    {
-      "year": 2023,
-      "month": 2,
-      "province": "Bangka Belitung",
-      "lpi": 22.4
-    },
-    {
-      "year": 2023,
-      "month": 2,
-      "province": "DI Yogyakarta",
-      "lpi": 21.2
-    },
-    {
-      "year": 2023,
-      "month": 2,
-      "province": "Papua Barat Daya",
-      "lpi": 20.8
-    },
-    {
-      "year": 2023,
-      "month": 2,
-      "province": "Kalimantan Tengah",
-      "lpi": 20.5
-    },
-    {
-      "year": 2023,
-      "month": 2,
-      "province": "Sulawesi Utara",
-      "lpi": 17.8
-    },
-    {
-      "year": 2023,
-      "month": 2,
-      "province": "Sumatera Utara",
-      "lpi": 16.8
-    },
-    {
-      "year": 2023,
-      "month": 2,
-      "province": "Sumatera Selatan",
-      "lpi": 15
-    },
-    {
-      "year": 2023,
-      "month": 2,
-      "province": "Sulawesi Tenggara",
-      "lpi": 14.9
-    },
-    {
-      "year": 2023,
-      "month": 2,
-      "province": "Sulawesi Selatan",
-      "lpi": 13.5
-    },
-    {
-      "year": 2023,
-      "month": 2,
-      "province": "Kalimantan Barat",
-      "lpi": 12.6
-    },
-    {
-      "year": 2023,
-      "month": 2,
-      "province": "Papua",
-      "lpi": 11.3
-    },
-    {
-      "year": 2023,
-      "month": 2,
-      "province": "Jambi",
-      "lpi": 11
-    },
-    {
-      "year": 2023,
-      "month": 2,
-      "province": "Sumatera Barat",
-      "lpi": 8.4
-    },
-    {
-      "year": 2023,
-      "month": 2,
-      "province": "Lampung",
-      "lpi": 8.3
-    },
-    {
-      "year": 2023,
-      "month": 2,
-      "province": "Papua Tengah",
-      "lpi": 4
-    },
-    {
-      "year": 2023,
-      "month": 2,
-      "province": "Maluku",
-      "lpi": 3.4
-    },
-    {
-      "year": 2023,
-      "month": 2,
-      "province": "Nusa Tenggara Barat",
-      "lpi": 2.7
-    },
-    {
-      "year": 2023,
-      "month": 2,
-      "province": "Gorontalo",
-      "lpi": -0.2
-    },
-    {
-      "year": 2023,
-      "month": 2,
-      "province": "Aceh",
-      "lpi": -0.7
-    },
-    {
-      "year": 2023,
-      "month": 2,
-      "province": "Sulawesi Barat",
-      "lpi": -2
-    },
-    {
-      "year": 2023,
-      "month": 2,
-      "province": "Nusa Tenggara Timur",
-      "lpi": -3.9
-    },
-    {
-      "year": 2023,
-      "month": 3,
-      "province": "Kepulauan Riau",
-      "lpi": 71.8
-    },
-    {
-      "year": 2023,
-      "month": 3,
-      "province": "Maluku Utara",
-      "lpi": 53
-    },
-    {
-      "year": 2023,
-      "month": 3,
-      "province": "DKI Jakarta",
-      "lpi": 48.7
-    },
-    {
-      "year": 2023,
-      "month": 3,
-      "province": "Banten",
-      "lpi": 44.8
-    },
-    {
-      "year": 2023,
-      "month": 3,
-      "province": "Sulawesi Tengah",
-      "lpi": 38.2
-    },
-    {
-      "year": 2023,
-      "month": 3,
-      "province": "Kalimantan Timur",
-      "lpi": 37.8
-    },
-    {
-      "year": 2023,
-      "month": 3,
-      "province": "Jawa Barat",
-      "lpi": 36.6
-    },
-    {
-      "year": 2023,
-      "month": 3,
-      "province": "Jawa Tengah",
-      "lpi": 30.2
-    },
-    {
-      "year": 2023,
-      "month": 3,
-      "province": "Jawa Timur",
-      "lpi": 29.8
-    },
-    {
-      "year": 2023,
-      "month": 3,
-      "province": "Kalimantan Utara",
-      "lpi": 29.2
-    },
-    {
-      "year": 2023,
-      "month": 3,
-      "province": "Bali",
-      "lpi": 28.7
-    },
-    {
-      "year": 2023,
-      "month": 3,
-      "province": "Kalimantan Selatan",
-      "lpi": 27.6
-    },
-    {
-      "year": 2023,
-      "month": 3,
-      "province": "Papua Barat",
-      "lpi": 25.8
-    },
-    {
-      "year": 2023,
-      "month": 3,
-      "province": "Bangka Belitung",
-      "lpi": 25.1
-    },
-    {
-      "year": 2023,
-      "month": 3,
-      "province": "Riau",
-      "lpi": 25.1
-    },
-    {
-      "year": 2023,
-      "month": 3,
-      "province": "DI Yogyakarta",
-      "lpi": 24
-    },
-    {
-      "year": 2023,
-      "month": 3,
-      "province": "Kalimantan Tengah",
-      "lpi": 23
-    },
-    {
-      "year": 2023,
-      "month": 3,
-      "province": "Papua Barat Daya",
-      "lpi": 20.8
-    },
-    {
-      "year": 2023,
-      "month": 3,
-      "province": "Sulawesi Utara",
-      "lpi": 20.6
-    },
-    {
-      "year": 2023,
-      "month": 3,
-      "province": "Sumatera Utara",
-      "lpi": 19.5
-    },
-    {
-      "year": 2023,
-      "month": 3,
-      "province": "Sumatera Selatan",
-      "lpi": 17.5
-    },
-    {
-      "year": 2023,
-      "month": 3,
-      "province": "Sulawesi Tenggara",
-      "lpi": 17.2
-    },
-    {
-      "year": 2023,
-      "month": 3,
-      "province": "Sulawesi Selatan",
-      "lpi": 16.5
-    },
-    {
-      "year": 2023,
-      "month": 3,
-      "province": "Kalimantan Barat",
-      "lpi": 15.3
-    },
-    {
-      "year": 2023,
-      "month": 3,
-      "province": "Jambi",
-      "lpi": 14.1
-    },
-    {
-      "year": 2023,
-      "month": 3,
-      "province": "Sumatera Barat",
-      "lpi": 11.6
-    },
-    {
-      "year": 2023,
-      "month": 3,
-      "province": "Papua",
-      "lpi": 11.3
-    },
-    {
-      "year": 2023,
-      "month": 3,
-      "province": "Lampung",
-      "lpi": 10.2
-    },
-    {
-      "year": 2023,
-      "month": 3,
-      "province": "Maluku",
-      "lpi": 7.3
-    },
-    {
-      "year": 2023,
-      "month": 3,
-      "province": "Nusa Tenggara Barat",
-      "lpi": 5.4
-    },
-    {
-      "year": 2023,
-      "month": 3,
-      "province": "Papua Tengah",
-      "lpi": 4
-    },
-    {
-      "year": 2023,
-      "month": 3,
-      "province": "Gorontalo",
-      "lpi": 1.5
-    },
-    {
-      "year": 2023,
-      "month": 3,
-      "province": "Aceh",
-      "lpi": 1.4
-    },
-    {
-      "year": 2023,
-      "month": 3,
-      "province": "Sulawesi Barat",
-      "lpi": 0.3
-    },
-    {
-      "year": 2023,
-      "month": 3,
-      "province": "Nusa Tenggara Timur",
-      "lpi": -1.2
-    },
-    {
-      "year": 2023,
-      "month": 4,
-      "province": "Kepulauan Riau",
-      "lpi": 67.8
-    },
-    {
-      "year": 2023,
-      "month": 4,
-      "province": "Maluku Utara",
-      "lpi": 53
-    },
-    {
-      "year": 2023,
-      "month": 4,
-      "province": "DKI Jakarta",
-      "lpi": 44.5
-    },
-    {
-      "year": 2023,
-      "month": 4,
-      "province": "Banten",
-      "lpi": 39
-    },
-    {
-      "year": 2023,
-      "month": 4,
-      "province": "Sulawesi Tengah",
-      "lpi": 34.3
-    },
-    {
-      "year": 2023,
-      "month": 4,
-      "province": "Kalimantan Timur",
-      "lpi": 33.6
-    },
-    {
-      "year": 2023,
-      "month": 4,
-      "province": "Jawa Barat",
-      "lpi": 32.7
-    },
-    {
-      "year": 2023,
-      "month": 4,
-      "province": "Kalimantan Selatan",
-      "lpi": 28.2
-    },
-    {
-      "year": 2023,
-      "month": 4,
-      "province": "Papua Barat",
-      "lpi": 25.8
-    },
-    {
-      "year": 2023,
-      "month": 4,
-      "province": "Kalimantan Utara",
-      "lpi": 25.7
-    },
-    {
-      "year": 2023,
-      "month": 4,
-      "province": "Jawa Tengah",
-      "lpi": 25.6
-    },
-    {
-      "year": 2023,
-      "month": 4,
-      "province": "Jawa Timur",
-      "lpi": 25.4
-    },
-    {
-      "year": 2023,
-      "month": 4,
-      "province": "Bali",
-      "lpi": 24.3
-    },
-    {
-      "year": 2023,
-      "month": 4,
-      "province": "Riau",
-      "lpi": 21.1
-    },
-    {
-      "year": 2023,
-      "month": 4,
-      "province": "Bangka Belitung",
-      "lpi": 20.9
-    },
-    {
-      "year": 2023,
-      "month": 4,
-      "province": "Papua Barat Daya",
-      "lpi": 20.8
-    },
-    {
-      "year": 2023,
-      "month": 4,
-      "province": "DI Yogyakarta",
-      "lpi": 19.8
-    },
-    {
-      "year": 2023,
-      "month": 4,
-      "province": "Kalimantan Tengah",
-      "lpi": 18.6
-    },
-    {
-      "year": 2023,
-      "month": 4,
-      "province": "Sulawesi Utara",
-      "lpi": 16.6
-    },
-    {
-      "year": 2023,
-      "month": 4,
-      "province": "Sumatera Utara",
-      "lpi": 15.6
-    },
-    {
-      "year": 2023,
-      "month": 4,
-      "province": "Sumatera Selatan",
-      "lpi": 14.2
-    },
-    {
-      "year": 2023,
-      "month": 4,
-      "province": "Sulawesi Tenggara",
-      "lpi": 12.8
-    },
-    {
-      "year": 2023,
-      "month": 4,
-      "province": "Sulawesi Selatan",
-      "lpi": 12.1
-    },
-    {
-      "year": 2023,
-      "month": 4,
-      "province": "Kalimantan Barat",
-      "lpi": 11.4
-    },
-    {
-      "year": 2023,
-      "month": 4,
-      "province": "Papua",
-      "lpi": 11.3
-    },
-    {
-      "year": 2023,
-      "month": 4,
-      "province": "Jambi",
-      "lpi": 9.9
-    },
-    {
-      "year": 2023,
-      "month": 4,
-      "province": "Sumatera Barat",
-      "lpi": 7.6
-    },
-    {
-      "year": 2023,
-      "month": 4,
-      "province": "Lampung",
-      "lpi": 6.9
-    },
-    {
-      "year": 2023,
-      "month": 4,
-      "province": "Papua Tengah",
-      "lpi": 4
-    },
-    {
-      "year": 2023,
-      "month": 4,
-      "province": "Maluku",
-      "lpi": 3.6
-    },
-    {
-      "year": 2023,
-      "month": 4,
-      "province": "Nusa Tenggara Barat",
-      "lpi": 1.2
-    },
-    {
-      "year": 2023,
-      "month": 4,
-      "province": "Sulawesi Barat",
-      "lpi": -1.8
-    },
-    {
-      "year": 2023,
-      "month": 4,
-      "province": "Gorontalo",
-      "lpi": -1.9
-    },
-    {
-      "year": 2023,
-      "month": 4,
-      "province": "Aceh",
-      "lpi": -3.2
-    },
-    {
-      "year": 2023,
-      "month": 4,
-      "province": "Nusa Tenggara Timur",
-      "lpi": -5.4
-    },
-    {
-      "year": 2023,
-      "month": 5,
-      "province": "Kepulauan Riau",
-      "lpi": 62
-    },
-    {
-      "year": 2023,
-      "month": 5,
-      "province": "Maluku Utara",
-      "lpi": 52
-    },
-    {
-      "year": 2023,
-      "month": 5,
-      "province": "DKI Jakarta",
-      "lpi": 44.5
-    },
-    {
-      "year": 2023,
-      "month": 5,
-      "province": "Banten",
-      "lpi": 40.7
-    },
-    {
-      "year": 2023,
-      "month": 5,
-      "province": "Sulawesi Tengah",
-      "lpi": 32.6
-    },
-    {
-      "year": 2023,
-      "month": 5,
-      "province": "Kalimantan Timur",
-      "lpi": 32.4
-    },
-    {
-      "year": 2023,
-      "month": 5,
-      "province": "Jawa Barat",
-      "lpi": 30.8
-    },
-    {
-      "year": 2023,
-      "month": 5,
-      "province": "DI Yogyakarta",
-      "lpi": 30
-    },
-    {
-      "year": 2023,
-      "month": 5,
-      "province": "Kalimantan Selatan",
-      "lpi": 27.2
-    },
-    {
-      "year": 2023,
-      "month": 5,
-      "province": "Papua Barat",
-      "lpi": 25.8
-    },
-    {
-      "year": 2023,
-      "month": 5,
-      "province": "Kalimantan Utara",
-      "lpi": 25.1
-    },
-    {
-      "year": 2023,
-      "month": 5,
-      "province": "Jawa Timur",
-      "lpi": 24.3
-    },
-    {
-      "year": 2023,
-      "month": 5,
-      "province": "Bali",
-      "lpi": 23.4
-    },
-    {
-      "year": 2023,
-      "month": 5,
-      "province": "Riau",
-      "lpi": 22
-    },
-    {
-      "year": 2023,
-      "month": 5,
-      "province": "Jawa Tengah",
-      "lpi": 21.3
-    },
-    {
-      "year": 2023,
-      "month": 5,
-      "province": "Papua Barat Daya",
-      "lpi": 20.8
-    },
-    {
-      "year": 2023,
-      "month": 5,
-      "province": "Bangka Belitung",
-      "lpi": 19.7
-    },
-    {
-      "year": 2023,
-      "month": 5,
-      "province": "Kalimantan Tengah",
-      "lpi": 16.9
-    },
-    {
-      "year": 2023,
-      "month": 5,
-      "province": "Sulawesi Utara",
-      "lpi": 15.3
-    },
-    {
-      "year": 2023,
-      "month": 5,
-      "province": "Sulawesi Selatan",
-      "lpi": 15
-    },
-    {
-      "year": 2023,
-      "month": 5,
-      "province": "Sumatera Utara",
-      "lpi": 14.5
-    },
-    {
-      "year": 2023,
-      "month": 5,
-      "province": "Sumatera Selatan",
-      "lpi": 13.1
-    },
-    {
-      "year": 2023,
-      "month": 5,
-      "province": "Sulawesi Tenggara",
-      "lpi": 12.2
-    },
-    {
-      "year": 2023,
-      "month": 5,
-      "province": "Papua",
-      "lpi": 11.3
-    },
-    {
-      "year": 2023,
-      "month": 5,
-      "province": "Kalimantan Barat",
-      "lpi": 9.7
-    },
-    {
-      "year": 2023,
-      "month": 5,
-      "province": "Jambi",
-      "lpi": 8.9
-    },
-    {
-      "year": 2023,
-      "month": 5,
-      "province": "Sumatera Barat",
-      "lpi": 6.4
-    },
-    {
-      "year": 2023,
-      "month": 5,
-      "province": "Lampung",
-      "lpi": 5.6
-    },
-    {
-      "year": 2023,
-      "month": 5,
-      "province": "Papua Tengah",
-      "lpi": 4
-    },
-    {
-      "year": 2023,
-      "month": 5,
-      "province": "Maluku",
-      "lpi": 1.9
-    },
-    {
-      "year": 2023,
-      "month": 5,
-      "province": "Nusa Tenggara Barat",
-      "lpi": 0.1
-    },
-    {
-      "year": 2023,
-      "month": 5,
-      "province": "Sulawesi Barat",
-      "lpi": -3
-    },
-    {
-      "year": 2023,
-      "month": 5,
-      "province": "Gorontalo",
-      "lpi": -3.7
-    },
-    {
-      "year": 2023,
-      "month": 5,
-      "province": "Aceh",
-      "lpi": -4.3
-    },
-    {
-      "year": 2023,
-      "month": 5,
-      "province": "Nusa Tenggara Timur",
-      "lpi": -6.7
-    },
-    {
-      "year": 2023,
-      "month": 6,
-      "province": "Kepulauan Riau",
-      "lpi": 58.2
-    },
-    {
-      "year": 2023,
-      "month": 6,
-      "province": "Maluku Utara",
-      "lpi": 48
-    },
-    {
-      "year": 2023,
-      "month": 6,
-      "province": "DKI Jakarta",
-      "lpi": 41.6
-    },
-    {
-      "year": 2023,
-      "month": 6,
-      "province": "Banten",
-      "lpi": 38.8
-    },
-    {
-      "year": 2023,
-      "month": 6,
-      "province": "Sulawesi Tengah",
-      "lpi": 30.3
-    },
-    {
-      "year": 2023,
-      "month": 6,
-      "province": "Kalimantan Timur",
-      "lpi": 29.3
-    },
-    {
-      "year": 2023,
-      "month": 6,
-      "province": "Jawa Barat",
-      "lpi": 27.9
-    },
-    {
-      "year": 2023,
-      "month": 6,
-      "province": "DI Yogyakarta",
-      "lpi": 27.1
-    },
-    {
-      "year": 2023,
-      "month": 6,
-      "province": "Papua Barat",
-      "lpi": 25.8
-    },
-    {
-      "year": 2023,
-      "month": 6,
-      "province": "Kalimantan Selatan",
-      "lpi": 24.1
-    },
-    {
-      "year": 2023,
-      "month": 6,
-      "province": "Jawa Timur",
-      "lpi": 22.7
-    },
-    {
-      "year": 2023,
-      "month": 6,
-      "province": "Kalimantan Utara",
-      "lpi": 21.5
-    },
-    {
-      "year": 2023,
-      "month": 6,
-      "province": "Papua Barat Daya",
-      "lpi": 20.8
-    },
-    {
-      "year": 2023,
-      "month": 6,
-      "province": "Bali",
-      "lpi": 20.5
-    },
-    {
-      "year": 2023,
-      "month": 6,
-      "province": "Riau",
-      "lpi": 18.8
-    },
-    {
-      "year": 2023,
-      "month": 6,
-      "province": "Jawa Tengah",
-      "lpi": 18.8
-    },
-    {
-      "year": 2023,
-      "month": 6,
-      "province": "Bangka Belitung",
-      "lpi": 16.8
-    },
-    {
-      "year": 2023,
-      "month": 6,
-      "province": "Kalimantan Tengah",
-      "lpi": 14
-    },
-    {
-      "year": 2023,
-      "month": 6,
-      "province": "Sulawesi Utara",
-      "lpi": 12
-    },
-    {
-      "year": 2023,
-      "month": 6,
-      "province": "Sumatera Utara",
-      "lpi": 11.4
-    },
-    {
-      "year": 2023,
-      "month": 6,
-      "province": "Papua",
-      "lpi": 11.3
-    },
-    {
-      "year": 2023,
-      "month": 6,
-      "province": "Sulawesi Selatan",
-      "lpi": 11
-    },
-    {
-      "year": 2023,
-      "month": 6,
-      "province": "Sulawesi Tenggara",
-      "lpi": 9.9
-    },
-    {
-      "year": 2023,
-      "month": 6,
-      "province": "Sumatera Selatan",
-      "lpi": 9.8
-    },
-    {
-      "year": 2023,
-      "month": 6,
-      "province": "Kalimantan Barat",
-      "lpi": 6.2
-    },
-    {
-      "year": 2023,
-      "month": 6,
-      "province": "Jambi",
-      "lpi": 5.8
-    },
-    {
-      "year": 2023,
-      "month": 6,
-      "province": "Papua Tengah",
-      "lpi": 4
-    },
-    {
-      "year": 2023,
-      "month": 6,
-      "province": "Sumatera Barat",
-      "lpi": 3.2
-    },
-    {
-      "year": 2023,
-      "month": 6,
-      "province": "Lampung",
-      "lpi": 2.5
-    },
-    {
-      "year": 2023,
-      "month": 6,
-      "province": "Maluku",
-      "lpi": -0.8
-    },
-    {
-      "year": 2023,
-      "month": 6,
-      "province": "Nusa Tenggara Barat",
-      "lpi": -3
-    },
-    {
-      "year": 2023,
-      "month": 6,
-      "province": "Gorontalo",
-      "lpi": -5.4
-    },
-    {
-      "year": 2023,
-      "month": 6,
-      "province": "Sulawesi Barat",
-      "lpi": -6.6
-    },
-    {
-      "year": 2023,
-      "month": 6,
-      "province": "Aceh",
-      "lpi": -7.8
-    },
-    {
-      "year": 2023,
-      "month": 6,
-      "province": "Nusa Tenggara Timur",
-      "lpi": -9.6
-    },
-    {
-      "year": 2023,
-      "month": 7,
-      "province": "Kepulauan Riau",
-      "lpi": 47.6
-    },
-    {
-      "year": 2023,
-      "month": 7,
-      "province": "DKI Jakarta",
-      "lpi": 34.5
-    },
-    {
-      "year": 2023,
-      "month": 7,
-      "province": "Banten",
-      "lpi": 31.9
-    },
-    {
-      "year": 2023,
-      "month": 7,
-      "province": "Maluku Utara",
-      "lpi": 28.6
-    },
-    {
-      "year": 2023,
-      "month": 7,
-      "province": "Papua Barat",
-      "lpi": 25.6
-    },
-    {
-      "year": 2023,
-      "month": 7,
-      "province": "Sulawesi Tengah",
-      "lpi": 23
-    },
-    {
-      "year": 2023,
-      "month": 7,
-      "province": "Kalimantan Timur",
-      "lpi": 21.9
-    },
-    {
-      "year": 2023,
-      "month": 7,
-      "province": "Papua Barat Daya",
-      "lpi": 20.6
-    },
-    {
-      "year": 2023,
-      "month": 7,
-      "province": "Jawa Barat",
-      "lpi": 20.6
-    },
-    {
-      "year": 2023,
-      "month": 7,
-      "province": "DI Yogyakarta",
-      "lpi": 19.6
-    },
-    {
-      "year": 2023,
-      "month": 7,
-      "province": "Kalimantan Selatan",
-      "lpi": 16.7
-    },
-    {
-      "year": 2023,
-      "month": 7,
-      "province": "Jawa Timur",
-      "lpi": 15.6
-    },
-    {
-      "year": 2023,
-      "month": 7,
-      "province": "Kalimantan Utara",
-      "lpi": 14.4
-    },
-    {
-      "year": 2023,
-      "month": 7,
-      "province": "Bali",
-      "lpi": 13.2
-    },
-    {
-      "year": 2023,
-      "month": 7,
-      "province": "Riau",
       "lpi": 11.9
     },
     {
       "year": 2023,
-      "month": 7,
-      "province": "Jawa Tengah",
-      "lpi": 11.9
-    },
-    {
-      "year": 2023,
-      "month": 7,
-      "province": "Papua",
-      "lpi": 11.1
-    },
-    {
-      "year": 2023,
-      "month": 7,
-      "province": "Bangka Belitung",
-      "lpi": 9.5
-    },
-    {
-      "year": 2023,
-      "month": 7,
-      "province": "Kalimantan Tengah",
-      "lpi": 6.5
-    },
-    {
-      "year": 2023,
-      "month": 7,
-      "province": "Sulawesi Tenggara",
-      "lpi": 6.2
-    },
-    {
-      "year": 2023,
-      "month": 7,
-      "province": "Sulawesi Utara",
-      "lpi": 4.7
-    },
-    {
-      "year": 2023,
-      "month": 7,
-      "province": "Sumatera Utara",
-      "lpi": 4.3
-    },
-    {
-      "year": 2023,
-      "month": 7,
-      "province": "Sulawesi Selatan",
-      "lpi": 4.1
-    },
-    {
-      "year": 2023,
-      "month": 7,
-      "province": "Papua Tengah",
-      "lpi": 3.8
-    },
-    {
-      "year": 2023,
-      "month": 7,
-      "province": "Sumatera Selatan",
-      "lpi": 2.7
-    },
-    {
-      "year": 2023,
-      "month": 7,
-      "province": "Kalimantan Barat",
-      "lpi": -0.9
-    },
-    {
-      "year": 2023,
-      "month": 7,
-      "province": "Jambi",
-      "lpi": -1.6
-    },
-    {
-      "year": 2023,
-      "month": 7,
-      "province": "Sumatera Barat",
-      "lpi": -3.9
-    },
-    {
-      "year": 2023,
-      "month": 7,
-      "province": "Lampung",
-      "lpi": -4.8
-    },
-    {
-      "year": 2023,
-      "month": 7,
-      "province": "Maluku",
-      "lpi": -8.7
-    },
-    {
-      "year": 2023,
-      "month": 7,
-      "province": "Nusa Tenggara Barat",
-      "lpi": -10.3
-    },
-    {
-      "year": 2023,
-      "month": 7,
-      "province": "Gorontalo",
-      "lpi": -12.3
-    },
-    {
-      "year": 2023,
-      "month": 7,
-      "province": "Sulawesi Barat",
-      "lpi": -13.5
-    },
-    {
-      "year": 2023,
-      "month": 7,
-      "province": "Aceh",
-      "lpi": -16
-    },
-    {
-      "year": 2023,
-      "month": 7,
-      "province": "Nusa Tenggara Timur",
-      "lpi": -16.9
-    },
-    {
-      "year": 2023,
-      "month": 8,
-      "province": "Kepulauan Riau",
-      "lpi": 46.5
-    },
-    {
-      "year": 2023,
-      "month": 8,
-      "province": "DKI Jakarta",
-      "lpi": 33.1
-    },
-    {
-      "year": 2023,
-      "month": 8,
-      "province": "Banten",
-      "lpi": 30.4
-    },
-    {
-      "year": 2023,
-      "month": 8,
-      "province": "Papua Barat",
-      "lpi": 25.6
-    },
-    {
-      "year": 2023,
-      "month": 8,
-      "province": "Maluku Utara",
-      "lpi": 23.8
-    },
-    {
-      "year": 2023,
-      "month": 8,
-      "province": "Sulawesi Tengah",
-      "lpi": 22.1
-    },
-    {
-      "year": 2023,
-      "month": 8,
-      "province": "Kalimantan Timur",
-      "lpi": 20.7
-    },
-    {
-      "year": 2023,
-      "month": 8,
-      "province": "Papua Barat Daya",
-      "lpi": 20.6
-    },
-    {
-      "year": 2023,
-      "month": 8,
-      "province": "Jawa Barat",
-      "lpi": 19.3
-    },
-    {
-      "year": 2023,
-      "month": 8,
-      "province": "DI Yogyakarta",
-      "lpi": 18.7
-    },
-    {
-      "year": 2023,
-      "month": 8,
-      "province": "Kalimantan Selatan",
-      "lpi": 15.3
-    },
-    {
-      "year": 2023,
-      "month": 8,
-      "province": "Jawa Timur",
-      "lpi": 14.1
-    },
-    {
-      "year": 2023,
-      "month": 8,
-      "province": "Kalimantan Utara",
-      "lpi": 12.5
-    },
-    {
-      "year": 2023,
-      "month": 8,
-      "province": "Bali",
-      "lpi": 11.7
-    },
-    {
-      "year": 2023,
-      "month": 8,
-      "province": "Papua",
-      "lpi": 11.1
-    },
-    {
-      "year": 2023,
-      "month": 8,
-      "province": "Jawa Tengah",
-      "lpi": 10.2
-    },
-    {
-      "year": 2023,
-      "month": 8,
-      "province": "Bangka Belitung",
-      "lpi": 8
-    },
-    {
-      "year": 2023,
-      "month": 8,
-      "province": "Riau",
-      "lpi": 6.7
-    },
-    {
-      "year": 2023,
-      "month": 8,
-      "province": "Kalimantan Tengah",
-      "lpi": 5.2
-    },
-    {
-      "year": 2023,
-      "month": 8,
-      "province": "Sulawesi Tenggara",
-      "lpi": 4.7
-    },
-    {
-      "year": 2023,
-      "month": 8,
-      "province": "Sumatera Utara",
-      "lpi": 4.1
-    },
-    {
-      "year": 2023,
-      "month": 8,
-      "province": "Papua Tengah",
-      "lpi": 3.8
-    },
-    {
-      "year": 2023,
-      "month": 8,
-      "province": "Sulawesi Utara",
-      "lpi": 3.2
-    },
-    {
-      "year": 2023,
-      "month": 8,
-      "province": "Sulawesi Selatan",
-      "lpi": 2.9
-    },
-    {
-      "year": 2023,
-      "month": 8,
-      "province": "Sumatera Selatan",
-      "lpi": 1
-    },
-    {
-      "year": 2023,
-      "month": 8,
-      "province": "Kalimantan Barat",
-      "lpi": -2
-    },
-    {
-      "year": 2023,
-      "month": 8,
-      "province": "Jambi",
-      "lpi": -3
-    },
-    {
-      "year": 2023,
-      "month": 8,
-      "province": "Sumatera Barat",
-      "lpi": -5.1
-    },
-    {
-      "year": 2023,
-      "month": 8,
-      "province": "Lampung",
-      "lpi": -6.1
-    },
-    {
-      "year": 2023,
-      "month": 8,
-      "province": "Maluku",
-      "lpi": -10.2
-    },
-    {
-      "year": 2023,
-      "month": 8,
-      "province": "Nusa Tenggara Barat",
-      "lpi": -11.8
-    },
-    {
-      "year": 2023,
-      "month": 8,
-      "province": "Gorontalo",
-      "lpi": -14.2
-    },
-    {
-      "year": 2023,
-      "month": 8,
-      "province": "Sulawesi Barat",
-      "lpi": -14.3
-    },
-    {
-      "year": 2023,
-      "month": 8,
-      "province": "Aceh",
-      "lpi": -17
-    },
-    {
-      "year": 2023,
-      "month": 8,
-      "province": "Nusa Tenggara Timur",
-      "lpi": -18.4
-    },
-    {
-      "year": 2023,
-      "month": 9,
-      "province": "Kepulauan Riau",
-      "lpi": 50.7
-    },
-    {
-      "year": 2023,
-      "month": 9,
-      "province": "DKI Jakarta",
-      "lpi": 37.7
-    },
-    {
-      "year": 2023,
-      "month": 9,
-      "province": "Banten",
-      "lpi": 34.6
-    },
-    {
-      "year": 2023,
-      "month": 9,
-      "province": "Maluku Utara",
-      "lpi": 30.3
-    },
-    {
-      "year": 2023,
-      "month": 9,
-      "province": "Sulawesi Tengah",
-      "lpi": 26.3
-    },
-    {
-      "year": 2023,
-      "month": 9,
-      "province": "Papua Barat",
-      "lpi": 25.6
-    },
-    {
-      "year": 2023,
-      "month": 9,
-      "province": "Kalimantan Timur",
-      "lpi": 25.1
-    },
-    {
-      "year": 2023,
-      "month": 9,
-      "province": "Jawa Barat",
-      "lpi": 23.7
-    },
-    {
-      "year": 2023,
-      "month": 9,
-      "province": "DI Yogyakarta",
-      "lpi": 20.8
-    },
-    {
-      "year": 2023,
-      "month": 9,
-      "province": "Papua Barat Daya",
-      "lpi": 20.6
-    },
-    {
-      "year": 2023,
-      "month": 9,
-      "province": "Kalimantan Selatan",
-      "lpi": 19.9
-    },
-    {
-      "year": 2023,
-      "month": 9,
-      "province": "Jawa Timur",
-      "lpi": 18.5
-    },
-    {
-      "year": 2023,
-      "month": 9,
-      "province": "Kalimantan Utara",
-      "lpi": 17.3
-    },
-    {
-      "year": 2023,
-      "month": 9,
-      "province": "Bali",
-      "lpi": 16.6
-    },
-    {
-      "year": 2023,
-      "month": 9,
-      "province": "Jawa Tengah",
-      "lpi": 14.4
-    },
-    {
-      "year": 2023,
-      "month": 9,
-      "province": "Bangka Belitung",
-      "lpi": 12.6
-    },
-    {
-      "year": 2023,
-      "month": 9,
-      "province": "Papua",
-      "lpi": 11.1
-    },
-    {
-      "year": 2023,
-      "month": 9,
-      "province": "Kalimantan Tengah",
-      "lpi": 9.6
-    },
-    {
-      "year": 2023,
-      "month": 9,
-      "province": "Sulawesi Tenggara",
-      "lpi": 9.5
-    },
-    {
-      "year": 2023,
-      "month": 9,
-      "province": "Sumatera Utara",
-      "lpi": 8.7
-    },
-    {
-      "year": 2023,
-      "month": 9,
-      "province": "Sulawesi Utara",
-      "lpi": 7.8
-    },
-    {
-      "year": 2023,
-      "month": 9,
-      "province": "Maluku",
-      "lpi": 7.7
-    },
-    {
-      "year": 2023,
-      "month": 9,
-      "province": "Kalimantan Barat",
-      "lpi": 7.6
-    },
-    {
-      "year": 2023,
-      "month": 9,
-      "province": "Sulawesi Selatan",
-      "lpi": 7.3
-    },
-    {
-      "year": 2023,
-      "month": 9,
-      "province": "Sumatera Selatan",
-      "lpi": 5.6
-    },
-    {
-      "year": 2023,
-      "month": 9,
-      "province": "Nusa Tenggara Barat",
-      "lpi": 4.5
-    },
-    {
-      "year": 2023,
-      "month": 9,
-      "province": "Riau",
-      "lpi": 4.2
-    },
-    {
-      "year": 2023,
-      "month": 9,
-      "province": "Papua Tengah",
-      "lpi": 3.8
-    },
-    {
-      "year": 2023,
-      "month": 9,
-      "province": "Jambi",
-      "lpi": 1.8
-    },
-    {
-      "year": 2023,
-      "month": 9,
-      "province": "Sumatera Barat",
-      "lpi": -0.7
-    },
-    {
-      "year": 2023,
-      "month": 9,
-      "province": "Lampung",
-      "lpi": -1.5
-    },
-    {
-      "year": 2023,
-      "month": 9,
-      "province": "Sulawesi Barat",
-      "lpi": -8.9
-    },
-    {
-      "year": 2023,
-      "month": 9,
-      "province": "Aceh",
-      "lpi": -12.8
-    },
-    {
-      "year": 2023,
-      "month": 9,
-      "province": "Nusa Tenggara Timur",
-      "lpi": -13.8
-    },
-    {
-      "year": 2023,
-      "month": 9,
-      "province": "Gorontalo",
-      "lpi": -22.5
-    },
-    {
-      "year": 2023,
-      "month": 10,
-      "province": "Kepulauan Riau",
-      "lpi": 58.4
-    },
-    {
-      "year": 2023,
-      "month": 10,
-      "province": "DKI Jakarta",
-      "lpi": 45.6
-    },
-    {
-      "year": 2023,
-      "month": 10,
-      "province": "Banten",
-      "lpi": 43.8
-    },
-    {
-      "year": 2023,
-      "month": 10,
-      "province": "Maluku Utara",
-      "lpi": 38
-    },
-    {
-      "year": 2023,
-      "month": 10,
-      "province": "Sulawesi Tengah",
-      "lpi": 33.4
-    },
-    {
-      "year": 2023,
-      "month": 10,
-      "province": "Kalimantan Timur",
-      "lpi": 32.8
-    },
-    {
-      "year": 2023,
-      "month": 10,
-      "province": "Jawa Barat",
-      "lpi": 31.6
-    },
-    {
-      "year": 2023,
-      "month": 10,
-      "province": "DI Yogyakarta",
-      "lpi": 29.4
-    },
-    {
-      "year": 2023,
-      "month": 10,
-      "province": "Kalimantan Selatan",
-      "lpi": 27.6
-    },
-    {
-      "year": 2023,
-      "month": 10,
-      "province": "Jawa Timur",
-      "lpi": 26.4
-    },
-    {
-      "year": 2023,
-      "month": 10,
-      "province": "Papua Barat",
-      "lpi": 25.8
-    },
-    {
-      "year": 2023,
-      "month": 10,
-      "province": "Kalimantan Utara",
-      "lpi": 25.5
-    },
-    {
-      "year": 2023,
-      "month": 10,
-      "province": "Bali",
-      "lpi": 24.5
-    },
-    {
-      "year": 2023,
-      "month": 10,
-      "province": "Jawa Tengah",
-      "lpi": 24
-    },
-    {
-      "year": 2023,
-      "month": 10,
-      "province": "Papua Barat Daya",
-      "lpi": 20.8
-    },
-    {
-      "year": 2023,
-      "month": 10,
-      "province": "Bangka Belitung",
-      "lpi": 20.7
-    },
-    {
-      "year": 2023,
-      "month": 10,
-      "province": "Sulawesi Tenggara",
-      "lpi": 17.2
-    },
-    {
-      "year": 2023,
-      "month": 10,
-      "province": "Sumatera Utara",
-      "lpi": 16.4
-    },
-    {
-      "year": 2023,
-      "month": 10,
-      "province": "Sulawesi Utara",
-      "lpi": 15.7
-    },
-    {
-      "year": 2023,
-      "month": 10,
-      "province": "Kalimantan Barat",
-      "lpi": 15.6
-    },
-    {
-      "year": 2023,
-      "month": 10,
-      "province": "Sulawesi Selatan",
-      "lpi": 15.4
-    },
-    {
-      "year": 2023,
-      "month": 10,
-      "province": "Maluku",
-      "lpi": 13.2
-    },
-    {
-      "year": 2023,
-      "month": 10,
-      "province": "Sumatera Selatan",
-      "lpi": 13.1
-    },
-    {
-      "year": 2023,
-      "month": 10,
-      "province": "Nusa Tenggara Barat",
-      "lpi": 12.9
-    },
-    {
-      "year": 2023,
-      "month": 10,
-      "province": "Riau",
-      "lpi": 12.3
-    },
-    {
-      "year": 2023,
-      "month": 10,
-      "province": "Papua",
-      "lpi": 11.3
-    },
-    {
-      "year": 2023,
-      "month": 10,
-      "province": "Jambi",
-      "lpi": 9.7
-    },
-    {
-      "year": 2023,
-      "month": 10,
-      "province": "Sumatera Barat",
-      "lpi": 7.4
-    },
-    {
-      "year": 2023,
-      "month": 10,
-      "province": "Kalimantan Tengah",
-      "lpi": 6.3
-    },
-    {
-      "year": 2023,
-      "month": 10,
-      "province": "Lampung",
-      "lpi": 6.3
-    },
-    {
-      "year": 2023,
-      "month": 10,
-      "province": "Papua Tengah",
-      "lpi": 4
-    },
-    {
-      "year": 2023,
-      "month": 10,
-      "province": "Sulawesi Barat",
-      "lpi": -0.9
-    },
-    {
-      "year": 2023,
-      "month": 10,
-      "province": "Aceh",
-      "lpi": -3.9
-    },
-    {
-      "year": 2023,
-      "month": 10,
-      "province": "Nusa Tenggara Timur",
-      "lpi": -5.8
-    },
-    {
-      "year": 2023,
-      "month": 10,
-      "province": "Gorontalo",
-      "lpi": -14.4
-    },
-    {
-      "year": 2023,
-      "month": 11,
-      "province": "Kepulauan Riau",
-      "lpi": 61.2
-    },
-    {
-      "year": 2023,
-      "month": 11,
-      "province": "DKI Jakarta",
-      "lpi": 47.9
-    },
-    {
-      "year": 2023,
-      "month": 11,
-      "province": "Banten",
-      "lpi": 46.3
-    },
-    {
-      "year": 2023,
-      "month": 11,
-      "province": "Maluku Utara",
-      "lpi": 41.5
-    },
-    {
-      "year": 2023,
-      "month": 11,
-      "province": "Sulawesi Tengah",
-      "lpi": 36.1
-    },
-    {
-      "year": 2023,
-      "month": 11,
-      "province": "Kalimantan Timur",
-      "lpi": 35.3
-    },
-    {
-      "year": 2023,
-      "month": 11,
-      "province": "Jawa Barat",
-      "lpi": 33.9
-    },
-    {
-      "year": 2023,
-      "month": 11,
-      "province": "Sumatera Utara",
-      "lpi": 32.7
-    },
-    {
-      "year": 2023,
-      "month": 11,
-      "province": "DI Yogyakarta",
-      "lpi": 31.9
-    },
-    {
-      "year": 2023,
-      "month": 11,
-      "province": "Kalimantan Barat",
-      "lpi": 31
-    },
-    {
-      "year": 2023,
-      "month": 11,
-      "province": "Kalimantan Selatan",
-      "lpi": 30.1
-    },
-    {
-      "year": 2023,
-      "month": 11,
-      "province": "Jawa Timur",
-      "lpi": 28.9
-    },
-    {
-      "year": 2023,
-      "month": 11,
-      "province": "Kalimantan Utara",
-      "lpi": 27.6
-    },
-    {
-      "year": 2023,
-      "month": 11,
-      "province": "Bali",
-      "lpi": 26.8
-    },
-    {
-      "year": 2023,
-      "month": 11,
-      "province": "Jawa Tengah",
-      "lpi": 26.5
-    },
-    {
-      "year": 2023,
-      "month": 11,
-      "province": "Papua Barat",
-      "lpi": 25.8
-    },
-    {
-      "year": 2023,
-      "month": 11,
-      "province": "Bangka Belitung",
-      "lpi": 22.8
-    },
-    {
-      "year": 2023,
-      "month": 11,
-      "province": "Papua Barat Daya",
-      "lpi": 20.8
-    },
-    {
-      "year": 2023,
-      "month": 11,
-      "province": "Sulawesi Tenggara",
-      "lpi": 19.9
-    },
-    {
-      "year": 2023,
-      "month": 11,
-      "province": "Sumatera Selatan",
-      "lpi": 19.8
-    },
-    {
-      "year": 2023,
-      "month": 11,
-      "province": "Maluku",
-      "lpi": 18.2
-    },
-    {
-      "year": 2023,
-      "month": 11,
-      "province": "Sulawesi Utara",
-      "lpi": 18
-    },
-    {
-      "year": 2023,
-      "month": 11,
-      "province": "Sulawesi Selatan",
-      "lpi": 17.5
-    },
-    {
-      "year": 2023,
-      "month": 11,
-      "province": "Nusa Tenggara Barat",
-      "lpi": 15.2
-    },
-    {
-      "year": 2023,
-      "month": 11,
-      "province": "Riau",
-      "lpi": 14.4
-    },
-    {
-      "year": 2023,
-      "month": 11,
-      "province": "Jambi",
-      "lpi": 11.8
-    },
-    {
-      "year": 2023,
-      "month": 11,
-      "province": "Papua",
-      "lpi": 11.3
-    },
-    {
-      "year": 2023,
-      "month": 11,
-      "province": "Sumatera Barat",
-      "lpi": 9.7
-    },
-    {
-      "year": 2023,
-      "month": 11,
-      "province": "Lampung",
-      "lpi": 8.8
-    },
-    {
-      "year": 2023,
-      "month": 11,
-      "province": "Kalimantan Tengah",
-      "lpi": 8.6
-    },
-    {
-      "year": 2023,
-      "month": 11,
-      "province": "Papua Tengah",
-      "lpi": 4
-    },
-    {
-      "year": 2023,
-      "month": 11,
-      "province": "Sulawesi Barat",
-      "lpi": 1.6
-    },
-    {
-      "year": 2023,
-      "month": 11,
-      "province": "Aceh",
-      "lpi": -2.2
-    },
-    {
-      "year": 2023,
-      "month": 11,
-      "province": "Nusa Tenggara Timur",
-      "lpi": -3.5
-    },
-    {
-      "year": 2023,
-      "month": 11,
-      "province": "Gorontalo",
-      "lpi": -12.3
-    },
-    {
-      "year": 2023,
-      "month": 12,
-      "province": "Kepulauan Riau",
-      "lpi": 59.5
-    },
-    {
-      "year": 2023,
-      "month": 12,
-      "province": "DKI Jakarta",
-      "lpi": 46.4
-    },
-    {
-      "year": 2023,
-      "month": 12,
-      "province": "Banten",
-      "lpi": 44.2
-    },
-    {
-      "year": 2023,
-      "month": 12,
-      "province": "Maluku Utara",
-      "lpi": 40.3
-    },
-    {
-      "year": 2023,
-      "month": 12,
-      "province": "Sulawesi Tengah",
-      "lpi": 34.9
-    },
-    {
-      "year": 2023,
-      "month": 12,
-      "province": "Kalimantan Timur",
-      "lpi": 33.9
-    },
-    {
-      "year": 2023,
-      "month": 12,
-      "province": "Jawa Barat",
-      "lpi": 32.5
-    },
-    {
-      "year": 2023,
-      "month": 12,
-      "province": "Sumatera Utara",
-      "lpi": 31.2
-    },
-    {
-      "year": 2023,
-      "month": 12,
-      "province": "DI Yogyakarta",
-      "lpi": 30.4
-    },
-    {
-      "year": 2023,
-      "month": 12,
-      "province": "Kalimantan Barat",
-      "lpi": 29.5
-    },
-    {
-      "year": 2023,
-      "month": 12,
-      "province": "Kalimantan Selatan",
-      "lpi": 27.6
-    },
-    {
-      "year": 2023,
-      "month": 12,
-      "province": "Jawa Timur",
-      "lpi": 27.5
-    },
-    {
-      "year": 2023,
-      "month": 12,
-      "province": "Kalimantan Utara",
-      "lpi": 26.1
-    },
-    {
-      "year": 2023,
-      "month": 12,
-      "province": "Papua Barat",
-      "lpi": 25.8
-    },
-    {
-      "year": 2023,
-      "month": 12,
-      "province": "Bali",
-      "lpi": 25.5
-    },
-    {
-      "year": 2023,
-      "month": 12,
-      "province": "Jawa Tengah",
-      "lpi": 25.2
-    },
-    {
-      "year": 2023,
-      "month": 12,
-      "province": "Bangka Belitung",
-      "lpi": 21.6
-    },
-    {
-      "year": 2023,
-      "month": 12,
-      "province": "Papua Barat Daya",
-      "lpi": 20.8
-    },
-    {
-      "year": 2023,
-      "month": 12,
-      "province": "Sulawesi Tenggara",
-      "lpi": 19.1
-    },
-    {
-      "year": 2023,
-      "month": 12,
-      "province": "Sumatera Selatan",
-      "lpi": 18.1
-    },
-    {
-      "year": 2023,
-      "month": 12,
-      "province": "Maluku",
-      "lpi": 16.9
-    },
-    {
-      "year": 2023,
-      "month": 12,
-      "province": "Sulawesi Selatan",
-      "lpi": 16.2
-    },
-    {
-      "year": 2023,
-      "month": 12,
-      "province": "Sulawesi Utara",
-      "lpi": 15.5
-    },
-    {
-      "year": 2023,
-      "month": 12,
-      "province": "Nusa Tenggara Barat",
-      "lpi": 13.9
-    },
-    {
-      "year": 2023,
-      "month": 12,
-      "province": "Riau",
-      "lpi": 12.6
-    },
-    {
-      "year": 2023,
-      "month": 12,
-      "province": "Papua",
-      "lpi": 11.3
-    },
-    {
-      "year": 2023,
-      "month": 12,
-      "province": "Jambi",
-      "lpi": 10.6
-    },
-    {
-      "year": 2023,
-      "month": 12,
-      "province": "Sumatera Barat",
-      "lpi": 7.8
-    },
-    {
-      "year": 2023,
-      "month": 12,
-      "province": "Lampung",
-      "lpi": 7.3
-    },
-    {
-      "year": 2023,
-      "month": 12,
-      "province": "Kalimantan Tengah",
-      "lpi": 7.1
-    },
-    {
-      "year": 2023,
-      "month": 12,
-      "province": "Papua Tengah",
-      "lpi": 4
-    },
-    {
-      "year": 2023,
-      "month": 12,
-      "province": "Sulawesi Barat",
-      "lpi": -0.1
-    },
-    {
-      "year": 2023,
-      "month": 12,
-      "province": "Nusa Tenggara Timur",
-      "lpi": -5
-    },
-    {
-      "year": 2023,
-      "month": 12,
-      "province": "Aceh",
-      "lpi": -9.9
-    },
-    {
-      "year": 2023,
-      "month": 12,
-      "province": "Gorontalo",
-      "lpi": -15.2
-    },
-    {
-      "year": 2024,
-      "month": 1,
-      "province": "Kepulauan Riau",
-      "lpi": 66
-    },
-    {
-      "year": 2024,
-      "month": 1,
-      "province": "Banten",
-      "lpi": 57
-    },
-    {
-      "year": 2024,
-      "month": 1,
-      "province": "DKI Jakarta",
-      "lpi": 48.9
-    },
-    {
-      "year": 2024,
-      "month": 1,
-      "province": "Maluku Utara",
-      "lpi": 42.4
-    },
-    {
-      "year": 2024,
-      "month": 1,
-      "province": "Sulawesi Tengah",
-      "lpi": 37.2
-    },
-    {
-      "year": 2024,
-      "month": 1,
-      "province": "Kalimantan Timur",
-      "lpi": 36.4
-    },
-    {
-      "year": 2024,
-      "month": 1,
-      "province": "Jawa Barat",
-      "lpi": 35
-    },
-    {
-      "year": 2024,
-      "month": 1,
-      "province": "DI Yogyakarta",
-      "lpi": 34.2
-    },
-    {
-      "year": 2024,
-      "month": 1,
-      "province": "Sumatera Utara",
-      "lpi": 33.7
-    },
-    {
-      "year": 2024,
-      "month": 1,
-      "province": "Kalimantan Barat",
-      "lpi": 31.6
-    },
-    {
-      "year": 2024,
-      "month": 1,
-      "province": "Kalimantan Selatan",
-      "lpi": 30.1
-    },
-    {
-      "year": 2024,
-      "month": 1,
-      "province": "Jawa Timur",
-      "lpi": 29.8
-    },
-    {
-      "year": 2024,
-      "month": 1,
-      "province": "Bali",
-      "lpi": 27.8
-    },
-    {
-      "year": 2024,
-      "month": 1,
-      "province": "Jawa Tengah",
-      "lpi": 27.5
-    },
-    {
-      "year": 2024,
-      "month": 1,
-      "province": "Kalimantan Utara",
-      "lpi": 27.1
-    },
-    {
-      "year": 2024,
-      "month": 1,
-      "province": "Papua Barat",
-      "lpi": 25.8
-    },
-    {
-      "year": 2024,
-      "month": 1,
-      "province": "Bangka Belitung",
-      "lpi": 24.1
-    },
-    {
-      "year": 2024,
-      "month": 1,
-      "province": "Papua Barat Daya",
-      "lpi": 20.8
-    },
-    {
-      "year": 2024,
-      "month": 1,
-      "province": "Maluku",
-      "lpi": 20.3
-    },
-    {
-      "year": 2024,
-      "month": 1,
-      "province": "Sumatera Selatan",
-      "lpi": 19.6
-    },
-    {
-      "year": 2024,
-      "month": 1,
-      "province": "Sulawesi Selatan",
-      "lpi": 18.5
-    },
-    {
-      "year": 2024,
-      "month": 1,
-      "province": "Sulawesi Tenggara",
-      "lpi": 17.8
-    },
-    {
-      "year": 2024,
-      "month": 1,
-      "province": "Sulawesi Utara",
-      "lpi": 17.8
-    },
-    {
-      "year": 2024,
-      "month": 1,
-      "province": "Nusa Tenggara Barat",
-      "lpi": 16
-    },
-    {
-      "year": 2024,
-      "month": 1,
-      "province": "Riau",
-      "lpi": 15.3
-    },
-    {
-      "year": 2024,
-      "month": 1,
-      "province": "Jambi",
-      "lpi": 13.1
-    },
-    {
-      "year": 2024,
-      "month": 1,
-      "province": "Papua",
-      "lpi": 11.3
-    },
-    {
-      "year": 2024,
-      "month": 1,
-      "province": "Kalimantan Tengah",
-      "lpi": 10.7
-    },
-    {
-      "year": 2024,
-      "month": 1,
-      "province": "Sumatera Barat",
-      "lpi": 10.3
-    },
-    {
-      "year": 2024,
-      "month": 1,
-      "province": "Lampung",
-      "lpi": 9.8
-    },
-    {
-      "year": 2024,
-      "month": 1,
-      "province": "Papua Tengah",
-      "lpi": 4
-    },
-    {
-      "year": 2024,
-      "month": 1,
-      "province": "Sulawesi Barat",
-      "lpi": 1.1
-    },
-    {
-      "year": 2024,
-      "month": 1,
-      "province": "Nusa Tenggara Timur",
-      "lpi": -2.5
-    },
-    {
-      "year": 2024,
-      "month": 1,
-      "province": "Aceh",
-      "lpi": -7.2
-    },
-    {
-      "year": 2024,
-      "month": 1,
-      "province": "Gorontalo",
-      "lpi": -12.5
-    },
-    {
-      "year": 2024,
       "month": 2,
       "province": "Kepulauan Riau",
-      "lpi": 68.9
+      "lpi": 62.5
     },
     {
-      "year": 2024,
-      "month": 2,
-      "province": "Banten",
-      "lpi": 58.8
-    },
-    {
-      "year": 2024,
-      "month": 2,
-      "province": "DKI Jakarta",
-      "lpi": 51.4
-    },
-    {
-      "year": 2024,
+      "year": 2023,
       "month": 2,
       "province": "Maluku Utara",
-      "lpi": 45.1
+      "lpi": 50.2
     },
     {
-      "year": 2024,
+      "year": 2023,
+      "month": 2,
+      "province": "DKI Jakarta",
+      "lpi": 45.2
+    },
+    {
+      "year": 2023,
+      "month": 2,
+      "province": "Banten",
+      "lpi": 43.2
+    },
+    {
+      "year": 2023,
       "month": 2,
       "province": "Sulawesi Tengah",
       "lpi": 39.3
     },
     {
-      "year": 2024,
+      "year": 2023,
       "month": 2,
       "province": "Kalimantan Timur",
-      "lpi": 38.9
+      "lpi": 37.9
     },
     {
-      "year": 2024,
+      "year": 2023,
       "month": 2,
       "province": "Jawa Barat",
-      "lpi": 37.7
+      "lpi": 37.4
+    },
+    {
+      "year": 2023,
+      "month": 2,
+      "province": "Jawa Tengah",
+      "lpi": 33
+    },
+    {
+      "year": 2023,
+      "month": 2,
+      "province": "Jawa Timur",
+      "lpi": 32.6
+    },
+    {
+      "year": 2023,
+      "month": 2,
+      "province": "Papua Barat",
+      "lpi": 32.4
+    },
+    {
+      "year": 2023,
+      "month": 2,
+      "province": "Bali",
+      "lpi": 31
+    },
+    {
+      "year": 2023,
+      "month": 2,
+      "province": "Kalimantan Utara",
+      "lpi": 30.9
+    },
+    {
+      "year": 2023,
+      "month": 2,
+      "province": "Riau",
+      "lpi": 29.3
+    },
+    {
+      "year": 2023,
+      "month": 2,
+      "province": "Kalimantan Selatan",
+      "lpi": 29.3
+    },
+    {
+      "year": 2023,
+      "month": 2,
+      "province": "Bangka Belitung",
+      "lpi": 29
+    },
+    {
+      "year": 2023,
+      "month": 2,
+      "province": "Papua Barat Daya",
+      "lpi": 28
+    },
+    {
+      "year": 2023,
+      "month": 2,
+      "province": "DI Yogyakarta",
+      "lpi": 28
+    },
+    {
+      "year": 2023,
+      "month": 2,
+      "province": "Kalimantan Tengah",
+      "lpi": 27.5
+    },
+    {
+      "year": 2023,
+      "month": 2,
+      "province": "Sulawesi Utara",
+      "lpi": 25.6
+    },
+    {
+      "year": 2023,
+      "month": 2,
+      "province": "Sumatera Utara",
+      "lpi": 25.1
+    },
+    {
+      "year": 2023,
+      "month": 2,
+      "province": "Sumatera Selatan",
+      "lpi": 24
+    },
+    {
+      "year": 2023,
+      "month": 2,
+      "province": "Sulawesi Tenggara",
+      "lpi": 23.8
+    },
+    {
+      "year": 2023,
+      "month": 2,
+      "province": "Sulawesi Selatan",
+      "lpi": 22.8
+    },
+    {
+      "year": 2023,
+      "month": 2,
+      "province": "Kalimantan Barat",
+      "lpi": 22.2
+    },
+    {
+      "year": 2023,
+      "month": 2,
+      "province": "Papua",
+      "lpi": 21.1
+    },
+    {
+      "year": 2023,
+      "month": 2,
+      "province": "Jambi",
+      "lpi": 21
+    },
+    {
+      "year": 2023,
+      "month": 2,
+      "province": "Lampung",
+      "lpi": 19.3
+    },
+    {
+      "year": 2023,
+      "month": 2,
+      "province": "Sumatera Barat",
+      "lpi": 19.2
+    },
+    {
+      "year": 2023,
+      "month": 2,
+      "province": "Papua Tengah",
+      "lpi": 17.1
+    },
+    {
+      "year": 2023,
+      "month": 2,
+      "province": "Maluku",
+      "lpi": 15.5
+    },
+    {
+      "year": 2023,
+      "month": 2,
+      "province": "Nusa Tenggara Barat",
+      "lpi": 15.3
+    },
+    {
+      "year": 2023,
+      "month": 2,
+      "province": "Aceh",
+      "lpi": 12.8
+    },
+    {
+      "year": 2023,
+      "month": 2,
+      "province": "Sulawesi Barat",
+      "lpi": 11.9
+    },
+    {
+      "year": 2023,
+      "month": 2,
+      "province": "Gorontalo",
+      "lpi": 11.6
+    },
+    {
+      "year": 2023,
+      "month": 2,
+      "province": "Nusa Tenggara Timur",
+      "lpi": 10.5
+    },
+    {
+      "year": 2023,
+      "month": 3,
+      "province": "Kepulauan Riau",
+      "lpi": 64.7
+    },
+    {
+      "year": 2023,
+      "month": 3,
+      "province": "Maluku Utara",
+      "lpi": 52.2
+    },
+    {
+      "year": 2023,
+      "month": 3,
+      "province": "DKI Jakarta",
+      "lpi": 47.6
+    },
+    {
+      "year": 2023,
+      "month": 3,
+      "province": "Banten",
+      "lpi": 45.2
+    },
+    {
+      "year": 2023,
+      "month": 3,
+      "province": "Sulawesi Tengah",
+      "lpi": 41.4
+    },
+    {
+      "year": 2023,
+      "month": 3,
+      "province": "Kalimantan Timur",
+      "lpi": 40.2
+    },
+    {
+      "year": 2023,
+      "month": 3,
+      "province": "Jawa Barat",
+      "lpi": 39.6
+    },
+    {
+      "year": 2023,
+      "month": 3,
+      "province": "Jawa Tengah",
+      "lpi": 35
+    },
+    {
+      "year": 2023,
+      "month": 3,
+      "province": "Jawa Timur",
+      "lpi": 34.8
+    },
+    {
+      "year": 2023,
+      "month": 3,
+      "province": "Kalimantan Utara",
+      "lpi": 34.1
+    },
+    {
+      "year": 2023,
+      "month": 3,
+      "province": "Kalimantan Selatan",
+      "lpi": 33.5
+    },
+    {
+      "year": 2023,
+      "month": 3,
+      "province": "Bali",
+      "lpi": 33.4
+    },
+    {
+      "year": 2023,
+      "month": 3,
+      "province": "Papua Barat",
+      "lpi": 32.4
+    },
+    {
+      "year": 2023,
+      "month": 3,
+      "province": "Riau",
+      "lpi": 31.5
+    },
+    {
+      "year": 2023,
+      "month": 3,
+      "province": "Bangka Belitung",
+      "lpi": 31.3
+    },
+    {
+      "year": 2023,
+      "month": 3,
+      "province": "DI Yogyakarta",
+      "lpi": 30.3
+    },
+    {
+      "year": 2023,
+      "month": 3,
+      "province": "Kalimantan Tengah",
+      "lpi": 29.7
+    },
+    {
+      "year": 2023,
+      "month": 3,
+      "province": "Papua Barat Daya",
+      "lpi": 28
+    },
+    {
+      "year": 2023,
+      "month": 3,
+      "province": "Sulawesi Utara",
+      "lpi": 27.9
+    },
+    {
+      "year": 2023,
+      "month": 3,
+      "province": "Sumatera Utara",
+      "lpi": 27.5
+    },
+    {
+      "year": 2023,
+      "month": 3,
+      "province": "Sumatera Selatan",
+      "lpi": 26.2
+    },
+    {
+      "year": 2023,
+      "month": 3,
+      "province": "Sulawesi Tenggara",
+      "lpi": 25.8
+    },
+    {
+      "year": 2023,
+      "month": 3,
+      "province": "Sulawesi Selatan",
+      "lpi": 25.3
+    },
+    {
+      "year": 2023,
+      "month": 3,
+      "province": "Kalimantan Barat",
+      "lpi": 24.5
+    },
+    {
+      "year": 2023,
+      "month": 3,
+      "province": "Jambi",
+      "lpi": 23.6
+    },
+    {
+      "year": 2023,
+      "month": 3,
+      "province": "Sumatera Barat",
+      "lpi": 21.9
+    },
+    {
+      "year": 2023,
+      "month": 3,
+      "province": "Papua",
+      "lpi": 21.1
+    },
+    {
+      "year": 2023,
+      "month": 3,
+      "province": "Lampung",
+      "lpi": 21
+    },
+    {
+      "year": 2023,
+      "month": 3,
+      "province": "Maluku",
+      "lpi": 18.9
+    },
+    {
+      "year": 2023,
+      "month": 3,
+      "province": "Nusa Tenggara Barat",
+      "lpi": 17.6
+    },
+    {
+      "year": 2023,
+      "month": 3,
+      "province": "Papua Tengah",
+      "lpi": 17.1
+    },
+    {
+      "year": 2023,
+      "month": 3,
+      "province": "Aceh",
+      "lpi": 14.6
+    },
+    {
+      "year": 2023,
+      "month": 3,
+      "province": "Sulawesi Barat",
+      "lpi": 13.9
+    },
+    {
+      "year": 2023,
+      "month": 3,
+      "province": "Gorontalo",
+      "lpi": 13
+    },
+    {
+      "year": 2023,
+      "month": 3,
+      "province": "Nusa Tenggara Timur",
+      "lpi": 12.8
+    },
+    {
+      "year": 2023,
+      "month": 4,
+      "province": "Kepulauan Riau",
+      "lpi": 61.3
+    },
+    {
+      "year": 2023,
+      "month": 4,
+      "province": "Maluku Utara",
+      "lpi": 52.2
+    },
+    {
+      "year": 2023,
+      "month": 4,
+      "province": "DKI Jakarta",
+      "lpi": 44
+    },
+    {
+      "year": 2023,
+      "month": 4,
+      "province": "Banten",
+      "lpi": 40.2
+    },
+    {
+      "year": 2023,
+      "month": 4,
+      "province": "Sulawesi Tengah",
+      "lpi": 38
+    },
+    {
+      "year": 2023,
+      "month": 4,
+      "province": "Kalimantan Timur",
+      "lpi": 36.7
+    },
+    {
+      "year": 2023,
+      "month": 4,
+      "province": "Jawa Barat",
+      "lpi": 36.2
+    },
+    {
+      "year": 2023,
+      "month": 4,
+      "province": "Kalimantan Selatan",
+      "lpi": 34.1
+    },
+    {
+      "year": 2023,
+      "month": 4,
+      "province": "Papua Barat",
+      "lpi": 32.4
+    },
+    {
+      "year": 2023,
+      "month": 4,
+      "province": "Jawa Tengah",
+      "lpi": 31.1
+    },
+    {
+      "year": 2023,
+      "month": 4,
+      "province": "Kalimantan Utara",
+      "lpi": 31.1
+    },
+    {
+      "year": 2023,
+      "month": 4,
+      "province": "Jawa Timur",
+      "lpi": 31
+    },
+    {
+      "year": 2023,
+      "month": 4,
+      "province": "Bali",
+      "lpi": 29.7
+    },
+    {
+      "year": 2023,
+      "month": 4,
+      "province": "Riau",
+      "lpi": 28.1
+    },
+    {
+      "year": 2023,
+      "month": 4,
+      "province": "Papua Barat Daya",
+      "lpi": 28
+    },
+    {
+      "year": 2023,
+      "month": 4,
+      "province": "Bangka Belitung",
+      "lpi": 27.8
+    },
+    {
+      "year": 2023,
+      "month": 4,
+      "province": "DI Yogyakarta",
+      "lpi": 26.8
+    },
+    {
+      "year": 2023,
+      "month": 4,
+      "province": "Kalimantan Tengah",
+      "lpi": 25.9
+    },
+    {
+      "year": 2023,
+      "month": 4,
+      "province": "Sulawesi Utara",
+      "lpi": 24.5
+    },
+    {
+      "year": 2023,
+      "month": 4,
+      "province": "Sumatera Utara",
+      "lpi": 24.1
+    },
+    {
+      "year": 2023,
+      "month": 4,
+      "province": "Sumatera Selatan",
+      "lpi": 23.3
+    },
+    {
+      "year": 2023,
+      "month": 4,
+      "province": "Sulawesi Tenggara",
+      "lpi": 22
+    },
+    {
+      "year": 2023,
+      "month": 4,
+      "province": "Sulawesi Selatan",
+      "lpi": 21.6
+    },
+    {
+      "year": 2023,
+      "month": 4,
+      "province": "Kalimantan Barat",
+      "lpi": 21.1
+    },
+    {
+      "year": 2023,
+      "month": 4,
+      "province": "Papua",
+      "lpi": 21.1
+    },
+    {
+      "year": 2023,
+      "month": 4,
+      "province": "Jambi",
+      "lpi": 20.1
+    },
+    {
+      "year": 2023,
+      "month": 4,
+      "province": "Sumatera Barat",
+      "lpi": 18.5
+    },
+    {
+      "year": 2023,
+      "month": 4,
+      "province": "Lampung",
+      "lpi": 18.1
+    },
+    {
+      "year": 2023,
+      "month": 4,
+      "province": "Papua Tengah",
+      "lpi": 17.1
+    },
+    {
+      "year": 2023,
+      "month": 4,
+      "province": "Maluku",
+      "lpi": 15.7
+    },
+    {
+      "year": 2023,
+      "month": 4,
+      "province": "Nusa Tenggara Barat",
+      "lpi": 14
+    },
+    {
+      "year": 2023,
+      "month": 4,
+      "province": "Sulawesi Barat",
+      "lpi": 12.1
+    },
+    {
+      "year": 2023,
+      "month": 4,
+      "province": "Aceh",
+      "lpi": 10.6
+    },
+    {
+      "year": 2023,
+      "month": 4,
+      "province": "Gorontalo",
+      "lpi": 10.2
+    },
+    {
+      "year": 2023,
+      "month": 4,
+      "province": "Nusa Tenggara Timur",
+      "lpi": 9.3
+    },
+    {
+      "year": 2023,
+      "month": 5,
+      "province": "Kepulauan Riau",
+      "lpi": 56.3
+    },
+    {
+      "year": 2023,
+      "month": 5,
+      "province": "Maluku Utara",
+      "lpi": 51.3
+    },
+    {
+      "year": 2023,
+      "month": 5,
+      "province": "DKI Jakarta",
+      "lpi": 44
+    },
+    {
+      "year": 2023,
+      "month": 5,
+      "province": "Banten",
+      "lpi": 41.6
+    },
+    {
+      "year": 2023,
+      "month": 5,
+      "province": "Sulawesi Tengah",
+      "lpi": 36.6
+    },
+    {
+      "year": 2023,
+      "month": 5,
+      "province": "Kalimantan Timur",
+      "lpi": 35.6
+    },
+    {
+      "year": 2023,
+      "month": 5,
+      "province": "DI Yogyakarta",
+      "lpi": 35.5
+    },
+    {
+      "year": 2023,
+      "month": 5,
+      "province": "Jawa Barat",
+      "lpi": 34.6
+    },
+    {
+      "year": 2023,
+      "month": 5,
+      "province": "Kalimantan Selatan",
+      "lpi": 33.2
+    },
+    {
+      "year": 2023,
+      "month": 5,
+      "province": "Papua Barat",
+      "lpi": 32.4
+    },
+    {
+      "year": 2023,
+      "month": 5,
+      "province": "Kalimantan Utara",
+      "lpi": 30.5
+    },
+    {
+      "year": 2023,
+      "month": 5,
+      "province": "Jawa Timur",
+      "lpi": 30.1
+    },
+    {
+      "year": 2023,
+      "month": 5,
+      "province": "Bali",
+      "lpi": 29
+    },
+    {
+      "year": 2023,
+      "month": 5,
+      "province": "Riau",
+      "lpi": 28.8
+    },
+    {
+      "year": 2023,
+      "month": 5,
+      "province": "Papua Barat Daya",
+      "lpi": 28
+    },
+    {
+      "year": 2023,
+      "month": 5,
+      "province": "Jawa Tengah",
+      "lpi": 27.4
+    },
+    {
+      "year": 2023,
+      "month": 5,
+      "province": "Bangka Belitung",
+      "lpi": 26.7
+    },
+    {
+      "year": 2023,
+      "month": 5,
+      "province": "Kalimantan Tengah",
+      "lpi": 24.5
+    },
+    {
+      "year": 2023,
+      "month": 5,
+      "province": "Sulawesi Selatan",
+      "lpi": 24.1
+    },
+    {
+      "year": 2023,
+      "month": 5,
+      "province": "Sulawesi Utara",
+      "lpi": 23.5
+    },
+    {
+      "year": 2023,
+      "month": 5,
+      "province": "Sumatera Utara",
+      "lpi": 23.2
+    },
+    {
+      "year": 2023,
+      "month": 5,
+      "province": "Sumatera Selatan",
+      "lpi": 22.4
+    },
+    {
+      "year": 2023,
+      "month": 5,
+      "province": "Sulawesi Tenggara",
+      "lpi": 21.5
+    },
+    {
+      "year": 2023,
+      "month": 5,
+      "province": "Papua",
+      "lpi": 21.1
+    },
+    {
+      "year": 2023,
+      "month": 5,
+      "province": "Kalimantan Barat",
+      "lpi": 19.7
+    },
+    {
+      "year": 2023,
+      "month": 5,
+      "province": "Jambi",
+      "lpi": 19.2
+    },
+    {
+      "year": 2023,
+      "month": 5,
+      "province": "Sumatera Barat",
+      "lpi": 17.4
+    },
+    {
+      "year": 2023,
+      "month": 5,
+      "province": "Papua Tengah",
+      "lpi": 17.1
+    },
+    {
+      "year": 2023,
+      "month": 5,
+      "province": "Lampung",
+      "lpi": 17
+    },
+    {
+      "year": 2023,
+      "month": 5,
+      "province": "Maluku",
+      "lpi": 14.2
+    },
+    {
+      "year": 2023,
+      "month": 5,
+      "province": "Nusa Tenggara Barat",
+      "lpi": 13.2
+    },
+    {
+      "year": 2023,
+      "month": 5,
+      "province": "Sulawesi Barat",
+      "lpi": 11.1
+    },
+    {
+      "year": 2023,
+      "month": 5,
+      "province": "Aceh",
+      "lpi": 9.8
+    },
+    {
+      "year": 2023,
+      "month": 5,
+      "province": "Gorontalo",
+      "lpi": 8.6
+    },
+    {
+      "year": 2023,
+      "month": 5,
+      "province": "Nusa Tenggara Timur",
+      "lpi": 8.2
+    },
+    {
+      "year": 2023,
+      "month": 6,
+      "province": "Kepulauan Riau",
+      "lpi": 53.1
+    },
+    {
+      "year": 2023,
+      "month": 6,
+      "province": "Maluku Utara",
+      "lpi": 47.9
+    },
+    {
+      "year": 2023,
+      "month": 6,
+      "province": "DKI Jakarta",
+      "lpi": 41.5
+    },
+    {
+      "year": 2023,
+      "month": 6,
+      "province": "Banten",
+      "lpi": 40
+    },
+    {
+      "year": 2023,
+      "month": 6,
+      "province": "Sulawesi Tengah",
+      "lpi": 34.6
+    },
+    {
+      "year": 2023,
+      "month": 6,
+      "province": "DI Yogyakarta",
+      "lpi": 33
+    },
+    {
+      "year": 2023,
+      "month": 6,
+      "province": "Kalimantan Timur",
+      "lpi": 32.9
+    },
+    {
+      "year": 2023,
+      "month": 6,
+      "province": "Papua Barat",
+      "lpi": 32.4
+    },
+    {
+      "year": 2023,
+      "month": 6,
+      "province": "Jawa Barat",
+      "lpi": 32.1
+    },
+    {
+      "year": 2023,
+      "month": 6,
+      "province": "Kalimantan Selatan",
+      "lpi": 30.5
+    },
+    {
+      "year": 2023,
+      "month": 6,
+      "province": "Jawa Timur",
+      "lpi": 28.7
+    },
+    {
+      "year": 2023,
+      "month": 6,
+      "province": "Papua Barat Daya",
+      "lpi": 28
+    },
+    {
+      "year": 2023,
+      "month": 6,
+      "province": "Kalimantan Utara",
+      "lpi": 27.5
+    },
+    {
+      "year": 2023,
+      "month": 6,
+      "province": "Bali",
+      "lpi": 26.5
+    },
+    {
+      "year": 2023,
+      "month": 6,
+      "province": "Riau",
+      "lpi": 26.1
+    },
+    {
+      "year": 2023,
+      "month": 6,
+      "province": "Jawa Tengah",
+      "lpi": 25.2
+    },
+    {
+      "year": 2023,
+      "month": 6,
+      "province": "Bangka Belitung",
+      "lpi": 24.2
+    },
+    {
+      "year": 2023,
+      "month": 6,
+      "province": "Kalimantan Tengah",
+      "lpi": 22
+    },
+    {
+      "year": 2023,
+      "month": 6,
+      "province": "Papua",
+      "lpi": 21.1
+    },
+    {
+      "year": 2023,
+      "month": 6,
+      "province": "Sulawesi Selatan",
+      "lpi": 20.7
+    },
+    {
+      "year": 2023,
+      "month": 6,
+      "province": "Sulawesi Utara",
+      "lpi": 20.6
+    },
+    {
+      "year": 2023,
+      "month": 6,
+      "province": "Sumatera Utara",
+      "lpi": 20.5
+    },
+    {
+      "year": 2023,
+      "month": 6,
+      "province": "Sumatera Selatan",
+      "lpi": 19.6
+    },
+    {
+      "year": 2023,
+      "month": 6,
+      "province": "Sulawesi Tenggara",
+      "lpi": 19.5
+    },
+    {
+      "year": 2023,
+      "month": 6,
+      "province": "Papua Tengah",
+      "lpi": 17.1
+    },
+    {
+      "year": 2023,
+      "month": 6,
+      "province": "Kalimantan Barat",
+      "lpi": 16.7
+    },
+    {
+      "year": 2023,
+      "month": 6,
+      "province": "Jambi",
+      "lpi": 16.5
+    },
+    {
+      "year": 2023,
+      "month": 6,
+      "province": "Sumatera Barat",
+      "lpi": 14.8
+    },
+    {
+      "year": 2023,
+      "month": 6,
+      "province": "Lampung",
+      "lpi": 14.4
+    },
+    {
+      "year": 2023,
+      "month": 6,
+      "province": "Maluku",
+      "lpi": 11.9
+    },
+    {
+      "year": 2023,
+      "month": 6,
+      "province": "Nusa Tenggara Barat",
+      "lpi": 10.5
+    },
+    {
+      "year": 2023,
+      "month": 6,
+      "province": "Sulawesi Barat",
+      "lpi": 8
+    },
+    {
+      "year": 2023,
+      "month": 6,
+      "province": "Gorontalo",
+      "lpi": 7.2
+    },
+    {
+      "year": 2023,
+      "month": 6,
+      "province": "Aceh",
+      "lpi": 6.7
+    },
+    {
+      "year": 2023,
+      "month": 6,
+      "province": "Nusa Tenggara Timur",
+      "lpi": 5.7
+    },
+    {
+      "year": 2023,
+      "month": 7,
+      "province": "Kepulauan Riau",
+      "lpi": 44
+    },
+    {
+      "year": 2023,
+      "month": 7,
+      "province": "DKI Jakarta",
+      "lpi": 35.5
+    },
+    {
+      "year": 2023,
+      "month": 7,
+      "province": "Banten",
+      "lpi": 34.2
+    },
+    {
+      "year": 2023,
+      "month": 7,
+      "province": "Papua Barat",
+      "lpi": 32.2
+    },
+    {
+      "year": 2023,
+      "month": 7,
+      "province": "Maluku Utara",
+      "lpi": 31.4
+    },
+    {
+      "year": 2023,
+      "month": 7,
+      "province": "Sulawesi Tengah",
+      "lpi": 28.4
+    },
+    {
+      "year": 2023,
+      "month": 7,
+      "province": "Papua Barat Daya",
+      "lpi": 27.8
+    },
+    {
+      "year": 2023,
+      "month": 7,
+      "province": "Kalimantan Timur",
+      "lpi": 26.7
+    },
+    {
+      "year": 2023,
+      "month": 7,
+      "province": "DI Yogyakarta",
+      "lpi": 26.6
+    },
+    {
+      "year": 2023,
+      "month": 7,
+      "province": "Jawa Barat",
+      "lpi": 25.9
+    },
+    {
+      "year": 2023,
+      "month": 7,
+      "province": "Kalimantan Selatan",
+      "lpi": 24.3
+    },
+    {
+      "year": 2023,
+      "month": 7,
+      "province": "Jawa Timur",
+      "lpi": 22.7
+    },
+    {
+      "year": 2023,
+      "month": 7,
+      "province": "Kalimantan Utara",
+      "lpi": 21.4
+    },
+    {
+      "year": 2023,
+      "month": 7,
+      "province": "Papua",
+      "lpi": 20.9
+    },
+    {
+      "year": 2023,
+      "month": 7,
+      "province": "Bali",
+      "lpi": 20.3
+    },
+    {
+      "year": 2023,
+      "month": 7,
+      "province": "Riau",
+      "lpi": 20.3
+    },
+    {
+      "year": 2023,
+      "month": 7,
+      "province": "Jawa Tengah",
+      "lpi": 19.4
+    },
+    {
+      "year": 2023,
+      "month": 7,
+      "province": "Bangka Belitung",
+      "lpi": 18
+    },
+    {
+      "year": 2023,
+      "month": 7,
+      "province": "Papua Tengah",
+      "lpi": 17
+    },
+    {
+      "year": 2023,
+      "month": 7,
+      "province": "Sulawesi Tenggara",
+      "lpi": 16.3
+    },
+    {
+      "year": 2023,
+      "month": 7,
+      "province": "Kalimantan Tengah",
+      "lpi": 15.6
+    },
+    {
+      "year": 2023,
+      "month": 7,
+      "province": "Sulawesi Selatan",
+      "lpi": 14.8
+    },
+    {
+      "year": 2023,
+      "month": 7,
+      "province": "Sumatera Utara",
+      "lpi": 14.5
+    },
+    {
+      "year": 2023,
+      "month": 7,
+      "province": "Sulawesi Utara",
+      "lpi": 14.4
+    },
+    {
+      "year": 2023,
+      "month": 7,
+      "province": "Sumatera Selatan",
+      "lpi": 13.6
+    },
+    {
+      "year": 2023,
+      "month": 7,
+      "province": "Kalimantan Barat",
+      "lpi": 10.6
+    },
+    {
+      "year": 2023,
+      "month": 7,
+      "province": "Jambi",
+      "lpi": 10.3
+    },
+    {
+      "year": 2023,
+      "month": 7,
+      "province": "Sumatera Barat",
+      "lpi": 8.7
+    },
+    {
+      "year": 2023,
+      "month": 7,
+      "province": "Lampung",
+      "lpi": 8.1
+    },
+    {
+      "year": 2023,
+      "month": 7,
+      "province": "Maluku",
+      "lpi": 5.2
+    },
+    {
+      "year": 2023,
+      "month": 7,
+      "province": "Nusa Tenggara Barat",
+      "lpi": 4.3
+    },
+    {
+      "year": 2023,
+      "month": 7,
+      "province": "Sulawesi Barat",
+      "lpi": 2.2
+    },
+    {
+      "year": 2023,
+      "month": 7,
+      "province": "Gorontalo",
+      "lpi": 1.3
+    },
+    {
+      "year": 2023,
+      "month": 7,
+      "province": "Aceh",
+      "lpi": -0.2
+    },
+    {
+      "year": 2023,
+      "month": 7,
+      "province": "Nusa Tenggara Timur",
+      "lpi": -0.5
+    },
+    {
+      "year": 2023,
+      "month": 8,
+      "province": "Kepulauan Riau",
+      "lpi": 43.1
+    },
+    {
+      "year": 2023,
+      "month": 8,
+      "province": "DKI Jakarta",
+      "lpi": 34.2
+    },
+    {
+      "year": 2023,
+      "month": 8,
+      "province": "Banten",
+      "lpi": 32.9
+    },
+    {
+      "year": 2023,
+      "month": 8,
+      "province": "Papua Barat",
+      "lpi": 32.2
+    },
+    {
+      "year": 2023,
+      "month": 8,
+      "province": "Papua Barat Daya",
+      "lpi": 27.8
+    },
+    {
+      "year": 2023,
+      "month": 8,
+      "province": "Sulawesi Tengah",
+      "lpi": 27.7
+    },
+    {
+      "year": 2023,
+      "month": 8,
+      "province": "Maluku Utara",
+      "lpi": 27.3
+    },
+    {
+      "year": 2023,
+      "month": 8,
+      "province": "DI Yogyakarta",
+      "lpi": 25.9
+    },
+    {
+      "year": 2023,
+      "month": 8,
+      "province": "Kalimantan Timur",
+      "lpi": 25.6
+    },
+    {
+      "year": 2023,
+      "month": 8,
+      "province": "Jawa Barat",
+      "lpi": 24.8
+    },
+    {
+      "year": 2023,
+      "month": 8,
+      "province": "Kalimantan Selatan",
+      "lpi": 23
+    },
+    {
+      "year": 2023,
+      "month": 8,
+      "province": "Jawa Timur",
+      "lpi": 21.4
+    },
+    {
+      "year": 2023,
+      "month": 8,
+      "province": "Papua",
+      "lpi": 20.9
+    },
+    {
+      "year": 2023,
+      "month": 8,
+      "province": "Kalimantan Utara",
+      "lpi": 19.8
+    },
+    {
+      "year": 2023,
+      "month": 8,
+      "province": "Bali",
+      "lpi": 19
+    },
+    {
+      "year": 2023,
+      "month": 8,
+      "province": "Jawa Tengah",
+      "lpi": 17.9
+    },
+    {
+      "year": 2023,
+      "month": 8,
+      "province": "Papua Tengah",
+      "lpi": 17
+    },
+    {
+      "year": 2023,
+      "month": 8,
+      "province": "Bangka Belitung",
+      "lpi": 16.7
+    },
+    {
+      "year": 2023,
+      "month": 8,
+      "province": "Riau",
+      "lpi": 15.8
+    },
+    {
+      "year": 2023,
+      "month": 8,
+      "province": "Sulawesi Tenggara",
+      "lpi": 15.1
+    },
+    {
+      "year": 2023,
+      "month": 8,
+      "province": "Kalimantan Tengah",
+      "lpi": 14.6
+    },
+    {
+      "year": 2023,
+      "month": 8,
+      "province": "Sumatera Utara",
+      "lpi": 14.3
+    },
+    {
+      "year": 2023,
+      "month": 8,
+      "province": "Sulawesi Selatan",
+      "lpi": 13.7
+    },
+    {
+      "year": 2023,
+      "month": 8,
+      "province": "Sulawesi Utara",
+      "lpi": 13.2
+    },
+    {
+      "year": 2023,
+      "month": 8,
+      "province": "Sumatera Selatan",
+      "lpi": 12.1
+    },
+    {
+      "year": 2023,
+      "month": 8,
+      "province": "Kalimantan Barat",
+      "lpi": 9.8
+    },
+    {
+      "year": 2023,
+      "month": 8,
+      "province": "Jambi",
+      "lpi": 9.1
+    },
+    {
+      "year": 2023,
+      "month": 8,
+      "province": "Sumatera Barat",
+      "lpi": 7.6
+    },
+    {
+      "year": 2023,
+      "month": 8,
+      "province": "Lampung",
+      "lpi": 7.1
+    },
+    {
+      "year": 2023,
+      "month": 8,
+      "province": "Maluku",
+      "lpi": 3.9
+    },
+    {
+      "year": 2023,
+      "month": 8,
+      "province": "Nusa Tenggara Barat",
+      "lpi": 3
+    },
+    {
+      "year": 2023,
+      "month": 8,
+      "province": "Sulawesi Barat",
+      "lpi": 1.5
+    },
+    {
+      "year": 2023,
+      "month": 8,
+      "province": "Gorontalo",
+      "lpi": -0.3
+    },
+    {
+      "year": 2023,
+      "month": 8,
+      "province": "Aceh",
+      "lpi": -1.1
+    },
+    {
+      "year": 2023,
+      "month": 8,
+      "province": "Nusa Tenggara Timur",
+      "lpi": -1.8
+    },
+    {
+      "year": 2023,
+      "month": 9,
+      "province": "Kepulauan Riau",
+      "lpi": 46.7
+    },
+    {
+      "year": 2023,
+      "month": 9,
+      "province": "DKI Jakarta",
+      "lpi": 38.1
+    },
+    {
+      "year": 2023,
+      "month": 9,
+      "province": "Banten",
+      "lpi": 36.5
+    },
+    {
+      "year": 2023,
+      "month": 9,
+      "province": "Maluku Utara",
+      "lpi": 32.8
+    },
+    {
+      "year": 2023,
+      "month": 9,
+      "province": "Papua Barat",
+      "lpi": 32.2
+    },
+    {
+      "year": 2023,
+      "month": 9,
+      "province": "Sulawesi Tengah",
+      "lpi": 31.3
+    },
+    {
+      "year": 2023,
+      "month": 9,
+      "province": "Kalimantan Timur",
+      "lpi": 29.4
+    },
+    {
+      "year": 2023,
+      "month": 9,
+      "province": "Jawa Barat",
+      "lpi": 28.5
+    },
+    {
+      "year": 2023,
+      "month": 9,
+      "province": "Papua Barat Daya",
+      "lpi": 27.8
+    },
+    {
+      "year": 2023,
+      "month": 9,
+      "province": "DI Yogyakarta",
+      "lpi": 27.6
+    },
+    {
+      "year": 2023,
+      "month": 9,
+      "province": "Kalimantan Selatan",
+      "lpi": 27
+    },
+    {
+      "year": 2023,
+      "month": 9,
+      "province": "Jawa Timur",
+      "lpi": 25.1
+    },
+    {
+      "year": 2023,
+      "month": 9,
+      "province": "Kalimantan Utara",
+      "lpi": 23.9
+    },
+    {
+      "year": 2023,
+      "month": 9,
+      "province": "Bali",
+      "lpi": 23.1
+    },
+    {
+      "year": 2023,
+      "month": 9,
+      "province": "Jawa Tengah",
+      "lpi": 21.5
+    },
+    {
+      "year": 2023,
+      "month": 9,
+      "province": "Papua",
+      "lpi": 20.9
+    },
+    {
+      "year": 2023,
+      "month": 9,
+      "province": "Bangka Belitung",
+      "lpi": 20.6
+    },
+    {
+      "year": 2023,
+      "month": 9,
+      "province": "Maluku",
+      "lpi": 19.2
+    },
+    {
+      "year": 2023,
+      "month": 9,
+      "province": "Sulawesi Tenggara",
+      "lpi": 19.2
+    },
+    {
+      "year": 2023,
+      "month": 9,
+      "province": "Kalimantan Tengah",
+      "lpi": 18.3
+    },
+    {
+      "year": 2023,
+      "month": 9,
+      "province": "Sumatera Utara",
+      "lpi": 18.2
+    },
+    {
+      "year": 2023,
+      "month": 9,
+      "province": "Kalimantan Barat",
+      "lpi": 17.9
+    },
+    {
+      "year": 2023,
+      "month": 9,
+      "province": "Sulawesi Selatan",
+      "lpi": 17.5
+    },
+    {
+      "year": 2023,
+      "month": 9,
+      "province": "Sulawesi Utara",
+      "lpi": 17.1
+    },
+    {
+      "year": 2023,
+      "month": 9,
+      "province": "Papua Tengah",
+      "lpi": 17
+    },
+    {
+      "year": 2023,
+      "month": 9,
+      "province": "Nusa Tenggara Barat",
+      "lpi": 16.9
+    },
+    {
+      "year": 2023,
+      "month": 9,
+      "province": "Sumatera Selatan",
+      "lpi": 16
+    },
+    {
+      "year": 2023,
+      "month": 9,
+      "province": "Riau",
+      "lpi": 13.7
+    },
+    {
+      "year": 2023,
+      "month": 9,
+      "province": "Jambi",
+      "lpi": 13.2
+    },
+    {
+      "year": 2023,
+      "month": 9,
+      "province": "Sumatera Barat",
+      "lpi": 11.4
+    },
+    {
+      "year": 2023,
+      "month": 9,
+      "province": "Lampung",
+      "lpi": 11
+    },
+    {
+      "year": 2023,
+      "month": 9,
+      "province": "Sulawesi Barat",
+      "lpi": 6.1
+    },
+    {
+      "year": 2023,
+      "month": 9,
+      "province": "Aceh",
+      "lpi": 2.5
+    },
+    {
+      "year": 2023,
+      "month": 9,
+      "province": "Nusa Tenggara Timur",
+      "lpi": 2.2
+    },
+    {
+      "year": 2023,
+      "month": 9,
+      "province": "Gorontalo",
+      "lpi": -7.4
+    },
+    {
+      "year": 2023,
+      "month": 10,
+      "province": "Kepulauan Riau",
+      "lpi": 53.3
+    },
+    {
+      "year": 2023,
+      "month": 10,
+      "province": "DKI Jakarta",
+      "lpi": 44.9
+    },
+    {
+      "year": 2023,
+      "month": 10,
+      "province": "Banten",
+      "lpi": 44.3
+    },
+    {
+      "year": 2023,
+      "month": 10,
+      "province": "Maluku Utara",
+      "lpi": 39.4
+    },
+    {
+      "year": 2023,
+      "month": 10,
+      "province": "Sulawesi Tengah",
+      "lpi": 37.3
+    },
+    {
+      "year": 2023,
+      "month": 10,
+      "province": "Kalimantan Timur",
+      "lpi": 35.9
+    },
+    {
+      "year": 2023,
+      "month": 10,
+      "province": "Jawa Barat",
+      "lpi": 35.3
+    },
+    {
+      "year": 2023,
+      "month": 10,
+      "province": "DI Yogyakarta",
+      "lpi": 34.9
+    },
+    {
+      "year": 2023,
+      "month": 10,
+      "province": "Kalimantan Selatan",
+      "lpi": 33.5
+    },
+    {
+      "year": 2023,
+      "month": 10,
+      "province": "Papua Barat",
+      "lpi": 32.4
+    },
+    {
+      "year": 2023,
+      "month": 10,
+      "province": "Jawa Timur",
+      "lpi": 31.9
+    },
+    {
+      "year": 2023,
+      "month": 10,
+      "province": "Kalimantan Utara",
+      "lpi": 30.9
+    },
+    {
+      "year": 2023,
+      "month": 10,
+      "province": "Bali",
+      "lpi": 29.9
+    },
+    {
+      "year": 2023,
+      "month": 10,
+      "province": "Jawa Tengah",
+      "lpi": 29.7
+    },
+    {
+      "year": 2023,
+      "month": 10,
+      "province": "Papua Barat Daya",
+      "lpi": 28
+    },
+    {
+      "year": 2023,
+      "month": 10,
+      "province": "Bangka Belitung",
+      "lpi": 27.6
+    },
+    {
+      "year": 2023,
+      "month": 10,
+      "province": "Sulawesi Tenggara",
+      "lpi": 25.8
+    },
+    {
+      "year": 2023,
+      "month": 10,
+      "province": "Sumatera Utara",
+      "lpi": 24.8
+    },
+    {
+      "year": 2023,
+      "month": 10,
+      "province": "Kalimantan Barat",
+      "lpi": 24.7
+    },
+    {
+      "year": 2023,
+      "month": 10,
+      "province": "Sulawesi Selatan",
+      "lpi": 24.4
+    },
+    {
+      "year": 2023,
+      "month": 10,
+      "province": "Nusa Tenggara Barat",
+      "lpi": 24
+    },
+    {
+      "year": 2023,
+      "month": 10,
+      "province": "Maluku",
+      "lpi": 23.8
+    },
+    {
+      "year": 2023,
+      "month": 10,
+      "province": "Sulawesi Utara",
+      "lpi": 23.8
+    },
+    {
+      "year": 2023,
+      "month": 10,
+      "province": "Sumatera Selatan",
+      "lpi": 22.4
+    },
+    {
+      "year": 2023,
+      "month": 10,
+      "province": "Papua",
+      "lpi": 21.1
+    },
+    {
+      "year": 2023,
+      "month": 10,
+      "province": "Riau",
+      "lpi": 20.6
+    },
+    {
+      "year": 2023,
+      "month": 10,
+      "province": "Jambi",
+      "lpi": 19.9
+    },
+    {
+      "year": 2023,
+      "month": 10,
+      "province": "Sumatera Barat",
+      "lpi": 18.3
+    },
+    {
+      "year": 2023,
+      "month": 10,
+      "province": "Lampung",
+      "lpi": 17.6
+    },
+    {
+      "year": 2023,
+      "month": 10,
+      "province": "Papua Tengah",
+      "lpi": 17.1
+    },
+    {
+      "year": 2023,
+      "month": 10,
+      "province": "Kalimantan Tengah",
+      "lpi": 15.4
+    },
+    {
+      "year": 2023,
+      "month": 10,
+      "province": "Sulawesi Barat",
+      "lpi": 12.8
+    },
+    {
+      "year": 2023,
+      "month": 10,
+      "province": "Aceh",
+      "lpi": 10.1
+    },
+    {
+      "year": 2023,
+      "month": 10,
+      "province": "Nusa Tenggara Timur",
+      "lpi": 8.9
+    },
+    {
+      "year": 2023,
+      "month": 10,
+      "province": "Gorontalo",
+      "lpi": -0.5
+    },
+    {
+      "year": 2023,
+      "month": 11,
+      "province": "Kepulauan Riau",
+      "lpi": 55.6
+    },
+    {
+      "year": 2023,
+      "month": 11,
+      "province": "DKI Jakarta",
+      "lpi": 46.8
+    },
+    {
+      "year": 2023,
+      "month": 11,
+      "province": "Banten",
+      "lpi": 46.4
+    },
+    {
+      "year": 2023,
+      "month": 11,
+      "province": "Maluku Utara",
+      "lpi": 42.4
+    },
+    {
+      "year": 2023,
+      "month": 11,
+      "province": "Sulawesi Tengah",
+      "lpi": 39.6
+    },
+    {
+      "year": 2023,
+      "month": 11,
+      "province": "Sumatera Utara",
+      "lpi": 38.7
+    },
+    {
+      "year": 2023,
+      "month": 11,
+      "province": "Kalimantan Timur",
+      "lpi": 38.1
+    },
+    {
+      "year": 2023,
+      "month": 11,
+      "province": "Kalimantan Barat",
+      "lpi": 37.9
+    },
+    {
+      "year": 2023,
+      "month": 11,
+      "province": "Jawa Barat",
+      "lpi": 37.3
+    },
+    {
+      "year": 2023,
+      "month": 11,
+      "province": "DI Yogyakarta",
+      "lpi": 37.1
+    },
+    {
+      "year": 2023,
+      "month": 11,
+      "province": "Kalimantan Selatan",
+      "lpi": 35.7
+    },
+    {
+      "year": 2023,
+      "month": 11,
+      "province": "Jawa Timur",
+      "lpi": 34
+    },
+    {
+      "year": 2023,
+      "month": 11,
+      "province": "Kalimantan Utara",
+      "lpi": 32.7
+    },
+    {
+      "year": 2023,
+      "month": 11,
+      "province": "Papua Barat",
+      "lpi": 32.4
+    },
+    {
+      "year": 2023,
+      "month": 11,
+      "province": "Bali",
+      "lpi": 31.8
+    },
+    {
+      "year": 2023,
+      "month": 11,
+      "province": "Jawa Tengah",
+      "lpi": 31.8
+    },
+    {
+      "year": 2023,
+      "month": 11,
+      "province": "Bangka Belitung",
+      "lpi": 29.4
+    },
+    {
+      "year": 2023,
+      "month": 11,
+      "province": "Sumatera Selatan",
+      "lpi": 28.1
+    },
+    {
+      "year": 2023,
+      "month": 11,
+      "province": "Maluku",
+      "lpi": 28.1
+    },
+    {
+      "year": 2023,
+      "month": 11,
+      "province": "Sulawesi Tenggara",
+      "lpi": 28.1
+    },
+    {
+      "year": 2023,
+      "month": 11,
+      "province": "Papua Barat Daya",
+      "lpi": 28
+    },
+    {
+      "year": 2023,
+      "month": 11,
+      "province": "Sulawesi Selatan",
+      "lpi": 26.2
+    },
+    {
+      "year": 2023,
+      "month": 11,
+      "province": "Nusa Tenggara Barat",
+      "lpi": 26
+    },
+    {
+      "year": 2023,
+      "month": 11,
+      "province": "Sulawesi Utara",
+      "lpi": 25.8
+    },
+    {
+      "year": 2023,
+      "month": 11,
+      "province": "Riau",
+      "lpi": 22.4
+    },
+    {
+      "year": 2023,
+      "month": 11,
+      "province": "Jambi",
+      "lpi": 21.7
+    },
+    {
+      "year": 2023,
+      "month": 11,
+      "province": "Papua",
+      "lpi": 21.1
+    },
+    {
+      "year": 2023,
+      "month": 11,
+      "province": "Sumatera Barat",
+      "lpi": 20.3
+    },
+    {
+      "year": 2023,
+      "month": 11,
+      "province": "Lampung",
+      "lpi": 19.7
+    },
+    {
+      "year": 2023,
+      "month": 11,
+      "province": "Kalimantan Tengah",
+      "lpi": 17.4
+    },
+    {
+      "year": 2023,
+      "month": 11,
+      "province": "Papua Tengah",
+      "lpi": 17.1
+    },
+    {
+      "year": 2023,
+      "month": 11,
+      "province": "Sulawesi Barat",
+      "lpi": 15
+    },
+    {
+      "year": 2023,
+      "month": 11,
+      "province": "Aceh",
+      "lpi": 11.5
+    },
+    {
+      "year": 2023,
+      "month": 11,
+      "province": "Nusa Tenggara Timur",
+      "lpi": 10.9
+    },
+    {
+      "year": 2023,
+      "month": 11,
+      "province": "Gorontalo",
+      "lpi": 1.3
+    },
+    {
+      "year": 2023,
+      "month": 12,
+      "province": "Kepulauan Riau",
+      "lpi": 54.2
+    },
+    {
+      "year": 2023,
+      "month": 12,
+      "province": "DKI Jakarta",
+      "lpi": 45.6
+    },
+    {
+      "year": 2023,
+      "month": 12,
+      "province": "Banten",
+      "lpi": 44.6
+    },
+    {
+      "year": 2023,
+      "month": 12,
+      "province": "Maluku Utara",
+      "lpi": 41.3
+    },
+    {
+      "year": 2023,
+      "month": 12,
+      "province": "Sulawesi Tengah",
+      "lpi": 38.5
+    },
+    {
+      "year": 2023,
+      "month": 12,
+      "province": "Sumatera Utara",
+      "lpi": 37.4
+    },
+    {
+      "year": 2023,
+      "month": 12,
+      "province": "Kalimantan Timur",
+      "lpi": 36.8
+    },
+    {
+      "year": 2023,
+      "month": 12,
+      "province": "Kalimantan Barat",
+      "lpi": 36.6
+    },
+    {
+      "year": 2023,
+      "month": 12,
+      "province": "Jawa Barat",
+      "lpi": 36
+    },
+    {
+      "year": 2023,
+      "month": 12,
+      "province": "DI Yogyakarta",
+      "lpi": 35.8
+    },
+    {
+      "year": 2023,
+      "month": 12,
+      "province": "Kalimantan Selatan",
+      "lpi": 33.5
+    },
+    {
+      "year": 2023,
+      "month": 12,
+      "province": "Jawa Timur",
+      "lpi": 32.8
+    },
+    {
+      "year": 2023,
+      "month": 12,
+      "province": "Papua Barat",
+      "lpi": 32.4
+    },
+    {
+      "year": 2023,
+      "month": 12,
+      "province": "Kalimantan Utara",
+      "lpi": 31.4
+    },
+    {
+      "year": 2023,
+      "month": 12,
+      "province": "Bali",
+      "lpi": 30.8
+    },
+    {
+      "year": 2023,
+      "month": 12,
+      "province": "Jawa Tengah",
+      "lpi": 30.7
+    },
+    {
+      "year": 2023,
+      "month": 12,
+      "province": "Bangka Belitung",
+      "lpi": 28.3
+    },
+    {
+      "year": 2023,
+      "month": 12,
+      "province": "Papua Barat Daya",
+      "lpi": 28
+    },
+    {
+      "year": 2023,
+      "month": 12,
+      "province": "Sulawesi Tenggara",
+      "lpi": 27.4
+    },
+    {
+      "year": 2023,
+      "month": 12,
+      "province": "Maluku",
+      "lpi": 27
+    },
+    {
+      "year": 2023,
+      "month": 12,
+      "province": "Sumatera Selatan",
+      "lpi": 26.7
+    },
+    {
+      "year": 2023,
+      "month": 12,
+      "province": "Sulawesi Selatan",
+      "lpi": 25.1
+    },
+    {
+      "year": 2023,
+      "month": 12,
+      "province": "Nusa Tenggara Barat",
+      "lpi": 24.9
+    },
+    {
+      "year": 2023,
+      "month": 12,
+      "province": "Sulawesi Utara",
+      "lpi": 23.6
+    },
+    {
+      "year": 2023,
+      "month": 12,
+      "province": "Papua",
+      "lpi": 21.1
+    },
+    {
+      "year": 2023,
+      "month": 12,
+      "province": "Riau",
+      "lpi": 20.8
+    },
+    {
+      "year": 2023,
+      "month": 12,
+      "province": "Jambi",
+      "lpi": 20.6
+    },
+    {
+      "year": 2023,
+      "month": 12,
+      "province": "Sumatera Barat",
+      "lpi": 18.7
+    },
+    {
+      "year": 2023,
+      "month": 12,
+      "province": "Lampung",
+      "lpi": 18.5
+    },
+    {
+      "year": 2023,
+      "month": 12,
+      "province": "Papua Tengah",
+      "lpi": 17.1
+    },
+    {
+      "year": 2023,
+      "month": 12,
+      "province": "Kalimantan Tengah",
+      "lpi": 16.2
+    },
+    {
+      "year": 2023,
+      "month": 12,
+      "province": "Sulawesi Barat",
+      "lpi": 13.5
+    },
+    {
+      "year": 2023,
+      "month": 12,
+      "province": "Nusa Tenggara Timur",
+      "lpi": 9.6
+    },
+    {
+      "year": 2023,
+      "month": 12,
+      "province": "Aceh",
+      "lpi": 5
+    },
+    {
+      "year": 2023,
+      "month": 12,
+      "province": "Gorontalo",
+      "lpi": -1.2
+    },
+    {
+      "year": 2024,
+      "month": 1,
+      "province": "Kepulauan Riau",
+      "lpi": 59.7
+    },
+    {
+      "year": 2024,
+      "month": 1,
+      "province": "Banten",
+      "lpi": 55.5
+    },
+    {
+      "year": 2024,
+      "month": 1,
+      "province": "DKI Jakarta",
+      "lpi": 47.7
+    },
+    {
+      "year": 2024,
+      "month": 1,
+      "province": "Maluku Utara",
+      "lpi": 43.1
+    },
+    {
+      "year": 2024,
+      "month": 1,
+      "province": "Sulawesi Tengah",
+      "lpi": 40.5
+    },
+    {
+      "year": 2024,
+      "month": 1,
+      "province": "Sumatera Utara",
+      "lpi": 39.5
+    },
+    {
+      "year": 2024,
+      "month": 1,
+      "province": "DI Yogyakarta",
+      "lpi": 39
+    },
+    {
+      "year": 2024,
+      "month": 1,
+      "province": "Kalimantan Timur",
+      "lpi": 39
+    },
+    {
+      "year": 2024,
+      "month": 1,
+      "province": "Kalimantan Barat",
+      "lpi": 38.4
+    },
+    {
+      "year": 2024,
+      "month": 1,
+      "province": "Jawa Barat",
+      "lpi": 38.1
+    },
+    {
+      "year": 2024,
+      "month": 1,
+      "province": "Kalimantan Selatan",
+      "lpi": 35.7
+    },
+    {
+      "year": 2024,
+      "month": 1,
+      "province": "Jawa Timur",
+      "lpi": 34.8
+    },
+    {
+      "year": 2024,
+      "month": 1,
+      "province": "Bali",
+      "lpi": 32.7
+    },
+    {
+      "year": 2024,
+      "month": 1,
+      "province": "Jawa Tengah",
+      "lpi": 32.7
+    },
+    {
+      "year": 2024,
+      "month": 1,
+      "province": "Papua Barat",
+      "lpi": 32.4
+    },
+    {
+      "year": 2024,
+      "month": 1,
+      "province": "Kalimantan Utara",
+      "lpi": 32.3
+    },
+    {
+      "year": 2024,
+      "month": 1,
+      "province": "Bangka Belitung",
+      "lpi": 30.4
+    },
+    {
+      "year": 2024,
+      "month": 1,
+      "province": "Maluku",
+      "lpi": 29.9
+    },
+    {
+      "year": 2024,
+      "month": 1,
+      "province": "Papua Barat Daya",
+      "lpi": 28
+    },
+    {
+      "year": 2024,
+      "month": 1,
+      "province": "Sumatera Selatan",
+      "lpi": 28
+    },
+    {
+      "year": 2024,
+      "month": 1,
+      "province": "Sulawesi Selatan",
+      "lpi": 27.1
+    },
+    {
+      "year": 2024,
+      "month": 1,
+      "province": "Nusa Tenggara Barat",
+      "lpi": 26.7
+    },
+    {
+      "year": 2024,
+      "month": 1,
+      "province": "Sulawesi Tenggara",
+      "lpi": 26.3
+    },
+    {
+      "year": 2024,
+      "month": 1,
+      "province": "Sulawesi Utara",
+      "lpi": 25.6
+    },
+    {
+      "year": 2024,
+      "month": 1,
+      "province": "Riau",
+      "lpi": 23.1
+    },
+    {
+      "year": 2024,
+      "month": 1,
+      "province": "Jambi",
+      "lpi": 22.8
+    },
+    {
+      "year": 2024,
+      "month": 1,
+      "province": "Papua",
+      "lpi": 21.1
+    },
+    {
+      "year": 2024,
+      "month": 1,
+      "province": "Sumatera Barat",
+      "lpi": 20.8
+    },
+    {
+      "year": 2024,
+      "month": 1,
+      "province": "Lampung",
+      "lpi": 20.6
+    },
+    {
+      "year": 2024,
+      "month": 1,
+      "province": "Kalimantan Tengah",
+      "lpi": 19.2
+    },
+    {
+      "year": 2024,
+      "month": 1,
+      "province": "Papua Tengah",
+      "lpi": 17.1
+    },
+    {
+      "year": 2024,
+      "month": 1,
+      "province": "Sulawesi Barat",
+      "lpi": 14.6
+    },
+    {
+      "year": 2024,
+      "month": 1,
+      "province": "Nusa Tenggara Timur",
+      "lpi": 11.8
+    },
+    {
+      "year": 2024,
+      "month": 1,
+      "province": "Aceh",
+      "lpi": 7.3
+    },
+    {
+      "year": 2024,
+      "month": 1,
+      "province": "Gorontalo",
+      "lpi": 1.1
     },
     {
       "year": 2024,
       "month": 2,
-      "province": "DI Yogyakarta",
-      "lpi": 36.9
+      "province": "Kepulauan Riau",
+      "lpi": 62.2
+    },
+    {
+      "year": 2024,
+      "month": 2,
+      "province": "Banten",
+      "lpi": 57.1
+    },
+    {
+      "year": 2024,
+      "month": 2,
+      "province": "DKI Jakarta",
+      "lpi": 49.9
+    },
+    {
+      "year": 2024,
+      "month": 2,
+      "province": "Maluku Utara",
+      "lpi": 45.4
+    },
+    {
+      "year": 2024,
+      "month": 2,
+      "province": "Sulawesi Tengah",
+      "lpi": 42.3
     },
     {
       "year": 2024,
       "month": 2,
       "province": "Sumatera Utara",
-      "lpi": 36.5
+      "lpi": 41.9
+    },
+    {
+      "year": 2024,
+      "month": 2,
+      "province": "DI Yogyakarta",
+      "lpi": 41.3
+    },
+    {
+      "year": 2024,
+      "month": 2,
+      "province": "Kalimantan Timur",
+      "lpi": 41.1
     },
     {
       "year": 2024,
       "month": 2,
       "province": "Kalimantan Barat",
-      "lpi": 34.1
+      "lpi": 40.5
+    },
+    {
+      "year": 2024,
+      "month": 2,
+      "province": "Jawa Barat",
+      "lpi": 40.5
     },
     {
       "year": 2024,
       "month": 2,
       "province": "Kalimantan Selatan",
-      "lpi": 32.6
+      "lpi": 37.8
     },
     {
       "year": 2024,
       "month": 2,
       "province": "Jawa Timur",
-      "lpi": 32.3
+      "lpi": 36.9
     },
     {
       "year": 2024,
       "month": 2,
       "province": "Bali",
-      "lpi": 31.2
+      "lpi": 35.6
     },
     {
       "year": 2024,
       "month": 2,
       "province": "Jawa Tengah",
-      "lpi": 30.5
+      "lpi": 35.2
     },
     {
       "year": 2024,
       "month": 2,
       "province": "Kalimantan Utara",
-      "lpi": 29.9
+      "lpi": 34.6
     },
     {
       "year": 2024,
       "month": 2,
       "province": "Bangka Belitung",
-      "lpi": 26.6
+      "lpi": 32.6
     },
     {
       "year": 2024,
       "month": 2,
       "province": "Papua Barat",
-      "lpi": 25.8
+      "lpi": 32.4
     },
     {
       "year": 2024,
       "month": 2,
       "province": "Maluku",
-      "lpi": 22.8
+      "lpi": 32
     },
     {
       "year": 2024,
       "month": 2,
       "province": "Sumatera Selatan",
-      "lpi": 22.1
+      "lpi": 30.1
     },
     {
       "year": 2024,
       "month": 2,
       "province": "Sulawesi Selatan",
-      "lpi": 20.8
-    },
-    {
-      "year": 2024,
-      "month": 2,
-      "province": "Papua Barat Daya",
-      "lpi": 20.8
-    },
-    {
-      "year": 2024,
-      "month": 2,
-      "province": "Sulawesi Utara",
-      "lpi": 20.3
-    },
-    {
-      "year": 2024,
-      "month": 2,
-      "province": "Sulawesi Tenggara",
-      "lpi": 20.1
+      "lpi": 29
     },
     {
       "year": 2024,
       "month": 2,
       "province": "Nusa Tenggara Barat",
-      "lpi": 18.7
+      "lpi": 29
     },
     {
       "year": 2024,
       "month": 2,
-      "province": "Riau",
-      "lpi": 17.4
+      "province": "Sulawesi Tenggara",
+      "lpi": 28.3
+    },
+    {
+      "year": 2024,
+      "month": 2,
+      "province": "Papua Barat Daya",
+      "lpi": 28
+    },
+    {
+      "year": 2024,
+      "month": 2,
+      "province": "Sulawesi Utara",
+      "lpi": 27.7
     },
     {
       "year": 2024,
       "month": 2,
       "province": "Jambi",
-      "lpi": 15.8
+      "lpi": 25.1
+    },
+    {
+      "year": 2024,
+      "month": 2,
+      "province": "Riau",
+      "lpi": 24.9
     },
     {
       "year": 2024,
       "month": 2,
       "province": "Sumatera Barat",
-      "lpi": 14.7
-    },
-    {
-      "year": 2024,
-      "month": 2,
-      "province": "Kalimantan Tengah",
-      "lpi": 13.4
+      "lpi": 24.5
     },
     {
       "year": 2024,
       "month": 2,
       "province": "Lampung",
-      "lpi": 12.1
+      "lpi": 22.6
+    },
+    {
+      "year": 2024,
+      "month": 2,
+      "province": "Kalimantan Tengah",
+      "lpi": 21.5
     },
     {
       "year": 2024,
       "month": 2,
       "province": "Papua",
-      "lpi": 11.3
-    },
-    {
-      "year": 2024,
-      "month": 2,
-      "province": "Sulawesi Barat",
-      "lpi": 4.1
+      "lpi": 21.1
     },
     {
       "year": 2024,
       "month": 2,
       "province": "Papua Tengah",
-      "lpi": 4
+      "lpi": 17.1
+    },
+    {
+      "year": 2024,
+      "month": 2,
+      "province": "Sulawesi Barat",
+      "lpi": 17.1
     },
     {
       "year": 2024,
       "month": 2,
       "province": "Nusa Tenggara Timur",
-      "lpi": 0
+      "lpi": 13.9
     },
     {
       "year": 2024,
       "month": 2,
       "province": "Aceh",
-      "lpi": -4.9
+      "lpi": 9.2
     },
     {
       "year": 2024,
       "month": 2,
       "province": "Gorontalo",
-      "lpi": -10.4
+      "lpi": 2.9
     },
     {
       "year": 2024,
       "month": 3,
       "province": "Kepulauan Riau",
-      "lpi": 71.6
+      "lpi": 64.5
     },
     {
       "year": 2024,
       "month": 3,
       "province": "Banten",
-      "lpi": 60.7
+      "lpi": 58.7
     },
     {
       "year": 2024,
       "month": 3,
       "province": "DKI Jakarta",
-      "lpi": 54.4
+      "lpi": 52.4
     },
     {
       "year": 2024,
@@ -5498,1297 +5498,1297 @@ window.LPI_MONTHLY = {
       "year": 2024,
       "month": 3,
       "province": "Sulawesi Tengah",
+      "lpi": 45.3
+    },
+    {
+      "year": 2024,
+      "month": 3,
+      "province": "Sumatera Utara",
+      "lpi": 44.3
+    },
+    {
+      "year": 2024,
+      "month": 3,
+      "province": "Kalimantan Timur",
+      "lpi": 43.9
+    },
+    {
+      "year": 2024,
+      "month": 3,
+      "province": "DI Yogyakarta",
+      "lpi": 43.7
+    },
+    {
+      "year": 2024,
+      "month": 3,
+      "province": "Kalimantan Barat",
+      "lpi": 43.4
+    },
+    {
+      "year": 2024,
+      "month": 3,
+      "province": "Jawa Barat",
       "lpi": 42.8
     },
     {
       "year": 2024,
       "month": 3,
-      "province": "Kalimantan Timur",
-      "lpi": 42.2
-    },
-    {
-      "year": 2024,
-      "month": 3,
-      "province": "Jawa Barat",
-      "lpi": 40.4
-    },
-    {
-      "year": 2024,
-      "month": 3,
-      "province": "DI Yogyakarta",
-      "lpi": 39.6
-    },
-    {
-      "year": 2024,
-      "month": 3,
-      "province": "Sumatera Utara",
-      "lpi": 39.4
-    },
-    {
-      "year": 2024,
-      "month": 3,
-      "province": "Kalimantan Barat",
-      "lpi": 37.5
+      "province": "Kalimantan Selatan",
+      "lpi": 39.8
     },
     {
       "year": 2024,
       "month": 3,
       "province": "Kalimantan Utara",
-      "lpi": 35.7
+      "lpi": 39.6
     },
     {
       "year": 2024,
       "month": 3,
       "province": "Jawa Timur",
-      "lpi": 35
-    },
-    {
-      "year": 2024,
-      "month": 3,
-      "province": "Kalimantan Selatan",
-      "lpi": 34.9
+      "lpi": 39.2
     },
     {
       "year": 2024,
       "month": 3,
       "province": "Bali",
-      "lpi": 34.3
+      "lpi": 38.2
     },
     {
       "year": 2024,
       "month": 3,
       "province": "Jawa Tengah",
-      "lpi": 32.7
-    },
-    {
-      "year": 2024,
-      "month": 3,
-      "province": "Bangka Belitung",
-      "lpi": 29.5
-    },
-    {
-      "year": 2024,
-      "month": 3,
-      "province": "Sulawesi Selatan",
-      "lpi": 27.3
+      "lpi": 37.1
     },
     {
       "year": 2024,
       "month": 3,
       "province": "Maluku",
-      "lpi": 27
+      "lpi": 35.6
     },
     {
       "year": 2024,
       "month": 3,
-      "province": "Papua Barat",
-      "lpi": 25.8
+      "province": "Bangka Belitung",
+      "lpi": 35
+    },
+    {
+      "year": 2024,
+      "month": 3,
+      "province": "Sulawesi Selatan",
+      "lpi": 34.6
     },
     {
       "year": 2024,
       "month": 3,
       "province": "Sumatera Selatan",
-      "lpi": 25
+      "lpi": 32.6
     },
     {
       "year": 2024,
       "month": 3,
-      "province": "Sulawesi Tenggara",
-      "lpi": 23.3
-    },
-    {
-      "year": 2024,
-      "month": 3,
-      "province": "Sulawesi Utara",
-      "lpi": 23.3
-    },
-    {
-      "year": 2024,
-      "month": 3,
-      "province": "Riau",
-      "lpi": 21.5
+      "province": "Papua Barat",
+      "lpi": 32.4
     },
     {
       "year": 2024,
       "month": 3,
       "province": "Nusa Tenggara Barat",
-      "lpi": 21.4
+      "lpi": 31.3
+    },
+    {
+      "year": 2024,
+      "month": 3,
+      "province": "Sulawesi Tenggara",
+      "lpi": 30.9
+    },
+    {
+      "year": 2024,
+      "month": 3,
+      "province": "Sulawesi Utara",
+      "lpi": 30.2
+    },
+    {
+      "year": 2024,
+      "month": 3,
+      "province": "Riau",
+      "lpi": 28.5
     },
     {
       "year": 2024,
       "month": 3,
       "province": "Papua Barat Daya",
-      "lpi": 20.8
+      "lpi": 28
     },
     {
       "year": 2024,
       "month": 3,
       "province": "Jambi",
-      "lpi": 18.7
+      "lpi": 27.6
     },
     {
       "year": 2024,
       "month": 3,
       "province": "Sumatera Barat",
-      "lpi": 17.8
-    },
-    {
-      "year": 2024,
-      "month": 3,
-      "province": "Kalimantan Tengah",
-      "lpi": 15.9
+      "lpi": 27.2
     },
     {
       "year": 2024,
       "month": 3,
       "province": "Lampung",
-      "lpi": 15.2
+      "lpi": 25.2
+    },
+    {
+      "year": 2024,
+      "month": 3,
+      "province": "Kalimantan Tengah",
+      "lpi": 23.6
     },
     {
       "year": 2024,
       "month": 3,
       "province": "Papua",
-      "lpi": 11.3
+      "lpi": 21.1
     },
     {
       "year": 2024,
       "month": 3,
       "province": "Sulawesi Barat",
-      "lpi": 6.8
+      "lpi": 19.4
     },
     {
       "year": 2024,
       "month": 3,
       "province": "Papua Tengah",
-      "lpi": 4
+      "lpi": 17.1
     },
     {
       "year": 2024,
       "month": 3,
       "province": "Nusa Tenggara Timur",
-      "lpi": 2.9
+      "lpi": 16.4
     },
     {
       "year": 2024,
       "month": 3,
       "province": "Aceh",
-      "lpi": -1.8
+      "lpi": 11.9
     },
     {
       "year": 2024,
       "month": 3,
       "province": "Gorontalo",
-      "lpi": -8.3
+      "lpi": 4.7
     },
     {
       "year": 2024,
       "month": 4,
       "province": "Kepulauan Riau",
-      "lpi": 81
+      "lpi": 72.5
     },
     {
       "year": 2024,
       "month": 4,
       "province": "Banten",
-      "lpi": 67.2
+      "lpi": 64.2
     },
     {
       "year": 2024,
       "month": 4,
       "province": "DKI Jakarta",
-      "lpi": 62.5
+      "lpi": 59.3
     },
     {
       "year": 2024,
       "month": 4,
       "province": "Maluku Utara",
-      "lpi": 54.3
+      "lpi": 53.2
     },
     {
       "year": 2024,
       "month": 4,
       "province": "Sulawesi Tengah",
+      "lpi": 51.7
+    },
+    {
+      "year": 2024,
+      "month": 4,
+      "province": "Kalimantan Timur",
       "lpi": 50.3
     },
     {
       "year": 2024,
       "month": 4,
-      "province": "Kalimantan Timur",
-      "lpi": 49.7
-    },
-    {
-      "year": 2024,
-      "month": 4,
-      "province": "Jawa Barat",
-      "lpi": 47.9
+      "province": "Sumatera Utara",
+      "lpi": 50
     },
     {
       "year": 2024,
       "month": 4,
       "province": "DI Yogyakarta",
-      "lpi": 46.9
+      "lpi": 49.9
     },
     {
       "year": 2024,
       "month": 4,
-      "province": "Sumatera Utara",
-      "lpi": 46.1
+      "province": "Jawa Barat",
+      "lpi": 49.2
     },
     {
       "year": 2024,
       "month": 4,
       "province": "Kalimantan Barat",
-      "lpi": 44
-    },
-    {
-      "year": 2024,
-      "month": 4,
-      "province": "Kalimantan Utara",
-      "lpi": 43.2
+      "lpi": 48.9
     },
     {
       "year": 2024,
       "month": 4,
       "province": "Kalimantan Selatan",
-      "lpi": 43.1
+      "lpi": 46.7
     },
     {
       "year": 2024,
       "month": 4,
-      "province": "Bali",
-      "lpi": 41.4
-    },
-    {
-      "year": 2024,
-      "month": 4,
-      "province": "Jawa Tengah",
-      "lpi": 39.6
+      "province": "Kalimantan Utara",
+      "lpi": 46
     },
     {
       "year": 2024,
       "month": 4,
       "province": "Maluku",
-      "lpi": 37.4
+      "lpi": 44.5
+    },
+    {
+      "year": 2024,
+      "month": 4,
+      "province": "Bali",
+      "lpi": 44.3
+    },
+    {
+      "year": 2024,
+      "month": 4,
+      "province": "Jawa Tengah",
+      "lpi": 43
     },
     {
       "year": 2024,
       "month": 4,
       "province": "Sulawesi Selatan",
-      "lpi": 37.1
+      "lpi": 42.9
     },
     {
       "year": 2024,
       "month": 4,
       "province": "Bangka Belitung",
+      "lpi": 41.4
+    },
+    {
+      "year": 2024,
+      "month": 4,
+      "province": "Jawa Timur",
+      "lpi": 40.6
+    },
+    {
+      "year": 2024,
+      "month": 4,
+      "province": "Sumatera Selatan",
+      "lpi": 38.3
+    },
+    {
+      "year": 2024,
+      "month": 4,
+      "province": "Nusa Tenggara Barat",
+      "lpi": 37.5
+    },
+    {
+      "year": 2024,
+      "month": 4,
+      "province": "Sulawesi Tenggara",
       "lpi": 37
     },
     {
       "year": 2024,
       "month": 4,
-      "province": "Jawa Timur",
-      "lpi": 36.6
-    },
-    {
-      "year": 2024,
-      "month": 4,
-      "province": "Sumatera Selatan",
-      "lpi": 31.7
-    },
-    {
-      "year": 2024,
-      "month": 4,
       "province": "Sulawesi Utara",
-      "lpi": 30.6
-    },
-    {
-      "year": 2024,
-      "month": 4,
-      "province": "Sulawesi Tenggara",
-      "lpi": 30.4
+      "lpi": 36.4
     },
     {
       "year": 2024,
       "month": 4,
       "province": "Riau",
-      "lpi": 29.7
-    },
-    {
-      "year": 2024,
-      "month": 4,
-      "province": "Nusa Tenggara Barat",
-      "lpi": 28.8
-    },
-    {
-      "year": 2024,
-      "month": 4,
-      "province": "Papua Barat",
-      "lpi": 26
+      "lpi": 35.4
     },
     {
       "year": 2024,
       "month": 4,
       "province": "Jambi",
-      "lpi": 25.8
+      "lpi": 33.6
     },
     {
       "year": 2024,
       "month": 4,
       "province": "Sumatera Barat",
-      "lpi": 25.4
+      "lpi": 33.6
     },
     {
       "year": 2024,
       "month": 4,
-      "province": "Kalimantan Tengah",
-      "lpi": 23.4
+      "province": "Papua Barat",
+      "lpi": 32.5
     },
     {
       "year": 2024,
       "month": 4,
       "province": "Lampung",
-      "lpi": 22.5
+      "lpi": 31.4
+    },
+    {
+      "year": 2024,
+      "month": 4,
+      "province": "Kalimantan Tengah",
+      "lpi": 30
     },
     {
       "year": 2024,
       "month": 4,
       "province": "Papua Barat Daya",
-      "lpi": 21
+      "lpi": 28.2
     },
     {
       "year": 2024,
       "month": 4,
       "province": "Sulawesi Barat",
-      "lpi": 15.8
-    },
-    {
-      "year": 2024,
-      "month": 4,
-      "province": "Papua",
-      "lpi": 11.5
+      "lpi": 27.1
     },
     {
       "year": 2024,
       "month": 4,
       "province": "Nusa Tenggara Timur",
-      "lpi": 10.3
+      "lpi": 22.6
+    },
+    {
+      "year": 2024,
+      "month": 4,
+      "province": "Papua",
+      "lpi": 21.3
     },
     {
       "year": 2024,
       "month": 4,
       "province": "Papua Tengah",
-      "lpi": 4.2
+      "lpi": 17.3
     },
     {
       "year": 2024,
       "month": 4,
       "province": "Aceh",
-      "lpi": 0.7
+      "lpi": 14
     },
     {
       "year": 2024,
       "month": 4,
       "province": "Gorontalo",
-      "lpi": -0.6
-    },
-    {
-      "year": 2024,
-      "month": 5,
-      "province": "Kepulauan Riau",
-      "lpi": 80.6
-    },
-    {
-      "year": 2024,
-      "month": 5,
-      "province": "Banten",
-      "lpi": 69.3
-    },
-    {
-      "year": 2024,
-      "month": 5,
-      "province": "DKI Jakarta",
-      "lpi": 61
-    },
-    {
-      "year": 2024,
-      "month": 5,
-      "province": "Maluku Utara",
-      "lpi": 52.8
-    },
-    {
-      "year": 2024,
-      "month": 5,
-      "province": "Sumatera Utara",
-      "lpi": 49.8
-    },
-    {
-      "year": 2024,
-      "month": 5,
-      "province": "Sulawesi Tengah",
-      "lpi": 48.5
-    },
-    {
-      "year": 2024,
-      "month": 5,
-      "province": "Kalimantan Timur",
-      "lpi": 47.8
-    },
-    {
-      "year": 2024,
-      "month": 5,
-      "province": "Kalimantan Barat",
-      "lpi": 46.9
-    },
-    {
-      "year": 2024,
-      "month": 5,
-      "province": "Jawa Barat",
-      "lpi": 45.6
-    },
-    {
-      "year": 2024,
-      "month": 5,
-      "province": "Kalimantan Selatan",
-      "lpi": 41.4
-    },
-    {
-      "year": 2024,
-      "month": 5,
-      "province": "Kalimantan Utara",
-      "lpi": 41.3
-    },
-    {
-      "year": 2024,
-      "month": 5,
-      "province": "Bali",
-      "lpi": 39.3
-    },
-    {
-      "year": 2024,
-      "month": 5,
-      "province": "Maluku",
-      "lpi": 36.6
-    },
-    {
-      "year": 2024,
-      "month": 5,
-      "province": "DI Yogyakarta",
-      "lpi": 36.3
-    },
-    {
-      "year": 2024,
-      "month": 5,
-      "province": "Bangka Belitung",
-      "lpi": 35.1
-    },
-    {
-      "year": 2024,
-      "month": 5,
-      "province": "Jawa Tengah",
-      "lpi": 35
-    },
-    {
-      "year": 2024,
-      "month": 5,
-      "province": "Jawa Timur",
-      "lpi": 35
-    },
-    {
-      "year": 2024,
-      "month": 5,
-      "province": "Sulawesi Selatan",
-      "lpi": 33.6
-    },
-    {
-      "year": 2024,
-      "month": 5,
-      "province": "Sulawesi Utara",
-      "lpi": 28.9
-    },
-    {
-      "year": 2024,
-      "month": 5,
-      "province": "Sulawesi Tenggara",
-      "lpi": 28.5
-    },
-    {
-      "year": 2024,
-      "month": 5,
-      "province": "Riau",
-      "lpi": 28.2
-    },
-    {
-      "year": 2024,
-      "month": 5,
-      "province": "Nusa Tenggara Barat",
-      "lpi": 26.9
-    },
-    {
-      "year": 2024,
-      "month": 5,
-      "province": "Papua Barat",
-      "lpi": 25.8
-    },
-    {
-      "year": 2024,
-      "month": 5,
-      "province": "Jambi",
-      "lpi": 23.9
-    },
-    {
-      "year": 2024,
-      "month": 5,
-      "province": "Sumatera Barat",
-      "lpi": 23.5
-    },
-    {
-      "year": 2024,
-      "month": 5,
-      "province": "Kalimantan Tengah",
-      "lpi": 21.7
-    },
-    {
-      "year": 2024,
-      "month": 5,
-      "province": "Lampung",
-      "lpi": 20.9
-    },
-    {
-      "year": 2024,
-      "month": 5,
-      "province": "Papua Barat Daya",
-      "lpi": 20.8
-    },
-    {
-      "year": 2024,
-      "month": 5,
-      "province": "Sumatera Selatan",
-      "lpi": 18.3
-    },
-    {
-      "year": 2024,
-      "month": 5,
-      "province": "Sulawesi Barat",
-      "lpi": 14.1
-    },
-    {
-      "year": 2024,
-      "month": 5,
-      "province": "Papua",
       "lpi": 11.3
     },
     {
       "year": 2024,
       "month": 5,
-      "province": "Nusa Tenggara Timur",
-      "lpi": 8.4
-    },
-    {
-      "year": 2024,
-      "month": 5,
-      "province": "Papua Tengah",
-      "lpi": 4
-    },
-    {
-      "year": 2024,
-      "month": 5,
-      "province": "Aceh",
-      "lpi": -1.6
-    },
-    {
-      "year": 2024,
-      "month": 5,
-      "province": "Gorontalo",
-      "lpi": -2.7
-    },
-    {
-      "year": 2024,
-      "month": 6,
       "province": "Kepulauan Riau",
-      "lpi": 83.3
+      "lpi": 72.1
     },
     {
       "year": 2024,
-      "month": 6,
+      "month": 5,
       "province": "Banten",
-      "lpi": 64
+      "lpi": 66
     },
     {
       "year": 2024,
-      "month": 6,
+      "month": 5,
       "province": "DKI Jakarta",
-      "lpi": 62.9
+      "lpi": 58.1
     },
     {
       "year": 2024,
-      "month": 6,
-      "province": "Kalimantan Utara",
-      "lpi": 55.7
-    },
-    {
-      "year": 2024,
-      "month": 6,
-      "province": "Maluku Utara",
-      "lpi": 54.1
-    },
-    {
-      "year": 2024,
-      "month": 6,
+      "month": 5,
       "province": "Sumatera Utara",
-      "lpi": 51.7
+      "lpi": 53.2
     },
     {
       "year": 2024,
-      "month": 6,
-      "province": "Sulawesi Tengah",
+      "month": 5,
+      "province": "Maluku Utara",
+      "lpi": 52
+    },
+    {
+      "year": 2024,
+      "month": 5,
+      "province": "Kalimantan Barat",
       "lpi": 51.4
     },
     {
       "year": 2024,
-      "month": 6,
-      "province": "Bali",
-      "lpi": 50.4
-    },
-    {
-      "year": 2024,
-      "month": 6,
-      "province": "Kalimantan Timur",
-      "lpi": 49.5
-    },
-    {
-      "year": 2024,
-      "month": 6,
-      "province": "Kalimantan Barat",
-      "lpi": 48.8
-    },
-    {
-      "year": 2024,
-      "month": 6,
-      "province": "Jawa Barat",
-      "lpi": 47.5
-    },
-    {
-      "year": 2024,
-      "month": 6,
-      "province": "Kalimantan Selatan",
-      "lpi": 43.3
-    },
-    {
-      "year": 2024,
-      "month": 6,
-      "province": "Maluku",
-      "lpi": 38.2
-    },
-    {
-      "year": 2024,
-      "month": 6,
-      "province": "DI Yogyakarta",
-      "lpi": 38.2
-    },
-    {
-      "year": 2024,
-      "month": 6,
-      "province": "Jawa Timur",
-      "lpi": 37.7
-    },
-    {
-      "year": 2024,
-      "month": 6,
-      "province": "Jawa Tengah",
-      "lpi": 37.6
-    },
-    {
-      "year": 2024,
-      "month": 6,
-      "province": "Bangka Belitung",
-      "lpi": 36.8
-    },
-    {
-      "year": 2024,
-      "month": 6,
-      "province": "Sulawesi Selatan",
-      "lpi": 35.9
-    },
-    {
-      "year": 2024,
-      "month": 6,
-      "province": "Sulawesi Utara",
-      "lpi": 30.6
-    },
-    {
-      "year": 2024,
-      "month": 6,
-      "province": "Sulawesi Tenggara",
-      "lpi": 29.8
-    },
-    {
-      "year": 2024,
-      "month": 6,
-      "province": "Riau",
-      "lpi": 29.7
-    },
-    {
-      "year": 2024,
-      "month": 6,
-      "province": "Nusa Tenggara Barat",
-      "lpi": 28.8
-    },
-    {
-      "year": 2024,
-      "month": 6,
-      "province": "Papua Barat",
-      "lpi": 26
-    },
-    {
-      "year": 2024,
-      "month": 6,
-      "province": "Jambi",
-      "lpi": 25.8
-    },
-    {
-      "year": 2024,
-      "month": 6,
-      "province": "Sumatera Barat",
-      "lpi": 24.9
-    },
-    {
-      "year": 2024,
-      "month": 6,
-      "province": "Kalimantan Tengah",
-      "lpi": 23.4
-    },
-    {
-      "year": 2024,
-      "month": 6,
-      "province": "Lampung",
-      "lpi": 22.5
-    },
-    {
-      "year": 2024,
-      "month": 6,
-      "province": "Papua Barat Daya",
-      "lpi": 21
-    },
-    {
-      "year": 2024,
-      "month": 6,
-      "province": "Sumatera Selatan",
-      "lpi": 20.2
-    },
-    {
-      "year": 2024,
-      "month": 6,
-      "province": "Sulawesi Barat",
-      "lpi": 15.6
-    },
-    {
-      "year": 2024,
-      "month": 6,
-      "province": "Papua",
-      "lpi": 11.5
-    },
-    {
-      "year": 2024,
-      "month": 6,
-      "province": "Nusa Tenggara Timur",
-      "lpi": 10.5
-    },
-    {
-      "year": 2024,
-      "month": 6,
-      "province": "Papua Tengah",
-      "lpi": 4.2
-    },
-    {
-      "year": 2024,
-      "month": 6,
-      "province": "Aceh",
-      "lpi": -0.5
-    },
-    {
-      "year": 2024,
-      "month": 6,
-      "province": "Gorontalo",
-      "lpi": -1.2
-    },
-    {
-      "year": 2024,
-      "month": 7,
-      "province": "Kepulauan Riau",
-      "lpi": 89.1
-    },
-    {
-      "year": 2024,
-      "month": 7,
-      "province": "Banten",
-      "lpi": 66.3
-    },
-    {
-      "year": 2024,
-      "month": 7,
-      "province": "DKI Jakarta",
-      "lpi": 64.2
-    },
-    {
-      "year": 2024,
-      "month": 7,
-      "province": "Jawa Barat",
-      "lpi": 57.7
-    },
-    {
-      "year": 2024,
-      "month": 7,
-      "province": "Kalimantan Utara",
-      "lpi": 57
-    },
-    {
-      "year": 2024,
-      "month": 7,
-      "province": "Maluku Utara",
-      "lpi": 56
-    },
-    {
-      "year": 2024,
-      "month": 7,
+      "month": 5,
       "province": "Sulawesi Tengah",
-      "lpi": 53
+      "lpi": 50.1
     },
     {
       "year": 2024,
-      "month": 7,
-      "province": "Sumatera Utara",
-      "lpi": 53
-    },
-    {
-      "year": 2024,
-      "month": 7,
-      "province": "Bali",
-      "lpi": 51.6
-    },
-    {
-      "year": 2024,
-      "month": 7,
+      "month": 5,
       "province": "Kalimantan Timur",
-      "lpi": 51
+      "lpi": 48.7
     },
     {
       "year": 2024,
-      "month": 7,
-      "province": "Kalimantan Barat",
-      "lpi": 50.2
+      "month": 5,
+      "province": "Jawa Barat",
+      "lpi": 47.2
     },
     {
       "year": 2024,
-      "month": 7,
+      "month": 5,
       "province": "Kalimantan Selatan",
-      "lpi": 44.3
+      "lpi": 45.3
     },
     {
       "year": 2024,
-      "month": 7,
+      "month": 5,
+      "province": "Kalimantan Utara",
+      "lpi": 44.4
+    },
+    {
+      "year": 2024,
+      "month": 5,
       "province": "Maluku",
-      "lpi": 42.2
+      "lpi": 43.8
     },
     {
       "year": 2024,
-      "month": 7,
-      "province": "Jawa Tengah",
+      "month": 5,
+      "province": "Bali",
+      "lpi": 42.5
+    },
+    {
+      "year": 2024,
+      "month": 5,
+      "province": "DI Yogyakarta",
+      "lpi": 40.8
+    },
+    {
+      "year": 2024,
+      "month": 5,
+      "province": "Sulawesi Selatan",
+      "lpi": 39.9
+    },
+    {
+      "year": 2024,
+      "month": 5,
+      "province": "Bangka Belitung",
       "lpi": 39.8
     },
     {
       "year": 2024,
-      "month": 7,
-      "province": "DI Yogyakarta",
-      "lpi": 39.4
-    },
-    {
-      "year": 2024,
-      "month": 7,
+      "month": 5,
       "province": "Jawa Timur",
-      "lpi": 38.7
+      "lpi": 39.2
     },
     {
       "year": 2024,
-      "month": 7,
-      "province": "Bangka Belitung",
-      "lpi": 38.5
+      "month": 5,
+      "province": "Jawa Tengah",
+      "lpi": 39.1
     },
     {
       "year": 2024,
-      "month": 7,
-      "province": "Sulawesi Selatan",
-      "lpi": 37.3
+      "month": 5,
+      "province": "Nusa Tenggara Barat",
+      "lpi": 35.9
     },
     {
       "year": 2024,
-      "month": 7,
+      "month": 5,
+      "province": "Sulawesi Tenggara",
+      "lpi": 35.4
+    },
+    {
+      "year": 2024,
+      "month": 5,
+      "province": "Sulawesi Utara",
+      "lpi": 35
+    },
+    {
+      "year": 2024,
+      "month": 5,
       "province": "Riau",
       "lpi": 34.1
     },
     {
       "year": 2024,
-      "month": 7,
+      "month": 5,
+      "province": "Papua Barat",
+      "lpi": 32.4
+    },
+    {
+      "year": 2024,
+      "month": 5,
+      "province": "Jambi",
+      "lpi": 32
+    },
+    {
+      "year": 2024,
+      "month": 5,
+      "province": "Sumatera Barat",
+      "lpi": 32
+    },
+    {
+      "year": 2024,
+      "month": 5,
+      "province": "Lampung",
+      "lpi": 30
+    },
+    {
+      "year": 2024,
+      "month": 5,
+      "province": "Kalimantan Tengah",
+      "lpi": 28.6
+    },
+    {
+      "year": 2024,
+      "month": 5,
+      "province": "Papua Barat Daya",
+      "lpi": 28
+    },
+    {
+      "year": 2024,
+      "month": 5,
+      "province": "Sumatera Selatan",
+      "lpi": 26.9
+    },
+    {
+      "year": 2024,
+      "month": 5,
+      "province": "Sulawesi Barat",
+      "lpi": 25.6
+    },
+    {
+      "year": 2024,
+      "month": 5,
+      "province": "Papua",
+      "lpi": 21.1
+    },
+    {
+      "year": 2024,
+      "month": 5,
+      "province": "Nusa Tenggara Timur",
+      "lpi": 21
+    },
+    {
+      "year": 2024,
+      "month": 5,
+      "province": "Papua Tengah",
+      "lpi": 17.1
+    },
+    {
+      "year": 2024,
+      "month": 5,
+      "province": "Aceh",
+      "lpi": 12.1
+    },
+    {
+      "year": 2024,
+      "month": 5,
+      "province": "Gorontalo",
+      "lpi": 9.5
+    },
+    {
+      "year": 2024,
+      "month": 6,
+      "province": "Kepulauan Riau",
+      "lpi": 74.4
+    },
+    {
+      "year": 2024,
+      "month": 6,
+      "province": "Banten",
+      "lpi": 61.5
+    },
+    {
+      "year": 2024,
+      "month": 6,
+      "province": "DKI Jakarta",
+      "lpi": 59.7
+    },
+    {
+      "year": 2024,
+      "month": 6,
+      "province": "Kalimantan Utara",
+      "lpi": 56.7
+    },
+    {
+      "year": 2024,
+      "month": 6,
+      "province": "Sumatera Utara",
+      "lpi": 54.8
+    },
+    {
+      "year": 2024,
+      "month": 6,
+      "province": "Maluku Utara",
+      "lpi": 53.1
+    },
+    {
+      "year": 2024,
+      "month": 6,
+      "province": "Kalimantan Barat",
+      "lpi": 53
+    },
+    {
+      "year": 2024,
+      "month": 6,
+      "province": "Sulawesi Tengah",
+      "lpi": 52.6
+    },
+    {
+      "year": 2024,
+      "month": 6,
+      "province": "Bali",
+      "lpi": 51.9
+    },
+    {
+      "year": 2024,
+      "month": 6,
+      "province": "Kalimantan Timur",
+      "lpi": 50.2
+    },
+    {
+      "year": 2024,
+      "month": 6,
+      "province": "Jawa Barat",
+      "lpi": 48.8
+    },
+    {
+      "year": 2024,
+      "month": 6,
+      "province": "Kalimantan Selatan",
+      "lpi": 46.9
+    },
+    {
+      "year": 2024,
+      "month": 6,
+      "province": "Maluku",
+      "lpi": 45.2
+    },
+    {
+      "year": 2024,
+      "month": 6,
+      "province": "DI Yogyakarta",
+      "lpi": 42.4
+    },
+    {
+      "year": 2024,
+      "month": 6,
+      "province": "Sulawesi Selatan",
+      "lpi": 41.8
+    },
+    {
+      "year": 2024,
+      "month": 6,
+      "province": "Jawa Timur",
+      "lpi": 41.5
+    },
+    {
+      "year": 2024,
+      "month": 6,
+      "province": "Bangka Belitung",
+      "lpi": 41.3
+    },
+    {
+      "year": 2024,
+      "month": 6,
+      "province": "Jawa Tengah",
+      "lpi": 41.2
+    },
+    {
+      "year": 2024,
+      "month": 6,
+      "province": "Nusa Tenggara Barat",
+      "lpi": 37.5
+    },
+    {
+      "year": 2024,
+      "month": 6,
       "province": "Sulawesi Utara",
-      "lpi": 33.3
+      "lpi": 36.4
+    },
+    {
+      "year": 2024,
+      "month": 6,
+      "province": "Sulawesi Tenggara",
+      "lpi": 36.4
+    },
+    {
+      "year": 2024,
+      "month": 6,
+      "province": "Riau",
+      "lpi": 35.4
+    },
+    {
+      "year": 2024,
+      "month": 6,
+      "province": "Jambi",
+      "lpi": 33.6
+    },
+    {
+      "year": 2024,
+      "month": 6,
+      "province": "Sumatera Barat",
+      "lpi": 33.2
+    },
+    {
+      "year": 2024,
+      "month": 6,
+      "province": "Papua Barat",
+      "lpi": 32.5
+    },
+    {
+      "year": 2024,
+      "month": 6,
+      "province": "Lampung",
+      "lpi": 31.4
+    },
+    {
+      "year": 2024,
+      "month": 6,
+      "province": "Kalimantan Tengah",
+      "lpi": 30
+    },
+    {
+      "year": 2024,
+      "month": 6,
+      "province": "Sumatera Selatan",
+      "lpi": 28.5
+    },
+    {
+      "year": 2024,
+      "month": 6,
+      "province": "Papua Barat Daya",
+      "lpi": 28.2
+    },
+    {
+      "year": 2024,
+      "month": 6,
+      "province": "Sulawesi Barat",
+      "lpi": 26.9
+    },
+    {
+      "year": 2024,
+      "month": 6,
+      "province": "Nusa Tenggara Timur",
+      "lpi": 22.8
+    },
+    {
+      "year": 2024,
+      "month": 6,
+      "province": "Papua",
+      "lpi": 21.3
+    },
+    {
+      "year": 2024,
+      "month": 6,
+      "province": "Papua Tengah",
+      "lpi": 17.3
+    },
+    {
+      "year": 2024,
+      "month": 6,
+      "province": "Aceh",
+      "lpi": 13
+    },
+    {
+      "year": 2024,
+      "month": 6,
+      "province": "Gorontalo",
+      "lpi": 10.7
     },
     {
       "year": 2024,
       "month": 7,
-      "province": "Sulawesi Tenggara",
-      "lpi": 31.2
+      "province": "Kepulauan Riau",
+      "lpi": 79.4
+    },
+    {
+      "year": 2024,
+      "month": 7,
+      "province": "Banten",
+      "lpi": 63.5
+    },
+    {
+      "year": 2024,
+      "month": 7,
+      "province": "DKI Jakarta",
+      "lpi": 60.7
+    },
+    {
+      "year": 2024,
+      "month": 7,
+      "province": "Kalimantan Utara",
+      "lpi": 57.7
+    },
+    {
+      "year": 2024,
+      "month": 7,
+      "province": "Jawa Barat",
+      "lpi": 57.5
+    },
+    {
+      "year": 2024,
+      "month": 7,
+      "province": "Sumatera Utara",
+      "lpi": 55.9
+    },
+    {
+      "year": 2024,
+      "month": 7,
+      "province": "Maluku Utara",
+      "lpi": 54.7
+    },
+    {
+      "year": 2024,
+      "month": 7,
+      "province": "Kalimantan Barat",
+      "lpi": 54.2
+    },
+    {
+      "year": 2024,
+      "month": 7,
+      "province": "Sulawesi Tengah",
+      "lpi": 54
+    },
+    {
+      "year": 2024,
+      "month": 7,
+      "province": "Bali",
+      "lpi": 53
+    },
+    {
+      "year": 2024,
+      "month": 7,
+      "province": "Kalimantan Timur",
+      "lpi": 51.4
+    },
+    {
+      "year": 2024,
+      "month": 7,
+      "province": "Maluku",
+      "lpi": 48.6
+    },
+    {
+      "year": 2024,
+      "month": 7,
+      "province": "Kalimantan Selatan",
+      "lpi": 47.8
+    },
+    {
+      "year": 2024,
+      "month": 7,
+      "province": "DI Yogyakarta",
+      "lpi": 43.5
+    },
+    {
+      "year": 2024,
+      "month": 7,
+      "province": "Jawa Tengah",
+      "lpi": 43.2
+    },
+    {
+      "year": 2024,
+      "month": 7,
+      "province": "Sulawesi Selatan",
+      "lpi": 43.1
+    },
+    {
+      "year": 2024,
+      "month": 7,
+      "province": "Bangka Belitung",
+      "lpi": 42.7
+    },
+    {
+      "year": 2024,
+      "month": 7,
+      "province": "Jawa Timur",
+      "lpi": 42.4
+    },
+    {
+      "year": 2024,
+      "month": 7,
+      "province": "Riau",
+      "lpi": 39.1
     },
     {
       "year": 2024,
       "month": 7,
       "province": "Nusa Tenggara Barat",
-      "lpi": 30.6
+      "lpi": 39.1
     },
     {
       "year": 2024,
       "month": 7,
-      "province": "Jambi",
-      "lpi": 27.1
+      "province": "Sulawesi Utara",
+      "lpi": 38.8
+    },
+    {
+      "year": 2024,
+      "month": 7,
+      "province": "Sulawesi Tenggara",
+      "lpi": 37.7
     },
     {
       "year": 2024,
       "month": 7,
       "province": "Sumatera Barat",
-      "lpi": 26.8
+      "lpi": 34.8
     },
     {
       "year": 2024,
       "month": 7,
-      "province": "Papua Barat",
-      "lpi": 26
-    },
-    {
-      "year": 2024,
-      "month": 7,
-      "province": "Kalimantan Tengah",
-      "lpi": 24.5
+      "province": "Jambi",
+      "lpi": 34.7
     },
     {
       "year": 2024,
       "month": 7,
       "province": "Lampung",
-      "lpi": 24
+      "lpi": 32.7
+    },
+    {
+      "year": 2024,
+      "month": 7,
+      "province": "Papua Barat",
+      "lpi": 32.5
+    },
+    {
+      "year": 2024,
+      "month": 7,
+      "province": "Kalimantan Tengah",
+      "lpi": 30.9
     },
     {
       "year": 2024,
       "month": 7,
       "province": "Sumatera Selatan",
-      "lpi": 21.5
-    },
-    {
-      "year": 2024,
-      "month": 7,
-      "province": "Papua Barat Daya",
-      "lpi": 21
+      "lpi": 29.6
     },
     {
       "year": 2024,
       "month": 7,
       "province": "Sulawesi Barat",
-      "lpi": 17.4
+      "lpi": 28.5
+    },
+    {
+      "year": 2024,
+      "month": 7,
+      "province": "Papua Barat Daya",
+      "lpi": 28.2
     },
     {
       "year": 2024,
       "month": 7,
       "province": "Nusa Tenggara Timur",
-      "lpi": 11.7
+      "lpi": 23.9
     },
     {
       "year": 2024,
       "month": 7,
       "province": "Papua",
-      "lpi": 11.5
+      "lpi": 21.3
     },
     {
       "year": 2024,
       "month": 7,
       "province": "Papua Tengah",
-      "lpi": 4.2
+      "lpi": 17.3
     },
     {
       "year": 2024,
       "month": 7,
       "province": "Aceh",
-      "lpi": 0.9
+      "lpi": 14.2
     },
     {
       "year": 2024,
       "month": 7,
       "province": "Gorontalo",
-      "lpi": 0
+      "lpi": 11.8
     },
     {
       "year": 2024,
       "month": 8,
       "province": "Kepulauan Riau",
-      "lpi": 111.1
+      "lpi": 98.1
     },
     {
       "year": 2024,
       "month": 8,
       "province": "Banten",
-      "lpi": 88.3
+      "lpi": 82.2
     },
     {
       "year": 2024,
       "month": 8,
       "province": "DKI Jakarta",
-      "lpi": 86.1
+      "lpi": 79.4
     },
     {
       "year": 2024,
       "month": 8,
       "province": "Kalimantan Utara",
-      "lpi": 80.6
+      "lpi": 77.8
     },
     {
       "year": 2024,
       "month": 8,
       "province": "Jawa Barat",
-      "lpi": 79.5
-    },
-    {
-      "year": 2024,
-      "month": 8,
-      "province": "Maluku Utara",
-      "lpi": 76.8
+      "lpi": 76
     },
     {
       "year": 2024,
       "month": 8,
       "province": "Sumatera Utara",
-      "lpi": 74.9
-    },
-    {
-      "year": 2024,
-      "month": 8,
-      "province": "Sulawesi Tengah",
       "lpi": 74.6
     },
     {
       "year": 2024,
       "month": 8,
+      "province": "Kalimantan Barat",
+      "lpi": 72.9
+    },
+    {
+      "year": 2024,
+      "month": 8,
+      "province": "Maluku Utara",
+      "lpi": 72.4
+    },
+    {
+      "year": 2024,
+      "month": 8,
+      "province": "Sulawesi Tengah",
+      "lpi": 72.3
+    },
+    {
+      "year": 2024,
+      "month": 8,
       "province": "Bali",
-      "lpi": 73.6
+      "lpi": 71.7
     },
     {
       "year": 2024,
       "month": 8,
       "province": "Kalimantan Timur",
-      "lpi": 72.7
-    },
-    {
-      "year": 2024,
-      "month": 8,
-      "province": "Kalimantan Barat",
-      "lpi": 72.1
-    },
-    {
-      "year": 2024,
-      "month": 8,
-      "province": "Kalimantan Selatan",
-      "lpi": 65
+      "lpi": 69.9
     },
     {
       "year": 2024,
       "month": 8,
       "province": "Maluku",
-      "lpi": 64.1
+      "lpi": 67.2
+    },
+    {
+      "year": 2024,
+      "month": 8,
+      "province": "Kalimantan Selatan",
+      "lpi": 65.4
+    },
+    {
+      "year": 2024,
+      "month": 8,
+      "province": "DI Yogyakarta",
+      "lpi": 62.1
     },
     {
       "year": 2024,
       "month": 8,
       "province": "Jawa Tengah",
+      "lpi": 61.7
+    },
+    {
+      "year": 2024,
+      "month": 8,
+      "province": "Sulawesi Selatan",
       "lpi": 61.6
     },
     {
       "year": 2024,
       "month": 8,
-      "province": "DI Yogyakarta",
-      "lpi": 61.3
-    },
-    {
-      "year": 2024,
-      "month": 8,
-      "province": "Jawa Timur",
-      "lpi": 60.5
-    },
-    {
-      "year": 2024,
-      "month": 8,
       "province": "Bangka Belitung",
-      "lpi": 60.2
+      "lpi": 61.2
     },
     {
       "year": 2024,
       "month": 8,
       "province": "Riau",
-      "lpi": 60
+      "lpi": 61.2
     },
     {
       "year": 2024,
       "month": 8,
-      "province": "Sulawesi Selatan",
-      "lpi": 59.1
-    },
-    {
-      "year": 2024,
-      "month": 8,
-      "province": "Sulawesi Utara",
-      "lpi": 55
+      "province": "Jawa Timur",
+      "lpi": 60.9
     },
     {
       "year": 2024,
       "month": 8,
       "province": "Nusa Tenggara Barat",
-      "lpi": 52.6
+      "lpi": 57.8
+    },
+    {
+      "year": 2024,
+      "month": 8,
+      "province": "Sulawesi Utara",
+      "lpi": 57.3
     },
     {
       "year": 2024,
       "month": 8,
       "province": "Sulawesi Tenggara",
-      "lpi": 52.3
+      "lpi": 55.6
     },
     {
       "year": 2024,
       "month": 8,
       "province": "Sumatera Barat",
-      "lpi": 49.4
+      "lpi": 54
     },
     {
       "year": 2024,
       "month": 8,
       "province": "Jambi",
-      "lpi": 48.8
-    },
-    {
-      "year": 2024,
-      "month": 8,
-      "province": "Kalimantan Tengah",
-      "lpi": 46
+      "lpi": 53.2
     },
     {
       "year": 2024,
       "month": 8,
       "province": "Lampung",
-      "lpi": 45.7
+      "lpi": 51.2
+    },
+    {
+      "year": 2024,
+      "month": 8,
+      "province": "Kalimantan Tengah",
+      "lpi": 49.2
     },
     {
       "year": 2024,
       "month": 8,
       "province": "Sumatera Selatan",
-      "lpi": 43.2
+      "lpi": 48.1
     },
     {
       "year": 2024,
       "month": 8,
       "province": "Sulawesi Barat",
-      "lpi": 39.2
+      "lpi": 47
     },
     {
       "year": 2024,
       "month": 8,
       "province": "Nusa Tenggara Timur",
-      "lpi": 33.4
+      "lpi": 42.3
     },
     {
       "year": 2024,
       "month": 8,
       "province": "Papua Barat",
-      "lpi": 26.3
+      "lpi": 32.7
     },
     {
       "year": 2024,
       "month": 8,
       "province": "Aceh",
-      "lpi": 22.4
+      "lpi": 32.5
     },
     {
       "year": 2024,
       "month": 8,
       "province": "Gorontalo",
-      "lpi": 22.2
+      "lpi": 30.7
     },
     {
       "year": 2024,
       "month": 8,
       "province": "Papua Barat Daya",
-      "lpi": 21.2
+      "lpi": 28.4
     },
     {
       "year": 2024,
       "month": 8,
       "province": "Papua",
-      "lpi": 11.7
+      "lpi": 21.5
     },
     {
       "year": 2024,
       "month": 8,
       "province": "Papua Tengah",
-      "lpi": 4.4
+      "lpi": 17.5
     },
     {
       "year": 2024,
       "month": 9,
       "province": "Kepulauan Riau",
-      "lpi": 101.5
+      "lpi": 89.9
     },
     {
       "year": 2024,
       "month": 9,
       "province": "Banten",
-      "lpi": 78.2
-    },
-    {
-      "year": 2024,
-      "month": 9,
-      "province": "DKI Jakarta",
-      "lpi": 76.9
+      "lpi": 73.6
     },
     {
       "year": 2024,
       "month": 9,
       "province": "Kalimantan Utara",
-      "lpi": 73.3
+      "lpi": 71.6
+    },
+    {
+      "year": 2024,
+      "month": 9,
+      "province": "DKI Jakarta",
+      "lpi": 71.6
     },
     {
       "year": 2024,
       "month": 9,
       "province": "Jawa Barat",
-      "lpi": 70.3
+      "lpi": 68.2
     },
     {
       "year": 2024,
       "month": 9,
       "province": "Sumatera Utara",
-      "lpi": 66.1
-    },
-    {
-      "year": 2024,
-      "month": 9,
-      "province": "Maluku Utara",
-      "lpi": 65.8
-    },
-    {
-      "year": 2024,
-      "month": 9,
-      "province": "Sulawesi Tengah",
-      "lpi": 64.7
-    },
-    {
-      "year": 2024,
-      "month": 9,
-      "province": "Kalimantan Timur",
-      "lpi": 63.5
+      "lpi": 67.1
     },
     {
       "year": 2024,
       "month": 9,
       "province": "Kalimantan Barat",
-      "lpi": 62.7
+      "lpi": 64.9
+    },
+    {
+      "year": 2024,
+      "month": 9,
+      "province": "Sulawesi Tengah",
+      "lpi": 64
+    },
+    {
+      "year": 2024,
+      "month": 9,
+      "province": "Maluku Utara",
+      "lpi": 63
+    },
+    {
+      "year": 2024,
+      "month": 9,
+      "province": "Kalimantan Timur",
+      "lpi": 62.1
     },
     {
       "year": 2024,
@@ -6799,206 +6799,206 @@ window.LPI_MONTHLY = {
     {
       "year": 2024,
       "month": 9,
-      "province": "Kalimantan Selatan",
-      "lpi": 56
+      "province": "Maluku",
+      "lpi": 58
     },
     {
       "year": 2024,
       "month": 9,
-      "province": "Maluku",
-      "lpi": 53.3
+      "province": "Kalimantan Selatan",
+      "lpi": 57.7
     },
     {
       "year": 2024,
       "month": 9,
       "province": "Riau",
+      "lpi": 55.3
+    },
+    {
+      "year": 2024,
+      "month": 9,
+      "province": "DI Yogyakarta",
+      "lpi": 54.5
+    },
+    {
+      "year": 2024,
+      "month": 9,
+      "province": "Bangka Belitung",
+      "lpi": 53.4
+    },
+    {
+      "year": 2024,
+      "month": 9,
+      "province": "Jawa Timur",
       "lpi": 53.1
     },
     {
       "year": 2024,
       "month": 9,
-      "province": "DI Yogyakarta",
-      "lpi": 52.4
-    },
-    {
-      "year": 2024,
-      "month": 9,
-      "province": "Jawa Timur",
-      "lpi": 51.3
+      "province": "Sulawesi Selatan",
+      "lpi": 52.9
     },
     {
       "year": 2024,
       "month": 9,
       "province": "Jawa Tengah",
-      "lpi": 51.1
-    },
-    {
-      "year": 2024,
-      "month": 9,
-      "province": "Bangka Belitung",
-      "lpi": 51
-    },
-    {
-      "year": 2024,
-      "month": 9,
-      "province": "Sulawesi Selatan",
-      "lpi": 48.8
-    },
-    {
-      "year": 2024,
-      "month": 9,
-      "province": "Sulawesi Utara",
-      "lpi": 45.8
+      "lpi": 52.8
     },
     {
       "year": 2024,
       "month": 9,
       "province": "Nusa Tenggara Barat",
-      "lpi": 43.8
+      "lpi": 50.3
+    },
+    {
+      "year": 2024,
+      "month": 9,
+      "province": "Sulawesi Utara",
+      "lpi": 49.4
     },
     {
       "year": 2024,
       "month": 9,
       "province": "Sulawesi Tenggara",
-      "lpi": 42.5
+      "lpi": 47.3
     },
     {
       "year": 2024,
       "month": 9,
       "province": "Jambi",
-      "lpi": 39.8
+      "lpi": 45.5
     },
     {
       "year": 2024,
       "month": 9,
       "province": "Sumatera Barat",
-      "lpi": 38.5
+      "lpi": 44.8
     },
     {
       "year": 2024,
       "month": 9,
       "province": "Lampung",
-      "lpi": 36.7
+      "lpi": 43.5
     },
     {
       "year": 2024,
       "month": 9,
       "province": "Kalimantan Tengah",
-      "lpi": 36.6
+      "lpi": 41.2
     },
     {
       "year": 2024,
       "month": 9,
       "province": "Sumatera Selatan",
-      "lpi": 34.6
-    },
-    {
-      "year": 2024,
-      "month": 9,
-      "province": "Papua Barat",
-      "lpi": 26
-    },
-    {
-      "year": 2024,
-      "month": 9,
-      "province": "Sulawesi Barat",
-      "lpi": 24.3
+      "lpi": 40.8
     },
     {
       "year": 2024,
       "month": 9,
       "province": "Nusa Tenggara Timur",
-      "lpi": 24.2
+      "lpi": 34.5
+    },
+    {
+      "year": 2024,
+      "month": 9,
+      "province": "Sulawesi Barat",
+      "lpi": 34.4
+    },
+    {
+      "year": 2024,
+      "month": 9,
+      "province": "Papua Barat",
+      "lpi": 32.5
     },
     {
       "year": 2024,
       "month": 9,
       "province": "Papua Barat Daya",
-      "lpi": 21
+      "lpi": 28.2
     },
     {
       "year": 2024,
       "month": 9,
       "province": "Aceh",
-      "lpi": 13.5
+      "lpi": 24.9
     },
     {
       "year": 2024,
       "month": 9,
       "province": "Gorontalo",
-      "lpi": 13
+      "lpi": 22.8
     },
     {
       "year": 2024,
       "month": 9,
       "province": "Papua",
-      "lpi": 11.5
+      "lpi": 21.3
     },
     {
       "year": 2024,
       "month": 9,
       "province": "Papua Tengah",
-      "lpi": 4.2
+      "lpi": 17.3
     },
     {
       "year": 2024,
       "month": 10,
       "province": "Kepulauan Riau",
-      "lpi": 110.6
+      "lpi": 97.7
     },
     {
       "year": 2024,
       "month": 10,
       "province": "Banten",
-      "lpi": 77.4
-    },
-    {
-      "year": 2024,
-      "month": 10,
-      "province": "DKI Jakarta",
-      "lpi": 76.7
+      "lpi": 72.9
     },
     {
       "year": 2024,
       "month": 10,
       "province": "Kalimantan Utara",
-      "lpi": 74.3
+      "lpi": 72.5
+    },
+    {
+      "year": 2024,
+      "month": 10,
+      "province": "DKI Jakarta",
+      "lpi": 71.4
     },
     {
       "year": 2024,
       "month": 10,
       "province": "Jawa Barat",
-      "lpi": 70.3
-    },
-    {
-      "year": 2024,
-      "month": 10,
-      "province": "Maluku Utara",
-      "lpi": 66.8
-    },
-    {
-      "year": 2024,
-      "month": 10,
-      "province": "Sulawesi Tengah",
-      "lpi": 66.2
+      "lpi": 68.2
     },
     {
       "year": 2024,
       "month": 10,
       "province": "Sumatera Utara",
-      "lpi": 65.5
+      "lpi": 66.6
     },
     {
       "year": 2024,
       "month": 10,
-      "province": "Kalimantan Timur",
-      "lpi": 63.3
+      "province": "Sulawesi Tengah",
+      "lpi": 65.2
     },
     {
       "year": 2024,
       "month": 10,
       "province": "Kalimantan Barat",
-      "lpi": 63
+      "lpi": 65.1
+    },
+    {
+      "year": 2024,
+      "month": 10,
+      "province": "Maluku Utara",
+      "lpi": 63.9
+    },
+    {
+      "year": 2024,
+      "month": 10,
+      "province": "Kalimantan Timur",
+      "lpi": 61.9
     },
     {
       "year": 2024,
@@ -7009,1268 +7009,1268 @@ window.LPI_MONTHLY = {
     {
       "year": 2024,
       "month": 10,
-      "province": "Kalimantan Selatan",
-      "lpi": 56
+      "province": "Maluku",
+      "lpi": 58.2
     },
     {
       "year": 2024,
       "month": 10,
-      "province": "Maluku",
-      "lpi": 53.5
+      "province": "Kalimantan Selatan",
+      "lpi": 57.7
     },
     {
       "year": 2024,
       "month": 10,
       "province": "Sulawesi Selatan",
-      "lpi": 52.6
+      "lpi": 56.1
     },
     {
       "year": 2024,
       "month": 10,
       "province": "Riau",
-      "lpi": 52.2
-    },
-    {
-      "year": 2024,
-      "month": 10,
-      "province": "Jawa Tengah",
-      "lpi": 52
+      "lpi": 54.6
     },
     {
       "year": 2024,
       "month": 10,
       "province": "DI Yogyakarta",
-      "lpi": 51.9
+      "lpi": 54.1
+    },
+    {
+      "year": 2024,
+      "month": 10,
+      "province": "Jawa Tengah",
+      "lpi": 53.5
     },
     {
       "year": 2024,
       "month": 10,
       "province": "Bangka Belitung",
-      "lpi": 51
+      "lpi": 53.4
     },
     {
       "year": 2024,
       "month": 10,
       "province": "Jawa Timur",
-      "lpi": 50.6
-    },
-    {
-      "year": 2024,
-      "month": 10,
-      "province": "Sulawesi Utara",
-      "lpi": 45.8
+      "lpi": 52.5
     },
     {
       "year": 2024,
       "month": 10,
       "province": "Nusa Tenggara Barat",
-      "lpi": 43.8
+      "lpi": 50.3
+    },
+    {
+      "year": 2024,
+      "month": 10,
+      "province": "Sulawesi Utara",
+      "lpi": 49.4
     },
     {
       "year": 2024,
       "month": 10,
       "province": "Sulawesi Tenggara",
-      "lpi": 43.5
+      "lpi": 48.2
     },
     {
       "year": 2024,
       "month": 10,
       "province": "Jambi",
-      "lpi": 39.6
-    },
-    {
-      "year": 2024,
-      "month": 10,
-      "province": "Kalimantan Tengah",
-      "lpi": 37
+      "lpi": 45.3
     },
     {
       "year": 2024,
       "month": 10,
       "province": "Lampung",
-      "lpi": 36.5
+      "lpi": 43.4
+    },
+    {
+      "year": 2024,
+      "month": 10,
+      "province": "Kalimantan Tengah",
+      "lpi": 41.6
     },
     {
       "year": 2024,
       "month": 10,
       "province": "Sumatera Selatan",
-      "lpi": 34.4
-    },
-    {
-      "year": 2024,
-      "month": 10,
-      "province": "Sumatera Barat",
-      "lpi": 26.4
-    },
-    {
-      "year": 2024,
-      "month": 10,
-      "province": "Papua Barat",
-      "lpi": 26
+      "lpi": 40.6
     },
     {
       "year": 2024,
       "month": 10,
       "province": "Sulawesi Barat",
-      "lpi": 24.5
+      "lpi": 34.5
+    },
+    {
+      "year": 2024,
+      "month": 10,
+      "province": "Sumatera Barat",
+      "lpi": 34.5
     },
     {
       "year": 2024,
       "month": 10,
       "province": "Nusa Tenggara Timur",
-      "lpi": 24
+      "lpi": 34.3
+    },
+    {
+      "year": 2024,
+      "month": 10,
+      "province": "Papua Barat",
+      "lpi": 32.5
     },
     {
       "year": 2024,
       "month": 10,
       "province": "Papua Barat Daya",
-      "lpi": 21
-    },
-    {
-      "year": 2024,
-      "month": 10,
-      "province": "Gorontalo",
-      "lpi": 13.2
+      "lpi": 28.2
     },
     {
       "year": 2024,
       "month": 10,
       "province": "Aceh",
-      "lpi": 13.1
+      "lpi": 24.5
+    },
+    {
+      "year": 2024,
+      "month": 10,
+      "province": "Gorontalo",
+      "lpi": 23
     },
     {
       "year": 2024,
       "month": 10,
       "province": "Papua",
-      "lpi": 11.5
+      "lpi": 21.3
     },
     {
       "year": 2024,
       "month": 10,
       "province": "Papua Tengah",
-      "lpi": 4.2
+      "lpi": 17.3
     },
     {
       "year": 2024,
       "month": 11,
       "province": "Kepulauan Riau",
-      "lpi": 108.8
+      "lpi": 96.1
     },
     {
       "year": 2024,
       "month": 11,
       "province": "Banten",
-      "lpi": 75.7
-    },
-    {
-      "year": 2024,
-      "month": 11,
-      "province": "DKI Jakarta",
-      "lpi": 74.8
+      "lpi": 71.5
     },
     {
       "year": 2024,
       "month": 11,
       "province": "Kalimantan Utara",
-      "lpi": 72.5
+      "lpi": 70.9
+    },
+    {
+      "year": 2024,
+      "month": 11,
+      "province": "DKI Jakarta",
+      "lpi": 69.8
     },
     {
       "year": 2024,
       "month": 11,
       "province": "Jawa Barat",
-      "lpi": 67.8
+      "lpi": 66.1
+    },
+    {
+      "year": 2024,
+      "month": 11,
+      "province": "Sumatera Utara",
+      "lpi": 64.6
     },
     {
       "year": 2024,
       "month": 11,
       "province": "Sulawesi Tengah",
-      "lpi": 64.9
-    },
-    {
-      "year": 2024,
-      "month": 11,
-      "province": "Maluku Utara",
       "lpi": 64.1
     },
     {
       "year": 2024,
       "month": 11,
-      "province": "Sumatera Utara",
-      "lpi": 63.2
-    },
-    {
-      "year": 2024,
-      "month": 11,
-      "province": "Kalimantan Timur",
-      "lpi": 61.2
-    },
-    {
-      "year": 2024,
-      "month": 11,
       "province": "Kalimantan Barat",
-      "lpi": 60.9
+      "lpi": 63.3
     },
     {
       "year": 2024,
       "month": 11,
-      "province": "Bali",
-      "lpi": 57.9
-    },
-    {
-      "year": 2024,
-      "month": 11,
-      "province": "Kalimantan Selatan",
-      "lpi": 53.9
-    },
-    {
-      "year": 2024,
-      "month": 11,
-      "province": "Maluku",
-      "lpi": 52
-    },
-    {
-      "year": 2024,
-      "month": 11,
-      "province": "Sulawesi Selatan",
-      "lpi": 51.3
-    },
-    {
-      "year": 2024,
-      "month": 11,
-      "province": "Riau",
-      "lpi": 50.8
-    },
-    {
-      "year": 2024,
-      "month": 11,
-      "province": "Jawa Timur",
-      "lpi": 50.6
-    },
-    {
-      "year": 2024,
-      "month": 11,
-      "province": "Jawa Tengah",
-      "lpi": 50.3
-    },
-    {
-      "year": 2024,
-      "month": 11,
-      "province": "DI Yogyakarta",
-      "lpi": 49.8
-    },
-    {
-      "year": 2024,
-      "month": 11,
-      "province": "Bangka Belitung",
-      "lpi": 48.9
-    },
-    {
-      "year": 2024,
-      "month": 11,
-      "province": "Sulawesi Utara",
-      "lpi": 43.7
-    },
-    {
-      "year": 2024,
-      "month": 11,
-      "province": "Nusa Tenggara Barat",
-      "lpi": 41.7
-    },
-    {
-      "year": 2024,
-      "month": 11,
-      "province": "Sulawesi Tenggara",
-      "lpi": 41.4
-    },
-    {
-      "year": 2024,
-      "month": 11,
-      "province": "Jambi",
-      "lpi": 37.5
-    },
-    {
-      "year": 2024,
-      "month": 11,
-      "province": "Kalimantan Tengah",
-      "lpi": 34.5
-    },
-    {
-      "year": 2024,
-      "month": 11,
-      "province": "Sumatera Selatan",
-      "lpi": 32.5
-    },
-    {
-      "year": 2024,
-      "month": 11,
-      "province": "Papua Barat",
-      "lpi": 26
-    },
-    {
-      "year": 2024,
-      "month": 11,
-      "province": "Sumatera Barat",
-      "lpi": 24.5
-    },
-    {
-      "year": 2024,
-      "month": 11,
-      "province": "Nusa Tenggara Timur",
-      "lpi": 21.9
-    },
-    {
-      "year": 2024,
-      "month": 11,
-      "province": "Sulawesi Barat",
-      "lpi": 21.8
-    },
-    {
-      "year": 2024,
-      "month": 11,
-      "province": "Papua Barat Daya",
-      "lpi": 21
-    },
-    {
-      "year": 2024,
-      "month": 11,
-      "province": "Lampung",
-      "lpi": 19.2
-    },
-    {
-      "year": 2024,
-      "month": 11,
-      "province": "Gorontalo",
-      "lpi": 11.9
-    },
-    {
-      "year": 2024,
-      "month": 11,
-      "province": "Papua",
-      "lpi": 11.5
-    },
-    {
-      "year": 2024,
-      "month": 11,
-      "province": "Aceh",
-      "lpi": 10.1
-    },
-    {
-      "year": 2024,
-      "month": 11,
-      "province": "Papua Tengah",
-      "lpi": 4.2
-    },
-    {
-      "year": 2024,
-      "month": 12,
-      "province": "Kepulauan Riau",
-      "lpi": 109.8
-    },
-    {
-      "year": 2024,
-      "month": 12,
-      "province": "Banten",
-      "lpi": 78
-    },
-    {
-      "year": 2024,
-      "month": 12,
-      "province": "DKI Jakarta",
-      "lpi": 77.3
-    },
-    {
-      "year": 2024,
-      "month": 12,
-      "province": "Kalimantan Utara",
-      "lpi": 74.8
-    },
-    {
-      "year": 2024,
-      "month": 12,
-      "province": "Jawa Barat",
-      "lpi": 70.3
-    },
-    {
-      "year": 2024,
-      "month": 12,
       "province": "Maluku Utara",
-      "lpi": 68.1
+      "lpi": 61.6
     },
     {
       "year": 2024,
-      "month": 12,
-      "province": "Sulawesi Tengah",
-      "lpi": 67.2
-    },
-    {
-      "year": 2024,
-      "month": 12,
-      "province": "Sumatera Utara",
-      "lpi": 65.9
-    },
-    {
-      "year": 2024,
-      "month": 12,
+      "month": 11,
       "province": "Kalimantan Timur",
-      "lpi": 63.5
+      "lpi": 60.1
     },
     {
       "year": 2024,
-      "month": 12,
-      "province": "Kalimantan Barat",
-      "lpi": 63.4
-    },
-    {
-      "year": 2024,
-      "month": 12,
+      "month": 11,
       "province": "Bali",
-      "lpi": 60.4
+      "lpi": 58.3
     },
     {
       "year": 2024,
-      "month": 12,
-      "province": "Kalimantan Selatan",
-      "lpi": 56.2
-    },
-    {
-      "year": 2024,
-      "month": 12,
-      "province": "Jawa Tengah",
-      "lpi": 55.1
-    },
-    {
-      "year": 2024,
-      "month": 12,
+      "month": 11,
       "province": "Maluku",
-      "lpi": 54.1
+      "lpi": 56.9
     },
     {
       "year": 2024,
-      "month": 12,
+      "month": 11,
+      "province": "Kalimantan Selatan",
+      "lpi": 55.9
+    },
+    {
+      "year": 2024,
+      "month": 11,
       "province": "Sulawesi Selatan",
-      "lpi": 54
+      "lpi": 55
     },
     {
       "year": 2024,
-      "month": 12,
+      "month": 11,
       "province": "Riau",
-      "lpi": 53.5
+      "lpi": 53.4
     },
     {
       "year": 2024,
-      "month": 12,
+      "month": 11,
       "province": "Jawa Timur",
-      "lpi": 53.1
+      "lpi": 52.5
     },
     {
       "year": 2024,
-      "month": 12,
+      "month": 11,
       "province": "DI Yogyakarta",
       "lpi": 52.4
     },
     {
       "year": 2024,
-      "month": 12,
+      "month": 11,
+      "province": "Jawa Tengah",
+      "lpi": 52.1
+    },
+    {
+      "year": 2024,
+      "month": 11,
       "province": "Bangka Belitung",
-      "lpi": 51.4
+      "lpi": 51.6
+    },
+    {
+      "year": 2024,
+      "month": 11,
+      "province": "Nusa Tenggara Barat",
+      "lpi": 48.5
+    },
+    {
+      "year": 2024,
+      "month": 11,
+      "province": "Sulawesi Utara",
+      "lpi": 47.7
+    },
+    {
+      "year": 2024,
+      "month": 11,
+      "province": "Sulawesi Tenggara",
+      "lpi": 46.4
+    },
+    {
+      "year": 2024,
+      "month": 11,
+      "province": "Jambi",
+      "lpi": 43.6
+    },
+    {
+      "year": 2024,
+      "month": 11,
+      "province": "Kalimantan Tengah",
+      "lpi": 39.4
+    },
+    {
+      "year": 2024,
+      "month": 11,
+      "province": "Sumatera Selatan",
+      "lpi": 39
+    },
+    {
+      "year": 2024,
+      "month": 11,
+      "province": "Sumatera Barat",
+      "lpi": 32.9
+    },
+    {
+      "year": 2024,
+      "month": 11,
+      "province": "Nusa Tenggara Timur",
+      "lpi": 32.6
+    },
+    {
+      "year": 2024,
+      "month": 11,
+      "province": "Papua Barat",
+      "lpi": 32.5
+    },
+    {
+      "year": 2024,
+      "month": 11,
+      "province": "Sulawesi Barat",
+      "lpi": 32.2
+    },
+    {
+      "year": 2024,
+      "month": 11,
+      "province": "Lampung",
+      "lpi": 28.6
+    },
+    {
+      "year": 2024,
+      "month": 11,
+      "province": "Papua Barat Daya",
+      "lpi": 28.2
+    },
+    {
+      "year": 2024,
+      "month": 11,
+      "province": "Aceh",
+      "lpi": 22
+    },
+    {
+      "year": 2024,
+      "month": 11,
+      "province": "Gorontalo",
+      "lpi": 21.9
+    },
+    {
+      "year": 2024,
+      "month": 11,
+      "province": "Papua",
+      "lpi": 21.3
+    },
+    {
+      "year": 2024,
+      "month": 11,
+      "province": "Papua Tengah",
+      "lpi": 17.3
     },
     {
       "year": 2024,
       "month": 12,
-      "province": "Sulawesi Utara",
-      "lpi": 46
+      "province": "Kepulauan Riau",
+      "lpi": 97
+    },
+    {
+      "year": 2024,
+      "month": 12,
+      "province": "Banten",
+      "lpi": 73.5
+    },
+    {
+      "year": 2024,
+      "month": 12,
+      "province": "Kalimantan Utara",
+      "lpi": 72.8
+    },
+    {
+      "year": 2024,
+      "month": 12,
+      "province": "DKI Jakarta",
+      "lpi": 71.9
+    },
+    {
+      "year": 2024,
+      "month": 12,
+      "province": "Jawa Barat",
+      "lpi": 68.2
+    },
+    {
+      "year": 2024,
+      "month": 12,
+      "province": "Sumatera Utara",
+      "lpi": 66.9
+    },
+    {
+      "year": 2024,
+      "month": 12,
+      "province": "Sulawesi Tengah",
+      "lpi": 66.1
+    },
+    {
+      "year": 2024,
+      "month": 12,
+      "province": "Kalimantan Barat",
+      "lpi": 65.4
+    },
+    {
+      "year": 2024,
+      "month": 12,
+      "province": "Maluku Utara",
+      "lpi": 65
+    },
+    {
+      "year": 2024,
+      "month": 12,
+      "province": "Kalimantan Timur",
+      "lpi": 62.1
+    },
+    {
+      "year": 2024,
+      "month": 12,
+      "province": "Bali",
+      "lpi": 60.5
+    },
+    {
+      "year": 2024,
+      "month": 12,
+      "province": "Maluku",
+      "lpi": 58.7
+    },
+    {
+      "year": 2024,
+      "month": 12,
+      "province": "Kalimantan Selatan",
+      "lpi": 57.9
+    },
+    {
+      "year": 2024,
+      "month": 12,
+      "province": "Sulawesi Selatan",
+      "lpi": 57.3
+    },
+    {
+      "year": 2024,
+      "month": 12,
+      "province": "Jawa Tengah",
+      "lpi": 56.2
+    },
+    {
+      "year": 2024,
+      "month": 12,
+      "province": "Riau",
+      "lpi": 55.7
+    },
+    {
+      "year": 2024,
+      "month": 12,
+      "province": "Jawa Timur",
+      "lpi": 54.7
+    },
+    {
+      "year": 2024,
+      "month": 12,
+      "province": "DI Yogyakarta",
+      "lpi": 54.5
+    },
+    {
+      "year": 2024,
+      "month": 12,
+      "province": "Bangka Belitung",
+      "lpi": 53.7
     },
     {
       "year": 2024,
       "month": 12,
       "province": "Sulawesi Tenggara",
-      "lpi": 45.4
+      "lpi": 49.8
+    },
+    {
+      "year": 2024,
+      "month": 12,
+      "province": "Sulawesi Utara",
+      "lpi": 49.6
     },
     {
       "year": 2024,
       "month": 12,
       "province": "Nusa Tenggara Barat",
-      "lpi": 42.7
+      "lpi": 49.4
     },
     {
       "year": 2024,
       "month": 12,
       "province": "Jambi",
-      "lpi": 39.8
+      "lpi": 45.5
     },
     {
       "year": 2024,
       "month": 12,
       "province": "Kalimantan Tengah",
-      "lpi": 36.8
+      "lpi": 41.4
     },
     {
       "year": 2024,
       "month": 12,
       "province": "Sumatera Selatan",
-      "lpi": 34.8
+      "lpi": 40.9
     },
     {
       "year": 2024,
       "month": 12,
       "province": "Sumatera Barat",
-      "lpi": 27
-    },
-    {
-      "year": 2024,
-      "month": 12,
-      "province": "Papua Barat",
-      "lpi": 26
+      "lpi": 35
     },
     {
       "year": 2024,
       "month": 12,
       "province": "Nusa Tenggara Timur",
-      "lpi": 24.2
+      "lpi": 34.5
     },
     {
       "year": 2024,
       "month": 12,
       "province": "Sulawesi Barat",
+      "lpi": 33.8
+    },
+    {
+      "year": 2024,
+      "month": 12,
+      "province": "Papua Barat",
+      "lpi": 32.5
+    },
+    {
+      "year": 2024,
+      "month": 12,
+      "province": "Lampung",
+      "lpi": 30.7
+    },
+    {
+      "year": 2024,
+      "month": 12,
+      "province": "Papua Barat Daya",
+      "lpi": 28.2
+    },
+    {
+      "year": 2024,
+      "month": 12,
+      "province": "Aceh",
+      "lpi": 23.8
+    },
+    {
+      "year": 2024,
+      "month": 12,
+      "province": "Gorontalo",
       "lpi": 23.7
     },
     {
       "year": 2024,
       "month": 12,
-      "province": "Lampung",
-      "lpi": 21.7
-    },
-    {
-      "year": 2024,
-      "month": 12,
-      "province": "Papua Barat Daya",
-      "lpi": 21
-    },
-    {
-      "year": 2024,
-      "month": 12,
-      "province": "Gorontalo",
-      "lpi": 14
-    },
-    {
-      "year": 2024,
-      "month": 12,
-      "province": "Aceh",
-      "lpi": 12.2
-    },
-    {
-      "year": 2024,
-      "month": 12,
       "province": "Papua",
-      "lpi": 11.5
+      "lpi": 21.3
     },
     {
       "year": 2024,
       "month": 12,
       "province": "Papua Tengah",
-      "lpi": 4.2
+      "lpi": 17.3
     },
     {
       "year": 2025,
       "month": 1,
       "province": "Kepulauan Riau",
-      "lpi": 106.9
+      "lpi": 94.5
     },
     {
       "year": 2025,
       "month": 1,
       "province": "Banten",
-      "lpi": 76.6
-    },
-    {
-      "year": 2025,
-      "month": 1,
-      "province": "DKI Jakarta",
-      "lpi": 75.5
+      "lpi": 72.2
     },
     {
       "year": 2025,
       "month": 1,
       "province": "Kalimantan Utara",
-      "lpi": 72.5
+      "lpi": 70.9
+    },
+    {
+      "year": 2025,
+      "month": 1,
+      "province": "DKI Jakarta",
+      "lpi": 70.3
     },
     {
       "year": 2025,
       "month": 1,
       "province": "Jawa Barat",
-      "lpi": 68.4
-    },
-    {
-      "year": 2025,
-      "month": 1,
-      "province": "Maluku Utara",
       "lpi": 66.6
     },
     {
       "year": 2025,
       "month": 1,
-      "province": "Sulawesi Tengah",
-      "lpi": 64.5
-    },
-    {
-      "year": 2025,
-      "month": 1,
       "province": "Sumatera Utara",
-      "lpi": 64
+      "lpi": 65.3
     },
     {
       "year": 2025,
       "month": 1,
       "province": "Kalimantan Barat",
-      "lpi": 61.5
+      "lpi": 63.8
+    },
+    {
+      "year": 2025,
+      "month": 1,
+      "province": "Sulawesi Tengah",
+      "lpi": 63.8
+    },
+    {
+      "year": 2025,
+      "month": 1,
+      "province": "Maluku Utara",
+      "lpi": 63.7
     },
     {
       "year": 2025,
       "month": 1,
       "province": "Kalimantan Timur",
-      "lpi": 61.4
+      "lpi": 60.3
     },
     {
       "year": 2025,
       "month": 1,
       "province": "Bali",
-      "lpi": 58.3
+      "lpi": 58.7
     },
     {
       "year": 2025,
       "month": 1,
       "province": "Jawa Tengah",
-      "lpi": 55.7
-    },
-    {
-      "year": 2025,
-      "month": 1,
-      "province": "Kalimantan Selatan",
-      "lpi": 54.3
-    },
-    {
-      "year": 2025,
-      "month": 1,
-      "province": "Sulawesi Selatan",
-      "lpi": 52
+      "lpi": 56.7
     },
     {
       "year": 2025,
       "month": 1,
       "province": "Maluku",
-      "lpi": 51.6
+      "lpi": 56.6
+    },
+    {
+      "year": 2025,
+      "month": 1,
+      "province": "Kalimantan Selatan",
+      "lpi": 56.3
+    },
+    {
+      "year": 2025,
+      "month": 1,
+      "province": "Sulawesi Selatan",
+      "lpi": 55.5
     },
     {
       "year": 2025,
       "month": 1,
       "province": "Riau",
-      "lpi": 51.4
+      "lpi": 53.9
     },
     {
       "year": 2025,
       "month": 1,
       "province": "Jawa Timur",
-      "lpi": 51.3
+      "lpi": 53.1
     },
     {
       "year": 2025,
       "month": 1,
       "province": "DI Yogyakarta",
-      "lpi": 50.1
+      "lpi": 52.5
     },
     {
       "year": 2025,
       "month": 1,
       "province": "Bangka Belitung",
-      "lpi": 49.3
-    },
-    {
-      "year": 2025,
-      "month": 1,
-      "province": "Sulawesi Utara",
-      "lpi": 44.1
+      "lpi": 51.9
     },
     {
       "year": 2025,
       "month": 1,
       "province": "Sulawesi Tenggara",
-      "lpi": 43.7
+      "lpi": 48.3
+    },
+    {
+      "year": 2025,
+      "month": 1,
+      "province": "Sulawesi Utara",
+      "lpi": 48
     },
     {
       "year": 2025,
       "month": 1,
       "province": "Nusa Tenggara Barat",
-      "lpi": 39.8
+      "lpi": 46.9
     },
     {
       "year": 2025,
       "month": 1,
       "province": "Jambi",
-      "lpi": 37.9
+      "lpi": 43.9
     },
     {
       "year": 2025,
       "month": 1,
       "province": "Kalimantan Tengah",
-      "lpi": 34.5
+      "lpi": 39.4
     },
     {
       "year": 2025,
       "month": 1,
       "province": "Sumatera Selatan",
-      "lpi": 32.8
+      "lpi": 39.2
     },
     {
       "year": 2025,
       "month": 1,
       "province": "Sulawesi Barat",
-      "lpi": 26.2
-    },
-    {
-      "year": 2025,
-      "month": 1,
-      "province": "Papua Barat",
-      "lpi": 26
+      "lpi": 36
     },
     {
       "year": 2025,
       "month": 1,
       "province": "Sumatera Barat",
-      "lpi": 24.9
+      "lpi": 33.2
     },
     {
       "year": 2025,
       "month": 1,
       "province": "Nusa Tenggara Timur",
-      "lpi": 22.4
+      "lpi": 32.9
     },
     {
       "year": 2025,
       "month": 1,
-      "province": "Papua Barat Daya",
-      "lpi": 21
+      "province": "Papua Barat",
+      "lpi": 32.5
     },
     {
       "year": 2025,
       "month": 1,
       "province": "Lampung",
-      "lpi": 19.4
+      "lpi": 28.8
+    },
+    {
+      "year": 2025,
+      "month": 1,
+      "province": "Papua Barat Daya",
+      "lpi": 28.2
     },
     {
       "year": 2025,
       "month": 1,
       "province": "Gorontalo",
-      "lpi": 12.8
+      "lpi": 22.6
     },
     {
       "year": 2025,
       "month": 1,
       "province": "Papua",
-      "lpi": 11.5
+      "lpi": 21.3
     },
     {
       "year": 2025,
       "month": 1,
       "province": "Aceh",
-      "lpi": 9.1
+      "lpi": 21.1
     },
     {
       "year": 2025,
       "month": 1,
       "province": "Papua Tengah",
-      "lpi": 4.2
+      "lpi": 17.3
     },
     {
       "year": 2025,
       "month": 2,
       "province": "Kepulauan Riau",
-      "lpi": 109.8
+      "lpi": 97
     },
     {
       "year": 2025,
       "month": 2,
       "province": "Banten",
-      "lpi": 77.6
-    },
-    {
-      "year": 2025,
-      "month": 2,
-      "province": "DKI Jakarta",
-      "lpi": 76.5
+      "lpi": 73.1
     },
     {
       "year": 2025,
       "month": 2,
       "province": "Kalimantan Utara",
-      "lpi": 73.5
+      "lpi": 71.8
+    },
+    {
+      "year": 2025,
+      "month": 2,
+      "province": "DKI Jakarta",
+      "lpi": 71.2
     },
     {
       "year": 2025,
       "month": 2,
       "province": "Jawa Barat",
-      "lpi": 69.2
-    },
-    {
-      "year": 2025,
-      "month": 2,
-      "province": "Maluku Utara",
-      "lpi": 67.2
+      "lpi": 67.3
     },
     {
       "year": 2025,
       "month": 2,
       "province": "Bangka Belitung",
+      "lpi": 66.2
+    },
+    {
+      "year": 2025,
+      "month": 2,
+      "province": "Sumatera Utara",
       "lpi": 66
     },
     {
       "year": 2025,
       "month": 2,
       "province": "Sulawesi Tengah",
-      "lpi": 65.8
-    },
-    {
-      "year": 2025,
-      "month": 2,
-      "province": "Sumatera Utara",
       "lpi": 64.9
     },
     {
       "year": 2025,
       "month": 2,
-      "province": "Kalimantan Timur",
-      "lpi": 62.7
+      "province": "Kalimantan Barat",
+      "lpi": 64.7
     },
     {
       "year": 2025,
       "month": 2,
-      "province": "Kalimantan Barat",
-      "lpi": 62.5
+      "province": "Maluku Utara",
+      "lpi": 64.3
     },
     {
       "year": 2025,
       "month": 2,
       "province": "Sulawesi Selatan",
-      "lpi": 59.5
+      "lpi": 61.9
     },
     {
       "year": 2025,
       "month": 2,
-      "province": "Bali",
-      "lpi": 58.1
-    },
-    {
-      "year": 2025,
-      "month": 2,
-      "province": "Jawa Tengah",
-      "lpi": 56.3
-    },
-    {
-      "year": 2025,
-      "month": 2,
-      "province": "Kalimantan Selatan",
-      "lpi": 55.6
+      "province": "Kalimantan Timur",
+      "lpi": 61.4
     },
     {
       "year": 2025,
       "month": 2,
       "province": "Maluku",
-      "lpi": 53.9
+      "lpi": 58.5
+    },
+    {
+      "year": 2025,
+      "month": 2,
+      "province": "Bali",
+      "lpi": 58.5
+    },
+    {
+      "year": 2025,
+      "month": 2,
+      "province": "Kalimantan Selatan",
+      "lpi": 57.4
+    },
+    {
+      "year": 2025,
+      "month": 2,
+      "province": "Jawa Tengah",
+      "lpi": 57.2
     },
     {
       "year": 2025,
       "month": 2,
       "province": "Jawa Timur",
-      "lpi": 52.5
+      "lpi": 54.1
     },
     {
       "year": 2025,
       "month": 2,
       "province": "Riau",
-      "lpi": 51.6
+      "lpi": 54.1
     },
     {
       "year": 2025,
       "month": 2,
       "province": "DI Yogyakarta",
-      "lpi": 51.3
-    },
-    {
-      "year": 2025,
-      "month": 2,
-      "province": "Sulawesi Utara",
-      "lpi": 45.2
+      "lpi": 53.6
     },
     {
       "year": 2025,
       "month": 2,
       "province": "Sulawesi Tenggara",
-      "lpi": 44.6
+      "lpi": 49.1
+    },
+    {
+      "year": 2025,
+      "month": 2,
+      "province": "Sulawesi Utara",
+      "lpi": 48.9
     },
     {
       "year": 2025,
       "month": 2,
       "province": "Nusa Tenggara Barat",
+      "lpi": 47.8
+    },
+    {
+      "year": 2025,
+      "month": 2,
+      "province": "Jambi",
+      "lpi": 44.8
+    },
+    {
+      "year": 2025,
+      "month": 2,
+      "province": "Sumatera Selatan",
       "lpi": 40.9
     },
     {
       "year": 2025,
       "month": 2,
-      "province": "Jambi",
-      "lpi": 39
-    },
-    {
-      "year": 2025,
-      "month": 2,
       "province": "Kalimantan Tengah",
-      "lpi": 35.7
-    },
-    {
-      "year": 2025,
-      "month": 2,
-      "province": "Sumatera Selatan",
-      "lpi": 34.8
+      "lpi": 40.5
     },
     {
       "year": 2025,
       "month": 2,
       "province": "Sulawesi Barat",
-      "lpi": 27.5
-    },
-    {
-      "year": 2025,
-      "month": 2,
-      "province": "Papua Barat",
-      "lpi": 26
+      "lpi": 37
     },
     {
       "year": 2025,
       "month": 2,
       "province": "Sumatera Barat",
-      "lpi": 25.8
+      "lpi": 34
     },
     {
       "year": 2025,
       "month": 2,
       "province": "Nusa Tenggara Timur",
-      "lpi": 23.4
+      "lpi": 33.8
     },
     {
       "year": 2025,
       "month": 2,
-      "province": "Papua Barat Daya",
-      "lpi": 21
+      "province": "Papua Barat",
+      "lpi": 32.5
     },
     {
       "year": 2025,
       "month": 2,
       "province": "Lampung",
-      "lpi": 20.5
+      "lpi": 29.7
+    },
+    {
+      "year": 2025,
+      "month": 2,
+      "province": "Papua Barat Daya",
+      "lpi": 28.2
     },
     {
       "year": 2025,
       "month": 2,
       "province": "Gorontalo",
-      "lpi": 13.4
-    },
-    {
-      "year": 2025,
-      "month": 2,
-      "province": "Papua",
-      "lpi": 11.5
+      "lpi": 23.2
     },
     {
       "year": 2025,
       "month": 2,
       "province": "Aceh",
-      "lpi": 10.3
+      "lpi": 22.2
+    },
+    {
+      "year": 2025,
+      "month": 2,
+      "province": "Papua",
+      "lpi": 21.3
     },
     {
       "year": 2025,
       "month": 2,
       "province": "Papua Tengah",
-      "lpi": 4.2
+      "lpi": 17.3
     },
     {
       "year": 2025,
       "month": 3,
       "province": "Kepulauan Riau",
-      "lpi": 115.7
+      "lpi": 102
     },
     {
       "year": 2025,
       "month": 3,
       "province": "Banten",
-      "lpi": 82
-    },
-    {
-      "year": 2025,
-      "month": 3,
-      "province": "DKI Jakarta",
-      "lpi": 80.3
+      "lpi": 76.8
     },
     {
       "year": 2025,
       "month": 3,
       "province": "Kalimantan Utara",
-      "lpi": 77.3
+      "lpi": 75
+    },
+    {
+      "year": 2025,
+      "month": 3,
+      "province": "DKI Jakarta",
+      "lpi": 74.4
     },
     {
       "year": 2025,
       "month": 3,
       "province": "Jawa Barat",
-      "lpi": 73.4
-    },
-    {
-      "year": 2025,
-      "month": 3,
-      "province": "Bangka Belitung",
-      "lpi": 70.2
+      "lpi": 70.9
     },
     {
       "year": 2025,
       "month": 3,
       "province": "Sumatera Utara",
+      "lpi": 70.1
+    },
+    {
+      "year": 2025,
+      "month": 3,
+      "province": "Bangka Belitung",
       "lpi": 69.7
     },
     {
       "year": 2025,
       "month": 3,
-      "province": "Maluku Utara",
-      "lpi": 69.5
+      "province": "Kalimantan Barat",
+      "lpi": 68.3
     },
     {
       "year": 2025,
       "month": 3,
       "province": "Sulawesi Tengah",
-      "lpi": 69.1
+      "lpi": 67.7
+    },
+    {
+      "year": 2025,
+      "month": 3,
+      "province": "Maluku Utara",
+      "lpi": 66.2
     },
     {
       "year": 2025,
       "month": 3,
       "province": "Kalimantan Timur",
-      "lpi": 67.1
-    },
-    {
-      "year": 2025,
-      "month": 3,
-      "province": "Kalimantan Barat",
-      "lpi": 66.7
+      "lpi": 65.1
     },
     {
       "year": 2025,
       "month": 3,
       "province": "Sulawesi Selatan",
-      "lpi": 63
+      "lpi": 65
     },
     {
       "year": 2025,
       "month": 3,
       "province": "Bali",
-      "lpi": 62.3
-    },
-    {
-      "year": 2025,
-      "month": 3,
-      "province": "Jawa Tengah",
-      "lpi": 60.7
-    },
-    {
-      "year": 2025,
-      "month": 3,
-      "province": "Kalimantan Selatan",
-      "lpi": 59.3
+      "lpi": 62.1
     },
     {
       "year": 2025,
       "month": 3,
       "province": "Maluku",
-      "lpi": 57.4
+      "lpi": 61.5
     },
     {
       "year": 2025,
       "month": 3,
-      "province": "Jawa Timur",
-      "lpi": 56.7
+      "province": "Jawa Tengah",
+      "lpi": 61
+    },
+    {
+      "year": 2025,
+      "month": 3,
+      "province": "Kalimantan Selatan",
+      "lpi": 60.6
     },
     {
       "year": 2025,
       "month": 3,
       "province": "Riau",
-      "lpi": 56
+      "lpi": 57.8
+    },
+    {
+      "year": 2025,
+      "month": 3,
+      "province": "Jawa Timur",
+      "lpi": 57.7
     },
     {
       "year": 2025,
       "month": 3,
       "province": "DI Yogyakarta",
-      "lpi": 55.5
+      "lpi": 57.2
     },
     {
       "year": 2025,
       "month": 3,
       "province": "Sulawesi Utara",
-      "lpi": 49.2
+      "lpi": 52.3
     },
     {
       "year": 2025,
       "month": 3,
       "province": "Sulawesi Tenggara",
-      "lpi": 47.5
+      "lpi": 51.5
     },
     {
       "year": 2025,
       "month": 3,
       "province": "Nusa Tenggara Barat",
-      "lpi": 45
+      "lpi": 51.4
     },
     {
       "year": 2025,
       "month": 3,
       "province": "Jambi",
-      "lpi": 42.9
-    },
-    {
-      "year": 2025,
-      "month": 3,
-      "province": "Kalimantan Tengah",
-      "lpi": 39.5
+      "lpi": 48.2
     },
     {
       "year": 2025,
       "month": 3,
       "province": "Sumatera Selatan",
-      "lpi": 39.4
+      "lpi": 44.9
+    },
+    {
+      "year": 2025,
+      "month": 3,
+      "province": "Kalimantan Tengah",
+      "lpi": 43.7
     },
     {
       "year": 2025,
       "month": 3,
       "province": "Sulawesi Barat",
-      "lpi": 32.3
+      "lpi": 41.1
     },
     {
       "year": 2025,
       "month": 3,
       "province": "Sumatera Barat",
-      "lpi": 30.2
+      "lpi": 37.7
     },
     {
       "year": 2025,
       "month": 3,
       "province": "Nusa Tenggara Timur",
-      "lpi": 27.4
-    },
-    {
-      "year": 2025,
-      "month": 3,
-      "province": "Papua Barat",
-      "lpi": 26
+      "lpi": 37.2
     },
     {
       "year": 2025,
       "month": 3,
       "province": "Lampung",
-      "lpi": 24.4
+      "lpi": 33
+    },
+    {
+      "year": 2025,
+      "month": 3,
+      "province": "Papua Barat",
+      "lpi": 32.5
     },
     {
       "year": 2025,
       "month": 3,
       "province": "Papua Barat Daya",
-      "lpi": 21
+      "lpi": 28.2
     },
     {
       "year": 2025,
       "month": 3,
       "province": "Gorontalo",
-      "lpi": 17.6
+      "lpi": 26.7
     },
     {
       "year": 2025,
       "month": 3,
       "province": "Aceh",
-      "lpi": 14.5
+      "lpi": 25.8
     },
     {
       "year": 2025,
       "month": 3,
       "province": "Papua",
-      "lpi": 11.5
+      "lpi": 21.3
     },
     {
       "year": 2025,
       "month": 3,
       "province": "Papua Tengah",
-      "lpi": 4.2
+      "lpi": 17.3
     },
     {
       "year": 2025,
       "month": 4,
       "province": "Kepulauan Riau",
-      "lpi": 115.5
+      "lpi": 101.8
     },
     {
       "year": 2025,
       "month": 4,
       "province": "Banten",
-      "lpi": 81.2
-    },
-    {
-      "year": 2025,
-      "month": 4,
-      "province": "DKI Jakarta",
-      "lpi": 79.6
+      "lpi": 76.1
     },
     {
       "year": 2025,
       "month": 4,
       "province": "Kalimantan Utara",
-      "lpi": 77
+      "lpi": 74.8
+    },
+    {
+      "year": 2025,
+      "month": 4,
+      "province": "DKI Jakarta",
+      "lpi": 73.9
     },
     {
       "year": 2025,
       "month": 4,
       "province": "Jawa Barat",
-      "lpi": 72.8
+      "lpi": 70.3
     },
     {
       "year": 2025,
       "month": 4,
-      "province": "Sulawesi Tengah",
-      "lpi": 70
-    },
-    {
-      "year": 2025,
-      "month": 4,
-      "province": "Bangka Belitung",
+      "province": "Sumatera Utara",
       "lpi": 69.6
     },
     {
       "year": 2025,
       "month": 4,
-      "province": "Maluku Utara",
-      "lpi": 69.5
+      "province": "Bangka Belitung",
+      "lpi": 69.2
     },
     {
       "year": 2025,
       "month": 4,
-      "province": "Sumatera Utara",
-      "lpi": 69
-    },
-    {
-      "year": 2025,
-      "month": 4,
-      "province": "Kalimantan Timur",
-      "lpi": 66.4
+      "province": "Sulawesi Tengah",
+      "lpi": 68.4
     },
     {
       "year": 2025,
       "month": 4,
       "province": "Kalimantan Barat",
-      "lpi": 66.1
+      "lpi": 67.7
+    },
+    {
+      "year": 2025,
+      "month": 4,
+      "province": "Maluku Utara",
+      "lpi": 66.2
     },
     {
       "year": 2025,
       "month": 4,
       "province": "Sulawesi Selatan",
-      "lpi": 63.6
+      "lpi": 65.5
+    },
+    {
+      "year": 2025,
+      "month": 4,
+      "province": "Kalimantan Timur",
+      "lpi": 64.6
     },
     {
       "year": 2025,
@@ -8281,1016 +8281,1034 @@ window.LPI_MONTHLY = {
     {
       "year": 2025,
       "month": 4,
+      "province": "Maluku",
+      "lpi": 61.2
+    },
+    {
+      "year": 2025,
+      "month": 4,
       "province": "Jawa Tengah",
-      "lpi": 59.9
+      "lpi": 60.3
     },
     {
       "year": 2025,
       "month": 4,
       "province": "Kalimantan Selatan",
-      "lpi": 58.7
-    },
-    {
-      "year": 2025,
-      "month": 4,
-      "province": "Maluku",
-      "lpi": 57
+      "lpi": 60
     },
     {
       "year": 2025,
       "month": 4,
       "province": "Jawa Timur",
-      "lpi": 56.1
+      "lpi": 57.2
     },
     {
       "year": 2025,
       "month": 4,
       "province": "Riau",
-      "lpi": 55.2
+      "lpi": 57.1
     },
     {
       "year": 2025,
       "month": 4,
       "province": "DI Yogyakarta",
-      "lpi": 54.9
+      "lpi": 56.6
     },
     {
       "year": 2025,
       "month": 4,
       "province": "Sulawesi Utara",
-      "lpi": 48.7
+      "lpi": 51.9
     },
     {
       "year": 2025,
       "month": 4,
       "province": "Sulawesi Tenggara",
-      "lpi": 47.3
+      "lpi": 51.4
     },
     {
       "year": 2025,
       "month": 4,
       "province": "Nusa Tenggara Barat",
-      "lpi": 44.4
+      "lpi": 50.9
     },
     {
       "year": 2025,
       "month": 4,
       "province": "Jambi",
-      "lpi": 42.5
-    },
-    {
-      "year": 2025,
-      "month": 4,
-      "province": "Kalimantan Tengah",
-      "lpi": 39.1
+      "lpi": 47.8
     },
     {
       "year": 2025,
       "month": 4,
       "province": "Sumatera Selatan",
-      "lpi": 38.8
+      "lpi": 44.3
+    },
+    {
+      "year": 2025,
+      "month": 4,
+      "province": "Kalimantan Tengah",
+      "lpi": 43.4
     },
     {
       "year": 2025,
       "month": 4,
       "province": "Sulawesi Barat",
-      "lpi": 31.4
+      "lpi": 40.4
     },
     {
       "year": 2025,
       "month": 4,
       "province": "Sumatera Barat",
-      "lpi": 29.5
+      "lpi": 37.2
     },
     {
       "year": 2025,
       "month": 4,
       "province": "Nusa Tenggara Timur",
-      "lpi": 27.2
+      "lpi": 37
     },
     {
       "year": 2025,
       "month": 4,
       "province": "Papua Barat",
-      "lpi": 26
+      "lpi": 32.5
     },
     {
       "year": 2025,
       "month": 4,
       "province": "Lampung",
-      "lpi": 23.8
+      "lpi": 32.5
     },
     {
       "year": 2025,
       "month": 4,
       "province": "Papua Barat Daya",
-      "lpi": 21
+      "lpi": 28.2
     },
     {
       "year": 2025,
       "month": 4,
       "province": "Gorontalo",
-      "lpi": 16.3
+      "lpi": 25.7
     },
     {
       "year": 2025,
       "month": 4,
       "province": "Aceh",
-      "lpi": 12.4
+      "lpi": 24
     },
     {
       "year": 2025,
       "month": 4,
       "province": "Papua",
-      "lpi": 11.5
+      "lpi": 21.3
     },
     {
       "year": 2025,
       "month": 4,
       "province": "Papua Tengah",
-      "lpi": 4.2
+      "lpi": 17.3
     },
     {
       "year": 2025,
       "month": 5,
       "province": "Kepulauan Riau",
-      "lpi": 103.3
-    },
-    {
-      "year": 2025,
-      "month": 5,
-      "province": "Banten",
-      "lpi": 66.8
-    },
-    {
-      "year": 2025,
-      "month": 5,
-      "province": "DKI Jakarta",
-      "lpi": 66.7
+      "lpi": 91.5
     },
     {
       "year": 2025,
       "month": 5,
       "province": "Kalimantan Utara",
-      "lpi": 65.6
+      "lpi": 65
+    },
+    {
+      "year": 2025,
+      "month": 5,
+      "province": "Banten",
+      "lpi": 63.9
+    },
+    {
+      "year": 2025,
+      "month": 5,
+      "province": "DKI Jakarta",
+      "lpi": 62.9
     },
     {
       "year": 2025,
       "month": 5,
       "province": "Jawa Barat",
-      "lpi": 60.9
-    },
-    {
-      "year": 2025,
-      "month": 5,
-      "province": "Maluku Utara",
-      "lpi": 57
-    },
-    {
-      "year": 2025,
-      "month": 5,
-      "province": "Sulawesi Tengah",
-      "lpi": 56.6
+      "lpi": 60.2
     },
     {
       "year": 2025,
       "month": 5,
       "province": "Sumatera Utara",
-      "lpi": 56.5
-    },
-    {
-      "year": 2025,
-      "month": 5,
-      "province": "Bangka Belitung",
-      "lpi": 56.2
-    },
-    {
-      "year": 2025,
-      "month": 5,
-      "province": "Kalimantan Timur",
-      "lpi": 55.1
+      "lpi": 58.9
     },
     {
       "year": 2025,
       "month": 5,
       "province": "Kalimantan Barat",
-      "lpi": 54.8
+      "lpi": 58.1
+    },
+    {
+      "year": 2025,
+      "month": 5,
+      "province": "Bangka Belitung",
+      "lpi": 57.8
+    },
+    {
+      "year": 2025,
+      "month": 5,
+      "province": "Sulawesi Tengah",
+      "lpi": 57
+    },
+    {
+      "year": 2025,
+      "month": 5,
+      "province": "Maluku Utara",
+      "lpi": 55.6
     },
     {
       "year": 2025,
       "month": 5,
       "province": "Sulawesi Selatan",
-      "lpi": 52
+      "lpi": 55.5
+    },
+    {
+      "year": 2025,
+      "month": 5,
+      "province": "Kalimantan Timur",
+      "lpi": 55
     },
     {
       "year": 2025,
       "month": 5,
       "province": "Jawa Tengah",
-      "lpi": 50.5
+      "lpi": 52.3
     },
     {
       "year": 2025,
       "month": 5,
       "province": "Bali",
-      "lpi": 50
-    },
-    {
-      "year": 2025,
-      "month": 5,
-      "province": "Kalimantan Selatan",
-      "lpi": 46.4
-    },
-    {
-      "year": 2025,
-      "month": 5,
-      "province": "Riau",
-      "lpi": 44.7
+      "lpi": 51.6
     },
     {
       "year": 2025,
       "month": 5,
       "province": "Maluku",
-      "lpi": 44.7
+      "lpi": 50.7
+    },
+    {
+      "year": 2025,
+      "month": 5,
+      "province": "Kalimantan Selatan",
+      "lpi": 49.5
+    },
+    {
+      "year": 2025,
+      "month": 5,
+      "province": "Riau",
+      "lpi": 48.2
     },
     {
       "year": 2025,
       "month": 5,
       "province": "Jawa Timur",
-      "lpi": 44.4
+      "lpi": 47.2
     },
     {
       "year": 2025,
       "month": 5,
       "province": "DI Yogyakarta",
-      "lpi": 40.2
+      "lpi": 44.2
     },
     {
       "year": 2025,
       "month": 5,
       "province": "Sulawesi Utara",
-      "lpi": 37
+      "lpi": 42
     },
     {
       "year": 2025,
       "month": 5,
       "province": "Sulawesi Tenggara",
-      "lpi": 35.6
+      "lpi": 41.4
     },
     {
       "year": 2025,
       "month": 5,
       "province": "Nusa Tenggara Barat",
-      "lpi": 32.7
+      "lpi": 40.9
     },
     {
       "year": 2025,
       "month": 5,
       "province": "Jambi",
-      "lpi": 30.8
+      "lpi": 37.9
     },
     {
       "year": 2025,
       "month": 5,
       "province": "Sumatera Selatan",
-      "lpi": 27.3
+      "lpi": 34.5
     },
     {
       "year": 2025,
       "month": 5,
       "province": "Kalimantan Tengah",
-      "lpi": 27
+      "lpi": 33
     },
     {
       "year": 2025,
       "month": 5,
       "province": "Papua Barat",
-      "lpi": 26
-    },
-    {
-      "year": 2025,
-      "month": 5,
-      "province": "Papua Barat Daya",
-      "lpi": 21
+      "lpi": 32.5
     },
     {
       "year": 2025,
       "month": 5,
       "province": "Sulawesi Barat",
-      "lpi": 19.3
+      "lpi": 30.1
+    },
+    {
+      "year": 2025,
+      "month": 5,
+      "province": "Papua Barat Daya",
+      "lpi": 28.2
     },
     {
       "year": 2025,
       "month": 5,
       "province": "Nusa Tenggara Timur",
-      "lpi": 15.5
+      "lpi": 27.1
     },
     {
       "year": 2025,
       "month": 5,
       "province": "Lampung",
+      "lpi": 25
+    },
+    {
+      "year": 2025,
+      "month": 5,
+      "province": "Papua",
+      "lpi": 21.3
+    },
+    {
+      "year": 2025,
+      "month": 5,
+      "province": "Sumatera Barat",
+      "lpi": 20.4
+    },
+    {
+      "year": 2025,
+      "month": 5,
+      "province": "Papua Tengah",
+      "lpi": 17.3
+    },
+    {
+      "year": 2025,
+      "month": 5,
+      "province": "Gorontalo",
       "lpi": 15
     },
     {
       "year": 2025,
       "month": 5,
-      "province": "Papua",
-      "lpi": 11.5
-    },
-    {
-      "year": 2025,
-      "month": 5,
-      "province": "Sumatera Barat",
-      "lpi": 9.9
-    },
-    {
-      "year": 2025,
-      "month": 5,
-      "province": "Papua Tengah",
-      "lpi": 4.2
-    },
-    {
-      "year": 2025,
-      "month": 5,
-      "province": "Gorontalo",
-      "lpi": 3.8
-    },
-    {
-      "year": 2025,
-      "month": 5,
       "province": "Aceh",
-      "lpi": 0.9
+      "lpi": 14.2
     },
     {
       "year": 2025,
       "month": 6,
       "province": "Kepulauan Riau",
-      "lpi": 100.4
-    },
-    {
-      "year": 2025,
-      "month": 6,
-      "province": "Banten",
-      "lpi": 66.6
-    },
-    {
-      "year": 2025,
-      "month": 6,
-      "province": "DKI Jakarta",
-      "lpi": 66.3
+      "lpi": 89
     },
     {
       "year": 2025,
       "month": 6,
       "province": "Kalimantan Utara",
-      "lpi": 64.7
+      "lpi": 64.3
+    },
+    {
+      "year": 2025,
+      "month": 6,
+      "province": "Banten",
+      "lpi": 63.7
+    },
+    {
+      "year": 2025,
+      "month": 6,
+      "province": "DKI Jakarta",
+      "lpi": 62.5
     },
     {
       "year": 2025,
       "month": 6,
       "province": "Jawa Barat",
-      "lpi": 60.5
-    },
-    {
-      "year": 2025,
-      "month": 6,
-      "province": "Sulawesi Tengah",
-      "lpi": 57
+      "lpi": 59.8
     },
     {
       "year": 2025,
       "month": 6,
       "province": "Sumatera Utara",
-      "lpi": 56.1
-    },
-    {
-      "year": 2025,
-      "month": 6,
-      "province": "Bangka Belitung",
-      "lpi": 55.6
-    },
-    {
-      "year": 2025,
-      "month": 6,
-      "province": "Kalimantan Timur",
-      "lpi": 54.9
+      "lpi": 58.6
     },
     {
       "year": 2025,
       "month": 6,
       "province": "Kalimantan Barat",
+      "lpi": 58.1
+    },
+    {
+      "year": 2025,
+      "month": 6,
+      "province": "Sulawesi Tengah",
+      "lpi": 57.4
+    },
+    {
+      "year": 2025,
+      "month": 6,
+      "province": "Bangka Belitung",
+      "lpi": 57.3
+    },
+    {
+      "year": 2025,
+      "month": 6,
+      "province": "Sulawesi Selatan",
+      "lpi": 55
+    },
+    {
+      "year": 2025,
+      "month": 6,
+      "province": "Kalimantan Timur",
       "lpi": 54.8
     },
     {
       "year": 2025,
       "month": 6,
       "province": "Maluku Utara",
-      "lpi": 54.7
-    },
-    {
-      "year": 2025,
-      "month": 6,
-      "province": "Sulawesi Selatan",
-      "lpi": 51.3
+      "lpi": 53.6
     },
     {
       "year": 2025,
       "month": 6,
       "province": "Jawa Tengah",
-      "lpi": 50.1
+      "lpi": 51.9
     },
     {
       "year": 2025,
       "month": 6,
       "province": "Bali",
-      "lpi": 48.9
-    },
-    {
-      "year": 2025,
-      "month": 6,
-      "province": "Kalimantan Selatan",
-      "lpi": 45.1
+      "lpi": 50.7
     },
     {
       "year": 2025,
       "month": 6,
       "province": "Maluku",
-      "lpi": 44.5
+      "lpi": 50.5
+    },
+    {
+      "year": 2025,
+      "month": 6,
+      "province": "Kalimantan Selatan",
+      "lpi": 48.5
     },
     {
       "year": 2025,
       "month": 6,
       "province": "Riau",
-      "lpi": 44.3
+      "lpi": 47.8
     },
     {
       "year": 2025,
       "month": 6,
       "province": "Jawa Timur",
-      "lpi": 44
+      "lpi": 46.8
     },
     {
       "year": 2025,
       "month": 6,
       "province": "Sulawesi Tenggara",
-      "lpi": 40.8
+      "lpi": 45.9
     },
     {
       "year": 2025,
       "month": 6,
       "province": "DI Yogyakarta",
-      "lpi": 39.8
+      "lpi": 43.8
     },
     {
       "year": 2025,
       "month": 6,
       "province": "Sulawesi Utara",
-      "lpi": 36.4
+      "lpi": 41.4
     },
     {
       "year": 2025,
       "month": 6,
       "province": "Sumatera Selatan",
-      "lpi": 34.8
+      "lpi": 40.9
     },
     {
       "year": 2025,
       "month": 6,
       "province": "Nusa Tenggara Barat",
-      "lpi": 32.3
+      "lpi": 40.5
     },
     {
       "year": 2025,
       "month": 6,
       "province": "Jambi",
-      "lpi": 30.2
+      "lpi": 37.3
     },
     {
       "year": 2025,
       "month": 6,
       "province": "Kalimantan Tengah",
-      "lpi": 27
+      "lpi": 33
     },
     {
       "year": 2025,
       "month": 6,
       "province": "Papua Barat",
-      "lpi": 26
+      "lpi": 32.5
     },
     {
       "year": 2025,
       "month": 6,
       "province": "Papua Barat Daya",
-      "lpi": 21
+      "lpi": 28.2
     },
     {
       "year": 2025,
       "month": 6,
       "province": "Sulawesi Barat",
-      "lpi": 15.6
+      "lpi": 26.9
     },
     {
       "year": 2025,
       "month": 6,
       "province": "Nusa Tenggara Timur",
-      "lpi": 14.8
+      "lpi": 26.5
     },
     {
       "year": 2025,
       "month": 6,
       "province": "Lampung",
-      "lpi": 14.4
+      "lpi": 24.5
     },
     {
       "year": 2025,
       "month": 6,
       "province": "Papua",
-      "lpi": 11.5
+      "lpi": 21.3
     },
     {
       "year": 2025,
       "month": 6,
       "province": "Sumatera Barat",
-      "lpi": 9.5
+      "lpi": 20.1
     },
     {
       "year": 2025,
       "month": 6,
       "province": "Papua Tengah",
-      "lpi": 4.2
-    },
-    {
-      "year": 2025,
-      "month": 6,
-      "province": "Gorontalo",
-      "lpi": 1.1
+      "lpi": 17.3
     },
     {
       "year": 2025,
       "month": 6,
       "province": "Aceh",
-      "lpi": 0.5
+      "lpi": 13.8
+    },
+    {
+      "year": 2025,
+      "month": 6,
+      "province": "Gorontalo",
+      "lpi": 12.7
     },
     {
       "year": 2025,
       "month": 7,
       "province": "Kepulauan Riau",
-      "lpi": 98.1
-    },
-    {
-      "year": 2025,
-      "month": 7,
-      "province": "DKI Jakarta",
-      "lpi": 63.1
-    },
-    {
-      "year": 2025,
-      "month": 7,
-      "province": "Banten",
-      "lpi": 62.8
-    },
-    {
-      "year": 2025,
-      "month": 7,
-      "province": "Kalimantan Utara",
-      "lpi": 61.4
+      "lpi": 87.1
     },
     {
       "year": 2025,
       "month": 7,
       "province": "Sulawesi Selatan",
-      "lpi": 59.7
+      "lpi": 62.1
+    },
+    {
+      "year": 2025,
+      "month": 7,
+      "province": "Kalimantan Utara",
+      "lpi": 61.5
+    },
+    {
+      "year": 2025,
+      "month": 7,
+      "province": "Banten",
+      "lpi": 60.5
+    },
+    {
+      "year": 2025,
+      "month": 7,
+      "province": "DKI Jakarta",
+      "lpi": 59.8
     },
     {
       "year": 2025,
       "month": 7,
       "province": "Jawa Barat",
-      "lpi": 57.3
-    },
-    {
-      "year": 2025,
-      "month": 7,
-      "province": "Sulawesi Tengah",
-      "lpi": 54.1
-    },
-    {
-      "year": 2025,
-      "month": 7,
-      "province": "Maluku Utara",
-      "lpi": 53.4
+      "lpi": 57.2
     },
     {
       "year": 2025,
       "month": 7,
       "province": "Sumatera Utara",
-      "lpi": 53
-    },
-    {
-      "year": 2025,
-      "month": 7,
-      "province": "Bangka Belitung",
-      "lpi": 52.7
+      "lpi": 55.9
     },
     {
       "year": 2025,
       "month": 7,
       "province": "Kalimantan Barat",
-      "lpi": 51.7
+      "lpi": 55.5
+    },
+    {
+      "year": 2025,
+      "month": 7,
+      "province": "Sulawesi Tengah",
+      "lpi": 54.9
+    },
+    {
+      "year": 2025,
+      "month": 7,
+      "province": "Bangka Belitung",
+      "lpi": 54.8
+    },
+    {
+      "year": 2025,
+      "month": 7,
+      "province": "Maluku Utara",
+      "lpi": 52.5
     },
     {
       "year": 2025,
       "month": 7,
       "province": "Kalimantan Timur",
-      "lpi": 51.6
+      "lpi": 51.9
     },
     {
       "year": 2025,
       "month": 7,
       "province": "Jawa Tengah",
+      "lpi": 49.4
+    },
+    {
+      "year": 2025,
+      "month": 7,
+      "province": "Bali",
+      "lpi": 48.2
+    },
+    {
+      "year": 2025,
+      "month": 7,
+      "province": "Kalimantan Selatan",
       "lpi": 47.2
     },
     {
       "year": 2025,
       "month": 7,
-      "province": "Bali",
-      "lpi": 46
+      "province": "Maluku",
+      "lpi": 46.1
     },
     {
       "year": 2025,
       "month": 7,
-      "province": "Kalimantan Selatan",
-      "lpi": 43.7
+      "province": "Riau",
+      "lpi": 45.3
     },
     {
       "year": 2025,
       "month": 7,
       "province": "Jawa Timur",
+      "lpi": 44.9
+    },
+    {
+      "year": 2025,
+      "month": 7,
+      "province": "Sulawesi Tenggara",
+      "lpi": 42.8
+    },
+    {
+      "year": 2025,
+      "month": 7,
+      "province": "Sumatera Selatan",
       "lpi": 41.7
     },
     {
       "year": 2025,
       "month": 7,
-      "province": "Riau",
-      "lpi": 41.4
-    },
-    {
-      "year": 2025,
-      "month": 7,
-      "province": "Maluku",
-      "lpi": 39.3
-    },
-    {
-      "year": 2025,
-      "month": 7,
-      "province": "Sulawesi Tenggara",
-      "lpi": 37.3
-    },
-    {
-      "year": 2025,
-      "month": 7,
       "province": "DI Yogyakarta",
-      "lpi": 36.7
-    },
-    {
-      "year": 2025,
-      "month": 7,
-      "province": "Sumatera Selatan",
-      "lpi": 35.7
+      "lpi": 41.2
     },
     {
       "year": 2025,
       "month": 7,
       "province": "Sulawesi Utara",
-      "lpi": 35.4
+      "lpi": 40.5
     },
     {
       "year": 2025,
       "month": 7,
       "province": "Nusa Tenggara Barat",
-      "lpi": 29.4
+      "lpi": 38.1
     },
     {
       "year": 2025,
       "month": 7,
       "province": "Jambi",
-      "lpi": 27.3
+      "lpi": 34.8
     },
     {
       "year": 2025,
       "month": 7,
       "province": "Papua Barat",
-      "lpi": 26
+      "lpi": 32.5
     },
     {
       "year": 2025,
       "month": 7,
       "province": "Kalimantan Tengah",
-      "lpi": 22.4
+      "lpi": 29.1
     },
     {
       "year": 2025,
       "month": 7,
       "province": "Papua Barat Daya",
-      "lpi": 21
+      "lpi": 28.2
     },
     {
       "year": 2025,
       "month": 7,
       "province": "Sulawesi Barat",
-      "lpi": 13.1
+      "lpi": 24.8
     },
     {
       "year": 2025,
       "month": 7,
       "province": "Nusa Tenggara Timur",
-      "lpi": 11.9
-    },
-    {
-      "year": 2025,
-      "month": 7,
-      "province": "Papua",
-      "lpi": 11.5
+      "lpi": 24
     },
     {
       "year": 2025,
       "month": 7,
       "province": "Lampung",
-      "lpi": 11.5
+      "lpi": 22
+    },
+    {
+      "year": 2025,
+      "month": 7,
+      "province": "Papua",
+      "lpi": 21.3
     },
     {
       "year": 2025,
       "month": 7,
       "province": "Sumatera Barat",
-      "lpi": 6.6
+      "lpi": 17.6
     },
     {
       "year": 2025,
       "month": 7,
       "province": "Papua Tengah",
-      "lpi": 4.2
+      "lpi": 17.3
     },
     {
       "year": 2025,
       "month": 7,
       "province": "Gorontalo",
-      "lpi": -0.2
+      "lpi": 11.6
     },
     {
       "year": 2025,
       "month": 7,
       "province": "Aceh",
-      "lpi": -2.8
+      "lpi": 11
     },
     {
       "year": 2025,
       "month": 8,
       "province": "Kepulauan Riau",
-      "lpi": 90
-    },
-    {
-      "year": 2025,
-      "month": 8,
-      "province": "Banten",
-      "lpi": 58.2
-    },
-    {
-      "year": 2025,
-      "month": 8,
-      "province": "DKI Jakarta",
-      "lpi": 57.3
-    },
-    {
-      "year": 2025,
-      "month": 8,
-      "province": "Kalimantan Utara",
-      "lpi": 55.7
+      "lpi": 80.1
     },
     {
       "year": 2025,
       "month": 8,
       "province": "Sulawesi Selatan",
-      "lpi": 53.8
+      "lpi": 57.1
+    },
+    {
+      "year": 2025,
+      "month": 8,
+      "province": "Kalimantan Utara",
+      "lpi": 56.7
+    },
+    {
+      "year": 2025,
+      "month": 8,
+      "province": "Banten",
+      "lpi": 56.6
+    },
+    {
+      "year": 2025,
+      "month": 8,
+      "province": "DKI Jakarta",
+      "lpi": 54.9
     },
     {
       "year": 2025,
       "month": 8,
       "province": "Jawa Barat",
-      "lpi": 51.5
-    },
-    {
-      "year": 2025,
-      "month": 8,
-      "province": "Maluku Utara",
-      "lpi": 48.6
-    },
-    {
-      "year": 2025,
-      "month": 8,
-      "province": "Sulawesi Tengah",
-      "lpi": 47.6
+      "lpi": 52.2
     },
     {
       "year": 2025,
       "month": 8,
       "province": "Sumatera Utara",
-      "lpi": 47.1
-    },
-    {
-      "year": 2025,
-      "month": 8,
-      "province": "Bangka Belitung",
-      "lpi": 46.6
-    },
-    {
-      "year": 2025,
-      "month": 8,
-      "province": "Kalimantan Timur",
-      "lpi": 45.8
+      "lpi": 50.9
     },
     {
       "year": 2025,
       "month": 8,
       "province": "Kalimantan Barat",
-      "lpi": 45.4
+      "lpi": 50.1
+    },
+    {
+      "year": 2025,
+      "month": 8,
+      "province": "Bangka Belitung",
+      "lpi": 49.6
+    },
+    {
+      "year": 2025,
+      "month": 8,
+      "province": "Sulawesi Tengah",
+      "lpi": 49.4
+    },
+    {
+      "year": 2025,
+      "month": 8,
+      "province": "Maluku Utara",
+      "lpi": 48.4
+    },
+    {
+      "year": 2025,
+      "month": 8,
+      "province": "Kalimantan Timur",
+      "lpi": 47
     },
     {
       "year": 2025,
       "month": 8,
       "province": "Jawa Tengah",
-      "lpi": 42.4
+      "lpi": 45.3
     },
     {
       "year": 2025,
       "month": 8,
       "province": "Bali",
-      "lpi": 39.9
+      "lpi": 43
     },
     {
       "year": 2025,
       "month": 8,
       "province": "Kalimantan Selatan",
-      "lpi": 37.6
-    },
-    {
-      "year": 2025,
-      "month": 8,
-      "province": "Jawa Timur",
-      "lpi": 35.6
+      "lpi": 42.1
     },
     {
       "year": 2025,
       "month": 8,
       "province": "Riau",
-      "lpi": 35.5
-    },
-    {
-      "year": 2025,
-      "month": 8,
-      "province": "DI Yogyakarta",
-      "lpi": 32.9
+      "lpi": 40.4
     },
     {
       "year": 2025,
       "month": 8,
       "province": "Maluku",
-      "lpi": 32.4
+      "lpi": 40.2
+    },
+    {
+      "year": 2025,
+      "month": 8,
+      "province": "Jawa Timur",
+      "lpi": 39.7
+    },
+    {
+      "year": 2025,
+      "month": 8,
+      "province": "DI Yogyakarta",
+      "lpi": 38
     },
     {
       "year": 2025,
       "month": 8,
       "province": "Sulawesi Tenggara",
-      "lpi": 31.4
+      "lpi": 37.9
     },
     {
       "year": 2025,
       "month": 8,
       "province": "Sumatera Selatan",
-      "lpi": 29.8
+      "lpi": 36.7
     },
     {
       "year": 2025,
       "month": 8,
       "province": "Sulawesi Utara",
-      "lpi": 29.5
-    },
-    {
-      "year": 2025,
-      "month": 8,
-      "province": "Papua Barat",
-      "lpi": 25.8
+      "lpi": 35.6
     },
     {
       "year": 2025,
       "month": 8,
       "province": "Nusa Tenggara Barat",
-      "lpi": 23.5
+      "lpi": 33.1
+    },
+    {
+      "year": 2025,
+      "month": 8,
+      "province": "Papua Barat",
+      "lpi": 32.4
     },
     {
       "year": 2025,
       "month": 8,
       "province": "Jambi",
-      "lpi": 21.2
+      "lpi": 29.7
     },
     {
       "year": 2025,
       "month": 8,
       "province": "Papua Barat Daya",
-      "lpi": 20.8
+      "lpi": 28
     },
     {
       "year": 2025,
       "month": 8,
       "province": "Kalimantan Tengah",
-      "lpi": 15.1
+      "lpi": 22.9
     },
     {
       "year": 2025,
       "month": 8,
       "province": "Papua",
-      "lpi": 11.3
+      "lpi": 21.1
     },
     {
       "year": 2025,
       "month": 8,
       "province": "Sulawesi Barat",
-      "lpi": 7.6
+      "lpi": 20.1
     },
     {
       "year": 2025,
       "month": 8,
       "province": "Nusa Tenggara Timur",
-      "lpi": 6.1
-    },
-    {
-      "year": 2025,
-      "month": 8,
-      "province": "Lampung",
-      "lpi": 5.6
+      "lpi": 19.1
     },
     {
       "year": 2025,
       "month": 8,
       "province": "Papua Tengah",
-      "lpi": 4
+      "lpi": 17.1
+    },
+    {
+      "year": 2025,
+      "month": 8,
+      "province": "Lampung",
+      "lpi": 17
     },
     {
       "year": 2025,
       "month": 8,
       "province": "Sumatera Barat",
-      "lpi": 0.7
+      "lpi": 12.6
     },
     {
       "year": 2025,
       "month": 8,
       "province": "Gorontalo",
-      "lpi": -6
+      "lpi": 6.6
     },
     {
       "year": 2025,
       "month": 8,
       "province": "Aceh",
-      "lpi": -8.2
+      "lpi": 6.4
     },
     {
       "year": 2025,
       "month": 9,
       "province": "Kepulauan Riau",
-      "lpi": 91.2
+      "lpi": 81.2
     },
     {
       "year": 2025,
       "month": 9,
       "province": "Banten",
-      "lpi": 58.8
-    },
-    {
-      "year": 2025,
-      "month": 9,
-      "province": "DKI Jakarta",
-      "lpi": 56.4
-    },
-    {
-      "year": 2025,
-      "month": 9,
-      "province": "Kalimantan Utara",
-      "lpi": 55.5
+      "lpi": 57.1
     },
     {
       "year": 2025,
       "month": 9,
       "province": "Sulawesi Selatan",
-      "lpi": 53.6
+      "lpi": 57
+    },
+    {
+      "year": 2025,
+      "month": 9,
+      "province": "Kalimantan Utara",
+      "lpi": 56.5
+    },
+    {
+      "year": 2025,
+      "month": 9,
+      "province": "DKI Jakarta",
+      "lpi": 54.1
     },
     {
       "year": 2025,
       "month": 9,
       "province": "Jawa Barat",
-      "lpi": 51.5
+      "lpi": 52.2
+    },
+    {
+      "year": 2025,
+      "month": 9,
+      "province": "Sumatera Utara",
+      "lpi": 50.9
+    },
+    {
+      "year": 2025,
+      "month": 9,
+      "province": "Kalimantan Barat",
+      "lpi": 49.9
+    },
+    {
+      "year": 2025,
+      "month": 9,
+      "province": "Bangka Belitung",
+      "lpi": 49.6
     },
     {
       "year": 2025,
       "month": 9,
       "province": "Sulawesi Tengah",
-      "lpi": 47.8
+      "lpi": 49.6
     },
     {
       "year": 2025,
@@ -9301,794 +9319,776 @@ window.LPI_MONTHLY = {
     {
       "year": 2025,
       "month": 9,
-      "province": "Sumatera Utara",
-      "lpi": 47.1
-    },
-    {
-      "year": 2025,
-      "month": 9,
-      "province": "Bangka Belitung",
-      "lpi": 46.6
-    },
-    {
-      "year": 2025,
-      "month": 9,
-      "province": "Kalimantan Barat",
-      "lpi": 45.2
-    },
-    {
-      "year": 2025,
-      "month": 9,
       "province": "Kalimantan Timur",
-      "lpi": 45.1
+      "lpi": 46.4
     },
     {
       "year": 2025,
       "month": 9,
       "province": "Jawa Tengah",
-      "lpi": 42.6
+      "lpi": 45.5
     },
     {
       "year": 2025,
       "month": 9,
       "province": "Bali",
+      "lpi": 43
+    },
+    {
+      "year": 2025,
+      "month": 9,
+      "province": "Riau",
+      "lpi": 40.2
+    },
+    {
+      "year": 2025,
+      "month": 9,
+      "province": "Kalimantan Selatan",
       "lpi": 39.9
     },
     {
       "year": 2025,
       "month": 9,
-      "province": "Riau",
-      "lpi": 35.3
-    },
-    {
-      "year": 2025,
-      "month": 9,
       "province": "Jawa Timur",
-      "lpi": 35.2
-    },
-    {
-      "year": 2025,
-      "month": 9,
-      "province": "Kalimantan Selatan",
-      "lpi": 35.1
-    },
-    {
-      "year": 2025,
-      "month": 9,
-      "province": "DI Yogyakarta",
-      "lpi": 32.9
-    },
-    {
-      "year": 2025,
-      "month": 9,
-      "province": "Sulawesi Tenggara",
-      "lpi": 31
+      "lpi": 39.4
     },
     {
       "year": 2025,
       "month": 9,
       "province": "Maluku",
-      "lpi": 30.5
+      "lpi": 38.6
     },
     {
       "year": 2025,
       "month": 9,
-      "province": "Sulawesi Utara",
-      "lpi": 30.2
+      "province": "DI Yogyakarta",
+      "lpi": 38
+    },
+    {
+      "year": 2025,
+      "month": 9,
+      "province": "Sulawesi Tenggara",
+      "lpi": 37.5
     },
     {
       "year": 2025,
       "month": 9,
       "province": "Sumatera Selatan",
-      "lpi": 29.8
+      "lpi": 36.7
     },
     {
       "year": 2025,
       "month": 9,
-      "province": "Papua Barat",
-      "lpi": 25.8
+      "province": "Sulawesi Utara",
+      "lpi": 36.1
     },
     {
       "year": 2025,
       "month": 9,
       "province": "Nusa Tenggara Barat",
-      "lpi": 23.5
+      "lpi": 33.1
+    },
+    {
+      "year": 2025,
+      "month": 9,
+      "province": "Papua Barat",
+      "lpi": 32.4
     },
     {
       "year": 2025,
       "month": 9,
       "province": "Jambi",
-      "lpi": 21.2
+      "lpi": 29.7
     },
     {
       "year": 2025,
       "month": 9,
       "province": "Papua Barat Daya",
-      "lpi": 20.8
+      "lpi": 28
     },
     {
       "year": 2025,
       "month": 9,
       "province": "Kalimantan Tengah",
-      "lpi": 15.3
+      "lpi": 23.1
     },
     {
       "year": 2025,
       "month": 9,
       "province": "Papua",
-      "lpi": 11.3
+      "lpi": 21.1
     },
     {
       "year": 2025,
       "month": 9,
       "province": "Sulawesi Barat",
-      "lpi": 7.2
+      "lpi": 19.8
     },
     {
       "year": 2025,
       "month": 9,
       "province": "Nusa Tenggara Timur",
-      "lpi": 6.1
+      "lpi": 19.1
     },
     {
       "year": 2025,
       "month": 9,
       "province": "Papua Tengah",
-      "lpi": 4
+      "lpi": 17.1
     },
     {
       "year": 2025,
       "month": 9,
       "province": "Lampung",
-      "lpi": 2.7
+      "lpi": 14.5
     },
     {
       "year": 2025,
       "month": 9,
       "province": "Sumatera Barat",
-      "lpi": 0.5
-    },
-    {
-      "year": 2025,
-      "month": 9,
-      "province": "Gorontalo",
-      "lpi": -7.7
+      "lpi": 12.4
     },
     {
       "year": 2025,
       "month": 9,
       "province": "Aceh",
-      "lpi": -8.2
+      "lpi": 6.4
+    },
+    {
+      "year": 2025,
+      "month": 9,
+      "province": "Gorontalo",
+      "lpi": 5.2
     },
     {
       "year": 2025,
       "month": 10,
       "province": "Kepulauan Riau",
-      "lpi": 89.1
-    },
-    {
-      "year": 2025,
-      "month": 10,
-      "province": "Banten",
-      "lpi": 57
-    },
-    {
-      "year": 2025,
-      "month": 10,
-      "province": "DKI Jakarta",
-      "lpi": 54.6
-    },
-    {
-      "year": 2025,
-      "month": 10,
-      "province": "Kalimantan Utara",
-      "lpi": 52.8
+      "lpi": 79.4
     },
     {
       "year": 2025,
       "month": 10,
       "province": "Sulawesi Selatan",
-      "lpi": 52.8
+      "lpi": 56.2
     },
     {
       "year": 2025,
       "month": 10,
-      "province": "Jawa Barat",
-      "lpi": 49.6
+      "province": "Banten",
+      "lpi": 55.5
+    },
+    {
+      "year": 2025,
+      "month": 10,
+      "province": "Kalimantan Utara",
+      "lpi": 54.2
+    },
+    {
+      "year": 2025,
+      "month": 10,
+      "province": "DKI Jakarta",
+      "lpi": 52.5
     },
     {
       "year": 2025,
       "month": 10,
       "province": "Sumatera Utara",
-      "lpi": 48.8
+      "lpi": 52.3
     },
     {
       "year": 2025,
       "month": 10,
-      "province": "Maluku Utara",
-      "lpi": 47.6
-    },
-    {
-      "year": 2025,
-      "month": 10,
-      "province": "Sulawesi Tengah",
-      "lpi": 45.9
-    },
-    {
-      "year": 2025,
-      "month": 10,
-      "province": "Bangka Belitung",
-      "lpi": 44.7
+      "province": "Jawa Barat",
+      "lpi": 50.6
     },
     {
       "year": 2025,
       "month": 10,
       "province": "Kalimantan Barat",
-      "lpi": 43.5
+      "lpi": 48.5
+    },
+    {
+      "year": 2025,
+      "month": 10,
+      "province": "Bangka Belitung",
+      "lpi": 48
+    },
+    {
+      "year": 2025,
+      "month": 10,
+      "province": "Sulawesi Tengah",
+      "lpi": 48
+    },
+    {
+      "year": 2025,
+      "month": 10,
+      "province": "Maluku Utara",
+      "lpi": 47.5
     },
     {
       "year": 2025,
       "month": 10,
       "province": "Kalimantan Timur",
-      "lpi": 42.6
+      "lpi": 44.3
     },
     {
       "year": 2025,
       "month": 10,
       "province": "Jawa Tengah",
-      "lpi": 39.8
+      "lpi": 43.2
     },
     {
       "year": 2025,
       "month": 10,
       "province": "Bali",
-      "lpi": 38.1
-    },
-    {
-      "year": 2025,
-      "month": 10,
-      "province": "Kalimantan Selatan",
-      "lpi": 33.9
+      "lpi": 41.4
     },
     {
       "year": 2025,
       "month": 10,
       "province": "Riau",
-      "lpi": 33.9
+      "lpi": 38.9
+    },
+    {
+      "year": 2025,
+      "month": 10,
+      "province": "Kalimantan Selatan",
+      "lpi": 38.9
     },
     {
       "year": 2025,
       "month": 10,
       "province": "Jawa Timur",
-      "lpi": 32.5
-    },
-    {
-      "year": 2025,
-      "month": 10,
-      "province": "DI Yogyakarta",
-      "lpi": 31.3
-    },
-    {
-      "year": 2025,
-      "month": 10,
-      "province": "Sulawesi Tenggara",
-      "lpi": 29.3
-    },
-    {
-      "year": 2025,
-      "month": 10,
-      "province": "Sulawesi Utara",
-      "lpi": 28.3
-    },
-    {
-      "year": 2025,
-      "month": 10,
-      "province": "Sumatera Selatan",
-      "lpi": 27.7
-    },
-    {
-      "year": 2025,
-      "month": 10,
-      "province": "Maluku",
-      "lpi": 27.6
-    },
-    {
-      "year": 2025,
-      "month": 10,
-      "province": "Papua Barat",
-      "lpi": 25.8
-    },
-    {
-      "year": 2025,
-      "month": 10,
-      "province": "Nusa Tenggara Barat",
-      "lpi": 21.7
-    },
-    {
-      "year": 2025,
-      "month": 10,
-      "province": "Papua Barat Daya",
-      "lpi": 20.8
-    },
-    {
-      "year": 2025,
-      "month": 10,
-      "province": "Jambi",
-      "lpi": 19.3
-    },
-    {
-      "year": 2025,
-      "month": 10,
-      "province": "Kalimantan Tengah",
-      "lpi": 13.2
-    },
-    {
-      "year": 2025,
-      "month": 10,
-      "province": "Papua",
-      "lpi": 11.3
-    },
-    {
-      "year": 2025,
-      "month": 10,
-      "province": "Sulawesi Barat",
-      "lpi": 7.6
-    },
-    {
-      "year": 2025,
-      "month": 10,
-      "province": "Nusa Tenggara Timur",
-      "lpi": 4.2
-    },
-    {
-      "year": 2025,
-      "month": 10,
-      "province": "Papua Tengah",
-      "lpi": 4
-    },
-    {
-      "year": 2025,
-      "month": 10,
-      "province": "Lampung",
-      "lpi": 0.8
-    },
-    {
-      "year": 2025,
-      "month": 10,
-      "province": "Sumatera Barat",
-      "lpi": -1
-    },
-    {
-      "year": 2025,
-      "month": 10,
-      "province": "Gorontalo",
-      "lpi": -9.6
-    },
-    {
-      "year": 2025,
-      "month": 10,
-      "province": "Aceh",
-      "lpi": -10.1
-    },
-    {
-      "year": 2025,
-      "month": 11,
-      "province": "Kepulauan Riau",
-      "lpi": 84.5
-    },
-    {
-      "year": 2025,
-      "month": 11,
-      "province": "Banten",
-      "lpi": 53.4
-    },
-    {
-      "year": 2025,
-      "month": 11,
-      "province": "DKI Jakarta",
-      "lpi": 51.6
-    },
-    {
-      "year": 2025,
-      "month": 11,
-      "province": "Kalimantan Utara",
-      "lpi": 51.4
-    },
-    {
-      "year": 2025,
-      "month": 11,
-      "province": "Sulawesi Selatan",
-      "lpi": 49
-    },
-    {
-      "year": 2025,
-      "month": 11,
-      "province": "Jawa Barat",
-      "lpi": 46.5
-    },
-    {
-      "year": 2025,
-      "month": 11,
-      "province": "Sumatera Utara",
-      "lpi": 45.6
-    },
-    {
-      "year": 2025,
-      "month": 11,
-      "province": "Maluku Utara",
-      "lpi": 44.9
-    },
-    {
-      "year": 2025,
-      "month": 11,
-      "province": "Sulawesi Tengah",
-      "lpi": 42.6
-    },
-    {
-      "year": 2025,
-      "month": 11,
-      "province": "Bangka Belitung",
-      "lpi": 41.6
-    },
-    {
-      "year": 2025,
-      "month": 11,
-      "province": "Kalimantan Timur",
-      "lpi": 40.5
-    },
-    {
-      "year": 2025,
-      "month": 11,
-      "province": "Kalimantan Barat",
-      "lpi": 40.4
-    },
-    {
-      "year": 2025,
-      "month": 11,
-      "province": "Jawa Tengah",
       "lpi": 37.1
     },
     {
       "year": 2025,
+      "month": 10,
+      "province": "DI Yogyakarta",
+      "lpi": 36.5
+    },
+    {
+      "year": 2025,
+      "month": 10,
+      "province": "Maluku",
+      "lpi": 36.1
+    },
+    {
+      "year": 2025,
+      "month": 10,
+      "province": "Sulawesi Tenggara",
+      "lpi": 36.1
+    },
+    {
+      "year": 2025,
+      "month": 10,
+      "province": "Sumatera Selatan",
+      "lpi": 34.9
+    },
+    {
+      "year": 2025,
+      "month": 10,
+      "province": "Sulawesi Utara",
+      "lpi": 34.5
+    },
+    {
+      "year": 2025,
+      "month": 10,
+      "province": "Papua Barat",
+      "lpi": 32.4
+    },
+    {
+      "year": 2025,
+      "month": 10,
+      "province": "Nusa Tenggara Barat",
+      "lpi": 31.5
+    },
+    {
+      "year": 2025,
+      "month": 10,
+      "province": "Jambi",
+      "lpi": 28.1
+    },
+    {
+      "year": 2025,
+      "month": 10,
+      "province": "Papua Barat Daya",
+      "lpi": 28
+    },
+    {
+      "year": 2025,
+      "month": 10,
+      "province": "Kalimantan Tengah",
+      "lpi": 21.3
+    },
+    {
+      "year": 2025,
+      "month": 10,
+      "province": "Papua",
+      "lpi": 21.1
+    },
+    {
+      "year": 2025,
+      "month": 10,
+      "province": "Sulawesi Barat",
+      "lpi": 20.1
+    },
+    {
+      "year": 2025,
+      "month": 10,
+      "province": "Nusa Tenggara Timur",
+      "lpi": 17.5
+    },
+    {
+      "year": 2025,
+      "month": 10,
+      "province": "Papua Tengah",
+      "lpi": 17.1
+    },
+    {
+      "year": 2025,
+      "month": 10,
+      "province": "Lampung",
+      "lpi": 12.9
+    },
+    {
+      "year": 2025,
+      "month": 10,
+      "province": "Sumatera Barat",
+      "lpi": 11.2
+    },
+    {
+      "year": 2025,
+      "month": 10,
+      "province": "Aceh",
+      "lpi": 4.8
+    },
+    {
+      "year": 2025,
+      "month": 10,
+      "province": "Gorontalo",
+      "lpi": 3.6
+    },
+    {
+      "year": 2025,
+      "month": 11,
+      "province": "Kepulauan Riau",
+      "lpi": 75.5
+    },
+    {
+      "year": 2025,
+      "month": 11,
+      "province": "Sulawesi Selatan",
+      "lpi": 53
+    },
+    {
+      "year": 2025,
+      "month": 11,
+      "province": "Kalimantan Utara",
+      "lpi": 52.9
+    },
+    {
+      "year": 2025,
+      "month": 11,
+      "province": "Banten",
+      "lpi": 52.5
+    },
+    {
+      "year": 2025,
+      "month": 11,
+      "province": "DKI Jakarta",
+      "lpi": 50.1
+    },
+    {
+      "year": 2025,
+      "month": 11,
+      "province": "Sumatera Utara",
+      "lpi": 49.7
+    },
+    {
+      "year": 2025,
+      "month": 11,
+      "province": "Jawa Barat",
+      "lpi": 47.9
+    },
+    {
+      "year": 2025,
+      "month": 11,
+      "province": "Kalimantan Barat",
+      "lpi": 45.9
+    },
+    {
+      "year": 2025,
+      "month": 11,
+      "province": "Bangka Belitung",
+      "lpi": 45.4
+    },
+    {
+      "year": 2025,
+      "month": 11,
+      "province": "Maluku Utara",
+      "lpi": 45.2
+    },
+    {
+      "year": 2025,
+      "month": 11,
+      "province": "Sulawesi Tengah",
+      "lpi": 45.1
+    },
+    {
+      "year": 2025,
+      "month": 11,
+      "province": "Kalimantan Timur",
+      "lpi": 42.5
+    },
+    {
+      "year": 2025,
+      "month": 11,
+      "province": "Jawa Tengah",
+      "lpi": 40.9
+    },
+    {
+      "year": 2025,
       "month": 11,
       "province": "Bali",
-      "lpi": 35.3
+      "lpi": 39.1
     },
     {
       "year": 2025,
       "month": 11,
       "province": "Riau",
-      "lpi": 32.6
+      "lpi": 37.9
     },
     {
       "year": 2025,
       "month": 11,
       "province": "Kalimantan Selatan",
-      "lpi": 30.9
-    },
-    {
-      "year": 2025,
-      "month": 11,
-      "province": "Jawa Timur",
-      "lpi": 29.5
-    },
-    {
-      "year": 2025,
-      "month": 11,
-      "province": "DI Yogyakarta",
-      "lpi": 28.3
+      "lpi": 36.4
     },
     {
       "year": 2025,
       "month": 11,
       "province": "Maluku",
-      "lpi": 26.5
+      "lpi": 35.2
+    },
+    {
+      "year": 2025,
+      "month": 11,
+      "province": "Jawa Timur",
+      "lpi": 34.6
+    },
+    {
+      "year": 2025,
+      "month": 11,
+      "province": "DI Yogyakarta",
+      "lpi": 34
     },
     {
       "year": 2025,
       "month": 11,
       "province": "Sulawesi Tenggara",
-      "lpi": 26.2
-    },
-    {
-      "year": 2025,
-      "month": 11,
-      "province": "Papua Barat",
-      "lpi": 25.8
-    },
-    {
-      "year": 2025,
-      "month": 11,
-      "province": "Sulawesi Utara",
-      "lpi": 25.4
+      "lpi": 33.4
     },
     {
       "year": 2025,
       "month": 11,
       "province": "Sumatera Selatan",
-      "lpi": 24.8
+      "lpi": 32.4
     },
     {
       "year": 2025,
       "month": 11,
-      "province": "Papua Barat Daya",
-      "lpi": 20.8
+      "province": "Papua Barat",
+      "lpi": 32.4
+    },
+    {
+      "year": 2025,
+      "month": 11,
+      "province": "Sulawesi Utara",
+      "lpi": 32
     },
     {
       "year": 2025,
       "month": 11,
       "province": "Nusa Tenggara Barat",
-      "lpi": 18.5
+      "lpi": 28.8
+    },
+    {
+      "year": 2025,
+      "month": 11,
+      "province": "Papua Barat Daya",
+      "lpi": 28
     },
     {
       "year": 2025,
       "month": 11,
       "province": "Jambi",
-      "lpi": 17
+      "lpi": 26.1
     },
     {
       "year": 2025,
       "month": 11,
       "province": "Kalimantan Tengah",
-      "lpi": 16.7
+      "lpi": 24.3
     },
     {
       "year": 2025,
       "month": 11,
       "province": "Papua",
-      "lpi": 11.3
+      "lpi": 21.1
     },
     {
       "year": 2025,
       "month": 11,
       "province": "Sulawesi Barat",
-      "lpi": 4.9
+      "lpi": 17.8
     },
     {
       "year": 2025,
       "month": 11,
       "province": "Papua Tengah",
-      "lpi": 4
+      "lpi": 17.1
     },
     {
       "year": 2025,
       "month": 11,
       "province": "Nusa Tenggara Timur",
-      "lpi": 1.3
+      "lpi": 15
     },
     {
       "year": 2025,
       "month": 11,
       "province": "Lampung",
-      "lpi": -2.7
+      "lpi": 9.9
     },
     {
       "year": 2025,
       "month": 11,
       "province": "Sumatera Barat",
-      "lpi": -4.1
+      "lpi": 8.5
     },
     {
       "year": 2025,
       "month": 11,
       "province": "Aceh",
-      "lpi": -13.5
+      "lpi": 1.9
     },
     {
       "year": 2025,
       "month": 11,
       "province": "Gorontalo",
-      "lpi": -14
+      "lpi": -0.1
     },
     {
       "year": 2025,
       "month": 12,
       "province": "Kepulauan Riau",
-      "lpi": 95.4
+      "lpi": 84.7
     },
     {
       "year": 2025,
       "month": 12,
       "province": "Banten",
-      "lpi": 62.8
-    },
-    {
-      "year": 2025,
-      "month": 12,
-      "province": "DKI Jakarta",
-      "lpi": 60
-    },
-    {
-      "year": 2025,
-      "month": 12,
-      "province": "Kalimantan Utara",
-      "lpi": 58.9
+      "lpi": 60.5
     },
     {
       "year": 2025,
       "month": 12,
       "province": "Sulawesi Selatan",
-      "lpi": 57.6
+      "lpi": 60.3
     },
     {
       "year": 2025,
       "month": 12,
-      "province": "Jawa Barat",
-      "lpi": 55
+      "province": "Kalimantan Utara",
+      "lpi": 59.3
+    },
+    {
+      "year": 2025,
+      "month": 12,
+      "province": "DKI Jakarta",
+      "lpi": 57.2
     },
     {
       "year": 2025,
       "month": 12,
       "province": "Sumatera Utara",
-      "lpi": 54.4
+      "lpi": 57.1
     },
     {
       "year": 2025,
       "month": 12,
-      "province": "Maluku Utara",
+      "province": "Jawa Barat",
+      "lpi": 55.2
+    },
+    {
+      "year": 2025,
+      "month": 12,
+      "province": "Kalimantan Barat",
+      "lpi": 53.1
+    },
+    {
+      "year": 2025,
+      "month": 12,
+      "province": "Bangka Belitung",
       "lpi": 52.6
     },
     {
       "year": 2025,
       "month": 12,
-      "province": "Bangka Belitung",
-      "lpi": 50.2
+      "province": "Maluku Utara",
+      "lpi": 51.8
     },
     {
       "year": 2025,
       "month": 12,
       "province": "Sulawesi Tengah",
-      "lpi": 49.5
-    },
-    {
-      "year": 2025,
-      "month": 12,
-      "province": "Kalimantan Barat",
-      "lpi": 49
+      "lpi": 51
     },
     {
       "year": 2025,
       "month": 12,
       "province": "Kalimantan Timur",
-      "lpi": 48.7
+      "lpi": 49.5
     },
     {
       "year": 2025,
       "month": 12,
       "province": "Bali",
-      "lpi": 45.6
+      "lpi": 47.8
     },
     {
       "year": 2025,
       "month": 12,
       "province": "Jawa Tengah",
-      "lpi": 45.3
+      "lpi": 47.8
     },
     {
       "year": 2025,
       "month": 12,
       "province": "Riau",
-      "lpi": 40.5
+      "lpi": 44.6
     },
     {
       "year": 2025,
       "month": 12,
       "province": "Kalimantan Selatan",
-      "lpi": 39.5
-    },
-    {
-      "year": 2025,
-      "month": 12,
-      "province": "Jawa Timur",
-      "lpi": 37.7
+      "lpi": 43.7
     },
     {
       "year": 2025,
       "month": 12,
       "province": "Sulawesi Tenggara",
-      "lpi": 37.1
-    },
-    {
-      "year": 2025,
-      "month": 12,
-      "province": "DI Yogyakarta",
-      "lpi": 36.7
+      "lpi": 42.7
     },
     {
       "year": 2025,
       "month": 12,
       "province": "Maluku",
-      "lpi": 34.9
+      "lpi": 42.3
     },
     {
       "year": 2025,
       "month": 12,
-      "province": "Sulawesi Utara",
-      "lpi": 33.7
+      "province": "Jawa Timur",
+      "lpi": 41.5
+    },
+    {
+      "year": 2025,
+      "month": 12,
+      "province": "DI Yogyakarta",
+      "lpi": 41.2
     },
     {
       "year": 2025,
       "month": 12,
       "province": "Sumatera Selatan",
-      "lpi": 33.6
+      "lpi": 39.9
+    },
+    {
+      "year": 2025,
+      "month": 12,
+      "province": "Sulawesi Utara",
+      "lpi": 39.1
     },
     {
       "year": 2025,
       "month": 12,
       "province": "Nusa Tenggara Barat",
-      "lpi": 27.1
-    },
-    {
-      "year": 2025,
-      "month": 12,
-      "province": "Papua Barat",
-      "lpi": 26
+      "lpi": 36.1
     },
     {
       "year": 2025,
       "month": 12,
       "province": "Jambi",
-      "lpi": 25.4
+      "lpi": 33.2
+    },
+    {
+      "year": 2025,
+      "month": 12,
+      "province": "Papua Barat",
+      "lpi": 32.5
     },
     {
       "year": 2025,
       "month": 12,
       "province": "Kalimantan Tengah",
-      "lpi": 24.7
+      "lpi": 31.1
     },
     {
       "year": 2025,
       "month": 12,
       "province": "Papua Barat Daya",
-      "lpi": 21
+      "lpi": 28.2
     },
     {
       "year": 2025,
       "month": 12,
       "province": "Sulawesi Barat",
-      "lpi": 13.1
-    },
-    {
-      "year": 2025,
-      "month": 12,
-      "province": "Papua",
-      "lpi": 11.5
+      "lpi": 24.8
     },
     {
       "year": 2025,
       "month": 12,
       "province": "Nusa Tenggara Timur",
-      "lpi": 9.2
+      "lpi": 21.7
     },
     {
       "year": 2025,
       "month": 12,
-      "province": "Lampung",
-      "lpi": 5.2
+      "province": "Papua",
+      "lpi": 21.3
     },
     {
       "year": 2025,
       "month": 12,
       "province": "Papua Tengah",
-      "lpi": 4.2
+      "lpi": 17.3
+    },
+    {
+      "year": 2025,
+      "month": 12,
+      "province": "Lampung",
+      "lpi": 16.7
     },
     {
       "year": 2025,
       "month": 12,
       "province": "Sumatera Barat",
-      "lpi": 3.4
+      "lpi": 14.9
     },
     {
       "year": 2025,
       "month": 12,
       "province": "Aceh",
-      "lpi": -4.9
+      "lpi": 9.2
     },
     {
       "year": 2025,
       "month": 12,
       "province": "Gorontalo",
-      "lpi": -5.4
+      "lpi": 7.2
     }
   ]
 };
