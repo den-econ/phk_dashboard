@@ -110,6 +110,7 @@ set scheme plotplain
     rename  growth_ihpb_yoy_pct_nat         ihpb_yoy
     rename  VolatilitasKurs                 fx_volatility
     rename  PenjualanMobil                  car_sales
+    gen     log_car_sales                   = ln(car_sales)
 
     // Province    
     rename  price_inflation_yoy_pct         cpi_yoy

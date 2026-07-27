@@ -87,23 +87,25 @@ set seed    123456
    
     * Monthly macroeconomic variables
     global  MACRO_GLOBAL ///
-            price_brent_yoy
+            log_price_brent 
             
-            //log_price_brent             
+            //price_brent_yoy             
 
     global  MACRO_NATIONAL ///
             pmi_manuf ///
             bi_rate ///
-            fx_volatility ///
-            ihpb_index ///
-            car_sales_yoy
+            log_fx_idr_usd ///
+            ihpb_index  ///
+            log_car_sales 
 
-            //log_fx_idr_usd ///
-            //ihpb_yoy 
+            // fx_volatility ///
+            // ihpb_yoy ///
+            // car_sales_yoy
 
     global  MACRO_PROVINCE ///
             log_export 
 
+            // export_yoy 
             // cpi_yoy ///            
             // npl_ratio ///
             // log_import
