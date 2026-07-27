@@ -235,6 +235,7 @@ macro,macro_pdrb_pcap_idr_thousand_y,PDRB Per Kapita (Ribu Rupiah),province,annu
 macro,macro_pmi_manuf_nat_y,PMI Manufaktur,national,"monthly, quarterly, annual",
 macro,macro_fx_idr_usd_nat_y,Kurs,national,"monthly, quarterly, annual",
 macro,macro_fed_funds_rate_nat,"Federal Funds Effective Rate (Daily, 7-Day)",national,"monthly",
+macro,macro_car_sales_nat,Penjualan Mobil,national,monthly,
 macro,macro_bi_rate_pct_nat_y,"BI Rate",national,"annual",
 macro,macro_pdb_idr_billion_nat_y,"PDB (IDR milyar)",national,"quarterly, annual",
 macro,macro_world_gdp_nat_y,"World GDP",national,"quarterly, annual",

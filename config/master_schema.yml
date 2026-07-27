@@ -15,7 +15,7 @@ coverage: "2022-2026"
 primary_key: [province_name_std, year, month]
 source_workbook: "Data untuk PHK Dashboard.xlsx"
 n_rows: 2280
-n_columns: 341
+n_columns: 342
 
 variables:
   identity:
@@ -902,6 +902,12 @@ variables:
       source_variable_name: "Federal Funds Effective Rate (Daily, 7-Day)"
       data_period: "monthly"
       data_level: national
+    - name: macro_car_sales_nat
+      description: "Penjualan Mobil (national monthly car sales; LEI leading indicator)"
+      source_variable_name: "Penjualan Mobil"
+      data_period: "monthly"
+      data_level: national
+      unit: "units"
       unit: "percent"
     - name: macro_pdrb_q
       description: "PDRB (IDR milyar) - PDRB Riil (constant price / ADHK)"

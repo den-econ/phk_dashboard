@@ -543,12 +543,13 @@ hrn macro_fx_idr_usd_nat, header("Kurs")
 hrn price_brent_usd_bbl_nat, header("Harga Minyak Brent (USD/barrel)")
 hrn price_ihpb_nat, header("IHPB")
 hrn macro_fed_funds_rate_nat, header("Federal Funds Effective Rate (Daily, 7-Day)")
+hrn macro_car_sales_nat, header("Penjualan Mobil")
 keep year month macro_pmi_manuf_nat macro_bi_rate_pct_nat macro_fx_idr_usd_nat ///
-     price_brent_usd_bbl_nat price_ihpb_nat macro_fed_funds_rate_nat
+     price_brent_usd_bbl_nat price_ihpb_nat macro_fed_funds_rate_nat macro_car_sales_nat
 drop in 1
 destring, replace force
 collapse (mean) macro_pmi_manuf_nat macro_bi_rate_pct_nat macro_fx_idr_usd_nat ///
-     price_brent_usd_bbl_nat price_ihpb_nat macro_fed_funds_rate_nat, by(year month)
+     price_brent_usd_bbl_nat price_ihpb_nat macro_fed_funds_rate_nat macro_car_sales_nat, by(year month)
 tempfile monthly_nat
 save `monthly_nat'
 

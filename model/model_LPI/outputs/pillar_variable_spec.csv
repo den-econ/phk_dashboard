@@ -1,0 +1,11 @@
+"index","var","label","anchor"
+"Indeks Kerentanan Pasar Kerja","formal","Formal labour share",TRUE
+"Indeks Kerentanan Pasar Kerja","manuf","Manuf labour share",FALSE
+"Indeks Kerentanan Pasar Kerja","fulltime","Full-time share",FALSE
+"Indeks Kerentanan Pasar Kerja","underemp","Underemployment",FALSE
+"Indeks Kerentanan Pasar Kerja","avgwage","Average wage",FALSE
+"Indeks Kerentanan Struktural Ekonomi","govt","Government/PDRB",FALSE
+"Indeks Kerentanan Struktural Ekonomi","exp_rat","Export/PDRB",FALSE
+"Indeks Kerentanan Struktural Ekonomi","imp_rat","Import/PDRB",FALSE
+"Indeks Kerentanan Struktural Ekonomi","manuf","Manuf %PDRB",TRUE
+"Indeks Kerentanan Struktural Ekonomi","agri","Agri %PDRB",FALSE

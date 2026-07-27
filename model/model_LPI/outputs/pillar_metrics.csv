@@ -1,0 +1,9 @@
+"index","year","n","kmo","pc1_pct","factors_eig_gt1","cond_number","spearman_phk_rate","spearman_phk_total"
+"Indeks Kerentanan Pasar Kerja",2022,34,0.778,64,1,24,0.374,0.627
+"Indeks Kerentanan Pasar Kerja",2023,34,0.771,67,1,31,0.572,0.544
+"Indeks Kerentanan Pasar Kerja",2024,38,0.649,58,2,36,0.506,0.5
+"Indeks Kerentanan Pasar Kerja",2025,38,0.646,59,2,45,0.401,0.422
+"Indeks Kerentanan Struktural Ekonomi",2022,34,0.63,48,2,8,0.106,0.375
+"Indeks Kerentanan Struktural Ekonomi",2023,33,0.635,52,2,10,0.556,0.624
+"Indeks Kerentanan Struktural Ekonomi",2024,36,0.677,50,2,8,0.519,0.631
+"Indeks Kerentanan Struktural Ekonomi",2025,35,0.703,55,1,13,0.656,0.543
