@@ -7,12 +7,14 @@
 # Outputs: outputs/lpi_composite.rds (per-year weights, loadings, composite s100)
 #          outputs/lpi_weights_by_year.csv
 #          outputs/lpi_weights.png   (stacked-bar chart, consumed by 04_report.R)
-# Method : OECD-JRC Handbook (2008) sec 6.1 / Nicoletti et al. (2000):
+# Method : Weights via OECD-JRC Handbook (2008) sec 6.1 / Nicoletti et al. (2000):
 #          standardise the 3 pillars -> correlation -> PCA -> retain m=2 factors
 #          (eigenvalue >1 or "close to 1") -> varimax rotation ->
 #          weight = (within-factor squared-loading share) x (factor variance share),
-#          normalised to 100%. Composite = weighted sum of standardised pillars,
-#          min-max rescaled to 0-100 within each year. PHK is never an input.
+#          normalised to 100%.
+#          Aggregation: each pillar is scored 0-100 WITHIN itself (PCA + min-max);
+#          the LPI is the plain WEIGHTED SUM of the three 0-100 pillar scores
+#          (no composite-level re-standardisation). PHK is never an input.
 # Run from: model/model_LPI/
 # ============================================================================
 M   <- readRDS("outputs/models.rds")
@@ -31,11 +33,17 @@ oecd <- function(yr) {
                dimnames = list(colnames(Z), c("F1", "F2")))
   sq <- Lr^2; ev_r <- colSums(sq); fshare <- ev_r / sum(ev_r)
   within <- sweep(sq, 2, ev_r, "/"); a <- apply(sq, 1, which.max)
-  raw <- sapply(1:3, function(i) within[i, a[i]] * fshare[a[i]]); w <- raw / sum(raw)
-  comp <- as.numeric(Z %*% w)
-  s100 <- setNames(100 * (comp - min(comp)) / (max(comp) - min(comp)), pv)
+  rawq <- sapply(1:3, function(i) within[i, a[i]] * fshare[a[i]]); w <- rawq / sum(rawq)
+  # --- aggregation: weighted sum of the three 0-100 pillar scores ---
+  # each pillar is already normalised WITHIN itself (PCA + min-max); no re-standardisation.
+  mm01 <- function(x) 100 * (x - min(x)) / (max(x) - min(x))
+  pk <- setNames(as.numeric(M$L9$E[[as.character(yr)]]$s100[pv]), pv)  # Kerentanan Pasar Kerja 0-100
+  st <- setNames(as.numeric(M$E5$E[[as.character(yr)]]$s100[pv]), pv)  # Kerentanan Struktural   0-100
+  tk <- setNames(mm01(as.numeric(lv[pv])), pv)                          # Tekanan Makroekonomi    0-100
+  s100 <- setNames(w[1] * pk + w[2] * st + w[3] * tk, pv)               # final LPI (0-100)
   list(N = length(pv), w = w, eig = E$values, fshare = fshare, Lr = Lr,
-       within = within, assign = a, R = round(R, 3), raw = setNames(comp, pv), s100 = s100)
+       within = within, assign = a, R = round(R, 3),
+       pk = pk, st = st, tk = tk, s100 = s100)
 }
 
 res <- lapply(2022:2025, oecd); names(res) <- 2022:2025

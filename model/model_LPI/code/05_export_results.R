@@ -27,19 +27,14 @@ mm01 <- function(x) 100*(x-min(x))/(max(x)-min(x))   # min-max 0-100
 ## ---- headline scores table (province x year) -----------------------------
 rows <- list()
 for(yr in ys){ r<-res[[yr]]; pv<-names(r$s100)
-  pk <- M$L9$E[[yr]]$s100[pv]                       # Kerentanan Pasar Kerja (0-100)
-  st <- M$E5$E[[yr]]$s100[pv]                       # Kerentanan Struktural  (0-100)
-  lv <- setNames(agg$Indeks_LEI_Labour[agg$Tahun==as.integer(yr)],
-                 agg$Provinsi[agg$Tahun==as.integer(yr)])[pv]
-  tk <- mm01(lv)                                    # Tekanan Makroekonomi (0-100, within LPI sample)
+  # pillar 0-100 scores + weighted-sum LPI come straight from 03 (single source)
   g  <- tier_of(r$s100)
   rows[[yr]] <- data.frame(
     year=as.integer(yr), province=pv,
-    pasar_kerja_0_100 = round(as.numeric(pk),1),
-    struktural_0_100  = round(as.numeric(st),1),
-    tekanan_0_100     = round(as.numeric(tk),1),
+    pasar_kerja_0_100 = round(as.numeric(r$pk[pv]),1),
+    struktural_0_100  = round(as.numeric(r$st[pv]),1),
+    tekanan_0_100     = round(as.numeric(r$tk[pv]),1),
     lpi_0_100         = round(as.numeric(r$s100),1),
-    lpi_raw           = round(as.numeric(r$raw[pv]),3),
     lpi_rank          = rank(-r$s100,ties.method="first"),
     tier              = g,
     tier_label        = TIER_LAB[g],
@@ -95,7 +90,7 @@ meta <- data.frame(field=c(
   "PCA pillars + OECD/JRC factor-analysis weighting (Handbook 2008, sec 6.1)",
   "Kerentanan Pasar Kerja (L9), Kerentanan Struktural Ekonomi (E5)",
   "2-factor varimax; weight = within-factor sq-loading share x factor variance share",
-  "weighted sum of standardised pillars, min-max 0-100 within each year",
+  "weighted sum of the three 0-100 pillar scores (each normalised within its own index)",
   "validation target only — never an input",
   "data/clean/phk_master.csv (via model_LPI pillar PCA)",
   "model_LEI/data/Komposit_LEI_Ketenagakerjaan.xlsx (LEI Per Provinsi, annual mean)",

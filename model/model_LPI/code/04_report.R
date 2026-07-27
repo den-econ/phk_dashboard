@@ -135,11 +135,11 @@ for(k in c("Labour","Econ","Pressure")){f<-r25$assign[k];add(sprintf("<tr><td cl
 add("</tbody></table></div>")
 
 add("<h3 id='s4c' class='mt'>The composite LPI score</h3>")
-add("<p class='lead' style='margin-bottom:8px'>Each province&rsquo;s LPI = the weighted sum of its three standardised index scores (using that year&rsquo;s weights), rescaled 0&ndash;100. Higher = more layoff pressure.</p>")
+add("<p class='lead' style='margin-bottom:8px'>Each province&rsquo;s LPI = the <b>weighted sum of its three 0&ndash;100 index scores</b> (each already normalised within its own index), using that year&rsquo;s weights. Because the three inputs are 0&ndash;100 and the weights sum to 100%, the LPI is itself on a 0&ndash;100 scale &mdash; <b>no further standardisation</b>. Higher = more layoff pressure.</p>")
 add("<h4 class='mt'>Provincial groups (2025) &mdash; 4 equal-count tiers</h4>")
 groupFig(r25$s100,gLPI,"Composite LPI",file.path(SC,"grp_LPI.png"),
   "Overall LPI, 2025; provinces in <b>4 equal-count risk tiers</b>. Red = highest overall layoff pressure &rarr; blue = lowest.")
-add("<p class='note'>Because the indices are standardised and re-fit each year, the 0&ndash;100 LPI is a <b>within-year ranking</b>, not a cross-year level. The index maps <i>structural &amp; labour-market vulnerability combined with building macro pressure</i> &mdash; an early-warning map, not a forecast. Validated against recorded PHK (never an input): the two vulnerability indices validate 0.40&ndash;0.66; Tekanan Makroekonomi adds an independent signal.</p>")
+add("<p class='note'>Because each index is normalised within the year and the weights are re-fit each year, the 0&ndash;100 LPI is a <b>within-year measure</b>, not a cross-year level. The index maps <i>structural &amp; labour-market vulnerability combined with building macro pressure</i> &mdash; an early-warning map, not a forecast. Validated against recorded PHK (never an input): the two vulnerability indices validate 0.40&ndash;0.66; Tekanan Makroekonomi adds an independent signal.</p>")
 add("</section>")
 dir.create("docs",showWarnings=FALSE)
 writeLines(H,"docs/lpi_structure_report.html");cat("written",length(H),"chunks -> docs/lpi_structure_report.html\n")

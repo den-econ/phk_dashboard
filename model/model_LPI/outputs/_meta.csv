@@ -5,7 +5,7 @@
 "Method","PCA pillars + OECD/JRC factor-analysis weighting (Handbook 2008, sec 6.1)"
 "Stage-1 pillars","Kerentanan Pasar Kerja (L9), Kerentanan Struktural Ekonomi (E5)"
 "Stage-2 weighting","2-factor varimax; weight = within-factor sq-loading share x factor variance share"
-"Composite scaling","weighted sum of standardised pillars, min-max 0-100 within each year"
+"Composite scaling","weighted sum of the three 0-100 pillar scores (each normalised within its own index)"
 "PHK role","validation target only — never an input"
 "Source (labour+econ)","data/clean/phk_master.csv (via model_LPI pillar PCA)"
 "Source (pressure)","model_LEI/data/Komposit_LEI_Ketenagakerjaan.xlsx (LEI Per Provinsi, annual mean)"
