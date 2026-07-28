@@ -1,13 +1,23 @@
 #!/usr/bin/env bash
-# Monthly LPI update (pressure only; structure + weights frozen at base year).
-# Run from model/model_LPI/ :  bash code/run_monthly.sh
+# ============================================================================
+# MONTHLY LPI UPDATE — the only command you run each month.
+#   bash code/run_monthly.sh
 #
-# PREREQUISITES each month (done upstream, not by this script):
-#   1. Enter the new month in the Google Sheet (Database Bulan / Bulan, Nasional).
-#   2. Rebuild data/clean/phk_master.csv in Stata (code/01_build_phk_master.do).
-#   3. Rebuild the LEI so Komposit_LEI_Ketenagakerjaan.xlsx has the new month.
-#   (The base-year calibration from 07_freeze_calibration.R must already exist.)
+# It refreshes outputs/lpi_scores.xlsx (annual sheets + a `monthly` sheet with
+# the newest LPI + macro-pressure per province). Weights and structure stay
+# frozen at the base year; only the new month's LEI moves things.
+#
+# BEFORE running this, each month:
+#   1. Update the newest month in the Google Sheet; download to Excel.
+#   2. Run the LEI R code so Komposit_LEI_Ketenagakerjaan.xlsx has the new month.
+# (No Stata / no phk_master rebuild needed monthly — that is only for the yearly
+#  re-calibration via run_all.sh when new annual data is released.)
+# ============================================================================
 set -euo pipefail
-cd "$(dirname "$0")/.."
-echo "== 08 monthly LPI scoring =="; Rscript code/08_score_monthly.R
-echo "== DONE == -> outputs/lpi_monthly.csv , outputs/dashboard/lpi_monthly.js"
+cd "$(dirname "$0")/.."                       # -> model/model_LPI
+PY="../../.venv/bin/python"
+
+echo "== annual result tables (from frozen 2025 baseline) =="; Rscript code/05_export_results.R
+echo "== monthly LPI scoring (newest LEI) ==";                 Rscript code/08_score_monthly.R
+echo "== build lpi_scores.xlsx (annual + monthly sheets) ==";  "$PY" code/05b_build_xlsx.py
+echo "== DONE ==  ->  hand outputs/lpi_scores.xlsx to the dashboard team"

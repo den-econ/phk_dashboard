@@ -5,7 +5,6 @@
 # Inputs : outputs/models.rds       (validated pillar fits: $L9 labour, $E5 econ)
 #          outputs/lei_annual.rds   (Tekanan Makroekonomi pillar; from 02)
 # Outputs: outputs/lpi_composite.rds (per-year weights, loadings, composite s100)
-#          outputs/lpi_weights_by_year.csv
 #          outputs/lpi_weights.png   (stacked-bar chart, consumed by 04_report.R)
 # Method : Weights via OECD-JRC Handbook (2008) sec 6.1 / Nicoletti et al. (2000):
 #          standardise the 3 pillars -> correlation -> PCA -> retain m=2 factors
@@ -56,8 +55,7 @@ W <- do.call(rbind, lapply(names(res), function(y) data.frame(
   F2_share = round(100 * res[[y]]$fshare[2], 1))))
 
 dir.create("outputs", showWarnings = FALSE)
-saveRDS(list(res = res, W = W), "outputs/lpi_composite.rds")
-write.csv(W, "outputs/lpi_weights_by_year.csv", row.names = FALSE)
+saveRDS(list(res = res, W = W), "outputs/lpi_composite.rds")   # weights table (W) reaches the workbook via 05
 cat("weights (Labour / Econ / Pressure), by year:\n"); print(W, row.names = FALSE)
 cat(sprintf("mean: Labour %.1f  Econ %.1f  Pressure %.1f\n",
             mean(W$Labour), mean(W$Econ), mean(W$Pressure)))
@@ -76,4 +74,4 @@ for (j in 1:ncol(mm)) { cum <- cumsum(mm[, j]); mid <- cum - mm[, j] / 2
 par(xpd = NA); legend(par("usr")[2] * 1.02, 86, rev(rownames(mm)), fill = rev(col),
                       border = NA, bty = "n", cex = .72, title = "Indeks")
 dev.off()
-cat("saved outputs/lpi_composite.rds + lpi_weights_by_year.csv + lpi_weights.png\n")
+cat("saved outputs/lpi_composite.rds + lpi_weights.png\n")
