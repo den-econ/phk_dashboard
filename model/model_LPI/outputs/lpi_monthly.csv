@@ -1,4 +1,4 @@
-"year","month","province","lpi","pk","st","tk"
+"year","month","province","lpi_0_100","pasar_kerja_0_100","struktural_0_100","tekanan_0_100"
 2022,1,"Papua Barat",31.8,33.2,51.8,14.6
 2022,1,"Papua Barat Daya",27.5,57.3,19.6,14.6
 2022,1,"Papua",20.6,53.2,2.1,14.6
