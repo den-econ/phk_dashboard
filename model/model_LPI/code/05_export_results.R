@@ -83,7 +83,7 @@ meta <- data.frame(field=c(
   "2-factor varimax; weight = within-factor sq-loading share x factor variance share",
   "LPI = weighted sum of the three pillar scores (NOT re-normalised to 0-100)",
   "pasar_kerja/struktural/tekanan = pillar index scores; lpi = their weighted sum; use `lpi`",
-  "pillars are min-max 0-100 in the base year; lpi is a weighted sum (annual lands in 0-100; MONTHLY values can exceed 0-100 when pressure moves beyond the base-year range)",
+  "all scores 0-100: pillars are min-max across provinces (structure within the year, tekanan within each month); lpi is their weighted sum (also 0-100)",
   "validation target only — never an input",
   "data/clean/phk_master.csv (via model_LPI pillar PCA)",
   "model_LEI/data/Komposit_LEI_Ketenagakerjaan.xlsx (LEI Per Provinsi)",

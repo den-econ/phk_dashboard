@@ -4,10 +4,10 @@
 # ----------------------------------------------------------------------------
 # Produces a province x month LPI time series. LPI = weighted sum of three
 # 0-100 pillar scores. Monthly, the two structural pillar scores and the weights
-# are held frozen at the base year (07_freeze_calibration.R); only the pressure
-# pillar moves — each month's LEI is rescaled to 0-100 against the frozen
-# base-year LEI range. Scores stay comparable month to month; a month's pressure
-# (hence LPI) can fall outside the base range (kept, not clamped — informative).
+# are held frozen at the base year (07_freeze_calibration.R); the pressure pillar
+# is the LEI min-max'd across provinces WITHIN each month (the same standardisation
+# used for the structural pillars). So every month's tekanan — and the LPI — sits
+# cleanly in 0-100; each month is a within-month ranking of provinces by pressure.
 #
 # Inputs : outputs/lpi_calibration_<BASE>.rds
 #          ../model_LEI/data/Komposit_LEI_Ketenagakerjaan.xlsx (LEI Per Provinsi, monthly)
@@ -23,12 +23,13 @@ LEIX <- "../model_LEI/data/Komposit_LEI_Ketenagakerjaan.xlsx"
 
 # score one set of (province -> LEI value) with the frozen calibration
 # LPI = w_PK*PK + w_ST*ST + w_TM*TM, where PK/ST are frozen 0-100 and TM is the
-# month's LEI rescaled 0-100 against the frozen base-year LEI range.
+# LEI min-max'd across provinces within this period (same standardisation as the
+# structural pillars) -> always 0-100, no baseline/anchor needed.
 score <- function(prov, lei) {
   keep <- prov %in% cal$provinces
   prov <- prov[keep]; lei <- lei[keep]
   pk <- as.numeric(cal$pk[prov]); st <- as.numeric(cal$st[prov])
-  tk <- 100*(lei - cal$lei_min) / (cal$lei_max - cal$lei_min)   # pressure 0-100 (may exceed range)
+  tk <- 100*(lei - min(lei)) / (max(lei) - min(lei))   # min-max across provinces (this month)
   lpi <- cal$weights[1]*pk + cal$weights[2]*st + cal$weights[3]*tk
   data.frame(province=prov, pk=pk, st=st, tk=as.numeric(tk), lpi=as.numeric(lpi), row.names=NULL)
 }
