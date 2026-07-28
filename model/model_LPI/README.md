@@ -110,12 +110,19 @@ The single deliverable is **`outputs/lpi_scores.xlsx`**. The dashboard team read
 
 | Sheet | Contents | Use |
 |---|---|---|
-| **`scores`** | annual province × year — 3 pillars, **`lpi`**, rank, tier | annual view |
-| **`monthly`** | province × month — 3 pillars, **`lpi`**, rank, tier (ranked within each month) | monthly view |
+| **`scores`** | annual province × year | annual view |
+| **`monthly`** | province × month (ranked within each month) | monthly view |
 | `weights`, `pillar_metrics`, `pillar_loadings`, `stage2_2025`, `README` | supporting detail | reference |
 
-**The dashboard's score is the `lpi` column** (the weighted-sum LPI). Macro
-pressure per province is the `tekanan` column. Everything else in
+Both `scores` and `monthly` share the same columns: **`lpi_score`** + the three
+pillar scores (`pasar_kerja_score`, `struktural_score`, `tekanan_score`),
+`lpi_rank`, `tier`, and a tier label per index (`lpi_tier_label`,
+`pasar_kerja_tier_label`, `struktural_tier_label`, `tekanan_tier_label`) — plus
+`avg_lpi_tier_pasar_kerja` / `avg_lpi_tier_struktural` (the mean LPI of the
+provinces sharing that province's labor / econ category, within the period).
+
+**The dashboard's score is the `lpi_score` column** (the weighted-sum LPI); macro
+pressure is `tekanan_score`. Everything else in
 `outputs/` is machinery: the five `.rds` files are the pipeline's frozen inputs;
 the report PNGs and `_`-prefixed files are gitignored regenerable scratch. The
 dashboard needs only `lpi_scores.xlsx`.
