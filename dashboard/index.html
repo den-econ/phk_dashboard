@@ -348,6 +348,8 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
 .sector-risk-table th:nth-child(1){width:22%}
 .sector-risk-table th:nth-child(2){width:16%}
 .sector-risk-table td:nth-child(2){font-size:10.2px;line-height:1.25;color:var(--muted)}
+.sector-risk-table th:nth-child(6),.sector-risk-table td:nth-child(6){padding-right:24px}
+.sector-risk-table th:nth-child(7),.sector-risk-table td:nth-child(7){padding-left:18px}
 .riskbar{min-width:86px}
 .riskbar-track{height:7px;background:#e8edf3;border-radius:999px;overflow:hidden}
 .riskbar-fill{display:block;height:100%;border-radius:999px}
@@ -574,13 +576,13 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
   <div class="section-label">Perkembangan Tekanan Ekonomi Terkini <span class="ln"></span></div>
   <div class="grid" style="grid-template-columns:1.35fr 360px;align-items:start;margin-bottom:16px">
     <div class="card">
-      <div class="card-head"><div><h3>Indeks Tekanan Makroekonomi</h3><p class="csub">Indeks komposit dari indikator tekanan makroekonomi dibandingkan dengan indeks target PHK; dua sumbu diselaraskan pada basis Jan 2023 = 100.</p></div>
-        <span class="badge ghost">Des 2025</span></div>
+      <div class="card-head"><div><h3>Indeks Tekanan Makroekonomi</h3><p class="csub">Indeks komposit tekanan makroekonomi dibandingkan dengan MA 6 bulan delta Indeks PHK.</p></div>
+        <span class="badge ghost">Jun 2026</span></div>
       <div class="chart-box" style="height:360px"><canvas id="lliChart"></canvas></div>
       <div class="footnote" id="lli-narr">—</div>
     </div>
     <div class="card">
-      <div class="card-head"><div><h3>Snapshot Indeks Provinsi</h3><p class="csub">8 provinsi dengan indeks tertinggi pada Desember 2025</p></div></div>
+      <div class="card-head"><div><h3>Snapshot Indeks Provinsi</h3><p class="csub">8 provinsi dengan indeks tertinggi pada Juni 2026</p></div></div>
       <div class="grid" style="grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:10px">
         <div class="sb" style="background:var(--surface-2);border-radius:8px;padding:10px"><div class="l">Indeks nasional</div><div class="n num" id="lli-latest" style="font-size:22px;color:var(--navy-2)">—</div></div>
         <div class="sb" style="background:var(--surface-2);border-radius:8px;padding:10px"><div class="l">Perubahan MoM</div><div class="n num" id="lli-change" style="font-size:22px;color:var(--muted)">—</div></div>
@@ -1005,7 +1007,7 @@ function buildExec(){
   document.getElementById('nat-decomp').innerHTML = comp.map(([n,v,w])=>`
     <div style="margin-bottom:9px">
       <div style="display:flex;justify-content:space-between;font-size:11.5px;margin-bottom:3px">
-        <span style="color:var(--ink);font-weight:500">${n} <span style="color:var(--muted-2)">·${w}%</span></span>
+        <span style="color:var(--ink);font-weight:500">${n} <span style="color:var(--muted-2)">·${fmt1(w)}%</span></span>
         <b class="num" style="color:var(--navy-2)">${fmt1(v)}</b></div>
       <div class="bar" style="width:100%"><span style="width:${v}%;background:var(--navy-3)"></span></div>
     </div>`).join('');
@@ -1047,7 +1049,7 @@ function buildExec(){
     ['tekanan makroekonomi', lead.stress],
   ].sort((a,b)=>b[1]-a[1]).slice(0,2).map(d=>d[0]).join(' dan ');
   document.getElementById('exec-narrative').innerHTML =
-    `Provinsi yang perlu dipantau bulan ini adalah <span class="tag">${topWatch.join('</span>, <span class="tag">')}</span>, berdasarkan peringkat LPI terbaru dari file model bulanan. Provinsi <span class="tag">${leadProv}</span> berada di posisi teratas dengan LPI ${fmt1(lead.lpi)}; dimensi pendorong utamanya adalah ${dims}. Indikator tekanan ekonomi yang perlu dicermati adalah PMI manufaktur yang berada di bawah ambang ekspansi, kurs USD/IDR yang tinggi, IHPB, BI Rate, harga minyak Brent, nilai ekspor, dan penjualan mobil.`;
+    `Provinsi yang perlu dipantau bulan ini adalah <span class="tag">${topWatch.join('</span>, <span class="tag">')}</span>, berdasarkan peringkat LPI terbaru dari file model bulanan. Provinsi <span class="tag">${leadProv}</span> berada di posisi teratas dengan LPI ${fmt1(lead.lpi)}; dimensi pendorong utamanya adalah ${dims}. Indikator tekanan ekonomi yang perlu dicermati adalah PMI manufaktur yang berada di bawah ambang ekspansi dan kurs USD/IDR yang tinggi.`;
 }
 function avgComp(k){ let s=0,n=0; provNames.forEach(p=>{ if(P[p][k]!=null){s+=P[p][k];n++;} }); return n?s/n:0; }
 
@@ -1125,10 +1127,9 @@ function selectProv(p){
   const tradeShare = v => (v!=null && src.pdrb_billion!=null && latestWith('kurs')!=null) ? fmt1((Number(v) * Number(latestWith('kurs'))) / (10 * Number(src.pdrb_billion))) + '%' : gap;
   const latestWith = k => (DETAIL_NAT[k] ?? [...MACRO_DRIVER_SERIES].reverse().find(x=>x[k]!=null)?.[k]);
   const watch=[];
-  if(d.manuf_share!=null && d.manuf_share>=25) watch.push('Kerentanan struktural: share sektor manufaktur relatif tinggi');
-  if(d.formal!=null && d.formal>=50) watch.push('Kerentanan pasar kerja: share pekerja formal relatif tinggi');
-  if(d.labour>=60) watch.push('Kerentanan pasar kerja: skor pasar kerja berada di kelompok tinggi');
-  if(d.stress>=55) watch.push('Tekanan makroekonomi: skor tekanan makro berada di kelompok tinggi');
+  if(['high','vhigh'].includes(metricBand(d,'struct'))) watch.push('Kerentanan struktural: kerentanan struktur perekonomian daerah relatif tinggi');
+  if(['high','vhigh'].includes(metricBand(d,'labour'))) watch.push('Kerentanan pasar kerja: kerentanan struktur pasar kerja daerah relatif tinggi');
+  if(['high','vhigh'].includes(metricBand(d,'stress'))) watch.push('Tekanan makroekonomi: skor tekanan makro berada di kelompok tinggi');
   if(latestWith('pmi')!=null && latestWith('pmi')<50) watch.push('Tekanan makroekonomi: PMI manufaktur nasional di bawah 50');
   if(d.eks_chg!=null && d.eks_chg<0) watch.push('Tekanan makroekonomi: ekspor bulanan mengalami penurunan');
   if(d.flow_chg!=null && d.flow_chg>0) watch.push('Data PHK: flow PHK triwulanan meningkat');
@@ -1238,7 +1239,7 @@ const driverInd = [
   {k:'car_sales', name:'Penjualan Mobil', col:'#475569'},
   {k:'npl', name:'NPL (IDR miliar)', col:'#7c2d12'},
 ];
-const LLI_DATA = {"national":[{"label":"Jan 2022","lli":96.44,"phkIndex":24.34},{"label":"Feb 2022","lli":95.87,"phkIndex":24.34},{"label":"Mar 2022","lli":97.03,"phkIndex":24.34},{"label":"Apr 2022","lli":97.97,"phkIndex":24.34},{"label":"May 2022","lli":97.41,"phkIndex":24.34},{"label":"Jun 2022","lli":98.32,"phkIndex":24.34},{"label":"Jul 2022","lli":98.95,"phkIndex":24.34},{"label":"Aug 2022","lli":98.96,"phkIndex":24.34},{"label":"Sep 2022","lli":100.15,"phkIndex":39.8},{"label":"Oct 2022","lli":99.48,"phkIndex":41.75},{"label":"Nov 2022","lli":99.08,"phkIndex":46.56},{"label":"Dec 2022","lli":99.75,"phkIndex":87.38},{"label":"Jan 2023","lli":100.0,"phkIndex":100.0},{"label":"Feb 2023","lli":99.71,"phkIndex":103.82},{"label":"Mar 2023","lli":100.72,"phkIndex":153.61},{"label":"Apr 2023","lli":100.34,"phkIndex":155.12},{"label":"May 2023","lli":100.6,"phkIndex":167.61},{"label":"Jun 2023","lli":100.98,"phkIndex":208.83},{"label":"Jul 2023","lli":101.65,"phkIndex":234.69},{"label":"Aug 2023","lli":101.76,"phkIndex":307.81},{"label":"Sep 2023","lli":101.38,"phkIndex":338.93},{"label":"Oct 2023","lli":101.48,"phkIndex":354.74},{"label":"Nov 2023","lli":102.09,"phkIndex":490.67},{"label":"Dec 2023","lli":102.5,"phkIndex":554.75},{"label":"Jan 2024","lli":102.71,"phkIndex":564.09},{"label":"Feb 2024","lli":102.98,"phkIndex":574.74},{"label":"Mar 2024","lli":103.93,"phkIndex":626.19},{"label":"Apr 2024","lli":103.33,"phkIndex":648.57},{"label":"May 2024","lli":103.53,"phkIndex":720.51},{"label":"Jun 2024","lli":102.81,"phkIndex":761.7},{"label":"Jul 2024","lli":102.61,"phkIndex":854.78},{"label":"Aug 2024","lli":102.41,"phkIndex":885.61},{"label":"Sep 2024","lli":102.09,"phkIndex":928.61},{"label":"Oct 2024","lli":102.61,"phkIndex":983.7},{"label":"Nov 2024","lli":102.68,"phkIndex":1015.64},{"label":"Dec 2024","lli":103.76,"phkIndex":1070.44},{"label":"Jan 2025","lli":102.93,"phkIndex":1122.49},{"label":"Feb 2025","lli":103.1,"phkIndex":1267.32},{"label":"Mar 2025","lli":104.06,"phkIndex":1307.57},{"label":"Apr 2025","lli":103.22,"phkIndex":1349.51},{"label":"May 2025","lli":103.38,"phkIndex":1413.2},{"label":"Jun 2025","lli":103.31,"phkIndex":1473.64},{"label":"Jul 2025","lli":104.54,"phkIndex":1540.7},{"label":"Aug 2025","lli":105.06,"phkIndex":1612.2},{"label":"Sep 2025","lli":104.89,"phkIndex":1688.46},{"label":"Oct 2025","lli":105.38,"phkIndex":1764.75},{"label":"Nov 2025","lli":105.83,"phkIndex":1799.23},{"label":"Dec 2025","lli":106.31,"phkIndex":1803.94}],"provinceTop":[{"province":"Aceh","lli":109.69,"phkIndex":1358.17,"workers":2561329.0},{"province":"Maluku Utara","lli":109.5,"phkIndex":3039.4,"workers":673456.0},{"province":"DI Yogyakarta","lli":108.44,"phkIndex":3041.27,"workers":2200071.0},{"province":"Maluku","lli":108.01,"phkIndex":267.4,"workers":922486.0},{"province":"Kepulauan Riau","lli":107.9,"phkIndex":613.62,"workers":1051975.0},{"province":"Sumatera Utara","lli":107.78,"phkIndex":5472.12,"workers":7976273.0},{"province":"Bali","lli":107.74,"phkIndex":210.67,"workers":2701726.0},{"province":"Nusa Tenggara Barat","lli":107.48,"phkIndex":204.11,"workers":3106729.0}]};
+const LLI_DATA = ﻿{"national":[{"label":"Jan 2022","lli":96.36,"phkIndex":24.34,"phkMa6":0.0},{"label":"Feb 2022","lli":96.54,"phkIndex":24.34,"phkMa6":0.0},{"label":"Mar 2022","lli":96.7,"phkIndex":24.34,"phkMa6":0.0},{"label":"Apr 2022","lli":96.82,"phkIndex":24.34,"phkMa6":0.0},{"label":"May 2022","lli":97.01,"phkIndex":24.34,"phkMa6":0.0},{"label":"Jun 2022","lli":97.5,"phkIndex":24.34,"phkMa6":0.0},{"label":"Jul 2022","lli":97.31,"phkIndex":24.34,"phkMa6":0.0},{"label":"Aug 2022","lli":97.55,"phkIndex":24.34,"phkMa6":0.0},{"label":"Sep 2022","lli":98.07,"phkIndex":39.8,"phkMa6":2.58},{"label":"Oct 2022","lli":98.56,"phkIndex":41.75,"phkMa6":2.9},{"label":"Nov 2022","lli":98.98,"phkIndex":46.56,"phkMa6":3.7},{"label":"Dec 2022","lli":99.33,"phkIndex":87.38,"phkMa6":10.51},{"label":"Jan 2023","lli":100.0,"phkIndex":100.0,"phkMa6":12.61},{"label":"Feb 2023","lli":99.84,"phkIndex":103.82,"phkMa6":13.25},{"label":"Mar 2023","lli":99.95,"phkIndex":153.61,"phkMa6":18.97},{"label":"Apr 2023","lli":99.73,"phkIndex":155.12,"phkMa6":18.9},{"label":"May 2023","lli":99.71,"phkIndex":167.61,"phkMa6":20.18},{"label":"Jun 2023","lli":99.55,"phkIndex":208.83,"phkMa6":20.24},{"label":"Jul 2023","lli":99.21,"phkIndex":234.69,"phkMa6":22.45},{"label":"Aug 2023","lli":99.14,"phkIndex":307.81,"phkMa6":34.0},{"label":"Sep 2023","lli":99.35,"phkIndex":338.93,"phkMa6":30.89},{"label":"Oct 2023","lli":99.75,"phkIndex":354.74,"phkMa6":33.27},{"label":"Nov 2023","lli":99.92,"phkIndex":490.67,"phkMa6":53.84},{"label":"Dec 2023","lli":99.81,"phkIndex":554.75,"phkMa6":57.65},{"label":"Jan 2024","lli":99.94,"phkIndex":564.09,"phkMa6":54.9},{"label":"Feb 2024","lli":99.99,"phkIndex":574.74,"phkMa6":44.49},{"label":"Mar 2024","lli":100.12,"phkIndex":626.19,"phkMa6":47.88},{"label":"Apr 2024","lli":100.45,"phkIndex":648.57,"phkMa6":48.97},{"label":"May 2024","lli":100.33,"phkIndex":720.51,"phkMa6":38.31},{"label":"Jun 2024","lli":100.43,"phkIndex":761.7,"phkMa6":34.49},{"label":"Jul 2024","lli":100.59,"phkIndex":854.78,"phkMa6":48.45},{"label":"Aug 2024","lli":101.82,"phkIndex":885.61,"phkMa6":51.81},{"label":"Sep 2024","lli":101.33,"phkIndex":928.61,"phkMa6":50.4},{"label":"Oct 2024","lli":101.33,"phkIndex":983.7,"phkMa6":55.85},{"label":"Nov 2024","lli":101.2,"phkIndex":1015.64,"phkMa6":49.19},{"label":"Dec 2024","lli":101.31,"phkIndex":1070.44,"phkMa6":51.46},{"label":"Jan 2025","lli":101.17,"phkIndex":1122.49,"phkMa6":44.62},{"label":"Feb 2025","lli":101.22,"phkIndex":1267.32,"phkMa6":63.62},{"label":"Mar 2025","lli":101.4,"phkIndex":1307.57,"phkMa6":63.16},{"label":"Apr 2025","lli":101.43,"phkIndex":1349.51,"phkMa6":60.97},{"label":"May 2025","lli":100.9,"phkIndex":1413.2,"phkMa6":66.26},{"label":"Jun 2025","lli":100.87,"phkIndex":1473.64,"phkMa6":67.2},{"label":"Jul 2025","lli":100.72,"phkIndex":1540.7,"phkMa6":69.7},{"label":"Aug 2025","lli":100.44,"phkIndex":1612.2,"phkMa6":57.48},{"label":"Sep 2025","lli":100.42,"phkIndex":1688.46,"phkMa6":63.48},{"label":"Oct 2025","lli":100.29,"phkIndex":1764.75,"phkMa6":69.21},{"label":"Nov 2025","lli":100.15,"phkIndex":1799.23,"phkMa6":64.34},{"label":"Dec 2025","lli":100.53,"phkIndex":1803.94,"phkMa6":55.05},{"label":"Jan 2026","lli":100.39,"phkIndex":1855.29,"phkMa6":52.43},{"label":"Feb 2026","lli":100.48,"phkIndex":1916.83,"phkMa6":50.77},{"label":"Mar 2026","lli":100.48,"phkIndex":1993.45,"phkMa6":50.83},{"label":"Apr 2026","lli":100.93,"phkIndex":2073.42,"phkMa6":51.45},{"label":"May 2026","lli":101.77,"phkIndex":2142.4,"phkMa6":57.2},{"label":"Jun 2026","lli":102.32,"phkIndex":2149.38,"phkMa6":57.57}],"provinceTop":[{"province":"Sulawesi Selatan","lli":103.83,"phkIndex":3519.23,"workers":4759077.0},{"province":"Kalimantan Barat","lli":103.67,"phkIndex":453.43,"workers":2930432.0},{"province":"Sumatera Utara","lli":103.47,"phkIndex":7704.5,"workers":7976273.0},{"province":"Maluku","lli":103.25,"phkIndex":284.06,"workers":922486.0},{"province":"Kalimantan Utara","lli":103.19,"phkIndex":1572.49,"workers":380572.0},{"province":"Bangka Belitung","lli":102.94,"phkIndex":719.24,"workers":785723.0},{"province":"Papua Barat","lli":102.93,"phkIndex":666.75,"workers":288323.0},{"province":"Sulawesi Barat","lli":102.9,"phkIndex":556.95,"workers":800433.0}],"latestLabel":"Jun 2026"};
 let driverChart, lliChart;
 function buildDriver(){
   const sel = document.getElementById('driverSel');
@@ -1256,7 +1257,6 @@ function drawLLI(){
   if(!el || !LLI_DATA || !LLI_DATA.national?.length) return;
   const ser = LLI_DATA.national;
   const latest = ser[ser.length-1], prev = ser[ser.length-2];
-  const base = ser.find(r=>r.label==='Jan 2023') || ser[0];
   const mom = latest.lli - prev.lli;
   const latestEl = document.getElementById('lli-latest');
   const changeEl = document.getElementById('lli-change');
@@ -1264,26 +1264,25 @@ function drawLLI(){
   changeEl.textContent = (mom>=0?'+':'') + fmt1(mom);
   changeEl.style.color = mom>=0 ? 'var(--high)' : 'var(--low)';
 
-  const yMin = 94, yMax = 108, y1Max = 1900;
-  const basePos = (base.lli - yMin) / (yMax - yMin);
-  const y1Min = (base.phkIndex - basePos * y1Max) / (1 - basePos);
+  const yMin = 96, yMax = 104;
+  const y1Min = -10, y1Max = 80;
 
   if(lliChart) lliChart.destroy();
   lliChart = new Chart(el,{
     data:{labels:ser.map(r=>r.label), datasets:[
       {type:'line',label:'Indeks Tekanan Makro',data:ser.map(r=>r.lli),yAxisID:'y',borderColor:'#a92b2f',backgroundColor:'#a92b2f',borderWidth:3,tension:.18,pointRadius:1.4,pointHoverRadius:4,order:1},
-      {type:'line',label:'Target Indikator (Indeks PHK)',data:ser.map(r=>r.phkIndex),yAxisID:'y1',borderColor:'#f2a000',backgroundColor:'#f2a000',borderWidth:3,borderDash:[10,6],tension:.18,pointRadius:1.4,pointHoverRadius:4,order:2},
-      {type:'line',label:'Basis Jan 2023 = 100',data:ser.map(()=>base.lli),yAxisID:'y',borderColor:'#90a0b2',borderWidth:1.4,borderDash:[5,5],pointRadius:0,tension:0,order:3}
+      {type:'line',label:'Target PHK (6-Month MA Δ Indeks)',data:ser.map(r=>r.phkMa6),yAxisID:'y1',borderColor:'#f2a000',backgroundColor:'#f2a000',borderWidth:3,borderDash:[10,6],tension:.18,pointRadius:1.4,pointHoverRadius:4,order:2},
+      {type:'line',label:'Basis Jan 2023 = 100',data:ser.map(()=>100),yAxisID:'y',borderColor:'#90a0b2',borderWidth:1.4,borderDash:[5,5],pointRadius:0,tension:0,order:3}
     ]},
     options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
       plugins:{legend:{position:'bottom',labels:{usePointStyle:true,boxWidth:10}},tooltip:{callbacks:{label:c=>`${c.dataset.label}: ${fmt1(c.parsed.y)}`}}},
       scales:{x:{grid:{color:'#eef1f5'},ticks:{maxTicksLimit:5,font:{size:10}}},
         y:{position:'left',min:yMin,max:yMax,title:{display:true,text:'Indeks Tekanan Makro (Januari 2023=100)',font:{size:10},color:'#a92b2f'},ticks:{color:'#a92b2f'},grid:{color:'#e8edf3'}},
-        y1:{position:'right',min:y1Min,max:y1Max,title:{display:true,text:'Indeks Target PHK (Januari 2023=100)',font:{size:10},color:'#f2a000'},grid:{display:false},ticks:{color:'#f2a000',callback:v=>v<0?'':fmtN(v)}}}}
+        y1:{position:'right',min:y1Min,max:y1Max,title:{display:true,text:'MA 6 Bulan Δ Indeks PHK',font:{size:10},color:'#f2a000'},grid:{display:false},ticks:{color:'#f2a000',callback:v=>fmt1(v)}}}}
   });
   document.getElementById('lli-prov-table').innerHTML = `<tr><th>Provinsi</th><th class="num">Indeks</th><th class="num">Target PHK</th></tr>` +
     LLI_DATA.provinceTop.map(r=>`<tr><td style="font-weight:600">${r.province}</td><td class="num" style="color:var(--navy-2)">${fmt1(r.lli)}</td><td class="num" style="color:var(--muted)">${r.phkIndex==null?'—':fmtN(r.phkIndex)}</td></tr>`).join('');
-  document.getElementById('lli-narr').innerHTML = `Kedua sumbu diselaraskan pada <b>Jan 2023 = 100</b>, sehingga titik awal indeks tekanan makro dan indeks target PHK berada pada level visual yang sama. Indeks tekanan makro nasional naik dari <b>${fmt1(prev.lli)}</b> menjadi <b>${fmt1(latest.lli)}</b> pada ${latest.label} (${mom>=0?'+':''}${fmt1(mom)} poin MoM).`;
+  document.getElementById('lli-narr').innerHTML = `Indeks tekanan makro nasional naik dari <b>${fmt1(prev.lli)}</b> menjadi <b>${fmt1(latest.lli)}</b> pada ${latest.label} (${mom>=0?'+':''}${fmt1(mom)} poin MoM). Garis oranye menunjukkan <b>MA 6 bulan delta Indeks PHK</b>.`;
 }
 /* ---- Proyeksi Risiko PHK Terkini (board + detail) ---- */
 let curProy = null;
@@ -1495,7 +1494,7 @@ function scorePill(score,label){
 }
 function buildSectors(){
   const rows = SECTORS.slice().sort((a,b)=>(b.avgScore||0)-(a.avgScore||0));
-  let html = `<tr><th>Sektor</th><th>Provinsi utama</th><th>Eksposur Ekspor</th><th>Eksposur Kurs</th><th>Eksposur Energi</th><th>Labour Intensity</th><th>Risiko PHK</th></tr>`;
+  let html = `<tr><th>Subsektor Industri Pengolahan</th><th>Provinsi utama</th><th>Eksposur Ekspor</th><th>Eksposur Impor</th><th>Eksposur Energi</th><th>Intensitas Tenaga Kerja</th><th>Risiko PHK</th></tr>`;
   rows.forEach(x=>{
     html += `<tr><td style="font-weight:600">${x.sector}</td><td style="color:var(--muted)">${(x.topProvinces||[]).join(', ')}</td>
       <td>${scorePill(x.exportScore,x.exportBand)}</td>
@@ -1516,7 +1515,7 @@ const KURS_EXPOSURE_CONFIGS = {
     dataset:'value_share', year:'2015', scopeId:'kursExposureScope2015', chartId:'kursExposureChart2015', legendId:'kursExposureLegend2015', noteId:'kursExposureNote2015',
     pointLabel:'nilai impor/ekspor perusahaan (IBS 2015)',
     xTitle:'Share input impor (%)', yTitle:'Share ekspor (%)',
-    note:'Grafik menunjukkan proporsi nilai ekspor dan proporsi input impor perusahaan berdasarkan sektor dan provinsi. Analisis diolah menggunakan data Survei Industri Besar dan Sedang (IBS) BPS Tahun 2015. Garis vertikal dan garis horizontal masing-masing menunjukkan nilai rata-rata share input impor dan share ekspor.'
+    note:'Grafik menunjukkan proporsi nilai ekspor dan proporsi input impor perusahaan berdasarkan sektor dan provinsi. Analisis diolah menggunakan data Survei Industri Besar dan Sedang (IBS) BPS Tahun 2015. Garis vertikal dan garis horizontal masing-masing menunjukkan nilai rata-rata share input impor dan share ekspor. Kuadran I (kiri atas) menunjukkan sektor atau provinsi yang secara rata-rata memiliki proporsi ekspor lebih tinggi daripada proporsi impor bahan baku, sehingga cenderung diuntungkan ketika nilai tukar USD/IDR melemah (rupiah terdepresiasi). Sebaliknya, Kuadran IV (kanan bawah) menunjukkan sektor atau provinsi yang secara rata-rata memiliki proporsi impor bahan baku lebih tinggi daripada proporsi ekspor, sehingga cenderung lebih terdampak ketika nilai tukar USD/IDR melemah.'
   },
   y2022: {
     dataset:'firm_share', year:'2022', scopeId:'kursExposureScope2022', chartId:'kursExposureChart2022', legendId:'kursExposureLegend2022', noteId:'kursExposureNote2022',
