@@ -10,8 +10,13 @@ suppressMessages(library(base64enc))
 M<-readRDS("outputs/models.rds")
 LP<-readRDS("outputs/lpi_composite.rds"); W<-LP$W; r25<-LP$res[["2025"]]
 d2<-readRDS("outputs/lei_annual.rds"); agg<-d2$agg
-lei25<-setNames(agg$Indeks_LEI_Labour[agg$Tahun==2025],agg$Provinsi[agg$Tahun==2025])
-lei25<-100*(lei25-min(lei25))/(max(lei25)-min(lei25))          # rescale 0-100 for display
+# --- December 2025 (latest month) composite: 2025 structure + weights, Dec-2025 pressure ---
+suppressMessages(library(readxl))
+.leim<-readxl::read_excel("../model_LEI/data/Komposit_LEI_Ketenagakerjaan.xlsx",sheet="LEI Per Provinsi")
+.pvc<-names(r25$s100); .sel<-.leim$Tahun==2025 & .leim$Bulan==12
+declei<-setNames(.leim$Indeks_LEI_Labour[.sel],.leim$Provinsi[.sel])[.pvc]
+tekdec<-setNames(100*(declei-min(declei))/(max(declei)-min(declei)),.pvc)          # Dec-2025 pressure 0-100
+lpidec<-setNames(as.numeric(r25$w[1]*r25$pk[.pvc]+r25$w[2]*r25$st[.pvc]+r25$w[3]*tekdec),.pvc) # Dec-2025 LPI
 M$L9$name<-"Indeks Kerentanan Pasar Kerja"; M$E5$name<-"Indeks Kerentanan Struktural Ekonomi"
 H<-character(0); add<-function(...)H<<-c(H,paste0(...))
 fmt<-function(x,d=3)formatC(x,format="f",digits=d)
@@ -94,11 +99,11 @@ add("<section id='s3'><h2>3 · Indeks Tekanan Makroekonomi</h2>")
 add("<p class='lead'>The third index is an early-warning gauge — the <b>LEI</b> (<code>Indeks_LEI_Labour</code>, from <code>Komposit_LEI_Ketenagakerjaan</code>). Where the two vulnerability indices describe <i>who is exposed</i>, this index is a <i>timing / pressure</i> signal that moves month to month with building stress. Higher = more layoff risk.</p>")
 add("<div class='grid2'>")
 add("<div class='card'><h3>What it is</h3><p class='cardp'>A monthly, province-level composite index — 38 provinces &times; 48 months (2022&ndash;2025). It captures <b>building layoff pressure over time</b>, a dimension the static structural indices cannot.</p></div>")
-add("<div class='card'><h3>How it enters the LPI</h3><p class='cardp'>For each province-year we take the <b>mean of the 12 monthly values</b> &rarr; one annual pressure score per province, standardised alongside the two vulnerability indices as an <b>independent third dimension</b>.</p></div>")
+add("<div class='card'><h3>How it enters the LPI</h3><p class='cardp'>Each month the LEI is <b>min-max&rsquo;d across provinces</b> (the same standardisation as the two structural indices) &rarr; a 0&ndash;100 pressure score, combined with the structural indices as an <b>independent third dimension</b>. The map below uses the <b>latest month, December 2025</b>.</p></div>")
 add("</div>")
-add("<h4 class='mt'>Provincial groups (2025) &mdash; 4 equal-count tiers</h4>")
-groupFig(lei25,gTM,"Indeks Tekanan Makroekonomi",file.path(SC,"grp_TM.png"),
-  "Annual-mean LEI, rescaled 0&ndash;100; provinces in <b>4 equal-count tiers</b>. Red = highest pressure &rarr; blue = lowest.")
+add("<h4 class='mt'>Provincial groups &mdash; December 2025 (latest month), 4 equal-count tiers</h4>")
+groupFig(tekdec,gTM,"Indeks Tekanan Makroekonomi (Des 2025)",file.path(SC,"grp_TM.png"),
+  "December 2025 LEI, min-max across provinces; provinces in <b>4 equal-count tiers</b>. Red = highest pressure &rarr; blue = lowest.")
 add("</section>")
 
 ## ===== SECTION 4 : COMPOSITE LPI =====
@@ -134,12 +139,12 @@ for(k in c("Labour","Econ","Pressure")){f<-r25$assign[k];add(sprintf("<tr><td cl
   labs[k],r25$Lr[k,1],r25$Lr[k,2],c("Kerentanan","Tekanan")[f],r25$within[k,f],r25$fshare[f],100*r25$w[k]))}
 add("</tbody></table></div>")
 
-add("<h3 id='s4c' class='mt'>The composite LPI score</h3>")
-add("<p class='lead' style='margin-bottom:8px'>Each province&rsquo;s LPI = the <b>weighted sum of its three 0&ndash;100 index scores</b> (each already normalised within its own index), using that year&rsquo;s weights. Because the three inputs are 0&ndash;100 and the weights sum to 100%, the LPI is itself on a 0&ndash;100 scale &mdash; <b>no further standardisation</b>. Higher = more layoff pressure.</p>")
-add("<h4 class='mt'>Provincial groups (2025) &mdash; 4 equal-count tiers</h4>")
-groupFig(r25$s100,gLPI,"Composite LPI",file.path(SC,"grp_LPI.png"),
-  "Overall LPI, 2025; provinces in <b>4 equal-count risk tiers</b>. Red = highest overall layoff pressure &rarr; blue = lowest.")
-add("<p class='note'>Because each index is normalised within the year and the weights are re-fit each year, the 0&ndash;100 LPI is a <b>within-year measure</b>, not a cross-year level. The index maps <i>structural &amp; labour-market vulnerability combined with building macro pressure</i> &mdash; an early-warning map, not a forecast. Validated against recorded PHK (never an input): the two vulnerability indices validate 0.40&ndash;0.66; Tekanan Makroekonomi adds an independent signal.</p>")
+add("<h3 id='s4c' class='mt'>The composite LPI score &mdash; December 2025</h3>")
+add("<p class='lead' style='margin-bottom:8px'>Each province&rsquo;s LPI = the <b>weighted sum of its three 0&ndash;100 index scores</b> (each already normalised within its own index), using the <b>2025 weights above</b>. The two structural indices are the 2025 values; the pressure index is the <b>latest month (December 2025)</b>. Because the three inputs are 0&ndash;100 and the weights sum to 100%, the LPI is itself on a 0&ndash;100 scale. Higher = more layoff pressure.</p>")
+add("<h4 class='mt'>Provincial groups &mdash; December 2025 (latest month), 4 equal-count tiers</h4>")
+groupFig(lpidec,gLPI,"Composite LPI (Des 2025)",file.path(SC,"grp_LPI.png"),
+  "Overall LPI &mdash; <b>December 2025</b> (2025 structure &amp; weights, December pressure); provinces in <b>4 equal-count risk tiers</b>. Red = highest overall layoff pressure &rarr; blue = lowest.")
+add("<p class='note'>This map is the <b>latest month (December 2025)</b>: it combines the 2025 structural &amp; labour-market vulnerability with December&rsquo;s macro pressure. Each month re-ranks the provinces as pressure moves; the structural indices and weights are refreshed once a year. An early-warning map, not a forecast. Validated against recorded PHK (never an input): the two vulnerability indices validate 0.40&ndash;0.66; Tekanan Makroekonomi adds an independent signal.</p>")
 add("</section>")
 dir.create("docs",showWarnings=FALSE)
 writeLines(H,"docs/lpi_structure_report.html");cat("written",length(H),"chunks -> docs/lpi_structure_report.html\n")
