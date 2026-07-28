@@ -1,36 +1,37 @@
 #!/usr/bin/env Rscript
 # ============================================================================
-# 08_score_monthly.R  —  monthly LPI using the frozen base-year calibration
+# 08_score_monthly.R  —  monthly LPI time series (province x month)
 # ----------------------------------------------------------------------------
-# Produces a province x month LPI time series. LPI = weighted sum of three
-# 0-100 pillar scores. Monthly, the two structural pillar scores and the weights
-# are held frozen at the base year (07_freeze_calibration.R); the pressure pillar
-# is the LEI min-max'd across provinces WITHIN each month (the same standardisation
-# used for the structural pillars). So every month's tekanan — and the LPI — sits
-# cleanly in 0-100; each month is a within-month ranking of provinces by pressure.
+# For each (year, month) the LPI uses THAT YEAR's annual calibration — its own
+# structural pillar scores (pasar_kerja, struktural) AND its own OECD weights,
+# straight from 03/lpi_composite.rds. Only the pressure pillar varies month to
+# month: tekanan = the LEI min-max'd across provinces WITHIN that month (the same
+# standardisation used for the structural pillars). So monthly is simply a
+# monthly-resolution version of that year's annual LPI.
 #
-# Inputs : outputs/lpi_calibration_<BASE>.rds
-#          ../model_LEI/data/Komposit_LEI_Ketenagakerjaan.xlsx (LEI Per Provinsi, monthly)
-# Output : outputs/_xlsx_parts/06_monthly.csv  (becomes the `monthly` sheet in lpi_scores.xlsx)
-# Self-check: feeding the base-year ANNUAL-MEAN LEI must reproduce the base-year
-#            annual LPI (outputs/lpi_composite.rds s100). Fails loudly otherwise.
-# Run from: model/model_LPI/   (after 07)
+# A year that has no annual calibration yet (e.g. 2026 before its labour/structure
+# data lands) FALLS BACK to the latest available year (2025) — automatically, no
+# manual setting. Once 2026 annual data is built, 2026 months use 2026.
+#
+# Inputs : outputs/lpi_composite.rds
+#          ../model_LEI/data/Komposit_LEI_Ketenagakerjaan.xlsx (LEI Per Provinsi)
+# Output : outputs/_xlsx_parts/06_monthly.csv  (the `monthly` sheet of lpi_scores.xlsx)
+# Run from: model/model_LPI/   (after 03)
 # ============================================================================
 suppressMessages(library(readxl))
-BASE <- 2025L
-cal  <- readRDS(sprintf("outputs/lpi_calibration_%d.rds", BASE))
-LEIX <- "../model_LEI/data/Komposit_LEI_Ketenagakerjaan.xlsx"
+LP     <- readRDS("outputs/lpi_composite.rds"); res <- LP$res
+availy <- sort(as.integer(names(res)))
+FALLBACK <- max(availy)                 # latest year with an annual calibration
+LEIX   <- "../model_LEI/data/Komposit_LEI_Ketenagakerjaan.xlsx"
+cal_year <- function(y) if (y %in% availy) y else FALLBACK
 
-# score one set of (province -> LEI value) with the frozen calibration
-# LPI = w_PK*PK + w_ST*ST + w_TM*TM, where PK/ST are frozen 0-100 and TM is the
-# LEI min-max'd across provinces within this period (same standardisation as the
-# structural pillars) -> always 0-100, no baseline/anchor needed.
-score <- function(prov, lei) {
-  keep <- prov %in% cal$provinces
-  prov <- prov[keep]; lei <- lei[keep]
-  pk <- as.numeric(cal$pk[prov]); st <- as.numeric(cal$st[prov])
-  tk <- 100*(lei - min(lei)) / (max(lei) - min(lei))   # min-max across provinces (this month)
-  lpi <- cal$weights[1]*pk + cal$weights[2]*st + cal$weights[3]*tk
+# score one month, using calibration year `cy` (its structure + weights)
+score <- function(cy, prov, lei) {
+  r <- res[[as.character(cy)]]; pv <- names(r$s100)
+  keep <- prov %in% pv; prov <- prov[keep]; lei <- lei[keep]
+  pk <- as.numeric(r$pk[prov]); st <- as.numeric(r$st[prov]); w <- r$w
+  tk <- 100*(lei - min(lei)) / (max(lei) - min(lei))   # min-max across provinces, within this month
+  lpi <- w[1]*pk + w[2]*st + w[3]*tk
   data.frame(province=prov, pk=pk, st=st, tk=as.numeric(tk), lpi=as.numeric(lpi), row.names=NULL)
 }
 
@@ -39,36 +40,36 @@ raw <- readxl::read_excel(LEIX, sheet="LEI Per Provinsi")
 raw <- raw[!is.na(raw$Provinsi) & !is.na(raw$Tahun) & !is.na(raw$Bulan) &
            !is.na(raw$Indeks_LEI_Labour), ]
 
-# ---- score every province-month -------------------------------------------
+# ---- score each (year, month) with that year's calibration ----------------
 key <- paste(raw$Tahun, raw$Bulan)
 parts <- lapply(split(seq_len(nrow(raw)), key), function(ix) {
-  s <- score(raw$Provinsi[ix], raw$Indeks_LEI_Labour[ix])
-  s$year <- as.integer(raw$Tahun[ix][1]); s$month <- as.integer(raw$Bulan[ix][1]); s
+  y <- as.integer(raw$Tahun[ix][1]); m <- as.integer(raw$Bulan[ix][1])
+  s <- score(cal_year(y), raw$Provinsi[ix], raw$Indeks_LEI_Labour[ix])
+  s$year <- y; s$month <- m; s
 })
 mon <- do.call(rbind, parts)
 mon <- mon[order(mon$year, mon$month, -mon$lpi), ]
 mon <- mon[, c("year","month","province","lpi","pk","st","tk")]
-names(mon) <- c("year","month","province","lpi",
-                "pasar_kerja","struktural","tekanan")
-for (c in c("lpi","pasar_kerja","struktural","tekanan"))
-  mon[[c]] <- round(mon[[c]],1)
+names(mon) <- c("year","month","province","lpi","pasar_kerja","struktural","tekanan")
+for (c in c("lpi","pasar_kerja","struktural","tekanan")) mon[[c]] <- round(mon[[c]],1)
 
-# stage the monthly table as a workbook part so lpi_scores.xlsx gains a `monthly`
-# sheet — 05b_build_xlsx.py packages every outputs/_xlsx_parts/*.csv into the xlsx.
 dir.create("outputs/_xlsx_parts", showWarnings=FALSE)
 write.csv(mon, "outputs/_xlsx_parts/06_monthly.csv", row.names=FALSE)
+cat(sprintf("scored %d province-months across %d months; calibration years: %s (fallback %d)\n",
+            nrow(mon), length(unique(paste(mon$year,mon$month))),
+            paste(availy,collapse=","), FALLBACK))
 
-cat(sprintf("scored %d province-months across %d months (%d provinces)\n",
-            nrow(mon), length(unique(paste(mon$year,mon$month))), length(cal$provinces)))
-
-# ---- SELF-CHECK: annual-mean LEI must reproduce base-year annual LPI --------
-b <- raw[raw$Tahun==BASE, ]
-ann <- aggregate(Indeks_LEI_Labour ~ Provinsi, data=b, FUN=mean)
-chk <- score(ann$Provinsi, ann$Indeks_LEI_Labour)
-ref <- readRDS("outputs/lpi_composite.rds")$res[[as.character(BASE)]]$s100
-m <- merge(chk, data.frame(province=names(ref), lpi_ref=as.numeric(ref)), by="province")
-d <- max(abs(m$lpi - m$lpi_ref))
-cat(sprintf("self-check vs %d annual LPI: matched %d/%d provinces, max abs diff = %.3g\n",
-            BASE, nrow(m), length(ref), d))
-if (nrow(m)==length(ref) && d < 1e-6) cat("OK — reproduces base-year annual LPI exactly.\n") else
-  cat("WARNING — monthly machinery does not reproduce the annual LPI; inspect.\n")
+# ---- SELF-CHECK: each year's annual-mean LEI must reproduce its annual LPI --
+ok <- TRUE
+for (y in availy) {
+  b   <- raw[raw$Tahun==y, ]
+  ann <- aggregate(Indeks_LEI_Labour ~ Provinsi, data=b, FUN=mean)
+  chk <- score(y, ann$Provinsi, ann$Indeks_LEI_Labour)
+  ref <- res[[as.character(y)]]$s100
+  mm  <- merge(chk, data.frame(province=names(ref), lpi_ref=as.numeric(ref)), by="province")
+  d   <- max(abs(mm$lpi - mm$lpi_ref))
+  cat(sprintf("  self-check %d: matched %d/%d, max abs diff = %.2g\n", y, nrow(mm), length(ref), d))
+  ok <- ok && nrow(mm)==length(ref) && d < 1e-6
+}
+cat(if (ok) "OK — each year reproduces its annual LPI exactly.\n" else
+             "WARNING — a year does not reproduce its annual LPI; inspect.\n")

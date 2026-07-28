@@ -4,8 +4,9 @@
 #   bash code/run_monthly.sh
 #
 # It refreshes outputs/lpi_scores.xlsx (annual sheets + a `monthly` sheet with
-# the newest LPI + macro-pressure per province). Weights and structure stay
-# frozen at the base year; only the new month's LEI moves things.
+# the newest LPI + macro-pressure per province). Each year's rows use that year's
+# own weights + structure (the current year without annual data yet uses the
+# latest available year); only the new month's LEI moves things.
 #
 # BEFORE running this, each month:
 #   1. Update the newest month in the Google Sheet; download to Excel.
