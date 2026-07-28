@@ -62,8 +62,8 @@ cat(sprintf("mean: Labour %.1f  Econ %.1f  Pressure %.1f\n",
 
 # ---- stacked-bar weights chart (consumed by 04_report.R) ----
 col <- c("#2b4a6f", "#2f7d75", "#c98a3a")
-png("outputs/lpi_weights.png", width = 1580, height = 760, res = 150)
-par(mar = c(3.2, 4, 2.2, 9.5), mgp = c(2.4, .7, 0))
+png("outputs/lpi_weights.png", width = 1580, height = 880, res = 150)
+par(mar = c(6.2, 4, 2.2, 1.8), mgp = c(2.4, .7, 0))          # room at the bottom for the legend
 mm <- t(as.matrix(W[, c("Labour", "Econ", "Pressure")])); colnames(mm) <- W$year
 rownames(mm) <- c("Kerentanan Pasar Kerja", "Kerentanan Struktural", "Tekanan Makroekonomi")
 bp <- barplot(mm, col = col, border = "white", ylab = "Weight (%)", las = 1,
@@ -71,7 +71,8 @@ bp <- barplot(mm, col = col, border = "white", ylab = "Weight (%)", las = 1,
               cex.main = 1, ylim = c(0, 100))
 for (j in 1:ncol(mm)) { cum <- cumsum(mm[, j]); mid <- cum - mm[, j] / 2
   text(bp[j], mid, sprintf("%.0f%%", mm[, j]), col = "white", cex = .8, font = 2) }
-par(xpd = NA); legend(par("usr")[2] * 1.02, 86, rev(rownames(mm)), fill = rev(col),
-                      border = NA, bty = "n", cex = .72, title = "Indeks")
+par(xpd = NA); legend(x = mean(bp), y = -18, xjust = 0.5, horiz = TRUE, legend = rownames(mm),
+                      fill = col, border = NA, bty = "n", cex = .72, x.intersp = .6,
+                      text.col = "#14181f")
 dev.off()
 cat("saved outputs/lpi_composite.rds + lpi_weights.png\n")
