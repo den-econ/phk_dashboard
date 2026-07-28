@@ -43,7 +43,8 @@ The pillars update at different speeds, so there are **two update rhythms**:
 | Structure pillars | **frozen** at base year | **re-fit** |
 | Weights | **frozen** at base year | **recomputed** |
 | Script | `run_monthly.sh` | `run_all.sh` |
-| Output | `lpi_monthly.*` | everything (incl. `lpi_scores.xlsx`) |
+| Needs Stata? | no | yes (rebuild `phk_master.csv`) |
+| Output | `lpi_scores.xlsx` (refreshes the `monthly` sheet) | `lpi_scores.xlsx` (all sheets) |
 
 Because structure + weights are frozen monthly, only the pressure input moves —
 so monthly scores stay comparable month to month.
@@ -52,10 +53,10 @@ so monthly scores stay comparable month to month.
 
 ## 3. RUNBOOKS — what the team does
 
-> **Prerequisite for both:** the Google Sheet is the single source of truth. After
-> editing it, **rebuild `data/clean/phk_master.csv` in Stata** by running
-> `code/01_build_phk_master.do`. Everything below reads from `phk_master.csv`.
-> (Stata is required for that one step; the LPI scripts are R + a little Python.)
+> **Single source of truth:** the Google Sheet. The **annual** rebuild regenerates
+> `data/clean/phk_master.csv` in Stata (`code/01_build_phk_master.do`); the
+> **monthly** update does **not** need Stata — it only needs the refreshed LEI
+> workbook. The LPI scripts themselves are R + a little Python.
 
 ### 🅐 When NEW ANNUAL data is released (e.g. 2026 labour/structure)
 
@@ -112,8 +113,9 @@ The single deliverable is **`outputs/lpi_scores.xlsx`**. The dashboard team read
 
 **The dashboard's score is the `lpi_0_100` column** (the weighted-sum LPI). Macro
 pressure per province is the `tekanan_0_100` column. Everything else in
-`outputs/` (the `.rds` inputs, the CSVs, the PNGs) is machinery or a regenerable
-byproduct — the dashboard needs only `lpi_scores.xlsx`.
+`outputs/` is machinery: the five `.rds` files are the pipeline's frozen inputs;
+the report PNGs and `_`-prefixed files are gitignored regenerable scratch. The
+dashboard needs only `lpi_scores.xlsx`.
 
 ---
 
