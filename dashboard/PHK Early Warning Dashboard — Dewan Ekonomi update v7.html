@@ -46,7 +46,7 @@
   /* risk scale */
   --low:#1f9d57; --low-bg:#e7f6ee;
   --med:#e3a008; --med-bg:#fdf3df;
-  --high:#d23b34; --high-bg:#fbe9e7;
+  --vhigh:#8f1d1d; --vhigh-bg:#fde2e2; --high:#d23b34; --high-bg:#fbe9e7;
   --radius:12px; --radius-sm:8px;
   --shadow:0 1px 2px rgba(16,36,56,.06), 0 4px 16px rgba(16,36,56,.05);
   --shadow-lg:0 8px 30px rgba(16,36,56,.12);
@@ -160,10 +160,11 @@ main{max-width:1480px;margin:0 auto;padding:22px 24px 60px}
 .badge.low{background:var(--low-bg);color:var(--low)}
 .badge.med{background:var(--med-bg);color:#9a6b04}
 .badge.high{background:var(--high-bg);color:var(--high)}
+.badge.vhigh{background:var(--vhigh-bg);color:var(--vhigh)}
 .badge.ghost{background:var(--surface-2);color:var(--muted);border:1px solid var(--line)}
 .badge.gap{background:#eef0f3;color:#7a8694;border:1px dashed #c2cbd6}
 .dot{width:9px;height:9px;border-radius:50%;flex:none}
-.dot.low{background:var(--low)} .dot.med{background:var(--med)} .dot.high{background:var(--high)}
+.dot.low{background:var(--low)} .dot.med{background:var(--med)} .dot.high{background:var(--high)} .dot.vhigh{background:var(--vhigh)}
 
 /* rank list */
 .ranklist{display:flex;flex-direction:column;gap:2px}
@@ -250,6 +251,7 @@ table.tbl td.num{font-family:'Plus Jakarta Sans';font-weight:600;font-variant-nu
 .cluster .crow .ck{font-weight:700;color:var(--navy-2);font-size:11px;text-transform:uppercase;letter-spacing:.3px}
 .cluster .crow .cv{color:var(--ink);margin-top:1px}
 .cluster .clpi{font-family:'Plus Jakarta Sans';font-weight:800;font-size:22px}
+.cluster-section{margin-bottom:18px}.cluster-section:last-child{margin-bottom:0}.cluster-section-head{margin:0 0 10px}.cluster-section-head h3{margin:0;font-size:15px}.cluster-section-head p{margin:3px 0 0;color:var(--muted);font-size:12px}
 
 .sim-map-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:8px 0 12px}
 .sim-map-card{border:1px solid var(--line);border-radius:8px;background:var(--surface-2);padding:9px 10px;min-width:0}
@@ -506,9 +508,10 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
   <div class="pane-head">
     <div><h2>Peta Risiko PHK Provinsi</h2><p>Papan risiko 38 provinsi berdasarkan Layoff Pressure Index. Warna menandakan tingkat tekanan, bukan kepastian PHK. Klik provinsi untuk membuka detail indikator yang perlu dipantau.</p></div>
     <div class="legend">
-      <span><span class="dot low"></span> Rendah (&lt;38)</span>
-      <span><span class="dot med"></span> Sedang (38–50)</span>
-      <span><span class="dot high"></span> Tinggi (≥50)</span>
+      <span><span class="dot low"></span> Rendah</span>
+      <span><span class="dot med"></span> Sedang</span>
+      <span><span class="dot high"></span> Tinggi</span>
+      <span><span class="dot vhigh"></span> Sangat tinggi</span>
     </div>
   </div>
   <div class="grid" style="grid-template-columns:1fr 360px;align-items:start">
@@ -610,7 +613,7 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
 <section class="tabpane" id="tab-adv">
   <div class="pane-head"><div><h2>Klaster Provinsi & Risiko Sektoral</h2><p>Pengelompokan provinsi, pemetaan risiko sektoral berbasis IBS, dan eksposur kurs berdasarkan pola impor-ekspor perusahaan.</p></div></div>
 
-  <div class="section-label">1 · Provincial Cluster Analysis <span class="ln"></span></div>
+  <div class="section-label">1 · Analisis Klaster Provinsi <span class="ln"></span></div>
   <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))" id="cluster-grid"></div>
 
   <div class="section-label">2 - Sectoral Risk Module <span class="ln"></span></div>
@@ -798,12 +801,29 @@ const PROYEKSI = {"Aceh": {"pred": 222, "pct": "0.01%", "prob": 8.7e-05, "bekerj
 const PROY_VARS = [['dPMI','Δ PMI','num'],['gIHK','Growth IHK','pct'],['gEkspor','Growth Ekspor','pct'],['gImpor','Growth Impor','pct'],['gNPL','Growth NPL','pct'],['gKurs','Growth Kurs','pct'],['gBrent','Growth Brent','pct'],['gIHPB','Growth IHPB','pct'],['dBI','Δ BI Rate','num']];
 
 /* ---- konfigurasi & helper ---- */
-const TH = {high:50, med:38};                 // ambang risiko LPI
+const TH = {high:50, med:38};                 // fallback numeric thresholds when a tier label is unavailable
 const fmtN = n => n==null ? '—' : Math.round(n).toLocaleString('id-ID');
 const fmt1 = n => n==null ? '—' : (Math.round(n*10)/10).toLocaleString('id-ID');
-const band = l => l>=TH.high?'high':(l>=TH.med?'med':'low');
-const bandLabel = b => b=='high'?'Tinggi':b=='med'?'Sedang':'Rendah';
-const RC = {high:'#d23b34', med:'#e3a008', low:'#1f9d57'};
+const band = l => l>=70?'vhigh':(l>=TH.high?'high':(l>=TH.med?'med':'low'));
+const bandLabel = b => b==='vhigh'?'Sangat Tinggi':b==='high'?'Tinggi':b==='med'?'Sedang':'Rendah';
+const RC = {vhigh:'#8f1d1d', high:'#d23b34', med:'#e3a008', low:'#1f9d57'};
+function bandFromTierLabel(label){
+  const s = String(label||'').toLowerCase();
+  if(s.includes('sangat tinggi')) return 'vhigh';
+  if(s.includes('tinggi')) return 'high';
+  if(s.includes('sedang')) return 'med';
+  if(s.includes('rendah')) return 'low';
+  return null;
+}
+function metricTierText(d,key){
+  if(!d) return '';
+  if(key==='lpi') return d.lpi_tier_label || d.tier_label || ('Risiko '+bandLabel(band(d.lpi)));
+  if(key==='labour') return d.pasar_kerja_tier_label || 'Kerentanan pasar kerja';
+  if(key==='struct') return d.struktural_tier_label || 'Kerentanan struktural';
+  if(key==='stress') return d.tekanan_tier_label || 'Tekanan makroekonomi';
+  return '';
+}
+function metricBand(d,key){ return bandFromTierLabel(metricTierText(d,key)) || band(d?.[key]); }
 const P = DASH.provinces;
 const LPI_SOURCE = window.LPI_DATA || null;
 const LPI_META = LPI_SOURCE?.meta || {latest_year:2025, latest_month:12, latest_label:'Desember 2025'};
@@ -828,7 +848,11 @@ if(LPI_SOURCE?.scores?.length){
     base.stress = d.tekanan;
     base.rank = d.rank || d.lpi_rank;
     base.tier = d.tier;
-    base.tier_label = d.tier_label;
+    base.tier_label = d.tier_label || d.lpi_tier_label;
+    base.lpi_tier_label = d.lpi_tier_label || d.tier_label;
+    base.pasar_kerja_tier_label = d.pasar_kerja_tier_label;
+    base.struktural_tier_label = d.struktural_tier_label;
+    base.tekanan_tier_label = d.tekanan_tier_label;
     base.year = d.year;
     base.month = d.month;
   });
@@ -845,9 +869,11 @@ const ytdFlow = mon.filter(m=>m.y===2025).reduce((s,m)=>s+(m.phk_flow||0),0);
 const flows = mon.map(m=>m.phk_flow);
 const momAbs = flows[flows.length-1]-flows[flows.length-2];
 const momPct = flows[flows.length-2] ? (momAbs/flows[flows.length-2]*100) : 0;
-const highCount = provNames.filter(p=>band(P[p].lpi)==='high').length;
-const medCount  = provNames.filter(p=>band(P[p].lpi)==='med').length;
-const lowCount  = provNames.filter(p=>band(P[p].lpi)==='low').length;
+const vhighCount = provNames.filter(p=>metricBand(P[p],'lpi')==='vhigh').length;
+const highCount = provNames.filter(p=>['vhigh','high'].includes(metricBand(P[p],'lpi'))).length;
+const highOnlyCount = provNames.filter(p=>metricBand(P[p],'lpi')==='high').length;
+const medCount  = provNames.filter(p=>metricBand(P[p],'lpi')==='med').length;
+const lowCount  = provNames.filter(p=>metricBand(P[p],'lpi')==='low').length;
 /* National LPI = simple average of available provincial LPI scores. */
 const natLPI = DASH.national.lpi;
 const natLPI_simple = natLPI;
@@ -930,7 +956,7 @@ function buildExec(){
     {l:'Jumlah tenaga kerja', v:fmt1(WORKFORCE_NATIONAL/1e6)+' jt', foot:'Penduduk bekerja 2025 · 38 provinsi', col:'var(--navy-3)', tt:'Jumlah penduduk bekerja 2025, dijumlahkan dari 38 provinsi (Sakernas, Database Tahun).'},
     {l:'Total PHK tercatat YTD 2025', v:fmtN(ytdFlow), foot:`Stok kumulatif s.d. Des 2025`, col:'var(--navy-2)', tt:'Akumulasi flow PHK yang dilaporkan sepanjang 2025 (Satudata Kemnaker).'},
     {l:'Perubahan PHK MoM', v:(momAbs>=0?'+':'')+fmtN(momAbs), foot:`${(momPct>=0?'+':'')+fmt1(momPct)}% vs bulan sebelumnya`, col: momAbs>0?'var(--high)':'var(--low)', delta:momAbs>0?'up':'down', tt:'Selisih flow PHK bulan terakhir terhadap bulan sebelumnya.'},
-    {l:'Provinsi risiko tinggi', v:highCount, foot:`${medCount} sedang · ${lowCount} rendah`, col:'var(--high)', tt:'Jumlah provinsi dengan Layoff Pressure Index ≥ 50.'},
+    {l:'Provinsi risiko tinggi', v:highCount, foot:`${vhighCount} sangat tinggi · ${highOnlyCount} tinggi · ${medCount} sedang`, col:'var(--high)', tt:'Jumlah provinsi dengan Layoff Pressure Index pada tier tinggi atau sangat tinggi.'},
     {l:'Layoff Pressure Index nasional', v:fmt1(natLPI), foot:bandLabel(band(natLPI))+' · indeks peringatan dini', col:RC[band(natLPI)], tt:'Rata-rata sederhana LPI seluruh provinsi.'},
   ];
   document.getElementById('kpi-row').innerHTML = kpis.map(k=>`
@@ -973,7 +999,7 @@ function buildExec(){
   /* top 5 */
   const top5 = provNames.slice(0,5);
   document.getElementById('top5-list').innerHTML = top5.map((p,i)=>{
-    const d=P[p], b=band(d.lpi);
+    const d=P[p], b=metricBand(d,'lpi');
     return `<div class="rankrow" onclick="openProvFromExec('${p}')">
       <div class="rk">${i+1}</div>
       <div><div class="rname">${p}</div><div class="rmeta"><em>Share</em> manufaktur (%PDRB): ${d.manuf_share!=null?fmt1(d.manuf_share)+'%':'?'} | <em>Share</em> pekerja formal (% total pekerja): ${d.formal!=null?fmt1(d.formal)+'%':'?'}</div></div>
@@ -1044,12 +1070,13 @@ function buildMap(){
 function renderBoard(){
   const order = provNames.slice().sort((a,b)=>P[b][curSort]-P[a][curSort]);
   document.getElementById('province-board').innerHTML = order.map(p=>{
-    const d=P[p], b=band(d.lpi);
+    const d=P[p], b=metricBand(d,curSort);
+    const tier = metricTierText(d,curSort) || (METRIC_SHORT[curSort]||curSort);
     return `<div class="prov" data-prov="${p}" onclick="selectProv('${p}')">
       <div class="pstripe" style="background:${RC[b]}"></div>
       <div class="pname">${p}</div>
       <div class="pscore" style="color:${RC[b]}">${fmt1(d[curSort])}</div>
-      <div class="pdelta">${METRIC_SHORT[curSort]||curSort}</div>
+      <div class="pdelta">${tier}</div>
     </div>`;
   }).join('');
 }
@@ -1058,8 +1085,9 @@ function selectProv(p){
   document.querySelectorAll('.prov').forEach(x=>x.classList.toggle('sel', x.dataset.prov===p));
   const el = document.querySelector(`.prov[data-prov="${p}"]`);
   if(el) el.scrollIntoView({block:'nearest',behavior:'smooth'});
-  const d=P[p], b=band(d.lpi);
-  const mKey = curSort, mVal = d[mKey], mBand = band(mVal);
+  const d=P[p], b=metricBand(d,'lpi');
+  const mKey = curSort, mVal = d[mKey], mBand = metricBand(d,mKey);
+  const mTier = metricTierText(d,mKey);
   const mLabel = METRIC_LABEL[mKey] || 'Layoff Pressure Index';
   const gap = '<span class="badge gap" style="font-size:9px">belum tersedia</span>';
   const src = DETAIL_PROV[p] || {};
@@ -1083,16 +1111,16 @@ function selectProv(p){
     <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px">
       <div><div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px">Detail provinsi</div>
       <h3 style="font-size:18px;margin:2px 0 0">${p}</h3></div>
-      <span class="badge ${b}" style="font-size:12px">Risiko ${bandLabel(b)}</span>
+      <span class="badge ${b}" style="font-size:12px">${metricTierText(d,'lpi') || ('Risiko '+bandLabel(b))}</span>
     </div>
     <div style="display:flex;align-items:baseline;gap:8px;margin:10px 0 14px">
       <div class="num" style="font-family:'Plus Jakarta Sans';font-weight:800;font-size:34px;color:${RC[mBand]};letter-spacing:-1px">${fmt1(mVal)}</div>
-      <div style="font-size:11px;color:var(--muted)">${mKey==='lpi'?'Layoff Pressure Index (Juni 2026)':mLabel}<br/>${mKey==='lpi'?'':`Layoff Pressure Index (Juni 2026) ${fmt1(d.lpi)}`}</div>
+      <div style="font-size:11px;color:var(--muted)">${mKey==='lpi'?'Layoff Pressure Index (Juni 2026)':mLabel}<br/><span style="font-weight:600;color:${RC[mBand]}">${mTier}</span>${mKey==='lpi'?'':`<br/>Layoff Pressure Index (Juni 2026) ${fmt1(d.lpi)}`}</div>
     </div>
     <div class="chart-box" style="height:110px;margin-bottom:6px"><canvas id="provspark"></canvas></div>
     <div style="font-size:10.5px;color:var(--muted-2);text-align:center;margin-bottom:10px">Jumlah PHK Triwulanan (Sumber: Satudata Kemnaker)</div>
 
-    <div class="var-group"><h4>Kerentanan struktural</h4>
+    <div class="var-group"><h4>Kerentanan struktural <span class="badge ${metricBand(d,'struct')}" style="font-size:9px;margin-left:6px">${metricTierText(d,'struct')}</span></h4>
       <div class="metric"><span class="mk">Share pengeluaran pemerintah (% PDRB)</span><span class="mv">${pct(src.gov_share)}</span></div>
       <div class="metric"><span class="mk">Nilai ekspor</span><span class="mv">${usd(src.export_value)}</span></div>
       <div class="metric"><span class="mk">Nilai impor</span><span class="mv">${usd(src.import_value)}</span></div>
@@ -1100,7 +1128,7 @@ function selectProv(p){
       <div class="metric"><span class="mk">Share sektor pertanian (% PDRB)</span><span class="mv">${pct(src.agri_share)}</span></div>
       <div class="metric"><span class="mk">PDRB (2025)</span><span class="mv">${pdrb(src.pdrb_billion)}</span></div>
     </div>
-    <div class="var-group"><h4>Kerentanan pasar kerja</h4>
+    <div class="var-group"><h4>Kerentanan pasar kerja <span class="badge ${metricBand(d,'labour')}" style="font-size:9px;margin-left:6px">${metricTierText(d,'labour')}</span></h4>
       <div class="metric"><span class="mk">Share pekerja formal (% total pekerja)</span><span class="mv">${pct(src.formal_share ?? d.formal)}</span></div>
       <div class="metric"><span class="mk">Share pekerja manufaktur (% tenaga kerja)</span><span class="mv">${pct(src.emp_manuf_share)}</span></div>
       <div class="metric"><span class="mk">Share pekerja penuh waktu (% tenaga kerja)</span><span class="mv">${pct(src.full_time_share)}</span></div>
@@ -1109,7 +1137,7 @@ function selectProv(p){
       <div class="metric"><span class="mk">Jumlah tenaga kerja (2025)</span><span class="mv">${src.working_pop!=null?fmtN(src.working_pop):(WORKFORCE_2025[p]!=null?fmtN(WORKFORCE_2025[p]):gap)}</span></div>
       <div class="metric"><span class="mk">Tingkat pengangguran terbuka (2025)</span><span class="mv">${pct(src.tpt ?? d.tpt)}</span></div>
     </div>
-    <div class="var-group"><h4>Tekanan makroekonomi</h4>
+    <div class="var-group"><h4>Tekanan makroekonomi <span class="badge ${metricBand(d,'stress')}" style="font-size:9px;margin-left:6px">${metricTierText(d,'stress')}</span></h4>
       <div class="metric"><span class="mk">PMI Manufaktur (indeks)</span><span class="mv">${val(latestWith('pmi'))}</span></div>
       <div class="metric"><span class="mk">BI Rate (%)</span><span class="mv">${pct(latestWith('bi_rate'))}</span></div>
       <div class="metric"><span class="mk">Kurs (USD/IDR)</span><span class="mv">${latestWith('kurs')!=null?fmtN(latestWith('kurs')):gap}</span></div>
@@ -1346,48 +1374,35 @@ function buildLead(){
   el.innerHTML = `<div><div class="lead-chart-title">Pooled Cross-Correlation antara PHK dan Indikator Makro</div><div class="lead-chart-sub">Korelasi pada berbagai lag bulanan; warna menunjukkan arah dan kekuatan hubungan.</div><div class="lead-panel">${body}${axis}</div></div>${legend}`;
   document.getElementById('lead-interp').innerHTML = '';
 }
-/* cluster definitions (anggota dari brief; LPI dihitung dari data nyata) */
-const CLUSTERS = [
-  {name:'Industrial Export Cluster', color:'#d23b34', members:['Jawa Barat','Banten','Jawa Tengah','Kepulauan Riau'],
-   driver:'Pelemahan ekspor, PMI di bawah 50, depresiasi rupiah', sector:'Tekstil, alas kaki, elektronik',
-   watch:'Ekspor manufaktur, PMI, kurs, klaim JKP', policy:'Monitoring intensif perusahaan padat karya, perluasan JKP, restrukturisasi kredit'},
-  {name:'Resource-Based Cluster', color:'#e3a008', members:['Riau','Kalimantan Timur','Kalimantan Selatan','Sulawesi Tengah'],
-   driver:'Siklus harga migas dan komoditas, permintaan ekspor global', sector:'Pertambangan, perkebunan, logistik',
-   watch:'Harga komoditas, harga migas, neraca perdagangan', policy:'Diversifikasi penerimaan daerah, jaring pengaman pekerja kontrak komoditas'},
-  {name:'Services / Tourism Cluster', color:'#2563eb', members:['DKI Jakarta','Bali','DI Yogyakarta'],
-   driver:'Konsumsi rumah tangga, keyakinan konsumen, kunjungan wisata', sector:'Akomodasi, makanan-minuman, perdagangan',
-   watch:'IKK, okupansi hotel, konsumsi', policy:'Dukungan UMKM jasa, pelatihan ulang sektor pariwisata'},
-  {name:'Domestic Demand Cluster', color:'#1f9d57', members:['Jawa Timur','Sumatera Utara','Sulawesi Selatan'],
-   driver:'Permintaan domestik, daya beli, inflasi', sector:'Makanan-minuman, perdagangan, logistik',
-   watch:'IHK, daya beli, penjualan ritel', policy:'Stabilisasi harga, penguatan matching pasar kerja'},
-  {name:'Low Formalization Cluster', color:'#64748b', members:[], lowformal:true,
-   driver:'Penyesuaian tenaga kerja terjadi di sektor informal, sulit terdeteksi sebagai PHK formal', sector:'Pertanian, perdagangan informal',
-   watch:'Setengah pengangguran, jam kerja, proporsi informal', policy:'Cegah informalisasi, perkuat perlindungan sosial pekerja informal'},
-];
+/* provincial clusters - sourced from Literature Review LPI.xlsx, sheet Klaster Provinsi & Rekomendasi */
+const CLUSTER_REKOM = {"struktural":[{"group":"Ekonomi Industri Berorientasi Perdagangan","avgLpi":56.8,"provinces":"Maluku Utara, Kepulauan Riau, Sulawesi Tengah, Banten, Papua Barat, Jawa Barat, Jawa Timur, DKI Jakarta","driver":"Bergantung pada aktivitas manufaktur, ekspor, dan impor sehingga rentan terhadap perlambatan perdagangan global dan fluktuasi nilai tukar.","indicators":"Share ekspor, share impor, share sektor manufaktur, PMI, nilai ekspor, nilai impor, kurs USD/IDR","policy":"Diversifikasi pasar ekspor, memperkuat substitusi impor, dan mendorong investasi industri bernilai tambah tinggi."},{"group":"Ekonomi dengan Basis Industri Berkembang","avgLpi":47.4,"provinces":"Kalimantan Timur, Jawa Tengah, Riau, Kalimantan Selatan, Papua Tengah, Sumatera Selatan, Kep. Bangka Belitung, Kalimantan Utara, Sumatera Utara","driver":"Industrialisasi berkembang, tetapi masih bergantung pada investasi dan permintaan domestik.","indicators":"Share sektor manufaktur, PMI, BI rate, penjualan mobil","policy":"Mendorong investasi industri, meningkatkan produktivitas manufaktur, dan mengembangkan kawasan industri."},{"group":"Ekonomi Terdiversifikasi","avgLpi":42.0,"provinces":"Sulawesi Tenggara, Kalimantan Tengah, Lampung, DI Yogyakarta, Sulawesi Selatan, Kalimantan Barat, Bali, Papua Barat Daya, Sulawesi Utara","driver":"Struktur ekonomi relatif beragam sehingga lebih tahan terhadap guncangan pada sektor tertentu.","indicators":"Share sektor manufaktur, BI rate, IHPB","policy":"Menjaga iklim investasi, memperkuat diversifikasi ekonomi, dan mengembangkan sektor bernilai tambah tinggi."},{"group":"Ekonomi Domestik Berbasis Pertanian","avgLpi":26.6,"provinces":"Sumatera Barat, Jambi, Nusa Tenggara Barat, Sulawesi Barat, Maluku, Aceh, Papua, Gorontalo, Nusa Tenggara Timur","driver":"Didominasi sektor pertanian dan pasar domestik sehingga lebih sensitif terhadap produktivitas dan harga komoditas.","indicators":"Share sektor pertanian, IHPB, harga minyak dunia","policy":"Mendorong hilirisasi komoditas, meningkatkan produktivitas pertanian, dan mengembangkan industri pengolahan."}],"pasarKerja":[{"group":"Pasar Kerja Berbasis Formal","avgLpi":58.5,"provinces":"DKI Jakarta, Kepulauan Riau, Banten, Bali, Kalimantan Timur, Kalimantan Utara, Jawa Barat, DI Yogyakarta, Kalimantan Tengah","driver":"Pangsa pekerja formal tinggi sehingga perlambatan ekonomi lebih cepat tercermin dalam PHK formal.","indicators":"Share pekerja formal, share pekerja manufaktur, share pekerja penuh waktu, rata-rata upah pekerja, PMI ","policy":"Memperkuat reskilling dan upskilling, meningkatkan layanan job matching, serta memperluas cakupan Jamsosnaker termasuk Program JKP."},{"group":"Pasar Kerja dengan Formalisasi Berkembang","avgLpi":37.9,"provinces":"Papua Barat Daya, Jawa Tengah, Kep. Bangka Belitung, Sulawesi Utara, Papua, Jawa Timur, Gorontalo, Kalimantan Selatan, Papua Selatan, Riau","driver":"Formalisasi pasar kerja terus meningkat, tetapi masih bergantung pada pertumbuhan investasi dan aktivitas industri.","indicators":"Share pekerja formal, share pekerja manufaktur, rata-rata upah pekerja, PMI, BI rate","policy":"Mendorong penciptaan pekerjaan formal, memperluas pelatihan vokasi, serta memperluas kepesertaan Jamsosnaker."},{"group":"Pasar Kerja dalam Transisi","avgLpi":49.5,"provinces":"Maluku Utara, Sumatera Utara, Sulawesi Tenggara, Sulawesi Selatan, Sulawesi Tengah, Jambi, Kalimantan Barat, Sumatera Selatan, Maluku","driver":"Komposisi pekerja formal dan informal relatif seimbang sehingga rentan terhadap pergeseran status pekerjaan.","indicators":"Share pekerja formal, share setengah penganggur, TPT, BI rate, PMI ","policy":"Memperkuat pelatihan lintas sektor, meningkatkan layanan pasar kerja, serta memperluas cakupan Jamsosnaker untuk mendukung transisi kerja."},{"group":"Pasar Kerja Informal Berbasis Pertanian","avgLpi":27.2,"provinces":"Sumatera Barat, Papua Barat, Bengkulu, Lampung, Aceh, Nusa Tenggara Barat, Nusa Tenggara Timur, Sulawesi Barat, Papua Pegunungan, Papua Tengah","driver":"Didominasi pekerja informal dan sektor pertanian sehingga penyesuaian lebih banyak terjadi melalui penurunan pendapatan daripada PHK formal.","indicators":"Share setengah penganggur, TPT, rata-rata upah pekerja, IHPB, harga minyak dunia","policy":"Memperluas Jamsosnaker bagi pekerja informal, memperkuat pelatihan dan pemberdayaan usaha mikro, serta mendorong transisi menuju pekerjaan formal."}]};
+function clusterTone(i){ return ['#14365e','#2563eb','#1f9d57','#e3a008','#d23b34'][i%5]; }
+function buildClusterCard(c,i){
+  const color = clusterTone(i);
+  const avg = c.avgLpi==null ? '—' : fmt1(c.avgLpi);
+  const b = c.avgLpi==null ? 'med' : band(c.avgLpi);
+  return `<div class="cluster">
+    <div class="chd" style="background:${color}">
+      <div><h4>${c.group}</h4><div class="cprov">${c.provinces}</div></div>
+      <div style="text-align:right"><div class="clpi">${avg}</div><div style="font-size:10px;opacity:.85">rata-rata LPI</div></div>
+    </div>
+    <div class="cbody">
+      <div class="crow"><div class="ck">Driver risiko utama</div><div class="cv">${c.driver}</div></div>
+      <div class="crow"><div class="ck">Indikator dipantau</div><div class="cv">${c.indicators}</div></div>
+      <div class="crow"><div class="ck">Rekomendasi respons</div><div class="cv">${c.policy}</div></div>
+    </div>
+  </div>`;
+}
+function buildClusterSection(title, subtitle, rows){
+  return `<div class="cluster-section"><div class="cluster-section-head"><h3>${title}</h3><p>${subtitle}</p></div><div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">${rows.map(buildClusterCard).join('')}</div></div>`;
+}
 function buildClusters(){
-  /* fill low formalization members from data: 5 provinces with lowest formal */
-  const byFormal = provNames.filter(p=>P[p].formal!=null).sort((a,b)=>P[a].formal-P[b].formal).slice(0,5);
-  CLUSTERS.find(c=>c.lowformal).members = byFormal;
-  const clusterHtml = CLUSTERS.map(c=>{
-    const mem = c.members.filter(m=>P[m]);
-    const lpi = mem.length? mem.reduce((s,m)=>s+P[m].lpi,0)/mem.length : null;
-    const b = lpi!=null?band(lpi):'med';
-    return `<div class="cluster">
-      <div class="chd" style="background:${c.color}">
-        <div><h4>${c.name}</h4><div class="cprov">${c.members.join(' · ')||'—'}</div></div>
-        <div style="text-align:right"><div class="clpi">${lpi!=null?fmt1(lpi):'—'}</div><div style="font-size:10px;opacity:.85">rata-rata LPI</div></div>
-      </div>
-      <div class="cbody">
-        <div class="crow"><div class="ck">Driver risiko utama</div><div class="cv">${c.driver}</div></div>
-        <div class="crow"><div class="ck">Sektor paling rentan</div><div class="cv">${c.sector}</div></div>
-        <div class="crow"><div class="ck">Indikator dipantau</div><div class="cv">${c.watch}</div></div>
-        <div class="crow"><div class="ck">Rekomendasi respons</div><div class="cv">${c.policy}</div></div>
-      </div></div>`;
-  }).join('');
+  const clusterHtml = buildClusterSection('Berdasarkan Kerentanan Struktural','Klaster disusun dari karakteristik struktur ekonomi daerah dan rata-rata LPI masing-masing kelompok.',CLUSTER_REKOM.struktural)
+    + buildClusterSection('Berdasarkan Kerentanan Pasar Kerja','Klaster disusun dari karakteristik pasar kerja daerah dan rata-rata LPI masing-masing kelompok.',CLUSTER_REKOM.pasarKerja);
   const clusterGrid = document.getElementById('cluster-grid');
   const clusterGridSim = document.getElementById('cluster-grid-sim');
-  if(clusterGrid) clusterGrid.innerHTML = clusterHtml;
-  if(clusterGridSim) clusterGridSim.innerHTML = clusterHtml;
+  if(clusterGrid){ clusterGrid.style.display='block'; clusterGrid.innerHTML = clusterHtml; }
+  if(clusterGridSim){ clusterGridSim.style.display='block'; clusterGridSim.innerHTML = clusterHtml; }
 }
 
 /* islands with Indonesian names — covers all 38 provinces */
