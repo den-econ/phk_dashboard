@@ -6,7 +6,6 @@
 #         sheet "LEI Per Provinsi", column `Indeks_LEI_Labour`
 #         (38 provinces x 48 months, 2022-2025 = 1824 rows)
 # Output: outputs/lei_annual.rds   (province-year annual-mean LEI)
-#         outputs/lei_annual.csv
 # Method: mean of the 12 monthly LEI values within each province-year.
 #         This annual pressure score is the third LPI pillar, standardised
 #         alongside the two vulnerability indices in 03_weights_composite.R.
@@ -26,7 +25,6 @@ rownames(agg) <- NULL
 
 dir.create("outputs", showWarnings = FALSE)
 saveRDS(list(agg = agg), "outputs/lei_annual.rds")
-write.csv(agg, "outputs/lei_annual.csv", row.names = FALSE)
 cat(sprintf("LEI annual: %d rows, %d provinces x %d years\n",
             nrow(agg), length(unique(agg$Provinsi)), length(unique(agg$Tahun))))
 

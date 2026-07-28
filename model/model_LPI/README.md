@@ -129,7 +129,7 @@ model_LPI/
 │   ├── 05_export_results.R      annual result tables (parts for the workbook)
 │   ├── 05b_build_xlsx.py        packages parts → lpi_scores.xlsx (annual + monthly sheets)
 │   ├── 07_freeze_calibration.R  freeze base-year weights/structure for monthly
-│   ├── 08_score_monthly.R       monthly LPI → lpi_monthly.csv + the workbook's monthly sheet
+│   ├── 08_score_monthly.R       monthly LPI → the workbook's monthly sheet
 │   ├── run_all.sh              ← run once a YEAR (full re-calibration)
 │   └── run_monthly.sh          ← run each MONTH (the only monthly command)
 ├── outputs/                    lpi_scores.xlsx (deliverable) + models*.rds / *.rds inputs

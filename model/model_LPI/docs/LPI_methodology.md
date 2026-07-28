@@ -56,7 +56,7 @@ weights:
 Because the three inputs are already 0–100 and the weights sum to 100%, the LPI
 is itself on a 0–100 scale — **no composite-level re-standardisation**. Higher =
 more layoff pressure. The three pillar scores are exported alongside the LPI in
-`lpi_scores_long.csv` for full transparency. Because each index is normalised
+the `scores` sheet of `lpi_scores.xlsx` for full transparency. Because each index is normalised
 within the year and weights are re-fit each year, the LPI is a **within-year
 measure**, not a cross-year level.
 

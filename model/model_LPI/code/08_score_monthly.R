@@ -11,8 +11,7 @@
 #
 # Inputs : outputs/lpi_calibration_<BASE>.rds
 #          ../model_LEI/data/Komposit_LEI_Ketenagakerjaan.xlsx (LEI Per Provinsi, monthly)
-# Outputs: outputs/lpi_monthly.csv
-#          outputs/_xlsx_parts/06_monthly.csv  (becomes the `monthly` sheet in lpi_scores.xlsx)
+# Output : outputs/_xlsx_parts/06_monthly.csv  (becomes the `monthly` sheet in lpi_scores.xlsx)
 # Self-check: feeding the base-year ANNUAL-MEAN LEI must reproduce the base-year
 #            annual LPI (outputs/lpi_composite.rds s100). Fails loudly otherwise.
 # Run from: model/model_LPI/   (after 07)
@@ -52,7 +51,6 @@ names(mon) <- c("year","month","province","lpi_0_100",
                 "pasar_kerja_0_100","struktural_0_100","tekanan_0_100")
 for (c in c("lpi_0_100","pasar_kerja_0_100","struktural_0_100","tekanan_0_100"))
   mon[[c]] <- round(mon[[c]],1)
-write.csv(mon, "outputs/lpi_monthly.csv", row.names=FALSE)
 
 # stage the monthly table as a workbook part so lpi_scores.xlsx gains a `monthly`
 # sheet — 05b_build_xlsx.py packages every outputs/_xlsx_parts/*.csv into the xlsx.
