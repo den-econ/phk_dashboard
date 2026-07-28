@@ -1,7 +1,7 @@
 # model_LPI — Layoff Pressure Index (LPI)
 
 Provincial **Layoff Pressure Index** for the PHK Early-Warning Dashboard: one
-early-warning score (0–100) per province, combining three indices with the
+early-warning score per province, combining three indices with the
 **OECD/JRC factor-analysis weighting method** (Handbook 2008, §6.1).
 
 > **Recorded PHK is used only to *validate* the indices — never as an input.**
@@ -18,17 +18,18 @@ early-warning score (0–100) per province, combining three indices with the
 | **Indeks Kerentanan Struktural Ekonomi** | economic-structure vulnerability (trade-integrated & industrial vs domestic & agrarian) | annual | `phk_master.csv` |
 | **Indeks Tekanan Makroekonomi** | building macro pressure over time (the LEI) | monthly | `model_LEI` LEI workbook |
 
-**How the score is built (per year):** each pillar is scored **0–100 within its
-own index** (PCA → min-max). A 2-factor PCA over the three pillars derives
-**data-driven weights** (varimax-rotated; a pillar's weight = its squared-loading
-share within its factor × that factor's variance share). The LPI is then the
-**plain weighted sum of the three 0–100 pillar scores** — since the inputs are
-0–100 and the weights sum to 100%, the LPI is itself 0–100, with no further
-standardisation (higher = more layoff pressure). Recent weights ≈ **30 / 32 / 38**
-(Pasar Kerja / Struktural / Tekanan). Full method: [docs/LPI_methodology.md](docs/LPI_methodology.md).
+**How the score is built:** each pillar is scored **0–100 within its own index**
+(PCA → min-max). A 2-factor PCA over the three pillars derives **data-driven
+weights** (varimax-rotated; a pillar's weight = its squared-loading share within
+its factor × that factor's variance share). The **LPI is the weighted sum of the
+three pillar scores** — *not* re-normalised to 0–100 (higher = more layoff
+pressure). The **annual** LPI lands within 0–100 (a weighted average of 0–100
+values); the **monthly** LPI can exceed 0–100 when pressure moves beyond the
+base-year range. Recent weights ≈ **30 / 32 / 38** (Pasar Kerja / Struktural /
+Tekanan). Full method: [docs/LPI_methodology.md](docs/LPI_methodology.md).
 
 **Two things to remember:**
-- The 0–100 score is a **within-year measure**, not a cross-year level.
+- The LPI is a **within-year measure**, not a cross-year level.
 - Provinces are grouped into **4 equal-count risk tiers** (Risiko Sangat Tinggi → Rendah).
 
 ---
@@ -107,12 +108,12 @@ The single deliverable is **`outputs/lpi_scores.xlsx`**. The dashboard team read
 
 | Sheet | Contents | Use |
 |---|---|---|
-| **`scores`** | annual province × year — 3 pillars, **`lpi_0_100`**, rank, tier | annual view |
-| **`monthly`** | province × month — 3 pillars + **`lpi_0_100`** (the newest LPI + macro-pressure) | monthly view |
+| **`scores`** | annual province × year — 3 pillars, **`lpi`**, rank, tier | annual view |
+| **`monthly`** | province × month — 3 pillars + **`lpi`** (the newest LPI + macro-pressure) | monthly view |
 | `weights`, `pillar_metrics`, `pillar_loadings`, `stage2_2025`, `README` | supporting detail | reference |
 
-**The dashboard's score is the `lpi_0_100` column** (the weighted-sum LPI). Macro
-pressure per province is the `tekanan_0_100` column. Everything else in
+**The dashboard's score is the `lpi` column** (the weighted-sum LPI). Macro
+pressure per province is the `tekanan` column. Everything else in
 `outputs/` is machinery: the five `.rds` files are the pipeline's frozen inputs;
 the report PNGs and `_`-prefixed files are gitignored regenerable scratch. The
 dashboard needs only `lpi_scores.xlsx`.

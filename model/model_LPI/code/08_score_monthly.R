@@ -47,9 +47,9 @@ parts <- lapply(split(seq_len(nrow(raw)), key), function(ix) {
 mon <- do.call(rbind, parts)
 mon <- mon[order(mon$year, mon$month, -mon$lpi), ]
 mon <- mon[, c("year","month","province","lpi","pk","st","tk")]
-names(mon) <- c("year","month","province","lpi_0_100",
-                "pasar_kerja_0_100","struktural_0_100","tekanan_0_100")
-for (c in c("lpi_0_100","pasar_kerja_0_100","struktural_0_100","tekanan_0_100"))
+names(mon) <- c("year","month","province","lpi",
+                "pasar_kerja","struktural","tekanan")
+for (c in c("lpi","pasar_kerja","struktural","tekanan"))
   mon[[c]] <- round(mon[[c]],1)
 
 # stage the monthly table as a workbook part so lpi_scores.xlsx gains a `monthly`
