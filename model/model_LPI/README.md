@@ -42,14 +42,16 @@ The pillars update at different speeds, so there are **two update rhythms**:
 | | **Monthly** | **Annual (re-calibration)** |
 |---|---|---|
 | What's new | new month of **pressure (LEI)** only | new year of **labour + structure** data |
-| Structure pillars | **frozen** at base year | **re-fit** |
-| Weights | **frozen** at base year | **recomputed** |
+| Structure pillars | that year's own (held across its months) | **re-fit** for the new year |
+| Weights | that year's own | **recomputed** for the new year |
 | Script | `run_monthly.sh` | `run_all.sh` |
 | Needs Stata? | no | yes (rebuild `phk_master.csv`) |
 | Output | `lpi_scores.xlsx` (refreshes the `monthly` sheet) | `lpi_scores.xlsx` (all sheets) |
 
-Because structure + weights are frozen monthly, only the pressure input moves —
-so monthly scores stay comparable month to month.
+Each year's monthly rows use **that year's own** weights and structure; only the
+pressure input moves month to month. A year with no annual data yet (e.g. 2026
+before its labour/structure lands) automatically uses the **latest available
+year's** calibration (2025), then switches to its own once that data is built.
 
 ---
 
@@ -64,22 +66,21 @@ so monthly scores stay comparable month to month.
 
 1. Enter the 2026 annual data in the Google Sheet (*Database (Tahun)* tabs).
 2. **Rebuild** `phk_master.csv` in Stata (`01_build_phk_master.do`).
-3. Set the new base year: edit `BASE <- 2026` at the top of `code/07_freeze_calibration.R`
-   **and** `code/08_score_monthly.R`.
-4. Run the full pipeline:
+3. Run the full pipeline:
    ```bash
    cd model/model_LPI
    bash code/run_all.sh
    ```
-   This re-fits both pillars, recomputes the weights, refreezes the calibration,
-   and regenerates all outputs. `00_fit_pillars.R` verifies the historical years
-   still reproduce the validated baseline — if a prior year was revised upstream,
-   it stops and reports (intended safety check).
+   This re-fits both pillars, recomputes the weights for **all** years (2026
+   included), and regenerates all outputs. 2026 monthly rows then automatically
+   switch from the 2025 fallback to 2026's own calibration — no manual setting.
+   `00_fit_pillars.R` verifies the historical years still reproduce the validated
+   baseline — if a prior year was revised upstream, it stops and reports.
 
 ### 🅑 When NEW MONTHLY data is released (e.g. July 2026)
 
-**No Stata, no `phk_master` rebuild needed** — structure and weights are frozen at
-the base year; only the new month's LEI moves. Just three steps:
+**No Stata, no `phk_master` rebuild needed** — the year's weights and structure
+are already set; only the new month's LEI moves. Just three steps:
 
 1. Enter the month in the Google Sheet (*Database (Bulan)* + *Database (Bulan, Nasional)*, incl. `Penjualan Mobil`); download to Excel.
 2. **Rebuild the LEI** so `model_LEI/data/Komposit_LEI_Ketenagakerjaan.xlsx` has the new month.
@@ -110,7 +111,7 @@ The single deliverable is **`outputs/lpi_scores.xlsx`**. The dashboard team read
 | Sheet | Contents | Use |
 |---|---|---|
 | **`scores`** | annual province × year — 3 pillars, **`lpi`**, rank, tier | annual view |
-| **`monthly`** | province × month — 3 pillars + **`lpi`** (the newest LPI + macro-pressure) | monthly view |
+| **`monthly`** | province × month — 3 pillars, **`lpi`**, rank, tier (ranked within each month) | monthly view |
 | `weights`, `pillar_metrics`, `pillar_loadings`, `stage2_2025`, `README` | supporting detail | reference |
 
 **The dashboard's score is the `lpi` column** (the weighted-sum LPI). Macro
@@ -132,8 +133,7 @@ model_LPI/
 │   ├── 04_report.R             docs/lpi_structure_report.html (the artifact page)
 │   ├── 05_export_results.R      annual result tables (parts for the workbook)
 │   ├── 05b_build_xlsx.py        packages parts → lpi_scores.xlsx (annual + monthly sheets)
-│   ├── 07_freeze_calibration.R  freeze base-year weights/structure for monthly
-│   ├── 08_score_monthly.R       monthly LPI → the workbook's monthly sheet
+│   ├── 08_score_monthly.R       monthly LPI (per-year calibration) → the workbook's monthly sheet
 │   ├── run_all.sh              ← run once a YEAR (full re-calibration)
 │   └── run_monthly.sh          ← run each MONTH (the only monthly command)
 ├── outputs/                    lpi_scores.xlsx (deliverable) + models*.rds / *.rds inputs
@@ -151,5 +151,6 @@ model_LPI/
   It fits whatever years exist, so new years are picked up automatically.
 - `run_all.sh` promotes the re-fit to `outputs/models.rds` **only if** verification passes.
 - `02_lei_annual.R` and `08_score_monthly.R` also self-verify (LEI reproduces the
-  persisted values; monthly machinery reproduces the base-year annual LPI exactly).
+  persisted values; feeding each year's annual-mean LEI reproduces that year's
+  annual LPI exactly, so the monthly and annual grains stay consistent).
 - `models_frozen_2025.rds` is the immutable validated baseline — do not edit.
