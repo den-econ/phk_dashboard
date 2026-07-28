@@ -41,8 +41,14 @@ raw <- raw[!is.na(raw$Provinsi) & !is.na(raw$Tahun) & !is.na(raw$Bulan) &
            !is.na(raw$Indeks_LEI_Labour), ]
 
 # ---- score each (year, month) with that year's calibration ----------------
-# lpi_rank + 4 equal-count tiers are computed WITHIN each month (same as annual)
-TIER_LAB <- c("Risiko Sangat Tinggi","Risiko Tinggi","Risiko Sedang","Risiko Rendah")  # G1 = highest
+# ranks, per-pillar 4-tier labels, and the avg-LPI-by-pillar-tier columns are all
+# computed WITHIN each month (same logic as the annual sheet). G1 = highest score.
+LPI_LAB <- c("Risiko Sangat Tinggi","Risiko Tinggi","Risiko Sedang","Risiko Rendah")
+PK_LAB  <- c("Pasar Kerja Berbasis Formal","Pasar Kerja dengan Formalisasi Berkembang",
+             "Pasar Kerja dalam Transisi","Pasar Kerja Informal Berbasis Pertanian")
+ST_LAB  <- c("Ekonomi Industri Berorientasi Perdagangan","Ekonomi dengan Basis Industri Berkembang",
+             "Ekonomi Terdiversifikasi","Ekonomi Domestik Berbasis Pertanian")
+TM_LAB  <- c("Tekanan Sangat Tinggi","Tekanan Tinggi","Tekanan Sedang","Tekanan Rendah")
 tier_of  <- function(s){ n<-length(s); rk<-rank(-s,ties.method="first")
   g<-ceiling(rk/(n/4)); g[g>4]<-4L; as.integer(g) }
 
@@ -52,15 +58,27 @@ parts <- lapply(split(seq_len(nrow(raw)), key), function(ix) {
   s <- score(cal_year(y), raw$Provinsi[ix], raw$Indeks_LEI_Labour[ix])
   s$year <- y; s$month <- m
   s$lpi_rank <- rank(-s$lpi, ties.method="first")
-  g <- tier_of(s$lpi); s$tier <- g; s$tier_label <- TIER_LAB[g]
+  gL<-tier_of(s$lpi); gPKt<-tier_of(s$pk); gSTt<-tier_of(s$st); gTMt<-tier_of(s$tk)
+  s$tier <- gL
+  s$lpi_tier_label         <- LPI_LAB[gL]
+  s$pasar_kerja_tier_label <- PK_LAB[gPKt]
+  s$struktural_tier_label  <- ST_LAB[gSTt]
+  s$tekanan_tier_label     <- TM_LAB[gTMt]
+  s$avg_lpi_tier_pasar_kerja <- ave(s$lpi, gPKt, FUN=mean)   # mean LPI within labor category
+  s$avg_lpi_tier_struktural  <- ave(s$lpi, gSTt, FUN=mean)   # mean LPI within econ category
   s
 })
 mon <- do.call(rbind, parts)
 mon <- mon[order(mon$year, mon$month, mon$lpi_rank), ]
-mon <- mon[, c("year","month","province","lpi","pk","st","tk","lpi_rank","tier","tier_label")]
-names(mon) <- c("year","month","province","lpi","pasar_kerja","struktural","tekanan",
-                "lpi_rank","tier","tier_label")
-for (c in c("lpi","pasar_kerja","struktural","tekanan")) mon[[c]] <- round(mon[[c]],1)
+mon <- mon[, c("year","month","province","lpi","pk","st","tk","lpi_rank","tier",
+               "lpi_tier_label","pasar_kerja_tier_label","struktural_tier_label",
+               "tekanan_tier_label","avg_lpi_tier_pasar_kerja","avg_lpi_tier_struktural")]
+names(mon) <- c("year","month","province","lpi_score","pasar_kerja_score","struktural_score",
+                "tekanan_score","lpi_rank","tier","lpi_tier_label","pasar_kerja_tier_label",
+                "struktural_tier_label","tekanan_tier_label","avg_lpi_tier_pasar_kerja",
+                "avg_lpi_tier_struktural")
+for (c in c("lpi_score","pasar_kerja_score","struktural_score","tekanan_score",
+            "avg_lpi_tier_pasar_kerja","avg_lpi_tier_struktural")) mon[[c]] <- round(mon[[c]],1)
 
 dir.create("outputs/_xlsx_parts", showWarnings=FALSE)
 write.csv(mon, "outputs/_xlsx_parts/06_monthly.csv", row.names=FALSE)

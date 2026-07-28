@@ -14,24 +14,36 @@ M$E5$name <- "Indeks Kerentanan Struktural Ekonomi"
 LP <- readRDS("outputs/lpi_composite.rds"); res <- LP$res; W <- LP$W
 ys <- as.character(2022:2025)
 
-TIER_LAB <- c("Risiko Sangat Tinggi","Risiko Tinggi","Risiko Sedang","Risiko Rendah") # G1 highest
+# tier label sets (G1 = highest score -> G4 = lowest)
+LPI_LAB <- c("Risiko Sangat Tinggi","Risiko Tinggi","Risiko Sedang","Risiko Rendah")
+PK_LAB  <- c("Pasar Kerja Berbasis Formal","Pasar Kerja dengan Formalisasi Berkembang",
+             "Pasar Kerja dalam Transisi","Pasar Kerja Informal Berbasis Pertanian")
+ST_LAB  <- c("Ekonomi Industri Berorientasi Perdagangan","Ekonomi dengan Basis Industri Berkembang",
+             "Ekonomi Terdiversifikasi","Ekonomi Domestik Berbasis Pertanian")
+TM_LAB  <- c("Tekanan Sangat Tinggi","Tekanan Tinggi","Tekanan Sedang","Tekanan Rendah")
 tier_of <- function(s){ n<-length(s); rk<-rank(-s,ties.method="first")
   g<-ceiling(rk/(n/4)); g[g>4]<-4L; as.integer(g) }
 
 ## ---- headline scores table (province x year) -----------------------------
+## per-pillar 4-tier labels within the year, plus avg LPI grouped by pillar tier
 rows <- list()
 for(yr in ys){ r<-res[[yr]]; pv<-names(r$s100)
-  # pillar 0-100 scores + weighted-sum LPI come straight from 03 (single source)
-  g  <- tier_of(r$s100)
+  lpi<-as.numeric(r$s100); pk<-as.numeric(r$pk[pv]); st<-as.numeric(r$st[pv]); tk<-as.numeric(r$tk[pv])
+  gL<-tier_of(lpi); gPKt<-tier_of(pk); gSTt<-tier_of(st); gTMt<-tier_of(tk)
   rows[[yr]] <- data.frame(
     year=as.integer(yr), province=pv,
-    pasar_kerja = round(as.numeric(r$pk[pv]),1),   # pillar index score (min-max 0-100)
-    struktural  = round(as.numeric(r$st[pv]),1),
-    tekanan     = round(as.numeric(r$tk[pv]),1),
-    lpi         = round(as.numeric(r$s100),1),      # weighted sum of the three pillars
-    lpi_rank          = rank(-r$s100,ties.method="first"),
-    tier              = g,
-    tier_label        = TIER_LAB[g],
+    lpi_score         = round(lpi,1),
+    pasar_kerja_score = round(pk,1),
+    struktural_score  = round(st,1),
+    tekanan_score     = round(tk,1),
+    lpi_rank          = rank(-lpi,ties.method="first"),
+    tier              = gL,
+    lpi_tier_label         = LPI_LAB[gL],
+    pasar_kerja_tier_label = PK_LAB[gPKt],
+    struktural_tier_label  = ST_LAB[gSTt],
+    tekanan_tier_label     = TM_LAB[gTMt],
+    avg_lpi_tier_pasar_kerja = round(ave(lpi, gPKt, FUN=mean),1),  # mean LPI within labor category
+    avg_lpi_tier_struktural  = round(ave(lpi, gSTt, FUN=mean),1),  # mean LPI within econ category
     row.names=NULL)
 }
 scores <- do.call(rbind, rows)

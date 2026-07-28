@@ -61,8 +61,8 @@ renderModel<-function(key,id,note,gnames){mod<-M[[key]];r<-mod$E[["2025"]]
    "Provinces split into <b>4 groups of equal size</b> (quartiles by rank); group 1 = highest score (top). Colours: red = highest tier &rarr; blue = lowest.")
  add("<p class='note'>",note,"</p>")}
 ## group-name sets
-gPK<-c("Pasar Kerja Formal Terkonsolidasi","Formalisasi Pasar Kerja Berkembang","Pasar Kerja dalam Transisi","Pasar Kerja Informal Berbasis Agraris")
-gST<-c("Ekonomi Industri Berorientasi Perdagangan","Ekonomi dengan Basis Industri Berkembang","Ekonomi Terdiversifikasi","Ekonomi Domestik Berbasis Agraris")
+gPK<-c("Pasar Kerja Berbasis Formal","Pasar Kerja dengan Formalisasi Berkembang","Pasar Kerja dalam Transisi","Pasar Kerja Informal Berbasis Pertanian")
+gST<-c("Ekonomi Industri Berorientasi Perdagangan","Ekonomi dengan Basis Industri Berkembang","Ekonomi Terdiversifikasi","Ekonomi Domestik Berbasis Pertanian")
 gTM<-c("Tekanan Sangat Tinggi","Tekanan Tinggi","Tekanan Sedang","Tekanan Rendah")
 gLPI<-c("Risiko Sangat Tinggi","Risiko Tinggi","Risiko Sedang","Risiko Rendah")
 
