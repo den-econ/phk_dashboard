@@ -43,14 +43,21 @@ groupFig<-function(scores,gnames,title,file,cap){
  s<-sort(scores,decreasing=FALSE);n<-length(s)
  rk<-rank(-s,ties.method="first");g<-ceiling(rk/(n/4));g[g>4]<-4
  provcol<-GCOL[g];cnt<-as.integer(table(factor(g,levels=1:4)))
- png(file,width=1360,height=max(1000,90+n*32),res=150);par(mar=c(4,9.5,3,1.5),mgp=c(2.3,.6,0))
+ leglab<-sprintf("%s  (n=%d)",gnames,cnt)
+ nc<-if(max(nchar(gnames))>26) 1L else 2L                 # long names -> stack vertically
+ lh<-if(nc==1) 210 else 130                               # legend panel height (px)
+ mh<-max(1000,90+n*32)
+ png(file,width=1360,height=mh+lh,res=150)
+ layout(matrix(c(1,2),2,1),heights=c(mh,lh))              # plot on top, legend baked in below
+ par(mar=c(4,9.5,3,1.5),mgp=c(2.3,.6,0))
  bp<-barplot(s,horiz=TRUE,las=1,col=provcol,border=NA,names.arg=names(s),cex.names=.52,xlab="Skor indeks (0-100)",main=title,col.main="#14181f",cex.main=1,xlim=c(0,107))
  text(s,bp,labels=sprintf("%.1f",s),pos=4,offset=0.3,cex=.5,col="#14181f",font=2,xpd=NA)
+ par(mar=c(0.2,2,1.4,1.5));plot.new()
+ legend("top",legend=leglab,fill=GCOL,border="white",bty="n",ncol=nc,cex=.72,
+        text.col="#14181f",title="Kelompok  (skor tertinggi → terendah)",title.adj=0,
+        title.col="#14181f",x.intersp=.6,y.intersp=1.15)
  dev.off()
- add("<div class='fig'><img src='",b64(file),"' alt='grouped distribution'>")
- add("<div class='glegend'>")
- for(k in 1:4)add(sprintf("<span class='gchip'><span class='gsw' style='background:%s'></span>%s <span class='gn'>(n=%d)</span></span>",GCOL[k],gnames[k],cnt[k]))
- add("</div><p class='cap'>",cap,"</p></div>")}
+ add("<div class='fig'><img src='",b64(file),"' alt='grouped distribution'><p class='cap'>",cap,"</p></div>")}
 renderModel<-function(key,id,note,gnames){mod<-M[[key]];r<-mod$E[["2025"]]
  add(sprintf("<h3 id='%s' class='mt'><span class='idxtag'>%s</span></h3>",id,mod$name))
  add("<p class='lead' style='margin-bottom:8px'>",mod$desc,". Oriented so <i>",mod$lab[which(mod$vars==mod$anchor)],"</i> loads positive.</p>")
