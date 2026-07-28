@@ -41,16 +41,25 @@ raw <- raw[!is.na(raw$Provinsi) & !is.na(raw$Tahun) & !is.na(raw$Bulan) &
            !is.na(raw$Indeks_LEI_Labour), ]
 
 # ---- score each (year, month) with that year's calibration ----------------
+# lpi_rank + 4 equal-count tiers are computed WITHIN each month (same as annual)
+TIER_LAB <- c("Risiko Sangat Tinggi","Risiko Tinggi","Risiko Sedang","Risiko Rendah")  # G1 = highest
+tier_of  <- function(s){ n<-length(s); rk<-rank(-s,ties.method="first")
+  g<-ceiling(rk/(n/4)); g[g>4]<-4L; as.integer(g) }
+
 key <- paste(raw$Tahun, raw$Bulan)
 parts <- lapply(split(seq_len(nrow(raw)), key), function(ix) {
   y <- as.integer(raw$Tahun[ix][1]); m <- as.integer(raw$Bulan[ix][1])
   s <- score(cal_year(y), raw$Provinsi[ix], raw$Indeks_LEI_Labour[ix])
-  s$year <- y; s$month <- m; s
+  s$year <- y; s$month <- m
+  s$lpi_rank <- rank(-s$lpi, ties.method="first")
+  g <- tier_of(s$lpi); s$tier <- g; s$tier_label <- TIER_LAB[g]
+  s
 })
 mon <- do.call(rbind, parts)
-mon <- mon[order(mon$year, mon$month, -mon$lpi), ]
-mon <- mon[, c("year","month","province","lpi","pk","st","tk")]
-names(mon) <- c("year","month","province","lpi","pasar_kerja","struktural","tekanan")
+mon <- mon[order(mon$year, mon$month, mon$lpi_rank), ]
+mon <- mon[, c("year","month","province","lpi","pk","st","tk","lpi_rank","tier","tier_label")]
+names(mon) <- c("year","month","province","lpi","pasar_kerja","struktural","tekanan",
+                "lpi_rank","tier","tier_label")
 for (c in c("lpi","pasar_kerja","struktural","tekanan")) mon[[c]] <- round(mon[[c]],1)
 
 dir.create("outputs/_xlsx_parts", showWarnings=FALSE)

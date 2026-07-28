@@ -111,7 +111,7 @@ The single deliverable is **`outputs/lpi_scores.xlsx`**. The dashboard team read
 | Sheet | Contents | Use |
 |---|---|---|
 | **`scores`** | annual province × year — 3 pillars, **`lpi`**, rank, tier | annual view |
-| **`monthly`** | province × month — 3 pillars + **`lpi`** (the newest LPI + macro-pressure) | monthly view |
+| **`monthly`** | province × month — 3 pillars, **`lpi`**, rank, tier (ranked within each month) | monthly view |
 | `weights`, `pillar_metrics`, `pillar_loadings`, `stage2_2025`, `README` | supporting detail | reference |
 
 **The dashboard's score is the `lpi` column** (the weighted-sum LPI). Macro
