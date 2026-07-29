@@ -69,7 +69,7 @@ hrn price_cpi_index, header("IHK (2010=100)")
 hrn price_inflation_mom_pct, header("Inflasi Bulanan (M-to-M)")
 hrn price_inflation_yoy_pct, header("Inflasi Tahunan (Y-on-Y)")
 hrn price_consumer_change_pct, header("Perubahan Harga Konsumen (persen, YoY)")
-hrn trade_export_value, header("Nilai Ekspor (USD juta)")
+hrn trade_export_value, header("Nilai Ekspor BPS (USD juta)")
 hrn trade_import_value, header("Nilai Impor (USD juta)")
 hrn trade_balance, header("Neraca Perdagangan (USD juta)")
 hrn fin_total_credit_idr_billion, header("Total Kredit (IDR miliar)")
@@ -294,8 +294,7 @@ hrn growth_pdrb_pcap_pct_y, header("Laju Pertumbuhan PDRB Per Kapita (Persen)")
 hrn fin_fdi_y, header("FDI")
 hrn price_inflation_yoy_q4_pct_y, header("Inflasi YoY (per IV)")
 hrn price_inflation_yoy_avg_pct_y, header("Inflasi YoY (Average)")
-hrn trade_export_value_bps_y, header("Nilai Ekspor BPS (USD juta)")
-hrn trade_export_value_y, header("Nilai Ekspor (USD juta)")
+hrn trade_export_value_y, header("Nilai Ekspor BPS (USD juta)")
 hrn trade_import_value_y, header("Nilai Impor (USD juta)")
 hrn trade_balance_y, header("Neraca Perdagangan")
 hrn fin_total_credit_idr_billion_y, header("Total Credits, End of Year (IDR miliar)")
@@ -386,7 +385,7 @@ keep province_name ///
      macro_pdrb_other_svc_y macro_pdrb_manuf_growth_pct_y macro_pdrb_per_wkr_y ///
      macro_pdrb_per_wkr_growth_pct_y macro_pdrb_pcap_idr_thousand_y growth_pdrb_pcap_pct_y ///
      fin_fdi_y price_inflation_yoy_q4_pct_y price_inflation_yoy_avg_pct_y ///
-     trade_export_value_bps_y trade_export_value_y ///
+     trade_export_value_y ///
      trade_import_value_y trade_balance_y fin_total_credit_idr_billion_y fin_npl_y ///
      fin_npl_ratio_pct_y fin_npl_ratio_2020_pct_y fin_npl_ratio_2021_pct_y ///
      macro_construction_cost_index_y ///
@@ -461,7 +460,7 @@ hrn fin_fdi_idr_million_q, header("FDI (IDR mn)")
 hrn lab_working_pop_q, header("Jumlah Penduduk Bekerja")
 hrn price_cpi_index_q, header("IHK (2010=100)")
 hrn price_consumer_change_pct_q, header("Perubahan Harga Konsumen")
-hrn trade_export_value_usd_million_q, header("Nilai Ekspor (USD juta)")
+hrn trade_export_value_usd_million_q, header("Nilai Ekspor BPS (USD juta)")
 hrn trade_import_value_usd_million_q, header("Nilai Impor (USD juta)")
 hrn trade_balance_usd_million_q, header("Neraca Perdagangan*")
 hrn fin_total_credit_idr_billion_q, header("Total Credits, End of Quarter (IDR miliar)")
@@ -681,6 +680,20 @@ foreach s in agri mining manuf electricity water_waste construction trade ///
 bysort _provid year: egen macro_fx_vol_sd_nat_y = sd(macro_fx_idr_usd_nat)
 
 drop _provid _tm
+
+*==============================================================
+* 5c. Trade openness: export/import converted USD->IDR (x Kurs / 1000, since
+*     values are USD juta and PDRB is IDR milyar) then expressed as % of PDRB.
+*     Annual (_y) and quarterly (_q). Export uses the BPS series.
+*==============================================================
+gen double trade_export_idr_billion_y    = trade_export_value_y * macro_fx_idr_usd_nat_y / 1000
+gen double trade_import_idr_billion_y    = trade_import_value_y * macro_fx_idr_usd_nat_y / 1000
+gen double trade_export_share_pdrb_pct_y = 100 * trade_export_idr_billion_y / macro_pdrb_idr_billion_y
+gen double trade_import_share_pdrb_pct_y = 100 * trade_import_idr_billion_y / macro_pdrb_idr_billion_y
+gen double trade_export_idr_billion_q    = trade_export_value_usd_million_q * macro_fx_idr_usd_nat_q / 1000
+gen double trade_import_idr_billion_q    = trade_import_value_usd_million_q * macro_fx_idr_usd_nat_q / 1000
+gen double trade_export_share_pdrb_pct_q = 100 * trade_export_idr_billion_q / macro_pdrb_q
+gen double trade_import_share_pdrb_pct_q = 100 * trade_import_idr_billion_q / macro_pdrb_q
 
 *==============================================================
 * 6. Order, checks, export

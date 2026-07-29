@@ -268,7 +268,6 @@ growth_pdrb_pcap_pct_y,0,0,1,1,0
 fin_fdi_y,0,0,1,1,0
 price_inflation_yoy_q4_pct_y,0,0,1,1,0
 price_inflation_yoy_avg_pct_y,0,0,1,1,0
-trade_export_value_bps_y,0,0,1,1,0
 trade_export_value_y,0,0,1,1,0
 trade_import_value_y,0,0,1,1,0
 trade_balance_y,0,0,1,1,0
@@ -335,3 +334,11 @@ emp_share_education_ppt_chg_y,0,0,1,1,0
 emp_share_health_ppt_chg_y,0,0,1,1,0
 emp_share_other_svc_ppt_chg_y,0,0,1,1,0
 macro_fx_vol_sd_nat_y,0,0,1,0,1
+trade_export_idr_billion_y,0,0,1,1,0
+trade_import_idr_billion_y,0,0,1,1,0
+trade_export_share_pdrb_pct_y,0,0,1,1,0
+trade_import_share_pdrb_pct_y,0,0,1,1,0
+trade_export_idr_billion_q,0,1,0,1,0
+trade_import_idr_billion_q,0,1,0,1,0
+trade_export_share_pdrb_pct_q,0,1,0,1,0
+trade_import_share_pdrb_pct_q,0,1,0,1,0

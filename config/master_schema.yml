@@ -15,7 +15,7 @@ coverage: "2022-2026"
 primary_key: [province_name_std, year, month]
 source_workbook: "Data untuk PHK Dashboard.xlsx"
 n_rows: 2280
-n_columns: 342
+n_columns: 349
 
 variables:
   identity:

@@ -82,8 +82,8 @@ pillars <- list(
     anchor = "manuf",
     map = list(
       govt    = function(df) df$macro_pdrb_gov_cons_share_pct_y,
-      exp_rat = function(df) df$trade_export_value_y / df$macro_pdrb_idr_billion_y,
-      imp_rat = function(df) df$trade_import_value_y / df$macro_pdrb_idr_billion_y,
+      exp_rat = function(df) df$trade_export_share_pdrb_pct_y,   # BPS export, IDR-milyar share of PDRB
+      imp_rat = function(df) df$trade_import_share_pdrb_pct_y,   # import, IDR-milyar share of PDRB
       manuf   = function(df) df$macro_pdrb_manuf_share_pct_y,
       agri    = function(df) df$macro_pdrb_agri_share_pct_y
     )
