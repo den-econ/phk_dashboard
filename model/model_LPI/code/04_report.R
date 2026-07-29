@@ -8,15 +8,23 @@
 SC<-"outputs"                                   # base dir for chart PNGs (in/out)
 suppressMessages(library(base64enc))
 M<-readRDS("outputs/models.rds")
-LP<-readRDS("outputs/lpi_composite.rds"); W<-LP$W; r25<-LP$res[["2025"]]
-d2<-readRDS("outputs/lei_annual.rds"); agg<-d2$agg
-# --- December 2025 (latest month) composite: 2025 structure + weights, Dec-2025 pressure ---
+LP<-readRDS("outputs/lpi_composite.rds"); W<-LP$W
+# --- LATEST-MONTH composite: newest LEI month + its calibration (its annual year,
+#     else the latest available annual year). Auto-tracks the newest month. ---
 suppressMessages(library(readxl))
 .leim<-readxl::read_excel("../model_LEI/data/Komposit_LEI_Ketenagakerjaan.xlsx",sheet="LEI Per Provinsi")
-.pvc<-names(r25$s100); .sel<-.leim$Tahun==2025 & .leim$Bulan==12
+.leim<-.leim[!is.na(.leim$Tahun)&!is.na(.leim$Bulan)&!is.na(.leim$Indeks_LEI_Labour),]
+.ym<-.leim$Tahun*12+(.leim$Bulan-1); .k<-which(.ym==max(.ym))[1]
+LY<-as.integer(.leim$Tahun[.k]); LM<-as.integer(.leim$Bulan[.k])          # latest year, month
+.availy<-sort(as.integer(names(LP$res))); CY<-if(LY %in% .availy) LY else max(.availy)  # calibration year
+r25<-LP$res[[as.character(CY)]]                                            # calibration used (weights + structure)
+.pvc<-names(r25$s100); .sel<-(.leim$Tahun==LY & .leim$Bulan==LM)
 declei<-setNames(.leim$Indeks_LEI_Labour[.sel],.leim$Provinsi[.sel])[.pvc]
-tekdec<-setNames(100*(declei-min(declei))/(max(declei)-min(declei)),.pvc)          # Dec-2025 pressure 0-100
-lpidec<-setNames(as.numeric(r25$w[1]*r25$pk[.pvc]+r25$w[2]*r25$st[.pvc]+r25$w[3]*tekdec),.pvc) # Dec-2025 LPI
+tekdec<-setNames(100*(declei-min(declei))/(max(declei)-min(declei)),.pvc)  # latest-month pressure 0-100
+lpidec<-setNames(as.numeric(r25$w[1]*r25$pk[.pvc]+r25$w[2]*r25$st[.pvc]+r25$w[3]*tekdec),.pvc) # latest-month LPI
+.MON<-c("Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agu","Sep","Okt","Nov","Des")
+MLAB<-paste(.MON[LM],LY)                                                   # e.g. "Jun 2026" (shown month)
+CYLAB<-as.character(CY)                                                    # e.g. "2025" (structure/weights year)
 M$L9$name<-"Indeks Kerentanan Pasar Kerja"; M$E5$name<-"Indeks Kerentanan Struktural Ekonomi"
 H<-character(0); add<-function(...)H<<-c(H,paste0(...))
 fmt<-function(x,d=3)formatC(x,format="f",digits=d)
@@ -106,11 +114,11 @@ add("<section id='s3'><h2>3 · Indeks Tekanan Makroekonomi</h2>")
 add("<p class='lead'>The third index is an early-warning gauge — the <b>LEI</b> (<code>Indeks_LEI_Labour</code>, from <code>Komposit_LEI_Ketenagakerjaan</code>). Where the two vulnerability indices describe <i>who is exposed</i>, this index is a <i>timing / pressure</i> signal that moves month to month with building stress. Higher = more layoff risk.</p>")
 add("<div class='grid2'>")
 add("<div class='card'><h3>What it is</h3><p class='cardp'>A monthly, province-level composite index — 38 provinces &times; 48 months (2022&ndash;2025). It captures <b>building layoff pressure over time</b>, a dimension the static structural indices cannot.</p></div>")
-add("<div class='card'><h3>How it enters the LPI</h3><p class='cardp'>Each month the LEI is <b>min-max&rsquo;d across provinces</b> (the same standardisation as the two structural indices) &rarr; a 0&ndash;100 pressure score, combined with the structural indices as an <b>independent third dimension</b>. The map below uses the <b>latest month, December 2025</b>.</p></div>")
+add("<div class='card'><h3>How it enters the LPI</h3><p class='cardp'>Each month the LEI is <b>min-max&rsquo;d across provinces</b> (the same standardisation as the two structural indices) &rarr; a 0&ndash;100 pressure score, combined with the structural indices as an <b>independent third dimension</b>. The map below uses the <b>latest month, ",MLAB,"</b>.</p></div>")
 add("</div>")
-add("<h4 class='mt'>Provincial groups &mdash; December 2025 (latest month), 4 equal-count tiers</h4>")
-groupFig(tekdec,gTM,"Indeks Tekanan Makroekonomi (Des 2025)",file.path(SC,"grp_TM.png"),
-  "December 2025 LEI, min-max across provinces; provinces in <b>4 equal-count tiers</b>. Red = highest pressure &rarr; blue = lowest.")
+add("<h4 class='mt'>Provincial groups &mdash; ",MLAB," (latest month), 4 equal-count tiers</h4>")
+groupFig(tekdec,gTM,paste0("Indeks Tekanan Makroekonomi (",MLAB,")"),file.path(SC,"grp_TM.png"),
+  paste0(MLAB," LEI, min-max across provinces; provinces in <b>4 equal-count tiers</b>. Red = highest pressure &rarr; blue = lowest."))
 add("</section>")
 
 ## ===== SECTION 4 : COMPOSITE LPI =====
@@ -137,7 +145,7 @@ add(sprintf("<tr class='pref'><td class='sp'>mean</td><td></td><td class='grp'>%
 add("</tbody></table></div>")
 add("<div class='fig'><img src='",b64(file.path(SC,"lpi_weights.png")),"' alt='LPI weights by year'><p class='cap'>OECD factor-analysis weights, 2022&ndash;2025. Roughly balanced (~30 / 32 / 38), with Tekanan Makroekonomi slightly highest and stable across years.</p></div>")
 
-add("<h4 class='mt'>Worked example — 2025 (N = ",r25$N,")</h4>")
+add("<h4 class='mt'>Worked example — weights ",CYLAB," (N = ",r25$N,")</h4>")
 add("<p class='note' style='margin-top:4px'>Eigenvalues ",paste(sprintf("%.2f",r25$eig),collapse=", ")," &rarr; variance ",paste(sprintf("%.0f%%",100*r25$eig/sum(r25$eig)),collapse=", "),
  "; the first two hold ",sprintf("%.0f%%",100*sum(r25$eig[1:2])/sum(r25$eig))," &rarr; keep 2. Rotated loadings, then the weight build-up:</p>")
 labs<-c(Labour="Kerentanan Pasar Kerja",Econ="Kerentanan Struktural Ekonomi",Pressure="Tekanan Makroekonomi")
@@ -146,12 +154,12 @@ for(k in c("Labour","Econ","Pressure")){f<-r25$assign[k];add(sprintf("<tr><td cl
   labs[k],r25$Lr[k,1],r25$Lr[k,2],c("Kerentanan","Tekanan")[f],r25$within[k,f],r25$fshare[f],100*r25$w[k]))}
 add("</tbody></table></div>")
 
-add("<h3 id='s4c' class='mt'>The composite LPI score &mdash; December 2025</h3>")
-add("<p class='lead' style='margin-bottom:8px'>Each province&rsquo;s LPI = the <b>weighted sum of its three 0&ndash;100 index scores</b> (each already normalised within its own index), using the <b>2025 weights above</b>. The two structural indices are the 2025 values; the pressure index is the <b>latest month (December 2025)</b>. Because the three inputs are 0&ndash;100 and the weights sum to 100%, the LPI is itself on a 0&ndash;100 scale. Higher = more layoff pressure.</p>")
-add("<h4 class='mt'>Provincial groups &mdash; December 2025 (latest month), 4 equal-count tiers</h4>")
-groupFig(lpidec,gLPI,"Composite LPI (Des 2025)",file.path(SC,"grp_LPI.png"),
-  "Overall LPI &mdash; <b>December 2025</b> (2025 structure &amp; weights, December pressure); provinces in <b>4 equal-count risk tiers</b>. Red = highest overall layoff pressure &rarr; blue = lowest.")
-add("<p class='note'>This map is the <b>latest month (December 2025)</b>: it combines the 2025 structural &amp; labour-market vulnerability with December&rsquo;s macro pressure. Each month re-ranks the provinces as pressure moves; the structural indices and weights are refreshed once a year. An early-warning map, not a forecast. Validated against recorded PHK (never an input): the two vulnerability indices validate 0.40&ndash;0.66; Tekanan Makroekonomi adds an independent signal.</p>")
+add("<h3 id='s4c' class='mt'>The composite LPI score &mdash; ",MLAB,"</h3>")
+add("<p class='lead' style='margin-bottom:8px'>Each province&rsquo;s LPI = the <b>weighted sum of its three 0&ndash;100 index scores</b> (each already normalised within its own index), using the <b>",CYLAB," weights above</b>. The two structural indices are the ",CYLAB," values; the pressure index is the <b>latest month (",MLAB,")</b>. Because the three inputs are 0&ndash;100 and the weights sum to 100%, the LPI is itself on a 0&ndash;100 scale. Higher = more layoff pressure.</p>")
+add("<h4 class='mt'>Provincial groups &mdash; ",MLAB," (latest month), 4 equal-count tiers</h4>")
+groupFig(lpidec,gLPI,paste0("Composite LPI (",MLAB,")"),file.path(SC,"grp_LPI.png"),
+  paste0("Overall LPI &mdash; <b>",MLAB,"</b> (",CYLAB," structure &amp; weights, latest-month pressure); provinces in <b>4 equal-count risk tiers</b>. Red = highest overall layoff pressure &rarr; blue = lowest."))
+add("<p class='note'>This map is the <b>latest month (",MLAB,")</b>: it combines the ",CYLAB," structural &amp; labour-market vulnerability with the latest month&rsquo;s macro pressure. Each month re-ranks the provinces as pressure moves; the structural indices and weights are refreshed once a year. An early-warning map, not a forecast. Validated against recorded PHK (never an input): the two vulnerability indices validate 0.40&ndash;0.66; Tekanan Makroekonomi adds an independent signal.</p>")
 add("</section>")
 dir.create("docs",showWarnings=FALSE)
 writeLines(H,"docs/lpi_structure_report.html");cat("written",length(H),"chunks -> docs/lpi_structure_report.html\n")
