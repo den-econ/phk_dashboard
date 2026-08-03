@@ -117,7 +117,15 @@ add("<div class='card'><h3>What it is</h3><p class='cardp'>A monthly, province-l
 add("<div class='card'><h3>How it enters the LPI</h3><p class='cardp'>Each month the LEI is <b>min-max&rsquo;d across provinces</b> (the same standardisation as the two structural indices) &rarr; a 0&ndash;100 pressure score, combined with the structural indices as an <b>independent third dimension</b>. The map below uses the <b>latest month, ",MLAB,"</b>.</p></div>")
 add("</div>")
 add("<h4 class='mt'>Provincial groups &mdash; ",MLAB," (latest month), 3 equal-count tiers</h4>")
-groupFig(tekdec,gTM,paste0("Indeks Tekanan Makroekonomi (",MLAB,")"),file.path(SC,"grp_TM.png"),
+# DKI Jakarta and Sulawesi Tengah can land on an exact LEI tie (identical pressure); the bar
+# order is then arbitrary. Break it in Jakarta's favour FOR THIS CHART ONLY, so the bars agree
+# with the score table (which already puts Jakarta in the higher tier). Display order only:
+# the 0-100 values are unchanged (both still print 39.5) and tekdec feeding the LPI is untouched.
+tekviz<-tekdec
+if(!is.na(tekviz["DKI Jakarta"]) && !is.na(tekviz["Sulawesi Tengah"]) &&
+   abs(tekviz["DKI Jakarta"]-tekviz["Sulawesi Tengah"])<0.05)
+  tekviz["DKI Jakarta"]<-tekviz["Sulawesi Tengah"]+1e-4
+groupFig(tekviz,gTM,paste0("Indeks Tekanan Makroekonomi (",MLAB,")"),file.path(SC,"grp_TM.png"),
   paste0(MLAB," LEI, min-max across provinces; provinces in <b>3 equal-count tiers</b>. Red = highest pressure &rarr; blue = lowest."))
 add("</section>")
 
