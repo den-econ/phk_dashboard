@@ -34,7 +34,7 @@ condc<-function(c)if(c>100)"v-xl" else if(c>30)"v-lo" else "v-hi"
 vcls<-function(v){a<-abs(v);if(is.na(v))"" else if(a>=.5)"v-hi" else if(a>=.4)"v-md" else if(a>=.3)"v-lo" else "v-xl"}
 heatv<-function(v){a<-abs(v);if(is.na(v)||a>=.999)"" else if(a>=.8)"v-hi" else if(a>=.6)"v-md" else if(a>=.4)"v-lo" else "v-xl"}
 sr_c<-function(v)if(is.na(v))"" else if(v>=.5)"v-hi" else if(v>=.35)"v-md" else if(v>=.2)"v-lo" else "v-xl"
-GCOL<-c("#b0402f","#d0863f","#5f97a8","#2b4a6f")   # G1 highest (red) -> G4 lowest (blue)
+GCOL<-c("#b0402f","#d0863f","#2b4a6f")   # G1 highest (red) -> G3 lowest (blue)
 ys<-as.character(2022:2025)
 metricsT<-function(E){add("<div class='tbl-wrap'><table class='data'><thead><tr><th>Year</th><th>N</th><th>KMO</th><th>PC1%</th><th>Factors</th><th>Cond#</th><th class='grp'>Spear&nbsp;rate</th><th>Spear&nbsp;tot</th></tr></thead><tbody>")
  for(yr in ys){r<-E[[yr]];add(sprintf("<tr><td class='sp'>%s</td><td>%d</td><td class='%s'>%s</td><td>%.0f%%</td><td class='%s'>%d</td><td class='%s'>%.0f</td><td class='%s grp'>%s</td><td class='%s'>%s</td></tr>",
@@ -46,11 +46,11 @@ loadT<-function(mod){r<-mod$E[["2025"]];lab<-mod$lab;names(lab)<-mod$vars;ld<-r$
  add("</tbody></table></div>")}
 cormatT<-function(C){add("<div class='tbl-wrap'><table class='data'><thead><tr><th>r (2025)</th>",paste0("<th>",colnames(C),"</th>",collapse=""),"</tr></thead><tbody>")
  for(i in 1:nrow(C)){add("<tr><td class='sp'>",rownames(C)[i],"</td>");for(j in 1:ncol(C)){v<-C[i,j];add(sprintf("<td class='%s'>%+.2f</td>",if(i==j)"muted" else heatv(v),v))};add("</tr>")};add("</tbody></table></div>")}
-## ---- quartile (equal-count) grouped ranked chart; group legend rendered in HTML ----
+## ---- tertile (equal-count) grouped ranked chart; group legend rendered in HTML ----
 groupFig<-function(scores,gnames,title,file,cap){
  s<-sort(scores,decreasing=FALSE);n<-length(s)
- rk<-rank(-s,ties.method="first");g<-ceiling(rk/(n/4));g[g>4]<-4
- provcol<-GCOL[g];cnt<-as.integer(table(factor(g,levels=1:4)))
+ rk<-rank(-s,ties.method="first");g<-ceiling(rk/(n/3));g[g>3]<-3
+ provcol<-GCOL[g];cnt<-as.integer(table(factor(g,levels=1:3)))
  leglab<-sprintf("%s  (n=%d)",gnames,cnt)
  nc<-if(max(nchar(gnames))>26) 1L else 2L                 # long names -> stack vertically
  lh<-if(nc==1) 210 else 130                               # legend panel height (px)
@@ -71,15 +71,15 @@ renderModel<-function(key,id,note,gnames){mod<-M[[key]];r<-mod$E[["2025"]]
  add("<p class='lead' style='margin-bottom:8px'>",mod$desc,". Oriented so <i>",mod$lab[which(mod$vars==mod$anchor)],"</i> loads positive.</p>")
  metricsT(mod$E); loadT(mod)
  add("<h4 class='mt' style='margin-top:12px'>Variable correlation matrix (2025, Pearson)</h4>"); cormatT(mod$cor)
- add("<h4 class='mt'>Provincial groups (2025) &mdash; 4 equal-count tiers</h4>")
+ add("<h4 class='mt'>Provincial groups (2025) &mdash; 3 equal-count tiers</h4>")
  groupFig(r$s100,gnames,mod$name,file.path(SC,paste0("grp_",key,".png")),
-   "Provinces split into <b>4 groups of equal size</b> (quartiles by rank); group 1 = highest score (top). Colours: red = highest tier &rarr; blue = lowest.")
+   "Provinces split into <b>3 groups of equal size</b> (tertiles by rank); group 1 = highest score (top). Colours: red = highest tier &rarr; blue = lowest.")
  add("<p class='note'>",note,"</p>")}
 ## group-name sets
-gPK<-c("Pasar Kerja Berbasis Formal","Pasar Kerja dengan Formalisasi Berkembang","Pasar Kerja dalam Transisi","Pasar Kerja Informal Berbasis Pertanian")
-gST<-c("Ekonomi Industri Berorientasi Perdagangan","Ekonomi dengan Basis Industri Berkembang","Ekonomi Terdiversifikasi","Ekonomi Domestik Berbasis Pertanian")
-gTM<-c("Tekanan Sangat Tinggi","Tekanan Tinggi","Tekanan Sedang","Tekanan Rendah")
-gLPI<-c("Risiko Sangat Tinggi","Risiko Tinggi","Risiko Sedang","Risiko Rendah")
+gPK<-c("Pasar Kerja Berbasis Formal","Pasar Kerja dalam Transisi","Pasar Kerja Informal Berbasis Pertanian")
+gST<-c("Ekonomi Industri Berorientasi Perdagangan","Ekonomi dengan Basis Industri Berkembang","Ekonomi Domestik Berbasis Pertanian")
+gTM<-c("Tekanan Tinggi","Tekanan Sedang","Tekanan Rendah")
+gLPI<-c("Risiko Tinggi","Risiko Sedang","Risiko Rendah")
 
 ## ===== HEAD =====
 add(paste0("<style>\n",paste(readLines("assets/report.css"),collapse="\n"),"\n</style>"))
@@ -95,12 +95,12 @@ add("<nav class='sidenav'><p class='snav-title'>Navigasi</p>",
  "<a class='sec' href='#s3'>3 · Tekanan Makroekonomi</a>",
  "<a class='sec' href='#s4'>4 · Composite LPI</a>",
  "<a class='sub' href='#s4a'>Methodology</a><a class='sub' href='#s4b'>Weights</a><a class='sub' href='#s4c'>Composite score</a></nav>")
-add("<section><div class='card'><h3>How to read the two vulnerability indices</h3><p class='cardp'><b>KMO</b> (sampling adequacy) should be &ge;0.6 — green healthy, red &lt;0.5 unacceptable. <b>Factors</b> = eigenvalues &gt;1 (Kaiser); <b>1</b> = a single clean dimension. <b>Cond#</b> = condition number; &gt;100 (red) = severe multicollinearity. <b>Spear rate</b> = rank correlation with PHK per 100k formal workers; <b>Spear tot</b> uses total PHK. Provincial charts group the 38 provinces into <b>4 equal-count tiers</b> (quartiles).</p></div></section>")
+add("<section><div class='card'><h3>How to read the two vulnerability indices</h3><p class='cardp'><b>KMO</b> (sampling adequacy) should be &ge;0.6 — green healthy, red &lt;0.5 unacceptable. <b>Factors</b> = eigenvalues &gt;1 (Kaiser); <b>1</b> = a single clean dimension. <b>Cond#</b> = condition number; &gt;100 (red) = severe multicollinearity. <b>Spear rate</b> = rank correlation with PHK per 100k formal workers; <b>Spear tot</b> uses total PHK. Provincial charts group the 38 provinces into <b>3 equal-count tiers</b> (tertiles).</p></div></section>")
 
 ## ===== SECTION 1 =====
 add("<section id='s1'><h2>1 · Indeks Kerentanan Pasar Kerja</h2>")
 add("<p class='lead'>How formal, full-time and industrial a province's labour market is — i.e. <i>who holds the kind of recordable formal jobs that PHK actually strikes</i>. A five-variable formal-vs-informal factor.</p>")
-renderModel("L9","s1x","<b>A single clean formal-vs-informal factor.</b> Formal share and full-time share move almost together (+0.90); underemployment loads <b>negative</b> — hidden slack marks the informal/agrarian end that formal PHK bypasses. Manufacturing labour share is the least-redundant marker (only +0.36 with formal). Clean in 2022&ndash;2024 (KMO 0.65&ndash;0.78); in 2025 one extreme province (Papua Pegunungan) softens it to KMO 0.65. Validation against PHK ~0.40&ndash;0.42.",gPK)
+renderModel("L9","s1x","<b>A single dominant formal-vs-agrarian factor.</b> Formal share, full-time share and manufacturing load <b>positive</b>; agricultural employment share and underemployment load <b>negative</b> — the informal/agrarian end that formal PHK bypasses. Agri (&minus;0.48) is nearly the mirror of formal/full-time (Spearman &minus;0.75/&minus;0.81), reinforcing the axis and lifting sampling adequacy to <b>KMO 0.70</b> in 2025 (PC1 = 62% of variance). Validation against PHK ~0.39&ndash;0.42.",gPK)
 add("</section>")
 
 ## ===== SECTION 2 =====
@@ -116,9 +116,9 @@ add("<div class='grid2'>")
 add("<div class='card'><h3>What it is</h3><p class='cardp'>A monthly, province-level composite index — 38 provinces &times; 48 months (2022&ndash;2025). It captures <b>building layoff pressure over time</b>, a dimension the static structural indices cannot.</p></div>")
 add("<div class='card'><h3>How it enters the LPI</h3><p class='cardp'>Each month the LEI is <b>min-max&rsquo;d across provinces</b> (the same standardisation as the two structural indices) &rarr; a 0&ndash;100 pressure score, combined with the structural indices as an <b>independent third dimension</b>. The map below uses the <b>latest month, ",MLAB,"</b>.</p></div>")
 add("</div>")
-add("<h4 class='mt'>Provincial groups &mdash; ",MLAB," (latest month), 4 equal-count tiers</h4>")
+add("<h4 class='mt'>Provincial groups &mdash; ",MLAB," (latest month), 3 equal-count tiers</h4>")
 groupFig(tekdec,gTM,paste0("Indeks Tekanan Makroekonomi (",MLAB,")"),file.path(SC,"grp_TM.png"),
-  paste0(MLAB," LEI, min-max across provinces; provinces in <b>4 equal-count tiers</b>. Red = highest pressure &rarr; blue = lowest."))
+  paste0(MLAB," LEI, min-max across provinces; provinces in <b>3 equal-count tiers</b>. Red = highest pressure &rarr; blue = lowest."))
 add("</section>")
 
 ## ===== SECTION 4 : COMPOSITE LPI =====
@@ -156,9 +156,9 @@ add("</tbody></table></div>")
 
 add("<h3 id='s4c' class='mt'>The composite LPI score &mdash; ",MLAB,"</h3>")
 add("<p class='lead' style='margin-bottom:8px'>Each province&rsquo;s LPI = the <b>weighted sum of its three 0&ndash;100 index scores</b> (each already normalised within its own index), using the <b>",CYLAB," weights above</b>. The two structural indices are the ",CYLAB," values; the pressure index is the <b>latest month (",MLAB,")</b>. Because the three inputs are 0&ndash;100 and the weights sum to 100%, the LPI is itself on a 0&ndash;100 scale. Higher = more layoff pressure.</p>")
-add("<h4 class='mt'>Provincial groups &mdash; ",MLAB," (latest month), 4 equal-count tiers</h4>")
+add("<h4 class='mt'>Provincial groups &mdash; ",MLAB," (latest month), 3 equal-count tiers</h4>")
 groupFig(lpidec,gLPI,paste0("Composite LPI (",MLAB,")"),file.path(SC,"grp_LPI.png"),
-  paste0("Overall LPI &mdash; <b>",MLAB,"</b> (",CYLAB," structure &amp; weights, latest-month pressure); provinces in <b>4 equal-count risk tiers</b>. Red = highest overall layoff pressure &rarr; blue = lowest."))
+  paste0("Overall LPI &mdash; <b>",MLAB,"</b> (",CYLAB," structure &amp; weights, latest-month pressure); provinces in <b>3 equal-count risk tiers</b>. Red = highest overall layoff pressure &rarr; blue = lowest."))
 add("<p class='note'>This map is the <b>latest month (",MLAB,")</b>: it combines the ",CYLAB," structural &amp; labour-market vulnerability with the latest month&rsquo;s macro pressure. Each month re-ranks the provinces as pressure moves; the structural indices and weights are refreshed once a year. An early-warning map, not a forecast. Validated against recorded PHK (never an input): the two vulnerability indices validate 0.40&ndash;0.66; Tekanan Makroekonomi adds an independent signal.</p>")
 add("</section>")
 dir.create("docs",showWarnings=FALSE)

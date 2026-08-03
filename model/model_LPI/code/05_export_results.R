@@ -14,18 +14,18 @@ M$E5$name <- "Indeks Kerentanan Struktural Ekonomi"
 LP <- readRDS("outputs/lpi_composite.rds"); res <- LP$res; W <- LP$W
 ys <- as.character(2022:2025)
 
-# tier label sets (G1 = highest score -> G4 = lowest)
-LPI_LAB <- c("Risiko Sangat Tinggi","Risiko Tinggi","Risiko Sedang","Risiko Rendah")
-PK_LAB  <- c("Pasar Kerja Berbasis Formal","Pasar Kerja dengan Formalisasi Berkembang",
-             "Pasar Kerja dalam Transisi","Pasar Kerja Informal Berbasis Pertanian")
+# tier label sets (G1 = highest score -> G3 = lowest); provinces split into 3 equal-count groups
+LPI_LAB <- c("Risiko Tinggi","Risiko Sedang","Risiko Rendah")
+PK_LAB  <- c("Pasar Kerja Berbasis Formal","Pasar Kerja dalam Transisi",
+             "Pasar Kerja Informal Berbasis Pertanian")
 ST_LAB  <- c("Ekonomi Industri Berorientasi Perdagangan","Ekonomi dengan Basis Industri Berkembang",
-             "Ekonomi Terdiversifikasi","Ekonomi Domestik Berbasis Pertanian")
-TM_LAB  <- c("Tekanan Sangat Tinggi","Tekanan Tinggi","Tekanan Sedang","Tekanan Rendah")
+             "Ekonomi Domestik Berbasis Pertanian")
+TM_LAB  <- c("Tekanan Tinggi","Tekanan Sedang","Tekanan Rendah")
 tier_of <- function(s){ n<-length(s); rk<-rank(-s,ties.method="first")
-  g<-ceiling(rk/(n/4)); g[g>4]<-4L; as.integer(g) }
+  g<-ceiling(rk/(n/3)); g[g>3]<-3L; as.integer(g) }
 
 ## ---- headline scores table (province x year) -----------------------------
-## per-pillar 4-tier labels within the year, plus avg LPI grouped by pillar tier
+## per-pillar 3-tier labels within the year, plus avg LPI grouped by pillar tier
 rows <- list()
 for(yr in ys){ r<-res[[yr]]; pv<-names(r$s100)
   lpi<-as.numeric(r$s100); pk<-as.numeric(r$pk[pv]); st<-as.numeric(r$st[pv]); tk<-as.numeric(r$tk[pv])

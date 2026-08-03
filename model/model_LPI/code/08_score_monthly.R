@@ -41,16 +41,16 @@ raw <- raw[!is.na(raw$Provinsi) & !is.na(raw$Tahun) & !is.na(raw$Bulan) &
            !is.na(raw$Indeks_LEI_Labour), ]
 
 # ---- score each (year, month) with that year's calibration ----------------
-# ranks, per-pillar 4-tier labels, and the avg-LPI-by-pillar-tier columns are all
+# ranks, per-pillar 3-tier labels, and the avg-LPI-by-pillar-tier columns are all
 # computed WITHIN each month (same logic as the annual sheet). G1 = highest score.
-LPI_LAB <- c("Risiko Sangat Tinggi","Risiko Tinggi","Risiko Sedang","Risiko Rendah")
-PK_LAB  <- c("Pasar Kerja Berbasis Formal","Pasar Kerja dengan Formalisasi Berkembang",
-             "Pasar Kerja dalam Transisi","Pasar Kerja Informal Berbasis Pertanian")
+LPI_LAB <- c("Risiko Tinggi","Risiko Sedang","Risiko Rendah")
+PK_LAB  <- c("Pasar Kerja Berbasis Formal","Pasar Kerja dalam Transisi",
+             "Pasar Kerja Informal Berbasis Pertanian")
 ST_LAB  <- c("Ekonomi Industri Berorientasi Perdagangan","Ekonomi dengan Basis Industri Berkembang",
-             "Ekonomi Terdiversifikasi","Ekonomi Domestik Berbasis Pertanian")
-TM_LAB  <- c("Tekanan Sangat Tinggi","Tekanan Tinggi","Tekanan Sedang","Tekanan Rendah")
+             "Ekonomi Domestik Berbasis Pertanian")
+TM_LAB  <- c("Tekanan Tinggi","Tekanan Sedang","Tekanan Rendah")
 tier_of  <- function(s){ n<-length(s); rk<-rank(-s,ties.method="first")
-  g<-ceiling(rk/(n/4)); g[g>4]<-4L; as.integer(g) }
+  g<-ceiling(rk/(n/3)); g[g>3]<-3L; as.integer(g) }
 
 key <- paste(raw$Tahun, raw$Bulan)
 parts <- lapply(split(seq_len(nrow(raw)), key), function(ix) {

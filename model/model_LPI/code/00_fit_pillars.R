@@ -57,16 +57,18 @@ Mfrozen <- readRDS(FROZEN)
 pillars <- list(
   L9 = list(
     name = "Labour Model 9",
-    desc = "Formal · manufacturing · full-time · underemployment · average wage",
+    desc = "Formal · manufacturing · agri · full-time · underemployment · average wage",
     dom  = "labour",
-    vars = c("formal", "manuf", "fulltime", "underemp", "avgwage"),
+    vars = c("formal", "manuf", "agri", "fulltime", "underemp", "avgwage"),
     lab  = c(formal = "Formal labour share", manuf = "Manuf labour share",
+             agri = "Agri labour share",
              fulltime = "Full-time share", underemp = "Underemployment",
              avgwage = "Average wage"),
     anchor = "formal",
     map = list(
       formal   = function(df) df$lab_formal_share_pct_y,
       manuf    = function(df) df$emp_share_manuf_pct_y,
+      agri     = function(df) df$emp_share_agri_pct_y,
       fulltime = function(df) df$lab_full_time_share_pct_y,
       underemp = function(df) df$lab_underemp_share_pct_y,
       avgwage  = function(df) df$wage_avg_employee_idr_y
