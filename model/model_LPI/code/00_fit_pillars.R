@@ -75,17 +75,16 @@ pillars <- list(
     )
   ),
   E5 = list(
-    name = "Economic Structure (5-var, clean)",
-    desc = "Government · export · import · manuf · agri (÷ PDRB) — references & inert vars removed",
+    name = "Economic Structure (4-var, clean)",
+    desc = "Government · export · manuf · agri (÷ PDRB) — import dropped (collinear w/ export), references & inert vars removed",
     dom  = "econ",
-    vars = c("govt", "exp_rat", "imp_rat", "manuf", "agri"),
+    vars = c("govt", "exp_rat", "manuf", "agri"),
     lab  = c(govt = "Government/PDRB", exp_rat = "Export/PDRB",
-             imp_rat = "Import/PDRB", manuf = "Manuf %PDRB", agri = "Agri %PDRB"),
+             manuf = "Manuf %PDRB", agri = "Agri %PDRB"),
     anchor = "manuf",
     map = list(
       govt    = function(df) df$macro_pdrb_gov_cons_share_pct_y,
       exp_rat = function(df) df$trade_export_share_pdrb_pct_y,   # BPS export, IDR-milyar share of PDRB
-      imp_rat = function(df) df$trade_import_share_pdrb_pct_y,   # import, IDR-milyar share of PDRB
       manuf   = function(df) df$macro_pdrb_manuf_share_pct_y,
       agri    = function(df) df$macro_pdrb_agri_share_pct_y
     )

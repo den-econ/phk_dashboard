@@ -66,6 +66,66 @@ groupFig<-function(scores,gnames,title,file,cap){
         title.col="#14181f",x.intersp=.6,y.intersp=1.15)
  dev.off()
  add("<div class='fig'><img src='",b64(file),"' alt='grouped distribution'><p class='cap'>",cap,"</p></div>")}
+## ---- Indonesia choropleth of a province-keyed 0-100 vector -> inline SVG (self-contained) ----
+## mode="cont": continuous warm ramp;  mode="tier": 3 equal-count risk categories.
+lpiMapSVG<-function(vals,mlab,mode="cont"){
+ gjp<-"../../data/raw/geospatial/indonesia_38_provinces.geojson"; if(!file.exists(gjp)) return("")
+ gj<-jsonlite::fromJSON(gjp,simplifyVector=FALSE)
+ alias<-c("Bangka Belitung"="Kepulauan Bangka Belitung","DI Yogyakarta"="Daerah Istimewa Yogyakarta")
+ keyof<-function(nm){inv<-names(alias)[match(nm,alias)];k<-if(!is.na(inv))inv else nm;if(k%in%names(vals)) k else NA_character_}
+ hasNA<-any(is.na(vapply(gj$features,function(f) keyof(f$properties$PROVINSI),character(1))))
+ polys<-function(f) if(f$geometry$type=="Polygon") list(f$geometry$coordinates) else f$geometry$coordinates
+ LON<-c();LAT<-c()
+ for(f in gj$features) for(pl in polys(f)) for(rg in pl){m<-matrix(unlist(rg),ncol=2,byrow=TRUE);LON<-range(c(LON,m[,1]));LAT<-range(c(LAT,m[,2]))}
+ W<-980; sc<-W/(LON[2]-LON[1]); H<-(LAT[2]-LAT[1])*sc
+ prj<-function(m) cbind((m[,1]-LON[1])*sc,(LAT[2]-m[,2])*sc)
+ ringd<-function(m){p<-round(prj(m),1);keep<-c(TRUE,abs(diff(p[,1]))>0.05|abs(diff(p[,2]))>0.05);p<-p[keep,,drop=FALSE]
+   if(nrow(p)<3)return("");paste0("M",paste(sprintf("%.1f %.1f",p[,1],p[,2]),collapse="L"),"Z")}
+ if(mode=="tier"){
+   n<-length(vals);rk<-rank(-vals,ties.method="first");g<-ceiling(rk/(n/3));g[g>3]<-3;tier<-setNames(as.integer(g),names(vals))
+   TCOL<-c("#b0402f","#d0863f","#2b4a6f");TLAB<-c("Risiko Tinggi","Risiko Sedang","Risiko Rendah")
+   fillof<-function(nm){k<-keyof(nm);if(is.na(k))"#dde1e7" else TCOL[tier[[k]]]}
+   tipof <-function(nm){k<-keyof(nm);if(is.na(k))"tidak ada data" else TLAB[tier[[k]]]}
+   title<-sprintf("Kategori Risiko LPI menurut Provinsi — %s",mlab)
+   sw<-if(hasNA)c(TCOL,"#dde1e7")else TCOL;slab<-if(hasNA)c(TLAB,"tidak ada data")else TLAB;lx<-70;ly<-H+40;items<-""
+   for(i in seq_along(sw)){items<-paste0(items,sprintf('<rect x="%f" y="%f" width="15" height="15" fill="%s" stroke="#c8cfd9"/><text x="%f" y="%f" font-size="12.5" fill="#3a434f">%s</text>',lx,ly-12,sw[i],lx+20,ly,slab[i]));lx<-lx+22+nchar(slab[i])*7.4}
+   legend<-sprintf('<text x="70" y="%f" font-size="15" font-weight="700" fill="#161b22">Kelompok Risiko (3 kategori, jumlah provinsi sama)</text>%s',ly-24,items)
+   Htot<-H+96
+ } else {
+   vmin<-min(vals);vmax<-max(vals);ramp<-colorRampPalette(c("#ffe9b8","#f4a63f","#d0602f","#8c2d1c"))(256)
+   fillof<-function(nm){k<-keyof(nm);if(is.na(k))"#dde1e7" else ramp[1+round(255*(vals[[k]]-vmin)/(vmax-vmin))]}
+   tipof <-function(nm){k<-keyof(nm);if(is.na(k))"tidak ada data" else sprintf("%.1f",vals[[k]])}
+   title<-sprintf("Composite LPI menurut Provinsi — %s",mlab)
+   lg<-paste(sprintf('<stop offset="%d%%" stop-color="%s"/>',round(seq(0,100,length.out=8)),ramp[1+round(255*seq(0,1,length.out=8))]),collapse="")
+   lgy<-H+34;lgx<-70;lgw<-360
+   nod<-if(hasNA) sprintf('<rect x="%f" y="%f" width="14" height="14" fill="#dde1e7" stroke="#c8cfd9"/><text x="%f" y="%f" font-size="12" fill="#3a434f">tidak ada data</text>',lgx+lgw+60,lgy,lgx+lgw+80,lgy+12) else ""
+   legend<-paste0(sprintf('<defs><linearGradient id="lgmap" x1="0" x2="1">%s</linearGradient></defs>
+<text x="%f" y="%f" font-size="15" font-weight="700" fill="#161b22">Skor Composite LPI</text>
+<rect x="%f" y="%f" width="%d" height="14" fill="url(#lgmap)" stroke="#c8cfd9"/>
+<text x="%f" y="%f" font-size="12" fill="#3a434f">%.0f (rendah)</text>
+<text x="%f" y="%f" font-size="12" fill="#3a434f" text-anchor="end">%.0f (tinggi)</text>',
+     lg,lgx,lgy-8,lgx,lgy,lgw,lgx,lgy+30,vmin,lgx+lgw,lgy+30,vmax), nod)
+   Htot<-H+90
+ }
+ paths<-character()
+ for(f in gj$features){nm<-f$properties$PROVINSI;d<-""
+   for(pl in polys(f)) for(rg in pl) d<-paste0(d,ringd(matrix(unlist(rg),ncol=2,byrow=TRUE)))
+   paths<-c(paths,sprintf('<path d="%s" fill="%s" stroke="#fff" stroke-width=".4" fill-rule="evenodd"><title>%s: %s</title></path>',d,fillof(nm),nm,tipof(nm)))}
+ sprintf('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 %d %d" width="100%%" style="max-width:%dpx;height:auto">
+<text x="12" y="24" font-size="18" font-weight="700" fill="#161b22">%s</text>
+<g transform="translate(0,34)">%s</g>%s</svg>',W,round(Htot),W,title,paste(paths,collapse=""),legend)}
+## ---- provinces-per-group table: 3 tiers side by side, sorted by score within each ----
+groupTable<-function(scores,gnames){
+ n<-length(scores); rk<-rank(-scores,ties.method="first"); g<-ceiling(rk/(n/3)); g[g>3]<-3
+ cols<-lapply(1:3,function(t){i<-which(g==t);i<-i[order(-scores[i])];list(p=names(scores)[i],s=unname(scores[i]))})
+ nn<-sapply(cols,function(c)length(c$p)); maxr<-max(nn)
+ hd<-paste(sprintf("<th colspan='2' style='background:%s;color:#fff;text-align:left'>%s <span style='font-weight:400;opacity:.85'>(n=%d)</span></th>",GCOL,gnames,nn),collapse="")
+ body<-""
+ for(r in 1:maxr){cells<-""
+  for(t in 1:3){c<-cols[[t]]
+   if(r<=length(c$p)) cells<-paste0(cells,sprintf("<td>%d. %s</td><td class='n'>%.1f</td>",r,c$p[r],c$s[r])) else cells<-paste0(cells,"<td class='e'></td><td class='e'></td>")}
+  body<-paste0(body,"<tr>",cells,"</tr>")}
+ sprintf("<div class='tbl-wrap'><table class='data gtbl'><thead><tr>%s</tr></thead><tbody>%s</tbody></table></div>",hd,body)}
 renderModel<-function(key,id,note,gnames){mod<-M[[key]];r<-mod$E[["2025"]]
  add(sprintf("<h3 id='%s' class='mt'><span class='idxtag'>%s</span></h3>",id,mod$name))
  add("<p class='lead' style='margin-bottom:8px'>",mod$desc,". Oriented so <i>",mod$lab[which(mod$vars==mod$anchor)],"</i> loads positive.</p>")
@@ -74,6 +134,7 @@ renderModel<-function(key,id,note,gnames){mod<-M[[key]];r<-mod$E[["2025"]]
  add("<h4 class='mt'>Provincial groups (2025) &mdash; 3 equal-count tiers</h4>")
  groupFig(r$s100,gnames,mod$name,file.path(SC,paste0("grp_",key,".png")),
    "Provinces split into <b>3 groups of equal size</b> (tertiles by rank); group 1 = highest score (top). Colours: red = highest tier &rarr; blue = lowest.")
+ add("<h4 class='mt'>Provinsi per kelompok (2025, skor indeks 0&ndash;100)</h4>",groupTable(r$s100,gnames))
  add("<p class='note'>",note,"</p>")}
 ## group-name sets
 gPK<-c("Pasar Kerja Berbasis Formal","Pasar Kerja dalam Transisi","Pasar Kerja Informal Berbasis Pertanian")
@@ -106,7 +167,7 @@ add("</section>")
 ## ===== SECTION 2 =====
 add("<section id='s2'><h2>2 · Indeks Kerentanan Struktural Ekonomi</h2>")
 add("<p class='lead'>How trade-integrated and industrial the province's economy is versus domestic and agrarian — i.e. <i>which economies are structurally layoff-prone</i>. Five expenditure/sector shares of PDRB, after removing the collinear reference and inert variables.</p>")
-renderModel("E5","s2x","<b>A valid single factor.</b> Dropping the two compositional reference categories (consumption, services) and the inert own-axis variable (mining) yields <b>KMO 0.70, one Kaiser factor, condition # 13</b>, every variable MSA &ge; 0.66. PC1 reads as <b>trade-integrated &amp; industrial &harr; domestic &amp; agrarian</b> (export / import / manufacturing positive; agriculture / government negative). Strongest PHK validator of the two vulnerability indices — Spear-rate <b>0.66</b> in 2025.",gST)
+renderModel("E5","s2x","<b>A valid single factor.</b> Manufacturing and export/PDRB load <b>positive</b>; government-consumption and agriculture load <b>negative</b> — PC1 reads as <b>trade-integrated &amp; industrial &harr; domestic &amp; agrarian</b>. <b>Import/PDRB was dropped</b> — it was highly collinear with export/PDRB, so it added multicollinearity without new signal <i>and</i> was the last variable blocking three provinces. Removing it gives <b>full 38-province coverage</b> and a cleaner model: <b>KMO 0.68, one Kaiser factor, condition # 6.2</b> (down from 13). Still the strongest PHK validator of the two vulnerability indices — Spear-rate <b>0.61</b> in 2025.",gST)
 add("</section>")
 
 ## ===== SECTION 3 : TEKANAN =====
@@ -127,6 +188,7 @@ if(!is.na(tekviz["DKI Jakarta"]) && !is.na(tekviz["Sulawesi Tengah"]) &&
   tekviz["DKI Jakarta"]<-tekviz["Sulawesi Tengah"]+1e-4
 groupFig(tekviz,gTM,paste0("Indeks Tekanan Makroekonomi (",MLAB,")"),file.path(SC,"grp_TM.png"),
   paste0(MLAB," LEI, min-max across provinces; provinces in <b>3 equal-count tiers</b>. Red = highest pressure &rarr; blue = lowest."))
+add("<h4 class='mt'>Provinsi per kelompok (",MLAB,", skor indeks 0&ndash;100)</h4>",groupTable(tekdec,gTM))
 add("</section>")
 
 ## ===== SECTION 4 : COMPOSITE LPI =====
@@ -164,9 +226,13 @@ add("</tbody></table></div>")
 
 add("<h3 id='s4c' class='mt'>The composite LPI score &mdash; ",MLAB,"</h3>")
 add("<p class='lead' style='margin-bottom:8px'>Each province&rsquo;s LPI = the <b>weighted sum of its three 0&ndash;100 index scores</b> (each already normalised within its own index), using the <b>",CYLAB," weights above</b>. The two structural indices are the ",CYLAB," values; the pressure index is the <b>latest month (",MLAB,")</b>. Because the three inputs are 0&ndash;100 and the weights sum to 100%, the LPI is itself on a 0&ndash;100 scale. Higher = more layoff pressure.</p>")
+add("<h4 class='mt'>Peta Composite LPI &mdash; ",MLAB," (latest month)</h4>")
+add("<div class='fig'>",lpiMapSVG(lpidec,MLAB,"cont"),"<p class='cap'>Final composite LPI by province, latest month (",MLAB,"). Warmer = higher layoff pressure. All 38 provinces covered.</p></div>")
+add("<div class='fig'>",lpiMapSVG(lpidec,MLAB,"tier"),"<p class='cap'>Same composite LPI, shown as the <b>3 equal-count risk categories</b> (tertiles): Risiko Tinggi &rarr; Sedang &rarr; Rendah &mdash; matching the ranked chart below.</p></div>")
 add("<h4 class='mt'>Provincial groups &mdash; ",MLAB," (latest month), 3 equal-count tiers</h4>")
 groupFig(lpidec,gLPI,paste0("Composite LPI (",MLAB,")"),file.path(SC,"grp_LPI.png"),
   paste0("Overall LPI &mdash; <b>",MLAB,"</b> (",CYLAB," structure &amp; weights, latest-month pressure); provinces in <b>3 equal-count risk tiers</b>. Red = highest overall layoff pressure &rarr; blue = lowest."))
+add("<h4 class='mt'>Provinsi per kelompok risiko (",MLAB,", skor LPI 0&ndash;100)</h4>",groupTable(lpidec,gLPI))
 add("<p class='note'>This map is the <b>latest month (",MLAB,")</b>: it combines the ",CYLAB," structural &amp; labour-market vulnerability with the latest month&rsquo;s macro pressure. Each month re-ranks the provinces as pressure moves; the structural indices and weights are refreshed once a year. An early-warning map, not a forecast. Validated against recorded PHK (never an input): the two vulnerability indices validate 0.40&ndash;0.66; Tekanan Makroekonomi adds an independent signal.</p>")
 add("</section>")
 dir.create("docs",showWarnings=FALSE)
