@@ -3,7 +3,7 @@
 <html lang="id"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PHK Early Warning Dashboard — Dewan Ekonomi</title>
+<title>PHK Monitoring Dashboard — Dewan Ekonomi</title>
 
 <!-- Chart.js (single dependency, no backend) -->
 <script>/* Chart.js v4 (UMD) inlined for a fully self-contained single-file dashboard */
@@ -86,7 +86,7 @@ header.command{
 .asof{font-size:12px;color:#cfe0f2;text-align:right;line-height:1.3}
 .asof b{color:#fff;font-weight:600}
 
-/* early-warning ticker */
+/* monitoring ticker */
 .ticker{display:flex;align-items:center;gap:0;height:34px;border-top:1px solid rgba(255,255,255,.10);
   overflow:hidden;font-size:12px;color:#dce8f5}
 .ticker .tlabel{flex:none;background:rgba(210,59,52,.92);color:#fff;font-weight:700;
@@ -137,7 +137,7 @@ main{max-width:1480px;margin:0 auto;padding:22px 24px 60px}
 @media(max-width:980px){.component-notes{grid-template-columns:repeat(2,1fr)}}
 
 /* KPI row */
-.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}
 .kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
   box-shadow:var(--shadow);padding:15px 16px;position:relative;overflow:hidden}
 .kpi .klabel{font-size:11.5px;color:var(--muted);font-weight:600;display:flex;align-items:center;gap:6px}
@@ -178,6 +178,43 @@ main{max-width:1480px;margin:0 auto;padding:22px 24px 60px}
 .bar{height:7px;width:108px;background:var(--line-2);border-radius:6px;overflow:hidden}
 .bar>span{display:block;height:100%;border-radius:6px}
 .rankrow .rnum{font-family:'Plus Jakarta Sans';font-weight:800;font-size:14px;width:34px;text-align:right}
+
+
+.rankrow.no-score{grid-template-columns:22px 1fr}
+.trends-card .trend-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.trend-link{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface-2);border-radius:8px;padding:7px 10px;font-size:11.5px;font-weight:700;color:var(--navy-2);text-decoration:none}
+.trend-link:hover{border-color:var(--accent);background:#f8fbff}
+.trend-topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:10px}
+.trend-select{border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px 10px;font:700 11.5px 'Inter';color:var(--navy);min-width:132px}
+.trend-chart-wrap{height:220px;margin-top:10px}
+.trend-region-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;padding-top:12px;border-top:1px solid var(--line-2)}
+.trend-region-title h4{font-family:'Plus Jakarta Sans';font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--navy-2);margin:0}
+.trend-region-title span{display:block;color:var(--muted);font-size:10.8px;margin-top:2px}
+.trend-region-wrap{margin-top:8px}
+.trend-map-layout{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;align-items:center}
+.trend-map-panel{min-height:252px;display:flex;flex-direction:column;justify-content:center}
+.trend-map-panel svg{width:100%;height:auto;display:block}
+.trend-map-foot{font-size:10.5px;color:var(--muted);margin-top:6px}
+.trend-map-legend{display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-size:10.8px;color:var(--muted);margin-bottom:8px}
+.trend-map-legend span{display:inline-flex;align-items:center;gap:5px}
+.trend-dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+.trend-region-rank{display:flex;flex-direction:column;gap:0}
+.trend-region-row{display:grid;grid-template-columns:22px minmax(120px,1fr) 112px;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line-2)}
+.trend-region-row:last-child{border-bottom:0}
+.trend-region-row .rk{font-family:'Plus Jakarta Sans';font-weight:800;color:var(--muted-2);font-size:12px;text-align:center}
+.trend-region-row .name{font-weight:600;font-size:12px;color:var(--text);line-height:1.2}
+.trend-region-row .value{font-family:'Plus Jakarta Sans';font-weight:800;font-size:11px;color:var(--navy-2);text-align:right}
+.trend-region-bar{height:10px;background:var(--line-2);border-radius:10px;overflow:hidden;display:flex}
+.trend-region-bar span{height:100%;display:block}
+.trend-query-wrap{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.trend-query-box{background:var(--surface-2);border:1px solid var(--line-2);border-radius:8px;padding:10px;min-width:0}
+.trend-query-box h4{font-family:'Plus Jakarta Sans';font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+.trend-query-list{display:flex;flex-direction:column;gap:6px}
+.trend-query-item{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:11.5px;color:var(--text)}
+.trend-query-item span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.trend-query-item b{font-family:'Plus Jakarta Sans';color:var(--navy-2);font-size:11px;white-space:nowrap}
+.monitoring-note{font-size:11.5px;color:var(--muted);line-height:1.55;margin-top:10px}
+@media(max-width:980px){.trend-query-wrap,.trend-map-layout{grid-template-columns:1fr}.trend-region-head{align-items:flex-start;flex-direction:column}.trend-select{width:100%}}
 
 /* signals */
 .signal{display:flex;gap:11px;padding:11px 0;border-bottom:1px solid var(--line-2)}
@@ -327,15 +364,15 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
 .section-label:before{content:"";flex:none;width:5px;height:16px;border-radius:3px;background:var(--accent)}
 .section-label .ln{flex:1;height:1px;background:var(--line)}
 .footnote{font-size:11px;color:var(--muted-2);margin-top:8px}
-.lead-heatmap{display:grid;grid-template-columns:minmax(620px,1fr) 132px;gap:18px;align-items:start;margin-top:10px}
+.lead-heatmap{display:grid;grid-template-columns:minmax(720px,1fr) 132px;gap:18px;align-items:start;margin-top:10px}
 .lead-chart-title{font-size:13px;font-weight:800;color:var(--ink);margin-bottom:4px}
 .lead-chart-sub{font-size:11px;color:var(--muted);margin-bottom:10px}
-.lead-panel{display:grid;grid-template-columns:154px minmax(420px,1fr);gap:8px 10px;align-items:center}
+.lead-panel{display:grid;grid-template-columns:154px minmax(520px,1fr);gap:9px 10px;align-items:center}
 .lead-row-label{font-size:11.5px;font-weight:700;color:var(--ink);white-space:nowrap;text-align:right;padding-right:4px}
 .lead-row-cells{display:grid;grid-template-columns:repeat(13,1fr);gap:4px}
-.lead-cell{height:26px;border-radius:4px;border:1px solid rgba(20,54,94,.12)}
+.lead-cell{height:32px;border-radius:5px;border:1px solid rgba(20,54,94,.12)}
 .lead-cell.sig{box-shadow:inset 0 0 0 1px rgba(20,54,94,.26)}
-.lead-axis{grid-column:2;display:grid;grid-template-columns:repeat(13,1fr);font-size:10.5px;color:var(--muted-2);margin-top:2px}
+.lead-axis{grid-column:2;display:grid;grid-template-columns:repeat(13,1fr);font-size:10.5px;color:var(--muted-2);margin-top:3px}
 .lead-axis span{text-align:center}
 .lead-x-title{grid-column:2;text-align:center;font-size:10.5px;font-weight:700;color:var(--muted);margin-top:0;text-transform:uppercase;letter-spacing:.3px}
 .lead-legend{align-self:start;display:grid;grid-template-rows:auto auto auto;gap:7px;padding-top:30px}
@@ -381,7 +418,7 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
       </div>
       <div class="brandsep"></div>
       <div>
-        <h1>PHK Early Warning Dashboard</h1>
+        <h1>PHK Monitoring Dashboard</h1>
         <div class="sub">Sistem Pemantauan Tekanan Pasar Kerja</div>
       </div>
     </div>
@@ -391,17 +428,17 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
     </div>
   </div>
   <div class="ticker">
-    <div class="tlabel">EARLY WARNING</div>
-    <div class="twrap"><div class="track" id="ticker-track"><span class="ti"><b style="color:#fff">PMI Manufaktur</b> <span class="pill high" style="background:var(--high-bg);color:#d23b34">46,9</span> <span style="color:#9fb6d0">di bawah 50</span></span><span class="ti"><b style="color:#fff">BI Rate</b> <span class="pill med" style="background:var(--med-bg);color:#9a6b04">5,5%</span> <span style="color:#9fb6d0">biaya pinjaman</span></span><span class="ti"><b style="color:#fff">Kurs USD/IDR</b> <span class="pill high" style="background:var(--high-bg);color:#d23b34">17.924</span> <span style="color:#9fb6d0">tekanan biaya input</span></span><span class="ti"><b style="color:#fff">IHPB (harga produsen)</b> <span class="pill med" style="background:var(--med-bg);color:#9a6b04">111,6</span> <span style="color:#9fb6d0">biaya produksi</span></span><span class="ti"><b style="color:#fff">Provinsi risiko tinggi</b> <span class="pill high" style="background:var(--high-bg);color:#d23b34">perlu dipantau</span> <span style="color:#9fb6d0">LPI tertinggi</span></span><span class="ti"><b style="color:#fff">PMI Manufaktur</b> <span class="pill high" style="background:var(--high-bg);color:#d23b34">46,9</span> <span style="color:#9fb6d0">di bawah 50</span></span><span class="ti"><b style="color:#fff">BI Rate</b> <span class="pill med" style="background:var(--med-bg);color:#9a6b04">5,5%</span> <span style="color:#9fb6d0">biaya pinjaman</span></span><span class="ti"><b style="color:#fff">Kurs USD/IDR</b> <span class="pill high" style="background:var(--high-bg);color:#d23b34">17.924</span> <span style="color:#9fb6d0">tekanan biaya input</span></span><span class="ti"><b style="color:#fff">IHPB (harga produsen)</b> <span class="pill med" style="background:var(--med-bg);color:#9a6b04">111,6</span> <span style="color:#9fb6d0">biaya produksi</span></span><span class="ti"><b style="color:#fff">Provinsi risiko tinggi</b> <span class="pill high" style="background:var(--high-bg);color:#d23b34">perlu dipantau</span> <span style="color:#9fb6d0">LPI tertinggi</span></span></div></div>
+    <div class="tlabel">MONITORING</div>
+    <div class="twrap"><div class="track" id="ticker-track"><span class="ti"><b style="color:#fff">PMI Manufaktur</b> <span class="pill high" style="background:var(--high-bg);color:#d23b34">46,9</span> <span style="color:#9fb6d0">di bawah 50</span></span><span class="ti"><b style="color:#fff">Kurs USD/IDR</b> <span class="pill high" style="background:var(--high-bg);color:#d23b34">17.924</span> <span style="color:#9fb6d0">tekanan biaya input</span></span><span class="ti"><b style="color:#fff">Provinsi risiko tinggi</b> <span class="pill high" style="background:var(--high-bg);color:#d23b34">perlu dipantau</span> <span style="color:#9fb6d0">prioritas pemantauan</span></span><span class="ti"><b style="color:#fff">Google Trends</b> <span class="pill med" style="background:var(--med-bg);color:#9a6b04">PHK / dirumahkan / layoff</span> <span style="color:#9fb6d0">pantau sinyal pencarian</span></span></div></div>
   </div>
 </header>
 
 <!-- ===================== TABS ===================== -->
 <nav class="tabs" id="tabnav">
   <button data-tab="exec" class="active"><span class="tnum">01</span> Executive Dashboard</button>
-  <button data-tab="map"><span class="tnum">02</span> Peta Risiko PHK</button>
-  <button data-tab="driver"><span class="tnum">03</span> Sensitivitas Makro</button>
-  <button data-tab="adv"><span class="tnum">04</span> Klaster Provinsi & Risiko Sektoral</button>
+  <button data-tab="driver"><span class="tnum">02</span> Tren PHK & Tekanan Makro</button>
+  <button data-tab="map"><span class="tnum">03</span> Peta Risiko PHK</button>
+  <button data-tab="adv"><span class="tnum">04</span> Analisis Regional dan Sektoral</button>
   <button data-tab="sim"><span class="tnum">05</span> Monitor Tekanan Sektor-Provinsi</button>
   <button data-tab="policy"><span class="tnum">06</span> Metodologi</button>
 </nav>
@@ -410,98 +447,101 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
 
 <!-- ============================================================= TAB 1 -->
 <section class="tabpane active" id="tab-exec">
-  <div class="methbar">
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#2563eb" stroke-width="1.6"></circle><path d="M12 8v0M12 11v5" stroke="#2563eb" stroke-width="1.8" stroke-linecap="round"></path></svg>
-    <div><b>Cara membaca dashboard ini.</b> Dashboard ini tidak memprediksi secara pasti apakah PHK akan terjadi di suatu daerah. Layoff Pressure Index (LPI) memberikan <b>sinyal peringatan dini</b> dengan menggabungkan informasi mengenai PHK yang telah terjadi, tekanan ekonomi yang sedang berkembang, dan kerentanan struktural daerah. Semakin tinggi skor, semakin besar kebutuhan untuk melakukan pemantauan dan antisipasi kebijakan.</div>
-  </div>
-
   <div class="kpis" id="kpi-row">
     <div class="kpi"><div class="accentbar" style="background:var(--navy-3)"></div>
       <div class="klabel">Jumlah tenaga kerja <span class="info" data-tt="Jumlah penduduk bekerja 2025, dijumlahkan dari 38 provinsi (Sakernas, Database Tahun).">i</span></div>
-      <div class="kval" style=";color:var(--navy-3)">146,5 jt</div>
+      <div class="kval" style="color:var(--navy-3)">146,5 jt</div>
       <div class="kfoot">Penduduk bekerja 2025 · 38 provinsi</div>
     </div>
     <div class="kpi"><div class="accentbar" style="background:var(--navy-2)"></div>
       <div class="klabel">Total PHK tercatat YTD 2026 <span class="info" data-tt="Akumulasi flow PHK yang dilaporkan sepanjang tahun berjalan (Satudata Kemnaker).">i</span></div>
-      <div class="kval" style=";color:var(--navy-2)">88.500</div>
+      <div class="kval" style="color:var(--navy-2)">32.389</div>
       <div class="kfoot">Akumulasi flow s.d. Jun 2026</div>
     </div>
     <div class="kpi"><div class="accentbar" style="background:var(--low)"></div>
       <div class="klabel">Perubahan PHK MoM <span class="info" data-tt="Selisih flow PHK bulan terakhir terhadap bulan sebelumnya.">i</span></div>
-      <div class="kval" style=";color:var(--low)">-3.498</div>
-      <div class="kfoot"><span class="delta down">▼</span>-88,4% vs bulan sebelumnya</div>
+      <div class="kval" style="color:var(--low)">-4.048</div>
+      <div class="kfoot"><span class="delta down">▼</span>-87,3% vs bulan sebelumnya</div>
     </div>
     <div class="kpi"><div class="accentbar" style="background:var(--high)"></div>
-      <div class="klabel">Provinsi risiko tinggi <span class="info" data-tt="Jumlah provinsi dengan Layoff Pressure Index ≥ 50.">i</span></div>
-      <div class="kval" style=";color:var(--high)">6</div>
-      <div class="kfoot">14 sedang · 18 rendah</div>
+      <div class="klabel">Provinsi risiko tinggi <span class="info" data-tt="Jumlah provinsi dengan kategori risiko tinggi atau sangat tinggi berdasarkan model terbaru.">i</span></div>
+      <div class="kval" style="color:var(--high)">-</div>
+      <div class="kfoot">Diperbarui otomatis dari data bulanan</div>
     </div>
-    <div class="kpi"><div class="accentbar" style="background:#e3a008"></div>
-      <div class="klabel">Layoff Pressure Index nasional <span class="info" data-tt="Rata-rata sederhana LPI seluruh provinsi.">i</span></div>
-      <div class="kval" style=";color:#e3a008">40,6</div>
-      <div class="kfoot">Sedang · indeks peringatan dini</div>
-    </div></div>
+  </div>
 
   <div class="grid" style="grid-template-columns:1.15fr 1fr;margin-top:16px">
     <div class="card">
       <div class="card-head">
-        <div><h3>Layoff Pressure Index Nasional <span class="info" data-tt="Rata-rata sederhana LPI seluruh provinsi. LPI terbaru terdiri dari tiga dimensi: kerentanan struktural, kerentanan pasar kerja, dan tekanan makroekonomi.">i</span></h3><p class="csub">Rangkuman dari kerentanan struktural, kerentanan pasar kerja, dan tekanan makroekonomi.</p></div>
-        <span class="badge med" id="nat-band">Risiko Sedang</span>
+        <div><h3>Tren PHK Bulanan Nasional</h3><p class="csub">Flow PHK tercatat dari Satudata Kemnaker, ditampilkan sebagai konteks pemantauan bulan berjalan.</p></div>
+        <span class="badge ghost" id="exec-trend-period">Jun 2026</span>
       </div>
-      <div class="gauge-wrap">
-        <div class="gauge"><canvas id="gaugeNat" width="250" height="156" style="display: block; box-sizing: border-box; height: 118px; width: 188px;"></canvas>
-          <div class="gval"><div class="n num" id="gauge-num" style="color: rgb(227, 160, 8);">40,6</div><div class="l">dari 100</div></div>
-        </div>
-        <div style="flex:1">
-          <div style="font-size:12px;color:var(--muted);margin-bottom:10px">Dekomposisi nasional</div>
-          <div id="nat-decomp">
-    <div style="margin-bottom:9px">
-      <div style="display:flex;justify-content:space-between;font-size:11.5px;margin-bottom:3px">
-        <span style="color:var(--ink);font-weight:500">Kerentanan Struktural <span style="color:var(--muted-2)">&middot;33,2%</span></span>
-        <b class="num" style="color:var(--navy-2)">-</b></div>
-      <div class="bar" style="width:100%"><span style="width:0%;background:var(--navy-3)"></span></div>
-    </div>
-    <div style="margin-bottom:9px">
-      <div style="display:flex;justify-content:space-between;font-size:11.5px;margin-bottom:3px">
-        <span style="color:var(--ink);font-weight:500">Kerentanan Pasar Kerja <span style="color:var(--muted-2)">&middot;26,3%</span></span>
-        <b class="num" style="color:var(--navy-2)">-</b></div>
-      <div class="bar" style="width:100%"><span style="width:0%;background:var(--navy-3)"></span></div>
-    </div>
-    <div style="margin-bottom:9px">
-      <div style="display:flex;justify-content:space-between;font-size:11.5px;margin-bottom:3px">
-        <span style="color:var(--ink);font-weight:500">Tekanan Makroekonomi <span style="color:var(--muted-2)">&middot;40,6%</span></span>
-        <b class="num" style="color:var(--navy-2)">-</b></div>
-      <div class="bar" style="width:100%"><span style="width:0%;background:var(--navy-3)"></span></div>
-    </div></div>
-        </div>
-      </div>
-      <div style="margin-top:14px">
-        <div style="font-size:12px;color:var(--muted);margin-bottom:8px">Tren PHK bulanan nasional (flow tercatat)</div>
-        <div class="chart-box" style="height:118px"><canvas id="execTrend" width="957" height="156" style="display: block; box-sizing: border-box; height: 118px; width: 719px;"></canvas></div>
-        <div class="component-notes exec-component-notes">
-          <div><b>Kerentanan Struktural</b><span>Mengukur seberapa rentan struktur ekonomi daerah jika terjadi tekanan. <em>Variabel:</em> share pengeluaran pemerintah, share ekspor, share impor, share manufaktur, dan share pertanian.</span></div>
-          <div><b>Kerentanan Pasar Kerja</b><span>Mengukur seberapa rentan struktur pasar kerja jika terjadi tekanan. <em>Variabel:</em> share pekerja formal, share pekerja manufaktur, share pekerja penuh waktu, share setengah penganggur, dan rata-rata upah buruh/karyawan/pegawai.</span></div>
-          <div><b>Tekanan Makroekonomi</b><span>Menangkap tekanan makroekonomi yang sedang berjalan dan dapat mempengaruhi biaya, permintaan, serta produksi. <em>Variabel:</em> Harga Minyak Dunia, PMI, BI Rate, Kurs USD/IDR, IHPB, Penjualan Mobil, dan Nilai Ekspor.</span></div>
-        </div>
-      </div>
+      <div class="chart-box" style="height:260px"><canvas id="execTrend"></canvas></div>
+      <div class="monitoring-note">Kenaikan atau penurunan flow bulanan perlu dibaca bersama tekanan makroekonomi dan konteks pasar kerja daerah. Angka ini bersifat pemantauan, bukan prediksi kepastian PHK.</div>
     </div>
 
     <div class="card">
-      <h3>Top 5 Provinsi Risiko PHK Tertinggi <span class="info" data-tt="Diurutkan berdasarkan Layoff Pressure Index provinsi dari file model terbaru. Klik untuk melihat detail di tab Peta Risiko.">i</span></h3>
-      <p class="csub">Berdasarkan Layoff Pressure Index provinsi</p>
+      <h3>Top 5 Provinsi dengan Risiko PHK Tinggi <span class="info" data-tt="Daftar provinsi prioritas pemantauan berdasarkan kategori risiko terbaru. Klik untuk melihat detail di tab Peta Risiko.">i</span></h3>
+      <p class="csub">Wilayah prioritas pemantauan bulan ini</p>
       <div class="ranklist" id="top5-list">
-        <div class="rankrow"><div class="rk">-</div><div><div class="rname">Memuat data LPI...</div><div class="rmeta">Mengambil dari model/model_LPI/outputs/dashboard/lpi_data.js</div></div></div>
+        <div class="rankrow no-score"><div class="rk">-</div><div><div class="rname">Memuat data provinsi...</div><div class="rmeta">Mengambil dari data risiko bulanan terbaru</div></div></div>
       </div>
-      <div class="section-label" style="margin:18px 0 10px;font-size:11px">Top 5 Early Warning Signals <span class="ln"></span></div>
+    </div>
+  </div>
+
+  <div class="grid" style="grid-template-columns:1fr 1fr;margin-top:16px">
+    <div class="card">
+      <h3>Tekanan Makroekonomi Terkini</h3>
+      <p class="csub">Indikator nasional bulanan yang perlu dipantau dalam membaca tekanan terhadap pasar kerja.</p>
       <div id="signal-list">
         <div class="signal"><div class="sicon" style="background:var(--med-bg)"></div><div class="stext"><div class="stitle">Memuat indikator tekanan ekonomi...</div><div class="sdesc">PMI, BI Rate, kurs, Brent, IHPB, ekspor, dan penjualan mobil.</div></div></div>
       </div>
+    </div>
+
+    <div class="card trends-card">
+      <div class="card-head">
+        <div>
+          <h3>Google Trends: Pencarian terkait PHK</h3>
+          <p class="csub">Sinyal pencarian publik sebagai konteks tambahan, bukan pengganti data PHK resmi.</p>
+        </div>
+        <select class="trend-select" id="trend-term">
+          <option value="phk">PHK</option>
+          <option value="dirumahkan">Dirumahkan</option>
+          <option value="layoff">Layoff</option>
+        </select>
+      </div>
+      <div class="trend-chart-wrap"><canvas id="googleTrendChart"></canvas></div>
+      <div class="trend-region-head">
+        <div class="trend-region-title">
+          <h4>Subregion Google Trends</h4>
+          <span id="trend-region-caption">Interest by subregion untuk keyword terpilih.</span>
+        </div>
+        <select class="trend-select" id="trend-region-mode">
+          <option value="interest">Interest by subregion</option>
+          <option value="breakdown">Breakdown by subregion</option>
+        </select>
+      </div>
+      <div class="trend-region-wrap" id="googleTrendRegionMap"></div>
+      <div class="trend-query-wrap">
+        <div class="trend-query-box">
+          <h4>Top queries</h4>
+          <div class="trend-query-list" id="trend-top-queries"></div>
+        </div>
+        <div class="trend-query-box">
+          <h4>Rising queries</h4>
+          <div class="trend-query-list" id="trend-rising-queries"></div>
+        </div>
+      </div>
+      <div class="trend-links">
+        <a class="trend-link" href="https://trends.google.com/trends/explore?date=2015-01-01%202026-08-11&geo=ID&q=phk,dirumahkan,layoff" target="_blank" rel="noopener">Buka Google Trends</a>
+      </div>
+      <div class="monitoring-note" id="trend-source-note">Data: Google Trends, indeks minat pencarian 0-100.</div>
     </div>
   </div>
 
   <div class="narr" style="margin-top:16px">
     <h3><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M3 12h4l3-8 4 16 3-8h4" stroke="#46d07f" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg> Yang perlu dipantau bulan ini</h3>
-    <p id="exec-narrative">Provinsi yang perlu dipantau bulan ini mengikuti peringkat LPI terbaru dari file model. Dimensi yang mendorong tingginya LPI dan indikator tekanan ekonomi nasional akan dirangkum otomatis ketika dashboard dimuat.</p>
+    <p id="exec-narrative">Provinsi yang perlu dipantau bulan ini, indikator tekanan makroekonomi, dan sinyal pencarian publik akan dirangkum otomatis ketika dashboard dimuat.</p>
   </div>
 </section>
 
@@ -516,6 +556,10 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
       <span><span class="dot vhigh"></span> Sangat tinggi</span>
     </div>
   </div>
+  <div class="methbar">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#2563eb" stroke-width="1.6"></circle><path d="M12 8v0M12 11v5" stroke="#2563eb" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    <div><b>Cara membaca dashboard ini.</b> Dashboard ini tidak memprediksi secara pasti apakah PHK akan terjadi di suatu daerah. Dashboard ini memantau PHK tercatat, tekanan makroekonomi, dan kerentanan struktural serta pasar kerja daerah untuk membantu menentukan wilayah dan indikator yang perlu dipantau. Kategori risiko digunakan sebagai penanda prioritas pemantauan, bukan kepastian PHK.</div>
+  </div>
   <div class="grid" style="grid-template-columns:1fr 360px;align-items:start">
     <div>
       <div class="card" style="margin-bottom:14px">
@@ -524,7 +568,7 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
       </div>
     </div>
     <div class="detail" id="prov-detail">
-      <div class="dempty">Pilih provinsi pada papan di kiri untuk melihat skor LPI, tren PHK triwulanan, dan indikator yang perlu dipantau.</div>
+      <div class="dempty">Pilih provinsi pada papan di kiri untuk melihat tren PHK triwulanan dan indikator yang perlu dipantau.</div>
     </div>
   </div>
 
@@ -552,25 +596,7 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
 <!-- ============================================================= TAB 3 -->
 <section class="tabpane" id="tab-driver">
   <div class="pane-head">
-    <div><h2>Sensitivitas Makro - Apa penyebab risikonya?</h2><p>Hubungan antara PHK tercatat dan indikator ekonomi makro pada level nasional. Grafik menampilkan pergerakan PHK dan indikator pendahulu (leading) berdasarkan deret waktu. Arah pergerakan tidak menunjukkan hubungan sebab-akibat.</p></div>
-  </div>
-
-  <div class="card" style="margin-bottom:16px">
-    <div class="card-head"><div><h3>PHK vs Indikator Ekonomi (deret waktu nasional)</h3><p class="csub">Pilih indikator untuk dibandingkan dengan flow PHK bulanan</p></div>
-      <select id="driverSel" class="btn"></select></div>
-    <div class="chart-box" style="height:300px"><canvas id="driverChart"></canvas></div>
-    <div class="footnote" id="driver-corr">—</div>
-  </div>
-
-  <div class="section-label">Leading Indicator Analysis <span class="ln"></span></div>
-  <div class="card">
-    <p class="csub">Pooled cross-correlation indikator makro terhadap PHK bulanan provinsi menurut panjang lag.</p>
-    <div id="leadTable" class="lead-heatmap"></div><div class="footnote" id="lead-interp"></div>
-  </div>
-
-  <div class="section-label">Analisis Hubungan per Indikator <span class="ln"></span></div>
-  <div class="card">
-    <table class="tbl heat" id="regSignTable"></table><div class="footnote" id="regSignNote"></div>
+    <div><h2>Tren PHK & Tekanan Makro</h2><p>Memantau perkembangan PHK tercatat, indikator tekanan makroekonomi, dan pola hubungan pendahulu pada level nasional. Arah pergerakan tidak menunjukkan hubungan sebab-akibat.</p></div>
   </div>
 
   <div class="section-label">Perkembangan Tekanan Ekonomi Terkini <span class="ln"></span></div>
@@ -592,20 +618,27 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
   </div>
 
 
-  <div class="section-label">Proyeksi Risiko PHK Terkini — Desember 2025 <span class="badge ghost" style="margin-left:8px">dummy placeholder</span><span class="ln"></span></div>
-  <div class="methbar">
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#2563eb" stroke-width="1.6"></circle><path d="M12 8v0M12 11v5" stroke="#2563eb" stroke-width="1.8" stroke-linecap="round"></path></svg>
-    <div><b>Prediksi jumlah PHK (orang)</b> per provinsi diestimasi dengan model <b>fractional logit</b> menggunakan 9 variabel makroekonomi (Δ PMI, growth IHK, ekspor, impor, NPL, kurs, Brent, IHPB, dan Δ BI Rate). Warna menandai skala prediksi (winsorisasi 5–95 persentil dari jumlah PHK), bukan kepastian PHK. Klik provinsi untuk melihat kondisi variabel makro terkini.</div>
+  <div class="section-label">Tren PHK dan Indikator Ekonomi Nasional <span class="ln"></span></div>
+  <div class="card" style="margin-bottom:16px">
+    <div class="card-head">
+      <div><h3>PHK vs Indikator Ekonomi Nasional</h3><p class="csub">Pilih indikator ekonomi dan seri PHK yang tersedia untuk dibandingkan dalam deret waktu nasional.</p></div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <select id="phkMetricSel" class="btn">
+          <option value="phk_flow">PHK Flow tercatat</option>
+          <option value="jht_claims" disabled>Klaim JHT BPJS TK - data tahunan</option>
+          <option value="jkp_claims" disabled>Klaim JKP BPJS TK - data tahunan</option>
+        </select>
+        <select id="driverSel" class="btn"></select>
+      </div>
+    </div>
+    <div class="chart-box" style="height:430px"><canvas id="driverChart"></canvas></div>
+    <div class="footnote" id="driver-corr">Periode ditampilkan mengikuti ketersediaan data. Seri klaim JHT dan JKP BPJS TK tersedia pada Database (Tahun), tetapi belum tersedia sebagai seri bulanan; grafik deret waktu ini menggunakan PHK flow tercatat.</div>
   </div>
-  <div class="grid" style="grid-template-columns:1fr 360px;align-items:start;margin-bottom:6px">
-    <div class="card">
-      <div class="card-head"><div><h3>Papan Proyeksi PHK Provinsi</h3><p class="csub">Angka = prediksi jumlah PHK (orang), Des 2025. Diurutkan dari tertinggi.</p></div>
-        <div class="legend" style="font-size:11px"><span><span class="dot low"></span> Rendah</span> <span><span class="dot med"></span> Sedang</span> <span><span class="dot high"></span> Tinggi</span></div></div>
-      <div class="boardgrid" id="proyeksi-board"></div>
-    </div>
-    <div class="detail" id="proyeksi-detail">
-      <div class="dempty">Pilih provinsi pada papan di kiri untuk melihat prediksi PHK dan kondisi 9 variabel makro terkini.</div>
-    </div>
+
+  <div class="section-label">Leading Indicator Analysis <span class="ln"></span></div>
+  <div class="card">
+    <p class="csub">Pooled cross-correlation indikator makro terhadap PHK bulanan provinsi menurut panjang lag.</p>
+    <div id="leadTable" class="lead-heatmap"></div><div class="footnote" id="lead-interp"></div>
   </div>
 
 
@@ -864,6 +897,7 @@ const DISPLAY_LPI_PERIOD_LABEL = 'Juni 2026';
 const DETAIL_SOURCE = window.PROVINCE_DETAIL_DATA || {national:{},provinces:{}};
 const DETAIL_NAT = DETAIL_SOURCE.national || {};
 const DETAIL_PROV = DETAIL_SOURCE.provinces || {};
+const GOOGLE_TRENDS = {"timeline":[{"month":"2015-01","phk":15.0,"dirumahkan":0.5,"layoff":0.5},{"month":"2015-02","phk":13.0,"dirumahkan":1.0,"layoff":0.0},{"month":"2015-03","phk":13.0,"dirumahkan":0.5,"layoff":0.0},{"month":"2015-04","phk":15.0,"dirumahkan":0.5,"layoff":0.0},{"month":"2015-05","phk":15.0,"dirumahkan":1.0,"layoff":0.5},{"month":"2015-06","phk":23.0,"dirumahkan":0.5,"layoff":0.0},{"month":"2015-07","phk":18.0,"dirumahkan":0.5,"layoff":0.0},{"month":"2015-08","phk":27.0,"dirumahkan":1.0,"layoff":0.0},{"month":"2015-09","phk":32.0,"dirumahkan":1.0,"layoff":0.5},{"month":"2015-10","phk":28.0,"dirumahkan":1.0,"layoff":0.5},{"month":"2015-11","phk":21.0,"dirumahkan":1.0,"layoff":1.0},{"month":"2015-12","phk":19.0,"dirumahkan":0.5,"layoff":0.5},{"month":"2016-01","phk":22.0,"dirumahkan":1.0,"layoff":1.0},{"month":"2016-02","phk":47.0,"dirumahkan":0.0,"layoff":1.0},{"month":"2016-03","phk":27.0,"dirumahkan":2.0,"layoff":0.5},{"month":"2016-04","phk":21.0,"dirumahkan":1.0,"layoff":0.5},{"month":"2016-05","phk":21.0,"dirumahkan":1.0,"layoff":0.5},{"month":"2016-06","phk":21.0,"dirumahkan":1.0,"layoff":0.0},{"month":"2016-07","phk":16.0,"dirumahkan":0.5,"layoff":0.0},{"month":"2016-08","phk":19.0,"dirumahkan":1.0,"layoff":0.0},{"month":"2016-09","phk":18.0,"dirumahkan":0.5,"layoff":0.5},{"month":"2016-10","phk":18.0,"dirumahkan":0.5,"layoff":0.5},{"month":"2016-11","phk":18.0,"dirumahkan":0.5,"layoff":0.0},{"month":"2016-12","phk":16.0,"dirumahkan":0.5,"layoff":0.5},{"month":"2017-01","phk":16.0,"dirumahkan":1.0,"layoff":0.5},{"month":"2017-02","phk":17.0,"dirumahkan":1.0,"layoff":0.0},{"month":"2017-03","phk":16.0,"dirumahkan":0.5,"layoff":0.0},{"month":"2017-04","phk":13.0,"dirumahkan":0.5,"layoff":0.0},{"month":"2017-05","phk":16.0,"dirumahkan":0.5,"layoff":0.0},{"month":"2017-06","phk":14.0,"dirumahkan":0.5,"layoff":0.0},{"month":"2017-07","phk":17.0,"dirumahkan":0.5,"layoff":0.5},{"month":"2017-08","phk":13.0,"dirumahkan":0.5,"layoff":0.0},{"month":"2017-09","phk":13.0,"dirumahkan":0.5,"layoff":0.5},{"month":"2017-10","phk":18.0,"dirumahkan":0.5,"layoff":0.5},{"month":"2017-11","phk":15.0,"dirumahkan":0.5,"layoff":0.0},{"month":"2017-12","phk":14.0,"dirumahkan":0.5,"layoff":0.5},{"month":"2018-01","phk":15.0,"dirumahkan":1.0,"layoff":0.5},{"month":"2018-02","phk":14.0,"dirumahkan":0.5,"layoff":0.0},{"month":"2018-03","phk":14.0,"dirumahkan":0.5,"layoff":0.0},{"month":"2018-04","phk":13.0,"dirumahkan":0.5,"layoff":0.0},{"month":"2018-05","phk":15.0,"dirumahkan":0.5,"layoff":0.0},{"month":"2018-06","phk":9.0,"dirumahkan":0.5,"layoff":0.0},{"month":"2018-07","phk":12.0,"dirumahkan":0.5,"layoff":0.0},{"month":"2018-08","phk":11.0,"dirumahkan":1.0,"layoff":0.5},{"month":"2018-09","phk":14.0,"dirumahkan":0.5,"layoff":0.0},{"month":"2018-10","phk":16.0,"dirumahkan":0.5,"layoff":0.5},{"month":"2018-11","phk":18.0,"dirumahkan":0.5,"layoff":0.5},{"month":"2018-12","phk":16.0,"dirumahkan":0.5,"layoff":0.5},{"month":"2019-01","phk":17.0,"dirumahkan":1.0,"layoff":0.5},{"month":"2019-02","phk":14.0,"dirumahkan":1.0,"layoff":0.5},{"month":"2019-03","phk":14.0,"dirumahkan":0.5,"layoff":0.5},{"month":"2019-04","phk":14.0,"dirumahkan":1.0,"layoff":0.0},{"month":"2019-05","phk":15.0,"dirumahkan":0.5,"layoff":0.0},{"month":"2019-06","phk":15.0,"dirumahkan":1.0,"layoff":0.0},{"month":"2019-07","phk":19.0,"dirumahkan":1.0,"layoff":0.5},{"month":"2019-08","phk":23.0,"dirumahkan":0.5,"layoff":0.5},{"month":"2019-09","phk":23.0,"dirumahkan":1.0,"layoff":0.5},{"month":"2019-10","phk":21.0,"dirumahkan":1.0,"layoff":0.5},{"month":"2019-11","phk":19.0,"dirumahkan":0.5,"layoff":0.5},{"month":"2019-12","phk":18.0,"dirumahkan":0.5,"layoff":0.5},{"month":"2020-01","phk":16.0,"dirumahkan":1.0,"layoff":0.5},{"month":"2020-02","phk":23.0,"dirumahkan":1.0,"layoff":0.5},{"month":"2020-03","phk":28.0,"dirumahkan":5.0,"layoff":1.0},{"month":"2020-04","phk":100.0,"dirumahkan":16.0,"layoff":3.0},{"month":"2020-05","phk":73.0,"dirumahkan":9.0,"layoff":1.0},{"month":"2020-06","phk":58.0,"dirumahkan":4.0,"layoff":2.0},{"month":"2020-07","phk":39.0,"dirumahkan":2.0,"layoff":1.0},{"month":"2020-08","phk":24.0,"dirumahkan":2.0,"layoff":1.0},{"month":"2020-09","phk":28.0,"dirumahkan":2.0,"layoff":1.0},{"month":"2020-10","phk":36.0,"dirumahkan":1.0,"layoff":1.0},{"month":"2020-11","phk":26.0,"dirumahkan":1.0,"layoff":0.5},{"month":"2020-12","phk":25.0,"dirumahkan":1.0,"layoff":0.5},{"month":"2021-01","phk":20.0,"dirumahkan":1.0,"layoff":0.5},{"month":"2021-02","phk":18.0,"dirumahkan":1.0,"layoff":0.5},{"month":"2021-03","phk":19.0,"dirumahkan":1.0,"layoff":0.5},{"month":"2021-04","phk":20.0,"dirumahkan":1.0,"layoff":0.5},{"month":"2021-05","phk":17.0,"dirumahkan":1.0,"layoff":0.5},{"month":"2021-06","phk":18.0,"dirumahkan":1.0,"layoff":0.5},{"month":"2021-07","phk":20.0,"dirumahkan":1.0,"layoff":0.5},{"month":"2021-08","phk":17.0,"dirumahkan":1.0,"layoff":0.5},{"month":"2021-09","phk":17.0,"dirumahkan":1.0,"layoff":0.5},{"month":"2021-10","phk":19.0,"dirumahkan":1.0,"layoff":0.5},{"month":"2021-11","phk":20.0,"dirumahkan":1.0,"layoff":0.5},{"month":"2021-12","phk":18.0,"dirumahkan":1.0,"layoff":0.5},{"month":"2022-01","phk":19.0,"dirumahkan":1.0,"layoff":0.5},{"month":"2022-02","phk":19.0,"dirumahkan":1.0,"layoff":0.5},{"month":"2022-03","phk":22.0,"dirumahkan":1.0,"layoff":0.5},{"month":"2022-04","phk":18.0,"dirumahkan":1.0,"layoff":0.5},{"month":"2022-05","phk":22.0,"dirumahkan":0.5,"layoff":1.0},{"month":"2022-06","phk":27.0,"dirumahkan":0.5,"layoff":2.0},{"month":"2022-07","phk":18.0,"dirumahkan":0.5,"layoff":1.0},{"month":"2022-08","phk":16.0,"dirumahkan":0.5,"layoff":1.0},{"month":"2022-09","phk":37.0,"dirumahkan":1.0,"layoff":3.0},{"month":"2022-10","phk":27.0,"dirumahkan":1.0,"layoff":3.0},{"month":"2022-11","phk":50.0,"dirumahkan":1.0,"layoff":7.0},{"month":"2022-12","phk":26.0,"dirumahkan":1.0,"layoff":3.0},{"month":"2023-01","phk":26.0,"dirumahkan":0.5,"layoff":3.0},{"month":"2023-02","phk":22.0,"dirumahkan":0.5,"layoff":3.0},{"month":"2023-03","phk":23.0,"dirumahkan":0.5,"layoff":4.0},{"month":"2023-04","phk":18.0,"dirumahkan":0.5,"layoff":2.0},{"month":"2023-05","phk":20.0,"dirumahkan":0.5,"layoff":2.0},{"month":"2023-06","phk":22.0,"dirumahkan":0.5,"layoff":2.0},{"month":"2023-07","phk":18.0,"dirumahkan":0.5,"layoff":2.0},{"month":"2023-08","phk":18.0,"dirumahkan":1.0,"layoff":2.0},{"month":"2023-09","phk":19.0,"dirumahkan":0.5,"layoff":3.0},{"month":"2023-10","phk":20.0,"dirumahkan":0.5,"layoff":2.0},{"month":"2023-11","phk":22.0,"dirumahkan":0.5,"layoff":2.0},{"month":"2023-12","phk":18.0,"dirumahkan":0.5,"layoff":2.0},{"month":"2024-01","phk":20.0,"dirumahkan":0.5,"layoff":3.0},{"month":"2024-02","phk":19.0,"dirumahkan":0.5,"layoff":2.0},{"month":"2024-03","phk":22.0,"dirumahkan":0.5,"layoff":2.0},{"month":"2024-04","phk":19.0,"dirumahkan":0.5,"layoff":2.0},{"month":"2024-05","phk":21.0,"dirumahkan":0.5,"layoff":2.0},{"month":"2024-06","phk":25.0,"dirumahkan":0.5,"layoff":5.0},{"month":"2024-07","phk":20.0,"dirumahkan":0.5,"layoff":3.0},{"month":"2024-08","phk":24.0,"dirumahkan":0.5,"layoff":4.0},{"month":"2024-09","phk":24.0,"dirumahkan":0.5,"layoff":2.0},{"month":"2024-10","phk":25.0,"dirumahkan":0.5,"layoff":3.0},{"month":"2024-11","phk":27.0,"dirumahkan":0.5,"layoff":2.0},{"month":"2024-12","phk":30.0,"dirumahkan":0.5,"layoff":4.0},{"month":"2025-01","phk":24.0,"dirumahkan":1.0,"layoff":3.0},{"month":"2025-02","phk":39.0,"dirumahkan":5.0,"layoff":3.0},{"month":"2025-03","phk":37.0,"dirumahkan":1.0,"layoff":3.0},{"month":"2025-04","phk":30.0,"dirumahkan":1.0,"layoff":3.0},{"month":"2025-05","phk":41.0,"dirumahkan":1.0,"layoff":6.0},{"month":"2025-06","phk":31.0,"dirumahkan":1.0,"layoff":3.0},{"month":"2025-07","phk":25.0,"dirumahkan":1.0,"layoff":3.0},{"month":"2025-08","phk":22.0,"dirumahkan":1.0,"layoff":2.0},{"month":"2025-09","phk":31.0,"dirumahkan":1.0,"layoff":2.0},{"month":"2025-10","phk":25.0,"dirumahkan":1.0,"layoff":3.0},{"month":"2025-11","phk":25.0,"dirumahkan":1.0,"layoff":3.0},{"month":"2025-12","phk":22.0,"dirumahkan":1.0,"layoff":2.0},{"month":"2026-01","phk":20.0,"dirumahkan":2.0,"layoff":3.0},{"month":"2026-02","phk":22.0,"dirumahkan":1.0,"layoff":4.0},{"month":"2026-03","phk":20.0,"dirumahkan":2.0,"layoff":2.0},{"month":"2026-04","phk":24.0,"dirumahkan":1.0,"layoff":3.0},{"month":"2026-05","phk":27.0,"dirumahkan":1.0,"layoff":2.0},{"month":"2026-06","phk":27.0,"dirumahkan":0.5,"layoff":3.0},{"month":"2026-07","phk":32.0,"dirumahkan":1.0,"layoff":6.0},{"month":"2026-08","phk":27.0,"dirumahkan":1.0,"layoff":3.0}],"related":{"phk":{"top":[{"query":"di phk","value":"100"},{"query":"phk karyawan","value":"79"},{"query":"pesangon","value":"51"},{"query":"pesangon phk","value":"51"},{"query":"phk adalah","value":"44"},{"query":"phk indonesia","value":"29"},{"query":"surat phk","value":"24"},{"query":"uu phk","value":"22"}],"rising":[{"query":"corona","value":"Breakout"},{"query":"phk corona","value":"Breakout"},{"query":"uu cipta kerja","value":"Breakout"},{"query":"phk shopee","value":"Breakout"},{"query":"phk 2025","value":"Breakout"},{"query":"phk 2016","value":"Breakout"},{"query":"shopee phk karyawan","value":"Breakout"},{"query":"phk tokopedia","value":"Breakout"}]},"dirumahkan":{"top":[{"query":"karyawan dirumahkan","value":"100"},{"query":"surat dirumahkan","value":"37"},{"query":"honorer","value":"32"},{"query":"honorer dirumahkan","value":"32"},{"query":"pekerja dirumahkan","value":"30"},{"query":"dirumahkan adalah","value":"29"},{"query":"phk","value":"23"},{"query":"contoh surat dirumahkan","value":"23"}],"rising":[{"query":"dirumahkan artinya","value":"Breakout"},{"query":"surat keterangan dirumahkan","value":"Breakout"},{"query":"pppk dirumahkan","value":"Breakout"},{"query":"pengangguran","value":"Breakout"},{"query":"contoh surat keterangan dirumahkan","value":"Breakout"},{"query":"p3k dirumahkan","value":"Breakout"},{"query":"asn dirumahkan","value":"Breakout"},{"query":"surat dirumahkan karena corona","value":"Breakout"}]},"layoff":{"top":[{"query":"layoff adalah","value":"100"},{"query":"layoff artinya","value":"41"},{"query":"layoff karyawan","value":"21"},{"query":"phk","value":"20"},{"query":"apa itu layoff","value":"20"},{"query":"tokopedia layoff","value":"19"},{"query":"layoff shopee","value":"18"},{"query":"arti layoff","value":"16"}],"rising":[{"query":"layoff adalah","value":"Breakout"},{"query":"layoff artinya","value":"Breakout"},{"query":"apa itu layoff","value":"Breakout"},{"query":"tokopedia layoff","value":"Breakout"},{"query":"layoff shopee","value":"Breakout"},{"query":"goto","value":"Breakout"},{"query":"layoff goto","value":"Breakout"},{"query":"google layoff","value":"Breakout"}]}},"regions":{"interest":{"phk":[{"region":"North Maluku","value":100.0},{"region":"Banten","value":96.0},{"region":"Special Capital Region of Jakarta","value":85.0},{"region":"Riau Islands","value":77.0},{"region":"East Kalimantan","value":76.0},{"region":"North Kalimantan","value":65.0},{"region":"West Java","value":64.0},{"region":"Central Sulawesi","value":63.0},{"region":"Bangka Belitung Islands","value":61.0},{"region":"South East Sulawesi","value":60.0},{"region":"Special Region of Yogyakarta","value":60.0},{"region":"Papua","value":59.0},{"region":"West Kalimantan","value":58.0},{"region":"South Sulawesi","value":57.0},{"region":"Central Kalimantan","value":56.0},{"region":"Riau","value":55.0},{"region":"South Kalimantan","value":54.0},{"region":"North Sumatra","value":53.0},{"region":"South Sumatra","value":52.0},{"region":"North Sulawesi","value":51.0},{"region":"East Java","value":51.0},{"region":"Gorontalo","value":51.0},{"region":"West Papua","value":51.0},{"region":"Bengkulu","value":49.0},{"region":"Central Java","value":49.0},{"region":"East Nusa Tenggara","value":46.0},{"region":"West Sulawesi","value":46.0},{"region":"Bali","value":45.0},{"region":"Jambi","value":43.0},{"region":"Maluku","value":42.0},{"region":"West Sumatra","value":42.0},{"region":"Lampung","value":41.0},{"region":"West Nusa Tenggara","value":38.0},{"region":"Aceh","value":34.0}],"dirumahkan":[{"region":"North Maluku","value":100.0},{"region":"East Nusa Tenggara","value":100.0},{"region":"Gorontalo","value":75.0},{"region":"Bengkulu","value":69.0},{"region":"Bali","value":69.0},{"region":"North Sulawesi","value":66.0},{"region":"Bangka Belitung Islands","value":63.0},{"region":"Maluku","value":60.0},{"region":"North Kalimantan","value":60.0},{"region":"Riau Islands","value":57.0},{"region":"Riau","value":51.0},{"region":"West Sulawesi","value":51.0},{"region":"Jambi","value":51.0},{"region":"East Kalimantan","value":48.0},{"region":"West Nusa Tenggara","value":48.0},{"region":"West Papua","value":48.0},{"region":"Central Kalimantan","value":45.0},{"region":"Aceh","value":45.0},{"region":"South Kalimantan","value":45.0},{"region":"Central Sulawesi","value":45.0},{"region":"South Sulawesi","value":42.0},{"region":"Banten","value":42.0},{"region":"Papua","value":39.0},{"region":"West Sumatra","value":39.0},{"region":"North Sumatra","value":39.0},{"region":"South East Sulawesi","value":39.0},{"region":"South Sumatra","value":36.0},{"region":"Lampung","value":36.0},{"region":"Special Region of Yogyakarta","value":33.0},{"region":"Special Capital Region of Jakarta","value":33.0},{"region":"West Java","value":30.0},{"region":"Central Java","value":30.0},{"region":"West Kalimantan","value":27.0},{"region":"East Java","value":24.0}],"layoff":[{"region":"Special Capital Region of Jakarta","value":100.0},{"region":"Banten","value":88.0},{"region":"Special Region of Yogyakarta","value":62.0},{"region":"West Java","value":51.0},{"region":"Riau Islands","value":41.0},{"region":"Bali","value":37.0},{"region":"East Kalimantan","value":25.0},{"region":"Bengkulu","value":25.0},{"region":"Central Java","value":23.0},{"region":"East Java","value":23.0},{"region":"North Sulawesi","value":20.0},{"region":"West Sumatra","value":18.0},{"region":"Riau","value":18.0},{"region":"Central Kalimantan","value":16.0},{"region":"Lampung","value":16.0},{"region":"West Kalimantan","value":13.0},{"region":"Gorontalo","value":13.0},{"region":"South East Sulawesi","value":13.0},{"region":"South Sulawesi","value":13.0},{"region":"South Sumatra","value":13.0},{"region":"North Sumatra","value":13.0},{"region":"Jambi","value":13.0},{"region":"West Nusa Tenggara","value":13.0},{"region":"South Kalimantan","value":13.0},{"region":"Maluku","value":11.0},{"region":"Central Sulawesi","value":11.0},{"region":"Aceh","value":11.0},{"region":"East Nusa Tenggara","value":9.0},{"region":"Papua","value":9.0},{"region":"Bangka Belitung Islands","value":9.0},{"region":"North Kalimantan","value":null},{"region":"North Maluku","value":null},{"region":"West Papua","value":null},{"region":"West Sulawesi","value":null}]},"breakdown":[{"region":"North Maluku","phk":94.0,"dirumahkan":6.0,"layoff":0},{"region":"Banten","phk":91.0,"dirumahkan":2.0,"layoff":7.0},{"region":"Special Capital Region of Jakarta","phk":89.0,"dirumahkan":2.0,"layoff":9.0},{"region":"Riau Islands","phk":92.0,"dirumahkan":4.0,"layoff":4.0},{"region":"East Kalimantan","phk":94.0,"dirumahkan":4.0,"layoff":2.0},{"region":"North Kalimantan","phk":95.0,"dirumahkan":5.0,"layoff":0},{"region":"West Java","phk":92.0,"dirumahkan":2.0,"layoff":6.0},{"region":"Central Sulawesi","phk":95.0,"dirumahkan":4.0,"layoff":1.0},{"region":"Bangka Belitung Islands","phk":93.0,"dirumahkan":6.0,"layoff":1.0},{"region":"South East Sulawesi","phk":95.0,"dirumahkan":4.0,"layoff":1.0},{"region":"Special Region of Yogyakarta","phk":89.0,"dirumahkan":3.0,"layoff":8.0},{"region":"Papua","phk":95.0,"dirumahkan":4.0,"layoff":1.0},{"region":"West Kalimantan","phk":96.0,"dirumahkan":2.0,"layoff":2.0},{"region":"South Sulawesi","phk":94.0,"dirumahkan":4.0,"layoff":2.0},{"region":"Central Kalimantan","phk":93.0,"dirumahkan":5.0,"layoff":2.0},{"region":"Riau","phk":92.0,"dirumahkan":6.0,"layoff":2.0},{"region":"South Kalimantan","phk":93.0,"dirumahkan":5.0,"layoff":2.0},{"region":"North Sumatra","phk":94.0,"dirumahkan":4.0,"layoff":2.0},{"region":"South Sumatra","phk":94.0,"dirumahkan":4.0,"layoff":2.0},{"region":"North Sulawesi","phk":90.0,"dirumahkan":7.0,"layoff":3.0},{"region":"East Java","phk":94.0,"dirumahkan":3.0,"layoff":3.0},{"region":"Gorontalo","phk":90.0,"dirumahkan":8.0,"layoff":2.0},{"region":"West Papua","phk":95.0,"dirumahkan":5.0,"layoff":0},{"region":"Bengkulu","phk":89.0,"dirumahkan":8.0,"layoff":3.0},{"region":"Central Java","phk":93.0,"dirumahkan":3.0,"layoff":4.0},{"region":"East Nusa Tenggara","phk":87.0,"dirumahkan":12.0,"layoff":1.0},{"region":"West Sulawesi","phk":94.0,"dirumahkan":6.0,"layoff":0},{"region":"Bali","phk":86.0,"dirumahkan":8.0,"layoff":6.0},{"region":"Jambi","phk":91.0,"dirumahkan":7.0,"layoff":2.0},{"region":"Maluku","phk":90.0,"dirumahkan":8.0,"layoff":2.0},{"region":"West Sumatra","phk":92.0,"dirumahkan":5.0,"layoff":3.0},{"region":"Lampung","phk":92.0,"dirumahkan":5.0,"layoff":3.0},{"region":"West Nusa Tenggara","phk":90.0,"dirumahkan":8.0,"layoff":2.0},{"region":"Aceh","phk":90.0,"dirumahkan":8.0,"layoff":2.0}]},"sourceLabel":"Google Trends, 2015-01 s.d. 2026-08"};
 const CCF_ROWS_FALLBACK = [{"variable":"Brent","lag":0,"correlation":-0.033605,"pValue":0.190379,"significant":false},{"variable":"Brent","lag":1,"correlation":-0.041735,"pValue":0.103842,"significant":false},{"variable":"Brent","lag":2,"correlation":-0.060479,"pValue":0.018367,"significant":true},{"variable":"Brent","lag":3,"correlation":-0.085552,"pValue":0.000841,"significant":true},{"variable":"Brent","lag":4,"correlation":-0.110837,"pValue":1.5e-05,"significant":true},{"variable":"Brent","lag":5,"correlation":-0.109596,"pValue":1.9e-05,"significant":true},{"variable":"Brent","lag":6,"correlation":-0.098153,"pValue":0.000127,"significant":true},{"variable":"Brent","lag":7,"correlation":-0.064184,"pValue":0.01346,"significant":true},{"variable":"Brent","lag":8,"correlation":-0.010713,"pValue":0.684201,"significant":false},{"variable":"Brent","lag":9,"correlation":0.052508,"pValue":0.049011,"significant":true},{"variable":"Brent","lag":10,"correlation":0.11715,"pValue":1.4e-05,"significant":true},{"variable":"Brent","lag":11,"correlation":0.114629,"pValue":2.8e-05,"significant":true},{"variable":"Brent","lag":12,"correlation":0.073203,"pValue":0.008483,"significant":true},{"variable":"PMI","lag":0,"correlation":-0.082723,"pValue":0.000176,"significant":true},{"variable":"PMI","lag":1,"correlation":-0.078917,"pValue":0.000346,"significant":true},{"variable":"PMI","lag":2,"correlation":-0.082793,"pValue":0.000174,"significant":true},{"variable":"PMI","lag":3,"correlation":-0.059617,"pValue":0.006905,"significant":true},{"variable":"PMI","lag":4,"correlation":-0.04744,"pValue":0.031645,"significant":true},{"variable":"PMI","lag":5,"correlation":-0.062147,"pValue":0.00486,"significant":true},{"variable":"PMI","lag":6,"correlation":-0.04576,"pValue":0.038201,"significant":true},{"variable":"PMI","lag":7,"correlation":-0.020843,"pValue":0.349839,"significant":false},{"variable":"PMI","lag":8,"correlation":0.015546,"pValue":0.489793,"significant":false},{"variable":"PMI","lag":9,"correlation":0.028272,"pValue":0.213476,"significant":false},{"variable":"PMI","lag":10,"correlation":-0.0217,"pValue":0.34446,"significant":false},{"variable":"PMI","lag":11,"correlation":-0.044197,"pValue":0.056546,"significant":false},{"variable":"PMI","lag":12,"correlation":-0.05771,"pValue":0.013699,"significant":true},{"variable":"BI_Rate","lag":0,"correlation":0.104825,"pValue":2e-06,"significant":true},{"variable":"BI_Rate","lag":1,"correlation":0.108179,"pValue":1e-06,"significant":true},{"variable":"BI_Rate","lag":2,"correlation":0.114639,"pValue":0.0,"significant":true},{"variable":"BI_Rate","lag":3,"correlation":0.126977,"pValue":0.0,"significant":true},{"variable":"BI_Rate","lag":4,"correlation":0.144918,"pValue":0.0,"significant":true},{"variable":"BI_Rate","lag":5,"correlation":0.154709,"pValue":0.0,"significant":true},{"variable":"BI_Rate","lag":6,"correlation":0.164663,"pValue":0.0,"significant":true},{"variable":"BI_Rate","lag":7,"correlation":0.167236,"pValue":0.0,"significant":true},{"variable":"BI_Rate","lag":8,"correlation":0.164874,"pValue":0.0,"significant":true},{"variable":"BI_Rate","lag":9,"correlation":0.156862,"pValue":0.0,"significant":true},{"variable":"BI_Rate","lag":10,"correlation":0.15177,"pValue":0.0,"significant":true},{"variable":"BI_Rate","lag":11,"correlation":0.141721,"pValue":0.0,"significant":true},{"variable":"BI_Rate","lag":12,"correlation":0.131879,"pValue":0.0,"significant":true},{"variable":"Volatilitas_Kurs","lag":0,"correlation":0.0044,"pValue":0.842096,"significant":false},{"variable":"Volatilitas_Kurs","lag":1,"correlation":0.017795,"pValue":0.420421,"significant":false},{"variable":"Volatilitas_Kurs","lag":2,"correlation":0.040072,"pValue":0.06955,"significant":false},{"variable":"Volatilitas_Kurs","lag":3,"correlation":0.039994,"pValue":0.070091,"significant":false},{"variable":"Volatilitas_Kurs","lag":4,"correlation":0.023679,"pValue":0.283664,"significant":false},{"variable":"Volatilitas_Kurs","lag":5,"correlation":-0.008063,"pValue":0.715084,"significant":false},{"variable":"Volatilitas_Kurs","lag":6,"correlation":0.045787,"pValue":0.038087,"significant":true},{"variable":"Volatilitas_Kurs","lag":7,"correlation":0.075743,"pValue":0.000669,"significant":true},{"variable":"Volatilitas_Kurs","lag":8,"correlation":0.091364,"pValue":4.8e-05,"significant":true},{"variable":"Volatilitas_Kurs","lag":9,"correlation":0.083971,"pValue":0.000215,"significant":true},{"variable":"Volatilitas_Kurs","lag":10,"correlation":0.085193,"pValue":0.000201,"significant":true},{"variable":"Volatilitas_Kurs","lag":11,"correlation":0.107857,"pValue":3e-06,"significant":true},{"variable":"Volatilitas_Kurs","lag":12,"correlation":0.067037,"pValue":0.00418,"significant":true},{"variable":"IHPB","lag":0,"correlation":0.157921,"pValue":0.0,"significant":true},{"variable":"IHPB","lag":1,"correlation":0.13431,"pValue":0.0,"significant":true},{"variable":"IHPB","lag":2,"correlation":0.11658,"pValue":0.0,"significant":true},{"variable":"IHPB","lag":3,"correlation":0.099405,"pValue":6e-06,"significant":true},{"variable":"IHPB","lag":4,"correlation":0.082593,"pValue":0.00018,"significant":true},{"variable":"IHPB","lag":5,"correlation":0.066245,"pValue":0.00268,"significant":true},{"variable":"IHPB","lag":6,"correlation":0.047677,"pValue":0.030802,"significant":true},{"variable":"IHPB","lag":7,"correlation":0.048021,"pValue":0.031163,"significant":true},{"variable":"IHPB","lag":8,"correlation":0.045193,"pValue":0.044571,"significant":true},{"variable":"IHPB","lag":9,"correlation":0.037528,"pValue":0.098612,"significant":false},{"variable":"IHPB","lag":10,"correlation":0.023637,"pValue":0.303107,"significant":false},{"variable":"IHPB","lag":11,"correlation":0.014144,"pValue":0.541898,"significant":false},{"variable":"IHPB","lag":12,"correlation":0.01034,"pValue":0.658994,"significant":false},{"variable":"Penjualan_Mobil","lag":0,"correlation":-0.027259,"pValue":0.276448,"significant":false},{"variable":"Penjualan_Mobil","lag":1,"correlation":-0.060186,"pValue":0.016185,"significant":true},{"variable":"Penjualan_Mobil","lag":2,"correlation":-0.076992,"pValue":0.002084,"significant":true},{"variable":"Penjualan_Mobil","lag":3,"correlation":-0.103736,"pValue":3.3e-05,"significant":true},{"variable":"Penjualan_Mobil","lag":4,"correlation":-0.078338,"pValue":0.001736,"significant":true},{"variable":"Penjualan_Mobil","lag":5,"correlation":-0.063953,"pValue":0.010602,"significant":true},{"variable":"Penjualan_Mobil","lag":6,"correlation":-0.055678,"pValue":0.026128,"significant":true},{"variable":"Penjualan_Mobil","lag":7,"correlation":-0.048828,"pValue":0.053991,"significant":false},{"variable":"Penjualan_Mobil","lag":8,"correlation":-0.093313,"pValue":0.00027,"significant":true},{"variable":"Penjualan_Mobil","lag":9,"correlation":-0.066105,"pValue":0.010913,"significant":true},{"variable":"Penjualan_Mobil","lag":10,"correlation":-0.062394,"pValue":0.017729,"significant":true},{"variable":"Penjualan_Mobil","lag":11,"correlation":-0.069733,"pValue":0.008907,"significant":true},{"variable":"Penjualan_Mobil","lag":12,"correlation":-0.046429,"pValue":0.086052,"significant":false},{"variable":"Ekspor","lag":0,"correlation":0.00498,"pValue":0.838568,"significant":false},{"variable":"Ekspor","lag":1,"correlation":0.004135,"pValue":0.865672,"significant":false},{"variable":"Ekspor","lag":2,"correlation":0.009634,"pValue":0.693491,"significant":false},{"variable":"Ekspor","lag":3,"correlation":0.001637,"pValue":0.946613,"significant":false},{"variable":"Ekspor","lag":4,"correlation":0.011899,"pValue":0.626408,"significant":false},{"variable":"Ekspor","lag":5,"correlation":-0.005,"pValue":0.837931,"significant":false},{"variable":"Ekspor","lag":6,"correlation":0.003475,"pValue":0.88694,"significant":false},{"variable":"Ekspor","lag":7,"correlation":0.004327,"pValue":0.859487,"significant":false},{"variable":"Ekspor","lag":8,"correlation":-0.018835,"pValue":0.44605,"significant":false},{"variable":"Ekspor","lag":9,"correlation":0.006526,"pValue":0.794037,"significant":false},{"variable":"Ekspor","lag":10,"correlation":-0.001567,"pValue":0.950566,"significant":false},{"variable":"Ekspor","lag":11,"correlation":-0.002636,"pValue":0.917932,"significant":false},{"variable":"Ekspor","lag":12,"correlation":0.001304,"pValue":0.959768,"significant":false}];
 if(LPI_SOURCE?.scores?.length){
   const latestScores = LPI_SOURCE.scores
@@ -950,12 +984,12 @@ document.getElementById('tabnav').addEventListener('click', e=>{
 
 /* ====================== TICKER (early-warning strip) ============== */
 function buildTicker(){
+  const top = provNames.slice(0,5).join(', ');
   const items = [];
   items.push(['PMI Manufaktur', '46,9', 'high', 'di bawah 50']);
-  items.push(['BI Rate', '5,5%', 'med', 'biaya pinjaman']);
   items.push(['Kurs USD/IDR', fmtN(17924.1), 'high', 'tekanan biaya input']);
-  items.push(['IHPB (harga produsen)', '111,6', 'med', 'biaya produksi']);
-  items.push(['Provinsi risiko tinggi', provNames.slice(0,3).join(', '), 'high', 'LPI tertinggi']);
+  items.push(['Provinsi risiko tinggi', top, 'high', 'prioritas pemantauan']);
+  items.push(['Google Trends', 'PHK / dirumahkan / layoff', 'med', 'pantau sinyal pencarian']);
   const html = items.map(([a,b,c,d])=>{
     const cls = 'pill '+c;
     const style = `background:${c==='high'?'var(--high-bg)':c==='med'?'var(--med-bg)':'var(--low-bg)'};color:${c==='high'?'#d23b34':c==='med'?'#9a6b04':'#1f9d57'}`;
@@ -983,10 +1017,9 @@ function buildExec(){
   /* KPI cards */
   const kpis = [
     {l:'Jumlah tenaga kerja', v:fmt1(WORKFORCE_NATIONAL/1e6)+' jt', foot:'Penduduk bekerja 2025 · 38 provinsi', col:'var(--navy-3)', tt:'Jumlah penduduk bekerja 2025, dijumlahkan dari 38 provinsi (Sakernas, Database Tahun).'},
-    {l:'Total PHK tercatat YTD 2026', v:fmtN(ytdFlow), foot:`Akumulasi flow s.d. Jun 2026`, col:'var(--navy-2)', tt:'Akumulasi flow PHK yang dilaporkan sepanjang tahun berjalan (Satudata Kemnaker).'},
+    {l:`Total PHK tercatat YTD ${lastMon.y}`, v:fmtN(ytdFlow), foot:`Akumulasi flow s.d. ${months_id[lastMon.m-1]} ${lastMon.y}`, col:'var(--navy-2)', tt:'Akumulasi flow PHK yang dilaporkan sepanjang tahun berjalan (Satudata Kemnaker).'},
     {l:'Perubahan PHK MoM', v:(momAbs>=0?'+':'')+fmtN(momAbs), foot:`${(momPct>=0?'+':'')+fmt1(momPct)}% vs bulan sebelumnya`, col: momAbs>0?'var(--high)':'var(--low)', delta:momAbs>0?'up':'down', tt:'Selisih flow PHK bulan terakhir terhadap bulan sebelumnya.'},
-    {l:'Provinsi risiko tinggi', v:highCount, foot:`${vhighCount} sangat tinggi · ${highOnlyCount} tinggi · ${medCount} sedang`, col:'var(--high)', tt:'Jumlah provinsi dengan Layoff Pressure Index pada tier tinggi atau sangat tinggi.'},
-    {l:'Layoff Pressure Index nasional', v:fmt1(natLPI), foot:bandLabel(band(natLPI))+' · indeks peringatan dini', col:RC[band(natLPI)], tt:'Rata-rata sederhana LPI seluruh provinsi.'},
+    {l:'Provinsi risiko tinggi', v:highCount, foot:`${vhighCount} sangat tinggi · ${highOnlyCount} tinggi · ${medCount} sedang`, col:'var(--high)', tt:'Jumlah provinsi dengan kategori risiko tinggi atau sangat tinggi berdasarkan model terbaru.'},
   ];
   document.getElementById('kpi-row').innerHTML = kpis.map(k=>`
     <div class="kpi"><div class="accentbar" style="background:${k.col}"></div>
@@ -995,22 +1028,8 @@ function buildExec(){
       <div class="kfoot">${k.delta?`<span class="delta ${k.delta}">${k.delta==='up'?'▲':'▼'}</span>`:''}${k.foot}</div>
     </div>`).join('');
 
-  /* gauge + decomposition */
-  drawGauge('gaugeNat', natLPI);
-  document.getElementById('nat-band').textContent = 'Risiko ' + bandLabel(band(natLPI));
-  document.getElementById('nat-band').className = 'badge '+band(natLPI);
-  const comp = [
-    ['Kerentanan Struktural', avgComp('struct'), LPI_WEIGHTS.struktural],
-    ['Kerentanan Pasar Kerja', avgComp('labour'), LPI_WEIGHTS.pasar_kerja],
-    ['Tekanan Makroekonomi', avgComp('stress'), LPI_WEIGHTS.tekanan],
-  ];
-  document.getElementById('nat-decomp').innerHTML = comp.map(([n,v,w])=>`
-    <div style="margin-bottom:9px">
-      <div style="display:flex;justify-content:space-between;font-size:11.5px;margin-bottom:3px">
-        <span style="color:var(--ink);font-weight:500">${n} <span style="color:var(--muted-2)">·${fmt1(w)}%</span></span>
-        <b class="num" style="color:var(--navy-2)">${fmt1(v)}</b></div>
-      <div class="bar" style="width:100%"><span style="width:${v}%;background:var(--navy-3)"></span></div>
-    </div>`).join('');
+  const period = document.getElementById('exec-trend-period');
+  if(period) period.textContent = `${months_id[lastMon.m-1]} ${lastMon.y}`;
 
   /* trend chart */
   new Chart(document.getElementById('execTrend'),{
@@ -1020,38 +1039,191 @@ function buildExec(){
         backgroundColor:mon.map(m=>m.phk_flow>5000?'#d23b34':m.phk_flow>2000?'#e3a008':'#9fb6d0'),
         borderRadius:2, barPercentage:.9, categoryPercentage:.95}]},
     options:{responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{display:false}},
-      scales:{x:{ticks:{maxTicksLimit:8,font:{size:9}},grid:{display:false}},
-              y:{grid:{color:'#eef1f5'},ticks:{font:{size:9}}}}}
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>'Flow PHK: '+fmtN(ctx.parsed.y)}}},
+      scales:{x:{ticks:{maxTicksLimit:10,font:{size:9}},grid:{display:false}},
+              y:{grid:{color:'#eef1f5'},ticks:{font:{size:9},callback:v=>fmtN(v)}}}}
   });
 
   /* top 5 */
   const top5 = provNames.slice(0,5);
   document.getElementById('top5-list').innerHTML = top5.map((p,i)=>{
-    const d=P[p], b=metricBand(d,'lpi');
-    return `<div class="rankrow" onclick="openProvFromExec('${p}')">
+    const d=P[p];
+    return `<div class="rankrow no-score" onclick="openProvFromExec('${p}')">
       <div class="rk">${i+1}</div>
       <div><div class="rname">${p}</div><div class="rmeta">Manufaktur (% PDRB): ${d.manuf_share!=null?fmt1(d.manuf_share)+'%':'?'} | Pekerja formal (% total): ${d.formal!=null?fmt1(d.formal)+'%':'?'}</div></div>
-      <div class="rscore"><div class="bar"><span style="width:${d.lpi}%;background:${RC[b]}"></span></div><span class="rnum" style="color:${RC[b]}">${fmt1(d.lpi)}</span></div>
     </div>`;
   }).join('');
 
   /* signals */
   buildSignals();
+  buildGoogleTrends();
 
   /* narrative */
   const topWatch = provNames.slice(0,5);
-  const leadProv = topWatch[0];
-  const lead = P[leadProv];
-  const dims = [
-    ['kerentanan struktural', lead.struct],
-    ['kerentanan pasar kerja', lead.labour],
-    ['tekanan makroekonomi', lead.stress],
-  ].sort((a,b)=>b[1]-a[1]).slice(0,2).map(d=>d[0]).join(' dan ');
   document.getElementById('exec-narrative').innerHTML =
-    `Provinsi yang perlu dipantau bulan ini adalah <span class="tag">${topWatch.join('</span>, <span class="tag">')}</span>, berdasarkan peringkat LPI terbaru dari file model bulanan. Provinsi <span class="tag">${leadProv}</span> berada di posisi teratas dengan LPI ${fmt1(lead.lpi)}; dimensi pendorong utamanya adalah ${dims}. Indikator tekanan ekonomi yang perlu dicermati adalah PMI manufaktur yang berada di bawah ambang ekspansi dan kurs USD/IDR yang tinggi.`;
+    `Provinsi yang perlu dipantau bulan ini adalah <span class="tag">${topWatch.join('</span>, <span class="tag">')}</span>. Tekanan makroekonomi yang perlu dicermati terutama PMI manufaktur yang berada di bawah ambang ekspansi dan kurs USD/IDR yang tinggi. Pantau juga pencarian Google Trends untuk kata kunci <span class="tag">PHK</span>, <span class="tag">dirumahkan</span>, dan <span class="tag">layoff</span> sebagai konteks tambahan.`;
 }
 function avgComp(k){ let s=0,n=0; provNames.forEach(p=>{ if(P[p][k]!=null){s+=P[p][k];n++;} }); return n?s/n:0; }
+
+
+let googleTrendChart = null;
+function formatTrendMonth(month){
+  const [y,m] = String(month).split('-');
+  return months_id[(+m)-1] + ' ' + String(y).slice(2);
+}
+function trendTermLabel(term){
+  return term === 'phk' ? 'PHK' : term === 'dirumahkan' ? 'Dirumahkan' : 'Layoff';
+}
+function trendAxisMax(values){
+  const max = Math.max(...values.filter(v=>Number.isFinite(v)), 1);
+  if(max <= 10) return Math.ceil(max + 1);
+  if(max <= 25) return Math.ceil(max / 5) * 5;
+  if(max <= 60) return Math.ceil(max / 10) * 10;
+  return 100;
+}
+function renderTrendQueries(term){
+  const related = GOOGLE_TRENDS.related?.[term] || {top:[],rising:[]};
+  const render = rows => rows.length ? rows.map((d,i)=>`
+    <div class="trend-query-item"><span>${i+1}. ${d.query}</span><b>${d.value}</b></div>
+  `).join('') : '<div class="monitoring-note" style="margin:0">Data tidak tersedia.</div>';
+  const topEl = document.getElementById('trend-top-queries');
+  const risingEl = document.getElementById('trend-rising-queries');
+  if(topEl) topEl.innerHTML = render(related.top);
+  if(risingEl) risingEl.innerHTML = render(related.rising);
+}
+function trendRegionToProvince(raw){
+  const map = {
+    'Aceh':'Aceh','North Sumatra':'Sumatera Utara','West Sumatra':'Sumatera Barat','Riau':'Riau','Jambi':'Jambi','South Sumatra':'Sumatera Selatan','Bengkulu':'Bengkulu','Lampung':'Lampung','Bangka Belitung Islands':'Bangka Belitung','Riau Islands':'Kepulauan Riau',
+    'Special Capital Region of Jakarta':'DKI Jakarta','West Java':'Jawa Barat','Central Java':'Jawa Tengah','Special Region of Yogyakarta':'DI Yogyakarta','East Java':'Jawa Timur','Banten':'Banten',
+    'Bali':'Bali','West Nusa Tenggara':'Nusa Tenggara Barat','East Nusa Tenggara':'Nusa Tenggara Timur',
+    'West Kalimantan':'Kalimantan Barat','Central Kalimantan':'Kalimantan Tengah','South Kalimantan':'Kalimantan Selatan','East Kalimantan':'Kalimantan Timur','North Kalimantan':'Kalimantan Utara',
+    'North Sulawesi':'Sulawesi Utara','Central Sulawesi':'Sulawesi Tengah','South Sulawesi':'Sulawesi Selatan','Southeast Sulawesi':'Sulawesi Tenggara','South East Sulawesi':'Sulawesi Tenggara','Gorontalo':'Gorontalo','West Sulawesi':'Sulawesi Barat',
+    'Maluku':'Maluku','North Maluku':'Maluku Utara','West Papua':'Papua Barat','Southwest Papua':'Papua Barat Daya','Papua':'Papua','South Papua':'Papua Selatan','Central Papua':'Papua Tengah','Highland Papua':'Papua Pegunungan'
+  };
+  return map[raw] || raw;
+}
+function trendBlue(v,max=100){
+  if(v==null || !Number.isFinite(v)) return '#e5e7eb';
+  const t=Math.max(0,Math.min(1,v/(max||100)));
+  const a=.18+t*.72;
+  return `rgba(66,133,244,${a.toFixed(3)})`;
+}
+function trendTermColor(term,alpha=1){
+  const colors = {phk:`rgba(66,133,244,${alpha})`, dirumahkan:`rgba(234,103,95,${alpha})`, layoff:`rgba(251,203,67,${alpha})`};
+  return colors[term] || colors.phk;
+}
+function trendRegionTitle(row, mode){
+  if(mode === 'breakdown'){
+    return `${row.region}: PHK ${fmt1(row.phk)}%, dirumahkan ${fmt1(row.dirumahkan)}%, layoff ${fmt1(row.layoff)}%`;
+  }
+  return `${row.region}: ${row.value==null?'data tidak tersedia':fmt1(row.value)}`;
+}
+function renderTrendMapPaths(valueByProvince, mode, term){
+  if(typeof INDONESIA_PROV_GEOJSON === 'undefined') return '';
+  const bounds = simGeoBounds(), w=360, h=190;
+  return INDONESIA_PROV_GEOJSON.features.map(f=>{
+    const prov = simGeoProvinceName(f.properties.PROVINSI || f.properties.Propinsi);
+    const row = valueByProvince[prov];
+    let fill = '#e5e7eb', opacity = row ? 1 : .45;
+    if(row){
+      if(mode === 'breakdown'){
+        const vals = [['phk',row.phk||0],['dirumahkan',row.dirumahkan||0],['layoff',row.layoff||0]];
+        const dom = vals.sort((a,b)=>b[1]-a[1])[0][0];
+        const intensity = .25 + Math.min(1,(row[term]||0)/100)*.65;
+        fill = trendTermColor(dom,intensity);
+      } else {
+        fill = trendBlue(row.value,100);
+      }
+    }
+    return `<path d="${simGeoPath(f.geometry,bounds,w,h)}" fill="${fill}" stroke="#fff" stroke-width=".35" opacity="${opacity}"><title>${simEsc(row ? trendRegionTitle(row,mode) : prov + ': data tidak tersedia')}</title></path>`;
+  }).join('');
+}
+function renderTrendRegion(term, mode){
+  const root = document.getElementById('googleTrendRegionMap');
+  const caption = document.getElementById('trend-region-caption');
+  if(!root) return;
+  const termLabel = trendTermLabel(term);
+
+  if(mode === 'breakdown'){
+    const rows = (GOOGLE_TRENDS.regions?.breakdown || [])
+      .slice()
+      .sort((a,b)=>(b[term]||0)-(a[term]||0))
+      .slice(0,10);
+    const allRows = GOOGLE_TRENDS.regions?.breakdown || [];
+    const valueByProvince = {};
+    allRows.forEach(r=>{ valueByProvince[trendRegionToProvince(r.region)] = r; });
+    if(caption) caption.textContent = 'Komposisi minat pencarian per subregion untuk tiga keyword utama.';
+    const list = rows.slice(0,5).map((r,i)=>`
+      <div class="trend-region-row">
+        <div class="rk">${i+1}</div><div class="name">${r.region}</div>
+        <div class="trend-region-bar" title="${simEsc(trendRegionTitle(r,mode))}">
+          <span style="width:${r.phk||0}%;background:${trendTermColor('phk')}"></span>
+          <span style="width:${r.dirumahkan||0}%;background:${trendTermColor('dirumahkan')}"></span>
+          <span style="width:${r.layoff||0}%;background:${trendTermColor('layoff')}"></span>
+        </div>
+      </div>`).join('');
+    root.innerHTML = `<div class="trend-map-legend"><span><i class="trend-dot" style="background:${trendTermColor('phk')}"></i>phk</span><span><i class="trend-dot" style="background:${trendTermColor('dirumahkan')}"></i>dirumahkan</span><span><i class="trend-dot" style="background:${trendTermColor('layoff')}"></i>layoff</span></div>
+      <div class="trend-map-layout"><div class="trend-map-panel"><svg viewBox="0 0 360 190" role="img" aria-label="Compared breakdown by subregion">${renderTrendMapPaths(valueByProvince,mode,term)}</svg><div class="trend-map-foot">Warna mengikuti keyword dominan; intensitas mengikuti share ${termLabel}.</div></div><div class="trend-region-rank">${list}</div></div>`;
+    return;
+  }
+
+  const allRows = (GOOGLE_TRENDS.regions?.interest?.[term] || []);
+  const rows = allRows
+    .slice()
+    .sort((a,b)=>(b.value||0)-(a.value||0))
+    .slice(0,10);
+  const valueByProvince = {};
+  allRows.forEach(r=>{ valueByProvince[trendRegionToProvince(r.region)] = r; });
+  if(caption) caption.textContent = `Interest by subregion untuk keyword ${termLabel}.`;
+  const list = rows.slice(0,5).map((r,i)=>`
+    <div class="trend-region-row">
+      <div class="rk">${i+1}</div><div class="name">${r.region}</div>
+      <div><div class="trend-region-bar"><span style="width:${Math.max(0,r.value||0)}%;background:${trendBlue(r.value,100)}"></span></div><div class="value">${r.value==null?'':fmt1(r.value)}</div></div>
+    </div>`).join('');
+  root.innerHTML = `<div class="trend-map-layout"><div class="trend-map-panel"><svg viewBox="0 0 360 190" role="img" aria-label="Interest by subregion">${renderTrendMapPaths(valueByProvince,mode,term)}</svg><div class="trend-map-foot">Color intensity represents search interest for ${termLabel}. Grey indicates unavailable or low-volume data.</div></div><div class="trend-region-rank">${list}</div></div>`;
+}
+function buildGoogleTrends(){
+  const select = document.getElementById('trend-term');
+  const regionMode = document.getElementById('trend-region-mode');
+  const canvas = document.getElementById('googleTrendChart');
+  if(!select || !canvas || typeof Chart === 'undefined') return;
+  const draw = () => {
+    const term = select.value || 'phk';
+    const mode = regionMode?.value || 'interest';
+    const rows = GOOGLE_TRENDS.timeline || [];
+    renderTrendQueries(term);
+    const labels = rows.map(d=>formatTrendMonth(d.month));
+    const values = rows.map(d=>d[term]);
+    const termLabel = trendTermLabel(term);
+    const axisMax = trendAxisMax(values);
+    if(googleTrendChart) googleTrendChart.destroy();
+    googleTrendChart = new Chart(canvas, {
+      type:'line',
+      data:{labels,datasets:[{
+        label:`Indeks pencarian: ${termLabel}`,
+        data:values,
+        borderColor:'#24518a',
+        backgroundColor:'rgba(36,81,138,.10)',
+        borderWidth:2,
+        pointRadius:0,
+        pointHoverRadius:4,
+        tension:.28,
+        fill:true
+      }]},
+      options:{responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`${termLabel}: ${fmt1(ctx.parsed.y)}`}}},
+        scales:{x:{grid:{display:false},ticks:{maxTicksLimit:8,font:{size:9}}},
+                y:{min:0,max:axisMax,grid:{color:'#eef1f5'},ticks:{font:{size:9},callback:v=>fmtN(v)}}}
+      }
+    });
+    renderTrendRegion(term, mode);
+    const note = document.getElementById('trend-source-note');
+    if(note) note.textContent = `${GOOGLE_TRENDS.sourceLabel}. Angka menunjukkan indeks minat pencarian relatif, bukan volume absolut; skala grafik tren berubah mengikuti keyword yang dipilih.`;
+  };
+  select.onchange = draw;
+  if(regionMode) regionMode.onchange = draw;
+  draw();
+}
 
 function buildSignals(){
   const macro = {
@@ -1065,25 +1237,21 @@ function buildSignals(){
     car_sales_yoy:DETAIL_NAT.car_sales_yoy ?? null
   };
   const sigs = [
-    {t:'PMI Manufaktur (indeks)', v:fmt1(macro.pmi), d:`${macro.label}: indeks ${fmt1(macro.pmi)}. Nilai di bawah 50 menunjukkan kontraksi aktivitas manufaktur.`, lvl: macro.pmi<50?'high':'low', score: macro.pmi<50?3:1},
-    {t:'BI Rate (%)', v:fmt1(macro.bi_rate)+'%', d:`${macro.label}: ${fmt1(macro.bi_rate)}%. Suku bunga tinggi menjaga tekanan biaya pembiayaan.`, lvl: macro.bi_rate>=5.75?'high':macro.bi_rate>=5.5?'med':'low', score: macro.bi_rate>=5.75?3:macro.bi_rate>=5.5?2:1},
-    {t:'Kurs (USD/IDR)', v:'Rp'+fmtN(macro.kurs), d:`${macro.label}: Rp${fmtN(macro.kurs)} per USD. Kurs tinggi menaikkan biaya input impor dan tekanan margin.`, lvl: macro.kurs>17000?'high':macro.kurs>16500?'med':'low', score: macro.kurs>17000?3:macro.kurs>16500?2:1},
-    {t:'Harga Minyak Brent (USD/barrel)', v:'USD '+fmt1(macro.brent), d:`${macro.label}: USD ${fmt1(macro.brent)}/barrel. Harga energi yang tinggi dapat menekan biaya produksi dan logistik.`, lvl: macro.brent>85?'med':'low', score: macro.brent>85?2:1},
-    {t:'IHPB (% YoY)', v:fmt1(macro.ihpb_yoy)+'%', d:`${macro.label}: ${fmt1(macro.ihpb_yoy)}% YoY. Kenaikan harga produsen memperbesar tekanan biaya produksi.`, lvl: macro.ihpb_yoy>5?'med':'low', score: macro.ihpb_yoy>5?2:1},
-    {t:'Nilai Ekspor (% YoY)', v:fmt1(macro.export_yoy)+'%', d:`${macro.label}: ${fmt1(macro.export_yoy)}% YoY. Pelemahan ekspor dapat memberi tekanan pada sektor berorientasi ekspor.`, lvl: macro.export_yoy<0?'high':'low', score: macro.export_yoy<0?3:1},
-    {t:'Penjualan Mobil (% YoY)', v:macro.car_sales_yoy==null?'?':fmt1(macro.car_sales_yoy)+'%', d:`${macro.label}: ${macro.car_sales_yoy==null?'data YoY belum tersedia':fmt1(macro.car_sales_yoy)+'% YoY'}. Penjualan mobil memberi sinyal permintaan domestik barang tahan lama.`, lvl: macro.car_sales_yoy!=null && macro.car_sales_yoy<0?'med':'low', score: macro.car_sales_yoy!=null && macro.car_sales_yoy<0?2:1},
+    {t:'PMI Manufaktur (indeks)', v:fmt1(macro.pmi), d:`${macro.label}: indeks ${fmt1(macro.pmi)}. Nilai di bawah 50 menunjukkan kontraksi aktivitas manufaktur.`, score: macro.pmi<50?3:1},
+    {t:'Kurs (USD/IDR)', v:'Rp'+fmtN(macro.kurs), d:`${macro.label}: Rp${fmtN(macro.kurs)} per USD. Kurs tinggi menaikkan biaya input impor dan tekanan margin.`, score: macro.kurs>17000?3:macro.kurs>16500?2:1},
+    {t:'BI Rate (%)', v:fmt1(macro.bi_rate)+'%', d:`${macro.label}: ${fmt1(macro.bi_rate)}%. Suku bunga mempengaruhi biaya pembiayaan dan keputusan produksi.`, score: macro.bi_rate>=5.75?3:macro.bi_rate>=5.5?2:1},
+    {t:'Harga Minyak Brent (USD/barrel)', v:'USD '+fmt1(macro.brent), d:`${macro.label}: USD ${fmt1(macro.brent)}/barrel. Harga energi memberi tekanan pada biaya produksi dan logistik.`, score: macro.brent>85?2:1},
+    {t:'IHPB (% YoY)', v:fmt1(macro.ihpb_yoy)+'%', d:`${macro.label}: ${fmt1(macro.ihpb_yoy)}% YoY. Kenaikan harga produsen memperbesar tekanan biaya produksi.`, score: macro.ihpb_yoy>5?2:1},
+    {t:'Nilai Ekspor (% YoY)', v:fmt1(macro.export_yoy)+'%', d:`${macro.label}: ${fmt1(macro.export_yoy)}% YoY. Pelemahan ekspor dapat memberi tekanan pada sektor berorientasi ekspor.`, score: macro.export_yoy<0?3:1},
+    {t:'Penjualan Mobil (% YoY)', v:macro.car_sales_yoy==null?'belum tersedia':fmt1(macro.car_sales_yoy)+'%', d:`${macro.label}: ${macro.car_sales_yoy==null?'data YoY belum tersedia':fmt1(macro.car_sales_yoy)+'% YoY'}. Penjualan mobil memberi sinyal permintaan domestik barang tahan lama.`, score: macro.car_sales_yoy!=null && macro.car_sales_yoy<0?2:1},
   ].sort((a,b)=>b.score-a.score);
-  document.getElementById('signal-list').innerHTML = sigs.slice(0,5).map(s=>{
-    const col = RC[s.lvl];
-    const bg = s.lvl==='high'?'var(--high-bg)':s.lvl==='med'?'var(--med-bg)':'var(--low-bg)';
-    return `<div class="signal">
-      <div class="sicon" style="background:${bg}">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z" stroke="${col}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  document.getElementById('signal-list').innerHTML = sigs.slice(0,5).map(s=>`
+    <div class="signal">
+      <div class="sicon" style="background:var(--accent-soft)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 16l5-5 4 4 7-8" stroke="var(--navy-2)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
       <div class="stext"><div class="stitle">${s.t}</div><div class="sdesc"><b>${s.v}</b> - ${s.d}</div></div>
-      <div class="sstat"><span class="badge ${s.lvl}">${bandLabel(s.lvl)}</span></div>
-    </div>`;
-  }).join('');
+    </div>`).join('');
 }
 
 /* ====================== TAB 2 — MAP / BOARD ====================== */
@@ -1245,10 +1413,10 @@ function buildDriver(){
   const sel = document.getElementById('driverSel');
   sel.innerHTML = driverInd.map((d,i)=>`<option value="${i}">${d.name}</option>`).join('');
   sel.addEventListener('change', ()=>drawDriver(+sel.value));
+  const phkSel = document.getElementById('phkMetricSel');
+  if(phkSel) phkSel.addEventListener('change', ()=>drawDriver(+sel.value));
   drawDriver(0);
-  drawCorrBar();
   buildLead();
-  renderProyeksiBoard();
   drawLLI();
 }
 
@@ -1282,7 +1450,7 @@ function drawLLI(){
   });
   document.getElementById('lli-prov-table').innerHTML = `<tr><th>Provinsi</th><th class="num">Indeks</th><th class="num">Target PHK</th></tr>` +
     LLI_DATA.provinceTop.map(r=>`<tr><td style="font-weight:600">${r.province}</td><td class="num" style="color:var(--navy-2)">${fmt1(r.lli)}</td><td class="num" style="color:var(--muted)">${r.phkIndex==null?'—':fmtN(r.phkIndex)}</td></tr>`).join('');
-  document.getElementById('lli-narr').innerHTML = `Indeks tekanan makro nasional naik dari <b>${fmt1(prev.lli)}</b> menjadi <b>${fmt1(latest.lli)}</b> pada ${latest.label} (${mom>=0?'+':''}${fmt1(mom)} poin MoM). Garis oranye menunjukkan <b>MA 6 bulan delta Indeks PHK</b>.`;
+  document.getElementById('lli-narr').innerHTML = `<b>Metode:</b> Indeks Tekanan Makroekonomi mengadopsi pendekatan Leading Economic Indicator (LEI) untuk memantau perubahan kondisi ekonomi yang berpotensi mendahului perubahan PHK. Indeks dibentuk dari <b>PMI, BI Rate, volatilitas kurs, harga minyak Brent, IHPB, ekspor, dan penjualan mobil</b>. Masing-masing indikator ditransformasi, diseragamkan arahnya terhadap risiko PHK, digabungkan menjadi indeks komposit, lalu dinormalisasi dengan <b>Januari 2023 = 100</b>. Pada tingkat nasional, indeks provinsi diagregasikan menggunakan bobot jumlah tenaga kerja. Garis oranye menunjukkan <b>rata-rata bergerak 6 bulan dari perubahan indeks PHK</b>.<br><br><b>Interpretasi:</b> Indeks yang meningkat menunjukkan tekanan makroekonomi yang meningkat dan secara umum mengindikasikan risiko PHK yang lebih tinggi. Indeks nasional bergerak dari <b>${fmt1(prev.lli)}</b> menjadi <b>${fmt1(latest.lli)}</b> pada ${latest.label} (${mom>=0?'+':''}${fmt1(mom)} poin MoM).`;
 }
 /* ---- Proyeksi Risiko PHK Terkini (board + detail) ---- */
 let curProy = null;
@@ -1323,6 +1491,8 @@ function selectProyeksi(p){
 }
 function drawDriver(i){
   const d = driverInd[i];
+  const phkMetric = document.getElementById('phkMetricSel')?.value || 'phk_flow';
+  const phkLabel = phkMetric==='phk_flow' ? 'PHK Flow tercatat' : phkMetric==='jht_claims' ? 'Klaim JHT BPJS TK' : 'Klaim JKP BPJS TK';
   const series = MACRO_DRIVER_SERIES && MACRO_DRIVER_SERIES.length ? MACRO_DRIVER_SERIES : mon;
   const labels = series.map(monLabel);
   const phLookup = Object.fromEntries(mon.map(m=>[m.lab, m.phk_flow]));
@@ -1331,20 +1501,20 @@ function drawDriver(i){
   if(driverChart) driverChart.destroy();
   driverChart = new Chart(document.getElementById('driverChart'),{
     data:{labels, datasets:[
-      {type:'bar', label:'Flow PHK (kiri)', data:ph, yAxisID:'y', backgroundColor:'#cbd6e3', borderRadius:2, order:2},
+      {type:'bar', label:phkLabel+' (kiri)', data:ph, yAxisID:'y', backgroundColor:'#cbd6e3', borderRadius:2, order:2},
       {type:'line', label:d.name+' (kanan)', data:iv, yAxisID:'y1', borderColor:d.col, backgroundColor:d.col,
         borderWidth:2.2, tension:.3, pointRadius:0, order:1, spanGaps:true}
     ]},
     options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
       plugins:{legend:{position:'top'}},
       scales:{x:{ticks:{maxTicksLimit:10,font:{size:9}},grid:{display:false}},
-        y:{position:'left',title:{display:true,text:'Flow PHK',font:{size:10}},grid:{color:'#eef1f5'}},
+        y:{position:'left',title:{display:true,text:phkLabel,font:{size:10}},grid:{color:'#eef1f5'}},
         y1:{position:'right',title:{display:true,text:d.name,font:{size:10}},grid:{display:false}}}}
   });
-  const nameMap = {pmi:'PMI Manufaktur',ekspor:'Ekspor',kurs:'Kurs Rupiah',bi_rate:'BI Rate',npl:'NPL',ihpb:'IHPB',ihk:'IHK (Harga Konsumen)',impor:'Impor',brent:'Harga Minyak Brent',car_sales:'Penjualan Mobil'};
-  const key = nameMap[d.k];
-  const c = (key && key in LEAD_L1) ? LEAD_L1[key] : null;
-  document.getElementById('driver-corr').innerHTML = '';
+  const first = series.find(m=>phLookup[m.lab]!=null || m.phk_flow!=null);
+  const last = [...series].reverse().find(m=>phLookup[m.lab]!=null || m.phk_flow!=null);
+  const period = first && last ? `${monLabel(first)} sampai ${monLabel(last)}` : 'periode mengikuti data tersedia';
+  document.getElementById('driver-corr').innerHTML = `Seri aktif: <b>${phkLabel}</b>. Periode tampilan: ${period}. Data klaim JHT dan JKP BPJS TK ditemukan pada <b>Database (Tahun)</b>, tetapi belum tersedia dalam frekuensi bulanan untuk dibandingkan langsung dengan indikator makro bulanan.`;
 }
 
 function drawCorrBar(){
@@ -1393,12 +1563,12 @@ function buildLead(){
     }).join('');
     return `<div class="lead-row-label">${r.label}</div><div class="lead-row-cells">${cells}</div>`;
   }).join('');
-  const axis = `<div></div><div class="lead-axis">${lagCols.map(l=>`<span>${[0,4,8,12].includes(l)?l:''}</span>`).join('')}</div><div></div><div class="lead-x-title">Lag (bulan)</div>`;
+  const axis = `<div></div><div class="lead-axis">${lagCols.map(l=>`<span>${l}</span>`).join('')}</div><div></div><div class="lead-x-title">Lag (bulan)</div>`;
   const legend = `<div class="lead-legend"><div class="lead-legend-title">Korelasi</div><div class="lead-legend-wrap"><div class="lead-legend-bar"></div><div class="lead-legend-scale"><span>0,2</span><span>0</span><span>-0,1</span></div></div><div style="font-size:10px;color:var(--muted)">Merah = positif<br>Hijau = negatif</div></div>`;
   const el = document.getElementById('leadTable');
   el.className = 'lead-heatmap';
-  el.innerHTML = `<div><div class="lead-chart-title">Pooled Cross-Correlation antara PHK dan Indikator Makro</div><div class="lead-chart-sub">Korelasi pada berbagai lag bulanan; warna menunjukkan arah dan kekuatan hubungan.</div><div class="lead-panel">${body}${axis}</div></div>${legend}`;
-  document.getElementById('lead-interp').innerHTML = '';
+  el.innerHTML = `<div><div class="lead-chart-title">Pooled Cross-Correlation antara PHK dan Indikator Makro</div><div class="lead-chart-sub">Korelasi pada lag 0-12 bulan; warna menunjukkan arah dan kekuatan hubungan.</div><div class="lead-panel">${body}${axis}</div></div>${legend}`;
+  document.getElementById('lead-interp').innerHTML = `<b>Metode:</b> Korelasi Pearson dihitung antara setiap indikator makro pada lag 0-12 bulan dan PHK bulanan menggunakan seluruh observasi provinsi-bulan (pooled cross-correlation). Transformasi variabel disesuaikan dengan karakteristik masing-masing indikator. Hasil menunjukkan <b>arah dan pola hubungan</b> antarvariabel, serta memberi indikasi <b>jeda waktu (<em>lead time</em>)</b> antara perubahan indikator dan PHK. <b>Korelasi tidak berarti hubungan kausal</b> dan perlu dilengkapi analisis regresi lanjutan untuk mengontrol faktor lain.<br><br><b>Interpretasi:</b> <span style="color:#980000;font-weight:700">Merah</span> menunjukkan hubungan positif dan <span style="color:#38761d;font-weight:700">hijau</span> menunjukkan hubungan negatif; warna yang semakin pekat menunjukkan korelasi yang semakin kuat. Sebagai contoh, <b>IHPB</b> menunjukkan korelasi positif dengan PHK pada hampir seluruh lag, <b>BI Rate</b> juga positif dan relatif konsisten, sementara <b>PMI</b> cenderung negatif sehingga aktivitas manufaktur yang lebih kuat berkaitan dengan PHK yang lebih rendah.`;
 }
 /* provincial clusters - sourced from Literature Review LPI.xlsx, sheet Klaster Provinsi & Rekomendasi */
 const CLUSTER_REKOM = {"struktural":[{"group":"Ekonomi Industri Berorientasi Perdagangan","avgLpi":56.8,"provinces":"Maluku Utara, Kepulauan Riau, Sulawesi Tengah, Banten, Papua Barat, Jawa Barat, Jawa Timur, DKI Jakarta","driver":"Bergantung pada aktivitas manufaktur, ekspor, dan impor sehingga rentan terhadap perlambatan perdagangan global dan fluktuasi nilai tukar.","indicators":"Share ekspor, share impor, share sektor manufaktur, PMI, nilai ekspor, nilai impor, kurs USD/IDR","policy":"Diversifikasi pasar ekspor, memperkuat substitusi impor, dan mendorong investasi industri bernilai tambah tinggi."},{"group":"Ekonomi dengan Basis Industri Berkembang","avgLpi":47.4,"provinces":"Kalimantan Timur, Jawa Tengah, Riau, Kalimantan Selatan, Papua Tengah, Sumatera Selatan, Kep. Bangka Belitung, Kalimantan Utara, Sumatera Utara","driver":"Industrialisasi berkembang, tetapi masih bergantung pada investasi dan permintaan domestik.","indicators":"Share sektor manufaktur, PMI, BI rate, penjualan mobil","policy":"Mendorong investasi industri, meningkatkan produktivitas manufaktur, dan mengembangkan kawasan industri."},{"group":"Ekonomi Terdiversifikasi","avgLpi":42.0,"provinces":"Sulawesi Tenggara, Kalimantan Tengah, Lampung, DI Yogyakarta, Sulawesi Selatan, Kalimantan Barat, Bali, Papua Barat Daya, Sulawesi Utara","driver":"Struktur ekonomi relatif beragam sehingga lebih tahan terhadap guncangan pada sektor tertentu.","indicators":"Share sektor manufaktur, BI rate, IHPB","policy":"Menjaga iklim investasi, memperkuat diversifikasi ekonomi, dan mengembangkan sektor bernilai tambah tinggi."},{"group":"Ekonomi Domestik Berbasis Pertanian","avgLpi":26.6,"provinces":"Sumatera Barat, Jambi, Nusa Tenggara Barat, Sulawesi Barat, Maluku, Aceh, Papua, Gorontalo, Nusa Tenggara Timur","driver":"Didominasi sektor pertanian dan pasar domestik sehingga lebih sensitif terhadap produktivitas dan harga komoditas.","indicators":"Share sektor pertanian, IHPB, harga minyak dunia","policy":"Mendorong hilirisasi komoditas, meningkatkan produktivitas pertanian, dan mengembangkan industri pengolahan."}],"pasarKerja":[{"group":"Pasar Kerja Berbasis Formal","avgLpi":58.5,"provinces":"DKI Jakarta, Kepulauan Riau, Banten, Bali, Kalimantan Timur, Kalimantan Utara, Jawa Barat, DI Yogyakarta, Kalimantan Tengah","driver":"Pangsa pekerja formal tinggi sehingga perlambatan ekonomi lebih cepat tercermin dalam PHK formal.","indicators":"Share pekerja formal, share pekerja manufaktur, share pekerja penuh waktu, rata-rata upah pekerja, PMI ","policy":"Memperkuat reskilling dan upskilling, meningkatkan layanan job matching, serta memperluas cakupan Jamsosnaker termasuk Program JKP."},{"group":"Pasar Kerja dengan Formalisasi Berkembang","avgLpi":37.9,"provinces":"Papua Barat Daya, Jawa Tengah, Kep. Bangka Belitung, Sulawesi Utara, Papua, Jawa Timur, Gorontalo, Kalimantan Selatan, Papua Selatan, Riau","driver":"Formalisasi pasar kerja terus meningkat, tetapi masih bergantung pada pertumbuhan investasi dan aktivitas industri.","indicators":"Share pekerja formal, share pekerja manufaktur, rata-rata upah pekerja, PMI, BI rate","policy":"Mendorong penciptaan pekerjaan formal, memperluas pelatihan vokasi, serta memperluas kepesertaan Jamsosnaker."},{"group":"Pasar Kerja dalam Transisi","avgLpi":49.5,"provinces":"Maluku Utara, Sumatera Utara, Sulawesi Tenggara, Sulawesi Selatan, Sulawesi Tengah, Jambi, Kalimantan Barat, Sumatera Selatan, Maluku","driver":"Komposisi pekerja formal dan informal relatif seimbang sehingga rentan terhadap pergeseran status pekerjaan.","indicators":"Share pekerja formal, share setengah penganggur, TPT, BI rate, PMI ","policy":"Memperkuat pelatihan lintas sektor, meningkatkan layanan pasar kerja, serta memperluas cakupan Jamsosnaker untuk mendukung transisi kerja."},{"group":"Pasar Kerja Informal Berbasis Pertanian","avgLpi":27.2,"provinces":"Sumatera Barat, Papua Barat, Bengkulu, Lampung, Aceh, Nusa Tenggara Barat, Nusa Tenggara Timur, Sulawesi Barat, Papua Pegunungan, Papua Tengah","driver":"Didominasi pekerja informal dan sektor pertanian sehingga penyesuaian lebih banyak terjadi melalui penurunan pendapatan daripada PHK formal.","indicators":"Share setengah penganggur, TPT, rata-rata upah pekerja, IHPB, harga minyak dunia","policy":"Memperluas Jamsosnaker bagi pekerja informal, memperkuat pelatihan dan pemberdayaan usaha mikro, serta mendorong transisi menuju pekerjaan formal."}]};
