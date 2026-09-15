@@ -770,7 +770,7 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
 
   <div class="methbar">
     <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#2563eb" stroke-width="1.6"></circle><path d="M12 8v0M12 11v5" stroke="#2563eb" stroke-width="1.8" stroke-linecap="round"></path></svg>
-    <div><b>Cara kerja.</b> User mengatur shock x<sub>j</sub>, dashboard mengalikannya dengan elastisitas sektor-provinsi IndoTERM yang dikalibrasi offline, lalu menskalakan hasilnya dengan baseline employment L<sub>0</sub>. Struktur sektor dan baseline employment mengikuti 52 sektor referensi dan matriks sektor-provinsi dari <code>lo.csv</code>; elastisitas dibaca dari 37 hasil simulasi model.</div>
+    <div><b>Cara kerja.</b> User mengatur shock x<sub>j</sub>, dashboard mengalikannya dengan elastisitas sektor-provinsi IndoTERM yang dikalibrasi offline, lalu menskalakan hasilnya dengan baseline employment L<sub>0</sub>. Struktur sektor dan baseline employment mengikuti 52 sektor referensi dan matriks sektor-provinsi dari <code>lo.csv</code>; elastisitas dibaca dari 38 hasil simulasi model.</div>
   </div>
 
   <div class="sim-mode-grid" role="group" aria-label="Mode monitor sektor-provinsi">
@@ -796,7 +796,7 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
       </div>
       <div class="card">
         <div class="card-head"><div><h3>Province Heatmap</h3><p class="csub">Empat peta provinsi: overall dan kontribusi masing-masing theme. Nilai peta menjumlahkan 52 sektor tanpa agregasi sektor.</p></div>
-          <span class="gapnote" style="font-size:10px">elastisitas IndoTERM · 37 shock</span></div>
+          <span class="gapnote" style="font-size:10px">elastisitas IndoTERM · 38 shock</span></div>
         <div class="sim-map-grid" id="simProvinceMaps"></div>
         <div class="card-head" style="margin:12px 0 6px"><div><h3>Tabel Sektor × Provinsi</h3><p class="csub">Sel = estimasi perubahan tenaga kerja per sektor-provinsi. Default menampilkan 10 provinsi dengan tekanan terbesar dari skenario aktif.</p></div></div>
         <div class="toolbar" style="margin:4px 0 10px;gap:8px;flex-wrap:wrap">
@@ -886,7 +886,7 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
 
   <div class="section-label">Catatan implementasi <span class="ln"></span></div>
   <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
-    <div class="card"><h3>Elasticity tensor</h3><p style="font-size:12px;margin:0;color:var(--muted)">Tensor IndoTERM mencakup 52 sektor × 34 wilayah model untuk 37 shock. Empat provinsi hasil pemekaran Papua menggunakan elastisitas wilayah induknya.</p></div>
+    <div class="card"><h3>Elasticity tensor</h3><p style="font-size:12px;margin:0;color:var(--muted)">Tensor IndoTERM mencakup 52 sektor × 34 wilayah model untuk 38 shock. Empat provinsi hasil pemekaran Papua menggunakan elastisitas wilayah induknya.</p></div>
     <div class="card"><h3>Tradable sector set K</h3><p style="font-size:12px;margin:0;color:var(--muted)">Verifikasi sektor tradable berdasarkan export/output ratio dan tetapkan threshold, misalnya 1% atau 5%.</p></div>
     <div class="card"><h3>Mapping IPR</h3><p style="font-size:12px;margin:0;color:var(--muted)">Tujuh matriks shock permintaan domestik dari pipeline IndoTERM dipetakan langsung ke 52 sektor, termasuk kategori barang lainnya.</p></div>
     <div class="card"><h3>34 vs 38 provinsi</h3><p style="font-size:12px;margin:0;color:var(--muted)">Tensor IndoTERM memakai 34 wilayah model. Empat provinsi hasil pemekaran Papua memakai elastisitas wilayah induk; Kepulauan Bangka Belitung dipadankan dengan nama wilayah model Bangka Belitung.</p></div>
@@ -3741,11 +3741,12 @@ const CGE_SHOCKS = [
   {theme:'t3',id:'ipr_fuel',name:'Bahan bakar kendaraan',unit:' pp',min:-20,max:20,step:1},
   {theme:'t3',id:'ipr_recreation',name:'Barang budaya & rekreasi',unit:' pp',min:-20,max:20,step:1},
   {theme:'t3',id:'ipr_ict',name:'Peralatan informasi & komunikasi',unit:' pp',min:-20,max:20,step:1},
-  {theme:'t3',id:'ipr_household',name:'Perlengkapan rumah tangga lain',unit:' pp',min:-20,max:20,step:1}
+  {theme:'t3',id:'ipr_household',name:'Perlengkapan rumah tangga lain',unit:' pp',min:-20,max:20,step:1},
+  {theme:'t3',id:'ipr_other',name:'Barang lainnya',unit:' pp',min:-20,max:20,step:1}
 ];
 const THEME_LABELS = {t1:'Theme 1 · Harga komoditas', t2:'Theme 2 · Mitra dagang', t3:'Theme 3 · Permintaan domestik'};
 const cgeState = {}; CGE_SHOCKS.forEach(s=>cgeState[s.id]=0);
-const LIVE_PLACEHOLDER_SHOCKS = {cpo:4,coal:-6,nickel:3,copper:-2,electronics:-1,rubber:2,oilgas:5,china:-0.5,us:0.25,japan:-0.25,singapore:0.25,malaysia:0,india:0.5,korea:-0.25,thailand:0,taiwan:-0.25,vietnam:0.25,ipr_food:2,ipr_clothing:-3,ipr_parts:-1,ipr_fuel:1,ipr_recreation:-2,ipr_ict:1,ipr_household:-1};
+const LIVE_PLACEHOLDER_SHOCKS = {cpo:4,coal:-6,nickel:3,copper:-2,electronics:-1,rubber:2,oilgas:5,china:-0.5,us:0.25,japan:-0.25,singapore:0.25,malaysia:0,india:0.5,korea:-0.25,thailand:0,taiwan:-0.25,vietnam:0.25,ipr_food:2,ipr_clothing:-3,ipr_parts:-1,ipr_fuel:1,ipr_recreation:-2,ipr_ict:1,ipr_household:-1,ipr_other:-1};
 let simMode = 'live';
 const LO_EMP = (()=>{
   const m = {};

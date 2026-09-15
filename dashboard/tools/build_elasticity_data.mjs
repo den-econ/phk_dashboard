@@ -62,7 +62,8 @@ const shockSpecs = [
   ['ipr_recreation','t3','eta_t3_cultural_rec.csv'],
   ['ipr_ict','t3','eta_t3_ict_equipment.csv'],
   ['ipr_household','t3','eta_t3_household_equip.csv'],
-  ['ipr_parts','t3','eta_t3_spare_parts.csv']
+  ['ipr_parts','t3','eta_t3_spare_parts.csv'],
+  ['ipr_other','t3','eta_t3_other_goods.csv']
 ];
 
 function sha256(file) {
