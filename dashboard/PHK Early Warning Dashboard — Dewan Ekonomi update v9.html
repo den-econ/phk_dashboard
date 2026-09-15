@@ -770,7 +770,7 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
 
   <div class="methbar">
     <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#2563eb" stroke-width="1.6"></circle><path d="M12 8v0M12 11v5" stroke="#2563eb" stroke-width="1.8" stroke-linecap="round"></path></svg>
-    <div><b>Cara kerja.</b> User mengatur shock x<sub>j</sub>, dashboard mengalikannya dengan elastisitas sektor-provinsi yang dikalibrasi offline, lalu menskalakan hasilnya dengan baseline employment L<sub>0</sub>. Struktur sektor dan baseline employment pada tab ini mengikuti 52 sektor referensi dan matriks sektor-provinsi dari <code>lo.csv</code>. Angka simulasi bersifat siap-ganti setelah tensor elastisitas resmi tersedia.</div>
+    <div><b>Cara kerja.</b> User mengatur shock x<sub>j</sub>, dashboard mengalikannya dengan elastisitas sektor-provinsi IndoTERM yang dikalibrasi offline, lalu menskalakan hasilnya dengan baseline employment L<sub>0</sub>. Struktur sektor dan baseline employment mengikuti 52 sektor referensi dan matriks sektor-provinsi dari <code>lo.csv</code>; elastisitas dibaca dari 37 hasil simulasi model.</div>
   </div>
 
   <div class="sim-mode-grid" role="group" aria-label="Mode monitor sektor-provinsi">
@@ -796,7 +796,7 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
       </div>
       <div class="card">
         <div class="card-head"><div><h3>Province Heatmap</h3><p class="csub">Empat peta provinsi: overall dan kontribusi masing-masing theme. Nilai peta menjumlahkan 52 sektor tanpa agregasi sektor.</p></div>
-          <span class="gapnote" style="font-size:10px">menunggu tensor elastisitas resmi</span></div>
+          <span class="gapnote" style="font-size:10px">elastisitas IndoTERM · 37 shock</span></div>
         <div class="sim-map-grid" id="simProvinceMaps"></div>
         <div class="card-head" style="margin:12px 0 6px"><div><h3>Tabel Sektor × Provinsi</h3><p class="csub">Sel = estimasi perubahan tenaga kerja per sektor-provinsi. Default menampilkan 10 provinsi dengan tekanan terbesar dari skenario aktif.</p></div></div>
         <div class="toolbar" style="margin:4px 0 10px;gap:8px;flex-wrap:wrap">
@@ -843,7 +843,7 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
     </div>
     <div class="card"><h3><span class="stepnum">2</span> Mitra dagang</h3>
       <p class="csub">Top 10 trading partners</p>
-      <p style="font-size:12.5px;margin:0;color:var(--ink)">Revisi pertumbuhan ekonomi mitra dagang diterjemahkan menjadi shock permintaan ekspor. Untuk setiap sektor tradable, shock dihitung sebagai rata-rata tertimbang berdasarkan pangsa ekspor ke negara tujuan.</p>
+      <p style="font-size:12.5px;margin:0;color:var(--ink)">Revisi pertumbuhan ekonomi mitra dagang diterjemahkan menjadi shock permintaan ekspor. Sepuluh input negara diringkas menjadi shock nasional dengan bobot pangsa mitra dagang, lalu diterapkan pada penjumlahan 23 matriks elastisitas permintaan ekspor IndoTERM.</p>
       <div class="eqn">q<sup>T</sup><sub>k</sub> = Σ<sub>c</sub> w<sub>k,c</sub> · dg<sub>c</sub></div>
     </div>
     <div class="card"><h3><span class="stepnum">3</span> Permintaan domestik</h3>
@@ -880,20 +880,21 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
     <div class="card limit"><h3>1 · Linearitas lokal</h3><p style="font-size:12.5px;margin:0;color:var(--ink)">Elastisitas diukur pada shock kecil dan diaplikasikan ke shock aktual. Jika shock komoditas sangat besar, slope 1% belum tentu tetap valid.</p></div>
     <div class="card limit"><h3>2 · Separabilitas aditif</h3><p style="font-size:12.5px;margin:0;color:var(--ink)">Efek antar-shock dijumlahkan, sehingga interaksi antar-shock belum ditangkap. Ini perlu diuji dengan benchmark model penuh pada kombinasi shock historis.</p></div>
     <div class="card limit"><h3>3 · Theme-specific elasticity</h3><p style="font-size:12.5px;margin:0;color:var(--ink)">Shock harga komoditas, permintaan ekspor, dan permintaan domestik tidak boleh memakai elastisitas yang sama begitu saja karena masuk lewat kanal ekonomi yang berbeda.</p></div>
-    <div class="card limit"><h3>4 · Vintage data</h3><p style="font-size:12.5px;margin:0;color:var(--ink)">WEO hanya update beberapa kali setahun, IPR bulanan, dan komoditas bisa bulanan/harian. Dashboard perlu menampilkan vintage masing-masing theme.</p></div>
+    <div class="card limit"><h3>4 · Agregasi mitra dagang</h3><p style="font-size:12.5px;margin:0;color:var(--ink)">Belum tersedia bobot perdagangan menurut pasangan negara × komoditas. Karena itu, sepuluh shock mitra diringkas memakai bobot nasional dan diterapkan pada agregat 23 matriks permintaan ekspor.</p></div>
+    <div class="card limit"><h3>5 · Vintage data</h3><p style="font-size:12.5px;margin:0;color:var(--ink)">WEO hanya update beberapa kali setahun, IPR bulanan, dan komoditas bisa bulanan/harian. Dashboard perlu menampilkan vintage masing-masing theme.</p></div>
   </div>
 
-  <div class="section-label">Open items <span class="ln"></span></div>
+  <div class="section-label">Catatan implementasi <span class="ln"></span></div>
   <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
-    <div class="card"><h3>Elasticity tensor</h3><p style="font-size:12px;margin:0;color:var(--muted)">Masukkan tensor final untuk Theme 1, Theme 2, dan Theme 3 agar angka simulasi menjadi final.</p></div>
+    <div class="card"><h3>Elasticity tensor</h3><p style="font-size:12px;margin:0;color:var(--muted)">Tensor IndoTERM mencakup 52 sektor × 34 wilayah model untuk 37 shock. Empat provinsi hasil pemekaran Papua menggunakan elastisitas wilayah induknya.</p></div>
     <div class="card"><h3>Tradable sector set K</h3><p style="font-size:12px;margin:0;color:var(--muted)">Verifikasi sektor tradable berdasarkan export/output ratio dan tetapkan threshold, misalnya 1% atau 5%.</p></div>
-    <div class="card"><h3>Mapping IPR</h3><p style="font-size:12px;margin:0;color:var(--muted)">Finalisasi mapping tujuh kategori IPR ke 52 sektor, termasuk kategori yang perlu split lintas sektor.</p></div>
-    <div class="card"><h3>34 vs 38 provinsi</h3><p style="font-size:12px;margin:0;color:var(--muted)">Metodologi menyebut 34 provinsi, sementara <code>lo.csv</code> berisi 38 provinsi terbaru plus agregat Indonesia. Perlu keputusan harmonisasi.</p></div>
+    <div class="card"><h3>Mapping IPR</h3><p style="font-size:12px;margin:0;color:var(--muted)">Tujuh matriks shock permintaan domestik dari pipeline IndoTERM dipetakan langsung ke 52 sektor, termasuk kategori barang lainnya.</p></div>
+    <div class="card"><h3>34 vs 38 provinsi</h3><p style="font-size:12px;margin:0;color:var(--muted)">Tensor IndoTERM memakai 34 wilayah model. Empat provinsi hasil pemekaran Papua memakai elastisitas wilayah induk; Kepulauan Bangka Belitung dipadankan dengan nama wilayah model Bangka Belitung.</p></div>
   </div>
 
   <div class="methbar" style="margin-top:18px">
     <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#2563eb" stroke-width="1.6"></circle><path d="M12 8v0M12 11v5" stroke="#2563eb" stroke-width="1.8" stroke-linecap="round"></path></svg>
-    <div><b>Sumber.</b> Methodological note Pak Arief tentang real-time sectoral-regional layoff-risk dashboard (25 Juni 2026) dan <code>lo.csv</code> untuk baseline employment 52 sektor. Istilah teknis model disimpan di metodologi; UI utama difokuskan pada shock, elastisitas, dan risiko PHK.</div>
+    <div><b>Sumber.</b> Methodological note Pak Arief tentang real-time sectoral-regional layoff-risk dashboard (25 Juni 2026), <code>lo.csv</code> untuk baseline employment 52 sektor, serta 37 matriks elastisitas hasil pipeline IndoTERM. Istilah teknis model disimpan di metodologi; UI utama difokuskan pada shock, elastisitas, dan risiko PHK.</div>
   </div>
 </section>
 
@@ -906,6 +907,7 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
 <script src="dashboard_ccf_data.js"></script>
 <script src="dashboard_province_detail_data.js"></script>
 <script src="dashboard_geojson_data.js"></script>
+<script src="dashboard_elasticity_data.js"></script>
 <script>
 /* =====================================================================
    DATA  — diturunkan dari workbook "Data untuk PHK Dashboard.xlsx"
@@ -1938,9 +1940,8 @@ function drawKursExposure(key){
   }
 }
 /* ====================== TAB 5 — SHOCK SIMULATION ================= */
-/* Front-end simulation shell following Pak Arief's PDF: three shock themes,
-   52-sector reference structure, and national baseline employment from lo.csv.
-   Official sector-province elasticity tensors are still an external input. */
+/* Front-end simulation following Pak Arief's framework: three shock themes,
+   52-sector baseline employment from lo.csv, and 37 IndoTERM elasticity matrices. */
 const LO_SECTORS = [
   {code:1,name:'Tanaman pangan',emp:18377474},{code:2,name:'Tanaman hortikultura',emp:6436551},{code:3,name:'Tanaman perkebunan',emp:7969756},{code:4,name:'Peternakan',emp:5358814},
   {code:5,name:'Jasa pertanian',emp:2567563},{code:6,name:'Kehutanan',emp:643309},{code:7,name:'Perikanan',emp:2066959},{code:8,name:'Harga batu bara',emp:319270},
@@ -3722,25 +3723,25 @@ const INDONESIA_PROV_GEOJSON = {"type":"FeatureCollection","features":[{"type":"
 const CANDIDATE_K = new Set([3,7,8,9,10,11,12,14,15,16,19,20,21,22,23,24,25,26]);
 const PARTNER_WEIGHTS = {china:.24,us:.13,japan:.10,singapore:.09,malaysia:.08,india:.08,korea:.07,thailand:.06,taiwan:.05,vietnam:.05};
 const CGE_SHOCKS = [
-  {theme:'t1',id:'cpo',name:'Harga CPO / minyak sawit',unit:'%',min:-30,max:30,step:1,targets:{3:.16,12:.04}},
-  {theme:'t1',id:'coal',name:'Harga batu bara',unit:'%',min:-30,max:30,step:1,targets:{8:.18,35:.02}},
-  {theme:'t1',id:'nickel',name:'Harga nikel',unit:'%',min:-30,max:30,step:1,targets:{22:.15,20:.03}},
-  {theme:'t1',id:'copper',name:'Harga tembaga',unit:'%',min:-30,max:30,step:1,targets:{22:.12,23:.04}},
-  {theme:'t1',id:'electronics',name:'Harga elektronik / semikonduktor',unit:'%',min:-30,max:30,step:1,targets:{24:.14,23:.03}},
-  {theme:'t1',id:'rubber',name:'Harga karet',unit:'%',min:-30,max:30,step:1,targets:{21:.16,3:.03}},
-  {theme:'t1',id:'oilgas',name:'Harga minyak/gas',unit:'%',min:-30,max:30,step:1,targets:{9:.16,19:.08}},
+  {theme:'t1',id:'cpo',name:'Harga CPO / minyak sawit',unit:'%',min:-30,max:30,step:1},
+  {theme:'t1',id:'coal',name:'Harga batu bara',unit:'%',min:-30,max:30,step:1},
+  {theme:'t1',id:'nickel',name:'Harga nikel',unit:'%',min:-30,max:30,step:1},
+  {theme:'t1',id:'copper',name:'Harga tembaga',unit:'%',min:-30,max:30,step:1},
+  {theme:'t1',id:'electronics',name:'Harga elektronik / semikonduktor',unit:'%',min:-30,max:30,step:1},
+  {theme:'t1',id:'rubber',name:'Harga karet',unit:'%',min:-30,max:30,step:1},
+  {theme:'t1',id:'oilgas',name:'Harga minyak/gas',unit:'%',min:-30,max:30,step:1},
   {theme:'t2',id:'china',name:'Tiongkok',unit:' pp',min:-5,max:5,step:.25},{theme:'t2',id:'us',name:'Amerika Serikat',unit:' pp',min:-5,max:5,step:.25},
   {theme:'t2',id:'japan',name:'Jepang',unit:' pp',min:-5,max:5,step:.25},{theme:'t2',id:'singapore',name:'Singapura',unit:' pp',min:-5,max:5,step:.25},
   {theme:'t2',id:'malaysia',name:'Malaysia',unit:' pp',min:-5,max:5,step:.25},{theme:'t2',id:'india',name:'India',unit:' pp',min:-5,max:5,step:.25},
   {theme:'t2',id:'korea',name:'Korea Selatan',unit:' pp',min:-5,max:5,step:.25},{theme:'t2',id:'thailand',name:'Thailand',unit:' pp',min:-5,max:5,step:.25},
   {theme:'t2',id:'taiwan',name:'Taiwan',unit:' pp',min:-5,max:5,step:.25},{theme:'t2',id:'vietnam',name:'Vietnam',unit:' pp',min:-5,max:5,step:.25},
-  {theme:'t3',id:'ipr_food',name:'Makanan, minuman, tembakau',unit:' pp',min:-20,max:20,step:1,targets:{12:.12,13:.05,41:.03}},
-  {theme:'t3',id:'ipr_clothing',name:'Sandang',unit:' pp',min:-20,max:20,step:1,targets:{14:.14,15:.08,33:.02}},
-  {theme:'t3',id:'ipr_parts',name:'Suku cadang & aksesori',unit:' pp',min:-20,max:20,step:1,targets:{25:.10,32:.04}},
-  {theme:'t3',id:'ipr_fuel',name:'Bahan bakar kendaraan',unit:' pp',min:-20,max:20,step:1,targets:{9:.08,19:.05,35:.03}},
-  {theme:'t3',id:'ipr_recreation',name:'Barang budaya & rekreasi',unit:' pp',min:-20,max:20,step:1,targets:{27:.06,33:.04,48:.03}},
-  {theme:'t3',id:'ipr_ict',name:'Peralatan informasi & komunikasi',unit:' pp',min:-20,max:20,step:1,targets:{24:.10,42:.03}},
-  {theme:'t3',id:'ipr_household',name:'Perlengkapan rumah tangga lain',unit:' pp',min:-20,max:20,step:1,targets:{26:.10,27:.04}}
+  {theme:'t3',id:'ipr_food',name:'Makanan, minuman, tembakau',unit:' pp',min:-20,max:20,step:1},
+  {theme:'t3',id:'ipr_clothing',name:'Sandang',unit:' pp',min:-20,max:20,step:1},
+  {theme:'t3',id:'ipr_parts',name:'Suku cadang & aksesori',unit:' pp',min:-20,max:20,step:1},
+  {theme:'t3',id:'ipr_fuel',name:'Bahan bakar kendaraan',unit:' pp',min:-20,max:20,step:1},
+  {theme:'t3',id:'ipr_recreation',name:'Barang budaya & rekreasi',unit:' pp',min:-20,max:20,step:1},
+  {theme:'t3',id:'ipr_ict',name:'Peralatan informasi & komunikasi',unit:' pp',min:-20,max:20,step:1},
+  {theme:'t3',id:'ipr_household',name:'Perlengkapan rumah tangga lain',unit:' pp',min:-20,max:20,step:1}
 ];
 const THEME_LABELS = {t1:'Theme 1 · Harga komoditas', t2:'Theme 2 · Mitra dagang', t3:'Theme 3 · Permintaan domestik'};
 const cgeState = {}; CGE_SHOCKS.forEach(s=>cgeState[s.id]=0);
@@ -3755,6 +3756,23 @@ const LO_EMP = (()=>{
   return m;
 })();
 const SIM_PROVINCES = Object.keys(LO_EMP);
+const SIM_ELASTICITY = window.PHK_ELASTICITY_DATA;
+const SIM_ELASTICITY_PROVINCE_INDEX = new Map((SIM_ELASTICITY?.province_names || []).map((name,index)=>[name,index]));
+const SIM_ELASTICITY_REGION_BRIDGE = {
+  'Kepulauan Bangka Belitung':'Bangka Belitung',
+  'Papua Barat Daya':'Papua Barat',
+  'Papua Selatan':'Papua',
+  'Papua Tengah':'Papua',
+  'Papua Pegunungan':'Papua'
+};
+const SIM_T2_ELASTICITY_IDS = Object.entries(SIM_ELASTICITY?.shocks || {}).filter(([,shock])=>shock.theme==='t2').map(([id])=>id);
+function simModelProvince(province){ return SIM_ELASTICITY_REGION_BRIDGE[province] || province; }
+function simElasticityValue(shockId,sectorCode,province){
+  const shock=SIM_ELASTICITY?.shocks?.[shockId];
+  const provinceIndex=SIM_ELASTICITY_PROVINCE_INDEX.get(simModelProvince(province));
+  const value=shock?.values?.[sectorCode-1]?.[provinceIndex];
+  return Number.isFinite(value) ? value : 0;
+}
 function sectorGroup(code){
   if(code>=1 && code<=7) return 'agri';
   if(code>=8 && code<=11) return 'mining';
@@ -3824,7 +3842,7 @@ function computeProvinceThemeImpact(contrib,sectors,provinces){
   provinces.forEach(prov=>{
     out[prov]={total:0,t1:0,t2:0,t3:0};
     sectors.forEach(sec=>{
-      const emp=((LO_EMP[prov]||{})[sec.code]||0), c=contrib[sec.code];
+      const emp=((LO_EMP[prov]||{})[sec.code]||0), c=contrib[prov][sec.code];
       out[prov].t1 += emp*c.t1/100; out[prov].t2 += emp*c.t2/100; out[prov].t3 += emp*c.t3/100; out[prov].total += emp*c.total/100;
     });
   });
@@ -3858,7 +3876,7 @@ function buildFullSimTablePayload(){
   provinces.forEach(prov=>{
     sectors.forEach(sec=>{
       const emp = ((LO_EMP[prov]||{})[sec.code]||0);
-      const c = contrib[sec.code];
+      const c = contrib[prov][sec.code];
       const delta = emp*c.total/100, t1 = emp*c.t1/100, t2 = emp*c.t2/100, t3 = emp*c.t3/100;
       rows.push({province:prov, sectorCode:sec.code, sector:sec.name, pct:c.total, delta, t1, t2, t3, employment:emp});
     });
@@ -3884,13 +3902,24 @@ function openFullSimTable(){
   window.open('PHK Shock Simulation Full Province Table.html', '_blank');
 }
 function shockContributionBySector(){
-  const out = {}; LO_SECTORS.forEach(s=>out[s.code]={t1:0,t2:0,t3:0,total:0});
-  CGE_SHOCKS.filter(s=>s.theme==='t1'||s.theme==='t3').forEach(sh=>{
-    Object.entries(sh.targets||{}).forEach(([code,coef])=>{ out[+code][sh.theme] += coef*(cgeState[sh.id]||0); });
+  const out={};
+  SIM_PROVINCES.forEach(province=>{
+    out[province]={};
+    LO_SECTORS.forEach(sector=>{ out[province][sector.code]={t1:0,t2:0,t3:0,total:0}; });
   });
-  const tradeShock = Object.entries(PARTNER_WEIGHTS).reduce((sum,[id,w])=>sum+w*(cgeState[id]||0),0);
-  LO_SECTORS.forEach(sec=>{ if(CANDIDATE_K.has(sec.code)) out[sec.code].t2 += .10*tradeShock; });
-  LO_SECTORS.forEach(sec=>{ out[sec.code].total = out[sec.code].t1 + out[sec.code].t2 + out[sec.code].t3; });
+  const directShocks=CGE_SHOCKS.filter(shock=>shock.theme==='t1'||shock.theme==='t3');
+  const partnerWeightTotal=Object.values(PARTNER_WEIGHTS).reduce((sum,value)=>sum+value,0) || 1;
+  const tradeShock=Object.entries(PARTNER_WEIGHTS).reduce((sum,[id,weight])=>sum+weight*(cgeState[id]||0),0)/partnerWeightTotal;
+  SIM_PROVINCES.forEach(province=>{
+    LO_SECTORS.forEach(sector=>{
+      const cell=out[province][sector.code];
+      directShocks.forEach(shock=>{
+        cell[shock.theme]+=simElasticityValue(shock.id,sector.code,province)*(cgeState[shock.id]||0);
+      });
+      cell.t2=SIM_T2_ELASTICITY_IDS.reduce((sum,id)=>sum+simElasticityValue(id,sector.code,province),0)*tradeShock;
+      cell.total=cell.t1+cell.t2+cell.t3;
+    });
+  });
   return out;
 }
 function simProvincePool(){
@@ -3909,7 +3938,7 @@ function simSectorPool(){
 function computeProvinceImpact(contrib, sectors, provinces){
   const out = {};
   provinces.forEach(p=>{
-    out[p] = sectors.reduce((sum,s)=>sum + ((LO_EMP[p]||{})[s.code]||0) * contrib[s.code].total / 100, 0);
+    out[p] = sectors.reduce((sum,s)=>sum + ((LO_EMP[p]||{})[s.code]||0) * contrib[p][s.code].total / 100, 0);
   });
   return out;
 }
@@ -3993,11 +4022,12 @@ function runCGE(){
   let totalHead=0, themeHead={t1:0,t2:0,t3:0}, secHead={}, provHead={};
   let html = `<tr><th class="lbl sim-code">Kode</th><th class="lbl sim-sector">Sektor 52</th>` + provinces.map(p=>`<th class="sim-prov" title="${p}"><span class="vhead">${simProvinceShortName(p)}</span></th>`).join('') + `<th class="sim-total">Total Δ</th></tr>`;
   sectors.forEach(sec=>{
-    const c=contrib[sec.code]; let rowTotal=0;
+    let rowTotal=0;
     html += `<tr><td class="lbl sim-code">${sec.code}</td><td class="lbl sim-sector" title="${sec.name}">${sec.name}</td>`;
     provinces.forEach(prov=>{
       const emp=((LO_EMP[prov]||{})[sec.code]||0);
       if(!emp){ html += `<td class="sim-prov" title="${sec.name} · ${prov}: tidak ada baseline employment di lo.csv" style="background:#f1f4f8;color:#c2cbd6">·</td>`; return; }
+      const c=contrib[prov][sec.code];
       const head=emp*c.total/100, h1=emp*c.t1/100, h2=emp*c.t2/100, h3=emp*c.t3/100;
       rowTotal+=head; totalHead+=head; themeHead.t1+=h1; themeHead.t2+=h2; themeHead.t3+=h3;
       secHead[sec.name]=(secHead[sec.name]||0)+head; provHead[prov]=(provHead[prov]||0)+head;
@@ -4023,9 +4053,10 @@ function runCGE(){
   const active = CGE_SHOCKS.filter(s=>cgeState[s.id]!==0);
   const nEl=document.getElementById('cge-narr');
   if(!active.length){ nEl.textContent='Atur magnitudo shock di kiri untuk menghasilkan narasi otomatis tekanan terhadap tenaga kerja.'; return; }
-  const mostNegTheme = Object.entries(themeHead).sort((a,b)=>a[1]-b[1])[0];
-  const dir = totalHead<0?'penurunan':'kenaikan';
-  nEl.innerHTML = `Dengan skenario aktif pada ${active.length} driver, tabel sektor × provinsi terpilih menghasilkan <b>${dir} tenaga kerja netto sekitar ${fmtN(Math.abs(totalHead))} pekerja</b>. Kontribusi tekanan terbesar berasal dari <span class="tag">${THEME_LABELS[mostNegTheme[0]]}</span>. Tooltip tiap sel menampilkan % dampak, pekerja terdampak, kontribusi theme, dan baseline L<sub>0</sub> dari <code>lo.csv</code>.`;
+  const dominantTheme = Object.entries(themeHead).sort((a,b)=>totalHead<0?a[1]-b[1]:b[1]-a[1])[0];
+  const dir = totalHead<0?'penurunan':totalHead>0?'kenaikan':'perubahan netral';
+  const contributionLabel = totalHead<0?'tekanan':totalHead>0?'dukungan':'absolut';
+  nEl.innerHTML = `Dengan skenario aktif pada ${active.length} driver, tabel sektor × provinsi terpilih menghasilkan <b>${dir} tenaga kerja netto sekitar ${fmtN(Math.abs(totalHead))} pekerja</b>. Kontribusi ${contributionLabel} terbesar berasal dari <span class="tag">${THEME_LABELS[dominantTheme[0]]}</span>. Tooltip tiap sel menampilkan % dampak, pekerja terdampak, kontribusi theme, dan baseline L<sub>0</sub> dari <code>lo.csv</code>.`;
 }
 /* ====================== TAB 6 — METHODOLOGY ===================== */
 /* Konten metodologi bersifat statis (HTML di section #tab-policy), tidak perlu build function. */
