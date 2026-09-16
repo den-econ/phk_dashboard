@@ -154,9 +154,7 @@ year,month,category_code,category_name,yoy_growth,is_preliminary
 2026,2,cultural_rec,Barang Budaya dan Rekreasi,10.1,False
 2026,3,cultural_rec,Barang Budaya dan Rekreasi,14.8,False
 2026,4,cultural_rec,Barang Budaya dan Rekreasi,0.7,False
-2026,4,cultural_rec,Barang Budaya dan Rekreasi,-14.1,False
-2026,5,cultural_rec,Barang Budaya dan Rekreasi,0.6,True
-2026,5,cultural_rec,Barang Budaya dan Rekreasi,-0.1,True
+2026,5,cultural_rec,Barang Budaya dan Rekreasi,0.2,False
 2012,1,food_bev_tobacco,"Makanan, Minuman, & Tembakau",15.1,False
 2012,2,food_bev_tobacco,"Makanan, Minuman, & Tembakau",11.4,False
 2012,3,food_bev_tobacco,"Makanan, Minuman, & Tembakau",13.4,False
@@ -312,9 +310,7 @@ year,month,category_code,category_name,yoy_growth,is_preliminary
 2026,2,food_bev_tobacco,"Makanan, Minuman, & Tembakau",8.8,False
 2026,3,food_bev_tobacco,"Makanan, Minuman, & Tembakau",4.7,False
 2026,4,food_bev_tobacco,"Makanan, Minuman, & Tembakau",-3.8,False
-2026,4,food_bev_tobacco,"Makanan, Minuman, & Tembakau",-8.6,False
-2026,5,food_bev_tobacco,"Makanan, Minuman, & Tembakau",-4.0,True
-2026,5,food_bev_tobacco,"Makanan, Minuman, & Tembakau",-0.1,True
+2026,5,food_bev_tobacco,"Makanan, Minuman, & Tembakau",-4.1,False
 2012,1,fuel,Bahan Bakar Kendaraan Bermotor,11.8,False
 2012,2,fuel,Bahan Bakar Kendaraan Bermotor,0.8,False
 2012,3,fuel,Bahan Bakar Kendaraan Bermotor,-5.6,False
@@ -470,9 +466,7 @@ year,month,category_code,category_name,yoy_growth,is_preliminary
 2026,2,fuel,Bahan Bakar Kendaraan Bermotor,-9.3,False
 2026,3,fuel,Bahan Bakar Kendaraan Bermotor,2.1,False
 2026,4,fuel,Bahan Bakar Kendaraan Bermotor,-0.9,False
-2026,4,fuel,Bahan Bakar Kendaraan Bermotor,-2.9,False
-2026,5,fuel,Bahan Bakar Kendaraan Bermotor,-2.2,True
-2026,5,fuel,Bahan Bakar Kendaraan Bermotor,-1.4,True
+2026,5,fuel,Bahan Bakar Kendaraan Bermotor,0.3,False
 2012,1,household_equip,Perlengkapan Rumah Tangga Lainnya,26.7,False
 2012,2,household_equip,Perlengkapan Rumah Tangga Lainnya,31.3,False
 2012,3,household_equip,Perlengkapan Rumah Tangga Lainnya,31.3,False
@@ -628,9 +622,7 @@ year,month,category_code,category_name,yoy_growth,is_preliminary
 2026,2,household_equip,Perlengkapan Rumah Tangga Lainnya,0.5,False
 2026,3,household_equip,Perlengkapan Rumah Tangga Lainnya,-3.5,False
 2026,4,household_equip,Perlengkapan Rumah Tangga Lainnya,0.6,False
-2026,4,household_equip,Perlengkapan Rumah Tangga Lainnya,4.1,False
-2026,5,household_equip,Perlengkapan Rumah Tangga Lainnya,1.8,True
-2026,5,household_equip,Perlengkapan Rumah Tangga Lainnya,1.2,True
+2026,5,household_equip,Perlengkapan Rumah Tangga Lainnya,-0.9,False
 2012,1,ict_equipment,Peralatan Informasi dan Komunikasi,10.8,False
 2012,2,ict_equipment,Peralatan Informasi dan Komunikasi,3.6,False
 2012,3,ict_equipment,Peralatan Informasi dan Komunikasi,5.0,False
@@ -786,9 +778,7 @@ year,month,category_code,category_name,yoy_growth,is_preliminary
 2026,2,ict_equipment,Peralatan Informasi dan Komunikasi,-28.3,False
 2026,3,ict_equipment,Peralatan Informasi dan Komunikasi,-26.4,False
 2026,4,ict_equipment,Peralatan Informasi dan Komunikasi,-26.4,False
-2026,4,ict_equipment,Peralatan Informasi dan Komunikasi,0.0,False
-2026,5,ict_equipment,Peralatan Informasi dan Komunikasi,-17.5,True
-2026,5,ict_equipment,Peralatan Informasi dan Komunikasi,8.9,True
+2026,5,ict_equipment,Peralatan Informasi dan Komunikasi,-18.4,False
 2012,1,other_goods,Barang Lainnya,18.4,False
 2012,2,other_goods,Barang Lainnya,17.5,False
 2012,3,other_goods,Barang Lainnya,18.9,False
@@ -944,9 +934,7 @@ year,month,category_code,category_name,yoy_growth,is_preliminary
 2026,2,other_goods,Barang Lainnya,5.7,False
 2026,3,other_goods,Barang Lainnya,-0.2,False
 2026,4,other_goods,Barang Lainnya,-2.4,False
-2026,4,other_goods,Barang Lainnya,-2.2,False
-2026,5,other_goods,Barang Lainnya,0.7,True
-2026,5,other_goods,Barang Lainnya,3.1,True
+2026,5,other_goods,Barang Lainnya,-7.4,False
 2012,1,sandang,- o/w Sandang,24.6,False
 2012,2,sandang,- o/w Sandang,23.5,False
 2012,3,sandang,- o/w Sandang,25.5,False
@@ -1102,9 +1090,7 @@ year,month,category_code,category_name,yoy_growth,is_preliminary
 2026,2,sandang,- o/w Sandang,4.9,False
 2026,3,sandang,- o/w Sandang,-2.4,False
 2026,4,sandang,- o/w Sandang,-7.0,False
-2026,4,sandang,- o/w Sandang,-4.7,False
-2026,5,sandang,- o/w Sandang,-1.0,True
-2026,5,sandang,- o/w Sandang,6.1,True
+2026,5,sandang,- o/w Sandang,-12.0,False
 2012,1,spare_parts,Suku Cadang dan Aksesori,1.2,False
 2012,2,spare_parts,Suku Cadang dan Aksesori,-5.4,False
 2012,3,spare_parts,Suku Cadang dan Aksesori,-7.0,False
@@ -1260,9 +1246,7 @@ year,month,category_code,category_name,yoy_growth,is_preliminary
 2026,2,spare_parts,Suku Cadang dan Aksesori,13.1,False
 2026,3,spare_parts,Suku Cadang dan Aksesori,15.5,False
 2026,4,spare_parts,Suku Cadang dan Aksesori,14.7,False
-2026,4,spare_parts,Suku Cadang dan Aksesori,-0.8,False
-2026,5,spare_parts,Suku Cadang dan Aksesori,16.6,True
-2026,5,spare_parts,Suku Cadang dan Aksesori,1.9,True
+2026,5,spare_parts,Suku Cadang dan Aksesori,11.2,False
 2012,1,total_index,INDEKS TOTAL,15.1,False
 2012,2,total_index,INDEKS TOTAL,11.6,False
 2012,3,total_index,INDEKS TOTAL,12.5,False
@@ -1418,6 +1402,4 @@ year,month,category_code,category_name,yoy_growth,is_preliminary
 2026,2,total_index,INDEKS TOTAL,6.5,False
 2026,3,total_index,INDEKS TOTAL,3.4,False
 2026,4,total_index,INDEKS TOTAL,-3.7,False
-2026,4,total_index,INDEKS TOTAL,-7.0,False
-2026,5,total_index,INDEKS TOTAL,-3.2,True
-2026,5,total_index,INDEKS TOTAL,0.4,True
+2026,5,total_index,INDEKS TOTAL,-3.9,False
