@@ -48,8 +48,10 @@
     },
     "theme3": "2026-05"
   },
-  "E_min": 0.0,
-  "E_max": 3.5034842779945636,
-  "dL_total": 520433.02814743493,
-  "placeholder": true
+  "E_min": -53.051702696253045,
+  "E_max": 94.36696267319746,
+  "dL_total": -1240150.7460165778,
+  "placeholder": false,
+  "elasticity_source": "IndoTERM CGE, rebuilt 2026-09-15T17:30:01",
+  "written_by": "decompose() run 2026-09-15 (shock cards and heatmaps from the same run)"
 }
