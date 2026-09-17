@@ -479,6 +479,12 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
 .emp-map-tip b{display:block;font-weight:700;font-size:12.5px}
 .emp-map-tip span{display:block;opacity:.95;font-variant-numeric:tabular-nums}
 .emp-map-tip em{display:block;margin-top:3px;font-style:normal;opacity:.78;font-size:11px;white-space:normal}
+
+.emp-map-zoom{position:absolute;right:14px;top:14px;display:flex;align-items:center;background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:8px;overflow:hidden;z-index:7;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.emp-map-zoom button{width:32px;height:30px;border:0;border-right:1px solid var(--line);background:#fff;color:var(--navy-2);font-size:15px;line-height:1;cursor:pointer}
+.emp-map-zoom button:last-child{border-right:0}
+.emp-map-zoom button:hover{background:var(--surface-2);color:var(--accent)}
+.emp-map-wrap svg{touch-action:none}
 </style>
 <style>.policy-col li:before{background:var(--muted)}</style></head>
 <body>
@@ -4246,6 +4252,34 @@ function empCellColor(value,limit){
   const a=Math.min(Math.abs(value)/(limit||1),1);
   return value<0?`rgba(210,59,52,${.10+a*.80})`:`rgba(31,157,87,${.10+a*.80})`;
 }
+const EMP_MAP_BASE_VIEW = {x:0,y:0,w:1000,h:360};
+let empMapView = {...EMP_MAP_BASE_VIEW};
+function applyEmpMapView(){
+  const svg = document.querySelector('#empProvinceMaps .emp-map-wrap svg');
+  if(svg) svg.setAttribute('viewBox', `${empMapView.x} ${empMapView.y} ${empMapView.w} ${empMapView.h}`);
+}
+function empMapZoom(scale, anchorX=.5, anchorY=.5){
+  const nextW = Math.max(300, Math.min(EMP_MAP_BASE_VIEW.w, empMapView.w * scale));
+  const nextH = nextW * EMP_MAP_BASE_VIEW.h / EMP_MAP_BASE_VIEW.w;
+  let x = empMapView.x + (empMapView.w - nextW) * anchorX;
+  let y = empMapView.y + (empMapView.h - nextH) * anchorY;
+  x = Math.max(0, Math.min(EMP_MAP_BASE_VIEW.w - nextW, x));
+  y = Math.max(0, Math.min(EMP_MAP_BASE_VIEW.h - nextH, y));
+  empMapView = {x,y,w:nextW,h:nextH};
+  applyEmpMapView();
+}
+function empMapReset(){ empMapView = {...EMP_MAP_BASE_VIEW}; applyEmpMapView(); }
+function bindEmpMapZoom(root){
+  const svg = root.querySelector('.emp-map-wrap svg');
+  if(!svg) return;
+  svg.addEventListener('wheel', e=>{
+    e.preventDefault();
+    const rect = svg.getBoundingClientRect();
+    const ax = Math.max(0,Math.min(1,(e.clientX-rect.left)/rect.width));
+    const ay = Math.max(0,Math.min(1,(e.clientY-rect.top)/rect.height));
+    empMapZoom(e.deltaY<0 ? .82 : 1.22, ax, ay);
+  }, {passive:false});
+}
 function renderEmpdashMap(values,activeProvinces,metric,theme,matrix,sectors){
   const root=document.getElementById('empProvinceMaps');
   if(!root || typeof INDONESIA_PROV_GEOJSON==='undefined') return;
@@ -4270,8 +4304,8 @@ function renderEmpdashMap(values,activeProvinces,metric,theme,matrix,sectors){
     const topTxt=top?`${empSectorName(top.s)} · ${empFormat(top.v,metric)}`:'';
     return `<path d="${simGeoPath(feature.geometry,bounds,width,height)}" fill="${fill}" opacity="${opacity}" data-prov="${simEsc(name)}" data-detail="${simEsc(detail)}" data-metric="${simEsc(active?metricLabel:'')}" data-top="${simEsc(topTxt)}"><title>${simEsc(name)}: ${simEsc(detail)}</title></path>`;
   }).join('');
-  root.innerHTML=`<div class="sim-map-card" style="grid-column:1/-1"><div class="sim-map-title">${EMP_TITLES[theme]}<span>${metric==='e'?'E · jumlah respons % lintas sektor':'ΔL · tenaga kerja'}</span></div><div class="emp-map-wrap"><svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Peta ${EMP_TITLES[theme]}">${paths}</svg><div class="emp-map-tip" hidden></div></div><div class="legend"><span>tekanan</span><span class="grad"></span><span>dukungan</span></div></div>`;
-  bindEmpMapTip(root);
+  root.innerHTML=`<div class="sim-map-card" style="grid-column:1/-1"><div class="sim-map-title">${EMP_TITLES[theme]}<span>${metric==='e'?'E · jumlah respons % lintas sektor':'ΔL · tenaga kerja'}</span></div><div class="emp-map-wrap"><svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Peta ${EMP_TITLES[theme]}">${paths}</svg><div class="emp-map-zoom"><button type="button" onclick="empMapZoom(.8)" title="Perbesar peta" aria-label="Perbesar peta">+</button><button type="button" onclick="empMapZoom(1.25)" title="Perkecil peta" aria-label="Perkecil peta">−</button><button type="button" onclick="empMapReset()" title="Reset zoom peta" aria-label="Reset zoom peta">↺</button></div><div class="emp-map-tip" hidden></div></div><div class="legend"><span>tekanan</span><span class="grad"></span><span>dukungan</span></div></div>`;
+  bindEmpMapTip(root); bindEmpMapZoom(root); applyEmpMapView();
 }
 function bindEmpMapTip(root){
   const wrap=root.querySelector('.emp-map-wrap'); if(!wrap) return;
