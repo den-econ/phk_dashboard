@@ -470,6 +470,15 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
   .kpis{grid-template-columns:repeat(2,1fr)}
   .simgrid{grid-template-columns:1fr}
 }
+
+.emp-map-wrap{position:relative}
+.emp-map-wrap svg path[data-prov]{cursor:pointer}
+.emp-map-wrap svg path[data-prov]:hover{stroke:#14181f;stroke-width:1.4}
+.emp-map-wrap svg path.emp-pinned{stroke:#14181f;stroke-width:1.9}
+.emp-map-tip{position:absolute;z-index:6;pointer-events:none;background:rgba(18,22,28,.95);color:#fff;padding:7px 10px;border-radius:7px;font-size:12px;line-height:1.4;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.28);max-width:290px}
+.emp-map-tip b{display:block;font-weight:700;font-size:12.5px}
+.emp-map-tip span{display:block;opacity:.95;font-variant-numeric:tabular-nums}
+.emp-map-tip em{display:block;margin-top:3px;font-style:normal;opacity:.78;font-size:11px;white-space:normal}
 </style>
 <style>.policy-col li:before{background:var(--muted)}</style></head>
 <body>
@@ -4237,14 +4246,18 @@ function empCellColor(value,limit){
   const a=Math.min(Math.abs(value)/(limit||1),1);
   return value<0?`rgba(210,59,52,${.10+a*.80})`:`rgba(31,157,87,${.10+a*.80})`;
 }
-function renderEmpdashMap(values,activeProvinces,metric,theme){
+function renderEmpdashMap(values,activeProvinces,metric,theme,matrix,sectors){
   const root=document.getElementById('empProvinceMaps');
   if(!root || typeof INDONESIA_PROV_GEOJSON==='undefined') return;
   const valueByName=Object.fromEntries(EMPDASH.province_names.map((name,index)=>[name,values[index]]));
+  const indexByName=Object.fromEntries(EMPDASH.province_names.map((name,index)=>[name,index]));
   const selectedNames=new Set(activeProvinces.map(index=>EMPDASH.province_names[index]));
   const shown=activeProvinces.map(index=>values[index]).filter(Number.isFinite);
   const limit=Math.max(1,...shown.map(value=>Math.abs(value)));
+  const topByProvince={};
+  if(matrix && sectors){ activeProvinces.forEach(p=>{ let best=null, bestAbs=-1; sectors.forEach(s=>{ const v=(matrix[s]&&matrix[s][p])||0; if(Math.abs(v)>bestAbs){ bestAbs=Math.abs(v); best={s:s,v:v}; } }); if(best) topByProvince[p]=best; }); }
   const bounds=simGeoBounds(), width=1000, height=360;
+  const metricLabel=metric==='e'?'E':'ΔL';
   const paths=INDONESIA_PROV_GEOJSON.features.map(feature=>{
     const name=simGeoProvinceName(feature.properties.PROVINSI || feature.properties.Propinsi);
     const modeled=Object.prototype.hasOwnProperty.call(valueByName,name);
@@ -4253,9 +4266,48 @@ function renderEmpdashMap(values,activeProvinces,metric,theme){
     const fill=active?simMapColor(value,limit):'#e6eaf0';
     const opacity=active?'1':(modeled?'.42':'.20');
     const detail=!modeled?'di luar struktur 34 wilayah model':active?empFormat(value,metric):'tidak dipilih';
-    return `<path d="${simGeoPath(feature.geometry,bounds,width,height)}" fill="${fill}" opacity="${opacity}"><title>${simEsc(name)}: ${simEsc(detail)}</title></path>`;
+    const top=active?topByProvince[indexByName[name]]:null;
+    const topTxt=top?`${empSectorName(top.s)} · ${empFormat(top.v,metric)}`:'';
+    return `<path d="${simGeoPath(feature.geometry,bounds,width,height)}" fill="${fill}" opacity="${opacity}" data-prov="${simEsc(name)}" data-detail="${simEsc(detail)}" data-metric="${simEsc(active?metricLabel:'')}" data-top="${simEsc(topTxt)}"><title>${simEsc(name)}: ${simEsc(detail)}</title></path>`;
   }).join('');
-  root.innerHTML=`<div class="sim-map-card" style="grid-column:1/-1"><div class="sim-map-title">${EMP_TITLES[theme]}<span>${metric==='e'?'E · jumlah respons % lintas sektor':'ΔL · tenaga kerja'}</span></div><svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Peta ${EMP_TITLES[theme]}">${paths}</svg><div class="legend"><span>tekanan</span><span class="grad"></span><span>dukungan</span></div></div>`;
+  root.innerHTML=`<div class="sim-map-card" style="grid-column:1/-1"><div class="sim-map-title">${EMP_TITLES[theme]}<span>${metric==='e'?'E · jumlah respons % lintas sektor':'ΔL · tenaga kerja'}</span></div><div class="emp-map-wrap"><svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Peta ${EMP_TITLES[theme]}">${paths}</svg><div class="emp-map-tip" hidden></div></div><div class="legend"><span>tekanan</span><span class="grad"></span><span>dukungan</span></div></div>`;
+  bindEmpMapTip(root);
+}
+function bindEmpMapTip(root){
+  const wrap=root.querySelector('.emp-map-wrap'); if(!wrap) return;
+  const tip=wrap.querySelector('.emp-map-tip'), svg=wrap.querySelector('svg');
+  if(!tip || !svg) return;
+  let pinned=null;
+  const paint=(el)=>{
+    const name=el.getAttribute('data-prov')||'', detail=el.getAttribute('data-detail')||'';
+    const ml=el.getAttribute('data-metric')||'', top=el.getAttribute('data-top')||'';
+    let html=`<b>${name}</b><span>${ml?ml+' ':''}${detail}</span>`;
+    if(top) html+=`<em>Top sektor: ${top}</em>`;
+    tip.innerHTML=html;
+  };
+  const place=(ev)=>{
+    const r=wrap.getBoundingClientRect();
+    tip.hidden=false;
+    const tw=tip.offsetWidth, th=tip.offsetHeight;
+    let x=ev.clientX-r.left+14, y=ev.clientY-r.top+14;
+    if(x+tw>r.width-6) x=ev.clientX-r.left-tw-14;
+    if(y+th>r.height-6) y=ev.clientY-r.top-th-14;
+    tip.style.left=Math.max(4,x)+'px'; tip.style.top=Math.max(4,y)+'px';
+  };
+  const clearPin=()=>{ svg.querySelectorAll('path.emp-pinned').forEach(p=>p.classList.remove('emp-pinned')); };
+  svg.addEventListener('mousemove',ev=>{
+    if(pinned) return;
+    const el=ev.target.closest('path[data-prov]');
+    if(!el){ tip.hidden=true; return; }
+    paint(el); place(ev);
+  });
+  svg.addEventListener('mouseleave',()=>{ if(!pinned) tip.hidden=true; });
+  svg.addEventListener('click',ev=>{
+    const el=ev.target.closest('path[data-prov]');
+    if(!el){ pinned=null; clearPin(); tip.hidden=true; return; }
+    if(pinned===el){ pinned=null; clearPin(); tip.hidden=true; return; }
+    clearPin(); pinned=el; el.classList.add('emp-pinned'); paint(el); place(ev);
+  });
 }
 function renderEmpdashMatrix(matrix,sectors,provinces,metric){
   const table=document.getElementById('empMatrix'); if(!table) return;
@@ -4322,7 +4374,7 @@ function runEmpdashTab5(){
   document.getElementById('empWorstSector').textContent=worstSector==null?'—':empSectorName(worstSector);
   document.getElementById('empWorstSectorDetail').textContent=worstSector==null?'Sektor tekanan tertinggi':`${empFormat(sectorValues[worstSector],metric)} · sektor tekanan tertinggi`;
   document.getElementById('empNegativeProvinces').textContent=`${negative} / ${provinces.length}`;
-  renderEmpdashMap(provinceValues,provinces,metric,theme);
+  renderEmpdashMap(provinceValues,provinces,metric,theme,matrix,sectors);
   renderEmpdashMatrix(matrix,sectors,provinces,metric);
   renderEmpdashThemeBreakdown(metric,sectors,provinces);
   renderEmpdashShocks();
