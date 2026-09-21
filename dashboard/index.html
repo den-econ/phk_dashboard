@@ -1667,7 +1667,7 @@ function drawLLI(){
     ]},
     options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
       plugins:{legend:{position:'bottom',labels:{usePointStyle:true,boxWidth:10}},tooltip:{callbacks:{label:c=>`${c.dataset.label}: ${fmt1(c.parsed.y)}`}}},
-      scales:{x:{grid:{color:'#eef1f5'},ticks:{maxTicksLimit:5,font:{size:10}}},
+      scales:{x:{grid:{color:'#eef1f5'},ticks:{maxRotation:0,minRotation:0,maxTicksLimit:5,font:{size:10}}},
         y:{position:'left',min:yMin,max:yMax,title:{display:true,text:'Indeks Tekanan Makro (Januari 2023=100)',font:{size:10},color:'#a92b2f'},ticks:{color:'#a92b2f'},grid:{color:'#e8edf3'}},
         y1:{position:'right',min:y1Min,max:y1Max,title:{display:true,text:'MA 6 Bulan Δ Indeks PHK',font:{size:10},color:'#f2a000'},grid:{display:false},ticks:{color:'#f2a000',callback:v=>fmt1(v)}}}}
   });
@@ -1710,7 +1710,7 @@ function drawDriver(i){
     ]},
     options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
       plugins:{legend:{position:'top'}},
-      scales:{x:{ticks:{autoSkip:false,font:{size:9},callback:function(v){const l=this.getLabelForValue(v);return /^(Jan|Jul) /.test(l)?l:'';}},grid:{display:false}},
+      scales:{x:{ticks:{autoSkip:false,maxRotation:0,minRotation:0,font:{size:9},callback:function(v){const l=this.getLabelForValue(v);return /^(Jan|Jul) /.test(l)?l:'';}},grid:{display:false}},
         y:{position:'left',title:{display:true,text:phkLabel+' (bulanan)',font:{size:10}},grid:{color:'#eef1f5'}},
         y1:{position:'right',title:{display:true,text:d.name+' (bulanan)',font:{size:10}},grid:{display:false}}}}
   });
