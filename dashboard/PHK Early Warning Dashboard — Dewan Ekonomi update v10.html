@@ -1710,7 +1710,7 @@ function drawDriver(i){
     ]},
     options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
       plugins:{legend:{position:'top'}},
-      scales:{x:{ticks:{maxTicksLimit:10,font:{size:9}},grid:{display:false}},
+      scales:{x:{ticks:{autoSkip:false,font:{size:9},callback:function(v){const l=this.getLabelForValue(v);return /^(Jan|Jul) /.test(l)?l:'';}},grid:{display:false}},
         y:{position:'left',title:{display:true,text:phkLabel+' (bulanan)',font:{size:10}},grid:{color:'#eef1f5'}},
         y1:{position:'right',title:{display:true,text:d.name+' (bulanan)',font:{size:10}},grid:{display:false}}}}
   });
