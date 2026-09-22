@@ -48,6 +48,9 @@ df_gabungan <- df_bulan %>%
 
 base_date <- as.Date("2023-01-01")
 
+# Bulan terakhir yang diekspor/diplot. Ganti SATU baris ini setiap update bulanan.
+END_DATE <- as.Date("2026-08-01")
+
 # ------------------------------
 # 2) TCB & Standardization Helpers
 # ------------------------------
@@ -203,10 +206,10 @@ tabel_lei_nasional <- tabel_lei_provinsi %>%
   )
 
 # ------------------------------
-# 5) Plot s.d. Juni 2026
+# 5) Plot s.d. END_DATE
 # ------------------------------
 plot_data_nasional <- tabel_lei_nasional %>%
-  filter(date >= as.Date("2023-01-01") & date <= as.Date("2026-06-01"))
+  filter(date >= as.Date("2023-01-01") & date <= END_DATE)
 
 max_lei     <- max(plot_data_nasional$Indeks_LEI_Labour, na.rm = TRUE)
 max_target  <- max(plot_data_nasional$Indeks_Target_PHK, na.rm = TRUE)
@@ -253,10 +256,10 @@ ggplot(plot_data_nasional, aes(x = date)) +
   )
 
 # ------------------------------
-# 6) Plot MA 6-Bulan PHK  s.d. Juni 2026
+# 6) Plot MA 6-Bulan PHK  s.d. END_DATE
 # ------------------------------
 plot_data_ma6 <- tabel_lei_nasional %>%
-  filter(date >= as.Date("2023-01-01") & date <= as.Date("2026-06-01"))
+  filter(date >= as.Date("2023-01-01") & date <= END_DATE)
 
 max_lei_ma    <- max(plot_data_ma6$Indeks_LEI_Labour, na.rm = TRUE)
 min_lei_ma    <- min(plot_data_ma6$Indeks_LEI_Labour, na.rm = TRUE)
@@ -303,14 +306,14 @@ ggplot(plot_data_ma6, aes(x = date)) +
   )
 
 # ------------------------------
-# 7) EKSPOR HASIL KE EXCEL (Dipangkas s.d. Juni 2026)
+# 7) EKSPOR HASIL KE EXCEL (Dipangkas s.d. END_DATE)
 # ------------------------------
 export_nasional <- tabel_lei_nasional %>%
-  filter(date <= as.Date("2026-06-01")) %>%
+  filter(date <= END_DATE) %>%
   select(date, Tahun, Bulan, Total_Bekerja_Nasional, Indeks_Target_PHK, delta_indeks_phk, phk_ma6, Indeks_LEI_Labour, Provinsi)
 
 export_provinsi <- tabel_lei_provinsi %>%
-  filter(date <= as.Date("2026-06-01"))
+  filter(date <= END_DATE)
 
 wb <- createWorkbook()
 addWorksheet(wb, "LEI Nasional")
@@ -328,11 +331,11 @@ saveWorkbook(wb, "Komposit_LEI_Ketenagakerjaan.xlsx", overwrite = TRUE)
 # 8) CHECK FOR CORRELATION & OPTIMAL LEAD-LAG (0 - 12 BULAN)
 # ------------------------------
 
-# 1. Set max Lag (Rentang Jan 2023 s.d. Juni 2026)
+# 1. Set max Lag (Rentang Jan 2023 s.d. END_DATE)
 max_lag <- 12
 
 df_corr_analysis <- tabel_lei_nasional %>%
-  filter(date >= as.Date("2023-01-01") & date <= as.Date("2026-06-01")) %>%
+  filter(date >= as.Date("2023-01-01") & date <= END_DATE) %>%
   select(date, Indeks_LEI_Labour, Indeks_Target_PHK, phk_ma6)
 
 corr_results <- data.frame(
