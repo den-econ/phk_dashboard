@@ -553,7 +553,7 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
     <div class="kpi"><div class="accentbar" style="background:var(--low)"></div>
       <div class="klabel">PHK YoY (Jan–Jul 2026) <span class="info" data-tt="Akumulasi flow PHK Januari–Juli 2026 dibandingkan periode yang sama 2025.">i</span></div>
       <div class="kval" style="color:var(--low)">-27,6%</div>
-      <div class="kfoot"><span class="delta down">▼</span>43.805 vs 60.482 (Jan–Jul 2025) · Jul 2026 parsial</div>
+      <div class="kfoot"><span class="delta down">▼</span>43.805 vs 60.482 (Jan–Jul 2025)</div>
     </div>
   </div>
 
@@ -1192,7 +1192,7 @@ function buildExec(){
     {l:'Jumlah tenaga kerja', v:fmt1(WORKFORCE_NATIONAL/1e6)+' jt', foot:'Penduduk bekerja 2025 · 38 provinsi', col:'var(--navy-3)', tt:'Jumlah penduduk bekerja 2025, dijumlahkan dari 38 provinsi (Sakernas, Database Tahun).'},
     {l:'Jumlah pekerja formal', v:fmt1(FORMAL_WORKERS_2025/1e6)+' jt', foot:`${fmt1(FORMAL_WORKERS_2025/WORKFORCE_NATIONAL*100)}% dari penduduk bekerja 2025`, col:'var(--navy-2)', tt:'Jumlah pekerja formal 2025, dijumlahkan dari 38 provinsi (Sakernas, Database Tahun).'},
     {l:`Total PHK tercatat YTD ${lastMon.y}`, v:fmtN(ytdFlow), foot:`Akumulasi flow s.d. ${months_id[lastMon.m-1]} ${lastMon.y}`, col:'var(--navy-2)', tt:'Akumulasi flow PHK yang dilaporkan sepanjang tahun berjalan (Satudata Kemnaker).'},
-    {l:`PHK YoY (Jan–${months_id[phkCompLast.m-1]} ${phkCompLast.y})`, v:(phkYoyPct>=0?'+':'')+fmt1(phkYoyPct)+'%', foot:`${fmtN(phkYoyCur)} vs ${fmtN(phkYoyPrev)} (Jan–${months_id[phkCompLast.m-1]} ${phkCompLast.y-1})${lastMon.lab>PHK_LAST_COMPLETE?` · ${months_id[lastMon.m-1]} ${lastMon.y} parsial`:''}`, col: phkYoyPct>0?'var(--high)':'var(--low)', delta:phkYoyPct>0?'up':'down', tt:`Akumulasi flow PHK Januari–${months_id[phkCompLast.m-1]} ${phkCompLast.y} dibandingkan periode yang sama ${phkCompLast.y-1}. ${lastMon.lab>PHK_LAST_COMPLETE?`Data ${months_id[lastMon.m-1]} ${lastMon.y} masih parsial (belum semua provinsi melapor).`:''}`},
+    {l:`PHK YoY (Jan–${months_id[phkCompLast.m-1]} ${phkCompLast.y})`, v:(phkYoyPct>=0?'+':'')+fmt1(phkYoyPct)+'%', foot:`${fmtN(phkYoyCur)} vs ${fmtN(phkYoyPrev)} (Jan–${months_id[phkCompLast.m-1]} ${phkCompLast.y-1})`, col: phkYoyPct>0?'var(--high)':'var(--low)', delta:phkYoyPct>0?'up':'down', tt:`Akumulasi flow PHK Januari–${months_id[phkCompLast.m-1]} ${phkCompLast.y} dibandingkan periode yang sama ${phkCompLast.y-1}. ${lastMon.lab>PHK_LAST_COMPLETE?`Data ${months_id[lastMon.m-1]} ${lastMon.y} merupakan angka sementara.`:''}`},
   ];
   document.getElementById('kpi-row').innerHTML = kpis.map(k=>`
     <div class="kpi"><div class="accentbar" style="background:${k.col}"></div>
@@ -1218,13 +1218,13 @@ function buildExec(){
         borderColor:mon.map(m=>isPartial(m)?'#64748b':'transparent'), borderWidth:mon.map(m=>isPartial(m)?1:0),
         borderRadius:2, barPercentage:.9, categoryPercentage:.95}]},
     options:{responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>'Flow PHK: '+fmtN(ctx.parsed.y)+(isPartial(mon[ctx.dataIndex])?' (data parsial, belum semua provinsi melapor)':'')}}},
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>'Flow PHK: '+fmtN(ctx.parsed.y)+(isPartial(mon[ctx.dataIndex])?' (angka sementara)':'')}}},
       scales:{x:{ticks:{autoSkip:false,maxRotation:0,minRotation:0,font:{size:9},callback:function(v,i){const mm=mon[i];return (mm&&(mm.m===1||mm.m===7))?this.getLabelForValue(v):'';}},grid:{display:false}},
               y:{afterFit:scale=>{scale.width=54},grid:{color:'#eef1f5'},ticks:{font:{size:9},callback:v=>fmtN(v)}}}}
   });
 
   const trendLegend = document.getElementById('execTrendLegend');
-  if(trendLegend) trendLegend.innerHTML = `<span><i style="background:#d23b34"></i>&gt; 5.000</span><span><i style="background:#e3a008"></i>2.000–5.000</span><span><i style="background:#9fb6d0"></i>&lt; 2.000</span>${mon.some(isPartial)?'<span><i class="partial"></i>Data parsial (belum semua provinsi melapor)</span>':''}`;
+  if(trendLegend) trendLegend.innerHTML = `<span><i style="background:#d23b34"></i>&gt; 5.000</span><span><i style="background:#e3a008"></i>2.000–5.000</span><span><i style="background:#9fb6d0"></i>&lt; 2.000</span>${mon.some(isPartial)?'<span><i class="partial"></i>Angka sementara</span>':''}`;
 
   /* top 5 */
   const top5 = provNames.slice(0,5);
@@ -1450,21 +1450,21 @@ function buildSignals(){
   const eksDir = dir(m.ekspor,m.ekspor_prev), carDir = dir(m.car_sales,m.car_sales_prev);
   const sigs = [
     {t:'PMI Manufaktur (indeks)', st:{level:m.pmi>=50?'low':'high', txt:m.pmi>=50?'Ekspansi':'Kontraksi'}, arrow:'dot',
-     d:`${m.label}: ${fmt1(m.pmi)} (${m.prev_label}: ${fmt1(m.pmi_prev)}). Di atas 50 = ekspansi, di bawah 50 = kontraksi aktivitas manufaktur.`},
+     d:`${m.label}: ${fmt1(m.pmi)} (${m.prev_label}: ${fmt1(m.pmi_prev)}).`},
     {t:'Kurs (USD/IDR)', st: kursDir==='flat' ? {level:'med',txt:'Stabil'} : kursDir==='up' ? {level:'high',txt:`Rupiah melemah ${fmt1(Math.abs(kursP))}%`} : {level:'low',txt:`Rupiah menguat ${fmt1(Math.abs(kursP))}%`},
      warn: kursDir==='up', arrow:kursDir,
      d:`${m.label}: Rp${fmtN(m.kurs)} per USD (${m.prev_label}: Rp${fmtN(m.kurs_prev)}).`,
      note:'<b>Catatan:</b> Rupiah melemah → industri berbahan baku impor (mis. mesin) tertekan; industri ekspor (mis. furnitur) cenderung diuntungkan.'},
     {t:'BI Rate (%)', st:chip(biDir,true, biDir==='flat'?'Tetap':`${biDir==='up'?'Naik':'Turun'} ${fmtN(Math.abs(m.bi_rate-m.bi_rate_prev)*100)} bps`), arrow:biDir,
-     d:`${m.label}: ${n2(m.bi_rate)}% (${m.prev_label}: ${n2(m.bi_rate_prev)}%). Suku bunga mempengaruhi biaya pembiayaan dan keputusan produksi.`},
+     d:`${m.label}: ${n2(m.bi_rate)}% (${m.prev_label}: ${n2(m.bi_rate_prev)}%).`},
     {t:'IHPB (harga produsen)', st:chip(ihpbDir,true,chgTxt(ihpbDir,pctChg(m.ihpb,m.ihpb_prev))), arrow:ihpbDir,
-     d:`${m.label}: ${fmt1(m.ihpb)} (${m.prev_label}: ${fmt1(m.ihpb_prev)}); ${fmt1(m.ihpb_yoy)}% YoY. Kenaikan harga produsen memperbesar tekanan biaya produksi.`},
+     d:`${m.label}: ${fmt1(m.ihpb)} (${m.prev_label}: ${fmt1(m.ihpb_prev)}); ${fmt1(m.ihpb_yoy)}% YoY.`},
     {t:'Harga Minyak Brent (USD/barrel)', st:chip(brentDir,true,chgTxt(brentDir,pctChg(m.brent,m.brent_prev))), arrow:brentDir,
-     d:`${m.label}: USD ${fmt1(m.brent)} (${m.prev_label}: USD ${fmt1(m.brent_prev)}). Harga energi memberi tekanan pada biaya produksi dan logistik.`},
+     d:`${m.label}: USD ${fmt1(m.brent)} (${m.prev_label}: USD ${fmt1(m.brent_prev)}).`},
     {t:'Nilai Ekspor (total 38 provinsi)', st:chip(eksDir,false,chgTxt(eksDir,pctChg(m.ekspor,m.ekspor_prev))), arrow:eksDir,
-     d:`${m.export_label}: USD ${fmtN(m.ekspor)} juta (${m.ekspor_prev_label}: USD ${fmtN(m.ekspor_prev)} juta); ${fmt1(m.export_yoy)}% YoY. Pelemahan ekspor menekan sektor berorientasi ekspor.`},
+     d:`${m.export_label}: USD ${fmtN(m.ekspor)} juta (${m.ekspor_prev_label}: USD ${fmtN(m.ekspor_prev)} juta); ${fmt1(m.export_yoy)}% YoY.`},
     {t:'Penjualan Mobil (unit)', st:chip(carDir,false,chgTxt(carDir,pctChg(m.car_sales,m.car_sales_prev))), arrow:carDir,
-     d:`${m.label}: ${fmtN(m.car_sales)} unit (${m.prev_label}: ${fmtN(m.car_sales_prev)}); ${fmt1(m.car_sales_yoy)}% YoY. Sinyal permintaan domestik barang tahan lama.`},
+     d:`${m.label}: ${fmtN(m.car_sales)} unit (${m.prev_label}: ${fmtN(m.car_sales_prev)}); ${fmt1(m.car_sales_yoy)}% YoY.`},
   ];
   const warnSvg = col => `<svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z" stroke="${col}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
   const arrowTxt = a => a==='up' ? '▲' : a==='down' ? '▼' : a==='flat' ? '■' : '●';
