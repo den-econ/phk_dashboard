@@ -573,7 +573,7 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
       <div class="card-head">
         <div>
           <h3>Google Trends: Pencarian terkait PHK</h3>
-          <p class="csub">Sinyal pencarian publik sebagai konteks tambahan, bukan pengganti data PHK resmi.</p>
+          <p class="csub">Sinyal pencarian publik sebagai konteks tambahan, bukan pengganti data PHK resmi. Angka 0-100 adalah indeks minat pencarian relatif, bukan jumlah pencarian.</p>
         </div>
         <span class="badge ghost" id="trend-chart-period">Agu 2026</span>
         <select class="trend-select" id="trend-term">
@@ -725,6 +725,7 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
           <option value="jkp_claims">Klaim JKP BPJS TK - bulanan</option>
         </select>
         <select id="driverSel" class="btn"></select>
+        <button type="button" class="btn" id="driverFitBtn" aria-pressed="false">Tampilkan garis tren</button>
       </div>
     </div>
     <div class="chart-box" style="height:430px"><canvas id="driverChart"></canvas></div>
@@ -742,13 +743,16 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
 
 <!-- ============================================================= TAB 4 -->
 <section class="tabpane" id="tab-adv">
-  <div class="pane-head"><div><h2>Analisis Regional dan Sektoral</h2><p>Analisis kuadran provinsi, pemetaan risiko sektoral berbasis IBS, dan eksposur kurs berdasarkan pola impor-ekspor perusahaan.</p></div></div>
+  <div class="pane-head"><div><h2>Analisis Regional dan Sektoral</h2><p>Scatterplot provinsi, pemetaan risiko sektoral berbasis IBS, dan eksposur kurs berdasarkan pola impor-ekspor perusahaan.</p></div></div>
 
-  <div class="section-label">1- Analisis Kuadran berdasarkan Provinsi <span class="ln"></span></div>
+  <div class="section-label">1 - Scatterplot berdasarkan Provinsi <span class="ln"></span></div>
   <div class="card">
     <div class="card-head">
       <div><h3 id="provinceQuadrantTitle">Jumlah PHK 2025 vs Ekspor (% PDRB) 2025</h3><p class="csub">Scatterplot provinsi dengan jumlah PHK 2025 pada x-axis dan variabel kerentanan pada y-axis.</p></div>
-      <select id="provinceQuadrantY" class="btn" style="padding:4px 8px"></select>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <select id="provinceQuadrantY" class="btn" style="padding:4px 8px"></select>
+        <button type="button" class="btn" id="provinceFitBtn" aria-pressed="false">Tampilkan garis tren</button>
+      </div>
     </div>
     <div class="quadrant-layout">
       <div class="chart-box" style="height:380px"><canvas id="provinceQuadrantChart"></canvas></div>
@@ -756,7 +760,7 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
     </div>
     <div class="quadrant-note">
       <span>Jumlah PHK selalu ditampilkan pada x-axis. Variabel yang dipilih pada dropdown ditampilkan pada y-axis.</span>
-      <span>Garis vertikal dan horizontal menunjukkan rata-rata jumlah PHK 2025 dan rata-rata variabel y-axis.</span>
+      <span id="provinceFitNote">Garis tren dapat ditampilkan lewat tombol di atas grafik.</span>
       <span>Warna titik provinsi dikelompokkan berdasarkan pulau.</span>
     </div>
   </div>
@@ -1454,7 +1458,7 @@ function buildSignals(){
     {t:'Kurs (USD/IDR)', st: kursDir==='flat' ? {level:'med',txt:'Stabil'} : kursDir==='up' ? {level:'high',txt:`Rupiah melemah ${fmt1(Math.abs(kursP))}%`} : {level:'low',txt:`Rupiah menguat ${fmt1(Math.abs(kursP))}%`},
      warn: kursDir==='up', arrow:kursDir,
      d:`${m.label}: Rp${fmtN(m.kurs)} per USD (${m.prev_label}: Rp${fmtN(m.kurs_prev)}).`,
-     note:'<b>Catatan:</b> Rupiah melemah → industri berbahan baku impor (mis. mesin) tertekan; industri ekspor (mis. furnitur) cenderung diuntungkan.'},
+     note:'<b>Catatan:</b> Rupiah melemah → paling menekan industri yang mengimpor bahan baku dan menjual di pasar domestik (mis. mesin); industri berorientasi ekspor (mis. furnitur) cenderung diuntungkan.'},
     {t:'BI Rate (%)', st:chip(biDir,true, biDir==='flat'?'Tetap':`${biDir==='up'?'Naik':'Turun'} ${fmtN(Math.abs(m.bi_rate-m.bi_rate_prev)*100)} bps`), arrow:biDir,
      d:`${m.label}: ${n2(m.bi_rate)}% (${m.prev_label}: ${n2(m.bi_rate_prev)}%).`},
     {t:'IHPB (harga produsen)', st:chip(ihpbDir,true,chgTxt(ihpbDir,pctChg(m.ihpb,m.ihpb_prev))), arrow:ihpbDir,
@@ -1693,6 +1697,8 @@ function buildDriver(){
   sel.addEventListener('change', ()=>drawDriver(+sel.value));
   const phkSel = document.getElementById('phkMetricSel');
   if(phkSel) phkSel.addEventListener('change', ()=>drawDriver(+sel.value));
+  const fitBtn = document.getElementById('driverFitBtn');
+  if(fitBtn) fitBtn.addEventListener('click', ()=>{ driverFitOn=!driverFitOn; drawDriver(+sel.value); });
   drawDriver(0);
   buildLead();
   drawLLI();
@@ -1729,6 +1735,58 @@ function drawLLI(){
   document.getElementById('lli-narr').innerHTML = `<b>Metode:</b> Indeks Tekanan Makroekonomi mengadopsi pendekatan Leading Economic Indicator (LEI) untuk memantau perubahan kondisi ekonomi yang berpotensi mendahului perubahan PHK. Indeks dibentuk dari <b>PMI, BI Rate, volatilitas kurs, harga minyak Brent, IHPB, ekspor, dan penjualan mobil</b>. Perubahan masing-masing indikator ditransformasi dan diseragamkan arahnya terhadap risiko PHK, kemudian digabungkan menjadi indeks komposit dan dinormalisasi dengan <b>Januari 2023 = 100</b>. Pada tingkat nasional, indeks provinsi diagregasikan menggunakan bobot jumlah tenaga kerja. Garis oranye menunjukkan <b>realisasi PHK</b>, yaitu rata-rata bergerak 6 bulan dari perubahan indeks PHK, yang digunakan sebagai pembanding untuk melihat apakah pergerakan indikator makro sejalan dengan perkembangan PHK.<br><br><b>Interpretasi:</b> Indeks yang meningkat menunjukkan <b>tekanan makroekonomi yang meningkat</b> dan secara umum mengindikasikan risiko PHK yang lebih tinggi. Sebaliknya, penurunan indeks menunjukkan tekanan yang mereda. Pergerakan indeks dibandingkan dengan perkembangan PHK untuk mengidentifikasi <b>indikasi perubahan risiko PHK secara lebih awal</b>.`;
 }
 
+/* ---- regresi sederhana pada PERUBAHAN BULANAN: d(PHK)_t = a + b*d(Indikator)_t ----
+   Basis perubahan dipakai agar tidak menangkap korelasi tren semu (sama dengan metode heatmap).
+   Garis yang digambar adalah prediksi level PHK: PHK_hat_t = PHK_(t-1) + (a + b*dX_t). */
+function betacf(a,b,x){
+  let qab=a+b, qap=a+1, qam=a-1, c=1, d=1-qab*x/qap;
+  if(Math.abs(d)<1e-30) d=1e-30; d=1/d; let h=d;
+  for(let m=1;m<=200;m++){
+    const m2=2*m;
+    let aa=m*(b-m)*x/((qam+m2)*(a+m2));
+    d=1+aa*d; if(Math.abs(d)<1e-30) d=1e-30;
+    c=1+aa/c; if(Math.abs(c)<1e-30) c=1e-30;
+    d=1/d; h*=d*c;
+    aa=-(a+m)*(qab+m)*x/((a+m2)*(qap+m2));
+    d=1+aa*d; if(Math.abs(d)<1e-30) d=1e-30;
+    c=1+aa/c; if(Math.abs(c)<1e-30) c=1e-30;
+    d=1/d; const del=d*c; h*=del;
+    if(Math.abs(del-1)<3e-9) break;
+  }
+  return h;
+}
+function lnGamma(z){
+  const g=[76.18009172947146,-86.50532032941677,24.01409824083091,-1.231739572450155,0.1208650973866179e-2,-0.5395239384953e-5];
+  let x=z, y=z, tmp=x+5.5; tmp-=(x+.5)*Math.log(tmp); let ser=1.000000000190015;
+  for(let j=0;j<6;j++) ser+=g[j]/++y;
+  return -tmp+Math.log(2.5066282746310005*ser/x);
+}
+function betai(a,b,x){
+  if(x<=0) return 0; if(x>=1) return 1;
+  const bt=Math.exp(lnGamma(a+b)-lnGamma(a)-lnGamma(b)+a*Math.log(x)+b*Math.log(1-x));
+  return x < (a+1)/(a+b+2) ? bt*betacf(a,b,x)/a : 1-bt*betacf(b,a,1-x)/b;
+}
+/* p-value dua sisi untuk statistik t dengan df derajat bebas */
+function tPValue(t,df){ return df>0 ? betai(df/2,0.5,df/(df+t*t)) : NaN; }
+function driverFit(ph,iv){
+  const dy=[], dx=[], idx=[];
+  for(let k=1;k<ph.length;k++){
+    const a=ph[k], b=ph[k-1], c=iv[k], e=iv[k-1];
+    if([a,b,c,e].every(v=>v!=null && Number.isFinite(+v))){ dy.push(+a-+b); dx.push(+c-+e); idx.push(k); }
+  }
+  const n=dy.length;
+  if(n<12) return null;
+  const mx=dx.reduce((s,v)=>s+v,0)/n, my=dy.reduce((s,v)=>s+v,0)/n;
+  let sxx=0, sxy=0, syy=0;
+  for(let k=0;k<n;k++){ sxx+=(dx[k]-mx)**2; sxy+=(dx[k]-mx)*(dy[k]-my); syy+=(dy[k]-my)**2; }
+  if(sxx<=0 || syy<=0) return null;
+  const slope=sxy/sxx, intercept=my-slope*mx, r2=(sxy*sxy)/(sxx*syy), df=n-2;
+  const sse=syy*(1-r2), se=Math.sqrt((sse/df)/sxx), t=slope/se, p=tPValue(t,df);
+  const fitted=ph.map(()=>null);
+  idx.forEach((k,j)=>{ fitted[k]=+ph[k-1]+intercept+slope*dx[j]; });
+  return {n,r2,p,slope,fitted};
+}
+let driverFitOn=false;
 function drawDriver(i){
   const d = driverInd[i];
   const phkMetric = document.getElementById('phkMetricSel')?.value || 'phk_flow';
@@ -1754,13 +1812,25 @@ function drawDriver(i){
     period = first && last ? `${monLabel(first)} sampai ${monLabel(last)}` : 'periode mengikuti data tersedia';
     note = `Seri aktif: <b>${phkLabel}</b>. Periode tampilan: ${period}. Klaim JHT dan JKP BPJS TK tersedia sebagai opsi bulanan dari <b>Database (Bulan)</b>.`;
   }
-  if(driverChart) driverChart.destroy();
-  driverChart = new Chart(document.getElementById('driverChart'),{
-    data:{labels, datasets:[
+  const fit = driverFit(ph,iv);
+  const fitBtn = document.getElementById('driverFitBtn');
+  if(fitBtn){ fitBtn.textContent = driverFitOn ? 'Sembunyikan garis tren' : 'Tampilkan garis tren';
+    fitBtn.setAttribute('aria-pressed', driverFitOn ? 'true' : 'false');
+    fitBtn.disabled = !fit; fitBtn.style.opacity = fit ? '1' : '.5'; }
+  const datasets = [
       {type:'bar', label:phkLabel+' bulanan (kiri)', data:ph, yAxisID:'y', backgroundColor:'#cbd6e3', borderRadius:2, order:2},
       {type:'line', label:d.name+' bulanan (kanan)', data:iv, yAxisID:'y1', borderColor:d.col, backgroundColor:d.col,
         borderWidth:2.2, tension:.3, pointRadius:0, order:1, spanGaps:true}
-    ]},
+    ];
+  if(driverFitOn && fit) datasets.push({type:'line', label:`Prediksi 1 bulan ke depan: ${phkLabel} bulan lalu + efek ${d.name} (kiri)`, data:fit.fitted,
+    yAxisID:'y', borderColor:'#7c3aed', backgroundColor:'#7c3aed', borderWidth:2, borderDash:[6,4], tension:.2, pointRadius:0, order:0, spanGaps:false});
+  if(driverFitOn && fit){
+    const sig = fit.p<0.05, pTxt = fit.p<0.001 ? 'p &lt; 0,001' : `p = ${fit.p.toLocaleString('id-ID',{minimumFractionDigits:3,maximumFractionDigits:3})}`;
+    note += `<br><br><b>Garis tren (ungu).</b> Regresi perubahan bulanan: Δ${phkLabel} = a + b × Δ${d.name}, n = ${fit.n}. <b>R² = ${fit.r2.toLocaleString('id-ID',{minimumFractionDigits:3,maximumFractionDigits:3})}</b> · <b style="color:${sig?'var(--high)':'var(--muted)'}">${pTxt}${sig?' (signifikan 5%)':' (tidak signifikan)'}</b>. Garis menunjukkan perkiraan level PHK bulan berjalan dari nilai bulan sebelumnya ditambah efek perubahan indikator. Dihitung pada perubahan, bukan level, agar tidak menangkap korelasi tren semu; angka ini berbeda dari heatmap di bawah yang memakai data provinsi (pooled). Korelasi tidak berarti hubungan kausal.`;
+  }
+  if(driverChart) driverChart.destroy();
+  driverChart = new Chart(document.getElementById('driverChart'),{
+    data:{labels, datasets},
     options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
       plugins:{legend:{position:'top'}},
       scales:{x:{ticks:{autoSkip:false,maxRotation:0,minRotation:0,font:{size:9},callback:function(v){const l=this.getLabelForValue(v);return /^(Jan|Jul) /.test(l)?l:'';}},grid:{display:false}},
@@ -1866,6 +1936,37 @@ function formatQuadrantValue(v,fmt){
   if(fmt==='money') return 'Rp'+fmtN(v);
   return fmt1(v)+'%';
 }
+/* Fit scatterplot provinsi: bandingkan model linear dan kuadratik, pilih dengan AIC.
+   Kuadratik hanya dipakai bila AIC-nya lebih rendah minimal 2 poin (aturan baku Burnham & Anderson). */
+function polyFit(xs,ys,deg){
+  const n=xs.length, k=deg+1;
+  const A=Array.from({length:k},()=>new Array(k+1).fill(0));
+  for(let r=0;r<k;r++){
+    for(let c=0;c<k;c++) A[r][c]=xs.reduce((s,x)=>s+Math.pow(x,r+c),0);
+    A[r][k]=xs.reduce((s,x,i)=>s+Math.pow(x,r)*ys[i],0);
+  }
+  for(let i=0;i<k;i++){                       // eliminasi Gauss dengan pivot parsial
+    let p=i; for(let r=i+1;r<k;r++) if(Math.abs(A[r][i])>Math.abs(A[p][i])) p=r;
+    if(Math.abs(A[p][i])<1e-12) return null;
+    [A[i],A[p]]=[A[p],A[i]];
+    for(let r=0;r<k;r++){ if(r===i) continue; const fct=A[r][i]/A[i][i]; for(let c=i;c<=k;c++) A[r][c]-=fct*A[i][c]; }
+  }
+  const coef=A.map((row,i)=>row[k]/A[i][i]);   // setelah eliminasi penuh, matriks sudah diagonal
+  const pred=x=>coef.reduce((s,c,i)=>s+c*Math.pow(x,i),0);
+  const my=ys.reduce((s,v)=>s+v,0)/n;
+  const sse=ys.reduce((s,y,i)=>s+Math.pow(y-pred(xs[i]),2),0);
+  const sst=ys.reduce((s,y)=>s+Math.pow(y-my,2),0);
+  if(!(sse>=0) || sst<=0) return null;
+  return {deg, coef, pred, r2:1-sse/sst, aic:n*Math.log(sse/n)+2*k};
+}
+function bestFit(pts){
+  const xs=pts.map(d=>+d.x), ys=pts.map(d=>+d.y);
+  if(xs.length<8) return null;
+  const lin=polyFit(xs,ys,1), quad=polyFit(xs,ys,2);
+  if(!lin) return null;
+  return (quad && quad.aic < lin.aic-2) ? quad : lin;
+}
+let provinceFitOn=false;
 function buildProvinceQuadrantLegend(){
   const el=document.getElementById('provinceQuadrantLegend'); if(!el) return;
   el.innerHTML = `<div class="kurs-legend-title">Pulau</div>` + Object.keys(ISLANDS).map(is=>`<span class="kurs-legend-chip"><span class="kurs-dot" style="background:${ISLAND_COLORS[is]}"></span>${is}</span>`).join('');
@@ -1877,6 +1978,11 @@ function buildProvinceQuadrant(){
     sel.innerHTML = PROV_QUADRANT_VARS.map(v=>`<option value="${v.key}">${v.label}</option>`).join('');
     sel.addEventListener('change', drawProvinceQuadrant);
     sel._filled=true;
+  }
+  const fitBtn=document.getElementById('provinceFitBtn');
+  if(fitBtn && !fitBtn._bound){
+    fitBtn.addEventListener('click', ()=>{ provinceFitOn=!provinceFitOn; drawProvinceQuadrant(); });
+    fitBtn._bound=true;
   }
   buildProvinceQuadrantLegend();
   drawProvinceQuadrant();
@@ -1897,9 +2003,23 @@ function drawProvinceQuadrant(){
   if(provinceQuadrantChart) provinceQuadrantChart.destroy();
   const canvas=document.getElementById('provinceQuadrantChart');
   if(!canvas) return;
-  provinceQuadrantChart = new Chart(canvas,{
-    type:'scatter',
-    data:{datasets:[{
+  const fit=provinceFitOn ? bestFit(pts) : null;
+  const fitBtn=document.getElementById('provinceFitBtn');
+  if(fitBtn){ fitBtn.textContent = provinceFitOn ? 'Sembunyikan garis tren' : 'Tampilkan garis tren';
+    fitBtn.setAttribute('aria-pressed', provinceFitOn ? 'true' : 'false'); }
+  const fitNote=document.getElementById('provinceFitNote');
+  if(fitNote) fitNote.innerHTML = !provinceFitOn
+    ? 'Garis tren dapat ditampilkan lewat tombol di atas grafik.'
+    : fit
+      ? `Garis tren: <b>${fit.deg===2?'kuadratik (polinomial derajat 2)':'linear'}</b>, dipilih otomatis dengan AIC · <b>R² = ${fit.r2.toLocaleString('id-ID',{minimumFractionDigits:2,maximumFractionDigits:2})}</b>. Garis menunjukkan pola rata-rata antarprovinsi, bukan hubungan sebab-akibat.`
+      : 'Garis tren tidak ditampilkan karena data tidak mencukupi.';
+  let fitLine=[];
+  if(fit){
+    const xsAll=pts.map(d=>+d.x), lo=Math.min(...xsAll), hi=Math.max(...xsAll), step=(hi-lo)/60 || 1;
+    for(let x=lo;x<=hi+1e-9;x+=step) fitLine.push({x, y:fit.pred(x)});
+  }
+  const datasets=[{
+      type:'scatter',
       label:'Provinsi',
       data:pts,
       parsing:false,
@@ -1908,9 +2028,14 @@ function drawProvinceQuadrant(){
       backgroundColor:pts.map(d=>d.color),
       borderColor:'#fff',
       borderWidth:1.5
-    }]},
+    }];
+  if(fitLine.length) datasets.push({type:'line', label:'Garis tren', data:fitLine, parsing:false,
+    borderColor:'#a78bfa', borderWidth:2.2, pointRadius:0, tension:0, order:1, fill:false});
+  provinceQuadrantChart = new Chart(canvas,{
+    type:'scatter',
+    data:{datasets},
     options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'nearest',intersect:true},
-      plugins:{legend:{display:false}, kursLinePlugin:{x:avgX,y:avgY}, tooltip:{callbacks:{
+      plugins:{legend:{display:false}, tooltip:{filter:item=>item.datasetIndex===0, callbacks:{
         title:items=>items[0]?.raw?.province || '',
         label:c=>`PHK 2025: ${fmtN(c.raw.x)} - ${cfg.label}: ${formatQuadrantValue(c.raw.y,cfg.fmt)}`,
         afterLabel:c=>`Pulau: ${c.raw.island}`
