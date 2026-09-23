@@ -725,7 +725,7 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
           <option value="jkp_claims">Klaim JKP BPJS TK - bulanan</option>
         </select>
         <select id="driverSel" class="btn"></select>
-        <button type="button" class="btn" id="driverFitBtn" aria-pressed="false">Tampilkan garis tren</button>
+        <span class="badge ghost" id="driverR2">R² —</span>
       </div>
     </div>
     <div class="chart-box" style="height:430px"><canvas id="driverChart"></canvas></div>
@@ -751,7 +751,6 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
       <div><h3 id="provinceQuadrantTitle">Jumlah PHK 2025 vs Ekspor (% PDRB) 2025</h3><p class="csub">Scatterplot provinsi dengan jumlah PHK 2025 pada x-axis dan variabel kerentanan pada y-axis.</p></div>
       <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
         <select id="provinceQuadrantY" class="btn" style="padding:4px 8px"></select>
-        <button type="button" class="btn" id="provinceFitBtn" aria-pressed="false">Tampilkan garis tren</button>
       </div>
     </div>
     <div class="quadrant-layout">
@@ -760,7 +759,7 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
     </div>
     <div class="quadrant-note">
       <span>Jumlah PHK selalu ditampilkan pada x-axis. Variabel yang dipilih pada dropdown ditampilkan pada y-axis.</span>
-      <span id="provinceFitNote">Garis tren dapat ditampilkan lewat tombol di atas grafik.</span>
+      <span id="provinceFitNote">Garis tren dihitung otomatis.</span>
       <span>Warna titik provinsi dikelompokkan berdasarkan pulau.</span>
     </div>
   </div>
@@ -775,7 +774,7 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
 
   <div class="section-label">3 - Eksposur Kurs <span class="ln"></span></div>
   <div class="card">
-    <div class="card-head"><div><h3>Share Impor dan Ekspor Perusahaan, 2015</h3><p class="csub">Scatter plot berdasarkan sektor atau provinsi. Hover titik untuk melihat nama lengkap, share input impor, share ekspor, dan kuadran eksposur.</p></div>
+    <div class="card-head"><div><h3>Share Impor dan Ekspor Perusahaan, 2015</h3><p class="csub">Scatter plot berdasarkan sektor atau provinsi. Arahkan kursor pada poin data untuk melihat nama lengkap, share input impor, share ekspor, dan kuadran eksposur.</p></div>
       <select id="kursExposureScope2015" class="btn" style="padding:4px 8px">
         <option value="sector">Berdasarkan sektor</option>
         <option value="province">Berdasarkan provinsi</option>
@@ -788,7 +787,7 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
   </div>
 
   <div class="card">
-    <div class="card-head"><div><h3>Share Perusahaan yang Melakukan Impor vs Ekspor, 2022</h3><p class="csub">Scatter plot berdasarkan sektor atau provinsi. Hover titik untuk melihat nama lengkap, share perusahaan impor, share perusahaan ekspor, dan kuadran eksposur.</p></div>
+    <div class="card-head"><div><h3>Share Perusahaan yang Melakukan Impor vs Ekspor, 2022</h3><p class="csub">Scatter plot berdasarkan sektor atau provinsi. Arahkan kursor pada poin data untuk melihat nama lengkap, share perusahaan impor, share perusahaan ekspor, dan kuadran eksposur.</p></div>
       <select id="kursExposureScope2022" class="btn" style="padding:4px 8px">
         <option value="sector">Berdasarkan sektor</option>
         <option value="province">Berdasarkan provinsi</option>
@@ -1456,9 +1455,9 @@ function buildSignals(){
     {t:'PMI Manufaktur (indeks)', st:{level:m.pmi>=50?'low':'high', txt:m.pmi>=50?'Ekspansi':'Kontraksi'}, arrow:'dot',
      d:`${m.label}: ${fmt1(m.pmi)} (${m.prev_label}: ${fmt1(m.pmi_prev)}).`},
     {t:'Kurs (USD/IDR)', st: kursDir==='flat' ? {level:'med',txt:'Stabil'} : kursDir==='up' ? {level:'high',txt:`Rupiah melemah ${fmt1(Math.abs(kursP))}%`} : {level:'low',txt:`Rupiah menguat ${fmt1(Math.abs(kursP))}%`},
-     warn: kursDir==='up', arrow:kursDir,
+     warn: kursDir==='up', arrow: kursDir==='flat' ? 'flat' : kursDir==='up' ? 'down' : 'up',   // panah mengikuti kekuatan rupiah, bukan angka USD/IDR
      d:`${m.label}: Rp${fmtN(m.kurs)} per USD (${m.prev_label}: Rp${fmtN(m.kurs_prev)}).`,
-     note:'<b>Catatan:</b> Rupiah melemah → paling menekan industri yang mengimpor bahan baku dan menjual di pasar domestik (mis. mesin); industri berorientasi ekspor (mis. furnitur) cenderung diuntungkan.'},
+     note: kursDir==='up' ? '<b>Catatan:</b> Rupiah melemah → paling menekan industri yang mengimpor bahan baku dan menjual di pasar domestik (mis. mesin); industri berorientasi ekspor (mis. furnitur) cenderung diuntungkan.' : ''},
     {t:'BI Rate (%)', st:chip(biDir,true, biDir==='flat'?'Tetap':`${biDir==='up'?'Naik':'Turun'} ${fmtN(Math.abs(m.bi_rate-m.bi_rate_prev)*100)} bps`), arrow:biDir,
      d:`${m.label}: ${n2(m.bi_rate)}% (${m.prev_label}: ${n2(m.bi_rate_prev)}%).`},
     {t:'IHPB (harga produsen)', st:chip(ihpbDir,true,chgTxt(ihpbDir,pctChg(m.ihpb,m.ihpb_prev))), arrow:ihpbDir,
@@ -1697,8 +1696,6 @@ function buildDriver(){
   sel.addEventListener('change', ()=>drawDriver(+sel.value));
   const phkSel = document.getElementById('phkMetricSel');
   if(phkSel) phkSel.addEventListener('change', ()=>drawDriver(+sel.value));
-  const fitBtn = document.getElementById('driverFitBtn');
-  if(fitBtn) fitBtn.addEventListener('click', ()=>{ driverFitOn=!driverFitOn; drawDriver(+sel.value); });
   drawDriver(0);
   buildLead();
   drawLLI();
@@ -1786,7 +1783,6 @@ function driverFit(ph,iv){
   idx.forEach((k,j)=>{ fitted[k]=+ph[k-1]+intercept+slope*dx[j]; });
   return {n,r2,p,slope,fitted};
 }
-let driverFitOn=false;
 function drawDriver(i){
   const d = driverInd[i];
   const phkMetric = document.getElementById('phkMetricSel')?.value || 'phk_flow';
@@ -1813,21 +1809,19 @@ function drawDriver(i){
     note = `Seri aktif: <b>${phkLabel}</b>. Periode tampilan: ${period}. Klaim JHT dan JKP BPJS TK tersedia sebagai opsi bulanan dari <b>Database (Bulan)</b>.`;
   }
   const fit = driverFit(ph,iv);
-  const fitBtn = document.getElementById('driverFitBtn');
-  if(fitBtn){ fitBtn.textContent = driverFitOn ? 'Sembunyikan garis tren' : 'Tampilkan garis tren';
-    fitBtn.setAttribute('aria-pressed', driverFitOn ? 'true' : 'false');
-    fitBtn.disabled = !fit; fitBtn.style.opacity = fit ? '1' : '.5'; }
+  const r2El = document.getElementById('driverR2');
+  const fmt3 = v => v.toLocaleString('id-ID',{minimumFractionDigits:3,maximumFractionDigits:3});
+  const pShort = fit ? (fit.p<0.001 ? 'p < 0,001' : `p = ${fmt3(fit.p)}`) : '';
+  if(r2El){
+    r2El.innerHTML = fit ? `R² = ${fmt3(fit.r2)} · <span style="color:${fit.p<0.05?'var(--high)':'var(--muted)'}">${pShort}</span>` : 'R² —';
+    r2El.title = fit ? `Regresi perubahan bulanan: Δ${phkLabel} = a + b × Δ${d.name}; n = ${fit.n}; ${fit.p<0.05?'signifikan pada 5%':'tidak signifikan pada 5%'}` : '';
+  }
   const datasets = [
       {type:'bar', label:phkLabel+' bulanan (kiri)', data:ph, yAxisID:'y', backgroundColor:'#cbd6e3', borderRadius:2, order:2},
       {type:'line', label:d.name+' bulanan (kanan)', data:iv, yAxisID:'y1', borderColor:d.col, backgroundColor:d.col,
         borderWidth:2.2, tension:.3, pointRadius:0, order:1, spanGaps:true}
     ];
-  if(driverFitOn && fit) datasets.push({type:'line', label:`Prediksi 1 bulan ke depan: ${phkLabel} bulan lalu + efek ${d.name} (kiri)`, data:fit.fitted,
-    yAxisID:'y', borderColor:'#7c3aed', backgroundColor:'#7c3aed', borderWidth:2, borderDash:[6,4], tension:.2, pointRadius:0, order:0, spanGaps:false});
-  if(driverFitOn && fit){
-    const sig = fit.p<0.05, pTxt = fit.p<0.001 ? 'p &lt; 0,001' : `p = ${fit.p.toLocaleString('id-ID',{minimumFractionDigits:3,maximumFractionDigits:3})}`;
-    note += `<br><br><b>Garis tren (ungu).</b> Regresi perubahan bulanan: Δ${phkLabel} = a + b × Δ${d.name}, n = ${fit.n}. <b>R² = ${fit.r2.toLocaleString('id-ID',{minimumFractionDigits:3,maximumFractionDigits:3})}</b> · <b style="color:${sig?'var(--high)':'var(--muted)'}">${pTxt}${sig?' (signifikan 5%)':' (tidak signifikan)'}</b>. Garis menunjukkan perkiraan level PHK bulan berjalan dari nilai bulan sebelumnya ditambah efek perubahan indikator. Dihitung pada perubahan, bukan level, agar tidak menangkap korelasi tren semu; angka ini berbeda dari heatmap di bawah yang memakai data provinsi (pooled). Korelasi tidak berarti hubungan kausal.`;
-  }
+  if(fit) note += `<br><br><b>R² = ${fmt3(fit.r2)}</b> · <b style="color:${fit.p<0.05?'var(--high)':'var(--muted)'}">${fit.p<0.001?'p &lt; 0,001':`p = ${fmt3(fit.p)}`}${fit.p<0.05?' (signifikan 5%)':' (tidak signifikan)'}</b> (n = ${fit.n}) dari regresi perubahan bulanan Δ${phkLabel} terhadap Δ${d.name}. Dihitung pada perubahan, bukan level, agar tidak menangkap korelasi tren semu; angka ini berbeda dari heatmap di bawah yang memakai data provinsi (pooled). Korelasi tidak berarti hubungan kausal.`;
   if(driverChart) driverChart.destroy();
   driverChart = new Chart(document.getElementById('driverChart'),{
     data:{labels, datasets},
@@ -1966,7 +1960,6 @@ function bestFit(pts){
   if(!lin) return null;
   return (quad && quad.aic < lin.aic-2) ? quad : lin;
 }
-let provinceFitOn=false;
 function buildProvinceQuadrantLegend(){
   const el=document.getElementById('provinceQuadrantLegend'); if(!el) return;
   el.innerHTML = `<div class="kurs-legend-title">Pulau</div>` + Object.keys(ISLANDS).map(is=>`<span class="kurs-legend-chip"><span class="kurs-dot" style="background:${ISLAND_COLORS[is]}"></span>${is}</span>`).join('');
@@ -1978,11 +1971,6 @@ function buildProvinceQuadrant(){
     sel.innerHTML = PROV_QUADRANT_VARS.map(v=>`<option value="${v.key}">${v.label}</option>`).join('');
     sel.addEventListener('change', drawProvinceQuadrant);
     sel._filled=true;
-  }
-  const fitBtn=document.getElementById('provinceFitBtn');
-  if(fitBtn && !fitBtn._bound){
-    fitBtn.addEventListener('click', ()=>{ provinceFitOn=!provinceFitOn; drawProvinceQuadrant(); });
-    fitBtn._bound=true;
   }
   buildProvinceQuadrantLegend();
   drawProvinceQuadrant();
@@ -2003,16 +1991,11 @@ function drawProvinceQuadrant(){
   if(provinceQuadrantChart) provinceQuadrantChart.destroy();
   const canvas=document.getElementById('provinceQuadrantChart');
   if(!canvas) return;
-  const fit=provinceFitOn ? bestFit(pts) : null;
-  const fitBtn=document.getElementById('provinceFitBtn');
-  if(fitBtn){ fitBtn.textContent = provinceFitOn ? 'Sembunyikan garis tren' : 'Tampilkan garis tren';
-    fitBtn.setAttribute('aria-pressed', provinceFitOn ? 'true' : 'false'); }
+  const fit=bestFit(pts);
   const fitNote=document.getElementById('provinceFitNote');
-  if(fitNote) fitNote.innerHTML = !provinceFitOn
-    ? 'Garis tren dapat ditampilkan lewat tombol di atas grafik.'
-    : fit
-      ? `Garis tren: <b>${fit.deg===2?'kuadratik (polinomial derajat 2)':'linear'}</b>, dipilih otomatis dengan AIC · <b>R² = ${fit.r2.toLocaleString('id-ID',{minimumFractionDigits:2,maximumFractionDigits:2})}</b>. Garis menunjukkan pola rata-rata antarprovinsi, bukan hubungan sebab-akibat.`
-      : 'Garis tren tidak ditampilkan karena data tidak mencukupi.';
+  if(fitNote) fitNote.innerHTML = fit
+    ? `Garis tren (putus-putus): <b>${fit.deg===2?'kuadratik (polinomial derajat 2)':'linear'}</b>, dipilih otomatis dengan AIC · <b>R² = ${fit.r2.toLocaleString('id-ID',{minimumFractionDigits:2,maximumFractionDigits:2})}</b>. Garis menunjukkan pola rata-rata antarprovinsi, bukan hubungan sebab-akibat.`
+    : 'Garis tren tidak ditampilkan karena data tidak mencukupi.';
   let fitLine=[];
   if(fit){
     const xsAll=pts.map(d=>+d.x), lo=Math.min(...xsAll), hi=Math.max(...xsAll), step=(hi-lo)/60 || 1;
@@ -2030,7 +2013,7 @@ function drawProvinceQuadrant(){
       borderWidth:1.5
     }];
   if(fitLine.length) datasets.push({type:'line', label:'Garis tren', data:fitLine, parsing:false,
-    borderColor:'#a78bfa', borderWidth:2.2, pointRadius:0, tension:0, order:1, fill:false});
+    borderColor:'#a78bfa', borderWidth:2.2, borderDash:[6,4], pointRadius:0, tension:0, order:1, fill:false});
   provinceQuadrantChart = new Chart(canvas,{
     type:'scatter',
     data:{datasets},
