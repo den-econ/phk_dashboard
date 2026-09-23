@@ -171,6 +171,8 @@ main{max-width:1480px;margin:0 auto;padding:22px 24px 60px}
 .rankrow{display:grid;grid-template-columns:22px 1fr auto;align-items:center;gap:12px;
   padding:9px 8px;border-radius:8px;cursor:pointer;transition:.12s}
 .rankrow:hover{background:var(--surface-2)}
+.method-box{background:var(--surface-2);border:1px solid var(--line-2);border-left:3px solid var(--navy-3);
+  border-radius:8px;padding:10px 12px;margin:12px 0 4px;font-size:11.5px;line-height:1.55;color:var(--ink)}
 .exec-trend-legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:8px;font-size:11px;color:var(--muted)}
 .exec-trend-legend span{display:inline-flex;align-items:center;gap:6px}
 .exec-trend-legend i{width:12px;height:12px;border-radius:2px;display:inline-block}
@@ -671,6 +673,9 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
             <div class="risk-dimension-vars"><b>Variabel:</b> harga minyak dunia, PMI Manufaktur, BI Rate, volatilitas kurs USD/IDR, IHPB, penjualan mobil, dan nilai ekspor.</div>
             <div class="risk-frequency"><span>Bulanan</span></div>
           </div>
+        </div>
+        <div class="method-box">
+          <b>Tentang PCA.</b> <i>Principal Component Analysis</i> (PCA) adalah metode statistik untuk meringkas banyak indikator yang saling berkaitan menjadi satu indeks. Bobot tiap indikator ditentukan dari pola datanya, sehingga indikator yang informasinya tumpang tindih tidak dihitung dua kali. PCA dipakai untuk <b>Kerentanan Struktural</b> dan <b>Kerentanan Pasar Kerja</b>. Dimensi <b>Tekanan Makroekonomi</b> tidak memakai PCA, melainkan pendekatan <i>Leading Economic Indicator</i>.
         </div>
         <div class="risk-method-process">
           <div class="risk-process-step"><b>1. Indeks per dimensi</b><span>PCA merangkum indikator struktural dan pasar kerja; indikator makro ditransformasi dan diseragamkan arahnya terhadap risiko PHK.</span></div>
