@@ -238,6 +238,7 @@ main{max-width:1480px;margin:0 auto;padding:22px 24px 60px}
 .narr p{margin:0;color:#cdddee;font-size:13px;line-height:1.6}
 .narr .tag{display:inline-block;background:rgba(255,255,255,.12);border-radius:6px;padding:1px 8px;
   font-weight:600;color:#fff;font-size:12px;margin:0 2px}
+.narr .tag.tekanan{background:rgba(210,59,52,.28);color:#ffb3ae}
 
 /* province board (peta) */
 .boardgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(126px,1fr));gap:9px}
@@ -1243,10 +1244,25 @@ function buildExec(){
   buildSignals();
   buildGoogleTrends();
 
-  /* narrative */
-  const topWatch = provNames.slice(0,5);
+  /* ringkasan: merangkum angka yang tampil di tab ini */
+  const tag = arr => arr.map(v=>`<span class="tag">${v}</span>`).join(', ');
+  const ytdLbl = `${months_id[lastMon.m-1]} ${lastMon.y}`;
+  const partial = lastMon.lab > PHK_LAST_COMPLETE ? ' (angka sementara)' : '';
+  const yoyTxt = phkYoyPrev
+    ? `, ${phkYoyPct>=0?'lebih tinggi':'lebih rendah'} ${fmt1(Math.abs(phkYoyPct))}% dibanding periode yang sama ${phkCompLast.y-1}`
+    : '';
+  const gtRows = (GOOGLE_TRENDS.regions?.interest?.phk || []).slice().sort((a,b)=>(b.value||0)-(a.value||0)).slice(0,3).map(r=>gtProvName(r.region));
+  const gtPeriod = document.getElementById('trend-chart-period')?.textContent || '';
+  const redSignals = macroSignals().filter(x=>x.st.level==='high');
+  const redTxt = redSignals.length
+    ? `Indikator makroekonomi menunjukkan sinyal tekanan pada ${redSignals.map(x=>`<span class="tag tekanan">${x.t.replace(/ \(.*\)$/,'')} · ${x.st.txt.toLowerCase()}</span>`).join(', ')}.`
+    : 'Tidak ada indikator makroekonomi yang berada pada status tekanan bulan ini.';
+  const topWatch = provNames.slice(0,3);
   document.getElementById('exec-narrative').innerHTML =
-    `Provinsi yang perlu dipantau bulan ini adalah <span class="tag">${topWatch.join('</span>, <span class="tag">')}</span>. Tekanan makroekonomi yang perlu dicermati terutama PMI manufaktur yang berada di bawah ambang ekspansi dan kurs USD/IDR yang tinggi. Pantau juga pencarian Google Trends untuk kata kunci <span class="tag">PHK</span>, <span class="tag">dirumahkan</span>, dan <span class="tag">layoff</span> sebagai konteks tambahan.`;
+    `SatuData Kemnaker mencatat akumulasi PHK ${lastMon.y} sebesar <b>${fmtN(ytdFlow)} orang</b> hingga ${ytdLbl}${partial}${yoyTxt}. ` +
+    (gtRows.length ? `Pencarian Google Trends untuk kata kunci PHK paling tinggi di ${tag(gtRows)}${gtPeriod?` (${gtPeriod})`:''}. ` : '') +
+    `${redTxt} ` +
+    `Berdasarkan Layoff Pressure Heatmap ${LPI_PERIOD_LABEL}, provinsi yang perlu dipantau adalah ${tag(topWatch)}.`;
 }
 function avgComp(k){ let s=0,n=0; provNames.forEach(p=>{ if(P[p][k]!=null){s+=P[p][k];n++;} }); return n?s/n:0; }
 
@@ -1437,7 +1453,7 @@ function buildGoogleTrends(){
   draw();
 }
 
-function buildSignals(){
+function macroSignals(){
   const m = MACRO_LATEST;
   const C = {high:['var(--high-bg)','var(--high)'], med:['var(--med-bg)','var(--med)'], low:['var(--low-bg)','var(--low)']};
   const pctChg = (a,b) => b ? (a/b-1)*100 : 0;
@@ -1468,6 +1484,14 @@ function buildSignals(){
     {t:'Penjualan Mobil (unit)', st:chip(carDir,false,chgTxt(carDir,pctChg(m.car_sales,m.car_sales_prev))), arrow:carDir,
      d:`${m.label}: ${fmtN(m.car_sales)} unit (${m.prev_label}: ${fmtN(m.car_sales_prev)}); ${fmt1(m.car_sales_yoy)}% YoY.`},
   ];
+  return sigs;
+}
+/* nama provinsi untuk narasi ringkasan; data Google Trends sendiri tetap memakai nama aslinya */
+const GT_PROV_ID = {'North Maluku':'Maluku Utara','Special Capital Region of Jakarta':'DKI Jakarta','East Kalimantan':'Kalimantan Timur','Central Sulawesi':'Sulawesi Tengah','Riau Islands':'Kepulauan Riau','West Java':'Jawa Barat','North Kalimantan':'Kalimantan Utara','South East Sulawesi':'Sulawesi Tenggara','Special Region of Yogyakarta':'DI Yogyakarta','South Sulawesi':'Sulawesi Selatan','Bangka Belitung Islands':'Bangka Belitung','Central Kalimantan':'Kalimantan Tengah','East Java':'Jawa Timur','North Sumatra':'Sumatera Utara','West Kalimantan':'Kalimantan Barat','Central Java':'Jawa Tengah','West Papua':'Papua Barat','North Sulawesi':'Sulawesi Utara','South Kalimantan':'Kalimantan Selatan','South Sumatra':'Sumatera Selatan','East Nusa Tenggara':'Nusa Tenggara Timur','West Sulawesi':'Sulawesi Barat','West Sumatra':'Sumatera Barat','West Nusa Tenggara':'Nusa Tenggara Barat'};
+const gtProvName = n => GT_PROV_ID[n] || n;
+function buildSignals(){
+  const sigs = macroSignals();
+  const C = {high:['var(--high-bg)','var(--high)'], med:['var(--med-bg)','var(--med)'], low:['var(--low-bg)','var(--low)']};
   const warnSvg = col => `<svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z" stroke="${col}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
   const arrowTxt = a => a==='up' ? '▲' : a==='down' ? '▼' : a==='flat' ? '■' : '●';
   document.getElementById('signal-list').innerHTML = sigs.map(s=>{
