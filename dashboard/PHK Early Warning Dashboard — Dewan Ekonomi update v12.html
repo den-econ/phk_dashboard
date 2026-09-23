@@ -566,7 +566,6 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
         </div>
         <div class="chart-box" style="height:260px"><canvas id="execTrend"></canvas></div>
         <div class="exec-trend-legend" id="execTrendLegend"></div>
-        <div class="monitoring-note">Kenaikan atau penurunan flow bulanan perlu dibaca bersama tekanan makroekonomi dan konteks pasar kerja daerah. Angka ini bersifat pemantauan, bukan prediksi kepastian PHK.</div>
       </div>
 
       <div class="card trends-card">
@@ -619,8 +618,8 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
       </div>
 
       <div class="card">
-        <h3>Provinsi dengan Risiko PHK Tinggi <span class="info" data-tt="Lima provinsi dengan LPI tertinggi sebagai prioritas pemantauan. Klik untuk melihat detail di tab Peta Risiko.">i</span></h3>
-        <p class="csub" id="top5-sub">5 wilayah prioritas pemantauan · LPI Agustus 2026</p>
+        <h3>Provinsi dengan Risiko PHK Tinggi <span class="info" data-tt="Lima provinsi dengan skor Layoff Pressure Heatmap tertinggi sebagai prioritas pemantauan. Klik untuk melihat detail di tab Peta Risiko.">i</span></h3>
+        <p class="csub" id="top5-sub">5 wilayah prioritas pemantauan · Layoff Pressure Heatmap Agustus 2026</p>
         <div class="ranklist" id="top5-list">
           <div class="rankrow no-score" style="grid-template-columns:1fr"><div><div class="rname">Memuat data provinsi...</div><div class="rmeta">Mengambil dari data risiko bulanan terbaru</div></div></div>
         </div>
@@ -710,7 +709,7 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
         <span class="badge ghost" style="align-self:flex-start">Agu 2026</span>
       </div></div>
     <div class="chart-box" style="height:360px"><canvas id="lliChart"></canvas></div>
-    <div class="footnote" id="lli-narr">—</div>
+    <div class="footnote" id="lli-narr" style="color:var(--ink)">—</div>
   </div>
 
 
@@ -735,7 +734,7 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
   <div class="section-label">Leading Indicator Analysis <span class="ln"></span></div>
   <div class="card">
     <p class="csub">Pooled cross-correlation indikator makro terhadap PHK bulanan provinsi menurut panjang lag.</p>
-    <div id="leadTable" class="lead-heatmap"></div><div class="footnote" id="lead-interp"></div>
+    <div id="leadTable" class="lead-heatmap"></div><div class="footnote" id="lead-interp" style="color:var(--ink)"></div>
   </div>
 
 
@@ -1232,7 +1231,7 @@ function buildExec(){
   /* top 5 */
   const top5 = provNames.slice(0,5);
   const top5Sub = document.getElementById('top5-sub');
-  if(top5Sub) top5Sub.textContent = `5 wilayah prioritas pemantauan · LPI ${LPI_PERIOD_LABEL}`;
+  if(top5Sub) top5Sub.textContent = `5 wilayah prioritas pemantauan · Layoff Pressure Heatmap ${LPI_PERIOD_LABEL}`;
   document.getElementById('top5-list').innerHTML = top5.map((p,i)=>{
     const d=P[p];
     return `<div class="rankrow no-score" style="grid-template-columns:1fr" onclick="openProvFromExec('${p}')">
@@ -1729,7 +1728,7 @@ function drawLLI(){
         y:{position:'left',min:yMin,max:yMax,title:{display:true,text:'Indeks Tekanan Makro (Januari 2023=100)',font:{size:10},color:'#a92b2f'},ticks:{color:'#a92b2f'},grid:{color:'#e8edf3'}},
         y1:{position:'right',min:y1Min,max:y1Max,title:{display:true,text:'Realisasi PHK: MA 6 bulan Δ Indeks',font:{size:10},color:'#f2a000'},grid:{display:false},ticks:{color:'#f2a000',callback:v=>fmt1(v)}}}}
   });
-  document.getElementById('lli-narr').innerHTML = `<b>Metode:</b> Indeks Tekanan Makroekonomi mengadopsi pendekatan Leading Economic Indicator (LEI) untuk memantau perubahan kondisi ekonomi yang berpotensi mendahului perubahan PHK. Indeks dibentuk dari <b>PMI, BI Rate, volatilitas kurs, harga minyak Brent, IHPB, ekspor, dan penjualan mobil</b>. Perubahan masing-masing indikator ditransformasi dan diseragamkan arahnya terhadap risiko PHK, kemudian digabungkan menjadi indeks komposit dan dinormalisasi dengan <b>Januari 2023 = 100</b>. Pada tingkat nasional, indeks provinsi diagregasikan menggunakan bobot jumlah tenaga kerja. Garis oranye menunjukkan <b>realisasi PHK</b>, yaitu rata-rata bergerak 6 bulan dari perubahan indeks PHK, yang digunakan sebagai pembanding untuk melihat apakah pergerakan indikator makro sejalan dengan perkembangan PHK.<br><br><b>Interpretasi:</b> Indeks yang meningkat menunjukkan <b>tekanan makroekonomi yang meningkat</b> dan secara umum mengindikasikan risiko PHK yang lebih tinggi. Sebaliknya, penurunan indeks menunjukkan tekanan yang mereda. Pergerakan indeks dibandingkan dengan perkembangan PHK untuk mengidentifikasi <b>indikasi perubahan risiko PHK secara lebih awal</b>.`;
+  document.getElementById('lli-narr').innerHTML = `<b>Interpretasi:</b> Indeks yang meningkat menunjukkan <b>tekanan makroekonomi yang meningkat</b> dan secara umum mengindikasikan risiko PHK yang lebih tinggi. Sebaliknya, penurunan indeks menunjukkan tekanan yang mereda. Pergerakan indeks dibandingkan dengan perkembangan PHK untuk mengidentifikasi <b>indikasi perubahan risiko PHK secara lebih awal</b>.<br><br><span style="color:var(--muted)"><b>Metode:</b> Indeks Tekanan Makroekonomi mengadopsi pendekatan Leading Economic Indicator (LEI) untuk memantau perubahan kondisi ekonomi yang berpotensi mendahului perubahan PHK. Indeks dibentuk dari <b>PMI, BI Rate, volatilitas kurs, harga minyak Brent, IHPB, ekspor, dan penjualan mobil</b>. Perubahan masing-masing indikator ditransformasi dan diseragamkan arahnya terhadap risiko PHK, kemudian digabungkan menjadi indeks komposit dan dinormalisasi dengan <b>Januari 2023 = 100</b>. Pada tingkat nasional, indeks provinsi diagregasikan menggunakan bobot jumlah tenaga kerja. Garis oranye menunjukkan <b>realisasi PHK</b>, yaitu rata-rata bergerak 6 bulan dari perubahan indeks PHK, yang digunakan sebagai pembanding untuk melihat apakah pergerakan indikator makro sejalan dengan perkembangan PHK.</span>`;
 }
 
 /* ---- regresi sederhana pada PERUBAHAN BULANAN: d(PHK)_t = a + b*d(Indikator)_t ----
@@ -1876,7 +1875,7 @@ function buildLead(){
   const el = document.getElementById('leadTable');
   el.className = 'lead-heatmap';
   el.innerHTML = `<div><div class="lead-chart-title">Pooled Cross-Correlation antara PHK dan Indikator Makro</div><div class="lead-chart-sub">Korelasi pada lag 0-12 bulan; warna menunjukkan arah dan kekuatan hubungan.</div><div class="lead-panel">${body}${axis}</div></div>${legend}`;
-  document.getElementById('lead-interp').innerHTML = `<b>Metode:</b> Korelasi Pearson dihitung antara setiap indikator makro pada lag 0–12 bulan dan PHK bulanan menggunakan seluruh observasi provinsi-bulan (pooled cross-correlation). Transformasi variabel disesuaikan dengan karakteristik masing-masing indikator. Hasil menunjukkan <b>arah dan pola hubungan</b> antarvariabel, serta memberikan indikasi mengenai <b>jeda waktu (<em>lead time</em>)</b> antara perubahan indikator dan PHK. <b>Korelasi tidak berarti hubungan kausal</b>. Perlu dilengkapi dengan analisis regresi lebih lanjut dengan mengontrol faktor-faktor lain untuk menilai hubungan kausal.<br><br><b>Interpretasi:</b> <span style="color:#980000;font-weight:700">Merah</span> menunjukkan hubungan positif dan <span style="color:#38761d;font-weight:700">hijau</span> menunjukkan hubungan negatif; warna yang semakin pekat menunjukkan korelasi yang semakin kuat. Sebagai contoh, <b>IHPB</b> menunjukkan korelasi positif dengan PHK pada hampir seluruh lag. Artinya, kenaikan IHPB cenderung berjalan searah dengan peningkatan PHK, dengan hubungan yang relatif lebih kuat pada lag awal. <b>BI Rate</b> juga menunjukkan korelasi positif dan relatif konsisten hingga beberapa bulan ke depan, sehingga perubahan BI Rate dapat dipantau sebagai salah satu indikator tekanan yang berkaitan dengan PHK. Sementara itu, <b>PMI</b> menunjukkan korelasi negatif pada sebagian besar lag. Artinya, aktivitas manufaktur yang lebih kuat cenderung berkaitan dengan PHK yang lebih rendah.`;
+  document.getElementById('lead-interp').innerHTML = `<b>Interpretasi:</b> <span style="color:#980000;font-weight:700">Merah</span> menunjukkan hubungan positif dan <span style="color:#38761d;font-weight:700">hijau</span> menunjukkan hubungan negatif; warna yang semakin pekat menunjukkan korelasi yang semakin kuat. Sebagai contoh, <b>IHPB</b> menunjukkan korelasi positif dengan PHK pada hampir seluruh lag. Artinya, kenaikan IHPB cenderung berjalan searah dengan peningkatan PHK, dengan hubungan yang relatif lebih kuat pada lag awal. <b>BI Rate</b> juga menunjukkan korelasi positif dan relatif konsisten hingga beberapa bulan ke depan, sehingga perubahan BI Rate dapat dipantau sebagai salah satu indikator tekanan yang berkaitan dengan PHK. Sementara itu, <b>PMI</b> menunjukkan korelasi negatif pada sebagian besar lag. Artinya, aktivitas manufaktur yang lebih kuat cenderung berkaitan dengan PHK yang lebih rendah.<br><br><span style="color:var(--muted)"><b>Metode:</b> Korelasi Pearson dihitung antara setiap indikator makro pada lag 0–12 bulan dan PHK bulanan menggunakan seluruh observasi provinsi-bulan (pooled cross-correlation). Transformasi variabel disesuaikan dengan karakteristik masing-masing indikator. Hasil menunjukkan <b>arah dan pola hubungan</b> antarvariabel, serta memberikan indikasi mengenai <b>jeda waktu (<em>lead time</em>)</b> antara perubahan indikator dan PHK. <b>Korelasi tidak berarti hubungan kausal</b>. Perlu dilengkapi dengan analisis regresi lebih lanjut dengan mengontrol faktor-faktor lain untuk menilai hubungan kausal.</span>`;
 }
 /* islands with Indonesian names — covers all 38 provinces */
 const ISLANDS = {
