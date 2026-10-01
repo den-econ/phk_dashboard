@@ -1,4 +1,5 @@
 * Do File Mapping Data IBS
+* Sectoral Analysis
 * Raisa Idris
 
 *=================================
@@ -8,6 +9,8 @@
 use "/Users/raisa/Documents/IBS_dta/si2022.dta", clear
 renvars _all,lower
 
+tempfile import energy labour
+
 * BY KBLI *
 
 tab disic2
@@ -15,14 +18,19 @@ tab disic2 if ekspor !=.
 
 * Import Share
 
+preserve
 collapse (sum) rimvcu rtlvcu, by(disic2)
 gen import_share = rimvcu/rtlvcu
-list disic2 rimvcu rtlvcu import_share, sepby(disic2)
 
 format rimvcu %20.0fc
 format rtlvcu %20.0fc
 
-list disic2 rimvcu rtlvcu import_share
+list disic2 rimvcu rtlvcu import_share, sepby(disic2)
+
+save `import'
+
+restore
+
 
 * Energy Cost (Checker)
 
@@ -38,6 +46,8 @@ summ diff
 
 * Energy Cost 
 
+preserve
+
 gen energy_cost = efuvcu + eplvcu + enpvcu
 collapse (sum) energy_cost rtlvcu, by(disic2)
 gen energy_share = energy_cost / rtlvcu
@@ -45,9 +55,17 @@ gen energy_share = energy_cost / rtlvcu
 format energy_cost rtlvcu %18.0fc
 format energy_share %9.4f
 
-list disic2 energy_cost rtlvcu energy_share
+list disic2 energy_cost rtlvcu energy_share, sepby (disic2)
+
+drop rtlvcu
+
+save `energy'
+
+restore
 
 * Labour Cost
+
+preserve
 
 gen labour_cost = zpdvcu + zndvcu
 collapse (sum) labour_cost rtlvcu, by(disic2)
@@ -56,55 +74,35 @@ gen labour_intensity = labour_cost / rtlvcu
 format labour_cost rtlvcu %18.0fc
 format labour_intensity %9.4f
 
-list disic2 labour_cost rtlvcu labour_intensity
+list disic2 labour_cost rtlvcu labour_intensity, sepby(disic2)
+
+drop rtlvcu
+
+save `labour'
 
 restore
 
+* Merge All Results
 
-* BY PROVINCE *
+use `import', clear
 
-* Import Share
+merge 1:1 dprovi using `energy', nogen
+merge 1:1 dprovi using `labour', nogen
 
-collapse (sum) rimvcu rtlvcu, by(dprovi)
-gen import_share = rimvcu/rtlvcu
-list dprovi rimvcu rtlvcu import_share, sepby(dprovi)
+order dprovi rimvcu rtlvcu import_share energy_cost energy_share labour_cost labour_intensity
 
-format rimvcu %20.0fc
-format rtlvcu %20.0fc
-
-list disic2 rimvcu rtlvcu import_share
-
-* Energy Cost 
-
-gen energy_cost = efuvcu + eplvcu + enpvcu
-collapse (sum) energy_cost rtlvcu, by(dprovi)
-gen energy_share = energy_cost / rtlvcu
-
-format energy_cost rtlvcu %18.0fc
-format energy_share %9.4f
-
-list dprovi energy_cost rtlvcu energy_share
-
-* Labour Cost
-
-gen labour_cost = zpdvcu + zndvcu
-collapse (sum) labour_cost rtlvcu, by(dprovi)
-gen labour_intensity = labour_cost / rtlvcu
-
-format labour_cost rtlvcu %18.0fc
-format labour_intensity %9.4f
-
-list dprovi labour_cost rtlvcu labour_intensity
-
-restore
+export excel using "/Users/raisa/Documents/IBS_2022_sepby_disic2.xlsx", ///
+    firstrow(variables) replace
 
 
 *=================================
 * IBS 2015
 *=================================
 
-use "/Users/raisa/Documents/si2015.dta"
-renvars _all,lower
+use "/Users/raisa/Documents/IBS_dta/si2015.dta", clear
+renvars _all, lower
+
+tempfile export import energy labour
 
 * BY KBLI *
 
@@ -118,49 +116,37 @@ tempfile export import energy labour
 * Export Share 
 
 preserve
+
 collapse (mean) prprex15, by(disic2)
 format prprex15 %9.2f
 list disic2 prprex15
+
 save `export'
+
 restore
 
 
 * Import Share
 
 preserve
-collapse (sum) rimvcu15 rtlvcu15, by(disic2)
-gen import_share = rimvcu15 / rtlvcu15
-
-format rimvcu15 %20.0fc
-format rtlvcu15 %20.0fc
-format import_share %9.4f
-
-list disic2 rimvcu15 rtlvcu15 import_share, sepby(disic2)
-save `import'
-restore
-
-* Import Share [edited]
-
-use "/Users/raisa/Documents/si2015.dta", clear
-renvars _all, lower
-
-tostring disic515, replace
-gen disic2 = substr(disic515,1,2)
-destring disic2, replace
 
 collapse (sum) rimvcu15 rtlvcu15, by(disic2)
-
 gen import_share = rimvcu15 / rtlvcu15
 
 format rimvcu15 rtlvcu15 %20.0fc
 format import_share %9.4f
 
-export excel using "/Users/raisa/Documents/KBLI_2015_Import.xlsx", ///
-    firstrow(variables) replace
-	
+list disic2 rimvcu15 rtlvcu15 import_share, sepby(disic2)
+
+save `import'
+
+restore
+
+
 * Energy Cost 
 
 preserve
+
 gen energy_cost = efuvcu15 + eplvcu15 + enpvcu15
 collapse (sum) energy_cost rtlvcu15, by(disic2)
 gen energy_share = energy_cost / rtlvcu15
@@ -170,12 +156,16 @@ format rtlvcu15 %18.0fc
 format energy_share %9.4f
 
 list disic2 energy_cost rtlvcu15 energy_share, sepby(disic2)
+
 save `energy'
+
 restore
+
 
 * Labour Cost
 
 preserve
+
 gen labour_cost = zpdvcu15 + zndvcu15
 collapse (sum) labour_cost rtlvcu15, by(disic2)
 gen labour_intensity = labour_cost / rtlvcu15
@@ -185,7 +175,9 @@ format rtlvcu15 %18.0fc
 format labour_intensity %9.4f
 
 list disic2 labour_cost rtlvcu15 labour_intensity, sepby(disic2)
+
 save `labour'
+
 restore
 
 
@@ -216,6 +208,8 @@ use "/Users/raisa/Downloads/si2017.dta"
 rename Year year_survey
 renvars _all,lower
 
+tempfile import energy labour
+
 * BY KBLI
 
 tostring disic517, replace
@@ -228,6 +222,7 @@ tempfile import energy labour
 * Import Share
 
 preserve
+
 collapse (sum) rimvcu17 rtlvcu17, by(disic2)
 gen import_share = rimvcu17 / rtlvcu17
 
@@ -235,13 +230,16 @@ format rimvcu17 rtlvcu17 %20.0fc
 format import_share %9.4f
 
 list disic2 rimvcu17 rtlvcu17 import_share, sepby(disic2)
+
 save `import'
+
 restore
 
 
 * Energy Cost
 
 preserve
+
 gen energy_cost = efuvcu17 + eplvcu17 + enpvcu17
 collapse (sum) energy_cost rtlvcu17, by(disic2)
 gen energy_share = energy_cost / rtlvcu17
@@ -250,7 +248,9 @@ format energy_cost rtlvcu17 %20.0fc
 format energy_share %9.4f
 
 list disic2 energy_cost rtlvcu17 energy_share, sepby(disic2)
+
 save `energy'
+
 restore
 
 
@@ -294,6 +294,7 @@ export excel using "/Users/raisa/Documents/KBLI_Shares_2017.xlsx", ///
 use "/Users/raisa/Downloads/si2018.dta", clear
 renvars _all, lower
 
+tempfile import energy labour
 
 * BY KBLI
 
@@ -301,8 +302,6 @@ tostring disic5, replace
 
 gen disic2 = substr(disic5, 1, 2)
 destring disic2, replace
-
-tempfile import energy labour
 
 
 * Import Share
