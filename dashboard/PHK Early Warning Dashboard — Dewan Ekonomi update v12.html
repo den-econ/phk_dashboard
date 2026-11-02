@@ -613,8 +613,10 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
 
     <div class="exec-monitor-stack">
       <div class="card">
-        <h3>Tekanan Makroekonomi Terkini</h3>
-        <p class="csub">Indikator nasional bulanan yang perlu dipantau dalam membaca tekanan terhadap pasar kerja.</p>
+        <div class="card-head">
+          <div><h3>Tekanan Makroekonomi Terkini</h3><p class="csub">Indikator nasional bulanan yang perlu dipantau dalam membaca tekanan terhadap pasar kerja.</p></div>
+          <span class="badge ghost" id="macro-period">Agu 2026</span>
+        </div>
         <div id="signal-list">
           <div class="signal"><div class="sicon" style="background:var(--med-bg)"></div><div class="stext"><div class="stitle">Memuat indikator tekanan ekonomi...</div><div class="sdesc">PMI, BI Rate, kurs, Brent, IHPB, ekspor, dan penjualan mobil.</div></div></div>
         </div>
@@ -1492,6 +1494,12 @@ const GT_PROV_ID = {'North Maluku':'Maluku Utara','Special Capital Region of Jak
 const gtProvName = n => GT_PROV_ID[n] || n;
 function buildSignals(){
   const sigs = macroSignals();
+  const mp = document.getElementById('macro-period');
+  if(mp){
+    const [bln, thn] = String(MACRO_LATEST.label).split(' ');
+    const idx = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'].indexOf(bln);
+    mp.textContent = idx >= 0 ? `${months_id[idx]} ${thn}` : MACRO_LATEST.label;
+  }
   const C = {high:['var(--high-bg)','var(--high)'], med:['var(--med-bg)','var(--med)'], low:['var(--low-bg)','var(--low)']};
   const warnSvg = col => `<svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z" stroke="${col}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
   const arrowTxt = a => a==='up' ? '▲' : a==='down' ? '▼' : a==='flat' ? '■' : '●';
