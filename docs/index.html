@@ -623,8 +623,11 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
       </div>
 
       <div class="card">
-        <h3>Provinsi dengan Risiko PHK Tinggi <span class="info" data-tt="Lima provinsi dengan skor Layoff Pressure Heatmap tertinggi sebagai prioritas pemantauan. Klik untuk melihat detail di tab Peta Risiko.">i</span></h3>
-        <p class="csub" id="top5-sub">5 wilayah prioritas pemantauan · Layoff Pressure Heatmap Agustus 2026</p>
+        <div class="card-head">
+          <div><h3>Provinsi dengan Risiko PHK Tinggi <span class="info" data-tt="Lima provinsi dengan skor Layoff Pressure Heatmap tertinggi sebagai prioritas pemantauan. Klik untuk melihat detail di tab Peta Risiko.">i</span></h3>
+          <p class="csub" id="top5-sub">5 wilayah prioritas pemantauan · Layoff Pressure Heatmap</p></div>
+          <span class="badge ghost" id="top5-period">Agu 2026</span>
+        </div>
         <div class="ranklist" id="top5-list">
           <div class="rankrow no-score" style="grid-template-columns:1fr"><div><div class="rname">Memuat data provinsi...</div><div class="rmeta">Mengambil dari data risiko bulanan terbaru</div></div></div>
         </div>
@@ -651,7 +654,7 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
   <div class="grid" style="grid-template-columns:1fr 360px;align-items:start">
     <div class="risk-map-stack">
       <div class="card risk-map-card" style="margin-bottom:12px">
-        <div class="card-head"><div><h3>Layoff Pressure Heatmap</h3><p class="csub">Warna menunjukkan kategori risiko relatif antardaerah. Klik provinsi untuk melihat data pendukung.</p></div><div class="risk-map-tools"><span style="font-size:11px;color:var(--muted)">Tampilan:</span> <select id="sortsel" class="btn" style="padding:4px 8px"><option value="lpi">Risiko PHK</option><option value="struct">Kerentanan struktural</option><option value="labour">Kerentanan pasar kerja</option><option value="stress">Tekanan makroekonomi</option></select></div></div>
+        <div class="card-head"><div><h3>Layoff Pressure Heatmap</h3><p class="csub">Warna menunjukkan kategori risiko relatif antardaerah. Klik provinsi untuk melihat data pendukung.</p></div><div class="risk-map-tools"><span class="badge ghost" id="risk-map-period">Agu 2026</span><span style="font-size:11px;color:var(--muted)">Tampilan:</span> <select id="sortsel" class="btn" style="padding:4px 8px"><option value="lpi">Risiko PHK</option><option value="struct">Kerentanan struktural</option><option value="labour">Kerentanan pasar kerja</option><option value="stress">Tekanan makroekonomi</option></select></div></div>
         <div class="risk-map-box" id="province-board"></div>
       </div>
       <div class="card risk-method-note">
@@ -1235,7 +1238,9 @@ function buildExec(){
   /* top 5 */
   const top5 = provNames.slice(0,5);
   const top5Sub = document.getElementById('top5-sub');
-  if(top5Sub) top5Sub.textContent = `5 wilayah prioritas pemantauan · Layoff Pressure Heatmap ${LPI_PERIOD_LABEL}`;
+  if(top5Sub) top5Sub.textContent = '5 wilayah prioritas pemantauan · Layoff Pressure Heatmap';
+  const top5Period = document.getElementById('top5-period');
+  if(top5Period) top5Period.textContent = shortPeriod(LPI_PERIOD_LABEL);
   document.getElementById('top5-list').innerHTML = top5.map((p,i)=>{
     const d=P[p];
     return `<div class="rankrow no-score" style="grid-template-columns:1fr" onclick="openProvFromExec('${p}')">
@@ -1492,14 +1497,17 @@ function macroSignals(){
 /* nama provinsi untuk narasi ringkasan; data Google Trends sendiri tetap memakai nama aslinya */
 const GT_PROV_ID = {'North Maluku':'Maluku Utara','Special Capital Region of Jakarta':'DKI Jakarta','East Kalimantan':'Kalimantan Timur','Central Sulawesi':'Sulawesi Tengah','Riau Islands':'Kepulauan Riau','West Java':'Jawa Barat','North Kalimantan':'Kalimantan Utara','South East Sulawesi':'Sulawesi Tenggara','Special Region of Yogyakarta':'DI Yogyakarta','South Sulawesi':'Sulawesi Selatan','Bangka Belitung Islands':'Bangka Belitung','Central Kalimantan':'Kalimantan Tengah','East Java':'Jawa Timur','North Sumatra':'Sumatera Utara','West Kalimantan':'Kalimantan Barat','Central Java':'Jawa Tengah','West Papua':'Papua Barat','North Sulawesi':'Sulawesi Utara','South Kalimantan':'Kalimantan Selatan','South Sumatra':'Sumatera Selatan','East Nusa Tenggara':'Nusa Tenggara Timur','West Sulawesi':'Sulawesi Barat','West Sumatra':'Sumatera Barat','West Nusa Tenggara':'Nusa Tenggara Barat'};
 const gtProvName = n => GT_PROV_ID[n] || n;
+/* "Agustus 2026" -> "Agu 2026" untuk badge periode */
+const MONTHS_FULL_ID = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+function shortPeriod(label){
+  const [bln, thn] = String(label||'').split(' ');
+  const idx = MONTHS_FULL_ID.indexOf(bln);
+  return idx >= 0 ? `${months_id[idx]} ${thn}` : String(label||'');
+}
 function buildSignals(){
   const sigs = macroSignals();
   const mp = document.getElementById('macro-period');
-  if(mp){
-    const [bln, thn] = String(MACRO_LATEST.label).split(' ');
-    const idx = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'].indexOf(bln);
-    mp.textContent = idx >= 0 ? `${months_id[idx]} ${thn}` : MACRO_LATEST.label;
-  }
+  if(mp) mp.textContent = shortPeriod(MACRO_LATEST.label);
   const C = {high:['var(--high-bg)','var(--high)'], med:['var(--med-bg)','var(--med)'], low:['var(--low-bg)','var(--low)']};
   const warnSvg = col => `<svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z" stroke="${col}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
   const arrowTxt = a => a==='up' ? '▲' : a==='down' ? '▼' : a==='flat' ? '■' : '●';
@@ -1523,6 +1531,8 @@ let riskMapView = {...RISK_MAP_BASE_VIEW};
 const METRIC_LABEL = {lpi:'Layoff Pressure Index', struct:'Kerentanan struktural', labour:'Kerentanan pasar kerja', stress:'Tekanan makroekonomi'};
 const METRIC_SHORT = {lpi:'LPI', struct:'Struktural', labour:'Pasar kerja', stress:'Tekanan ekonomi'};
 function buildMap(){
+  const rp = document.getElementById('risk-map-period');
+  if(rp) rp.textContent = shortPeriod(LPI_PERIOD_LABEL);
   renderBoard();
   document.getElementById('sortsel').addEventListener('change', e=>{ curSort=e.target.value; renderBoard(); if(curProv) selectProv(curProv); });
 }

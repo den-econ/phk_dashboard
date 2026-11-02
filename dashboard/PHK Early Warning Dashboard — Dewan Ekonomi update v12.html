@@ -654,7 +654,7 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
   <div class="grid" style="grid-template-columns:1fr 360px;align-items:start">
     <div class="risk-map-stack">
       <div class="card risk-map-card" style="margin-bottom:12px">
-        <div class="card-head"><div><h3>Layoff Pressure Heatmap</h3><p class="csub">Warna menunjukkan kategori risiko relatif antardaerah. Klik provinsi untuk melihat data pendukung.</p></div><div class="risk-map-tools"><span style="font-size:11px;color:var(--muted)">Tampilan:</span> <select id="sortsel" class="btn" style="padding:4px 8px"><option value="lpi">Risiko PHK</option><option value="struct">Kerentanan struktural</option><option value="labour">Kerentanan pasar kerja</option><option value="stress">Tekanan makroekonomi</option></select></div></div>
+        <div class="card-head"><div><h3>Layoff Pressure Heatmap</h3><p class="csub">Warna menunjukkan kategori risiko relatif antardaerah. Klik provinsi untuk melihat data pendukung.</p></div><div class="risk-map-tools"><span class="badge ghost" id="risk-map-period">Agu 2026</span><span style="font-size:11px;color:var(--muted)">Tampilan:</span> <select id="sortsel" class="btn" style="padding:4px 8px"><option value="lpi">Risiko PHK</option><option value="struct">Kerentanan struktural</option><option value="labour">Kerentanan pasar kerja</option><option value="stress">Tekanan makroekonomi</option></select></div></div>
         <div class="risk-map-box" id="province-board"></div>
       </div>
       <div class="card risk-method-note">
@@ -1531,6 +1531,8 @@ let riskMapView = {...RISK_MAP_BASE_VIEW};
 const METRIC_LABEL = {lpi:'Layoff Pressure Index', struct:'Kerentanan struktural', labour:'Kerentanan pasar kerja', stress:'Tekanan makroekonomi'};
 const METRIC_SHORT = {lpi:'LPI', struct:'Struktural', labour:'Pasar kerja', stress:'Tekanan ekonomi'};
 function buildMap(){
+  const rp = document.getElementById('risk-map-period');
+  if(rp) rp.textContent = shortPeriod(LPI_PERIOD_LABEL);
   renderBoard();
   document.getElementById('sortsel').addEventListener('change', e=>{ curSort=e.target.value; renderBoard(); if(curProv) selectProv(curProv); });
 }
